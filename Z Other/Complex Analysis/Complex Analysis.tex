@@ -1,0 +1,273 @@
+\documentclass[12pt]{article}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[left=.75in, top=1in, bottom = 1in]{geometry}
+
+\newcommand\italicmath{\mathversion{italic}}
+\DeclareMathVersion{italic}
+\SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
+\SetSymbolFont{letters}  {italic}{OML}{cmm} {m}{it}
+\SetSymbolFont{symbols}  {italic}{OMS}{cmsy}{m}{n}
+\SetMathAlphabet\mathsf{italic}{OT1}{cmss}{m}{sl}
+\SetMathAlphabet\mathit{italic}{OT1}{cmr}{m}{it}
+
+\newcommand\bitalicmath{\mathversion{bitalic}}
+\DeclareMathVersion{bitalic}
+\SetSymbolFont{operators}{bitalic}{OT1}{cmr} {bx}{it}
+\SetSymbolFont{letters}  {bitalic}{OML}{cmm} {b}{it}
+\SetSymbolFont{symbols}  {bitalic}{OMS}{cmsy}{b}{n}
+\SetMathAlphabet\mathsf{bitalic}{OT1}{cmss}{bx}{sl}
+\SetMathAlphabet\mathit{bitalic}{OT1}{cmr}{bx}{it}
+
+
+\begin{document}
+% An Easy First Order Differential (& Transport Equation)
+\section{An Easy First Order Differential (\& Transport Equation)}
+\boldmath $$A(x) \ u_x + B(x,y) \ u_y = f(u)$$ \unboldmath
+\\ \\
+$\displaystyle \frac{dy}{dx} = \frac{ \frac{dy}{dt} }{ \frac{dx}{dt} } = \frac{B(x,y)}{A(x)}\ \ \Rightarrow\ \ \int \frac{dy}{\beta(y)} = \int \frac{dx}{\alpha(x)} \ \ \Rightarrow\ \ Y(y) = X(x) + C $ \\ \\
+\begin{eqnarray*}
+C &=& Y(y)-X(x) \\
+\epsilon &=& x \\
+\end{eqnarray*}
+$u_x\ =\ u_C\displaystyle \frac{dC}{dx} +u_{\epsilon}\frac{d\epsilon}{dx}\ =\ \frac{-1}{\alpha(x)} u_C + u_{\epsilon}$ \\ \\ \\
+$u_y\ =\ u_C\displaystyle \frac{dC}{dy} +u_{\epsilon}\frac{d\epsilon}{dy}\ =\ \frac{1}{\beta(y)} u_C$ \\ \\
+\begin{eqnarray*}
+f(u) &=& A(x)u_x + B(x,y)u_y \\ \\
+&=& A(x)\left[ \frac{-1}{\alpha(x)}u_C + u_{\epsilon} \right] + \frac{B(x,y)}{\beta(y)}u_C \\ \\
+&=& A(x)u_{\epsilon} + \left[ \frac{B(x,y)}{\beta(y)} - \frac{A(x)}{\alpha(x)} \right]u_C \\ \\
+&=& A(\epsilon) \frac{\partial u}{\partial \epsilon} + [0 \text{, hopefully}] \\ \\
+\end{eqnarray*}
+\begin{minipage}{0.60\textwidth}
+	{\bitalicmath $f(u) \neq 0:$} $\ \ \displaystyle \int \frac{du}{f(u)} = \int \frac{d\epsilon}{A(\epsilon)}$ \\ \\ \\
+	$\gamma(u) = h(\epsilon) + g(C)$ \\ \\
+	$u(x,y) = \gamma^{-1} \{\ h(x) + g[\ Y(y)-X(x)\ ] \ \}$ \\
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+	{\bitalicmath $f(u) = 0:$} $\ \ \ \ \displaystyle\frac{\partial u}{\partial \epsilon} = 0$ \\ \\ \\
+	$u(x,y) = g(C) = g[\ Y(y)-X(x)\ ]$ \\ \\ \\
+\end{minipage}
+\\ \\
+% Quadratic-esque Equations (pre-Wave Equation)
+\section{Quadratic-esque Equations (pre-Wave Equation)}
+\boldmath \begin{eqnarray*}
+ 0 &=& \alpha u_{xx}  + \beta u_{xt} + \gamma u_{tt} \\ \\
+	&=& [a\partial_x + b\partial_t][c\partial_x + d\partial_t]u \\
+\end{eqnarray*} \unboldmath
+$0 \ =\ [a\partial_x + b\partial_t] v\ =\ [c\partial_x + d\partial_t] w$ \\ \\
+$u = v \left( t - \frac{b}{a}x \right) + w \left( t - \frac{d}{c}x \right)$ \\
+
+% Diffusion Equation
+\section{Diffusion Equation}
+\boldmath $$u_t - ku_{xx} = f(x,t)$$ \unboldmath
+	% (-Infinity, Infinity)
+\subsection{\boldmath $x \in (-\infty, \infty)$ \unboldmath \\}
+	\begin{enumerate}
+	\item {\bitalicmath $ u(x,0) = \phi(x)$}
+	$$u = \displaystyle\int_{-\infty}^{\infty}S(x-y)\phi(y)dy \ +\  \int_{0}^{t}\int_{-\infty}^{\infty}S(x-y,t-s)f(y,s)dyds$$
+		\begin{enumerate}
+		\item {\boldmath $f(x,t) = 0:$}\  \ $u = \displaystyle\int_{-\infty}^{\infty}S(x-y)\phi(y)dy$ \\
+		\end{enumerate}
+	\end{enumerate}
+	% (0,Infinity)
+\subsection{\boldmath$x \in (0, \infty)$\unboldmath \\}
+	\begin{enumerate}
+	\item {\bitalicmath $u(x,0) = \phi_u (x)$}
+		\begin{enumerate}
+		% Dirichlet
+		\item {\bf Dirichlet: }{\bitalicmath $u(0,t) = h(t)$} \\ \\
+		$\phi(x) = 
+			\begin{cases}
+			\text{$\phi_u(x)$} & \text{$x > 0$} \\
+			\text{$-\phi_u(-x)$} & \text{$x < 0$} \\
+			\end{cases}$ \\ \\ \\
+		$v(x,t) = u - h(t)$
+			\begin{itemize}
+			\item $ v(x,0) = \phi_v = \phi_u(x) - h(0)$
+			\item $ v(0,t) = 0$
+			\item $ v_t - kv_{xx} = f(x,t) - h'(t)$ \\
+			\end{itemize}
+		$u = h(t) + v(x,t)$ \\
+			\begin{enumerate}
+			\item {\boldmath $u(0,t) = h(t) = 0:$}
+				\begin{eqnarray*}
+				u &=& \displaystyle\int_{-\infty}^{\infty}S(x-y)\phi(y)dy \ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
+				&=& \displaystyle\int_{0}^{\infty}S(x-y)\phi_u(y)dy\ -\ \int_{-\infty}^{0}S(x-y)\phi_u(-y)dy \\
+				&&\ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
+				&=& \int_{0}^{\infty}[S(x-y) - S(x+y)]\phi_u(y)dy \ +\  \int_{0}^{t}\int_{-\infty}^{\infty}S(x-y,t-s)f(y,s)dyds \\
+				\end{eqnarray*}
+			\end{enumerate}
+		% Neumann
+		\item {\bf Neumann: }{\bitalicmath$u_x(0,t) = h(t)$} \\ \\
+		$\phi(x) = 
+			\begin{cases}
+			\text{$\phi_u(x)$} & \text{$x > 0$} \\
+			\text{$\phi_u(-x)$} & \text{$x < 0$} \\
+			\end{cases}$ \\ \\ \\
+		$v(x,t) = u - xh(t)$
+			\begin{itemize}
+			\item $v(x,0) = \phi_v = \phi_u - xh(0)$
+			\item $v(0,t) = 0$
+			\item $v_t - kv_{xx} = f(x,t) - xh'(t)$ \\
+			\end{itemize}
+		$u = xh(t) + v(x,t)$ \\
+			\begin{enumerate}
+			\item {\boldmath $u_x(0,t) = h(t) = 0:$}
+				\begin{eqnarray*}
+				u &=& \displaystyle\int_{-\infty}^{\infty}S(x-y)\phi(y)dy \ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
+				&=& \displaystyle\int_{0}^{\infty}S(x-y)\phi_u(y)dy + \int_{-\infty}^{0}S(x-y)\phi_u(-y)dy \\
+				&& \ \ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
+				&=& \int_{0}^{\infty}[S(x-y) + S(x-y)]\phi_u(y)dy \ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
+				\end{eqnarray*}
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+	% (0,L)
+\subsection{\boldmath$x \in (0, L)$\unboldmath \\}
+	\begin{enumerate}
+	% Intro
+	\item {\bitalicmath $u(x,0) = \phi(x),\quad f(x,t) = 0$} \\ \\
+	 $u = \displaystyle\sum X(x)\ T(t)$
+		\begin{itemize}
+		\item $\displaystyle \frac{T'(t)}{kT(t)} = \frac{X''(x)}{X(x)} = -\lambda$ \\
+			\begin{enumerate}
+			\item {\boldmath $\lambda > 0: $}
+				\begin{itemize}
+				\item $X = A_x \cos(\sqrt{\lambda}x) + B_x \sin(\sqrt{\lambda}x)$
+				\item $T = A_t e^{-\lambda kt}$
+				\end{itemize}
+			\item {\boldmath $\lambda = 0: $}
+				\begin{itemize}
+				\item $X = A_x x + B_x$
+				\item $T = A_t$
+				\end{itemize}
+			\item {\boldmath $\lambda < 0: $}
+				\begin{itemize}
+				\item $X = A_x \cosh(\sqrt{\lambda}x) + B_x \sinh(\sqrt{\lambda}x)$
+				\item $T = A_t e^{\lambda kt}$ \\
+				\end{itemize}
+			\end{enumerate}
+		\end{itemize}
+		\begin{enumerate}
+		% Dirichlet
+		\item {\bf Dirichlet: }{\bitalicmath $u(0,t) = u(L,t) = 0$} \\ \\
+		$ \sqrt{\lambda} = \displaystyle \frac{n\pi}{L},\ n \in \mathbb{N}$ \\ \\
+		$\phi(x) = \displaystyle\sum\limits_{n = 1}^{\infty} A_n \sin(\frac{n\pi}{L}x)$ \\ \\
+		$u = \displaystyle\sum\limits_{n = 1}^{\infty} A_ne^{-(\frac{n\pi}{L})^2kt}\sin(\frac{n\pi}{L}x)$ \\
+		% Neumann
+		\item {\bf Neumann: }{\bitalicmath $ u_x(0,t) = u_x(L,t) = 0$} \\ \\
+		$ \sqrt{\lambda} = \displaystyle \frac{n\pi}{L},\ n \in \mathbb{N}_0$ \\ \\
+		$\phi(x) = \displaystyle \frac{1}{2}A_0 + \sum\limits_{n = 1}^{\infty} A_n\cos(\frac{n\pi}{L}x)$ \\ \\
+		$u = \displaystyle\frac{1}{2}A_0 \ +\  \sum\limits_{n = 1}^{\infty} A_n\ e^{-(\frac{n\pi}{L})^2kt}\cos(\frac{n\pi}{L}x)$ \\
+		% Robin
+		\item {\bf Robin: }{\bitalicmath $u_x(0,t) -a_0 u(0,t) =  u_x(L,t)+a_L u(L,t) = 0$} \\
+		\end{enumerate}
+	\end{enumerate}
+	
+% Wave Equation
+\section{Wave Equation}
+\boldmath $$u_{tt} - c^2 u_{xx} = f(x,t)$$ \unboldmath
+	% (-Infinity, Infinity)
+\subsection{\boldmath $x \in (-\infty, \infty)$ \unboldmath \\}
+	\begin{enumerate}
+	\item {\bitalicmath $u(x,0) = \phi(x),\quad u_t(x,0) = \psi(x)$} \\ \\
+	$u = \displaystyle\frac{1}{2} [\phi(x-ct)+\phi(x+ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy + \frac{1}{2c}\int_{0}^{t}\int_{x-c(t-s)}^{x+c(t-s)}f(y,s)dyds$
+		\begin{itemize}
+		\item {\boldmath $f(x,t) = 0:$} \ \  $u = \displaystyle\frac{1}{2} [\phi(x-ct)+\phi(x+ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy$
+		\end{itemize}
+	\end{enumerate}
+	% (0, Infinity)
+\subsection{\boldmath $x \in (0, \infty)$ \unboldmath \\}
+	\begin{enumerate}
+	\item {\bitalicmath $u(x,0) = \phi(x),\quad u_t(x,0) = \psi(x)$}
+
+		\begin{enumerate}
+		% Dirichlet
+		\item {\bf Direchlet: }{\bitalicmath $u(0,t) = h(t)$} \\ \\
+		{\boldmath $x \in (ct,\infty): $} 
+		$$u = \displaystyle\frac{1}{2} [\phi(x+ct)+\phi(x-ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy + \frac{1}{2c}\int_{0}^{t}\int_{x-c(t-s)}^{x+c(t-s)}f(y,s)dyds$$
+		{\boldmath $x \in (0,ct): $}
+		$$^\textbf*u =\displaystyle\frac{1}{2} [\phi(ct+x)-\phi(ct-x)] + \frac{1}{2c}\int_{ct-x}^{ct+x}\psi(y)dy + \frac{1}{2c}\int_{0}^{t}\int_{c(t-s)-x}^{c(t-s)+x}f(y,s)dyds + h(t-\frac{x}{c})$$
+			\begin{itemize}
+			\item {\boldmath $f(x,t) = h(t) = 0:$} \ \  $u = \displaystyle\frac{1}{2} [\phi(x-ct)+\phi(x+ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy$
+			\end{itemize}
+		\end{enumerate}
+	\end{enumerate}
+	% (0, L)	
+\subsection{\boldmath $x \in (0, L)$ \unboldmath \\}
+	\begin{enumerate}
+
+	\item {\bitalicmath $u(x,0) = \phi(x),\quad u_t(x,0) = \psi(x),\quad f(x,t) = 0$} \\ \\
+	 $u = \displaystyle\sum X(x)\ T(t)$
+		\begin{itemize}
+		\item $\displaystyle \frac{T''(t)}{c^2 T(t)} = \frac{X''(x)}{X(x)} = -\lambda$ \\
+			\begin{enumerate}
+			\item {\boldmath $\lambda > 0: $}
+				\begin{itemize}
+				\item $X = A_x \cos(\sqrt{\lambda}x) + B_x \sin(\sqrt{\lambda}x)$
+				\item $T = A_t \cos(\sqrt{\lambda}ct) + B_t \sin(\sqrt{\lambda}ct)$
+				\end{itemize}
+			\item {\boldmath $\lambda = 0: $}
+				\begin{itemize}
+				\item $X = A_x x + B_x$
+				\item $T = A_t t + B_t$
+				\end{itemize}
+			\item {\boldmath $\lambda < 0: $}
+				\begin{itemize}
+				\item $X = A_x \cosh(\sqrt{\lambda}x) + B_x \sinh(\sqrt{\lambda}x)$
+				\item $T = A_t \cosh(\sqrt{\lambda}ct) + B_t \sinh(\sqrt{\lambda}ct)$
+				\end{itemize}
+			\end{enumerate}
+		\end{itemize}
+		\begin{enumerate}
+		% Dirichlet
+		 \item {\bf Direchlet: }{\bitalicmath $ u(0,t) = u(L,t) = 0$} \\ \\
+		$\sqrt{\lambda} = \displaystyle \frac{n\pi}{L},\ n \in \mathbb{N}_0$ \\ \\
+		$\phi(x) =  \displaystyle\sum\limits_{n = 0}^{\infty} A_n \sin(\frac{n\pi x}{L}),\quad \psi(x) =  \displaystyle\sum\limits_{n = 0}^{\infty} \frac{n\pi c}{L}B_n \sin(\frac{n\pi x}{L})$ \\ \\
+		$u =  \displaystyle\sum\limits_{n = 0}^{\infty} \left(A_n \cos(\frac{n\pi}{L}ct) + B_n\sin(\frac{n\pi}{L}ct)\right)\sin(\frac{n\pi}{L}x)$ \\
+		% Neumann
+		\item {\bf Neumann: }{\bitalicmath $ u_x(0,t) = u_x(L,t) = 0$} \\ \\
+		$\sqrt{\lambda} = \displaystyle \frac{n\pi}{L},\ n \in \mathbb{N}_0$ \\ \\
+		$\phi(x) = \frac{1}{2}A_0 + \sum\limits_{n = 1}^{\infty} A_n\cos(\frac{n\pi}{L}x),\quad \psi(x) = \frac{1}{2}B_0 + \sum\limits_{n = 1}^{\infty} \frac{n\pi c}{L} B_n\cos(\frac{n\pi}{L}x)$
+	
+		$u =  \displaystyle\frac{1}{2}A_0\  +\  \frac{1}{2}B_0 t\  +\  \sum\limits_{n = 1}^{\infty} \left(A_n \cos(\frac{n\pi ct}{L}) + B_n\sin(\frac{n\pi ct}{L})\right)\cos(\frac{n\pi}{L}x)$ \\	
+		\end{enumerate}
+	\end{enumerate}
+
+% Error Function
+\section{Error function}
+$S(x-y,t) = \frac{1}{\sqrt{4kt\pi}}e^{-\frac{(x-y)^2}{4kt}}$ \\ \\
+$\int_{a}^{b} e^{-p^2}dp = \displaystyle\frac{\sqrt{\pi}}{2}[erf(b) - erf(a)]$
+	\begin{itemize}
+	\item $erf(\infty) = 1 \quad|\quad erf(-\infty) = -1 \quad|\quad erf(0) = 0$
+	\item $\int_{-\infty}^{\infty} e^{-p^2}dp = \sqrt{\pi} \quad|\quad \int_{-\infty}^{0} e^{-p^2}dp = \displaystyle\frac{\sqrt{\pi}}{2}$ \\
+	\end{itemize}
+
+% Fourier Series
+\section{Fourier Series}
+	% Sine
+\subsection{Sine}
+	\begin{eqnarray*}
+	 f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} S_n \sin\left(\frac{g(n)}{L}\pi x \right) \\
+	 \displaystyle \int_{0}^{L} f(x)\sin\left(\frac{h(m)}{L}\pi x\right) dx &=& \sum\limits_{n = 0}^{\infty} \int_{0}^{L} S_n \sin\left(\frac{g(n)}{L}\pi x \right) \sin\left(\frac{h(m)}{L}\pi x\right) dx \\
+	&=& S_{h(m)} \frac{L}{2} \\
+	S_n &=&  \displaystyle \frac{2}{L} \int_{0}^{L} f(x)\sin\left(\frac{g(n)}{L}\pi x\right) dx
+	\end{eqnarray*}
+	% Cosine
+\subsection{Cosine}
+	\begin{eqnarray*}
+	 f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} S_n \cos\left(\frac{g(n)}{L}\pi x \right) \\
+	 \displaystyle \int_{0}^{L} f(x)\cos\left(\frac{h(m)}{L}\pi x\right) dx &=& \sum\limits_{n = 0}^{\infty} \int_{0}^{L} S_n \cos\left(\frac{g(n)}{L}\pi x \right) \cos\left(\frac{h(m)}{L}\pi x\right) dx \\
+	&=& S_{h(m)} \frac{L}{2} \\
+	S_n &=&  \displaystyle \frac{2}{L} \int_{0}^{L} f(x)\cos\left(\frac{g(n)}{L}\pi x\right) dx
+	\end{eqnarray*}
+	% Full
+\subsection{Full}
+	\begin{eqnarray*}
+	 f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} A_n \cos\left(\frac{g(n)}{L}\pi x \right) + B_n \sin \left( \frac{g(n)}{L} \pi x \right) \\ \\
+	A_n &=&  \displaystyle \frac{1}{L} \int_{-L}^{L} f(x)\cos\left(\frac{g(n)}{L}\pi x\right) dx \\ \\
+	B_n &=&  \displaystyle \frac{1}{L} \int_{-L}^{L} f(x)\sin\left(\frac{g(n)}{L}\pi x\right) dx \\ \\
+	\end{eqnarray*}
+\end{document}

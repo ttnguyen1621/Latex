@@ -1,0 +1,333 @@
+\documentclass[12pt]{article}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+
+\newcommand\italicmath{\mathversion{italic}}
+\DeclareMathVersion{italic}
+\SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
+\SetSymbolFont{letters}  {italic}{OML}{cmm} {m}{it}
+\SetSymbolFont{symbols}  {italic}{OMS}{cmsy}{m}{n}
+\SetMathAlphabet\mathsf{italic}{OT1}{cmss}{m}{sl}
+\SetMathAlphabet\mathit{italic}{OT1}{cmr}{m}{it}
+
+\newcommand\bitalicmath{\mathversion{bitalic}}
+\DeclareMathVersion{bitalic}
+\SetSymbolFont{operators}{bitalic}{OT1}{cmr} {bx}{it}
+\SetSymbolFont{letters}  {bitalic}{OML}{cmm} {b}{it}
+\SetSymbolFont{symbols}  {bitalic}{OMS}{cmsy}{b}{n}
+\SetMathAlphabet\mathsf{bitalic}{OT1}{cmss}{bx}{sl}
+\SetMathAlphabet\mathit{bitalic}{OT1}{cmr}{bx}{it}
+
+\newcommand*{\dotP}{\boldsymbol \cdot}				% Dot Product
+\newcommand*{\contra}[1]{\boldsymbol {#1}^{\mu}}	% Contravariant vector
+\newcommand*{\covar}[1]{\boldsymbol {#1}_{\mu}}		% Covariant vector
+% \newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+
+\begin{document}
+
+\section{Lorentz Transformation}
+
+\vspace*{10pt}
+% Galilean Transform
+\(\begin{aligned}[t]
+	&\text{\underline{Galilean Transform}}\\[10pt]
+	&\indent\begin{aligned}
+		t_0' &= t_0\\[5pt]
+		x_0' &= x_0 - vt_0
+	\end{aligned} \ \ \ , \ \ \
+	\begin{aligned}
+		t_0 &= t'_0\\[5pt]
+		x_0 &= x'_0 + vt'_0
+	\end{aligned}
+\end{aligned}
+\hspace{1cm}
+\rightarrow
+\hspace{1cm}
+% Lorentz Transform
+\begin{aligned}[t]
+	&\text{\underline{Lorentz Transform}} \hspace{20pt} 
+		\gamma \equiv \tfrac{1}{\sqrt{1 - v^2/c^2}} = \tfrac{1}{\sqrt{1 - \beta^2}}\\[5pt]
+	&\indent\boxed{\begin{aligned}
+		x' &= \gamma (x - \beta ct)\\[5pt]
+		ct' &= \gamma (ct - \beta x)
+	\end{aligned}\ \ \ , \ \ \
+	\begin{aligned}
+		x &= \gamma (x' + \beta ct')\\[5pt]
+		ct &= \gamma (ct' + \beta x')
+	\end{aligned}}
+\end{aligned}\)
+
+\vspace{15pt}\noindent
+% Define variables
+\begin{minipage}[t]{.46\textwidth}
+	\scriptsize
+	\(x\) is the position of a point/\underline{event} occuring on the number line, and 
+	\(t\) is the \underline{time on a clock} at \(x\).\\[5pt]
+	\(x'\) is the position of the \underline{same} point/\underline{event} on the other number line, and
+	\(t'\) is the \underline{time on the clock} at \(x'\).\\[5pt]
+	\(x=0\) and \(x'=0\) are the positions of the line/reference frame origins, and 
+	\(t_0\) and \(t'_0\) are the times on the origin clocks.\\[5pt]
+	At \(t_0 = t'_0 = 0\), both origin's coincide at \(x=x'=0\).\\[5pt]
+	All points at \(x\) see their clock run the same as \(t = t_0\), but see a different \(t'\) at the adjacent \(x'\).
+\end{minipage}
+% Lorentz Transform Matrix
+\hfill
+\begin{minipage}[t]{.49\textwidth}
+	\setlength{\parindent}{.5cm}
+	\noindent
+	\underline{Transform Matrix}\\[10pt]
+	\indent\({x^\mu}' = 
+		\left( \begin{matrix}
+			{x^0}' = ct'\\
+			{x^1}'\\
+			{x^2}'\\
+			{x^3}'
+		\end{matrix} \right) =
+		\left(\begin{matrix} 
+			\gamma & -\gamma\beta 	& 0 & 0\\
+			\gamma\beta & \gamma 	& 0 & 0\\
+			0 & 0 & 1 & 0\\
+			0 & 0 & 0 & 1
+		\end{matrix}\right) x^\mu\)
+\end{minipage}
+
+% Time slows down
+\vspace{20pt}\noindent
+\underline{Time Slows:} \ \ \(\boxed{ \Delta t' = \Delta t / \gamma }\)\\[10pt]
+\indent\(\begin{aligned}
+	&1.)\ t'(x,t_0) \text{ for a Clock at } x = X_0+vt\\[5pt]
+	&\Rightarrow \ \ \begin{aligned}[t]
+			ct' &= \gamma \left( ct - \beta[X_0 + vt] \right) \\[5pt]
+			&= \left( \gamma ct (1 - \beta^2) - \gamma \beta X_0 \right) \\[5pt]
+			&= \left( \frac{ct}{\gamma} - \gamma\beta X_0 \right)
+				= \left( \frac{ct}{\gamma} + cT_0 \right)
+		\end{aligned}
+		\ \ \Rightarrow \ \ \begin{aligned}[t]
+			&\boxed{\begin{aligned}[t]
+					t'(X_0,t) &= \tfrac{t}{\gamma} + T_0 \\[5pt]
+					&= \tfrac{t}{\gamma} - \gamma\beta X_0
+				\end{aligned}} \indent \begin{gathered}[t]
+					{\setlength{\arraycolsep}{3pt}\begin{array}[t]{r l}
+							\scriptstyle T_0 > 0 : & \scriptstyle X_0 < 0\\[-5pt]
+							\scriptstyle T_0 < 0 : & \scriptstyle X_0 > 0
+						\end{array}}\\
+					\boxed{ \begin{gathered}
+						\text{\scriptsize(No \(t'\) is simultaneous to}\\[-10pt]
+						\text{\scriptsize \(x\) unless in same position)}
+					\end{gathered} }
+				\end{gathered} \\[10pt]
+			&\boxed{ \tfrac{dt'}{dt} = \tfrac{dt'}{dt_0}= \tfrac{1}{\gamma} }
+				\indent\indent \boxed{ \begin{gathered}
+					\text{\scriptsize(for each \(\Delta t\), then \(\Delta t' = \frac{\Delta t}{\gamma}\))}\\
+					\text{\scriptsize(Clocks at \(x'\) look like they}\\[-10pt]
+					\text{\scriptsize tick slower by factor \(\gamma\))}
+				\end{gathered} }
+		\end{aligned}\\
+	&2.)\ \Delta t'_0 \text{ given } \Delta t_0\\[5pt]
+	&\Rightarrow \ \ c \Delta t_0 = \gamma (c \Delta t'_0 - \cancel{ \beta x'_{=0} }) \ \ \Rightarrow \ \
+		\boxed{ \Delta t'_0 = \Delta t_0 / \gamma } \indent \text{\scriptsize(Same conclusion of slowed clocks)}
+\end{aligned}\)
+
+\vspace{20pt}\noindent
+\begin{minipage}[t]{.54\textwidth}
+	% Length Contraction
+	\underline{Length Contraction}: \ \ \(\boxed{ \Delta x' = \gamma \Delta x }\)\\[10pt]
+	\indent \(1.)\ \begin{aligned}[t]
+		\Delta x' = x'_2 - x'_1 \ &= \ \gamma (x_2 - \cancel{\beta ct}) - \gamma (x_1 - \cancel{\beta ct}) \\[5pt]
+			&=\ \gamma (x_2 - x_1) \ =\ \gamma \Delta x \ \ \ \ \checkedbox
+	\end{aligned}\)
+
+	% Velocity addition
+	\vspace{20pt}\noindent
+	\underline{Velocity Addition (1-D)}: \ \ \(\boxed{ w = \frac{v + u}{1 + vu/c^2} }\)	
+\end{minipage}
+\begin{minipage}[t]{.45\textwidth}
+	\setlength{\parindent}{.5cm}
+	% Pythagorean Triples
+	\noindent
+	\underline{Pythag. Triples}\\[5pt]
+	\indent \(\setlength{\arraycolsep}{.3pt} \begin{array}[t]{l l}
+		\beta = 3/5 	&\ :\ \gamma = 5/4 = 1.25\\[5pt]
+		\beta = 4/5 	&\ :\ \gamma = 5/3\\[5pt]
+		\beta = 5/13 	&\ :\ \gamma = 13/12\\[5pt]
+		\beta = 7/25	&\ :\ \gamma = 25/24
+	\end{array}\)
+
+	% Doppler Shift
+	\vspace{15pt}\noindent
+	\underline{Doppler Shift}\\[5pt]
+	\(f_\text{rec} = \sqrt{\frac{1+\beta}{1-\beta}}\ f_\text{emit} 
+		\indent\indent {\scriptstyle(v \text{ is } [+] \text{ if } \rightarrow \leftarrow)}\)
+
+\end{minipage}
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+% 4 vectors
+\newpage
+\section{4-Vectors}
+
+% 3 Vectors
+\begin{minipage}[t]{0.45\textwidth}
+	\textbf{3-Vectors}
+	\begin{align*}
+		\vec{p} &\ =\ \boxed{ \gamma m \vec{v} } \\[10pt]
+		\vec{F} &\ =\ \tfrac{d\vec{p}}{dt} \ =\ m\tfrac{d(\gamma \vec{v})}{dt}\\[2pt]
+		&\ =\ \gamma m\vec{a}+\gamma^3 \tfrac{(m\vec{a}\dotP\vec{v})\vec{v}}{c^2}\\[2pt]
+		&\ =\ \boxed{ \gamma^3 m(\vec{a} - \tfrac{\vec{v}\dotP\vec{v}}{c^2}\vec{a} + \tfrac{\vec{a} \dotP \vec{v}}{c^2}\vec{v}) }
+	\end{align*}
+\end{minipage}
+\hfill
+% Scalars
+\begin{minipage}[t]{0.49\textwidth}
+	\textbf{Scalars}
+	\begin{align*}
+		E &\ \ =\ \ \boxed{ \sqrt{p^2c^2 + m^2c^4} \ \ =\ \ \gamma mc^2 }\\[3pt]
+		T &\ \ =\ \ E - E_0 \ \ =\ \ \boxed{(\gamma-1)mc^2}\\[3pt]
+		P_\text{ow} &\ \ =\ \ \tfrac{dE}{dt} \ \ =\ \ mc^2 \tfrac{d\gamma}{dt} \ \ =\ \ \tfrac{d\vec{p}}{dt} \dotP \vec{v}\\[2pt]
+		&\ \ = \ \ \boxed{ \vec{F} \dotP \vec{v} \ \ = \ \ \gamma^3 m\vec{a} \dotP \vec{v} }\\[3pt]
+		W &\ \ = \ \ \int \vec{F} \dotP \vec{v}\ dt \ \ =\ \ \boxed{ \int \gamma^3 m\vec{a} \dotP \vec{v}\ dt }
+	\end{align*}
+\end{minipage}
+
+% Line Divider
+\vspace{10pt}\noindent
+\rule{1\textwidth}{.5pt}
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+% Position
+\vspace{-10pt}
+\subsection{Position}
+
+\vspace{10pt}
+\hspace{.75cm}\(
+	\begin{aligned}
+		\contra{x} &\ =\ (x^0, \vec{x}) \\
+		&\ =\ (ct, \vec{r}) 	
+	\end{aligned}
+	\ \ \Rightarrow	\ \ 
+	\boxed{ \Delta \contra{x} \ =\ \contra{x}_A - \contra{x}_B } \hspace{1cm} \text{(for Event \(A,\ B)\)}
+\)
+
+\vspace{10pt}
+% Position Dot Product
+\indent\(\begin{aligned}
+	(\Delta \contra{x})^2 &= (\Delta\contra{x})(\Delta\covar{x})\\[5pt]
+	&= c^2\tau^2 \\[5pt]
+	&= \boxed{ ct^2 - \vec{r}^{\ 2} }
+\end{aligned}
+\hspace{20pt}
+\left\{\hspace{10pt}
+% Time/Space Like
+\begin{array}{r l}
+	\text{Timelike} : 	& \ (\Delta \contra{x})^2 > 0	
+		\indent \begin{gathered}
+			\text{\scriptsize(\(\exists\) an inertial frame where \(A,\ B\) occur at} \\[-5pt]
+			\text{\scriptsize the \underline{same spacial place} but diff. time, e.g,}\\[-2pt]
+			\text{\scriptsize \((c\Delta t,0,0,0)\ \rightarrow\ (\Delta x)^2\ =\ c^2 (\Delta t)^2 > 0\))}
+		\end{gathered}\\[15pt]
+	\text{Spacelike} : 	& \ (\Delta \contra{x})^2 < 0	
+		\indent \begin{gathered}
+			\text{\scriptsize(\(\exists\) an inertial frame where \(A,\ B\) occur at} \\[-5pt]
+			\text{\scriptsize the \underline{same time} but non-casual space)}
+		\end{gathered}\\[10pt]
+	\text{Lightlike} : 	& \ (\Delta \contra{x})^2 = 0	
+		\indent \text{\scriptsize(\(A\) and \(B\) lie on a trajectory moving at \(c\))}\\
+\end{array}\right.\)
+
+% Dot Product Invariance
+\vspace{15pt}
+\fbox{ Relativistic Dot Products are Ref. Frame Invariant (not necessarily Conserved) }
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+% Momentum
+\subsection{Momentum}
+\vspace{-5pt}
+\begin{minipage}{0.45\textwidth}
+	\begin{eqnarray*}
+	\contra{p} &=& (p^0, \vec{p}) \\[5pt]
+		&=& m\frac{d\contra{x}}{d\tau} \ =\  m \contra{\eta} \\[5pt]
+		&=& \boxed{ (\gamma mc, \gamma m\vec{v}) \ =\  \left( \tfrac{E}{c}, \vec{p} \right) }
+	\end{eqnarray*}
+\end{minipage}
+\hfill
+% Momentum Dot Product
+\begin{minipage}{0.49\textwidth}
+	\(\pm \contra{p}\covar{p} \ =\ \boxed{ {\boldsymbol{p}}^2 \ =\ m^2c^2 \ =\  \left( \tfrac{E}{c} \right)^2 - \vec{p}^{\ 2}}\)
+
+	\vspace{20pt}
+	\fbox{\begin{minipage}{.8\textwidth}
+		Momentum Conservation means each \\
+		vector component is individually \\
+		conserved
+	\end{minipage}}
+\end{minipage}
+
+% Example
+\vspace{20pt}
+\indent \underline{Particle Decay Example: Rest \(M_1 \rightarrow m_2 + m_3\)}\\[10pt]
+\indent \(\begin{aligned}
+	p_3^2 &= (p_1 - p_2)^2 \\[5pt]
+	&= p_1^2 + p_2^2 - 2 p_1 \dotP p_2\\[5pt]
+	m_3^2c^2 &= M_1^2c^2 + m_2^2c^2 - 2 (M_1 c,0) \dotP (E_2/c,\vec{p}_2)\\[5pt]
+	&= M_1^2c^2 + m_2^2c^2 - 2 M_1 E_2
+\end{aligned} \ \ \Rightarrow \ \
+\boxed{ \begin{aligned}
+	E_2 &= \dfrac{M_1^2c^2 + m_2^2c^2 - m_3^2c^2 }{2M_1}\\[5pt]
+	E_3 &= \dfrac{M_1^2c^2 + m_3^2c^2 - m_2^2c^2 }{2M_1}
+\end{aligned} }\)
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+% Acceleration and Force
+\subsection{Acceleration and Force}
+\vspace{-5pt}
+\begin{minipage}{0.49\textwidth}
+	\begin{eqnarray*}
+	\contra{K} &=& (K^0, \vec{K}) \\
+		&=& m\contra{\alpha} \ =\ m\frac{d\contra{\eta}}{d\tau} \ =\ \frac{d\contra{p}}{d\tau} \ = \ \gamma \frac{d\contra{p}}{dt}\\[5pt]
+		&=& \left( \gamma \frac{d(\gamma mc)}{dt}, \gamma \frac{d(\gamma m\vec{v})}{dt} \right) \\[5pt]
+		&=& \left( \tfrac{\gamma P_\text{ow}}{c}, \gamma \vec{F} \right) \ =\ 
+			\left( \tfrac{\gamma \vec{F} \dotP \vec{v}}{c}, \gamma \vec{F} \right)\\[5pt]
+		&=& \left( \gamma^4 \tfrac{m\vec{a} \dotP \vec{v}}{c} , \ 
+			\gamma^2 m\vec{a} + \gamma^4 \tfrac{(m\vec{a}\dotP \vec{v})\vec{v}}{c^2} \right)
+	\end{eqnarray*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+	\begin{eqnarray*}
+	\mp \contra{\alpha}\covar{\alpha} &=& \gamma^6 \tfrac{(\vec{a} \dotP \vec{v})^2}{c^2} + \gamma^4 \vec{a}^{\ 2} \\[5pt]
+	\mp \contra{K}\covar{K} &=& - \gamma^2 \tfrac{(\vec{F} \dotP \vec{v})^2}{c^2} + \gamma^2 \vec{F}^{\ 2}\\[5pt]
+		&=& \gamma^2 \vec{F}^{\ 2} \left( 1-\tfrac{\vec{v}\dotP\vec{v}}{c^2}\cos{\theta_{v,F}} \right) \\[5pt]
+	\contra{\alpha}\covar{\eta} &=& \frac{d\contra{\eta}}{d\tau}\covar{\eta} = \frac{1}{2} \frac{d(\contra{\eta}\covar{\eta})}{d\tau} = 0 \\[5pt]
+	\contra{K}\covar{p} &=& m^2\contra{\alpha}\covar{\eta} = 0
+ 	\end{eqnarray*}
+\end{minipage}
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+% Current Density and Vector Potential
+\subsection{Current Density and Vector Potential}
+\begin{minipage}{0.45\textwidth}
+	\begin{eqnarray*}
+	\contra{J} &=& (J^0, \vec{J}) \\[5pt]
+		&=& \rho_0 \frac{d\contra{x}}{d\tau} \ =\  \rho_0 \contra{\eta} \\
+		&=& (\gamma c \rho_0, \gamma \rho_0 \vec{v}) \ =\  (c \rho, \vec{J}) \\ \\
+	\contra{A} &=& (A^0, \vec{A}) \ =\ \left( \tfrac{V}{c}, \vec{A} \right) \\ \\
+		&=& \contra{A} + \frac{\partial \lambda}{\partial \contra{x}}
+	\end{eqnarray*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+	\begin{eqnarray*}
+	\frac{\partial \contra{J}}{\partial \contra{x}} &=& \frac{\partial}{\partial \contra{x}} \dotP \contra{J} \ =\ \frac{\partial \rho}{dt}+\nabla \vec{J}\ = 0 \\ \\
+	\Box^2 \contra{A} &=& \left( \nabla^2 - \frac{1}{c^2}\frac{\partial^2}{\partial t^2} \right) \contra{A} \ =\ -\mu_0 \contra{J}
+ 	\end{eqnarray*}
+\end{minipage}
+
+\end{document}

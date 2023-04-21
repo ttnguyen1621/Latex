@@ -1,0 +1,1414 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage{amssymb, amsmath, amsfonts, mathtools}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{cancel}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
+\newcommand*\calign[1]{\omit\hfil$\displaystyle#1$\hfil\ignorespaces} % centers the math cell in alignat
+\newcommand*\lalign[1]{\omit$\displaystyle#1$\hfil\ignorespaces} % centers the math cell in alignat
+
+
+% \title{Thermal}
+% \author{ringoffire0 }
+% \date{November 2022}
+
+\begin{document}
+
+% 1st Law Thermo
+\section{Internal Energy and Introduction}
+
+% Definition
+\noindent
+\(\begin{aligned}
+    &\begin{gathered}
+        \text{\underline{Internal Energy}:}\\
+        \text{(1st Law)}
+    \end{gathered} \ \ \ \boxed{ \begin{aligned}
+        \Delta U &= Q + W\\[5pt]
+        dU &= \delta Q + \delta W
+    \end{aligned} }\\[5pt]
+    &\boxed{dU = T\ dS - P\ dV + \sum \mu_i\ dN_i + \dots}
+\end{aligned}\)
+\hspace{18pt}
+% Maxwell Identity
+\(\begin{aligned}
+    &\text{\underline{Maxwell Identity}:} \ \ \
+        \frac{\partial}{\partial V} \left( \frac{\partial U}{\partial S} \right)
+        = \frac{\partial}{\partial S} \left( \frac{\partial U}{\partial V} \right)\\[5pt]
+    &\rightarrow\ \boxed{ \left( \frac{\partial T}{\partial V} \right)_{N,S} 
+        = - \left( \frac{\partial P}{\partial S} \right)_{N,V} } 
+        \indent \text{\scriptsize(other iden. with \(\mu\),\(N\))}
+\end{aligned}\)
+
+% \vspace{5pt}
+\subsection{Initial Assumptions}
+\noindent
+\begin{minipage}[t]{.49\textwidth}
+    % Equipartition Theorem
+    \underline{Equipartition Theorem (ET)}: \\[10pt]
+    \(\boxed{ U_\text{therm} = f \left( \tfrac{1}{2} N k_b T \right) }\) 
+        \hspace{20pt}\(\scriptstyle f = x^2\ \text{DOF}\) \\[10pt]
+    -Solid: 3 [vib.] = 3 trans. + 3 pot. \\
+    -Mono Gas: 3 trans.\\
+    -Dia Gas: \(\begin{gathered}[t]
+            \begin{aligned}[t]
+                    &\text{3 trans.} + \text{2 rot.} + \text{1 vib.}\\[-6pt]
+                    &\hspace{37pt} \text{\scriptsize(1 K)} \hspace{17pt} \text{\scriptsize(1000 K)} 
+                \end{aligned}\\[-5pt]
+            \text{\scriptsize(Some DOF "freeze" at low temp)}
+        \end{gathered}\)
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+    % Ideal Gas Law
+    \underline{Ideal Gas Law (IG)}: \hspace{5pt} \(\boxed{ PV = N k_b T }\)
+
+    % Quasistatic Approx
+    \vspace{20pt}\noindent
+    \underline{Quasistatic Approx. (QS)}: \hspace{5pt} \begin{minipage}{3cm}
+            \scriptsize 
+            slow enough that \\ conditions are equal \\ throughout
+        \end{minipage}\\[10pt]
+    \(\bullet\ \boxed{ W_\text{cpr} = - \int P\ dV }\) \ \ \ \ QS Work (QW)
+\end{minipage}
+
+\vspace{15pt}\noindent
+\begin{minipage}[t]{.46\textwidth}
+    % Reversible
+    \subsection{Reversible (RV)}
+    {\scriptsize Infinitesmal small changes can be reversed back}\\
+    {\scriptsize to the original state}
+    
+    \vspace{10pt}
+    \(\begin{aligned}
+        &\bullet\ \delta W = P\ dV = \delta W_\text{cpr} + \cancel{ \delta W_\text{other} }\\
+        &\bullet\ \delta Q = T\ dS
+    \end{aligned}\)
+
+    % Isothermal Expansion
+    \subsection{Isothermal (iT): \(\boxed{ \tfrac{dT}{dt}=0 }\)}
+    
+    % Internal Energy
+    \(\rightarrow\ \begin{aligned}[t]
+        &\text{ET}: \ \begin{aligned}[t]
+                &\Delta U \sim \Delta T = 0\\
+                &\boxed{dU \sim dT = 0}
+            \end{aligned}\\[5pt]
+        &\text{\scriptsize(Energy as heat moves to and from environment)}
+    \end{aligned}\)
+
+    % PV Equation
+    \vspace{10pt}
+    \(\bullet\ \begin{aligned}[t]
+            &\text{IG}: \ \boxed{ P = \frac{N k_b T}{V} } 
+                \hspace{10pt} \text{\scriptsize(Isotherm \(1/V\) level-curves)}\\[5pt]
+            &\Rightarrow\ \boxed{ W = N k_b T \ln\left( \frac{V_i}{V_f} \right) = -Q }
+        \end{aligned}\)    
+
+    % Entropy
+    \vspace{10pt}
+    \(\bullet\ \boxed{ \Delta S = \int \frac{PdV}{T} = N k_b \ln \big( \tfrac{V_f}{V_i} \big) 
+        = \int \frac{\delta Q}{T}}\)
+\end{minipage}
+\begin{minipage}[t]{.52\textwidth}
+    % Free Expansion
+    \subsection{Free Expansion}
+    \(\boxed{ \Delta U = Q = W = 0 }\)\\[5pt]
+    \(\bullet\) IG: \ \(\boxed{ 0 = \Delta T } \ , \ \ 
+        \boxed{ \Delta S = \tfrac{{\scriptstyle \int} P dV}{T} = N k_b \ln (V_f / V_i) }\)\\[5pt]
+    \(\bullet\) Else: See Throttling
+
+    % Adiabatic Expansion
+    \subsection{Adiabatic (aB): \(\boxed{ Q=0 }\)}
+    
+    % Internal Energy
+    \(\rightarrow\ \begin{aligned}[t]
+            &\Delta U = W\\
+            &\boxed{ dU = \delta W }
+        \end{aligned}\) \ \ {\scriptsize(Compressed fast enough so no heat escapes)}
+
+    % PV Equation
+    \vspace{10pt}
+    \(\bullet\ \begin{aligned}[t]
+            &\text{ET \& IG}: WRONG%\ \boxed{ dU = \tfrac{f N k}{2}\ dT 
+                % = - P\ dV = \tfrac{- N k T}{V}\ dV )
+                \\[5pt]
+            &\Rightarrow\ V_\text{f}\ T_\text{f}^{f/2} 
+                = \left( V_\text{i}\ T_\text{i}^{f/2} = \text{constant} \right)\\[5pt]
+            &\Rightarrow\ \begin{aligned}[t]
+                    T V^{\frac{2}{f}} &= \left( \frac{PV}{Nk_b} \right) V^{\frac{2}{f}}\\[5pt]
+                    PV^{\left( 1+\frac{2}{f} \right)} &= \boxed{ PV^{\gamma} = \text{constant} }
+                        = {\scriptstyle V_\text{i}^{\frac{2}{f}} N k_b T_\text{i}}\\
+                    &\hspace{5pt} \text{\scriptsize(connects isotherm level-curves)}
+                \end{aligned}
+        \end{aligned}\)    
+
+    % Entropy    
+    \vspace{5pt}
+    \(\bullet\) QS : \ \(\boxed{ \Delta S = 0  = \int \frac{\delta Q}{T} }\)\ \ {\scriptsize(See Isentropic)}
+\end{minipage}
+
+%-----------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Enthalpy and Heat Capacity
+\section{Enthalpy and Heat Capacity}
+
+% Definition
+\noindent
+\(\begin{aligned}[t]
+    &\text{\underline{Enthalpy}:}\ \ \ \boxed{ H \equiv U + PV }\\[5pt]
+    &\boxed{ \begin{aligned}[t]
+        dH &= dU + P\ dV + V\ dP\\[5pt]
+        &= T\ dS + V\ dP + \sum \mu_i\ dN_i + \dots
+    \end{aligned} }
+\end{aligned}\)
+\hspace{1.1cm}
+% Maxwell Identity
+\(\begin{aligned}[t]
+    &\text{\underline{Maxwell Identity}:}\ \ \ 
+        \frac{\partial}{\partial P} \left( \frac{\partial H}{\partial S} \right)
+        = \frac{\partial}{\partial S} \left( \frac{\partial H}{\partial P} \right)\\[10pt]
+    &\rightarrow\ \boxed{ \left( \frac{\partial T}{\partial P} \right)_{N,S} 
+        = \left( \frac{\partial V}{\partial S} \right)_{N,P} }
+        \indent \text{\scriptsize(other iden. with \(\mu\),\(N\))}
+\end{aligned}\)
+
+% Heat Capacities
+\vspace{15pt}\noindent
+\underline{Heat Capacity}: \ \(\boxed{ C = \frac{Q}{\Delta T} = \frac{\Delta U-W}{\Delta T} }\)
+    \indent\indent \(\begin{aligned}
+        &\text{\underline{Specific Heat Capacity}}: \ c \equiv C/m\\[5pt]
+        &\text{\underline{3rd Law}}: \ \boxed{ \lim_{T \rightarrow 0}\ S(T) \rightarrow 0 
+            = C(T) \ \Rightarrow \ T \nless 0}
+    \end{aligned}\)
+
+% iNV Heat Capacity
+\noindent
+\subsection{Isochoric (iV): \(\boxed{ \tfrac{dV}{dt} = 0 }\)
+    \ \ \& \ ``Isomolic'' (iN): \(\boxed{ \tfrac{dN}{dt} = 0 }\)}
+\vspace{5pt}\noindent
+\begin{minipage}[t]{.49\textwidth}
+    % U Relation
+    \(\rightarrow \ \begin{aligned}[t]
+        \Delta U &= Q + W_\text{other} + \cancel{W_\text{cpr}} \ \ \ \ \text{\scriptsize(QW)} \\[5pt]
+        \Aboxed{ dU &= \delta Q + \delta W_\text{other}}
+    \end{aligned}\)
+
+    % U Capacity
+    \vspace{15pt}
+    \(\bullet \ \begin{aligned}[t]
+        &\text{IG Energy Capacity}:\\[10pt]
+        &\begin{aligned}[t]
+            C_V &= \tfrac{Q}{\Delta T} = \tfrac{\Delta U}{\Delta T} 
+                = \left( \tfrac{\partial U}{\partial T} \right)_{N,V} \\[5pt]
+            &= \partial_t \left( \tfrac{f}{2} nRT \right)
+                \hspace{20pt} \text{\scriptsize(normal temp. ET)}\\[5pt]
+            \Aboxed{ C_V &= \left( \tfrac{\partial U}{\partial T} \right)_{N,V} = \tfrac{f}{2} nR }
+        \end{aligned}
+    \end{aligned}\)    
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+    % U Change
+    \vspace{1pt}
+    \(\bullet \ \boxed{ \Delta U = Q = \tfrac{f}{2} nRT }\)
+
+    % S Change
+    \vspace{15pt}
+    \(\bullet \ \boxed{ \begin{aligned}[t]
+        \Delta S &= \int \frac{\delta Q}{T} = \int \frac{C_V\ dT}{T}\\[5pt]
+        &= \tfrac{f}{2} nR \ln{ \left( \frac{T_f}{T_i} \right) }\\[5pt]
+    \end{aligned} }\) 
+    \hspace{5pt} \begin{minipage}[t]{75pt}
+        \(\begin{gathered}[t]
+            \text{(3rd Law)}\\[5pt]
+            \lim_{T \rightarrow 0}\ S(T) = 0\\
+            \text{\scriptsize(ignoring residual)}
+        \end{gathered}\)
+    \end{minipage} 
+\end{minipage}
+
+% iPN Heat Capacity
+\vspace{5pt}\noindent
+\subsection{iN \& Isobaric (iP): \(\boxed{ \tfrac{dP}{dt} = 0 }\)}
+\begin{minipage}[t]{.49\textwidth}
+    % H relation
+    \(\rightarrow \ \begin{aligned}[t]
+        \Delta H &= \Delta U + P \Delta V\\[5pt]
+        &= Q + W_\text{other} + \cancel{ W_\text{cpr} } + \cancel{ P \Delta V } 
+            \ \ \ \text{\scriptsize(QW)}\\[5pt]
+        \Aboxed{ dH &= \delta Q + \delta W_\text{other} }
+    \end{aligned}\)    
+
+    % H Capacity
+    \vspace{15pt}
+    \(\bullet \ \begin{aligned}[t]
+        &\text{IG Enthalpy Capacity}:\\[10pt]
+        &\begin{aligned}[t]
+            C_P &= \tfrac{Q}{\Delta T} = \tfrac{\Delta U + P \Delta V}{\Delta T} 
+                = \left( \tfrac{\partial H}{\partial T} \right)_{N,P}\\[5pt]
+            &= \left( \tfrac{\partial U}{\partial T} \right)_{N,P} 
+                + P \left( \tfrac{\partial V}{\partial T} \right)_{N,P}\\[5pt]
+            &= C_V + P\ \partial_t \left( \tfrac{nRT}{P} \right)
+                \hspace{20pt} \text{\scriptsize(normal temp. ET)}\\[5pt]
+            \Aboxed{ C_P &= \left( \tfrac{\partial H}{\partial T} \right)_{N,P} 
+                = \tfrac{f}{2} nR + nR \ =\ C_V + nR }
+        \end{aligned}
+    \end{aligned}\) 
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+    % Q Change
+    \vspace{1pt}
+    \(\bullet \ \boxed{ \Delta H = Q = (C_V + nR) T }\)
+    
+    % S Change
+    \vspace{15pt}
+    \(\bullet \ \boxed{ \begin{aligned}[t]
+            \Delta S &= \int \frac{\delta Q}{T} = \int \frac{C_P\ dT}{T} \\[5pt]
+            &= (C_V + nR) \ln{ \left( \frac{T_f}{T_i} \right) } 
+        \end{aligned} } 
+    \) 
+    \hspace{5pt} \begin{minipage}[t]{75pt}
+        \(\begin{gathered}[t]
+            \text{(3rd Law)}\\[5pt]
+            \lim_{T \rightarrow 0}\ S(T) = 0\\
+            \text{\scriptsize(ignoring residual)}
+        \end{gathered}\)
+    \end{minipage}
+
+    % Latent Heat
+    \vspace{15pt}
+    \(\bullet\ \begin{gathered}[t]
+        \text{\underline{Latent Heat of Transformation}}:\\
+        \text{\scriptsize(phase change at constant 1 atm)}
+    \end{gathered} \ \ L \equiv Q/m\) 
+\end{minipage}
+
+\par\vspace{20pt}\noindent
+
+% THe rates of processes Sec. 1.7
+
+%---------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Entropy
+\section{Entropy and Engine Efficiency}
+
+% Definition and 2nd Law
+\(\begin{aligned}
+    &\text{\underline{Entropy}}:&& \boxed{ S \ \equiv\ k_b \ln{\Omega} }\\[5pt]
+    &\text{\underline{2nd Law}}:&& \boxed{ \text{System Action s.t. } \Omega \uparrow \ \text{\&} \ S \uparrow }
+\end{aligned}\)
+\indent\indent\(\boxed{ dS = \frac{1}{T} \ dU + \frac{P}{T} \ dV - \sum \frac{\mu_i}{T} \ dN_i + \dots}\) 
+
+% S for U and T
+\vspace{10pt}\noindent
+\begin{minipage}[t]{.49\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    % Temperature Definition from S
+    \(\displaystyle \bullet\ \ \boxed{ \left( \frac{\partial S}{\partial U} \right)_{V,N} \equiv \frac{1}{T} }\)
+
+    \vspace{15pt}
+    \indent\(\begin{aligned}[t]
+        &0 < \left( \frac{1}{T_1} = \frac{\Delta S_1}{\Delta U_1} \right)
+            < \left( \frac{1}{T_2} = \frac{\Delta S_2}{\Delta U_2} \right)\\[10pt]
+        &\ \ \Rightarrow \ \left( \Delta U_1 < 0 < \Delta U_2 \right)\\[10pt]
+        &\ \ \Rightarrow \ \left( U_1 > U_2 \right) 
+            \ \ \Leftrightarrow \ \ \boxed{ \text{``} U_1 \rightarrow U_2 \text{"} }\\[10pt]
+        &\ \ \Rightarrow \ \begin{aligned}[t]
+            &\left( T_1 > T_2 \right) 
+                \ \ \Leftrightarrow \ \ \boxed{ \text{``} T_1 \rightarrow T_2 \text{"} }\\[5pt]
+            &\text{\scriptsize(Ener. flows from high temp. to low temp.)}
+        \end{aligned}
+    \end{aligned}\)    
+\end{minipage} 
+% S for V and P
+\begin{minipage}[t]{.49\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    % Pressure def. from S
+    \(\displaystyle \bullet\ \ \boxed{ T \left( \frac{\partial S}{\partial V} \right)_{U,N} = P }\)
+
+    \vspace{15pt}
+    \indent\(\begin{aligned}[t]
+        &0 < \left( P_1 \sim \frac{\Delta S_1}{\Delta V_1} \right)
+            < \left( P_2 \sim \frac{\Delta S_2}{\Delta V_2} \right)\\[10pt]
+        &\ \ \Rightarrow \ \left( \Delta V_1 < 0 < \Delta V_2 \right)\\[10pt]
+        &\ \ \Rightarrow \ \left( V_1 > V_2 \right) 
+            \ \ \Leftrightarrow \ \ \boxed{ \text{``} V_1 \rightarrow V_2 \text{"} }\\[10pt]
+        &\ \ \Rightarrow \ \begin{aligned}[t]
+            &\left( P_1 < P_2 \right) 
+                \ \ \Leftrightarrow \ \ \boxed{ \text{``} P_1 \rightarrow P_2 \text{"} }\\[5pt]
+            &\text{\scriptsize(Vol. flows from low pres. to high pres.)}
+        \end{aligned}
+    \end{aligned}\)      
+\end{minipage}
+
+% Chemical Potential def. from S
+\vspace{15pt}\noindent
+\(\bullet \ \) \underline{Chemical Potential}: \ \(\boxed{ \mu 
+    \equiv - T \left( \frac{\Delta S}{\Delta N} \right)_{U,V} 
+    = \left( \frac{\Delta U}{\Delta N} \right)_{S,V}} 
+    \indent \begin{minipage}{6.5cm}
+        \scriptsize
+        (usually negative, but particle may include kinetic energy that converts
+            to potential, for it to be added into the system)
+    \end{minipage}\)
+
+% S for N and mu
+\vspace{15pt}
+\(\begin{aligned}[t]
+    &\mu_2 < \mu_1 < 0 < \left( \Vert \mu_1 \Vert \sim \frac{\Delta S_1}{\Delta N_1} \right)
+        < \left( \frac{\Delta S_2}{\Delta N_2} \sim \Vert \mu_2 \Vert \right)\\[10pt]
+    &\Rightarrow \ \left( \Delta N_1 < 0 < \Delta N_2 \right)\\[10pt]
+    &\Rightarrow \ \left( N_1 > N_2 \right) 
+        \ \ \Leftrightarrow \ \ \boxed{ \text{"} N_1 \rightarrow N_2 \text{"} }\\[10pt]
+    &\Rightarrow \ \left( \mu_1 > \mu_2 \right) 
+        \ \ \Leftrightarrow \ \ \boxed{ \text{"} \mu_1 \rightarrow \mu_2 \text{"} }
+        \indent \text{\scriptsize(Part. flows from high \(\mu\) to low \(\mu\))}
+\end{aligned}\)   
+
+\vspace{20pt}
+\noindent
+% Quasistatic and Constant Particle Number
+\begin{minipage}[t]{.48\textwidth}
+    \setlength{\parindent}{.5cm}
+
+    \subsection{QW}
+    \vspace{10pt}
+    \(\begin{aligned}
+        &\rightarrow \ \begin{aligned}[t]
+            T\ dS &= dU + P\ dV - \mu\ dN + \dots\\[5pt]
+            \Aboxed{ dS &= \frac{\delta Q}{T} + \frac{\delta W_\text{other}}{T} - \frac{\mu\ dN}{T} + \dots}
+        \end{aligned}\\[10pt]
+        &\bullet \ \textbf{(iN)} \ \Rightarrow \ \begin{gathered}[t]
+            \boxed{ \delta Q = T\ dS }\\
+            \text{\scriptsize(if no other work)}\\
+            \text{\scriptsize(means RV)}
+        \end{gathered}
+    \end{aligned}\)    
+\end{minipage}
+% Isentropic
+\begin{minipage}[t]{.48\textwidth}
+    \setlength{\parindent}{.5cm}
+
+    \subsection{Isentropic (iS): \ \(\boxed{ \Delta S = 0 }\)}
+    \vspace{10pt}
+    \(\bullet \ \ \big( \textbf{QS, aB, iN} \big) \ \Rightarrow\ \)
+    \(\begin{gathered}[t]
+        \boxed{\delta Q = T\ dS = 0 = \Delta S}\\
+        \text{\scriptsize(if no other work)}\\
+        \text{\scriptsize(means RV)}
+    \end{gathered}\)
+\end{minipage}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Engines
+\subsection{Engines and Efficiency}
+
+% Engine Efficiency Limit
+\noindent
+\begin{minipage}[t]{.37\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    \underline{Engine Efficiency, \(e\)}: \\[10pt]
+     \(\frac{Q_c}{T_c} \geq \frac{Q_h}{T_h} \ \ \rightarrow \)\\[10pt]
+     \(\begin{aligned}[t]
+        &\boxed{ e = \frac{W}{Q_h} = \frac{Q_h - Q_c}{Q_h} = 1 - \frac{Q_c}{Q_h}}\\[5pt]
+        &\boxed{ e \leq 1 - \frac{T_c}{T_h} = \frac{T_h - T_c}{T_h} }
+    \end{aligned}\)    
+\end{minipage}
+% Carnot Cycle For Engine
+\begin{minipage}[t]{.27\textwidth}
+    \scriptsize
+    \underline{Carnot Engine Cycle}:\\[5pt]
+    1. iT Expansion at \(\sim_< T_h\) to \\ Absorb \(Q_h\)\\[5pt]
+    2. aB Expansion to Reduce \\ Temp to \(\sim_> T_c\) and Expel \(W\)\\[5pt]
+    3. iT Compression to Expel \(Q_c\)\\[5pt]
+    4. aB Compression to Increase \\ Temp to \(\sim_< T_h\)\\[5pt]
+    \(\bullet \ \boxed{ \int P\ dV = W = Q = \Delta T \cdot \Delta S }\)
+\end{minipage}
+\hspace{9pt}
+% Carnot Cycle For Fridge
+\begin{minipage}[t]{.3\textwidth}
+    \scriptsize
+    \underline{Carnot Fridge Cycle}:\\[5pt]
+    1. iT Compression at \(\sim_> T_h\) to \\ Expel \(Q_h\)\\[5pt]
+    2. aB Expansion Absorbing \(W\) \\ to Reduce Temp to \(\sim_< T_c\)\\[5pt]
+    3. iT Expansion to Absorb \(Q_c\)\\[5pt]
+    4. aB Compression to Increase \\ Temp to \(\sim_< T_h\)
+\end{minipage}
+
+\vspace{20pt}\noindent
+% Refrigerator Efficiency
+\begin{minipage}[t]{.52\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    \underline{Refrigerator Coefficient of Performance (COP)}: \\[10pt]
+    \(\frac{Q_h}{T_h} \geq \frac{Q_c}{T_c} \ \ \rightarrow \)\\[10pt]
+    \(\begin{aligned}[t]
+            &\boxed{ \text{COP} \ = \ \frac{Q_c}{W} = \frac{Q_c}{Q_h - Q_c} = \frac{1}{Q_h / Q_c - 1} }\\[5pt]
+            &\boxed{ \text{COP} \ \leq \ \frac{1}{T_h / T_c - 1} = \frac{T_c}{T_h - T_c} }\\[5pt]
+            &\big( \text{\scriptsize \(W + Q_c = W + [\text{COP}] \cdot W\)} \big)
+        \end{aligned}\)    
+\end{minipage}
+% Real Fridge Example
+\begin{minipage}[t]{.46\textwidth}
+    \scriptsize 
+    \underline{Real Fridge:}\\[5pt]
+    1. Reduce High Pressure Liquid to Low Pressure and Temp Liquid/Gas By Throttling 
+        {\scriptsize (see below)}\\[5pt]    
+    2. Absorb \(Q_c\) In Evaporator to Complete Phase Change \\
+    (Maybe Increase Temp A Little)\\[5pt]
+    3. Adiabatically Compress Low Pressure Gas To High Pressure and Temp in Compressor\\[5pt]
+    4. Cool Down Gas To Liquid in Condenser (Pipes to Outside Heat Reservoir)
+\end{minipage}
+
+% Joule- Thompson Effect (Throttling)
+\vspace{15pt}\noindent
+\begin{minipage}{.98\textwidth}
+    \scriptsize
+    {\centering --- Joule-Thompson Effect (Throttling) --- \par} 
+
+    \vspace{5pt} \(\bullet \ H\) is conserved \\[5pt]
+    \(\bullet \ \)``The force between any two molecules is weakly attractive at long distances and
+    strongly repulsive at short distances. Under most (though not all) conditions the
+    attraction dominates; then \(U_\text{potential}\) is negative, but becomes less negative as the
+    pressure drops and the distance between molecules increases. To compensate for
+    the increase in potential energy, the kinetic energy generally drops, and the fluid
+    cools as desired.'' - Schroeder, P.140
+    
+    ``...Starting from room temperature, the Hampson-Linde cycle can be used to 
+    liquefy any gas except hydrogen or helium. These gases, when throttled starting at
+    room temperature and any pressure, actually become hotter. This happens because
+    the attractive interactions between the molecules are very weak; at high temperatures 
+    the molecules are moving too fast to notice much attraction, but they still
+    suffer hard collisions during which there is a large positive potential energy. When
+    the gas expands the collisions occur less frequently, so the average potential energy
+    decreases and the average kinetic energy increases.
+    To liquefy hydrogen or helium, it is therefore necessary to first cool the gas
+    well below room temperature, slowing down the molecules until attraction becomes
+    more important than repulsion.''  
+\end{minipage}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Shannon Entropy
+\subsection{Shannon Entropy: \(\boxed{S = -k_b \sum_s P(s) \ln{P(s)}}\)}
+\vspace{5pt}\noindent
+\(\begin{aligned}
+    S \ &=\ -k \sum_s P(s) \ln{P(s)}
+        \ =\ -k \sum_s \frac{ e^{- \beta E(s)} }{Z} \left( \ln{e^{- \beta E(s)}} - \ln{Z} \right)
+        \indent\indent \text{\scriptsize(see Canonical Ensemble)}\\
+    \ &=\ k \beta \sum_s E(s) \frac{ e^{- \beta E(s)} }{Z} \ +\ k \ln{Z} \sum_s \frac{ e^{- \beta E(s)} }{Z}\\
+    \ &=\ \frac{ \overline{E} }{T} + k \ln{Z} = \frac{U-F}{T} \ \ \checkedbox
+        \indent \text{\scriptsize(see Helmholtz Free Energy)}
+\end{aligned}\)
+
+\vspace{20pt}\noindent
+\underline{Form Motivation}\\[10pt]
+\(\left. \begin{aligned}
+    &\begin{aligned}
+        &\bullet \ \text{Extensive}:&   &S_{AB} = S_A + S_B\\[5pt]
+        &\bullet \ \text{Probability}:& &P_{A_B} = P_A P_B
+    \end{aligned} \ \Leftarrow \ S \ \propto\ \sum_s \ln{P(s)}\\[5pt]
+    &\bullet \ \text{Positive}: \indent \ S \ \sim\ - \sum_s \ln{P(s)}\\[5pt]
+    &\bullet \ \text{Bounded}: \indent S \ \sim\ - \sum_s P(s) \ln{P(s)}
+\end{aligned} \right\} \ \ \ 
+\begin{aligned}
+    S_{AB} \ &\propto - \sum P_{AB} \ln{P_{AB}} \\[5pt]
+    &= - \sum P_{A} \ln{P_{A}} - \sum P_{B} \ln{P_{B}}\\[5pt]
+    &= S_A + S_B
+\end{aligned}\)
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------
+% Microcanonical (Examples for Entropy)
+\newpage
+\section{Microcanonical Ensemble (NVE*) \(\hspace{30pt} {\scriptstyle^*(E \text{ means } U \text{ here})}\)}
+\begin{minipage}[t]{.58\textwidth}
+    % Multiplicity (General Partition Func.)
+    \underline{Generalized Partition Function}: \\[5pt]
+    1.) \ \(\Omega\) \ \ {\scriptsize(multiplicity)}
+
+    % Characteristic State Function
+    \vspace{10pt}
+    \underline{Characteristic State Function, \(TS\)}: \\[7pt]
+    \(\begin{aligned}
+        &1.)\ \ [S = k \ln{\Omega}] \ \leftrightarrow \ [\beta TS = \ln{\Omega}]
+            \ \leftrightarrow \ \Big[ \Omega = e^{\beta TS} \Big]\\[2pt]
+        &2.)\ \ dS = \tfrac{1}{T} dU + \tfrac{P}{T} dV - \tfrac{\mu}{T} dN\\[5pt]
+        &3.)\ \ \Delta S = {\textstyle\int} \tfrac{\delta Q}{T}
+    \end{aligned}\)
+\end{minipage}
+\begin{minipage}[t]{.40\textwidth}
+    % U Energy
+    \underline{Total [Relevant] Energy}: \\[5pt]
+    \(\begin{aligned}
+        &1.)\ \left[ \tfrac{\partial S}{\partial U} = \tfrac{1}{T} \right] \ \ \rightarrow \ \ 
+            \left[ \tfrac{\partial U}{\partial q_i} = T \tfrac{\partial S}{\partial q_i} \right] \\[1pt]
+        &2.)\ \ \beta \tfrac{\partial U}{\partial \beta} = \tfrac{\partial (\beta TS)}{\partial \beta} 
+            = \tfrac{\partial \ln{\Omega}}{\partial \beta} 
+            = \tfrac{1}{\Omega} \tfrac{\partial \Omega}{\partial \beta}
+    \end{aligned}\)
+
+    % Stirling's Approx
+    \vspace{12pt}
+    \underline{Stirling's Approximation}: \\[7pt]
+    \(\begin{aligned}[t]
+        &1.)\ \ N! \ \approx\ \sqrt{2\pi N} \left( \tfrac{N}{e} \right)^N\\[2pt]
+        &2.)\ \ \ln{N!} \ \approx\ N \ln{N} - N
+    \end{aligned}\)
+\end{minipage}
+
+% Line divider
+\vspace{10pt}\noindent
+\rule{1\textwidth}{.5pt}
+
+% Monoatomic Ideal Gas
+\vspace{-10pt}
+\subsection{Monoatomic Ideal Gas}
+\begin{minipage}[t]{.49\textwidth}
+    \(\bullet \ \Omega = f(N) V^N U^{3N/2}\)\\[10pt]
+    \(\bullet \ \begin{aligned}[t]
+        &\text{\underline{Sackur-Tetrode}}\\
+        &\begin{aligned}[t]
+            S/k &= N \left[ \ln{\left( \frac{V}{N} 
+                \left( \frac{4\pi m U}{3N h^2} \right)^{3/2} \right)} + \frac{5}{2} \right]\\[5pt]
+            &= N \ln{V} + N \ln{U^{3/2} + f(N)}
+        \end{aligned}
+    \end{aligned}\)\\[10pt]    
+    \(\bullet \ 1/T = \left( \frac{\partial S}{\partial U} \right)_{N,V}
+        \ \ \rightarrow \ \ \boxed{ U = \tfrac{3}{2} N k_b T }\)\\[5pt]
+    % P-S IG Law
+    \(\bullet \ P/T = \left( \frac{\partial S}{\partial V} \right)_{U,N} \ \rightarrow \ \ \boxed{ PV = Nk_b T }\)
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+    % Free Expansion
+    \underline{Free Expansion, Isothermic Expansion}\\[5pt]
+    \(\Delta S = \int \tfrac{P dV}{T} = N k_b \ln{ \tfrac{V_f}{V_i} }\)
+
+    % Gas Mixing Entropy
+    \vspace{15pt}\noindent
+    \underline{Isothermic Mixing Two Different Gases}\\[5pt]
+    \(\Delta S = 2 \int \tfrac{P dV}{T} = 2 N k_b \ln{ \tfrac{2V_i}{V_i} } = 2N k_b \ln{2}\)
+
+    % Adiabatic
+    \vspace{15pt}\noindent
+    \underline{Adiabatic \& QS}\\[5pt]
+    \(\Delta S = \int \tfrac{0}{T} = 0\)
+\end{minipage}
+
+% Einstein Solid/Oscillator
+\subsection{Einstein Solid/Oscillator/Vibration \ \
+    \(\bullet \ \boxed{ \text{\scriptsize\(\left(\frac{\partial U}{\partial q} = \hbar \omega\right)\)} }\)}
+
+{\setlength{\arraycolsep}{5pt}
+    \(\begin{array}{l c c c c l}
+        \bullet & \left[ \Omega(N,q) = \tfrac{(q+N-1)!}{q! (N-1)!} \right] 
+            &\approx& \left( \tfrac{q+N}{q} \right)^q \left( \tfrac{q+N}{N} \right)^N
+            &\approx& \left[ \left( \frac{eq}{N} \right)^N e^{N^2/q} \ \approx \ 
+                \left( \frac{eq}{N} \right)^N \right] \indent {\scriptstyle q \gg N}\\[15pt]
+        \bullet & S/k 
+            &\approx& q \ln \left( \tfrac{q+N}{q} \right) + N \ln \left( \tfrac{q+N}{N} \right)
+            &\approx& N + N \ln{\left( \frac{q}{N} \right)} \indent {\scriptstyle q \gg N}\\[10pt]
+        \bullet & \left( T \tfrac{\partial S}{\partial q} = \tfrac{\partial U}{\partial q} \right)_{N,V}
+            &\rightarrow& \boxed{ U = \frac{N \hbar \omega}{e^{\hbar \omega / kT} - 1} } 
+            &\rightarrow& \boxed{ C_V = N k_b } \indent {\scriptstyle q \gg N,\ kT \gg \hbar \omega}
+    \end{array}\)
+}
+
+% 2 State Paramagnet    
+\subsection{Two-State Paramagnet}
+\begin{minipage}[t]{.58\textwidth}
+    \(\bullet \ \Omega(N, N_\uparrow) = \frac{N!}{N_\uparrow! N_\downarrow!}\)\\[10pt]
+    \(\bullet \ S/k \ \approx \ N \ln{N} - N_\uparrow \ln{N_\uparrow} 
+        - (N-N_\uparrow) \ln{(N-N_\uparrow)}\)\\[10pt]
+    \(\bullet \ \begin{aligned}[t]
+        \boxed{ \big( U = -MB \big) } &= -\mu B N_\uparrow + \mu B N_\downarrow = \mu B (N - 2N_\uparrow)
+    \end{aligned}\)    
+\end{minipage}
+\begin{minipage}[t]{.4\textwidth}
+    \(\bullet \ \begin{aligned}[t]
+        &\left( T \tfrac{\partial S}{\partial N_\uparrow} 
+            = \tfrac{\partial U}{\partial N_\uparrow} \right)_{N,V,B}\\[5pt]
+        &\boxed{ M = N\mu \tanh{ \frac{\mu B}{k T} } }
+            \hspace{.75cm} {\scriptstyle(\tanh{x}\ \approx\ x\ \approx\ 0)}
+    \end{aligned}\)
+\end{minipage}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+% Gibbs Free Energy
+\newpage
+\section{Gibbs Free Energy}
+\vspace{-10pt}
+\indent{\scriptsize(see Helmholtz initally for easier comparison first)}
+
+% Definition
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+    &\text{\underline{Gibbs Free Energy}}:\ \boxed{ \begin{aligned}
+            G &\equiv H - TS\\[5pt]
+            &= U + PV - TS
+        \end{aligned} }\\[5pt]
+    &\boxed{ \begin{aligned}
+            dG &= dH - T\ dS - S\ dT \\[5pt]
+            &= -S\ dT + V\ dP + \sum \mu_i\ dN_i + \dots
+        \end{aligned} }
+\end{aligned}\)
+\hspace{20pt}
+% Maxwell Identity
+\(\begin{aligned}[t]
+    &\text{\underline{Maxwell Identity}:} \ \ \
+        \frac{\partial}{\partial V} \left( \frac{\partial H}{\partial T} \right)
+        = \frac{\partial}{\partial T} \left( \frac{\partial H}{\partial V} \right)\\[5pt]
+    &\rightarrow\ \boxed{ - \left( \frac{\partial S}{\partial P} \right)_{N,T} 
+        = \left( \frac{\partial V}{\partial T} \right)_{N,P} } 
+        \indent \text{\scriptsize(other iden. with \(\mu\),\(N\))}
+\end{aligned}\)
+
+% Chemical Potential def from G
+\vspace{20pt}\noindent
+\(\bullet \ \begin{aligned}[t]
+    &\boxed{ \mu_i = \left( \frac{\partial G}{\partial N_i} \right)_{T,P} }
+    \ \ \Rightarrow \ \ \boxed{G = \sum \mu_i N_i} 
+    \indent \text{\scriptsize(\underline{\(T\) and \(P\) are intensive, so \(\mu \neq \mu(N)\)})}\\[10pt]
+    &\text{IG}: \ \frac{\partial \mu}{\partial P} = \frac{1}{N} \frac{\partial G}{\partial P} 
+        = \frac{V}{N} = \frac{k_b T}{P} \ \ \Rightarrow \ \ 
+        \boxed{ \mu(T, P) = \mu^\circ (T) + k_b T \ln{\left( \tfrac{P}{P^\circ} \right)} }
+\end{aligned}\)
+
+% Isothermic + Isobaric Case
+\vspace{10pt}
+\subsection{iPT}
+\(\begin{aligned}
+    \Aboxed{ \Delta G &= \Delta H + T \Delta S }\\[5pt]
+    &= \Delta U + P \Delta V - T \Delta S\\[5pt]
+    &= Q + \cancel{ W_\text{cpr} } + W_\text{other} + \cancel{ P \Delta V } - T \Delta S\\[5pt]
+    &= W_\text{other} - ( W_\text{other} - \sum \mu_i \Delta N_i + \dots )\\
+    &= \sum \mu_i \Delta N_i - \dots
+\end{aligned}
+\hspace{1cm} \rightarrow \hspace{1cm} \boxed{ \begin{aligned}
+    dG \ \ &\leq \ \ \delta W_\text{other}\\
+    &\text{\scriptsize(and)}\\
+    dG \ \ &\leq \ \ \sum \mu_i\ dN_i
+\end{aligned} } \)
+
+% Isobaric, Isothermal case
+\vspace{5pt}
+\subsection{iNPT}
+\(\begin{aligned}
+    dS_\text{total} &= dS + dS_R = dS + \frac{dU_R}{T_R} \\[5pt]
+    &= dS - \frac{dU}{T} - \frac{P\ dV}{T}= -\frac{1}{T} (dU + P\ dV- T\ dS)\\[5pt]
+    \Aboxed{ dS_\text{total}\uparrow &= - \frac{dG\downarrow}{T} } 
+    \indent \indent G\downarrow = \boxed{U\downarrow} + \boxed{PV\downarrow} - TS\uparrow
+\end{aligned}\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+% Examples: Electrolysis + Lead Battery
+\newpage
+\subsection{Example: Electrolysis Chemical Reaction}
+\vspace{10pt}
+\(\begin{gathered}
+    {\setlength{\tabcolsep}{2pt}
+        \begin{tabular}{c|c c c c c|l c l}
+            %empty%
+                &\(\text{H}_2\text{O}\)
+                &\(\longrightarrow\)& \(\text{H}_2\)
+                &+&\(\tfrac{1}{2} \text{O}_2\)\\[5pt]
+            \hline &&&&&\\
+            S 
+                &(70 J/K)
+                &\(\longrightarrow\)& (131 J/K)
+                &+&\(\tfrac{1}{2}\)(205 J/K)
+                &\ \(\Delta S\)
+                &=& 163 J/K\\[10pt]
+            \ \(\Delta_f H\) \
+                &(-286 J)
+                &\(\longrightarrow\)& (0 J)
+                &+&\(\tfrac{1}{2}\)(0 J)
+                &\ \(\Delta H\) 
+                &=& 286 J\\
+            &&&&&
+        \end{tabular} }\\[10pt]
+    % Energy Fill in the Blanks
+    \begin{alignedat}{3}
+        \calign{\Delta G} 
+            &+{}& \calign{T \Delta S}   
+            &={}& \calign{\Delta U} 
+            &+{}& \calign{P \Delta V}\\
+        \calign{(237\ \text{kJ})}
+            &+{}& \calign{(298\ \text{K})(163\ \text{J/K})}
+            &={}& \calign{(282\ \text{kJ})}    
+            &+{}& \calign{(4\ \text{kJ})}
+    \end{alignedat}
+\end{gathered}\)
+
+% Clausius-Clapeyron Relation
+\vspace{5pt}\noindent
+\subsection{Clausius-Clapeyron Relation (Phase Boundaries)}
+\vspace{5pt}
+\(\left.\begin{array}{l c}
+    \text{At Phase Boundary:}  & G_g = G_l \\[5pt]
+    \text{Remain on Boundary:} & dG_g = dG_l
+\end{array}\right\}
+\hspace{10pt} \Rightarrow \hspace{5pt}
+\begin{aligned}[t]
+    &-S_l\ dT + V_l\ dP = -S_g\ dT + V_g\ dP\\[10pt]
+    &\Rightarrow \boxed{ \frac{dP}{dT} = \frac{S_g - S_l}{V_g - V_l} 
+        = \left( \frac{\Delta S}{\Delta V} \right)_{gl} = \left( \frac{L}{T \Delta V} \right)_{gl} }
+\end{aligned}\)
+
+% van der Waals Formula
+\subsection{van der Waals Model (Liquid-Gas)}
+\vspace{5pt}
+\begin{minipage}[t]{.42\textwidth}
+    \(\begin{aligned}[t]
+        &\begin{aligned}[t]
+                P &= P_\text{no attraction} + P_\text{vdW}\\[7pt]
+                &= \frac{NkT}{V - Nb} - \frac{\partial}{\partial V} \big( U_\text{pot. e. attraction} \big)\\[5pt]
+                &= \frac{NkT}{V - Nb} - \frac{\partial}{\partial V} \left( a \frac{-N}{V} \cdot N \right)\\[5pt]
+                &= \frac{NkT}{V - Nb} - \frac{aN^2}{V^2}
+            \end{aligned}\\[3pt]
+        &\Rightarrow \boxed{ \left( P + \frac{aN^2}{V^2} \right) \left( V - Nb \right) = Nk_b T }\\[20pt]
+        &\left( \tfrac{\partial G}{\partial P} \right)_{N,T} = V \ \Rightarrow \ 
+            \boxed{ \left( \tfrac{\partial G}{\partial V} = V \tfrac{\partial P}{\partial V} \right)_{N,T} }
+    \end{aligned}\)   
+\end{minipage}
+\begin{minipage}[t]{.56\textwidth}
+    \setlength{\parindent}{.5cm}
+    \scriptsize
+    An isotherm \((P,V)\) is either a monotonic decrease like an exponential curve for \(T \geq T_c\) (one-to-one), 
+    or like a mexican-hat curve for smaller \(T < T_c\) (not one-to-one). The mexican-hat curve could be misinterpreted
+    since it looks like decreasing volume will start decreasing pressure at the hill/peak of the curve. Graphing 
+    \((G,P)\) parametrically with decreasing \(V\), one sees that the line does a triangular loop and intersects itself 
+    at the point of vapor pressure. Since the thermodynamic stable state is at the lowest \(G\), the system will skip 
+    the loop (representing unstable states). On the \((P,V)\) graph, this corresponds to a flat, straight line at the 
+    vapor pressure between the curve's two critical points (in the differential sense) - the peak and trough - 
+    connecting a higher volume to a lower volume (the mexican-hat is not one-to-one). This sharp decrease in volume at 
+    the same pressure describes a phase change from higher volume gas to lower volume liquid at vapor pressure. The 
+    curve between these two volumes represents the thermodynamic state if the fluid were homogenous. But these ``are
+    unstable, since there is always another state (gas or liquid) at the same pressure with a lower Gibbs
+    free energy.''
+
+    \vspace{10pt}
+
+    \underline{Maxwell Construction}:
+    To find the vapor pressure without graphing \((G,P)\) and finding the intersection, note that
+    \[0 = \int_\text{loop} dG = \int_\text{loop} \left( \tfrac{\partial G}{\partial P} \right)_t dP
+        = \int_\text{loop} V dP.\] 
+\end{minipage}
+
+\vspace{15pt}
+{\scriptsize \noindent
+On the \((P,V)\) graph, this corresponds to the summing the area between the 
+mexican-hat curve and the flat vapor pressure line. The area is divided in two: one beneath the curve's hill/preak 
+(positive area) and above the line, and the other beneath the line and above the curve (negative area). The line
+should be chosen so that the sum of the two is zero. 
+
+\vspace{5pt}
+
+Such a line can't be made when the isotherm is in a monotonic decrease (or increase at a decreasing volume) when 
+the temperature exceeds the critical point, \(T \geq T_c\). Here, decreasing volume consistently means an 
+increasing pressure, and there is no loop in the \((G,P)\) parametric graph. Above \(T_c\), there is no phase 
+change between liquid and gas, and there is little distinction between them.
+
+\vspace{5pt}
+
+The model is good qualitatively, but not quantitatively in practice.
+
+}
+
+
+
+%----------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Helmholtz Free Energy
+\section{Helmholtz Free Energy}
+
+% Definition
+\noindent
+\(\begin{aligned}[t]
+    &\text{\underline{Helmholtz Free Energy}}: \ \boxed{ F \equiv U - TS } \\[5pt]
+    &\boxed{ \begin{aligned}
+        dF &= dU - T\ dS - S\ dT\\[5pt]
+        &= - S\ dT - P\ dV + \sum \mu_i\ dN_i + \dots
+    \end{aligned} }
+\end{aligned}\)
+\hspace{30pt}
+% Maxwell Identity
+\(\begin{aligned}[t]
+    &\text{\underline{Maxwell Identity}:} \ \ \
+        \frac{\partial}{\partial V} \left( \frac{\partial F}{\partial T} \right)
+        = \frac{\partial}{\partial T} \left( \frac{\partial F}{\partial V} \right)\\[5pt]
+    &\rightarrow\ \boxed{ \left( \frac{\partial S}{\partial V} \right)_{N,T} 
+        = \left( \frac{\partial P}{\partial T} \right)_{N,V} } 
+        \indent \text{\scriptsize(other iden. with \(\mu\),\(N\))}
+\end{aligned}\)
+
+% Isothermic case
+\vspace{10pt}
+\subsection{iT}
+\(\begin{aligned}
+    \Delta F &= \Delta U - T \Delta S\\[5pt]
+    &= W + Q - T \Delta S\\[5pt]
+    &= W_\text{cpr} + W_\text{other} - (W_\text{other} - \sum \mu_i \Delta N_i + \dots)\\
+    &= W_\text{cpr} + \sum \mu_i \Delta N_i - \dots
+\end{aligned}
+\hspace{1cm} \rightarrow \hspace{1cm} \boxed{ \begin{aligned}
+    dF \ \ &\leq \ \ \delta W\\
+    &\text{\scriptsize(and)}\\
+    dF \ \ &\leq \ \ \delta W_\text{cpr} + \sum \mu_i\ dN_i
+\end{aligned} } \)
+
+% iVT
+\vspace{5pt}
+\subsection{iVT}
+\(\begin{aligned}
+    \Delta F &= \sum \mu_i \Delta N_i - \dots
+\end{aligned}
+\hspace{1cm} \rightarrow \hspace{1cm} \boxed{ \begin{aligned}
+    dF \ \ &\leq \ \ \sum \mu_i\ dN_i
+\end{aligned} } \)
+
+% iNVT
+\vspace{5pt}
+\subsection{iNVT}
+\(\begin{aligned}
+    dS_\text{total} &= dS + dS_R = dS + \frac{dU_R}{T_R} + \cancel{\frac{P\ dV - \sum \mu_i N_i}{T}_R}\\[5pt]
+    &= dS - \frac{dU}{T} = -\frac{1}{T} (dU - T\ dS)\\[5pt]
+    \Aboxed{ dS_\text{total}\uparrow &= - \frac{dF\downarrow}{T} }
+    \indent\indent F\downarrow = \boxed{U\downarrow} - TS\uparrow
+\end{aligned}\)
+
+% iNV
+\vspace{5pt}
+\subsection{iNV (see Canonical Ensemble)}
+% Proof
+\(\begin{aligned}[t]
+    &1.)\ \tilde{F} \equiv -k T \ln{Z}:\\[5pt]
+    &\begin{aligned}
+        \left( \tfrac{\partial \tilde{F}}{\partial T} \right)_{V,N} 
+            &= -k \ln{Z} - k T\ \frac{\partial \beta}{\partial T} \frac{\partial \ln{Z}}{\partial \beta}\\
+            &= \frac{\tilde{F}}{T} - k T \left( \frac{-1}{k T^2} \right) \frac{1}{Z} \frac{\partial Z}{\partial \beta}\\
+            &= \frac{\tilde{F}}{T} - \frac{\overline{E}}{T} \equiv \frac{\tilde{F}}{T} - \frac{U}{T}
+                \ \ \ \text{\scriptsize(\underline{\(U\) is now \(\overline{E}\)?})}\\
+    \end{aligned}
+\end{aligned}\)
+\indent
+\(\begin{aligned}[t]
+    2.)\ \left( \tfrac{\partial F}{\partial T} \right)_{V,N} &= -S \\[5pt]
+    &= \frac{F-U}{T}
+\end{aligned}\)
+\indent
+\(\begin{aligned}[t]
+    3.)\ &T = 0\\[5pt]
+    &\begin{aligned}
+        \tilde{F}(0) &= -kT \ln{Z(0)} \\[5pt]
+        &= -kT \ln{ e^{-U_0 / kT} }\\[5pt]
+        &= U_0 = F(0)
+    \end{aligned}
+\end{aligned}\)
+
+\vspace{15pt}\noindent
+\(4.)\ \Rightarrow \ \boxed{ F = - k_b T \ln{Z} \ \ \Leftrightarrow\ \ Z(T) = e^{- \beta F} }\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+% Canonical Ensemble
+\newpage
+\section{Canonical Ensemble (NVT)}
+
+\noindent
+% Single Particle
+\(\begin{aligned}[t]
+    &\text{\underline{Single Particle}:}\\
+    &\text{\scriptsize - Particle Energy, \(E\)}\\[-7pt]
+    &\text{\scriptsize - Ext. Heat Reservoir Energy, \(U_R\)}\\[1pt]
+    &\text{-\ }U_R{\scriptstyle(s_1)} + E{\scriptstyle(s_1)} = U_R{\scriptstyle(s_2)} + E{\scriptstyle(s_2)}
+\end{aligned}\)
+\hspace{1cm}
+% Boltzmann Factor Motivation
+\(\begin{aligned}[t]
+    % Motivation
+    &\\[-18pt]
+    &\frac{ P{\scriptstyle(s_2)} }{ P{\scriptstyle(s_1)} } 
+        = \frac{ \Omega{\scriptstyle(s_2)} }{ \Omega{\scriptstyle(s_1)} }
+        = \frac{d{\scriptstyle(s_2)}\ e^{S_R(s_2) / k}}{d{\scriptstyle(s_1)}\ e^{S_R(s_1) / k}}\\[10pt]
+    &\Rightarrow \ \frac{ P{\scriptstyle(s_2)} }{ P{\scriptstyle(s_1)} } 
+        = \frac{ d{\scriptstyle(s_2)}\ e^{\beta U_R(s_2)} }{ d{\scriptstyle(s_1)}\ e^{\beta U_R(s_1)} }
+        = \frac{ d{\scriptstyle(s_2)}\ e^{-\beta E(s_2)} }{ d{\scriptstyle(s_1)}\ e^{-\beta E(s_1)} }
+        \hspace{5pt} , \hspace{10pt} \boxed{ \beta \equiv \tfrac{1}{k_b T} }\\[10pt]
+    % Boltzmann Factor
+    &\Rightarrow \ \text{\underline{Boltzmann Factor}}: \ \boxed{ e^{-\beta E_i} } \sim \Omega_i(U) = e^{S(U)/k_b}
+\end{aligned}\)
+
+\vspace{15pt}\noindent
+% Partition Function
+\underline{Partition Function}:\\[5pt]
+\(\begin{aligned}[t]
+    % Single Particle/DOF
+    &1.)\ \begin{aligned}[t]
+        &\text{{Single Particle/DOF}}: \\
+        &\boxed{ Z(T) \equiv \sum_{s_i} d_i\ e^{-E_i / k_b T} }\\
+        &\text{\scriptsize(DOF like \(x,y,z\) directions, rot., vib., etc.)}
+    \end{aligned}\\[10pt]
+    % Average Energy
+    &2.)\ \begin{aligned}[t]
+        &\text{{Energy State Probability}}:\\
+        &\boxed{ P{\scriptstyle(s_i)}= \frac{d_i\ e^{-E_i / k_b T}}{Z} }
+    \end{aligned}
+\end{aligned}
+\hspace{.75cm}
+\begin{aligned}[t]
+    % Multiple Particles Distinguishable
+    &3.)\ \begin{aligned}[t]
+        &\text{{Nonint., Mult. Dist. Particles/DOF}}: \\
+        &\boxed{ Z^{(N)} = Z_1 Z_2 \dots Z_N = \prod_i^N Z_i }
+    \end{aligned}\\[20pt]
+    % Indistinguishable
+    &4.)\ \begin{aligned}[t]
+        &\text{{Nonint., Mult. Indist. Particles}}: \\
+        &\boxed{ Z^{(N)} \approx \frac{1}{N!} Z_1^N} \ \ \
+            \begin{gathered}
+                \text{\scriptsize(same-state particles are overcounted,} \\[-5pt]
+                \text{\scriptsize but are less likely in non-dense systems)}            
+            \end{gathered}\\[5pt]
+        &\begin{aligned}[t]
+                \mu = -kT \tfrac{\partial}{\partial N} \ln{Z^{(N)}}
+                    \ &\approx\ -kT \tfrac{\partial}{\partial N} (N \ln{Z_1} -N\ln{N} + N)\\[5pt]
+                \Aboxed{ \mu &= -k_b T \ln{\tfrac{Z_1}{N}} }
+            \end{aligned} 
+    \end{aligned}
+\end{aligned}\)
+
+% Average Energy
+\vspace{20pt}\noindent
+\(\begin{aligned}[t]
+    &\text{\underline{Average Energy}}:\\[5pt]
+    &1.)\ \boxed{ \overline{E} \equiv \sum_s E{\scriptstyle(s)} P{\scriptstyle(s)} \equiv U_1}\\[5pt]
+    &2.)\ \boxed{ \overline{E}, U^{(N)} = - \frac{1}{Z} \frac{\partial Z}{\partial \beta} 
+        = - \frac{\partial \ln{Z}}{\partial \beta} = \frac{\partial (\beta F)}{\partial \beta} }
+\end{aligned}
+\hspace{1cm}
+% Helmholtz
+\begin{aligned}[t]
+    &\text{\underline{Characteristic State Function, \(F\) (see \(F\))}}:\\[5pt]
+    &1.)\ \boxed{ \begin{gathered}[t]
+            [F = -k_b T \ln{Z}] \leftrightarrow \big[ -\beta F = \ln{Z} \big]\\[2pt]
+            \leftrightarrow \Big[ Z = e^{-\beta F} \Big] 
+        \end{gathered} }\\[5pt]
+    &2.)\ \boxed{ dF = -S dT - P dV + \mu dN } \\[5pt]
+    &3.)\ \boxed{ S = \tfrac{\partial(kT \ln{Z})}{\partial T} }
+\end{aligned}\)
+
+% % Line Divider
+% \vspace{15pt}\noindent
+% \rule{1\textwidth}{.5pt}
+
+%----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+% Equipartition Theorem Proof
+\subsection{Equipartition Theorem Proof}
+\(d_q = 1 \ , \ \ E_q = cq^2\)\\[10pt]
+\(\begin{aligned}[t]
+    1.) \ \ Z = \sum_q e^{-\beta cq^2} &\approx \frac{1}{\Delta q} \int_0^\infty e^{-\beta cq^2}\ dq\\[5pt]
+    &= \frac{1}{\Delta q \sqrt{\beta c}} \int_0^\infty e^{-q^2}\ dq \\[5pt]
+    &= \frac{\sqrt{\pi} / 2}{\Delta q \sqrt{c}}\ \beta^{-1/2}
+\end{aligned}
+\indent \indent \indent \begin{gathered}[t]
+    2.)\ \ \overline{E} = - \frac{1}{Z} \frac{\partial Z}{\partial \beta} = \tfrac{1}{2} k_b T \ \ \ \checkedbox\\[5pt]
+    \begin{minipage}{4cm}
+        \begin{center}
+            \({\scriptstyle(kT\ \gg\ \Delta q)}\)\\[5pt]
+            \scriptsize not good for quantum systems\\
+            or low temp.
+        \end{center}
+    \end{minipage}
+\end{gathered}\)
+
+% Diatomic Gas Example
+\vspace{10pt}
+\subsection{Diatomic Gas/Rotation}
+% Initial Info
+\(\begin{aligned}
+    d_j &= 2j + 1 \ , & \quad E_j &= j(j+1) \epsilon \indent {\scriptstyle(\epsilon\ \sim\ 1/2I)}
+\end{aligned}\)
+
+% Distinguishable atoms
+\vspace{15pt}\noindent
+\begin{minipage}[t]{.45\textwidth}
+    \underline{Dist. Atoms (Like CO, \ \(\epsilon = 2.4\)E-4\ eV)}\\[5pt]
+    \(\begin{aligned}[t]
+        % Partition Function
+        &1.)\ \ Z_\text{rot} \begin{aligned}[t]
+            &= \sum d_j\ e^{-\beta E_j} \\[5pt]
+            &\approx \displaystyle \int d_j\ e^{-\beta E_j}\ dj = \frac{\beta}{\epsilon} 
+            \indent {\scriptstyle(\beta\ \gg\ \epsilon)}
+        \end{aligned}\\[10pt]
+        % Internal Energy
+        &2.)\ \ \overline{E}_\text{rot} = - \frac{1}{Z_\text{rot}} \frac{\partial Z_\text{rot}}{\partial \beta} 
+            = k_b T \ \ \ \ \text{\scriptsize(ET)}\ \checkedbox\\[10pt]
+        % 3rd Law Check for C_V
+        &3.)\ \begin{aligned}[t]
+            &\lim_{T \rightarrow 0}\ Z_\text{rot} = 1
+                + 3 e^{-2\epsilon / kT} + \dots\\[10pt]
+            &\Rightarrow \ \lim_{T \rightarrow 0}\ C_\text{rot}(T) 
+                = \lim_{T \rightarrow 0}\ \frac{\partial \overline{E}}{\partial T} = 0 \ \ \ \checkedbox
+        \end{aligned}
+    \end{aligned}\) 
+\end{minipage}
+% Indistringuishable atoms
+\begin{minipage}[t]{.53\textwidth}
+    \underline{Indist. Atoms (H2 Example, \ \(\epsilon = 7.6\)E-3\ eV)}\\[5pt]
+    \(\begin{aligned}[t]
+        % Partition Function
+        &1.) \ \ Z_\text{rot} \approx \frac{\beta}{2 \epsilon} 
+            \indent {\scriptstyle(\beta\ \gg\ \epsilon)}\\[10pt]
+        % Internal Energy
+        &2.)\ \ \overline{E}_\text{rot} = - \frac{1}{Z_\text{rot}} \frac{\partial Z_\text{rot}}{\partial \beta} 
+            = k_b T \ \ \ \ \text{\scriptsize(ET)}\ \checkedbox\\[10pt]
+        % 3rd Law Check for C_V
+        &3.) \begin{aligned}[t]
+            &\ \lim_{T \rightarrow 0} Z_\text{rot} = \sum d_j\ e^{-\beta E_j} \
+                \begin{cases}
+                    \begin{gathered}
+                        {\scriptstyle j = 2n}\\
+                        \text{\scriptsize(sym.)}
+                    \end{gathered}  & \begin{gathered}
+                            \text{\scriptsize para-H\(_2\)}\\[0pt]
+                            \text{\scriptsize(sing. nuclei)}
+                        \end{gathered}\\[15pt]
+                    \begin{gathered}
+                        {\scriptstyle j = 2n+1}\\
+                        \text{\scriptsize(anti-sym.)}
+                    \end{gathered}  & \begin{gathered}
+                        \text{\scriptsize ortho-H\(_2\)}\\[0pt]
+                        \text{\scriptsize(trip. nuclei)}
+                    \end{gathered}
+                \end{cases}\\[10pt]
+            &\Rightarrow \ \text{Graph}\ \frac{C_\text{rot}{\scriptstyle(kT / \epsilon)}}{k}\ \text{with a few terms}
+        \end{aligned}
+    \end{aligned}\)
+\end{minipage}
+
+% Einstein Solid Oscillator
+\vspace{10pt}
+\subsection{Einstein Solid/Oscillator/Vibration}
+
+% Partition Functions
+\vspace{5pt}
+\(
+    % Full Harmonic Partition
+    \begin{aligned}
+        &1.)\ \ E_n = \hbar \omega (\tfrac{1}{2} + n)\\[5pt]
+        &2.)\ \ Z_1 = \sum_n e^{-\beta (n + 1/2)\hbar \omega} 
+            = \frac{e^{-\beta \hbar \omega / 2}}{1-e^{-\beta \hbar \omega}}
+    \end{aligned} 
+    \ \ \ \rightarrow \ \ \
+    % Ignoring Ground State Energy Partition
+    \begin{aligned}
+        \Delta E_n &= n \hbar \omega \ \ \ \ \ \text{\scriptsize(only care about exchangable energy)}\\[5pt]
+        Z_1^\Delta &= \sum_n e^{-\beta \Delta E} = \frac{1}{1-e^{-\beta \hbar \omega}}
+    \end{aligned}
+\)
+
+% Potential Energy
+\vspace{10pt}\noindent
+\(
+    \begin{aligned}
+        3.) \ \ U^\Delta = N \overline{E} &= - \frac{N}{Z_1^\Delta} \frac{\partial Z_1^\Delta}{\partial \beta} 
+            = \frac{N \hbar \omega e^{-\beta \hbar \omega}}{1-e^{-\beta \hbar \omega}}
+            = \frac{N \hbar \omega}{e^{\beta \hbar \omega} - 1}\\[10pt]
+        U &= - \frac{N}{Z_1} \frac{\partial Z_1}{\partial \beta}
+            = \frac{N \hbar \omega}{e^{\beta \hbar \omega} - 1} 
+            + \frac{N\hbar\omega}{2} e^{-\beta \hbar \omega/2}\\
+    \end{aligned}
+    \ \ \rightarrow \ \ C_V = Nk_bT \indent \checkedbox 
+\)
+
+%----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+% Two-State Paramagnet
+\subsection{Two-State Paramagnet}
+\(\begin{aligned}[t]
+    \big( - M B \equiv U \big) &= N \sum_s E(s) P(s) \\[5pt]
+    &= N \big[ (-\mu B) P_\uparrow + (\mu B) P_\downarrow \big] 
+        \ \ \ = \ \ \ \mu B N(1 - 2P_\uparrow)  \indent \text{\scriptsize(compare to Microcanonical)}\\[7pt]
+    &= - \mu B N \left( \frac{ e^{\mu B / kT} - e^{-\mu B / kT} }{ e^{\mu B / kT} + e^{- \mu B / kT} } \right)
+        = -\mu B N \tanh{ \frac{\mu B}{k T} } \ \ \ \checkedbox
+\end{aligned}\)
+
+% Ideal Gas
+\vspace{10pt}
+\subsection{Ideal Gas}
+\(\begin{aligned}[t]
+    % Single Particle Kinetic Energy Partition
+    &1.)\ \ \begin{aligned}[t]
+            Z_\text{kin} &= \left( \sum_n e^{-\beta E_\text{inf. sq. well}} \right)^3 
+                \ \approx \ \left( \int_0^\infty e^{-\beta \frac{\hbar^2 k_n^2}{2m}} \ dn \right)^3
+                = \left( \tfrac{1}{2} \int_{-\infty}^\infty e^{-\beta \frac{\hbar^2 (\pi / L)^2}{2m}} n^2 \ dn \right)^3\\[5pt]
+            &= \left( \frac{\sqrt{\pi}}{2 \sqrt{\beta \frac{\hbar^2 (\pi / L)^2}{2m} }} \right)^3 
+                = \left( \frac{1}{\sqrt{\pi}} \frac{L}{2\pi / \sqrt{2 m k T / \hbar^2} } \right)^3\\[5pt]
+            &= \left( \frac{1}{\sqrt{\pi}} \frac{L}{h / \sqrt{2m k T}} \right)^3 
+                = \left( \frac{1}{\sqrt{\pi}} \frac{L}{\lambda_\beta} \right)^3 
+                \equiv \left( \frac{L}{l_Q} \right)^3 = \frac{V}{v_Q} \indent \indent\begin{gathered}
+                    \text{\scriptsize(\(l_Q\), quantum length)}\\[-5pt]
+                    \text{\scriptsize(\(v_Q\), quantum volume)}
+                \end{gathered}
+        \end{aligned}\\[10pt]
+    % Multiple Particle Partition
+    &2.)\ \ Z^{(N)} = \frac{(Z_\text{kin} Z_\text{int})^N}{N!} 
+        = \frac{1}{N!} \left( \frac{V Z_\text{int}}{v_Q} \right)^N \ \ \Rightarrow \ \ 
+        \ln{Z^{(N)}} \approx N \big( \ln{V} + \ln{Z_\text{int}} - \ln{v_Q} - \ln{N}  + 1 \big)\\[10pt]
+    % Total Internal Energy
+    &3.)\ \ U^{(N)} = - \frac{\partial \ln{Z^{(N)}}}{\partial \beta} 
+        = \tfrac{3}{2} NkT + NU_\text{int}^{(1)} \indent\indent \checkedbox
+        \indent \text{\scriptsize(rot. and vib. each add an \(Nk\) to the \(C_V\))}\\[10pt]
+    % Helmholtz Free Energy
+    &4.)\ \ \begin{aligned}[t]
+            F^{(N)} = -kT \ln{Z^{(N)}} &= -NkT \big( \ln{V} + \ln{Z_\text{int}} - \ln{v_Q} - \ln{N}  + 1 \big)\\[10pt]
+            &= -NkT \big( \ln{V} - \ln{v_Q} - \ln{N}  + 1 \big) + NF_\text{int}^{(1)}
+        \end{aligned}\\[5pt]
+    % Ideal Gas Law
+    &5.)\ \ P = - \left( \tfrac{\partial F^{(N)}}{\partial V} \right)_{T,N} 
+        = \tfrac{N k_b T}{V} \indent\indent \checkedbox\\[5pt]
+    % IG Chemical Potential 
+    &6.)\ \left( \tfrac{\partial F}{\partial N} \right)_{T,V} 
+        = \boxed{ \mu = -k_b T \ln{\left( \tfrac{V Z_\text{int}}{N v_Q} \right)}
+        = -kT \ln{\left( \tfrac{Z_1}{N} \right)} }
+\end{aligned}\)
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Grand Canonical Ensemble
+\section{Grand Canonical Ensemble (\(\boldsymbol{\mu}\)VT)}
+
+% Intro
+\(\begin{aligned}
+    &\underline{\text{Gibb's Factor}}: \ \boxed{ e^{- \beta [ E(s) - \mu N(s)] } 
+        \ \ \rightarrow\ \ e^{- \beta n_s(\epsilon_s - \mu_s) } = e^{-nx} }
+        \hspace{1cm} \begin{gathered}[b]
+            {\scriptstyle n \ \equiv\ \text{\scriptsize part. per state,}\ s}\\[-7pt]
+            {\scriptstyle x \ \equiv\ \beta(\epsilon - \mu)}
+        \end{gathered}\\[5pt]
+    &\underline{\text{Grand Partition Function}}: \ 
+        \boxed{ \mathcal{Z} = \sum_s e^{- \beta [ E(s) - \sum_i \mu_i N_i (s)] } 
+        \ \ \rightarrow\ \ \sum_{s} e^{- \beta n_s (\epsilon_s - \mu_s) } = \sum_{s} e^{- n x } }\\[5pt]
+    &\underline{\text{Grand Potential}}: \ \boxed{ \Phi \equiv U - TS - \mu N = -kT\ln{\mathcal{Z}} }\\[5pt]
+    &\underline{\text{Average Particles Per State}}: \ \ 
+        \sum_n n P_n = \sum_n n \frac{e^{-nx}}{\mathcal{Z}} 
+        = - \frac{1}{\mathcal{Z}} \sum_n \tfrac{\partial}{\partial x} e^{-nx}
+        = \boxed{ \overline{n} = - \frac{1}{\mathcal{Z}} \frac{\partial \mathcal{Z}}{\partial x} }\\[5pt]
+    &\underline{\text{Average Total Particles}}: \ \ 
+        \boxed{ \overline{N} = \sum_i d{\scriptstyle(\epsilon_i)} \overline{n}{\scriptstyle(\epsilon_i)} 
+        \ \approx \int \rho{\scriptstyle(\epsilon)} \overline{n}{\scriptstyle(\epsilon)} \ d\epsilon} 
+        \indent \begin{gathered}
+            \text{\scriptsize(\(d{\scriptstyle(\epsilon_i)}\) degeneracies)}\\[-5pt]
+            \text{\scriptsize(\(\rho{\scriptstyle(\epsilon)}\) state density)}
+        \end{gathered}
+\end{aligned}\)
+
+% Line Divider
+\vspace{10pt}\noindent
+\rule{1\textwidth}{.5pt}
+
+% O2 and CO Example
+\subsection{Example: O\(_2\) and CO Bonding to Hemaglobin}
+\vspace{5pt}
+% Variables
+\(1.)\ \text{Variables}:\)
+
+\vspace{5pt}
+\(\begin{aligned}[t]
+    &\epsilon_{\text{O}_2} \ \approx \ -0.7 \ \text{eV}\\[5pt]
+    &\left.\begin{aligned}
+            T &= 310 \ \text{K}\\[5pt]
+            P_{\text{O}_2} &= .2 \ \text{atm} \\[5pt]
+        \end{aligned}\right\}
+        \ \rightarrow \ \begin{aligned}
+            \mu_{\text{O}_2} &= -k_b T \ln{\left( \tfrac{V Z_\text{int}}{N v_Q} \right)}\\[5pt]
+            &\approx -0.6 \ \text{eV}\\[5pt]
+        \end{aligned}
+\end{aligned}
+\hspace{1.2cm}
+\begin{aligned}[t]
+    &\epsilon_{\text{CO}} \ \approx \ -0.85 \ \text{eV}\\[5pt]
+    &P_{\text{CO}} = P_{\text{O}_2} / 100 
+        \ \rightarrow \ \begin{aligned}[t]
+            \mu_{\text{CO}} \ &\approx\  \mu_{\text{O}_2} - kT \ln{100} \\[5pt]
+            &\approx \ -0.72 \ \text{eV}
+        \end{aligned}
+\end{aligned}\)
+
+\vspace{20pt}\noindent
+% O2 Alone
+\begin{minipage}[t]{.43\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    {2.)\ O\(_2\):}
+    
+    \vspace{10pt}
+    \indent \(\mathcal{Z} = \begin{gathered}
+        \text{\scriptsize(No Bonding)}\\[5pt]
+        e^{ -\beta(0)(\epsilon - \mu) }\\[5pt]
+        1
+    \end{gathered} \ \ + \ \ \begin{gathered}
+        \text{\scriptsize(O\(_2\) Bonding)}\\[5pt]
+        e^{ -\beta(\epsilon_{\text{O}_2} - \mu_{\text{O}_2}) }\\[5pt]
+        40
+    \end{gathered}\)\\[20pt]
+    \indent \(P(\text{\scriptsize O\(_2\) Bonding}) = \frac{40}{1 + 40} = 98\%\)
+\end{minipage}
+% CO and O2
+\begin{minipage}[t]{.55\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    {3.)\ O\(_2\) and CO:}
+    
+    \vspace{10pt}
+    \indent \(\mathcal{Z} = \begin{gathered}
+        \text{\scriptsize(No Bonding)}\\[5pt]
+        e^{ -\beta(0)(\epsilon - \mu) }\\[5pt]
+        1
+    \end{gathered} \ \ + \ \ \begin{gathered}
+        \text{\scriptsize(O\(_2\) Bonding)}\\[5pt]
+        e^{ -\beta(\epsilon_{\text{O}_2} - \mu_{\text{O}_2}) }\\[5pt]
+        40
+    \end{gathered} \ \ + \ \ \begin{gathered}
+        \text{\scriptsize(CO Bonding)}\\[5pt]
+        e^{ -\beta(\epsilon_{\text{CO}} - \mu_{\text{CO}}) }\\[5pt]
+        120
+    \end{gathered}\)\\[20pt]
+    \indent \(P(\text{\scriptsize O\(_2\) Bonding}) = \frac{40}{1 + 40 + 120} = 25\%\)
+\end{minipage}
+
+%-------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+% Fermi-Dirac Distribution for Fermions Particles
+\subsection{Fermi-Dirac Distribution (Fermions)}
+\(\begin{aligned}
+    \overline{n} &= \frac{ (0) e^{-\beta(0)(\epsilon-\mu)}
+        + (1) e^{-\beta (1)(\epsilon-\mu)} }{ e^{-\beta(0)(\epsilon-\mu)} 
+        + e^{-\beta (1)(\epsilon-\mu)} }\\[5pt]
+    &= \frac{e^{-\beta (\epsilon-\mu)}}{ 1 + e^{-\beta (\epsilon-\mu)} }\\[5pt]
+    \Aboxed{ \overline{n}(\epsilon) &= \frac{1}{ e^{\beta (\epsilon-\mu)} + 1 } }
+\end{aligned}
+\hspace{.75cm}
+\begin{cases}
+    \epsilon \ll \mu  & \hspace{10pt} \overline{n} \rightarrow 1\\[5pt]
+    \epsilon = \mu  & \hspace{10pt} \overline{n} = 1/2 \ \ \ \Rightarrow\\[5pt]
+    \epsilon \gg \mu  & \hspace{10pt} \overline{n} \rightarrow 0_+
+\end{cases}
+\hspace{.4cm}
+\left\{\begin{aligned}
+    \lim_{T \rightarrow 0} \
+        &\left.\frac{\partial \overline{n}}{\partial \epsilon}\ \right|_\mu \ =\ -\infty\\[5pt]
+    \lim_{T \rightarrow \infty} \
+        &\left.\frac{\partial \overline{n}}{\partial \epsilon}\ \right|_\mu \ =\ 0
+\end{aligned}\right.\)
+
+% Total Average Number
+\vspace{10pt}\noindent
+\(\begin{aligned}
+    \boxed{ \overline{N} = \sum d_\epsilon \overline{n}\ d\epsilon 
+        = \int \rho_\epsilon \overline{n}\ d\epsilon }
+\end{aligned} 
+\hspace{10pt}
+\Rightarrow
+\hspace{10pt}
+\begin{aligned}
+    \boxed{ \lim_{T \rightarrow0} \overline{N} = \int_0^\infty \rho_\epsilon \overline{n}\ d\epsilon 
+        = \int_0^\mu \rho_\epsilon\ d\epsilon }
+\end{aligned}\)
+
+% Bose-Einstein Distribution for Bosons Particles
+\vspace{5pt}
+\subsection{Bose-Einstein Distribution (Bosons)}
+\(\begin{aligned}
+    \mathcal{Z} &= 1 + e^{-\beta(1)x} + e^{-\beta(2)x} + \dots \\[5pt]
+    &= \frac{1}{1-e^{-\beta x}} \indent {\scriptstyle(\epsilon \ \geq\ \mu)}\\
+    &\downarrow\\
+    \Aboxed{ \overline{n} &= \frac{1}{ e^{\beta (\epsilon-\mu)} - 1 } }
+\end{aligned}
+\hspace{1cm}
+\begin{cases}
+    \epsilon = \mu_+  & \hspace{10pt} \overline{n} \rightarrow \infty\\[5pt]
+    \epsilon \gg \mu  & \hspace{10pt} \overline{n} \rightarrow 0_+ 
+\end{cases}\)
+
+% Total Average Number
+\vspace{10pt}\noindent
+\(\begin{aligned}
+    \boxed{ \overline{N} = \sum d_\epsilon \overline{n}\ d\epsilon 
+        = \int \rho_\epsilon \overline{n}\ d\epsilon }
+\end{aligned} 
+\hspace{10pt}
+\Rightarrow
+\hspace{10pt}
+\begin{aligned}
+    \boxed{ \lim_{T \rightarrow0} \overline{N} = ? \text{\scriptsize(split between ground state and higher states)} }
+\end{aligned}\)
+
+% Maxwell-Boltzmann Distribution for Distinguishable Particles
+\vspace{5pt}
+\subsection{Maxwell-Boltzmann Distribution (Distinguishable)}
+\vspace{10pt}\noindent
+\begin{minipage}{.53\textwidth}
+    \(\begin{aligned}
+        \overline{n} &= NP_1(\epsilon) \\[5pt]
+        &= \frac{N e^{-\beta \epsilon}}{Z_1} = \frac{N e^{-\beta \epsilon}}{N e^{-\beta\mu}}\\[5pt]
+        \Aboxed{ \overline{n} &= e^{-\beta(\epsilon-\mu)} }
+    \end{aligned}
+    \hspace{.5cm}
+    \begin{cases}
+        \epsilon \ll \mu  & \hspace{10pt} \overline{n} \rightarrow \infty\\[5pt]
+        \epsilon = \mu  & \hspace{10pt} \overline{n} = 1 \\[5pt]
+        \epsilon \gg \mu  & \hspace{10pt} \overline{n} \rightarrow 0_+
+    \end{cases}\)    
+\end{minipage}
+% Condition to Use MBD approx.
+\begin{minipage}{.45\textwidth}
+    \underline{FDD, BED \(\rightarrow\) MBD Condition}:\\[10pt]
+    \(\begin{aligned}
+        &\bullet\ \beta(\epsilon - \mu) \ \gg\ (1>0)\\[10pt]
+        &\rightarrow \ \Big[ -kT + \epsilon \approx -kT \Big]
+            \gg \Big[ \mu = -kT \ln{\tfrac{Z_1}{N}} \Big]\\[5pt]
+        &\rightarrow \ \boxed{ Z_1 \gg Ne > N }
+    \end{aligned}\)
+\end{minipage}
+
+% Total Average Number
+\vspace{10pt}\noindent
+\(\begin{aligned}
+    \boxed{ \overline{N} = \sum d_\epsilon \overline{n}\ d\epsilon 
+        = \int \rho_\epsilon \overline{n}\ d\epsilon }
+\end{aligned}\)
+
+\end{document}

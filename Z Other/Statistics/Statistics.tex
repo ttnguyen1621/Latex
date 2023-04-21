@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage{amssymb, amsmath, amsfonts, mathtools}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{cancel}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
+
+% \title{Statistics}
+% \author{ringoffire0 }
+% \date{November 2022}
+
+\begin{document}
+
+% Sample Variance
+\vspace{10pt}\noindent
+\underline{Misc. Variance}\\[10pt]
+\(\begin{array}{r l}
+    \text{{Sample}}: & \displaystyle \sigma_S^2 = \frac{\sum_i (x_i-\overline{x})^2}{n-1} \\[15pt]
+    \text{{Chain Rule}}:    & \displaystyle \sigma^2_z = 
+    \sum_i \left( \frac{\partial z}{\partial \overline{x}_i} \right)^2 \sigma^2_i
+\end{array}\)
+
+\vspace{20pt}\noindent
+\underline{Variance By Correlation}\\[10pt]
+\indent\(\begin{array}{r l}
+    \text{{Correlated Sum}}:    & \displaystyle \sigma_{A+B}^2 = 
+        \sigma_A^2 + \sigma_B^2 + 2(\overline{x}_{AB} - \overline{x}_A\ \overline{x}_B)\\[15pt]
+    \text{{Uncorrelated Sum}}:    & \sigma^2 = \sum_i \sigma^2_i\\[15pt]
+    \text{{{\scriptsize[Correlated]} Multiple}}:   & \sigma^2_{nA} = n^2 \sigma^2_A
+\end{array}\)
+
+\vspace{20pt}\noindent
+\underline{Weighted Averages}:\\
+\indent\(\text{Variance}:\ \ \sigma^2_W = \dfrac{1}{\sum_i \big(1 / \sigma^2_i\big)}\) 
+    \indent \indent \(\text{Average}:\ \ X_W = \dfrac{\sum_i x_i \big(1 / \sigma^2_i\big)}{\sum_i \big(1 / \sigma^2_i \big)} 
+        = \dfrac{\sum_i x_i \big(1 / \sigma^2_i\big)}{\sigma^2_W}\)
+
+\vspace{20pt}\noindent
+\underline{\(X\%\) Uncertainty}:\indent \(X = \dfrac{\sigma}{\bar{\mu}}\) 
+
+% Poisson Dist
+\vspace{20pt}\noindent
+\underline{Poisson Distribution}\\[10pt]
+\(\boxed{ P(n) = \left(\dfrac{\lambda^n}{n!}\right) e^{-\lambda} }\)\\[10pt]
+\indent\(\begin{aligned}
+    &\bullet\ \lambda = \mu_n = \sigma_n^2 = \text{average counts-per-time rate}\\[5pt]
+    &\bullet\ \sigma_{n=N} \approx \sqrt{N} \ \ \ \text{for large} \ \ \ n=N> 20
+\end{aligned}\)
+
+% Exponential Dist
+\vspace{20pt}\noindent
+\underline{Exponential Distribution}\\[10pt]
+\(\boxed{ P(t) = \lambda e^{-\lambda t} }\)\\[10pt]
+\indent\(\begin{aligned}
+    &\bullet\ \mu_t = 1 / \lambda = \text{average waiting time for next count in Poisson Dist. \(\lambda\)}\\[5pt]
+    &\bullet\ \sigma_t = 1 / \lambda^2
+\end{aligned}\)
+
+
+\end{document}

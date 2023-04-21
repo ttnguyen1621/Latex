@@ -1,0 +1,601 @@
+\documentclass[12pt]{article}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage{enumitem, amssymb, amsmath, amsfonts, mathtools, parskip}
+
+% \newcommand\italicmath{\mathversion{italic}}
+% \DeclareMathVersion{italic}
+% \SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
+% \SetSymbolFont{letters}  {italic}{OML}{cmm} {m}{it}
+% \SetSymbolFont{symbols}  {italic}{OMS}{cmsy}{m}{n}
+% \SetMathAlphabet\mathsf{italic}{OT1}{cmss}{m}{sl}
+% \SetMathAlphabet\mathit{italic}{OT1}{cmr}{m}{it}
+
+% \newcommand\bitalicmath{\mathversion{bitalic}}
+% \DeclareMathVersion{bitalic}
+% \SetSymbolFont{operators}{bitalic}{OT1}{cmr} {bx}{it}
+% \SetSymbolFont{letters}  {bitalic}{OML}{cmm} {b}{it}
+% \SetSymbolFont{symbols}  {bitalic}{OMS}{cmsy}{b}{n}
+% \SetMathAlphabet\mathsf{bitalic}{OT1}{cmss}{bx}{sl}
+% \SetMathAlphabet\mathit{bitalic}{OT1}{cmr}{bx}{it}
+
+\begin{document}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+\section{Solving System of Linear Equations \(Ax=b\)}
+
+% P Norm and Condition Number
+\subsection{\(p\)-Norm and Condition Number}
+
+\vspace{10pt}\noindent
+% Vectors
+\begin{minipage}[t]{.49\textwidth}
+	% Vector P Norm
+	\underline{Vector \(p\)-Norm}: \ \ 
+	\fbox{\(\Vert \vec{x} \Vert_p \ =\ \sqrt[\leftroot{-1}\uproot{5}{ p }]{\ \displaystyle \sum_i |x_i|^p\ }\)}
+
+	% 1 and infty norms
+	\vspace{10pt}\hspace{10pt}\(\begin{array}{r l}
+		{\text{\(1\)-Norm}}: &
+			\Vert \vec{x} \Vert_1 \ =\ \displaystyle \sum_i |x_i|\\[20pt]
+		{\text{\(\infty\)-Norm}}: &
+			\Vert \vec{x} \Vert_\infty \ =\ \max |x_i|
+	\end{array}\)
+
+	% Vector Norm Extra Info
+	\vspace{20pt}
+	\(\setlength{\arraycolsep}{4pt}\begin{array}{l r c c c c}
+		\bullet & \Vert x \Vert_1 &\geq&  \Vert x \Vert_2 			&\geq& \Vert x \Vert_\infty\\[15pt]
+		\bullet & \Vert x \Vert_1 &\leq&  \sqrt{n}\ \Vert x \Vert_2 	&\leq& \sqrt{n}\ \Vert x \Vert_\infty
+	\end{array}\)
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+	\setlength{\parindent}{.5cm}
+	% Func/Vector Condition Number
+	\noindent
+	\underline{Function/Vector Condition Number}:\\[15pt]
+	\indent\(\begin{aligned}
+		\text{cond}\Big( f(x) \Big) 
+		&= \left\vert \frac{[f(\hat{x}) - f(x)] / f(x)}{[\hat{x} - x] / x} \right\vert\\[5pt]
+		&= \left\vert \frac{\Delta y / y}{\Delta x / x}\right\vert 
+			= \left\vert \frac{y' \cdot \Delta x / y}{\Delta x / x}\right\vert\\[5pt]
+		&= \left\vert \frac{x f'(x)}{f(x)}\right\vert
+	\end{aligned}\)
+\end{minipage}
+
+% Matrices
+\vspace{20pt}\noindent
+\begin{minipage}[t]{.49\textwidth}
+	% Matrix P Norm
+	\underline{Matrix \(p\)-Norm}: \ \ 
+	\fbox{\(\displaystyle \Vert A \Vert_p \ =\ \max_{x \neq 0} \frac{\Vert Ax \Vert}{\Vert x \Vert}\)}
+
+	% 1 and infty norms
+	\vspace{10pt}\hspace{10pt}\(\begin{array}{r l}
+		{\text{\(1\)-Norm}}: &
+			\displaystyle \Vert A \Vert_1 \ =\ \max_{j}\ \sum_i \vert a_{ij} \vert\\[20pt]
+		{\text{\(\infty\)-Norm}}: &
+			\displaystyle \Vert A \Vert_\infty \ =\ \max_{i}\ \sum_j \vert a_{ij} \vert
+	\end{array}\)
+
+	% Matrix Norm Extra Info
+	\vspace{10pt}
+	\(\left.\setlength{\arraycolsep}{3pt}\begin{array}{l r c l}
+		\bullet& \Vert AB \Vert &\leq& \Vert A \Vert \cdot \Vert B \Vert\\[15pt]
+		\bullet& \Vert Ax \Vert &\leq& \Vert A \Vert \cdot \Vert x \Vert
+	\end{array}\right\} \begin{gathered}
+		\scriptstyle \text{For \(p\)-norms (not} \\[-5pt]
+		\scriptstyle \text{necessarily in general)}
+	\end{gathered}\)
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+	\setlength{\parindent}{.5cm}
+	% Matrix Condition Number
+	\noindent
+	\underline{Matrix Condition Number}:\\[15pt]
+	\indent\(\begin{aligned}
+		&\boxed{ \text{cond}_p(A) = \Vert A \Vert_p \cdot \Vert A^{-1} \Vert_p }
+					\hspace{20pt} {\scriptstyle(\text{\(\infty\) if singular})}\\[5pt]
+		&\hspace{20pt}= \frac{{\displaystyle \max_{x \neq 0}}\ \Vert Ax \Vert_p / \Vert x \Vert_p}
+			{{\displaystyle \min_{x \neq 0}}\ \Vert Ax \Vert_p / \Vert x \Vert_p}
+			\ =\ \text{cond}_p(\gamma A)
+			\ \geq\ 1\\[10pt]
+		&\bullet\ \text{Diagonal, } D: \ \text{cond}(D) = \tfrac{\max \vert d_i \vert}{\min \vert d_i \vert}\\[3pt]
+		&\bullet\ \begin{aligned}[t]
+			&\Vert z \Vert = \Vert A^{-1} y \Vert \ \leq\ \Vert A^{-1} \Vert \cdot \Vert y \Vert\\[3pt]
+			&\rightarrow \tfrac{\Vert z \Vert}{\Vert y \Vert} 
+				\ \leq\ \max \tfrac{\Vert z \Vert}{\Vert y \Vert} 
+				\stackrel{?}{=} \Vert A^{-1} \Vert \hspace{15pt} \text{\scriptsize(optimize)}
+		\end{aligned}
+	\end{aligned}\)
+\end{minipage}
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+% Residual, and Error Bounds when Solving Ax = b
+\newpage
+\subsection{Error Bounds and Residuals}
+
+% Error Bound
+\vspace{10pt}\noindent
+\underline{Error Bound}:\ \ \(\boxed{ \displaystyle \frac{\Vert \hat{x} - x \Vert}{\Vert x \Vert} 
+	\ \lessapprox\ \text{cond}(A)\ \epsilon_\text{mach} } 
+	\ \rightarrow \ \begin{minipage}{8cm}
+		\scriptsize
+		A computed solution is expected to lose about \(\log_{10}(\text{cond}(A))\) digits, so
+		the input data must be more accurate to these digits and 
+		the working precision must carry more than these digits.
+	\end{minipage}\)
+
+% Error Bound for Change in Vector b
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+	&A\hat{x} = b + \Delta b = Ax + A\Delta x\\[5pt]
+	&\hspace{10pt} \setlength{\arraycolsep}{3pt}\begin{array}{l c c c}
+			\bullet&\Vert b \Vert 			&\leq& \Vert A \Vert \cdot \Vert x \Vert\\[10pt]
+			\bullet\ &\Vert \Delta x \Vert 	&\leq& \Vert A^{-1} \Vert \cdot \Vert \Delta b \Vert
+		\end{array}\\[10pt]
+	&\rightarrow\ \boxed{ \tfrac{\Vert \Delta x \Vert}{\Vert x \Vert} 
+		\leq \text{cond}(A)\ \tfrac{\Vert \Delta b \Vert}{\Vert b \Vert}}
+\end{aligned}
+\hspace{2cm}
+% Residual
+\begin{aligned}[t]
+	&A\hat{x} + r = b\\[5pt]
+	&\hspace{10pt} \setlength{\arraycolsep}{3pt}\begin{aligned}
+			\bullet\ \Vert \Delta x \Vert 
+				&= \Vert A^{-1}(A\hat{x} - b) \Vert
+				= \Vert -A^{-1} r \Vert \\[5pt]
+			&\leq \Vert A^{-1} \Vert \cdot \Vert r \Vert
+		\end{aligned}\\[10pt]
+	&\rightarrow\ \boxed{ \tfrac{\Vert \Delta x \Vert}{\Vert \hat{x} \Vert} 
+		\leq \text{cond}(A)\ \tfrac{\Vert r \Vert}{\Vert A \Vert \cdot \Vert \hat{x} \Vert}}
+\end{aligned}\)
+
+% Error Bound for Change in Matrix A
+\vspace{20pt}\noindent
+\(\begin{aligned}[t]
+	&(A + \Delta A)\hat{x} = b\\[5pt]
+	&\hspace{10pt} \begin{aligned}[t]
+			\bullet\ \Vert \Delta x \Vert &= \Vert - A^{-1} (\Delta A) \hat{x} \Vert\\[10pt]
+			&\leq \Vert A^{-1} \Vert \cdot \Vert \Delta A \Vert \cdot \Vert \hat{x} \Vert
+		\end{aligned}\\[10pt]
+	&\rightarrow\ \boxed{ \tfrac{\Vert \Delta x \Vert}{\Vert x \Vert} 
+		\leq \text{cond}(A)\ \tfrac{\Vert \Delta A \Vert}{\Vert A \Vert}}
+\end{aligned}
+\hspace{1.5cm}
+% Residual
+\begin{aligned}[t]
+	&(A + \Delta A)\hat{x} = b\\[5pt]
+	&\hspace{10pt} \begin{aligned}
+		\bullet\ \Vert r \Vert 
+			&= \Vert b - A \hat{x} \Vert
+			= \Vert \Delta A \cdot \hat{x} \Vert \\[5pt]
+		&\leq \Vert \Delta A \Vert \cdot \Vert \hat{x} \Vert
+	\end{aligned}\\[10pt]
+	&\rightarrow\ \boxed{ \tfrac{\Vert r \Vert}{\Vert A \Vert \cdot \Vert \hat{x} \Vert} 
+		\leq \tfrac{\Vert \Delta A \Vert}{\Vert A \Vert}}
+		\ , \ \ \tfrac{\Vert \Delta x \Vert}{\Vert x \Vert} 
+		\leq \tfrac{\Vert A^{-1} \Vert \cdot \Vert r \Vert}{\Vert \hat{x} \Vert} 
+		\leq \text{cond}(A)\ \tfrac{\Vert \Delta A \Vert}{\Vert A \Vert}
+\end{aligned}\)
+
+% Calculus Error Bounds
+\vspace{20pt}\noindent
+\(\begin{aligned}[t]
+	&\Big[ A(t) x(t)\ =\ b(t) \Big] 
+		= \Big[ \big(A_0 + \Delta A \cdot t \big) x(t)\ =\ b_0 + \Delta b \cdot t \Big]\\[5pt]
+	&\hspace{10pt} \setlength{\arraycolsep}{2pt}\begin{array}{l r c l}
+			\bullet&x'(t) &=& \frac{b'(t) - A'(t)x(t)}{A(t)} = A^{-1}(t) \Big[ \Delta b - \Delta A\cdot x(t) \Big]\\[10pt]
+			\bullet&x(t) &=& x_0 + x'(0)t + \mathcal{O}(t^2)
+		\end{array}\\[10pt]
+	&\rightarrow\ \boxed{ \tfrac{\Vert x(t) - x_0 \Vert}{\Vert x_0 \Vert} 
+		\leq \text{cond}(A) \left( \tfrac{\Vert \Delta b \Vert}{\Vert b \Vert} 
+		+ \tfrac{\Vert \Delta A \Vert}{\Vert A \Vert} \right) \vert t \vert 
+		+ \mathcal{O}(t^2)}
+\end{aligned}\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+% LU Decomposition to Solve Linear System of Eq
+\newpage
+\subsection{Gaussian Elimination with LU/PLU/PLDUQ Decomposition}
+
+% Elementary Elimination Matrices
+\vspace{10pt}\noindent
+\underline{Elementary Elimination Matrices, \(L_k\)}
+
+\vspace{10pt}\noindent
+\(\begin{aligned}[t]
+	&\\[-20pt]
+	&\text{\scriptsize\(\left(\begin{matrix}
+		1 & \dots & 0 & 0 & \dots & 0\\
+		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+		0 & \dots & 1 & 0 & \dots & 0\\
+		0 & \dots & \tfrac{-a_{k+1}}{a_k} & 1 & \dots & 0\\
+		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+		0 & \dots & \tfrac{-a_n}{a_k} & 0 & \dots & 1\\
+	\end{matrix}\right) 
+	\left(\begin{matrix}
+		a_1\\
+		\vdots\\
+		a_k\\
+		a_{k+1}\\
+		\vdots\\
+		a_n
+	\end{matrix}\right) 
+	=
+	\left(\begin{matrix}
+		a_1\\
+		\vdots\\
+		a_k\\
+		0\\
+		\vdots\\
+		0
+	\end{matrix}\right)\)}
+\end{aligned}
+\hspace{20pt}
+\begin{aligned}[t]
+	&\bullet\ a_k\ \text{is the ``pivot''}\\
+	&\bullet\ \text{is lower triangular}\\
+	&\bullet\ \scriptstyle \forall i \neq j\ \ (L_k^{-1})_{ij}\ =\ - (L_k)_{ij} 
+\end{aligned}
+\hspace{30pt}
+\begin{aligned}[t]
+	&\text{Ex}:\\
+	&\text{\scriptsize\(\left(\begin{matrix}
+			1 & 0 & \dots\\
+			-a_1/a_2 & 1 & \dots\\
+			\vdots & \vdots & \ddots
+		\end{matrix}\right) 
+		\left(\begin{matrix}
+			a_1\\
+			a_2\\
+			\vdots
+		\end{matrix}\right) 
+		=
+		\left(\begin{matrix}
+			a_1\\ 
+			0\\
+			\vdots
+		\end{matrix}\right)\)}\\
+\end{aligned}
+\) 
+
+% LU/PLU Factorization
+\vspace{20pt}\noindent
+\underline{LU/PLU Factorization (w/ partial pivoting)}
+
+\vspace{5pt}
+\(\begin{aligned}[t]
+	&\boxed{\begin{aligned}[t]
+			A &= LU \hspace{20pt} \begin{aligned}
+					&\text{\scriptsize(\(L\) is gen. triang.)}\\[-7pt]
+					&\text{\scriptsize(\(U\) is upp. triang.)}
+				\end{aligned}\\[5pt]
+			L &= (\dots L_2 P_2 L_1 P_1)^{-1}
+		\end{aligned}}\\[10pt]
+	&\begin{aligned}[t]
+			\{\dots\} b &= (\dots L_2 P_2 L_1 P_1) Ax \\[5pt]
+			L^{-1}b &= (P_1^T L_1^{-1} P_2^T L_2^{-1} \dots)^{-1} Ax \\[5pt]
+			&= L^{-1} (L U)x = y
+		\end{aligned}\\[5pt]
+	&\boxed{\begin{gathered}
+			b = Ly\\[-5pt]
+			\text{\scriptsize(forw.-sub.)}
+		\end{gathered} 
+		\ ,\ \ 
+		\begin{gathered}
+			y = Ux\\[-5pt]
+			\text{\scriptsize(back.-sub.)}
+		\end{gathered}}
+\end{aligned}
+\hspace{25pt}
+\begin{aligned}[t]
+	&\bullet\ \begin{minipage}[t]{3cm}
+			\scriptsize Permutation matrix, \\ 
+			\(P_i\), rowswaps s.t. \\
+			\(a_k \neq 0\)
+		\end{minipage}\\[5pt]
+	&\bullet\ \begin{minipage}[t]{3.5cm}
+			\scriptsize \(P_i\) rowswaps s.t. \(a_k\) is \\
+			largest s.t. \(a_{k+i}/a_k \leq 1\)\\
+			for numerical stability/\\
+			minimize errors
+		\end{minipage}\\[5pt]
+	&\bullet\ \begin{minipage}[t]{3.5cm}
+		\scriptsize Pivoting isn't needed if \\
+		\(A\) is diag. dom.\\
+		\((a_{jj} > \sum_{i, i \neq j} a_{ij})\)
+	\end{minipage}\\[5pt]
+	&\bullet\ \text{\scriptsize \(A\) can be singular}
+\end{aligned}
+\hspace{20pt}
+\begin{aligned}[t]
+	&\boxed{\begin{aligned}[t]
+			A &= PLU \hspace{20pt} \begin{aligned}
+					&\text{\scriptsize(\(P\) is rowswap permu.)}\\[-7pt]
+					&\text{\scriptsize(\(L\) is unit low. triang.)}\\[-7pt]
+					&\text{\scriptsize(\(U\) is upp. triang.)}
+				\end{aligned}\\[5pt]
+			P &= (\dots P_2 P_1)^{-1}
+		\end{aligned}}\\[10pt]
+	&\begin{aligned}[t]
+			\{\dots\}b &= (\dots P_2 P_1)Ax\\[5pt]
+			P^T b &= (P_1^T P_2^T \dots)^{-1} Ax\\[5pt]
+			&= P^T (PLU)x = Ly
+		\end{aligned}\\[10pt]
+	&\boxed{P^T b = Ly\ ,\ \ y = Ux}
+\end{aligned}\)
+
+% LDU Diagonal Uniquness
+\vspace{20pt}
+\(\begin{aligned}[t]
+	&\boxed{P^T A = LDU \hspace{20pt} \text{\scriptsize(D is diag.)}}\\[10pt]
+	&\bullet\ \scriptstyle LDU\ \text{is unique up to } D\\
+	&\bullet\ \scriptstyle LDU\ \text{is unique if } L/U \text{ are unit low./upp. diag., resp.}
+\end{aligned}
+% PAQ Full pivoting
+\hspace{2cm}
+\begin{aligned}[t]
+	&\boxed{P^T A Q^T = LDU \hspace{20pt} \begin{aligned}
+			&\text{\scriptsize(P is permu. for rows)}\\[-7pt]
+			&\text{\scriptsize(Q is permu. for cols.)}
+		\end{aligned}}\\[5pt]
+	&\bullet\ \text{\scriptsize ``Complete pivoting'' search for largest \(a_k\)}\\[-3pt]
+	&\bullet\ \text{\scriptsize Would be most numerically stable}\\[-3pt]
+	&\bullet\ \text{\scriptsize Expensive, so not really used}
+\end{aligned}\)
+
+% Erro Bounds
+\vspace{20pt}\noindent
+\underline{Error Bound}:\ \(\tfrac{\Vert r \Vert}{\Vert A \Vert \Vert x \Vert} 
+	\ \leq\ \tfrac{\Vert \Delta A \Vert}{\Vert A \Vert}
+	\ \leq\ \begin{gathered}[t]
+		\rho\ n^2 \epsilon_\text{mach}\\[-5pt]
+		\text{\scriptsize(Wilkinson)}
+	\end{gathered}
+	\ \sim\ \begin{gathered}[t]
+		n \epsilon_\text{mach}\\[-5pt]
+		\text{\scriptsize (usually)}
+	\end{gathered}
+	\hspace{40pt} \begin{minipage}{6cm}
+		\scriptsize
+		(growth factor, \(\rho\), is the largest entry at any point during factorization - usually at \(U\) - \\ 
+		divided by the largest entry of A)
+	\end{minipage}\)
+
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+% Gaussian-Jordan
+\newpage
+\subsection{Gaussian-Jordan with MD Decomposition}
+
+% Elementary Elimination Matrices
+\vspace{10pt}\noindent
+\underline{Elementary Elimination Matrices, \(M_k\)}
+
+\vspace{10pt}\noindent
+\(\begin{aligned}[t]
+	&\\[-20pt]
+	&\text{\scriptsize\(\left(\begin{matrix}
+		1 & \dots & \tfrac{-a_1}{a_k} & 0 & \dots & 0\\
+		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+		0 & \dots & 1 & 0 & \dots & 0\\
+		0 & \dots & \tfrac{-a_{k+1}}{a_k} & 1 & \dots & 0\\
+		\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+		0 & \dots & \tfrac{-a_n}{a_k} & 0 & \dots & 1\\
+	\end{matrix}\right) 
+	\left(\begin{matrix}
+		a_1\\
+		\vdots\\
+		a_{k-1}\\
+		a_k\\
+		a_{k+1}\\
+		\vdots\\
+		a_n
+	\end{matrix}\right) 
+	=
+	\left(\begin{matrix}
+		0\\
+		\vdots\\
+		0\\
+		a_k\\
+		0\\
+		\vdots\\
+		0
+	\end{matrix}\right)\)}
+\end{aligned}
+\hspace{20pt}
+\begin{aligned}[t]
+	&\bullet\ a_k\ \text{is the ``pivot''}\\
+	&\bullet\ \scriptstyle \forall i \neq j\ \ (M_k^{-1})_{ij}\ =\ - (M_k)_{ij} 
+\end{aligned}
+\) 
+
+% MD Factorization
+\vspace{20pt}\noindent
+\underline{MD Factorization (w/ partial pivoting)}
+
+\vspace{5pt}
+\(\begin{aligned}[t]
+	&\boxed{\begin{aligned}[t]
+			A &= MD \hspace{20pt} \begin{aligned}
+					&\text{\scriptsize(\(M\) is elem. elim.)}\\[-7pt]
+					&\text{\scriptsize(\(D\) is diag.)}
+				\end{aligned}\\[5pt]
+			M &= (\dots M_2 P_2 M_1 P_1)^{-1}
+		\end{aligned}}\\[10pt]
+	&\begin{aligned}[t]
+			\{\dots\} b &= (\dots M_2 P_2 M_1 P_1) Ax \\[5pt]
+			M^{-1}b &= (P_1^T M_1^{-1} P_2^T M_2^{-1} \dots)^{-1} Ax \\[5pt]
+			&= M^{-1} (MD)x = y
+		\end{aligned}\\[5pt]
+	&\boxed{\begin{gathered}
+			M^{-1}b=y
+		\end{gathered} 
+		\ ,\ \ 
+		\begin{gathered}[t]
+			y = Dx\\[-5pt]
+			\text{\scriptsize(division)}
+		\end{gathered}}
+\end{aligned}
+\hspace{25pt}
+\begin{aligned}[t]
+	&\bullet\ \begin{minipage}[t]{3cm}
+			\scriptsize Permutation matrix, \\ 
+			\(P_i\), rowswaps s.t. \\
+			\(a_k \neq 0\)
+		\end{minipage}\\[5pt]
+	&\bullet\ \begin{minipage}[t]{3cm}
+			\scriptsize \(P_i\) rowswaps cannot \\
+			ensure numerical \\
+			stability \((\leq 1)\)
+		\end{minipage}\\[5pt]
+	&\bullet\ \begin{minipage}[t]{3cm}
+			\scriptsize 
+			Division is \(\mathcal{O}(n)\), \\
+			so may be useful for\\
+			parallel comps.
+		\end{minipage}\\[5pt]
+	&\bullet\ \text{\scriptsize Can also find \(A^{-1}\)}
+\end{aligned}
+\hspace{30pt}
+\text{\scriptsize\(
+	\begin{aligned}[t]
+		&\underline{\text{Finding } A^{-1}}\\[5pt]
+		&D^{-1} M^{-1} (A | I) = (I | A^{-1})\\[5pt]
+		&\hspace{10pt} \begin{aligned}[t]
+			&= D^{-1} M^{-1} 
+				\left[\left.\begin{matrix}
+					a_{11} & \dots \\
+					\vdots & a_{nn}	
+				\end{matrix}\right|
+				\begin{matrix}
+					1 & 0\\
+					0 & 1
+				\end{matrix}\right]\\[5pt]
+			&= \left[\begin{matrix}
+					1 & 0\\
+					0 & 1
+				\end{matrix}
+				\left|\begin{matrix}
+					a'_{11} & \dots \\
+					\vdots & a'_{nn}	
+				\end{matrix}\right.\right]
+		\end{aligned}
+	\end{aligned}\)}
+\)
+
+% Symmetric
+\subsection{Symmetric Matrices}
+
+\vspace{10pt}
+\underline{Positive Definite}:\ \ \(x^T Ax \geq 0\) \\[10pt]
+\underline{Cholesky Factorization for Sym., Pos. Def.}: \ 
+
+% Complexity
+\vspace{20pt}
+\subsection{Complexity}
+
+\vspace{10pt}
+\(\setlength{\arraycolsep}{3pt}\begin{array}{r c c c c c c l}
+	\text{Explicit Inversion}: 
+		&\begin{aligned}
+				\scriptstyle LUA^{-1} &\scriptstyle\ =\ I\\[-5pt]
+				\scriptstyle D^{-1}M^{-1} I &\scriptstyle\ =\ A^{-1}
+			\end{aligned}
+		&\rightarrow
+		&\mathcal{O}(n^3)
+		&\ ,\ 
+		&A^{-1}b = x
+		&\rightarrow
+		&\mathcal{O}(n^2)
+		\\[15pt]
+	\text{Gaussian Elimination}: 
+		&A = LU
+		&\rightarrow
+		&\mathcal{O}(n^3/3)
+		&\ ,\ 
+		&LUx = b 
+		&\rightarrow
+		&\mathcal{O}(n^2)
+		\\[5pt]
+	\text{Gaussian-Jordan}: 
+		&A = MD
+		&\rightarrow
+		&\mathcal{O}(n^3/2)
+		&\ ,\ 
+		&MDx = b
+		&\rightarrow
+		&\mathcal{O}(n)
+		\\[5pt]
+	\text{Symmetric}:
+		&\begin{aligned}
+				\scriptstyle A &\scriptstyle\ =\ LL^T\\[-5pt]
+				\scriptstyle PAP^T &\scriptstyle\ =\ LDL^T
+			\end{aligned}
+		&\rightarrow
+		&\mathcal{O}(n^3/6)
+		&\ ,\ 
+		&LL^Tx = b
+		&\rightarrow
+		&\mathcal{O}(n^2)
+		\\[15pt]		
+	\text{Banded}:
+		&A_\beta = LU
+		&\rightarrow
+		&\mathcal{O}(\beta^2 n)
+		&\ ,\ 
+		&LUx = b
+		&\rightarrow
+		&\mathcal{O}(\beta n)
+		\\[5pt]	
+\end{array}\)
+
+\subsection{Rank-1 Update with Sherman-Morrison}
+
+\subsection{Diagonal Scaling}
+
+\subsection{Iterative Refinement}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+% Matrix Types
+\newpage
+\section{Matrix Types}
+
+% Hermitian
+\bigskip\bigskip
+Hermitian:
+\boldmath $$H = H^\dagger$$ \unboldmath
+
+% Unitary
+Unitary:
+\boldmath $$UU^\dagger = I$$ \unboldmath
+
+% Factor Hermitian Into Unitary
+\par \bigskip \bigskip
+$H = UDU^{-1}$
+\begin{itemize}
+	\item D is real
+\end{itemize}
+
+% Unitary From Hermitian
+\bigskip
+$U = e^{iH}$
+\begin{itemize}
+	\item $U = e^{iH} = U_{H} e^{iD} (U_{H})^{-1}$
+\end{itemize}
+
+\end{document}

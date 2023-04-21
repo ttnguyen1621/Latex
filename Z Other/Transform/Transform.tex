@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[left=.75in, top=1in, bottom = 1in]{geometry}
+
+\newcommand\italicmath{\mathversion{italic}}
+\DeclareMathVersion{italic}
+\SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
+\SetSymbolFont{letters}  {italic}{OML}{cmm} {m}{it}
+\SetSymbolFont{symbols}  {italic}{OMS}{cmsy}{m}{n}
+\SetMathAlphabet\mathsf{italic}{OT1}{cmss}{m}{sl}
+\SetMathAlphabet\mathit{italic}{OT1}{cmr}{m}{it}
+
+\newcommand\bitalicmath{\mathversion{bitalic}}
+\DeclareMathVersion{bitalic}
+\SetSymbolFont{operators}{bitalic}{OT1}{cmr} {bx}{it}
+\SetSymbolFont{letters}  {bitalic}{OML}{cmm} {b}{it}
+\SetSymbolFont{symbols}  {bitalic}{OMS}{cmsy}{b}{n}
+\SetMathAlphabet\mathsf{bitalic}{OT1}{cmss}{bx}{sl}
+\SetMathAlphabet\mathit{bitalic}{OT1}{cmr}{bx}{it}
+
+\DeclareMathOperator{\Lapl}{\mathcal{L}}
+
+\begin{document}
+% Fourier Series
+\section{Fourier Series}
+	% Sine
+\subsection{Sine}
+	\begin{eqnarray*}
+	 	f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} S_n \sin\left(\frac{g(n)}{L}\pi x \right) \\
+	 	\displaystyle \int_{0}^{L} f(x)\sin\left(\frac{h(m)}{L}\pi x\right) dx &=& \sum\limits_{n = 0}^{\infty} \int_{0}^{L} S_n \sin\left(\frac{g(n)}{L}\pi x \right) \sin\left(\frac{h(m)}{L}\pi x\right) dx \\
+		&=& S_{h(m)} \frac{L}{2} \\
+		S_n &=&  \displaystyle \frac{2}{L} \int_{0}^{L} f(x)\sin\left(\frac{g(n)}{L}\pi x\right) dx
+	\end{eqnarray*}
+	% Cosine
+\subsection{Cosine}
+	\begin{eqnarray*}
+		f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} S_n \cos\left(\frac{g(n)}{L}\pi x \right) \\
+	 	\displaystyle \int_{0}^{L} f(x)\cos\left(\frac{h(m)}{L}\pi x\right) dx &=& \sum\limits_{n = 0}^{\infty} \int_{0}^{L} S_n \cos\left(\frac{g(n)}{L}\pi x \right) \cos\left(\frac{h(m)}{L}\pi x\right) dx \\
+		&=& S_{h(m)} \frac{L}{2} \\
+		S_n &=&  \displaystyle \frac{2}{L} \int_{0}^{L} f(x)\cos\left(\frac{g(n)}{L}\pi x\right) dx
+	\end{eqnarray*}
+	% Full
+\subsection{Full}
+	\begin{eqnarray*}
+		f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} A_n \cos\left(\frac{g(n)}{L}\pi x \right) + B_n \sin \left( \frac{g(n)}{L} \pi x \right) \\ \\
+		A_n &=&  \displaystyle \frac{1}{L} \int_{-L}^{L} f(x)\cos\left(\frac{g(n)}{L}\pi x\right) dx \\ \\
+		B_n &=&  \displaystyle \frac{1}{L} \int_{-L}^{L} f(x)\sin\left(\frac{g(n)}{L}\pi x\right) dx \\ \\ \\ \\
+	\end{eqnarray*}
+\subsection{Exponential}
+	% Exponential
+	\begin{eqnarray*}
+		f(x) &=& \displaystyle\sum\limits_{n \ = \ -\infty}^{\infty} C_n \ e^{i \frac{2 \pi n}{\lambda}x} \\ \\
+		C_n &=& \frac{1}{\lambda} \ \int_{-\lambda/2}^{\lambda/2} f(x) \ e^{-i \frac{2\pi n}{\lambda} x} \ dx \\
+	\end{eqnarray*}
+
+% Fourier Transform
+\section{Fourier Transform}
+\begin{eqnarray*}
+	k_n &=& \frac{2\pi n}{\lambda} \ \ \Rightarrow \ \ \Delta k = \frac{2\pi}{\lambda} \\ \\
+	\Psi(x) &?\approx&\ \displaystyle\sum \limits_{n \ = \ -\infty}^{\infty} \frac{1}{\lambda} \left[ \int_{-\lambda/2}^{\lambda/2} \Psi(x) \ e^{-i \frac{2\pi n}{\lambda} x} \ dx \right] e^{i \frac{2 \pi n}{\lambda} x} \\ \\
+	&=&\ \displaystyle\sum \limits_{k_n \ = \ -\infty}^{\infty} \frac{\Delta k}{\sqrt{2\pi}} \left[ \frac{1}{\sqrt{2\pi}} \int_{-\lambda/2}^{\lambda/2} \Psi(x) \ e^{-i k_n x} \ dx \right] e^{i k_n x} \\ \\ \\ \\
+	\lim_{\lambda \rightarrow \infty} \ \ \ \Psi(x) &=& \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \ \left[ \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \Psi(x) \ e^{-i k x} \ dx \right] e^{i k x} \ dk \\ \\
+	&=& \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \ \hat{\Psi}(k) e^{i k x} \ dk \\ \\
+	\hat{\Psi}(k) &=& \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \Psi(x) e^{-i k x} \ dx \\ \\ \\
+	&or& \\ \\ \\
+	x(t) &=& \int_{-\infty}^{\infty} \ \hat{x}(f) e^{i 2\pi f t} \ df \\ \\
+	\hat{x}(f) &=& \int_{-\infty}^{\infty} \ x(t) e^{-i 2\pi f t} \ dt \\ \\
+\end{eqnarray*}
+Proof:
+\begin{eqnarray*}
+	\int_{-\infty}^{\infty} \ \hat{x}(f) (e^{-\epsilon f^2}) \ e^{i 2\pi f t} \ df &=& a(t) \\ \\
+	&=& \int_{-\infty}^{\infty} \ \left[ \int_{-\infty}^{\infty} x(\tau) e^{-i 2\pi f \tau} \ d\tau \right] (e^{-\epsilon f^2}) \ e^{i 2\pi f t} \ df \\ \\
+	&=& \int_{-\infty}^{\infty} \ x(\tau) \left[ \int_{-\infty}^{\infty} (e^{-\epsilon f^2}) \ e^{- i 2\pi f (\tau-t)} \ df \right] \ d\tau \\ \\
+	&=& \int_{-\infty}^{\infty} \ x(\tau'+t) \left[ \int_{-\infty}^{\infty} (e^{-\epsilon f^2}) \ e^{- i 2\pi f\tau'} \ df \right] \ d\tau' \\ \\
+	&=& \int_{-\infty}^{\infty} \ x(\tau'+t) \ \left( \frac{1}{2\sqrt{\pi}\epsilon} \ e^{\frac{-(\tau')^2}{4\epsilon^2}} \right) \ d\tau' \\ \\
+	&=& \int_{-\infty}^{\infty} \ x(\epsilon\tau''+t) \ \left( \frac{1}{\sqrt{2\pi}\sqrt{2}} e^{ \frac{-(\tau'')^2}{2\sqrt{2}^2} } \right) \ d\tau'' \\ \\ \\
+	\int_{-\infty}^{\infty} \ \hat{x}(f) \ e^{i 2\pi f t} &=& \lim_{\epsilon\rightarrow 0} \ \int_{-\infty}^{\infty} \ \hat{x}(t) (e^{-\epsilon f^2}) \ e^{i 2\pi f t} \ df \ = \ \\ \\
+	\lim_{\epsilon\rightarrow 0} \ a(t) &=& x(t) \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}\sigma} e^{ \frac{-(\tau'')^2}{2\sigma^2} } \ d\tau'' \\ \\
+	&=& x(t) \\
+\end{eqnarray*}
+
+% Laplace Transform
+\section{Laplace Transform}
+$\{ s = \sigma + i\tau \ : \ \sigma > a \}$
+\begin{itemize}
+	\item $\displaystyle\left( \left| x(t) \right| \ \leq_{t\rightarrow\infty} \ Me^{-at} \right) \ \Rightarrow \ \left( \left| x(t)e^{-st} \right| \ \leq \ Me^{at} e^{-\sigma t} \ = \ Me^{-t(\sigma-a)} \right)$ \\
+\end{itemize}
+\boldmath \begin{eqnarray*}
+	(\Lapl{\{x\}}) (s) &=& \int_{0}^{\infty} \ x(t) e^{-st} \ dt \\ \\
+	x(t) &=& \frac{1}{2\pi i} \int_{\sigma-i\infty}^{\sigma+i\infty} \ (\Lapl{\{x\}}) (s) e^{st} \ ds \\ \\
+\end{eqnarray*} \unboldmath
+$(\Lapl{ \{ x^{(n)} \} }) (s) \ = \ s^n (\Lapl{ \{ x \}})(s) - s^{n-1}x(0) - s^{n-2}x'(0) - ... - x^{(n-1)}(0)$
+
+
+\section{Z Transform (Discrete Laplace)}
+% Z Transform (Discrete Laplace)
+\boldmath \begin{eqnarray*}
+	\{\ a_n &:& \left| a_n \right| \ \leq \ MR^n \ \}\\ \\
+	(Z\{ a_n \})(z) &=& \sum\limits_{n \ = \ 0}^{\infty} \ \frac{a_n}{z^n}\\ \\
+\end{eqnarray*} \unboldmath
+$c_n \ = \ \sum\limits_{k = 0}^{n} a_k b_{n-k} \ = \ a_n \boldsymbol{*} b_n$ \\
+\begin{itemize}
+	\item $Z \{ c_n \} \ = \ Z\{ a_n \} Z\{ b_n \} $ \\ \\
+\end{itemize}
+\begin{flalign*}
+	Z\{ a_{n+m} \} \ &= \ a_m + \frac{a_{m+1}}{z} + \frac{a_{m+2}}{z^2} + ... && \\ \\
+	&= \ z^m \left[ \left( a_0 + \frac{a_1}{z} + ... + \frac{ a_{m-1} }{ z^{m-1} } \right) + \left( \frac{a_m}{z^m} + \frac{ a_{m+1} }{ z^{m+1} } + ... \right) - \left( a_0 + \frac{a_1}{z} + ... + \frac{ a_{m-1} }{ z^{m-1} } \right) \right] && \\ \\
+	&= \ z^m \left[ Z\{ a_n \} - \left( a_0 + \frac{a_1}{z} + ... + \frac{ a_{m-1} }{ z^{m-1} } \right) \right] && \\ \\
+	&= \ z^m \left[ Z\{ a_n \} - \sum\limits_{j=0}^{m-1} \frac{a_j}{z^j} \right] && \\ 
+\end{flalign*}
+If all initial conditions are 0, then \boldmath{$Z\{ y_n \} = F(z) Z\{ x_n \}$}
+\begin{itemize}
+	\item ${y_n}$ is stable/bounded iff all of $F(z)$'s pole's are in the unit open disc.
+\end{itemize}
+\end{document}

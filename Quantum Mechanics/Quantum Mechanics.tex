@@ -1,0 +1,3089 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage{amssymb, amsmath, amsfonts, mathtools}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{cancel,slashed}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
+
+% \title{Quantum Mechanics}
+% \author{ringoffire0 }
+% \date{November 2022}
+
+\begin{document}
+
+% \maketitle
+
+% Waves
+\section{Wave Function}
+\( \begin{aligned}
+    \Psi_p &= e^{ i( 2 \pi x/ \lambda - 2 \pi t/T ) }\\
+    &= e^{ i(k x- \omega t) }\\
+    &= e^{ \frac{i}{\hbar} ( p x - E t ) }
+\end{aligned} \)
+\indent \rule[-75pt]{.5pt}{150pt} \indent
+% Momentum/Energy Operators
+\begin{tabular}{c m{.5cm} c}
+    \( \widehat{P} \Psi_p = p \Psi_p = \hbar k \Psi_p \) 
+        && \( \widehat{E} \Psi_p = E \Psi_p = \hbar \omega \Psi_p \)\\ 
+    && \\
+    \( \boxed{ \widehat{P} = \dfrac{\hbar}{i} \partial_x } \) 
+        &&\( \boxed{ \widehat{E} = -\dfrac{\hbar}{i} \partial_t } \)\\ 
+    && \\
+    && \\
+    \( \begin{aligned}
+            \widehat{P} \Psi_p &= \frac{\hbar}{i} \frac{\partial}{\partial x} 
+                ( e^{ \frac{i}{\hbar} ( p x - E t )} )\\
+            &= p e^{ \frac{i}{\hbar} ( p x - E t ) }\\
+            &= p \Psi_p
+        \end{aligned} \)
+        && \( \begin{aligned}
+                \widehat{E} \Psi_p &= -\frac{\hbar}{i} \frac{\partial}{\partial t} 
+                    \left ( e^{ \frac{i}{\hbar} ( p x - E t )} \right )\\
+                &= E e^{ \frac{i}{\hbar} ( p x - E t ) }\\
+                &= E \Psi_p
+            \end{aligned} \)
+\end{tabular}
+
+% Schrodinger's Equation
+\subsection{Schrodinger \( \Psi \)}
+\unskip
+\[ \begin{aligned}
+    \widehat{E} \Psi &= \widehat{H} \Psi = ( \widehat{T} + \widehat{V} ) \Psi\\
+    \widehat{E} \Psi 
+        &= \left( \frac{ \hat{p}^2 }{2m} + V(\vec{\mathbf{r}},t) \right) \Psi\\
+    \Aboxed{ i \hbar \frac{\partial}{\partial t} \Psi(\vec{\mathbf{r}},t) 
+        &= \left( \frac{-\hbar^2}{2m} \nabla^2 
+            + V(\vec{\mathbf{r}},t) \right) \Psi(\vec{\mathbf{r}},t) }
+\end{aligned} \]\\[5pt]
+% 1-D solution
+\begin{minipage}[t]{.49\textwidth}
+    \underline{If \(V=V(x)\)}\\[10pt]
+    \(\Psi(x,t) = \psi(x)\phi(t) \ \Rightarrow\)
+    \begin{itemize}
+        \item \( E_n \phi_n(t) = i \hbar \frac{\delta}{\delta t} \phi_n(t) \ \Rightarrow \ 
+            \boxed{ \phi_n(t) = e^{- \frac{i}{\hbar} E_n t} } \)\\
+        \item \( \boxed{ E_n \psi_n(x) 
+            = \left( \frac{-\hbar^2}{2m} \partial_x^2 + V(x) \right) \psi_n(x) } \)\\
+        \item[-] \begin{itemize}
+                \(\psi\) can be lin. sum of real or complex, so choose real \(\psi\)
+            \end{itemize}
+        \item Linear: \( \boxed{ \Psi(x,t) 
+            = \sum_n \ \psi_n(x) \ e^{- \frac{i}{\hbar} E_n t} } \)\\
+        \item \(\sigma^2_H = \langle H^2\rangle - \langle H \rangle^2  = 0
+            \ \Rightarrow \ \) measuring stationary state, \(\Psi_n\), returns one \(E\) 
+            (determinate state)
+    \end{itemize}
+\end{minipage}
+\hspace{10pt}
+% 3-D solution
+\begin{minipage}[t]{.5\textwidth}
+    \underline{If \( V = V(r) \)}\\[10pt]
+    \( \Psi(\vec{\mathbf{r}}) = R(r) Y^m_l(\theta, \phi) 
+        = R(r) \Theta^m_l(\theta) \Phi_m(\phi) \ \Rightarrow \)
+    \begin{gather*}
+        E u = \left( \frac{\hat{p}_r^2}{2m} + V(r) + \frac{\hat{L^2}}{2(mr^2)} \right) u\\
+        \boxed{ E u = \frac{-\hbar^2}{2m} \partial_r^2 u
+            + \left[ V(r) + \frac{\hbar^2 l(l+1)}{2m r^2} \right] u }
+    \end{gather*}
+    \begin{itemize}
+        \item \( u(r) = r R(r) \)
+        \item \( \Phi_m(\phi) = e^{i m \phi}\)
+        \item \( \Theta^m_l(\theta) = A P^m_l(\cos{\theta}) \)\\[5pt]
+        - \( A = \epsilon \sqrt{ \frac{2l+1}{4\pi} \frac{(l-|m|)!}{(l+|m|)!} } \), \ \
+            \( \epsilon = \begin{cases}
+                \scriptstyle (-1)^m & \scriptstyle (m \geq 0) \\
+                \scriptstyle1       & \scriptstyle (m \leq 0)
+            \end{cases} \)\\[5pt]
+        - \( P^m_l(x) = \text{\scriptsize{Assoc. Legendre Func. (see extra)}} \)
+        \item \( l \in \mathbb{N}_0, \ m \in \{ -l, ..., -1, 0, 1, ..., l \} \)
+        \item \( \widehat{L_i} = ( \vec{r} \times \vec{p} )_i \)
+    \end{itemize}     
+\end{minipage}
+
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+% Usage
+\newpage
+\subsection{Usage}
+% L2 Space
+\begin{center}
+    \( \begin{aligned}
+        &\bullet& \ \langle f|g \rangle &= \int_{-\infty}^{\infty} f(x)^* g(x) \ dx& \ \ \ \ \ \ \ \
+            &\bullet& \ \langle f|g \rangle_{ab} &= \int_{a}^{b} f(x)^* g(x) \ dx\\[5pt]
+        &\bullet& \ | f \rangle &\equiv f(x)&
+            &\bullet& \ \langle f | &\equiv \int f(x)^* [...] \ dx
+    \end{aligned}\) \\[15pt]
+    \( \displaystyle \bullet \ \langle f|f \rangle = \int_{a}^{b} |f|^2 \ dx < \infty 
+        \ \Rightarrow \ f \in L_2{\scriptstyle(a,b)} \) \ \ \ \ \ \ \ \ \
+        \( \left( \int_{a}^{b} \ |f|^p \ {\scriptstyle dx \ < } \ \infty \ \Rightarrow \ f \in L_p{\scriptstyle(a,b)} \right) \)     
+\end{center}
+\rule[0pt]{1\textwidth}{.5pt}
+
+% Psi Decomposition as Series Sum of Basis Vectors
+\vspace{20pt} \noindent
+\( \forall \{f_n\} \in L_2 \): \indent
+\begin{tabular}{l}
+    \( \Psi = \begin{cases}
+                \displaystyle \ \sum_n c_n f_n \\[20pt]
+                \displaystyle \ \int_n c_n f_n \ dn
+            \end{cases} \) , \indent 
+        \( \begin{aligned}
+            \langle f_m|f_n \rangle &= \Bigg\{ 
+                \begin{tabular}{l}
+                    \( \delta_{mn} \)\\[5pt]
+                    \( \delta {\scriptstyle (m-n)} \)
+                \end{tabular} \\[5pt]
+            \Rightarrow \ \ &\boxed{ c_n = \langle f_n | \Psi \rangle }
+        \end{aligned} \) , \indent
+        \(\begin{gathered}
+            \text{\scriptsize(see Born int.)} \\
+            |c_n|^2 = \begin{cases}
+                P(n) \\[5pt]
+                \text{PDF}{\scriptstyle(n)} 
+            \end{cases}
+        \end{gathered}\)\\[40pt]
+    \( | \Psi \rangle = \left\{ 
+        \setlength{\tabcolsep}{3pt}
+        \begin{tabular}{c c c c c c c c}
+            \( \displaystyle \sum_n c_n | f_n \rangle \)
+                &\(=\)& \( \displaystyle \sum_n \langle f_n | \Psi \rangle \ | f_n \rangle \)
+                &\(=\)& \( \displaystyle \left( \sum_n | f_n \rangle 
+                    \langle f_n | \right) | \Psi \rangle \)
+                &\(=\)& \( \displaystyle | \Psi \rangle \) \\[20pt]
+            \( \displaystyle \int_n c_n | f_n \rangle \ dn \)
+                &\(=\)& \( \displaystyle \int_n \langle f_n | \Psi \rangle | f_n \rangle \ dn \)
+                &\(=\)& \( \displaystyle \left( \int_n | f_n \rangle 
+                    \langle f_n | \ dn \right) | \Psi \rangle \)
+                &\(=\)& \( \displaystyle | \Psi \rangle \)
+        \end{tabular} \right. \)
+\end{tabular}
+
+% Different Bases Examples
+\hfill \break \\[15pt]
+\begin{tabular}{c|c|c}
+    % Eigenfunctions
+    \( \begin{aligned}[t] 
+            \hat{x} \Psi_y = x \Psi_y = y \Psi_y \\[5pt]
+            \Rightarrow \ \boxed{ \Psi_y = \delta{\scriptstyle(x-y)} } 
+        \end{aligned} \)
+    & \( \begin{aligned}[t]
+            &\hat{p} \Psi_p = p \Psi_p \\[5pt]
+            &\Rightarrow \ \boxed{ \Psi_p = Ae^{\frac{i}{\hbar} px} }
+        \end{aligned} \)
+    & \( \begin{aligned}[t]
+            \hat{H} \Psi_n &= E_n \Psi_n \\[5pt]
+            \text{\scriptsize{(See Poten}} & \text{\scriptsize{tial Examples)}} 
+        \end{aligned} \) \\
+    && \\ 
+    \hline && \\
+    % Psi Expansion
+    \( \begin{gathered}
+            \Psi{\scriptstyle(x,0)} = \int_{-\infty}^{\infty} c_y \Psi_y \ dy \\[10pt]
+            = \int_{-\infty}^{\infty} \Psi{\scriptstyle(y,0)} \ 
+            \delta{\scriptstyle(x-y)} dy
+        \end{gathered} \)
+    & \( \begin{gathered}
+            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} c_p \Psi_p \ dp \\[10pt]
+            = \int_{-\infty}^{\infty} \Phi{\scriptstyle(p,0)}
+            \left( e^{-\frac{i}{\hbar} \frac{p^2}{2m} t} \right)
+            \frac{e^{\frac{i}{\hbar} px}}{\sqrt{2 \pi \hbar}} \ dp
+        \end{gathered} \)
+    & \( \begin{gathered}
+            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} c_n \Psi_n \ dn \\[10pt]
+            = \int_{-\infty}^{\infty} c_n
+                \left( e^{\frac{-i}{\hbar}E_n t} \right) \Psi_n \ dn
+        \end{gathered} \) \\ 
+    && \\ 
+    \hline && \\
+    % Transform
+    \( \begin{aligned}
+            c_y &= \langle \Psi_y | \Psi \rangle \\[5pt]
+            \Psi{\scriptstyle(y,0)} &= \int_{-\infty}^{\infty} 
+            \delta{\scriptstyle(x-y)} \Psi{\scriptstyle(x,0)}\ dx
+        \end{aligned} \)
+    & \( \begin{aligned}
+            c_p &= \langle \Psi_p | \Psi \rangle \\[5pt]
+            \Aboxed{ \Phi{\scriptstyle(p,t)} &= \int_{-\infty}^{\infty} 
+                \frac{e^{\frac{-i}{\hbar} px}}{\sqrt{2 \pi \hbar}}
+                \Psi{\scriptstyle(x,t)} \ dx }
+        \end{aligned} \)
+    & \( \begin{aligned}
+            c_n(t) &= \langle \Psi_n | \Psi \rangle \\[5pt]
+            c_n(t) &= \int_{-\infty}^{\infty} \Psi_n^* \Psi{\scriptstyle(x,t)} \ dx
+        \end{aligned} \) \\ 
+    && \\ 
+\end{tabular}\\[5pt]
+
+%-------------------------------------------------------------------------------------------------------
+% Probability
+\newpage 
+\noindent \( \boxed{ \text{Born Interpretation: PDF}(x) = | \Psi(x) |^2 = \Psi^* \Psi } \)
+
+% PDF(x)
+\hfill \break
+\begin{minipage}[t]{0.5\textwidth}
+    \underline{\( P{\scriptstyle(a<x<b)} = \int_{a}^{b} | \Psi |^2 dx 
+        \equiv \langle \Psi | \Psi \rangle_{ab} \)}
+    \begin{itemize}
+        \item[-] \( \boxed{ \langle \Psi | \Psi \rangle = 1 } \) \ \ \ {\scriptsize(physical, bound states only)}
+        \item \( \Psi(\pm \infty) = 0 \)
+        \item \( \text{Min}(V) \leq E_\Psi \in \mathbb{R} \) 
+        \item \( \langle \Psi_n | \Psi_n \rangle \rightarrow \infty \ \Rightarrow \
+            \Psi_n \) not PHYSICAL\\[5pt]
+            sol. but \( \Psi = \int c_n \Psi_n \) can if 
+            \( \langle \Psi|\Psi \rangle = 1 \)
+    \end{itemize}
+\end{minipage} 
+\begin{minipage}[t]{0.5\textwidth}
+    \underline{Boundary Conditions:}
+    \begin{itemize}
+        \item \( \Psi(x) \) isn't always cont. (see extra)
+        \item \( \frac{\partial \Psi(x)}{\partial x} \) is cont. except at \( V = \infty \) 
+        \item[] \begin{itemize}
+                \( \lim_{\epsilon \rightarrow 0} \ \int_{-\epsilon}^{\epsilon}  E \Psi dx 
+                    = \int_{-\epsilon}^{\epsilon} \widehat{H} \Psi dx \ \Rightarrow\) \\[5pt]
+                \( \lim_{\epsilon \rightarrow 0} \ \frac{\hbar^2}{2m} \Delta ( \frac{d \Psi}{dx} )
+                    = \int_{-\epsilon}^{\epsilon} V \Psi dx \)
+            \end{itemize}
+    \end{itemize}
+\end{minipage}
+
+% Expectation of a function of x, f(x)
+\vspace{5pt} \indent\( \bullet \ \ E[f{\scriptstyle(x)}] 
+    = \int_{-\infty}^{\infty} f{\scriptstyle(x)} \ \text{\scriptsize PDF}{\scriptstyle(x)} \ dx
+    = \int_{-\infty}^{\infty} f{\scriptstyle(x)} \ | \Psi{\scriptstyle(x)} |^2 \ dx
+    = \int_{-\infty}^{\infty} \Psi{\scriptstyle(x)}^* f{\scriptstyle(x)} \Psi{\scriptstyle(x)} \ dx 
+    = \boxed{ \langle \Psi | f{\scriptstyle(x)} \Psi \rangle \equiv \langle f{\scriptstyle(x)} \rangle}
+\)\\[5pt]
+% c_n transform meaning
+\indent\(\bullet \ \begin{aligned}[t]
+    \int_x \Psi^* \Psi \ dx 
+        &= \int_x 
+        \left( {\scriptstyle\int}_{n} \ c_n^*{\scriptstyle(t)} \Psi_n^*{\scriptstyle(x)} \ {\scriptstyle dn} \right)
+        \left( {\scriptstyle\int}_{n'} \ c_{n'}{\scriptstyle(t)} \Psi_{n'}{\scriptstyle(x)} \ {\scriptstyle dn'} \right)
+        \ dx \\[5pt]
+    &= \int_{n} c_n^*{\scriptstyle(t)} \int_{n'} 
+        c_{n'}{\scriptstyle(t)} \ \delta{\scriptstyle(n-n')} \ dn' \ dn 
+        = \int_n | c_n{\scriptstyle(t)} |^2 \ dn
+        \ \Rightarrow \ \Aboxed{ \text{\scriptsize PDF}(n) = | c_n |^2 = c_n^* c_n }
+\end{aligned} \)
+
+% Adjoint Def
+\vspace{25pt} \noindent
+\underline{Adjoint {\scriptsize(herm. adj./herm. conj.)}: 
+    \( \big\{ A^\dagger : \langle f | A f \rangle = \langle A^\dagger f | f \rangle \big\} \)}
+    \(\ \ \Rightarrow \ \ \langle h | \hat{A} g \rangle = \langle \hat{A}^\dagger h | g \rangle
+    \indent {\scriptstyle(\text{let} \ f = h + g, \ f = h + ig)}\) \\[10pt]
+% Hermitian Operators
+\underline{Hermitian Operator: \( \big\{ A : \hat{A}^\dagger = \hat{A} \big\} \)}\\[5pt]
+\indent
+\(\begin{aligned}
+    \bullet \ &\boxed{ \exists \{ \Psi_n \} : \ \hat{A} \Psi_n{\scriptstyle(x)} = a_n \Psi_n{\scriptstyle(x)} }
+        \ \ \text{\scriptsize(spectral theorem)}
+        \indent \bullet \ \langle a \rangle = a \in \mathbb{R} 
+        \ \Rightarrow \ \hat{A} \ \text{can be an observable}\\[5pt]
+    \bullet \ &\boxed{ \langle \Psi_m | \Psi_n \rangle \in \{ \delta_{mn}, \ \delta {\scriptstyle (m-n)} \} } 
+        \hspace{3.5cm} \bullet \ \boxed{ \text{Axiom: \( \{ \Psi_n \} \) for \(\hat{A}\) are complete } }\\[5pt]
+    &\underline{\text{Non-degenerate:}} \indent 
+        (m \neq n), \ (a_m \neq a_n) \ \Rightarrow \ 
+        \langle \Psi_m | \Psi_n \rangle \in \{ \delta_{mn}, \ \delta {\scriptstyle (m-n)} \} \\[5pt]
+    &\underline{\text{Degenerate:}} \indent
+        \begin{aligned}[t]
+            &(m \neq n), \ (a_m = a_n), \ (\Psi_m \neq \Psi_n), \langle \Psi_m | \Psi_n \rangle \neq 0
+                \ \Rightarrow \ \text{Use Gram-Schmidt} \\[5pt]
+            &\text{to find orthogonal} \indent \langle \Psi_m' | \Psi_n' \rangle 
+                = \langle a\Psi_m+b\Psi_n | \ c\Psi_m+d\Psi_n \rangle = 0 \\[3pt]        
+        \end{aligned}
+\end{aligned}\)\\[5pt]
+% Expectation Value
+\noindent
+\underline{Expectation: \( E [ \hat{A} {\scriptstyle(x,p)} ] \)}\\[5pt]
+\indent \(\bullet \ \begin{aligned}[t]
+    \int_{-\infty}^{\infty} \hat{A}{\scriptstyle(x,p)}^* \ \Psi^* \Psi \ dx 
+        &= \langle \hat{A} \Psi | \Psi \rangle
+        = \boxed{ \langle \Psi | \hat{A} \Psi \rangle 
+        \equiv \langle \hat{A}{\scriptstyle(x,p)} \rangle } 
+        \indent \text{\scriptsize(won't work if \(\int A \ |\Psi|^2 \ dx\))}\\[5pt]
+    \langle \Psi | \hat{A} \Psi \rangle &= \int_{-\infty}^{\infty} \Psi^* \hat{A} \Psi \ dx 
+        = \int_{-\infty}^{\infty} \big( {\scriptstyle\int}_n \ c_n^* \Psi_n^* \ {\scriptstyle dn} \big) 
+        \big( {\scriptstyle\int}_{n'} \ c_{n'} \hat{A} \Psi_{n'} \ {\scriptstyle dn'} \big) \ dx\\
+    &= \int_n a_n | c_{n} |^2 \ dn = E[a] \equiv \langle a \rangle 
+        \indent \indent c_n = \text{\scriptsize PDF}{\scriptstyle(n)} \ \ 
+        \text{\scriptsize(see above and see Momentum Space)}\\[5pt]
+    \Aboxed{ \langle a \rangle 
+        &= \langle \Psi | \hat{A} \Psi \rangle = \langle \Psi | \hat{A} | \Psi \rangle 
+        = \langle A \rangle}
+\end{aligned} \)\\[10pt]
+\indent \(\bullet \ \boxed{ \langle \sigma^2_a \rangle = \langle a^2 \rangle - \langle a \rangle^2 }
+    \ \Rightarrow \ \sigma_A^2=0 \ \ \ \text{ for } \Psi_n \indent \text{\scriptsize(determinate state)}\)
+
+%-----------------------------------------------------------------------------------------------------------------------
+% Matrix Operators
+\newpage \noindent
+\underline{Matrix Operators:} \\[10pt]
+Given complete \(\{e_n\} : \ \langle e_m | e_n \rangle = \delta_{mn}\) 
+
+% 1. How Q interacts
+\vspace{20pt}\noindent 
+\(\boldsymbol{1.)} \ \ ^* \ \boxed{ Q_{mn}^{(e)} \equiv 
+    \big\langle e_m \big| \widehat{Q}{\scriptstyle(x,p)} \big| e_n \big\rangle }\) \\[5pt]
+\( \displaystyle 
+    | \beta \rangle = \widehat{Q} | \alpha \rangle \boldsymbol{=} \sum_m | e_m \rangle
+    \left( \begin{aligned}
+        \langle e_m | \beta \rangle 
+            &= \big\langle e_m \big| \widehat{Q} \big| \alpha \big\rangle \\[10pt]
+        \sum_n b_n \langle e_m | e_n \rangle 
+            &= \sum_n a_n \ ^*\ \boldsymbol{ \boxed{ \big\langle e_m \big| \widehat{Q} \big| e_n \big\rangle } }\\
+        \Aboxed{ b_m &= \sum_n \Big( Q_m^{(e)} \Big)_n \ a_n }
+    \end{aligned} \right) \boldsymbol{=} \begin{aligned}
+        \sum_m b_m | e_m \rangle 
+            &= \sum_{n,m} \langle e_n | \alpha \rangle \ Q_{mn}^{(e)} | e_m \rangle \\
+        &= \Big( \sum_{n,m} Q_{mn}^{(e)} | e_m \rangle \langle e_n | \Big) |\alpha \rangle \\
+        \Rightarrow \ \Aboxed{ \widehat{Q}
+            &= \sum_{m,n} Q_{mn}^{(e)} | e_m \rangle \langle e_n | }     
+    \end{aligned} 
+\)
+
+% 2. Pre-math for matrix representation of Q
+\vspace{20pt} \noindent
+\(\boldsymbol{2.)}\) Find \(\widehat{Q}\) as a matrix\\
+\( \displaystyle
+    | f {\scriptstyle(x)} \rangle = \sum_n c_n^{(e)}{\scriptstyle[f]} 
+        \big| e_n{\scriptstyle(x)} \big\rangle 
+    \ \ = \ \ 
+    % vector representation of c and e 
+    \left( \begin{matrix} 
+        \vdots\\
+        c_n{\scriptstyle[f]}\\
+        \vdots
+    \end{matrix} \right)^{(e)} \dotP
+    \left( \begin{matrix} 
+        \vdots\\
+        e_n{\scriptstyle(x)}\\
+        \vdots
+    \end{matrix} \right)
+    \ \ \equiv \ \
+    % condensed vector representation of c and e 
+    \boxed{ \begin{gathered}
+        \vec{c}^{\ (e)}{\scriptstyle[f]} \dotP \vec{e}{\scriptstyle(x)} \\[5pt]
+        \int_n c^{(e)}{\scriptstyle[f]}{\scriptstyle(n)} \cdot e{\scriptstyle(n, x)} \ dn
+    \end{gathered} } 
+    \indent , \indent 
+    % how to find c_n
+    \boxed{ c_n^{(e)}{\scriptstyle[f]} = \langle e_n | f \rangle }
+\)
+
+% Calculate Matrix representation of Q
+\vspace{15pt}\noindent
+\( 
+    \begin{aligned}
+        &\widehat{Q} | f \rangle \\
+        &= \Big( \text{\scriptsize\(\sum_{m,n'}\)} \
+            Q_{mn'}^{(e)} | e_m \rangle \langle e_{n'} | \Big) 
+            \text{\scriptsize\(\sum_{n}\)} \ c_n^{(e)} | e_n \rangle\\
+        &= \text{\scriptsize\(\sum_{m,n}\)}
+            \Big( \text{\scriptsize\(\sum_{n'}\)} \ Q_{mn'}^{(e)} \ c_n^{(e)} 
+            \langle e_{n'} | e_n \rangle \Big) | e_m \rangle \\
+        &= \text{\scriptsize\(\sum_{m}\)} \Big( \text{\scriptsize\(\sum_{n}\)} \
+            \big( Q_{m}^{(e)} \big)_n c_n^{(e)} \Big) | e_m \rangle
+    \end{aligned}
+\) 
+\hspace{5pt}
+\rule[-65pt]{.5pt}{135pt}
+\hspace{5pt}
+% Interpret math to get matrix representation of Q
+\fbox{ \(
+    \begin{gathered}
+        \begin{aligned}
+            &\widehat{Q} \left[
+                \left(\begin{matrix} 
+                    |\\
+                    c\\
+                    |
+                \end{matrix}\right)^{(e)} \dotP 
+                \left( \begin{matrix} 
+                    |\\
+                    e\\
+                    |      
+                \end{matrix}\right) \right]
+                = \left[ 
+                    \left(\begin{matrix} 
+                            & \vdots &\\
+                        -   & Q_{m} & -\\
+                            & \vdots & 
+                    \end{matrix}\right)^{(e)} 
+                    \left(\begin{matrix} 
+                        |\\
+                        c\\
+                        |
+                    \end{matrix}\right)^{(e)}  
+                \right] \dotP 
+                \left( \begin{matrix} 
+                    |\\
+                    e\\
+                    |      
+                \end{matrix}\right) \\[5pt]
+            &\widehat{Q} \ | f \rangle = \boxed{ \widehat{Q} \ \big[ \ \vec{c}^{\ (e)}{\scriptstyle[f]} \dotP \vec{e} \ \big]
+                = \left[^{\ } \overline{Q}^{(e)} \ \vec{c}^{\ (e)}{\scriptstyle[f]} \right] \dotP \vec{e} } 
+        \end{aligned} \\[5pt]
+        \text{e.g.} \ \begin{aligned}
+            \widehat{Q} | f \rangle &= \int_{m} \left[ \overline{Q}^{(\delta)} f \right]{\scriptstyle(m)} 
+                \cdot \delta{\scriptstyle(x-m)} \ dm\\[5pt]
+            &= \int_{m} \left[ \int_n Q_m^{(\delta)} {\scriptstyle(n)} \cdot f{\scriptstyle(n)}\ dn \right] 
+                \cdot \delta{\scriptstyle(x-m)} \ dm = \widehat{Q} f{\scriptstyle(x)} 
+        \end{aligned}
+    \end{gathered}
+\) }
+
+% 3. Terms
+\vspace{10pt} \noindent
+\(\boldsymbol{3.)}\) Terms\\[10pt]
+\begin{minipage}[t]{.67\textwidth}
+    \begin{tabular}[t]{l l}
+        Diagonalizable:                             & \(A \equiv PDP^{-1}\)\\[10pt]
+        {\scriptsize Conj. Transpose}, \(\dagger\): \indent   
+            & \(A^\dagger \equiv A^{T*} = A^{*T}\)\\[10pt]
+        Hermitian, \(H\):       & \(\begin{aligned}[t]
+                &H = H^\dagger\\
+                &H = UDU^{-1} = UDU^\dagger \hspace{20pt} \text{\scriptsize(spectral theorem)}
+            \end{aligned}
+        \)\\[30pt]
+        Unitary, \(U\):         & \(
+            \begin{aligned}[t]
+                    &U: \ UU^{\dagger} = U^{\dagger}U = 1 \\
+                    &\exists H:\ U = e^{iH} = (U') e^{iD} (U')^{\dagger}
+            \end{aligned}\)    
+    \end{tabular}    
+\end{minipage}
+\begin{minipage}[t]{.32\textwidth}
+    \scriptsize
+    \underline{Hermitian Operator \(\leftrightarrow\) Hermitian Matrix}\\[5pt]
+    \(\begin{aligned}[t]
+        &\langle Qx | y \rangle = \langle x | Qy \rangle\\[5pt]
+        &\hspace{2.2cm} \text{(draw it out)}\\
+        &\rightarrow \ \begin{aligned}[t]
+                (\overline{Q} x)^{*T} \dotP y_m|e_m\rangle 
+                    &= y_m x^{*T} \dotP ( \overline{Q}^*_m ) \\[5pt]
+                &= x^{*T} \dotP \overline{Q}^{*T} y_m|e_m\rangle \\[5pt]
+                &= x^{*T} \dotP \overline{Q} y_m|e_m\rangle
+            \end{aligned}\\[5pt]
+        &\rightarrow \ \overline{Q}^\dagger \equiv \overline{Q}^{*T} = \overline{Q} \hspace{20pt} \checkedbox
+    \end{aligned}\)
+\end{minipage}
+
+%-------------------------------------------------------------------------------------------------------
+% Eigenvalue / Eigenvector
+\newpage \noindent
+% 4. Operating on Eigenvectors
+\(\boldsymbol{4.)}\) Eigenvalue Equation\\[10pt]
+\underline{General Case:}
+% Initial info
+\[
+    % Initial
+    \begin{aligned}
+        \widehat{Q} | q_i \rangle &= q_i | q_i \rangle\\[5pt] 
+        | q_i \rangle &= \sum c^{(e)}_n{\scriptstyle[q_i]} \big| e_n \big\rangle 
+    \end{aligned}
+    \hspace{1cm}
+    \rule[-35pt]{.5pt}{75pt}
+    \hspace{1cm}
+    % Diagonalization
+    \boxed{\begin{aligned}
+        \ \ \overline{Q}^{(e)} &= \ U D U^{\dagger} \indent\indent \text{\scriptsize(Spectral Theorem)} \\[5pt]
+        &= \left(\begin{matrix} 
+                |   & |   &    \\
+                \vec{c_0}{\scriptstyle[q_0]} & \vec{c_1}{\scriptstyle[q_1]} & ... \\
+                |   & |   & 
+            \end{matrix}\right)^{(e)}
+            \left(\begin{matrix} 
+                q_0   & 0         & ...\\
+                0           & q_1 & ...\\
+                \vdots      & \vdots    & 
+            \end{matrix}\right)
+            \left(\begin{matrix} 
+                - & \vec{c_0}^*{\scriptstyle[q_0]}     & - \\
+                - & \vec{c_1}^*{\scriptstyle[q_1]}     & - \\
+                & \vdots  &  \\
+            \end{matrix}\right)^{(e)} \ \ \\[5pt]
+        & \indent \text{where } \langle \vec{c}_m | \vec{c}_n \rangle = \delta_{mn} 
+    \end{aligned}}
+\]
+
+% Diagonalize Q
+\noindent
+\begin{minipage}[t]{.55\textwidth}
+    \setlength{\parindent}{.5cm}
+    \indent \(\begin{aligned}[t]
+        q_i | q_i \rangle \quad &= \quad \widehat{Q} | q_i \rangle\\[5pt]
+        \left( q_i \ \vec{c}^{\ (e)}{\scriptstyle[q_i]} \right) \dotP \vec{e}{\scriptstyle(x)} 
+            \quad &= \quad 
+            \left[^{\ } \overline{Q}^{(e)} \ \vec{c}^{\ (e)}{\scriptstyle[q_i]} \right] 
+            \dotP \vec{e}{\scriptstyle(x)}\\
+        &\Downarrow^*\\ % side note to remove basis vectors
+        q_i \ \vec{c}^{\ (e)}{\scriptstyle[q_i]} 
+            \quad &= \quad \overline{Q}^{(e)} \ \vec{c}^{\ (e)}{\scriptstyle[q_i]} \\
+        q_i \left(\begin{matrix} 
+                |\\
+                \vec{c}\ {\scriptstyle[q_i]}\\
+                |
+            \end{matrix}\right)^{(e)}
+            \quad &= \quad 
+            \left(\begin{matrix} 
+                |   & |   &    \\
+                \vec{c}\ {\scriptstyle[q_0]} & \vec{c}\ {\scriptstyle[q_1]} & ... \\
+                |   & |   & 
+            \end{matrix}\right)^{(e)}
+            \left(\begin{matrix} 
+                q_0   & 0         & ...\\
+                0           & q_1 & ...\\
+                \vdots      & \vdots    & 
+            \end{matrix}\right)
+            \left(\begin{matrix} 
+                - & \vec{c}^{\ *}{\scriptstyle[q_0]} & - \\
+                - & \vec{c}^{\ *}{\scriptstyle[q_1]} & - \\
+                & \vdots  &  \\
+            \end{matrix}\right)^{(e)}
+            \left(\begin{matrix} 
+                |\\
+                \vec{c}\ {\scriptstyle[q_i]}\\
+                |
+            \end{matrix}\right)^{(e)} \indent \checkedbox\\
+        &\Downarrow\\
+        \Aboxed{ q_i\ ,\ \vec{c}^{\ (e)}{\scriptstyle[q_i]} &: 
+            \indent \text{det} \left( \overline{Q}^{(e)} - I q_i \right) = 0 } 
+    \end{aligned}\)
+\end{minipage}
+% side note on how to seperate the basis vectors
+\begin{minipage}[t]{.4\textwidth}
+    \scriptsize
+    \vspace{10pt}
+    \(^* \forall {\scriptstyle n}\ \begin{aligned}[t]
+        (q c)_n \ | e_n{\scriptstyle(x)} \rangle &= (Q c)_n \ | e_n{\scriptstyle(x)} \rangle\\[5pt]
+        \langle e_n{\scriptstyle(x)} | (q c)_n | e_n{\scriptstyle(x)} \rangle 
+            &= \langle e_n{\scriptstyle(x)} | (Q c)_n | e_n{\scriptstyle(x)} \rangle\\
+        (q c)_n &= (Q c)_n
+    \end{aligned}\)
+\end{minipage}
+
+% Special Case: Eigenvectors are the basis
+\vspace{15pt} \noindent
+\underline{Special Case:}\\[10pt]
+\( \begin{aligned}
+    | q_n \rangle &= | e_n \rangle\\[5pt]
+    \widehat{Q} | e_n \rangle &= q_n | e_n \rangle
+\end{aligned} \) 
+\hspace{5pt}
+\rule[-30pt]{.5pt}{67pt}
+\hspace{10pt}
+\( 
+    \begin{aligned}
+        \widehat{Q} | a \rangle &= \sum_n \widehat{Q} | e_n \rangle \langle e_n | a \rangle\\
+        &= \Big( \sum_n q_n | e_n \rangle \langle e_n | \Big) | a \rangle
+    \end{aligned} 
+    \ \Rightarrow \ 
+    \begin{gathered}
+        \boxed{ \widehat{Q} = \sum_n q_n | e_n \rangle \langle e_n | } \\[5pt]
+        Q_{mn}^{(e)} = q_n \delta_{mn}
+    \end{gathered}
+    \ \Rightarrow \
+    \boxed{
+        \overline{Q}^{(e)} = 
+        \left(\begin{matrix} 
+            q_0     & 0         & ...\\
+            0       & q_1       & ...\\
+            \vdots  & \vdots    & q_i
+        \end{matrix}\right)
+    }
+\) 
+
+\vspace{15pt}
+\indent \(\begin{aligned}
+    % 1st row
+    \overline{Q}^{(e)} = 
+        \left(\begin{matrix} 
+            q_0     & 0         & ...\\
+            0       & q_1       & ...\\
+            \vdots  & \vdots    &
+        \end{matrix}\right)^{(e)}
+        &= \quad 
+        \left(\begin{matrix} 
+            |   & |   &    \\
+            \vec{c}\ {\scriptstyle[q_0]} & \vec{c}\ {\scriptstyle[q_1]} & ... \\
+            |   & |   & 
+        \end{matrix}\right)^{(e)}
+        \left(\begin{matrix} 
+            q_0   & 0         & ...\\
+            0           & q_1 & ...\\
+            \vdots      & \vdots    & 
+        \end{matrix}\right)
+        \left(\begin{matrix} 
+            - & \vec{c}^{\ *}{\scriptstyle[q_0]} & - \\
+            - & \vec{c}^{\ *}{\scriptstyle[q_1]} & - \\
+            & \vdots  &  \\
+        \end{matrix}\right)^{(e)}\\[5pt]
+    % 2nd Row
+    &= \quad 
+        \left(\begin{matrix} 
+            1       & 0     & ... \\
+            0       & 1     & ... \\
+            \vdots  & \vdots  &  \\
+        \end{matrix}\right)^{(e)}
+        \left(\begin{matrix} 
+            q_0   & 0         & ...\\
+            0           & q_1 & ...\\
+            \vdots      & \vdots    &
+        \end{matrix}\right)
+        \left(\begin{matrix} 
+            1       & 0     & ... \\
+            0       & 1     & ... \\
+            \vdots  & \vdots  &  \\
+        \end{matrix}\right)^{(e)}\\[15pt]
+    % 3rd row
+    \Aboxed{ \vec{c}^{\ (e)}{\scriptstyle[q_i]} 
+        &= \left( ...\ 0\ 0\ 0\ 1_{\scriptstyle(i)}\ 0\ 0\ 0\ ... \right)^T }
+\end{aligned}\)
+
+%----------------------------------------------------------------------------------
+% Momentum Space
+\newpage
+\noindent
+\underline{\(\Phi(p,t)\) - Momentum Space (generalizable Born Interpretation):}
+\hfill \break \\
+\( \begin{aligned}[t]
+    \int_x \Psi^* \Psi dx 
+        &= \int_x 
+        \int_{p} c_p^*(t) \Psi_p^*(x) dp
+        \int_{p'} c_{p'}(t) \Psi_{p'}(x) dp' \ dx \\[5pt]
+    &= \int_{p} c_p^*(t) \int_{p'} c_{p'}(t)
+        \int_x \Psi_p^*(x) \Psi_{p'}(x) dx \ dp' dp \\[5pt]
+    &= \int_{p} \Phi^* \int_{p'} \Phi' \ \delta(p-p') dp' dp \\[5pt]
+    &= \int_p \Phi^* \Phi \ dp \ \Rightarrow \ 
+        \boxed{ \text{PDF}(p) = | \Phi |^2 = \Phi^* \Phi } \\[5pt]
+    \Aboxed{ \langle \Psi | \Psi \rangle &= \langle \Phi | \Phi \rangle }
+\end{aligned} \)
+\hspace{0.075\textwidth}
+\begin{tabular}[t]{p{6cm}}
+    \( \hat{x} \Phi_x = \hat{x} e^{\frac{-i}{\hbar} px} = x e^{\frac{-i}{\hbar} px} \) \\[5pt]
+    \( \Rightarrow \ \boxed{ \hat{x}_p = - \dfrac{\hbar}{i} \partial_p } \) \\[30pt]
+    \( \widehat{A}(x, \hat{p}_x) \rightarrow \widehat{A}(\hat{x}_p, p) \) \\[5pt]
+    \( \rightarrow \ \boxed{ \langle a \rangle = \Big\langle \Phi \Big| 
+        \widehat{A}(\hat{x}, p) \Big| \Phi \Big\rangle } \)
+\end{tabular}
+
+\begin{center}
+    \underline{Anything in position space can be done in momentum space}\\[5pt]
+    (or generalize to any transform, \(c_n\))
+\end{center}
+
+% Heisenberg Uncertainty
+\vspace{10pt}
+\noindent
+\begin{minipage}[t]{0.62\textwidth}
+    \underline{Heisenberg Uncertainty Proof:} \\[5pt]
+    \( \begin{aligned}
+        \langle f|g \rangle &\equiv 
+            \Big\langle \big( \widehat{A} - \langle a \rangle \big) \Psi 
+            \Big| \big( \widehat{B} - \langle b \rangle \big) \Psi \Big\rangle\\[5pt]
+        &= \Big\langle \Psi \Big| \big( \widehat{A} - \langle a \rangle \big)
+            \big( \widehat{B} - \langle b \rangle \big) \Big| \Psi \Big\rangle\\[5pt]
+        &= \big\langle \widehat{A}\widehat{B} \big\rangle 
+            - \langle a \rangle \langle b \rangle
+        \\[10pt]
+        \sigma_A^2 \sigma_B^2 &=
+            \big\langle ( \widehat{{A}} - \langle {a} \rangle ) {\Psi} 
+            \big| ( \widehat{{A}} - \langle {a} \rangle ) {\Psi} \big\rangle 
+            \big\langle \big( \widehat{{B}} - \langle {b} \rangle ) {\Psi}
+            \big| ( \widehat{{B}} - \langle {b} \rangle ) {\Psi} \big\rangle \\[5pt]
+        &\equiv \langle f|f \rangle \langle g|g \rangle 
+            \geq \left\Vert \langle f|g \rangle \right\Vert^2 
+            \hspace{20pt} \text{\scriptsize(see Schwarz Ineq.)}\\
+        &\geq \ \big[ \text{Im} \big( \langle f|g \rangle \big) \big]^2 \ 
+            = \ \left( \frac{1}{2i} \big[ \langle f|g \rangle 
+            - \langle f|g \rangle^* \big] \right)^2 \\
+        &= \left( \frac{1}{2i} \big\langle \widehat{A}\widehat{B} 
+            - \widehat{B}\widehat{A} \big\rangle \right)^2 
+            \equiv \boxed{ \left( \frac{1}{2i} \left\langle 
+            \big[ \widehat{A},\widehat{B} \big] \right\rangle \right)^2 }
+    \end{aligned} \)
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent\underline{Commutator}
+    \begin{itemize}
+        \item \( \big[ \widehat{A}, \widehat{B} \big] \equiv \widehat{A} \widehat{B} 
+            - \widehat{B} \widehat{A} \)
+        \item \( \big[ A, BC \big] = \big[ A, B \big] C + B \big[ A, C \big] \)
+        \item \( \big[ AB, C \big] = A \big[ B, C \big] + \big[ A, C \big] B \)
+        \item \( \big[ x, \hat{p} \big] = i \hbar \)
+        \item \begin{tabular}[t]{c}
+                \fbox{ \( \sigma_A \sigma_B
+                    \ \geq \ \left\Vert \dfrac{1}{2i} \Big\langle 
+                    \big[ \widehat{A}, \widehat{B} \big] \Big\rangle \right\Vert \) } \\[20pt]
+                \(\Rightarrow \)
+                \( \boxed{ \Delta x \Delta p \ \geq \ \hbar / 2 } \)
+            \end{tabular}
+        \item \( \big[ \hat{p},f \big] = (\hat{p}f) = \frac{\hbar}{i} \nabla f\)
+    \end{itemize}
+\end{minipage}
+
+% Commutator for Hermitian Operators
+\vspace{15pt} \noindent
+\begin{minipage}[t]{.5\textwidth}
+    \underline{Commutator of Hermitian \(\widehat{A}, \widehat{B}\)}
+    \begin{itemize}
+        \item \( \big[A,B \big]^\dagger = - \big[ A,B \big] \)
+        \item \( \exists \Psi_n \ \ \text{s.t.} \ \ \left( \widehat{A} \Psi_n = a \Psi_n \right) \ , \ 
+            \left( \widehat{B} \Psi_n = b \Psi_n \right) \) \\[5pt]
+        \( \Leftrightarrow \big[ \widehat{A}, \widehat{B} \big] = 0 \) \\[5pt]
+        \( \ \Rightarrow \ \) \( \begin{aligned}[t]
+            &\boxed{ \sigma_A \sigma_B \ \geq \ 0 \ \ 
+                \text{\scriptsize (Both can be measured concurrently)} } \\
+            &\boxed{AB = BA}
+        \end{aligned} \)
+    \end{itemize}    
+\end{minipage}
+\hspace{.05\textwidth}
+% Anti Hermitian Operator
+\begin{minipage}[t]{.4\textwidth}
+    \underline{Anti-Hermitian Operators}: \indent
+    \( A^\dagger = - A \)
+    \begin{itemize}
+        \item \( \langle A \rangle = ai \), \ \ \ \( a \in \mathbb{R} \)
+        \item \( \big[ A,B \big]^\dagger = - \big[ A,B \big] \)
+    \end{itemize}
+\end{minipage}
+
+% Time Derivative of Operator
+\newpage \noindent
+\underline{Operator Evolution}\\[10pt]
+\( \begin{aligned}
+    \frac{d}{dt} \Big\langle \Psi(x,t) \Big| Q \Big| \Psi(x,t) \Big\rangle 
+    &= \Big\langle \frac{\partial \Psi}{\partial t} \Big| Q \Big| \Psi \Big\rangle 
+        + \Big\langle \Psi \Big| \frac{\partial Q}{\partial t} \Big| \Psi \Big\rangle 
+        + \Big\langle \Psi \Big| Q \Big| \frac{\partial \Psi}{\partial t} \Big\rangle \\[5pt]
+    \Aboxed{ \frac{d}{dt} \langle Q \rangle  
+        &= \frac{i}{\hbar} \Big\langle \big[ \widehat{H}, \widehat{Q} \big] \Big\rangle 
+        + \left\langle \frac{\partial \widehat{Q}}{\partial t} \right\rangle } 
+        \indent \indent \text{\scriptsize(\(Q\) is conserved when this equals 0!!!)}
+\end{aligned} \) 
+
+% Usage of Time Derivative
+\begin{itemize}
+    \item Conservations: \indent \( \dfrac{d \langle \Psi | \Psi \rangle}{dt} = 0 \), \ 
+    \( \dfrac{d \langle H \rangle}{dt} = 0 \)
+
+    \item Ehrenfest's Theorem: \indent 
+    \( m \dfrac{d \langle x \rangle}{dt} = \langle p \rangle \), \ 
+    \( \dfrac{d \langle p \rangle}{dt} = - \left\langle \dfrac{\partial V}{\partial x} \right\rangle \)
+    \( \ \Rightarrow \) \ other classical eq.
+
+    \item Virial Theorem: \indent \( \displaystyle 
+    \begin{aligned}[t]
+        \tfrac{d}{dt} \langle xp \rangle
+            &= \tfrac{i}{\hbar} \left\langle \big[ H,x \big]p + x\big[ H,p \big] \right\rangle \\[5pt]
+        &= \left\langle \tfrac{d \langle x \rangle}{dt} p + x \tfrac{d \langle p \rangle}{dt} \right\rangle \\[5pt]
+        \Aboxed{ \frac{d \langle xp \rangle}{dt}
+            &= 2 \langle T \rangle - 
+            \left\langle x \frac{\partial V}{\partial x} \right\rangle }
+            \rightarrow 0 = \tfrac{d}{dt} \Big\langle \Psi_n(x) \Big| Q{\scriptstyle(x,p)} \Big| \Psi_n(x) \Big\rangle 
+            \ \ \text{\scriptsize (for stationary states) }
+    \end{aligned} \)
+
+    \item \begin{minipage}[t]{.9\textwidth}
+        \setlength{\parindent}{.5cm}
+        \noindent Energy-Time Uncertainty:
+        \( \left( \widehat{Q} = \widehat{Q}(x,\hat{p}) 
+            \neq \widehat{Q}(x,\hat{p},t) \right)
+            \ \Rightarrow \ \sigma_H \sigma_Q \geq \frac{\hbar}{2} 
+            \left| \frac{d \langle Q \rangle}{dt} \right| \) \\[10pt]
+        \indent 
+        \( \ \Rightarrow \ \)
+        \fbox{ 
+            \( \begin{aligned}[c]
+                \sigma_Q \ \equiv \ \frac{d \langle Q \rangle}{dt} \Delta t
+                    \ \approx& \ \ \Delta \langle Q \rangle \\[5pt]
+                \sigma_H \left( \frac{\sigma_Q}{ \left| d \langle Q \rangle / dt \right| } \right)
+                    & \geq \frac{\hbar}{2} \\[5pt]
+                \Delta E \Delta t \geq \frac{\hbar}{2} &
+            \end{aligned} \)
+            \indent \indent
+            \begin{minipage}{6cm}
+                \(\Delta t\) is the amount of time it would \\ 
+                take \(\langle Q \rangle\) to change "appreciably",\\
+                or one std. dev. at the constant \\
+                rate \( \frac{d}{dt} \langle Q \rangle \)
+            \end{minipage}
+        }\\[10pt]
+
+        \indent Mass Lifetime: \\[10pt]
+        \indent \indent \( \Delta (mc^2) \Delta t \geq \frac{\hbar}{2} \ \ \checkedbox \) \\[5pt]
+
+        \indent Orthogonal Time Example: \\[10pt]
+        \indent \indent \( \Psi(x,\tau) = \frac{\sqrt{2}}{2} 
+            ( \Psi_1 e^{-\frac{i}{\hbar} E_1 \tau} 
+            + \Psi_2 e^{-\frac{i}{\hbar} E_2 \tau} ) \) \\[10pt]
+        \indent \indent \( \Big\langle \Psi(x,0) \big| \Psi(x,\tau) \Big\rangle = 0 
+            = \frac{1}{2} ( e^{-\frac{i}{\hbar} E_1 \tau} 
+            + e^{-\frac{i}{\hbar} E_2 \tau} ) \) \\[10pt]
+        \indent \indent \( \ \Rightarrow \ \tau \ \frac{E_2 - E_1}{2} 
+            = \frac{\pi}{2} \ \hbar \ (\frac{1}{2} + n) \geq \frac{\hbar}{2} \ \ \checkedbox \)
+    \end{minipage}
+\end{itemize}
+
+% Translation Operator
+\newpage \noindent
+\underline{Translation Operator}\\[5pt]
+\begin{align*}
+    f(x + \Delta x) &\approx f(x) + \frac{df}{dx} \Delta x \\
+    &= f(x) + f'(x) \Delta x + \frac{f''(x)}{2!} (\Delta x)^2 + ... 
+        = \left\{ \begin{aligned}
+            &f(x') = \sum_{n} \frac{ f^{(n)}(a) }{n!} (x'-a)^n \\
+            &(x' = x + \Delta x), \ (a = x)
+        \end{aligned} \right\} \\
+    &= \sum_{n=0}^\infty \frac{ f^{(n)}(x) }{n!} (\Delta x)^n 
+        \ = \ \sum_{n=0}^\infty \frac{ (\Delta x \nabla)^n }{n!} f(x) \\[5pt]
+    \Aboxed{ f(x + \Delta x) &= e^{\frac{i}{\hbar} (\Delta x) \hat{p}} \ f(x) }
+    \ \Leftrightarrow \ \boxed{ f(x) = e^{\frac{i}{\hbar} x \hat{p}} \ f(0) }
+\end{align*}
+
+% Time Translation
+\hfill \break \\
+Time Translation: \indent 
+\rule[-60pt]{.5pt}{120pt} \indent
+\( \begin{gathered}
+    \displaystyle f(t + \Delta t) = f(t) + f'(t) \Delta t + ... 
+        \ = \ \sum_n \frac{ (\Delta t)^n }{n!} 
+        \left( \frac{\partial}{\partial t} \right)^n f(t) \\[10pt]
+    \begin{aligned}
+        &i\hbar \frac{\partial}{\partial t} = \widehat{H} 
+            \hspace{20pt} \Rightarrow \hspace{20pt} \\[10pt]
+        &\frac{\partial f}{\partial t} = \left( \tfrac{- i \widehat{H}}{\hbar} \right) f
+    \end{aligned}
+    \left\{ \begin{aligned}
+        ... \ &= \sum_n^\infty \frac{ (\Delta t \ \partial_t)^n }{n!} f(t) \\
+        \Aboxed{ f(t + \Delta t) &= e^{\frac{-i}{\hbar} (\Delta t) \widehat{H}} \ f(t) } \ \Leftrightarrow\\
+        f(0 + t) &= \boxed{ e^{\frac{-i}{\hbar} t \widehat{H}} \ f(0) = f(t) }
+    \end{aligned} \right.
+\end{gathered} \)
+
+\hfill \break\\[10pt]
+\underline{Pictures:} \indent \(
+    \big\langle Q \big\rangle {\scriptstyle(t)} = \left\langle \Psi{\scriptstyle(x,t)} 
+    \left| \ Q{\scriptstyle (x,p,t)} \ \right| \Psi{\scriptstyle(x,t)} \right\rangle 
+\)
+\begin{itemize}
+    \item \fbox{
+        \begin{tabular}{p{4cm} l}
+            \hfil Schrodinger Picture: & \(
+                \big\langle Q \big\rangle {\scriptstyle(t)} = 
+                \left\langle e^{\frac{-i}{\hbar} t \widehat{H}} \ \Psi{\scriptstyle(x,0)} 
+                \left| \ Q{\scriptstyle (x,p,t)} \ \right| 
+                e^{\frac{-i}{\hbar} t \widehat{H}} \ \Psi{\scriptstyle(x,0)} \right\rangle 
+            \) 
+        \end{tabular}
+
+    }\\[15pt]
+    \indent \( 
+        Q = Q{(x,p)} \ \Rightarrow \  \big\langle Q \big\rangle {\scriptstyle(t)} = 
+        \left\langle \sum e^{\frac{-i}{\hbar}E_nt} \ c_n \Psi_n{\scriptstyle(x)}
+        \left| \ Q \ \right| 
+        \sum e^{\frac{-i}{\hbar}E_nt} \ c_n \Psi_n{\scriptstyle(x)} \right\rangle 
+    \) \ \ \ {\scriptsize (nice for stationary states)}
+
+    \item \fbox{
+        \begin{tabular}{p{4cm} l}
+            \hfil Heisenberg Picture: & \( 
+                \big\langle Q \big\rangle {\scriptstyle(t)} 
+                = \left\langle \Psi{\scriptstyle(x,0)} 
+                \left| e^{\frac{i}{\hbar} t \widehat{H}} \ Q{\scriptstyle (x,p,t)} \ 
+                e^{\frac{-i}{\hbar} t \widehat{H}} \right| 
+                \Psi{\scriptstyle(x,0)} \right\rangle
+            \)  
+        \end{tabular}
+    }
+
+    \item \fbox{
+        \begin{tabular}{p{4cm} l}
+            \hfil Dirac Picture: & \( 
+                \big\langle Q \big\rangle {\scriptstyle(t)} 
+                = \left\langle e^{\frac{-i}{\hbar} t \widehat{H}_0} \ \Psi{\scriptstyle(x,0)} 
+                \left| e^{\frac{i}{\hbar} t \widehat{H}_1} \ Q{\scriptstyle (x,p,t)} \ 
+                e^{\frac{-i}{\hbar} t \widehat{H}_1} \right| 
+                e^{\frac{-i}{\hbar} t \widehat{H}_0} \ \Psi{\scriptstyle(x,0)} \right\rangle
+            \)
+        \end{tabular}
+    }
+\end{itemize}
+
+\vspace{5pt}
+\noindent \( 
+    \big\langle Q \big\rangle {\scriptstyle (t + \Delta t)} 
+    \ = \ \big\langle Q \big\rangle {\scriptstyle (t)}
+    + \frac{d \langle Q \rangle}{dt} \Delta t + ... 
+\) 
+\hspace{5pt} \(\Rightarrow\) \hspace{5pt}
+\begin{minipage}{.5\textwidth}
+    A 1st order approximation of \ \( \big\langle Q \big\rangle {\scriptstyle (t + \Delta t)} \) \\[5pt]
+    \ should yield \ \( \frac{d \langle Q \rangle}{dt}
+        = \frac{i}{\hbar} \Big\langle \big[H,Q \big] \Big\rangle + \frac{\partial Q}{\partial t} \)
+\end{minipage}
+
+%--------------------------------------------------------------------------------------------------------
+% Extra
+\newpage \noindent
+\subsection{Extra}
+\hfill \break
+\(L_2 \subset \) Hilbert Space \(=\) complete inner product space\\[10pt]
+\( P(t) = \Big\langle \Psi(x,t) \Big| \Psi(x,t) \Big\rangle \ , \  
+    P_{ab}(t) = \Big\langle \Psi(x,t) \Big| \Psi(x,t) \Big\rangle _{ab} \)
+\begin{itemize}
+    \item \begin{tabular}{l c l c l}
+            \( (V \in \mathbb{R}) \) & \(\Rightarrow\) 
+                & \( \frac{d}{dt} P = 0\) 
+                & \(\Rightarrow\) & \( P(t) \equiv 1 \)\\[10pt]
+            \( (V = V_0 - i\Gamma) \) & \(\Rightarrow\) 
+                & \( \frac{d}{dt} P = \frac{- \ 2\Gamma}{\hbar} P \) 
+                & \(\Rightarrow\) & \( P(t) = e^{-2 (\Gamma / \hbar) t}\)
+        \end{tabular} \\[10pt]
+    \item \begin{tabular}{m{.25cm} l}
+            \multicolumn{2}{l}{\( \frac{d}{dt} P_{ab} = J(a,t) - J(b,t) \)}\\[5pt]
+            & \( J(x,t) = \dfrac{1}{2m} ( \Psi^* \hat{p} \Psi - \Psi \hat{p} \Psi^* ) \) 
+                \hspace{1cm} {\scriptsize (Probability Current)}
+        \end{tabular} \\[7pt]
+    \item \( \langle \Psi_n | \Psi_n \rangle \ , \ \langle \Psi_m | \Psi_m \rangle = 1 
+        \ \Rightarrow \ \frac{d}{dt} \langle \Psi_n | \Psi_m \rangle = 0 \)
+\end{itemize}
+
+\hfill \break
+Schwarz Inequality: \indent 
+\( \begin{aligned}
+    \left\Vert \int_a^b f^*g \ dx \right\Vert^2 &\leq 
+        \left\Vert \int_a^b f^*f \ dx \right\Vert 
+        \left\Vert \int_a^b g^*g \ dx \right\Vert \\[5pt]
+    \left\Vert \langle f|g \rangle_{ab} \right\Vert^2 &\leq 
+        \left\Vert \langle f|f \rangle_{ab} \right\Vert
+        \left\Vert \langle g|g \rangle_{ab} \right\Vert
+\end{aligned} \)
+
+\hfill \break \\
+\( \Big[ V(x) = V(-x) \Big] \ \Rightarrow \ \Big[ \Psi(x) \Rightarrow \Psi(-x) \Big] 
+    \ \Rightarrow \ \Big[ \Psi(-x) = \Psi(x) \Big] 
+    \ \cup \ \Big[ \Psi(-x) = -\Psi(x) \Big] \)
+
+\hfill \break \\
+Discontinuity in \( \Psi \) means the possiblity of \( \sigma_p \rightarrow \infty \)\\[10pt]
+\indent Prob 3.29: \( \Psi(x,0) = 
+    \begin{cases}
+        \frac{1}{\sqrt{2 n \lambda}} e^{2 \pi i x / \lambda}, & -n\lambda < x < n\lambda\\
+        0 & \text{else}
+    \end{cases} \)\\[10pt]
+\indent \(\sigma_p \rightarrow \infty\) because the integral of \(\delta^2(x)\) is infinite 
+
+\vspace{25pt} \noindent
+\( \int_{-\infty}^\infty f(x) D_1(x) dx = \int_{-\infty}^\infty f(x) D_2(x) dx \ \Rightarrow \
+    \delta(cx) = \frac{1}{|c|} \delta(x)\)\\[15pt]
+\( \delta(x) = \frac{1}{2\pi} \int_{-\infty}^\infty e^{ikx} dx \ \Rightarrow \ 
+    F[\delta(x)] = \frac{1}{2\pi}\)
+%---------------------------------------------------------------------------------------------
+\newpage \noindent
+Associated Legendre Functions: \indent \( \displaystyle
+    P^m_l \equiv \sqrt{1-x^2}^{\ |m|} \left( \frac{d}{dx} \right)^{|m|} P_l(x) 
+\) \indent {\scriptsize (not a polynomial if odd)}\\[10pt]
+Legendre Polynomials: \indent \( \displaystyle
+    P_l(x) \equiv \frac{1}{2^l l!} \left( \frac{d}{dx} \right)^l (x^2-l)^l
+\)
+
+\hfill \break
+Associated Laguerre Polynomials: \indent \( \displaystyle
+    L \equiv 
+\) \\[10pt]
+Laguerre Polynomials: \indent \( \displaystyle
+    L_ \equiv 
+\)
+% P.23 - Prob. 1.18 
+
+%--------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------
+% Simple Potentials
+\newpage
+\section{Simple Potentials}
+
+% Inf Square Well
+\subsection{Infinite Square Well (1-D)}
+\boldmath \[ V(x) = \begin{cases}
+    0 & 0<x<a \\
+    \infty & \text{otherwise}
+\end{cases} \] \unboldmath 
+
+\hfill \break \\
+\( \displaystyle \Psi_n(x) = \sqrt{\frac{2}{a}} \sin{k_nx} \) \\[20pt]
+\( \displaystyle k_n = \frac{2 \pi}{\lambda} = \frac{2 \pi}{2a/n} = \frac{n \pi}{a}\)
+    \indent \( \forall n=1, 2, 3, ...\)         
+    \indent \indent \fbox{!! \( \hat{p} \Psi_n \neq p \Psi_n \) !!} 
+    \indent {\scriptsize wave isn't infinite} \\[20pt]
+\( \displaystyle E_n = \frac{p^2}{2m} = \frac{\hbar^2 k_n^2}{2m}\)
+
+\hfill \break
+\subsubsection{3-D Rectangular Box}
+\( \displaystyle \Psi_{n_x n_y n_z}(x,y,z) = \Psi_{n_x}(x) \Psi_{n_y}(y) \Psi_{n_z}(z) 
+    = \sqrt{\frac{8}{a_x a_y a_z}} (\sin{k_{n_x} x}) (\sin{k_{n_y} y}) (\sin{k_{n_z} z}) \) \\[20pt]
+\( \displaystyle k_{n_i} = \frac{n_i \pi}{a_i}\)
+    \indent \( \forall n_x, n_y, n_z = 1, 2, 3, ...\) \\[20pt]
+\( \displaystyle E_{n_x n_y n_z} = \frac{\hbar^2}{2m} (k_{n_x}^2 + k_{n_y}^2 + k_{n_z}^2) \) 
+
+%--------------------------------------------------------------------------------------------
+\newpage
+% Harmonic Oscillator
+\subsection{Harmonic Oscillator (1-D)}
+\boldmath \[ V(x) = \frac{1}{2} k x^2 = \frac{1}{2} m \omega^2 x^2 \] \unboldmath
+
+% Lowering/Rising Operator
+\hfill \break \\
+\( \displaystyle \frac{p^2}{2m} + \frac{1}{2} m \omega^2 x^2  
+    = \frac{1}{2m} \left( p^2 + m^2 \omega^2 x^2 \right)
+    = \frac{1}{2m} \left( -ip + m \omega x \right) \left( i p + m \omega x \right)
+    \sim E \sim \hbar \omega \indent \Rightarrow \)
+\hfill \\
+\[ \boxed{ \displaystyle a = a_{-} = 
+    \frac{1}{\sqrt{2 m}} \frac{1}{\sqrt{\hbar \omega}} \left( i\hat{p} + m \omega x \right) } \]
+
+% Hamiltonian
+\hfill \break \\
+\( H = \hbar \omega (a a^\dagger - 1/2) = \hbar \omega (a^\dagger a + 1/2)\)
+\( \ \ \ \rightarrow \ \boxed{ \big[ a, a^\dagger \big]=1 } \)\\
+\begin{minipage}{0.5\textwidth}
+    \begin{align*} 
+        H( a \Psi_n ) &= \hbar \omega (a a^\dagger - 1/2) a \Psi_n\\
+        &= a \hbar \omega (a^\dagger a + 1/2 - 1) \Psi_n\\ 
+        &= a(H - \hbar \omega) \Psi_n\\
+        &= (E_n - \hbar \omega) ( a \Psi_n )\\
+        &\Rightarrow\\
+        E_{n-1} \Psi_{n-1} &= (E_n - \hbar \omega) \Psi_{n-1}
+    \end{align*}    
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \begin{align*} 
+        H( a^\dagger \Psi_n ) &= \hbar \omega (a^\dagger a + 1/2) a^\dagger \Psi_n \\
+        &= a^\dagger \hbar \omega (a a^\dagger - 1/2 + 1) \Psi_n\\ 
+        &= a^\dagger (H + \hbar \omega) \Psi_n\\
+        &= (E_n + \hbar \omega) ( a^\dagger \Psi_n )\\
+        &\Rightarrow\\
+        E_{n+1} \Psi_{n+1} &= (E_n + \hbar \omega) \Psi_{n+1}
+    \end{align*}
+\end{minipage}
+
+% Energy
+\begin{center} \fbox{ 
+    \( \begin{aligned}
+        H (a^\dagger)^n \Psi_0 &= (E_0 + n \hbar \omega) (a^\dagger)^n \Psi_0\\[10pt]
+        E_n \Psi_n &= (E_0 + n \hbar \omega) \Psi_n \\ 
+    \end{aligned} \) 
+} \end{center} 
+
+\hfill \break \\
+\( E_n \geq \text{Min}(V) \ \Rightarrow{} \ a \Psi_0 = 0
+    \indent \text{\scriptsize (else let it be un-normalizable)} \)\\[5pt]
+\begin{minipage}[t]{0.45\textwidth}
+    \setlength{\parindent}{.5cm}
+    \vspace{-.5cm}
+    \begin{align*}
+        0 &= (ip + m \omega x) \Psi_0\\[5pt]
+        - m \omega x \Psi_0 &= \hbar \tfrac{d}{dx} \Psi_0
+    \end{align*}
+    \[ \boxed{ \ \Psi_0 = A e^{- \frac{m \omega}{2 \hbar}x^2}, \indent A 
+        = \left( \frac{m \omega }{\pi \hbar} \right)^{1/4} \ } \]
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+    \setlength{\parindent}{.5cm}
+    \vspace{-.5cm}
+    \begin{align*}
+        H \Psi_0 &= \hbar \omega (a^\dagger a + 1/2) \Psi_0\\[5pt]
+        E_0 \Psi_0 &= \tfrac{1}{2} \hbar \omega \Psi_0
+    \end{align*}
+    \[ \boxed{ \ E_n = (n+1/2) \hbar \omega, \indent \forall n=0, 1, 2, 3, ... \ } \]
+\end{minipage}
+
+%-------------------------------------------------------------------------------------------
+% Raising Lowering Operator
+\noindent 
+\begin{minipage}{0.5\textwidth}
+    \begin{align*}
+        \hspace{1.0cm} H \Psi_n &= E_n \Psi_n \\
+        \hbar \omega (a^\dagger a + 1/2) \Psi_n &= (n+1/2) \hbar \omega \Psi_n\\[10pt]
+        \Aboxed{ a^\dagger a \Psi_n &= n \Psi_n }\\[20pt]
+        \left< \Psi_n | a^\dagger a \Psi_n \right> ={} n
+        &= \left< a \Psi_n | a \Psi_n \right>\\
+        &= \left< c_n \Psi_{n-1} | c_n \Psi_{n-1} \right>\\[10pt]
+        \Aboxed{ a \Psi_n &= \sqrt{n} \ \Psi_{n-1} }
+    \end{align*}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{align*}
+    \hspace{1.0cm} H \Psi_n &= E_n \Psi_n \\
+    \hbar \omega (a a^\dagger - 1/2) \Psi_n &= (n+1/2) \hbar \omega \Psi_n\\[10pt]
+    \Aboxed{ a a^\dagger \Psi_n &= (n+1) \Psi_n }\\[20pt]
+    \left< \Psi_n | a a^\dagger \Psi_n \right> ={} n+1
+    &= \left< a^\dagger \Psi_n | a^\dagger \Psi_n \right>\\
+    &= \left< c_n \Psi_{n+1} | c_n \Psi_{n+1} \right>\\[10pt]
+    \Aboxed{ a^\dagger \Psi_n &= \sqrt{n+1} \ \Psi_{n+1} }
+\end{align*}
+\end{minipage}
+
+\hfill \break \\
+\[ \boxed{ \Psi_n = \frac{1}{ \sqrt{n!} }(a^\dagger)^n \Psi_0 }\]
+
+% Position/Momentum Operators
+\subsubsection{Position/Momentum Operators}
+\vspace{5pt}
+\[ \boxed{ \displaystyle x = \frac{1}{2} 
+        \frac{ \sqrt{2 m} \sqrt{\hbar \omega} }{m \omega} (a + a^\dagger) }
+    \indent \indent 
+    \boxed{ \hat{p} = \frac{1}{2} 
+        \frac{ \sqrt{2 m} \sqrt{\hbar \omega} }{i} (a - a^\dagger) } \]
+
+% Virial Theorem
+\hfill \break
+\begin{minipage}[t]{.48\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent \underline{Show Virial Theorem Works}\\[15pt]
+    { \setlength{\tabcolsep}{0pt}
+    \begin{tabular}{c}
+        \( \boldsymbol{ 2 \langle T \rangle = N \langle V \rangle } \) \\[20pt]
+        \( \begin{aligned} 
+            E_n &= 2 \langle V \rangle_n\\
+            &= 2 \langle \Psi_n |V| \Psi_n \rangle\\[5pt]
+            &= 2 \left\langle \Psi_n \left| \tfrac{1}{2}mw^2 
+                \tfrac{2m \hbar \omega}{(2m \omega)^2} 
+                (a + a^\dagger)^2 \right| \Psi_n \right\rangle \\[5pt]
+            &= \tfrac{2m^2 \hbar \omega^3}{(2m \omega)^2} 
+                \left( 0 + \left\langle \Psi_n \left| (a a^\dagger + a^\dagger a) \right| 
+                \Psi_n \right\rangle + 0 \right)\\[10pt]
+            E_n &= (n+1/2) \hbar \omega \indent \checkedbox
+        \end{aligned} \)
+    \end{tabular} }
+\end{minipage}
+% Uncertainty
+\begin{minipage}[t]{.55\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    \underline{Test the Uncertainty Principle}\\[10pt]
+    { \setlength{\tabcolsep}{0pt}
+    \begin{tabular}{c}
+        \( \sigma_x \sigma_p \geq \frac{1}{2} 
+            \Big| \Big\langle \big[ x,p \big] \Big\rangle \Big| \)\\[20pt]
+        \( \begin{aligned} 
+            xp-px &= \tfrac{2 m \hbar \omega}{4 m \omega i}
+                \left( \begin{aligned}
+                      a^2 - a a^\dagger + a^\dagger a - (a^\dagger)^2 \\
+                    - a^2 + a^\dagger a - a a^\dagger + (a^\dagger)^2
+                \end{aligned} \right) \\[5pt]
+            &= \tfrac{\hbar}{i} (a^\dagger a - a a^\dagger) \\[5pt]
+            &= i \hbar (n+1 - n)\\[5pt]
+            &\Rightarrow \ \sigma_x \sigma_p \geq \frac{\hbar}{2} \indent \checkedbox
+        \end{aligned} \)
+    \end{tabular} }\\[15pt]
+    \noindent
+    \( \begin{aligned}
+        \sigma_x^2 &= \langle x^2 \rangle 
+            - \langle x \rangle^2 \\[5pt]
+        &= \tfrac{ 2 m \hbar \omega }{4 m^2 \omega^2} 
+            \left[ \begin{aligned}
+                \langle (a + a^\dagger)^2 \rangle \\
+                - \langle a + a^\dagger \rangle^2 
+            \end{aligned} \right]\\[5pt]
+        &= \tfrac{\hbar}{2 m \omega} \langle a a^\dagger + a^\dagger a \rangle \\[5pt]
+        &= \tfrac{\hbar}{m \omega} (n + \tfrac{1}{2}) 
+    \end{aligned} \) \ \ 
+    \( \begin{aligned}
+        \sigma_p^2 &= \langle p^2 \rangle 
+            - \langle p \rangle^2 \\[5pt]
+        &= \tfrac{ 2 m \hbar \omega }{-4} 
+            \left[ \begin{aligned}
+                \langle (a - a^\dagger)^2 \rangle \\
+                - \langle a - a^\dagger \rangle^2 
+            \end{aligned} \right]\\[5pt]
+        &= \tfrac{\hbar m \omega}{2} \langle a a^\dagger + a^\dagger a \rangle \\[5pt]
+        &= \hbar m \omega (n + \tfrac{1}{2}) 
+    \end{aligned} \)\\[10pt]
+    \[ \Rightarrow \ \sigma_x \sigma_p = \hbar (n+ \tfrac{1}{2}) \geq \tfrac{\hbar}{2} 
+        \indent \checkedbox \]
+\end{minipage}
+
+%-------------------------------------------------------------------------------------
+% Coherent States
+\newpage
+\subsubsection{Coherent States}
+\[ \boldsymbol{ a | \alpha \rangle = \alpha | \alpha \rangle } \]
+\( \boxed{ \sigma_x \sigma_p = \frac{\hbar}{2} } \)\\[5pt]
+\noindent
+\begin{minipage}{.45\textwidth}
+    \( \begin{aligned}
+        \langle \alpha | \alpha \rangle 
+            &= \langle \alpha | 
+            \left( \begin{aligned}
+                &\sum_{n=0}^\infty 
+                    \langle \Psi_n | \alpha \rangle \ | \Psi_n \rangle =\\
+                &\sum_{n=0}^\infty \left\langle \left. 
+                    \frac{(a^\dagger)^n}{\sqrt{n!}} \Psi_0 \right| \alpha \right\rangle \ 
+                    | \Psi_n \rangle = \\
+                &\sum_{n=0}^\infty 
+                    \frac{\alpha^n}{\sqrt{n!}} \langle \Psi_0 | \alpha \rangle
+                    \ | \Psi_n \rangle\\
+            \end{aligned} \right) \\[5pt]
+        &= \langle \Psi_0 | \alpha \rangle^2 \sum_{n=0}^\infty
+            \frac{ (\alpha^{2})^n}{n!} \ \langle \Psi_n|\Psi_n \rangle\\[5pt]
+        &= \langle \Psi_0 | \alpha \rangle^2 \ e^{\alpha^{2}} = 1
+    \end{aligned} \) 
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+    \( \displaystyle \Rightarrow \ \boxed{ \big| \alpha \big\rangle 
+    = e^{- \alpha^{2} / 2} \ \sum_{n=0}^\infty 
+    \tfrac{\alpha^n}{\sqrt{n!}} \ | \Psi_n \rangle } \) 
+    \ \(\rightarrow\) \
+    \( \big| \alpha {\scriptstyle =} 0 \big\rangle = | \Psi_0 \rangle \)\\[10pt]
+    \( \begin{aligned}
+        a | \alpha{\scriptstyle(x,t)} \rangle 
+            &= e^{- \frac{\alpha^{2}}{2}} \sum_{n=0}^\infty 
+            \tfrac{\alpha^n}{\sqrt{n!}} \ e^{\frac{-i}{\hbar} E_n t} a | \Psi_n \rangle\\
+        &= e^{- \frac{\alpha^{2}}{2}} \sum_{n=0}^\infty 
+            \tfrac{\alpha^n}{\sqrt{n!}} \ e^{\frac{-i}{\hbar} 
+            \hbar \omega (\frac{1}{2} + n) t} \sqrt{n} | \Psi_{n-1} \rangle \\
+        &= \left( \alpha e^{\frac{-i}{\hbar} \hbar \omega t} \right) e^{- \frac{\alpha^{2}}{2}}
+            \sum_{n=0}^\infty \tfrac{\alpha^n}{\sqrt{n!}} \ e^{\frac{-i}{\hbar} 
+            \hbar \omega (\frac{1}{2} + n) t} | \Psi_n \rangle\\
+        \Aboxed{ a | \alpha{\scriptstyle(x,t)} \rangle 
+            &= \left( \alpha e^{-i \omega t} \right) | \alpha{\scriptstyle(x,t)} \rangle }
+    \end{aligned} \)
+\end{minipage}
+
+\vspace{1cm}
+\noindent {\centering\( |\alpha \rangle \) are obviously not orthogonal. They are an overcomplete basis.\par}
+
+%---------------------------------------------------------------------------------------
+% Analytic Method
+% \newpage
+\subsubsection{Analytic Method}
+
+\boldmath \[ \Psi_n = A \frac{1}{\sqrt{2^n n!}} H_n(\xi) e^{- \xi^2 / 2} \] \unboldmath
+
+\vspace{5pt}\noindent
+\( A = \left( \frac{m \omega }{\pi \hbar} \right)^{1/4} \) \\[10pt]
+\( \xi = \sqrt{ \frac{m \omega }{\hbar} } x\) \\[10pt]
+Hermite Polynomials: \ \( \begin{aligned}
+    &H_n(x) = (-1)^n \ e^{-x^2} \left( \frac{d}{dx} \right)^n e^{x^2}\\[5pt]
+    &e^{-z^2 + 2zx} = \sum_{n=0}^\infty \frac{z^n}{n!} H_n(x)
+\end{aligned} \)
+
+%----------------------------------------
+\vspace{10pt}\noindent
+\subsubsection{3-D Harmonic Potential}
+
+\[ \boldsymbol{V(r) = \frac{1}{2} k r^2} \]
+\[ \boxed{ E_{n_x n_y n_z} = \hbar \omega \left(n_x + n_y + n_z + \frac{3}{2}\right) } \]
+
+%------------------------------------------------------------------------------------------------
+% Free Particle
+\newpage
+\subsection{Free Particle (1-D)}
+\[ \boldsymbol{ V(x) = 0 }\]
+
+\vspace{10pt}
+\[ \begin{gathered}
+    \Psi(x,t) = \frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^\infty \Phi(x,0) e^{\frac{i}{\hbar} p x - E t} dp\\[5pt]
+    \Phi(x,0) = \frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^\infty \Psi(x,0) e^{\frac{-i}{\hbar} p x} dx\\[10pt]
+    \text{\scriptsize(\(E<0 \rightarrow \Psi = e^{\pm kx}\) is possible and also not normalizable, 
+    but solution above is already a complete set)}
+\end{gathered} \]
+
+\vspace{10pt} \noindent
+\( \begin{aligned}
+    E(p) &= \frac{p^2}{2m}\\[5pt]
+    v_\text{wave} &= \boxed{ v_\text{phase} = \frac{ \omega{\scriptstyle(k)} }{k} } 
+        = \frac{E}{p} = \frac{v_\text{classical}}{2} \\[5pt]
+    v_\text{particle} &\approx \boxed{ v_\text{group} = \frac{d \omega{\scriptstyle(k)} }{d k} } = 2 v_\text{wave}
+        \indent \text{\scriptsize (dispersion relation)}
+\end{aligned} \)
+
+%----------------------------------------------------------------
+% Delta Potential
+\vspace{10pt}
+\subsection{Delta Potential (1-D)}
+
+% Potential Eq
+\vspace{15pt}
+\textbf{Potential Well:} \indent \indent \indent 
+    \( \boldsymbol{ V(x) = - \alpha \delta(x) } \) 
+    \indent\indent {\scriptsize(\(\alpha \rightarrow -\alpha\)\ for potential wall)}
+
+\vspace{25pt} \noindent
+% Bound State
+\begin{minipage}[t]{.45\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    \underline{Bound State (\(E<0\)) {\scriptsize[only for Well]}}: \\[10pt]
+    \indent \( \Psi = \sqrt{k} e^{k|x|} = \begin{cases} 
+        \sqrt{k} e^{kx}  &   x \leq 0\\
+        \sqrt{k} e^{-kx} &   x \geq 0
+    \end{cases}\)
+    
+    \vspace{20pt} \noindent
+    \(\begin{aligned}
+        k &= \frac{m \alpha}{\hbar^2}\\[5pt]
+        E &= - \frac{(\hbar k)^2}{2m}
+    \end{aligned}\)    
+\end{minipage}
+% Scattering State
+\begin{minipage}[t]{.5\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    \underline{Scattering State (\(E>0\)) {\scriptsize[for both]}}:\\[10pt] 
+    \indent \(\Psi = \begin{cases}
+        A e^{iKx} + B e^{-iKx}  &   x < 0\\
+        F e^{iKx}               &   x > 0
+    \end{cases}\)
+    
+    \vspace{20pt} \noindent
+    \(\begin{aligned}
+        E &= \frac{(\hbar K)^2}{2m} \ , & 
+            \beta &\equiv \frac{k}{K} = \frac{m \alpha / \hbar^2}{K}\\[10pt]
+        B &= \frac{i\beta}{1 - i\beta} A \ , &
+            F &= \frac{1}{1- i\beta} A\\[10pt]
+        R &= \frac{|B|^2}{|A|^2} = \frac{\beta^2}{1+\beta^2} \ , & \indent \indent
+            T &= \frac{|F|^2}{|A|^2} = \frac{1}{1+\beta^2}
+    \end{aligned}\)    
+
+    \vspace{20pt} \noindent
+    {\scriptsize Can't normalize. 
+    All free particles have ranges of \(p\) and thus \(E\), so \(R\) and \(T\) are approx.
+    in the vicinity of \(E\).}
+\end{minipage}
+
+%--------------------------------------------------------------
+% Finite Square Potential
+\subsection{Finite Square Potential (1-D)}
+\vspace{5pt}
+\subsubsection{Potential Well \indent \indent
+    \(
+        \boldsymbol{
+            V(x) = 
+            \begin{cases}
+                -V_0 & -a<x<a \\
+                0 & \text{otherwise}
+            \end{cases} 
+        }
+    \) \indent \indent \begin{minipage}{5cm}
+        \text{\scriptsize(\(V_0 \rightarrow -V_0\) for wall and do cases}\\
+        \text{\scriptsize for \(E>V_0, E=V_0, E<V_0\), and}\\
+        \text{\scriptsize change to \(\sinh, \cosh\) if needed)}
+    \end{minipage}
+}
+
+\vspace{5pt}
+{
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{r c l}
+    \(k\ ; K\)\ :   &\ \ \(E\)         &\(= \tfrac{-(\hbar k)^2}{2m} = \tfrac{(\hbar K)^2}{2m}\)\\[10pt]
+    \(l\)\ :        &\ \ \(E + V_0\)   &\(= \tfrac{(\hbar l)^2}{2m}\)\\[10pt]
+    \(v\)\ :        &\ \ \(V_0\)       &\(= \tfrac{\hbar^2 v^2}{2m}
+        = \tfrac{\hbar^2 ( l^2 + k^2 )}{2m} = \tfrac{\hbar^2 ( l^2 - K^2 )}{2m}\)
+\end{tabular}
+}
+\ \ 
+\rule[-40pt]{.5pt}{80pt}
+\ \ \
+\(\begin{aligned}
+    &\frac{k_a}{l_a} \equiv \sqrt{ \frac{(ka)^2}{(la)^2} } 
+    = \sqrt{ \frac{ (la)^2 + (ka)^2 }{(la)^2} - 1 } \\[5pt]
+    &\boxed{ \frac{k_a}{l_a} \equiv \sqrt{ \left( \frac{v_a}{l_a} \right)^2 - 1} }
+        \ , \ v_a^2 = \begin{cases} 
+            l_a^2 + k_a^2 \\[5pt]
+            l_a^2 - K_a^2 
+        \end{cases}
+\end{aligned}\)
+
+% Bound States
+\vspace{15pt} \noindent
+\underline{Bound State \ (\(E_n<0\)) {\scriptsize[only for well]}}:\\[15pt]
+% Even States
+\begin{minipage}[t]{.5\textwidth}
+    \setlength{\parindent}{.5cm}
+    \(\Psi_\text{even}(x) = \begin{cases}
+        \Psi(-x)    &   x < 0\\[5pt]
+        D \cos(lx)   &   0 < x < a \\[5pt]
+        F e^{-kx}   &   a < x 
+    \end{cases}\)
+    
+    \vspace{20pt}
+    \(\bullet \ \ \ F = D \cos(la) e^{ka}\)\\[10pt]
+    \indent \(\bullet \ \ \ \begin{aligned}[t]
+        &\tfrac{-(\partial_x \Psi)(a)}{\Psi(a)} = k = l \tan(la) \ \Rightarrow\\[5pt]
+        &\tan(l_a) = \sqrt{ (v_a / l_a)^2 - 1}
+            \indent \ \ \\[5pt]
+        &\scriptstyle \text{big } v_a \ \rightarrow \ l\ \approx_< \tfrac{n \pi}{2a}
+            \ \rightarrow \ E_n + V_0\ =\ \tfrac{\hbar^2 l^2}{2m}\ ;\ \underline{n\ \text{odd}}
+    \end{aligned}\)\\[5pt]
+    \indent \(\bullet \ \ \ \boxed{ n_\text{max} = \left\lfloor \dfrac{v_a}{\pi} \right\rfloor + 1} \)
+\end{minipage}
+% Odd States
+\begin{minipage}[t]{.5\textwidth}
+    \setlength{\parindent}{.5cm}
+    \(\Psi_\text{odd}(x) = \begin{cases}
+        - \Psi(-x)    &   x < 0\\[5pt]
+        C \sin(lx)   &   0 < x < a \\[5pt]
+        F e^{-kx}   &   a < x 
+    \end{cases}\)
+    
+    \vspace{20pt}
+    \(\bullet \ \ \ F = D \sin(la) e^{ka}\)\\[10pt]
+    \indent \(\bullet \ \ \ \begin{aligned}[t]
+        &\tfrac{-(\partial_x \Psi)(a)}{\Psi(a)} = k = - l \cot(la) \ \Rightarrow\\[5pt]
+        &-\cot(l_a) = \sqrt{ (v_a / l_a)^2 - 1} \\[5pt]
+        &\scriptstyle \text{big } v_a \ \rightarrow \ l\ \approx_< \tfrac{n \pi}{2a}
+            \ \rightarrow \ E_n + V_0\ =\ \tfrac{\hbar^2 l^2}{2m}\ ;\ \underline{n\ \text{even}}
+    \end{aligned}\)\\[5pt]  
+    \indent\(\bullet \ \ \ \boxed{ n_\text{max} = \left\lfloor \dfrac{v_a + \tfrac{\pi}{2}}{\pi} \right\rfloor } \) 
+\end{minipage}
+
+% Scattering States
+\vspace{20pt} \noindent
+\underline{Scattering State \ (\(E>0\)) {\scriptsize[for both]}}:\\[15pt]
+\(\Psi = \begin{cases}    
+    A e^{iKx} + B e^{-iKx}              &   x < -a\\
+    C \sin{lx} + D \cos{lx} \ \ \ \ \ \ &   -a < x < a\\
+    F e^{iKx}                           &   a < x 
+\end{cases} 
+\indent \indent 
+\frac{d \Psi}{dx} = \begin{cases}
+    iKA e^{iKx} - iKB e^{-iKx} \ \ \ \ \ \  &   x < -a\\
+    lC \cos{lx} - lD \sin{lx}               &   -a < x < a\\
+    iKF e^{iKx}                             &   a < x
+\end{cases}\)
+
+% Coefficient and Transmission
+\vspace{15pt}
+\(\begin{aligned}[t]
+    B &= i \sin(2 l_a) \left( \tfrac{l_a^2 - K_a^2}{2 K_a l_a} \right) \ F\\[10pt]
+    F &= \frac{e^{-2iK_a}}{\cos(2 l_a) - i \left( \frac{l_a^2 + K_a^2}{2 K_a l_a} \right) \sin(2 l_a) } \ A\\[5pt]
+    &\text{\scriptsize(Can't normalize. See delta potential.)}
+\end{aligned}\)
+\indent \indent \(\begin{aligned}[t]
+    T^{-1} &= 1 + \left( \tfrac{l_a^2 - K_a^2}{2 K_a l_a} \right)^2 \ \sin^2( 2l_a )\\[5pt]
+    &= 1 + \frac{V_0^2}{4E(E+V_0)} \ \sin^2 \left( 2a \sqrt{\frac{E + V_0}{\hbar^2 / 2m}}\ \right)\\[5pt]
+    &\text{\scriptsize(full transmission at inf. sqr. well 
+        \(E_n + V_0 = \tfrac{\hbar^2 l^2}{2m}\ ;\ l = \tfrac{n \pi}{2a}\))}
+\end{aligned}\)
+
+% \subsubsection{Potential Barrier}
+% \[ \boldsymbol{
+%     V(x) = 
+%     \begin{cases}
+%         V_0 & -a<x<a \\
+%         0 & \text{otherwise}
+%     \end{cases} 
+% } \]
+
+%---------------------------------------------------------------------------------------------------------------------
+% Hydrogen Atom
+\newpage
+\subsection{Hydrogen Atom}
+\unskip
+% Schroedinger Equation
+\begin{gather*}
+    E u = \left( \frac{\hat{p}_r^2}{2m} + V(r) + \frac{\hat{L^2}}{2(mr^2)} \right) u
+        \indent \indent u(r) = r R(r) \\[10pt]
+    \boxed{ E u = \frac{-\hbar^2}{2m} \partial_r^2 u
+        + \left[ - \frac{ke^2}{r} + \frac{\hbar^2 l(l+1)}{2m r^2} \right] u }
+\end{gather*}
+
+% Solution
+\vspace{10pt} \noindent
+\( \boxed{ \Psi_{nlm}(\vec{\mathbf{r}}) = R_{nl}(r) \ Y^m_l(\theta, \phi) 
+    = R_{nl}(r) \ \Theta^m_l(\theta) \ \Phi_m(\phi) } \)\\
+\begin{minipage}[t]{.47\textwidth}
+    \begin{itemize}
+        \item \( \Phi_m(\phi) = e^{i m \phi}\)
+        \item \( \Theta^m_l(\theta) = A P^m_l(\cos{\theta}) \)\\[5pt]
+        - \( A = \epsilon \sqrt{ \frac{2l+1}{4\pi} \frac{(l-|m|)!}{(l+|m|)!} } \), \ \
+            \( \epsilon = \begin{cases}
+                \scriptstyle (-1)^m & \scriptstyle (m \geq 0) \\
+                \scriptstyle1       & \scriptstyle (m \leq 0)
+            \end{cases} \)\\[5pt]
+        - \( P^m_l(x) \) \ \ \ {\scriptsize{Assoc. Legendre Func. (see extra)}}
+    \end{itemize}   
+\end{minipage}
+\begin{minipage}[t]{.55\textwidth}
+    \begin{itemize}
+        \item \( R_{nl}(r) = \dfrac{B}{r} \rho^{l+1} e^{-\rho} \nu(\rho) \)\\[5pt]
+        - \( \rho = k_n r \) , \ \ \( k_n = \frac{1}{a_0 n} \) 
+            \ \ \ {\scriptsize(fine structure below)} \\[10pt]
+        - \( \nu(\rho) = L^{2l+1}_{n-l-1}(2\rho) \) 
+            \ \ \ {\scriptsize{Assoc. Laguerre Poly. (see extra)}} \\[10pt]
+        - \( B = \sqrt{2 k_n \ \frac{ ( n-l-1 )! }{ 2n [ (n+l)! ]^3 }} \ 2^{l+1} \) 
+    \end{itemize}     
+\end{minipage}
+
+% Fine structure and Bohr Radius
+\vspace{25pt} \noindent
+\( \boxed{ \alpha \equiv \frac{kqq}{\hbar c} 
+    = \frac{1}{4 \pi \epsilon_0} \frac{e^2}{\hbar c} \ \approx \ \frac{1}{137} } \)
+% Hydrogen Atom Energy
+\hspace{1cm}
+\( \boxed{ a_0 \equiv \frac{\hbar^2}{m (kqq)} = \frac{4 \pi \epsilon_0 \hbar^2}{m e^2} } \)\\[15pt]
+\( E_n = -\frac{\hbar^2 k^2_n}{2m} \) 
+\ \ \ \(\Rightarrow\) \ \ \ 
+\( \begin{aligned}[t]
+    \Aboxed{ &E_n = - \frac{\hbar^2}{2m a_0^2} \frac{1}{n^2}
+        = - \frac{1}{2} \alpha^2 \left( m c^2 \right) \dfrac{1}{n^2}
+        \ \approx \ -13.6 \ \dfrac{1}{n^2} \ [\text{eV}] }\\[10pt]
+    \Aboxed{ &\frac{1}{\lambda} = \frac{\alpha^2 \left( m c^2 \right) }{2 h c}
+        \left( \dfrac{1}{n_f^2} - \dfrac{1}{n_i^2} \right)
+        = R \left( \tfrac{1}{n_f^2} - \tfrac{1}{n_i^2} \right) 
+        \ , \ \ R = 1.097 \ \text{E} 7 \ [\text{m}^{-1}] }
+\end{aligned} \)
+
+% Quantum Numbers
+\vspace{20pt} \noindent
+\underline{Quantum Numbers - \(n,l,m\)}:
+\begin{itemize}
+\item \( \begin{gathered}[t]
+        \Big( n \in \{ 1, 2, 3, ... \} \Big), \ 
+        \Big( l \in \{ 0, 1, 2, ..., n-1 \} \Big), \
+        \Big( m \in \{ -l, ..., -1, 0, 1, ..., l \} \Big)
+    \end{gathered} \)\\[10pt]
+    - \underline{Degeneracy is \(n^2\)}
+\end{itemize}      
+
+% Bohr Atom
+\vspace{10pt}\noindent
+\underline{(outdated) Bohr Model}:\\[10pt]
+\(\begin{aligned}
+    \indent &\bullet \ L = ( \bar{r} ) ( \bar{p} ) = (a_0 n^2) (\hbar k_n) 
+        = n\hbar \indent \text{\scriptsize(not correct!!)}\\
+    \indent &\bullet \ \text{Electrons don't radiate about the nucleus}\\
+    \indent &\bullet \ \text{Energy diff. follows Rydberg formula}
+\end{aligned}\)
+
+% Extra
+% P. 133, Prob. 4.1
+% \( \Theta^m_l(\theta) = A ln( tan( \theta / 2 ) ) \) is another solution, but blows up at \theta = 0 or \pi
+% Infinite Spherical Well (Bessel and Neumann Functions)
+% P. 155 (167), Prob. 4.13-4.16 
+
+%---------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------
+% Spin
+\newpage
+\section{Spin and \(L\)}
+\subsection{Hydrogen Atom}
+
+% L_z and L^2 and L_{+-}
+\noindent
+\begin{minipage}[t]{.35\textwidth}
+    \underline{Angular Momentum}:\\[10pt]
+    \( \boxed{ \widehat{L_i} \equiv ( \vec{r} \times \vec{p} )_i } \)\\[5pt]
+    \( \boxed{ \widehat{L}_{\pm} \equiv \widehat{L}_x \pm i \widehat{L}_y } \)\\[5pt]
+    \( \begin{aligned}
+        \Aboxed{ \widehat{L}^2 &\equiv L_x^2 + L_y^2 + L_z^2 } \\[5pt]   
+        &= L_\pm L_\mp + L_z^2 \mp \hbar L_z
+    \end{aligned} \)
+\end{minipage}
+% Commutation Relations
+\begin{minipage}[t]{.65\textwidth}
+    \underline{Commutation Relations}:
+
+    % [ L_x , L_y ]
+    \vspace{10pt} \noindent \(
+        \boxed{ \big[ L_x , L_y \big] = i \hbar L_z }
+    \) \ \ {\scriptsize (can't measure concurrently)}
+
+    % [ H , _ ]
+    \vspace{10pt} \noindent \(
+        \boxed{ \big[ H , L^2 \big] = \big[ H , L_i \big] = \big[ L^2 , L_i \big] = 0}
+    \) \ \ {\scriptsize (can measure concurrently)}
+
+    % [ L^2 , L_z ]
+    \vspace{10pt} \noindent \( 
+        \setlength{\parindent}{.5cm}
+        \indent \rightarrow \ 
+        \left( \begin{gathered}
+            L_z Y_{m'} = m' Y_{m'} \ , \\[5pt]
+            L^2 Y_{m'} = \lambda_{m'} Y_{m'}
+        \end{gathered} \right)
+        \ \Rightarrow \ 
+        \begin{aligned}
+            \langle L^2 \rangle = \lambda_{m'} \ &\geq \ (m')^2 = \langle L_z \rangle^2 \\[5pt]
+            \bullet \ \sqrt{\lambda_{m'}} \geq \ &m' \geq -\sqrt{\lambda_{m'}}
+        \end{aligned} 
+    \)
+\end{minipage}
+
+% [ __ , L_{+-} ]
+\vspace{20pt} \noindent
+\textbf{Let} \ 
+\( (L_\pm)^n Y_\mu \equiv | m \rangle \) \\[10pt]
+\indent \begin{tabular}{c c l}
+    \begin{minipage}[t]{6.5cm}
+        \( \boxed{ \big[ L_z , (L_\pm)^n \big] = \pm n\hbar (L_\pm)^n } \)\\[5pt]
+        {\scriptsize (Proof By Ind.)}
+        \vspace{-.3cm}
+        \begin{description}
+            \item[-] \( \boxed{ \big[ L_z , L_\pm \big] = \pm \hbar L_\pm } \)
+            \item[-] \( \big[ L_z , (L_\pm)^{n+1} \big] = \pm (n+1)\hbar (L_\pm)^{n+1} \)
+        \end{description}    
+    \end{minipage}
+        & \( \ \ \Rightarrow \ \ \) 
+        & \( \begin{aligned}[t]
+                L_z \big[ (L_\pm)^n Y_\mu \big] &= (\mu \pm n \hbar) \big[ (L_\pm)^n Y_\mu \big]\\[10pt]
+                \bullet \ L_z | m \rangle 
+                    &= (\mu \pm n \hbar) | m \rangle
+            \end{aligned}
+        \) \\
+    & & \\    
+    \( \boxed{ \big[ L^2 , L_\pm \big] = 0 } \ \Rightarrow \ \big[ L^2 , (L_\pm)^n \big] = 0 \)
+        & \( \ \Rightarrow \ \)
+        & \( \begin{aligned}
+            L^2 \big[ (L_\pm)^n Y_\mu \big] &= \lambda_\mu \big[ (L_\pm)^n Y_\mu \big] \\[10pt]
+            \bullet \ L^2 | m \rangle
+                &= \lambda_\mu | m \rangle
+        \end{aligned} \)
+\end{tabular}
+
+% Solve for Eigenvalues and Eigenfunctions
+\vspace{25pt} \noindent 
+\textbf{Then} \ \( 
+    \Big( \sqrt{\lambda_\mu} \ \geq \ (\mu \pm n\hbar) \ \geq \ -\sqrt{\lambda_\mu} \ \Big)
+    \ \Rightarrow 
+\) \ \textbf{Let} \ \ \ {\scriptsize (else un-normalizable solution)}
+
+\vspace{10pt}
+\begin{minipage}{.4\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    \( \underline{ L_+ | m_t \rangle = 0 } \) \ , \ \ \( L_z | m_t \rangle = \hbar l \) \ , \\[5pt]
+    \( L^2 | m_t \rangle = \lambda \) \ , \ \ \( L^2 = L_- L_+ + L_z^2 + \hbar L_z \)\\[15pt]
+    \( \bullet \ L^2 | m_t \rangle = \hbar^2 l (l+1) | m_t \rangle = \lambda | m_t \rangle \)
+\end{minipage}
+\hspace{.5cm}
+\rule[-40pt]{.5pt}{80pt}
+\hspace{.5cm}
+\begin{minipage}{.5\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    \( \underline{ L_- | m_b \rangle = 0 } \) \ , \ \ \( L_z | m_b \rangle = \hbar l' \) \ , \\[5pt]
+    \( L^2 | m_b \rangle = \lambda \) \ , \ \ \( L^2 = L_+ L_- + L_z^2 - \hbar L_z \)\\[15pt]
+    \( \bullet \ L^2 | m_b \rangle = \hbar^2 l' (l'-1) | m_b \rangle = \lambda | m_b \rangle \)
+\end{minipage}
+
+\vspace{10pt} \( 
+    \Big( \lambda = \hbar^2 l' (l'-1) = \hbar^2 l (l+1) \Big) 
+    \ \Rightarrow \ 
+    \big( l' = -l \big)
+    \ \Rightarrow \ 
+    \left( \begin{aligned}
+        L_z | m_t \rangle &= \hbar l | m_t \rangle \\
+        L_z | m_b \rangle &= - \hbar l | m_b \rangle
+    \end{aligned} \right) 
+\) \ \ \begin{minipage}{4cm}
+    {\scriptsize (Spherical Harmonics do not allow half-integer \(l\))}
+\end{minipage}
+
+% Solutions
+\vspace{15pt} \noindent 
+Schrodinger \(Y_l^m\): \ \fbox{ 
+    \( \begin{gathered}
+        l \in \left\{ 0 , 1 , 2, ... \right\} \\[5pt]
+        m \in \{ -l , -l + 1, ... , l-1 , l \}
+    \end{gathered} \)
+    \hspace{.2cm}
+    \rule[-25pt]{.5pt}{55pt}
+    \hspace{.2cm}
+    \( \begin{aligned}
+        L_z \big| Y_l^m \big\rangle &= \hbar m \big| Y_l^m \big\rangle \\[5pt]
+        L^2 \big| Y_l^m \big\rangle &= \hbar^2 l (l+1) \big| Y_l^m \big\rangle \\[5pt]
+        L_\pm \big| Y_l^m \big\rangle &=
+            \hbar \sqrt{\scriptstyle l(l+1) - m(m \pm 1)} \ \big| Y_l^m  \big\rangle
+    \end{aligned} \)     
+} 
+
+%---------------------------------------------------------------------------------------------------------------------
+\newpage \noindent
+% Generalized Angular Momentum
+\subsection{Generalized}
+\noindent
+\begin{minipage}[t]{.35\textwidth}
+    \underline{Angular Momentum}:\\[10pt]
+    \( \widehat{L_i} \equiv \text{???} \)\\[5pt]
+    \( \boxed{ L_\pm \equiv L_x \pm i L_y } \)\\[5pt]
+    \( \begin{aligned}
+        \Aboxed{ L^2 &\equiv L_x^2 + L_y^2 + L_z^2 } \\[5pt]   
+        &= L_\pm L_\mp + L_z^2 \mp \hbar L_z
+    \end{aligned} \)
+\end{minipage}
+% Commutation Relations
+\begin{minipage}[t]{.65\textwidth}
+    \underline{Commutation Relations}:
+
+    % [ L_x , L_y ]
+    \vspace{10pt} \noindent \(
+        \boxed{ \big[ L_i , L_j \big] = i \hbar L_k \ \epsilon_{ij} }
+    \) \ \ {\scriptsize (can't measure concurrently)}
+
+    % [ L^2 , L_z ]
+    \vspace{10pt} \noindent \(
+        \boxed{ \big[ L^2 , L_z \big] = 0}
+    \) \ \ {\scriptsize (can measure concurrently)}
+\end{minipage}
+
+% General Eigenvalues
+\vspace{10pt} \noindent
+General: \ \fbox{ 
+    \( \begin{gathered}
+        l \in \left\{ 0 , \tfrac{1}{2}, 1 , \tfrac{3}{2}, ... \right\} \\[5pt]
+        m \in \{ -l , -l + 1, ... , l-1 , l \}
+    \end{gathered} \)
+    \hspace{.2cm}
+    \rule[-25pt]{.5pt}{55pt}
+    \hspace{.2cm}
+    \( \begin{aligned}
+        L_z \big| l \ m \big\rangle &= \hbar m \big| l \ m \big\rangle \\[5pt]
+        L^2 \big| l \ m \big\rangle &= \hbar^2 l (l+1) \big| l \ m \big\rangle \\[5pt]
+        L_\pm \big| l \ m \big\rangle &=
+            \hbar \sqrt{\scriptstyle l(l+1) - m(m \pm 1)} \ \big| l \ m  \big\rangle
+    \end{aligned} \)     
+}
+
+%---------------------------------------
+% Spin 1/2
+\subsection{1 Particle w/ Spin, \ \(s = \frac{1}{2}\)}
+*Find the Eigenvectors, \(e_i\) , of \(S_z\) and \(S^2\) in the form of \(|\chi\rangle\)
+
+% States
+\vspace{5pt}
+\begin{center}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    * \fbox{ \( e_i \in \left\{ \ \ 
+        | \tfrac{1}{2} \ \tfrac{1}{2} \rangle \equiv | \uparrow \ \rangle \equiv 
+            \left( \begin{matrix} 
+                1 \\
+                0
+            \end{matrix} \right)
+        \indent , \indent
+        | \tfrac{1}{2} \ \tfrac{-1}{2}  \rangle \equiv | \downarrow \ \rangle \equiv 
+            \left( \begin{matrix} 
+                0 \\
+                1
+            \end{matrix} \right)
+        \ \ \right\} \) }
+\end{center}
+
+\vspace{5pt} \noindent
+\begin{tabular}{c c l}
+    % S^2
+    \( \left. \begin{aligned}
+        S^2 | \uparrow \ \rangle = \dfrac{3\hbar^2}{4} | \uparrow \ \rangle \\[10pt]
+        S^2 | \downarrow \ \rangle = \dfrac{3\hbar^2}{4} | \downarrow \ \rangle
+    \end{aligned} \indent \right\} \)
+        & \(\Rightarrow\)
+        & \( S^2 = \dfrac{3\hbar^2}{4}
+            \left( \begin{matrix} 
+                1 & 0 \\
+                0 & 1
+            \end{matrix} \right) 
+            = \) 
+            * \( \left( \begin{matrix} 
+                1 & 0 \\
+                0 & 1
+            \end{matrix} \right) 
+            \left( \begin{matrix} 
+                \tfrac{3\hbar^2}{4} & 0 \\
+                0 & \tfrac{3\hbar^2}{4}
+            \end{matrix} \right) 
+            \left( \begin{matrix} 
+                1 & 0 \\
+                0 & 1
+            \end{matrix} \right)^{T*} \) \\
+    & & \\[5pt]
+    % S_+-
+    \( \left. \begin{gathered}
+        S_- | \uparrow \ \rangle = \hbar | \downarrow \ \rangle \\[10pt]
+        S_+ | \downarrow \ \rangle = \hbar | \uparrow \ \rangle \\[10pt]
+        S_+ | \uparrow \ \rangle = S_- | \downarrow \ \rangle = 0
+    \end{gathered} \indent \right\} \)
+        & \(\Rightarrow\)
+        & \( S_+ = \hbar
+            \left( \begin{matrix} 
+                0 & 1 \\
+                0 & 0
+            \end{matrix} \right) \)
+        \indent
+        \( S_- = \hbar
+            \left( \begin{matrix} 
+                0 & 0 \\
+                1 & 0
+            \end{matrix} \right) \) \ \ \ \ {\scriptsize (can't measure)}\\
+    & & \\[5pt]
+    % S_z
+    \( \left. \begin{aligned}
+        S_z | \uparrow \ \rangle = \frac{\hbar}{2} | \uparrow \ \rangle \\[10pt]
+        S_z | \downarrow \ \rangle = \frac{\hbar}{2} | \downarrow \ \rangle \\
+    \end{aligned} \indent \right\} \)
+        & \(\Rightarrow\)
+        & \( S_z = \dfrac{\hbar}{2}
+            \left( \begin{matrix} 
+                1 & 0 \\
+                0 & -1
+            \end{matrix} \right) 
+            = \dfrac{\hbar}{2} \sigma_z = \)
+            * \( \left( \begin{matrix} 
+                1 & 0 \\
+                0 & 1
+            \end{matrix} \right)
+            \left( \begin{matrix} 
+                \tfrac{\hbar}{2} & 0 \\
+                0 & -\tfrac{\hbar}{2}
+            \end{matrix} \right)
+            \left( \begin{matrix} 
+                1 & 0 \\
+                0 & 1
+            \end{matrix} \right)^{T*} \) \\
+    & & \\[5pt]
+    % S_x, S_y
+    \( \left. \begin{gathered}
+        S_x = \frac{1}{2} (S_+ + S_-) \\[10pt]
+        S_y = \frac{1}{2i} (S_+ - S_-)
+    \end{gathered} \indent \right\} \)
+        & \(\Rightarrow\)
+        & \( S_x = \dfrac{\hbar}{2}
+            \left( \begin{matrix} 
+                0 & 1 \\
+                1 & 0
+            \end{matrix} \right) = \dfrac{\hbar}{2} \sigma_x  \)
+        \indent
+        \( S_y = \dfrac{\hbar}{2}
+            \left( \begin{matrix} 
+                0 & -i \\
+                i & 0
+            \end{matrix} \right) = \dfrac{\hbar}{2} \sigma_y  \)
+\end{tabular}
+
+%------------------------------------------------------------------------------------------------------------------
+% 2 Particles w/ Spin 1/2
+\newpage
+\subsection{2 Objects w/ Spin}
+{\scriptsize Objects could be orbital momentum, another particle spin, etc.}
+
+\vspace{5pt}
+\subsubsection{2 Objects w/ Spin \(\frac{1}{2}\)}
+
+\vspace{10pt}
+*Find Eigenvectors, \(e_i\) , of \( ( S^{ (1,2) } )_z \) and 
+    \( ( S^{ (1,2) } )^2 \) in the form of \( | \chi_i \chi_j \rangle \) ( using \( ( S^{ (1,2) } )_\pm \) )
+
+\vspace{15pt}\noindent
+% Tensor Product for 2 particles
+\[ \boxed{ | \chi_i \chi_j \rangle \equiv \chi_i \chi_j \equiv | \chi_i \rangle | \chi_j \rangle 
+    \equiv | \chi_i \rangle \otimes | \chi_j \rangle } \]
+% Chi for 1 particle
+
+\vspace{20pt} \noindent
+Choose \( | \chi_i \rangle \equiv S_z\)-Eigenvector w/ 
+    Spin \(\frac{1}{2}\) (e.g, \( | \frac{1}{2} \frac{-1}{2} \rangle 
+        = \left( \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right) \), 
+        as opposed to \( \left( \begin{smallmatrix} .6 \\ .8 \end{smallmatrix} \right) \))
+
+\vspace{1.5cm} \noindent
+\begin{minipage}[t]{.5\textwidth}
+    % "Vector" of Matrices
+    \begin{center} \( 
+        S^{(i)} \equiv 
+        \left( \begin{matrix} 
+            S^{(i)}_x\\[5pt] 
+            S^{(i)}_y\\[5pt] 
+            S^{(i)}_z 
+        \end{matrix}\right) 
+    \) \end{center}
+        
+    \vspace{5pt}
+    % Matrices only work on respective particles
+    \( \bullet \ S^{(2)}_z S^{(1)}_x \Big( | \chi_1 \rangle \otimes | \chi_2 \rangle \Big)
+        = \left( S^{(1)}_x | \chi_1 \rangle \right) \otimes \left( S^{(2)}_z | \chi_2 \rangle \right) \)\\[10pt]
+    % Dot product for "vector" of matrices
+    \( \bullet \ S^{(i)} \dotP S^{(j)} \equiv S^{(i)}_x S^{(j)}_x + S^{(i)}_y S^{(j)}_y + S^{(i)}_z S^{(j)}_z \)\\[10pt]
+    \setlength{\parindent}{.5cm}
+    \indent \( ( S^{(i)} )^2 \equiv S^{(i)} \dotP S^{(i)} \)\\[10pt]    
+\end{minipage}
+\hspace{.020\textwidth}
+\rule[-120pt]{.5pt}{150pt}
+\hspace{.025\textwidth}
+\begin{minipage}[t]{.45\textwidth}
+    % Sum of "Vector" of Matrices
+    \begin{center} \( 
+        S^{(1,2)} \equiv \left( S^{(1)} + S^{(2)} \right) \equiv 
+        \left( \begin{matrix} S^{(1)}_x + S^{(2)}_x \\[5pt]
+            S^{(1)}_y + S^{(2)}_y \\[5pt]
+            S^{(1)}_z + S^{(2)}_z 
+        \end{matrix} \right) 
+    \) \end{center}
+
+    \vspace{5pt}
+    \( \bullet \ \left( S^{(1,2)} \right)^2 =
+        \left( S^{(1)} + S^{(2)} \right) \dotP \left( S^{(1)} + S^{(2)} \right) \)
+\end{minipage}
+
+% Find Eigenvalues for S^(1,2)_z
+\vspace{20pt} \noindent
+\textbf{1.} \(\left( S^{(1,2)} \right)_z\) \\[10pt]
+\begin{minipage}[t]{.6\textwidth}
+    \( \begin{aligned}[t] 
+        \left( S^{(1,2)} \right)_z \chi_1 \chi_2 
+            &= \Big( S^{(1)}_z + S^{(2)}_z \Big) 
+                | \chi_1 \rangle | \chi_2 \rangle\\[10pt]
+        &= S^{(1)}_z | \chi_1 \rangle \otimes | \chi_2 \rangle 
+            + | \chi_1 \rangle \otimes S^{(2)}_z | \chi_2 \rangle \\[10pt]
+        \left( S^{(1,2)} \right)_z  | \chi_1 \chi_2 \rangle 
+            &= \hbar (m_1 + m_2) \ | \chi_1 \chi_2 \rangle
+    \end{aligned} \)
+    
+    \vspace{10pt}
+    \( \Rightarrow \ \underline{ e_i = a_i| \uparrow \uparrow \ \rangle + b_i| \uparrow \downarrow \ \rangle +
+    c_i| \downarrow \uparrow \ \rangle + d_i| \downarrow \downarrow \ \rangle } \)    
+\end{minipage}
+\hspace{5pt}
+\rule[-95pt]{.5pt}{110pt}
+\hspace{.5cm} \hspace{5pt}
+\begin{minipage}[t]{3cm}
+    \( \begin{aligned}[t]
+        | \uparrow \uparrow \ \rangle       \quad &=& | \tfrac{1}{2} \tfrac{1}{2} \rangle 
+            &\otimes | \tfrac{1}{2} \tfrac{1}{2} \rangle \\[10pt]
+        | \uparrow \downarrow \ \rangle     \quad &=& | \tfrac{1}{2} \tfrac{1}{2} \rangle 
+            &\otimes | \tfrac{1}{2} \tfrac{-1}{2} \rangle \\[10pt]
+        | \downarrow \uparrow \ \rangle     \quad &=& | \tfrac{-1}{2} \tfrac{1}{2} \rangle 
+            &\otimes | \tfrac{1}{2} \tfrac{1}{2} \rangle \\[10pt]
+        | \downarrow \downarrow \ \rangle   \quad &=& | \tfrac{1}{2} \tfrac{1}{2} \rangle 
+            &\otimes | \tfrac{1}{2} \tfrac{-1}{2} \rangle
+    \end{aligned}  \)
+\end{minipage}
+
+%-----------------------------------------
+\newpage \noindent
+% Use S_+- to guess the Eigenvectors
+\textbf{2.} Use \( \left( S^{ (1,2) } \right)_\pm \) on 
+    \( | \uparrow \ \rangle \otimes | \uparrow \ \rangle \) to GUESS \(e_i\) from "nice" bevahior 
+
+\vspace{15pt} \noindent
+\begin{minipage}{.4\textwidth}
+    {\setlength{\tabcolsep}{3pt}
+    \begin{tabular}{l c l}
+        \(S_-  \ | \uparrow \uparrow \ \rangle \)
+            & \(=\)
+            & \( \tfrac{\sqrt{2}}{2} \big( | {\scriptstyle \uparrow \downarrow} \rangle +
+                | {\scriptstyle \downarrow \uparrow} \rangle \big) \) \\[5pt]
+        \( S_- \left[ \tfrac{\sqrt{2}}{2} \big( | {\scriptstyle \uparrow \downarrow} \rangle +
+            | {\scriptstyle \downarrow \uparrow} \rangle \big) \right] \)
+            & \(=\)
+            & \( | \downarrow \downarrow \ \rangle \) \\[5pt]
+        \( S_- \ | \downarrow \downarrow \ \rangle \)
+        & \(=\) 
+        & \(0\)
+    \end{tabular} }
+
+    \vspace{20pt}
+    \(S_+\) works too
+
+    \vspace{20pt}
+    If \( \tfrac{\sqrt{2}}{2} \big( | {\scriptstyle \uparrow \downarrow} \rangle +
+        | {\scriptstyle \downarrow \uparrow} \rangle \big) \) then maybe \\
+    \( \tfrac{\sqrt{2}}{2} \big( | {\scriptstyle \uparrow \downarrow} \rangle -
+        | {\scriptstyle \downarrow \uparrow} \rangle \big) \) works (try \(S_\pm\) on it).
+
+\end{minipage}
+\hspace{5pt}
+\rule[-75pt]{.5pt}{155pt}
+\hspace{5pt}
+\begin{minipage}{.45\textwidth}
+    Guess for \(\{e_i\}\): \\[15pt]
+    { \setlength{\tabcolsep}{3pt}
+    \begin{tabular}{c c c c c}
+        \( | 1 \ 1 \rangle \)
+            & \(\equiv\)
+            & \( | \tfrac{1}{2} \tfrac{1}{2} \rangle | \tfrac{1}{2} \tfrac{1}{2} \rangle \)
+            & \(=\) 
+            &\( | \uparrow \uparrow \ \rangle \) \\[10pt]
+        \( | 1 \ 0 \rangle \) 
+            & \(\equiv\)
+            & \( \tfrac{1}{\sqrt{2}} \Big(
+                | \tfrac{1}{2} \tfrac{1}{2} \rangle | \tfrac{1}{2} \tfrac{-1}{2} \rangle +
+                | \tfrac{1}{2} \tfrac{-1}{2} \rangle | \tfrac{1}{2} \tfrac{1}{2} \rangle \Big) \)
+            & \(=\)
+            & \( \tfrac{\sqrt{2}}{2} \big( | {\scriptstyle \uparrow \downarrow} \rangle +
+                | {\scriptstyle \downarrow \uparrow} \rangle \big) \) \\[10pt]
+        \( | 1 \ \text{-}1 \rangle \)
+            & \(\equiv\)
+            & \( | \tfrac{1}{2} \tfrac{-1}{2} \rangle | \tfrac{1}{2} \tfrac{-1}{2} \rangle \)
+            & \(=\)
+            & \( | \downarrow \downarrow \ \rangle \) \\[20pt]
+        \( | 0 \ 0 \rangle \)
+            & \( \equiv \)
+            & \( \tfrac{1}{\sqrt{2}} \Big( 
+                | \tfrac{1}{2} \tfrac{1}{2} \rangle | \tfrac{1}{2} \tfrac{-1}{2} \rangle -
+                | \tfrac{1}{2} \tfrac{-1}{2} \rangle | \tfrac{1}{2} \tfrac{1}{2} \rangle \Big) \)
+            & \(=\)
+            & \( \tfrac{\sqrt{2}}{2} \big( | {\scriptstyle \uparrow \downarrow} \rangle - 
+                | {\scriptstyle \downarrow \uparrow} \rangle \big) \)
+    \end{tabular} }
+\end{minipage}
+
+% Check with S^2
+\vspace{25pt} \noindent
+\textbf{3.} Check if the guesses are eigenvectors of \(\left( S^{(1,2)} \right)^2\) 
+    [and do \(\left( S^{(1,2)} \right)_z\) to see eigenvalues]
+
+{\scriptsize (work has been skipped, do it yourself, check answer below)}
+
+\vspace{20pt} \noindent
+\( \begin{aligned}[b]
+    S^2 | 1 \ 1 \rangle \ &= \ 
+        \hbar^2(1)(1+1) | 1 \ 1 \rangle& \indent (s&=1) 
+    & \indent\indent 
+    S_z | 1 \ 1 \rangle \ &= \ 
+        \hbar(1) | 1 \ 1 \rangle& \indent (m&=1)
+    \\[5pt]
+    S^2 | 1 \ 0 \rangle \ &= \ 
+        \hbar^2(1)(1+1) | 1 \ 0 \rangle& \indent (s&=1)
+    & \indent\indent
+    S_z | 1 \ 0 \rangle \ &= \ 
+        \hbar(0) | 1 \ 0 \rangle& \indent (m&=0)
+    \\[5pt]
+    S^2 | 1 \ \text{-} 1 \rangle \ &= \ 
+        \hbar^2(1)(1+1) | 1 \ \text{-} 1 \rangle& \indent (s&=1)
+    & \indent\indent
+    S_z | 1 \ \text{-} 1 \rangle \ &= \ 
+        \hbar(-1) | 1 \ \text{-} 1 \rangle& \indent (m&=-1)
+    \\[10pt]
+    S^2 | 0 \ 0 \rangle \ &= \ 
+        \hbar^2(0)(0+1) | 0 \ 0 \rangle& \indent (s&=0) 
+    & \indent\indent
+    S_z | 0 \ 0 \rangle \ &= \ 
+        \hbar(0) | 0 \ 0 \rangle& \indent (m&=0)
+\end{aligned} \indent \checkedbox \)
+
+\vspace{20pt} \noindent
+* \ \fbox{ 
+\( e_i \in \left\{ \begin{gathered}
+    \left. 
+        { \setlength{\tabcolsep}{3pt} 
+        \begin{tabular}{c c c c c}
+            \( | 1 \ 1 \rangle \)
+                & \(=\)
+                & \( | \tfrac{1}{2} \tfrac{1}{2} \rangle | \tfrac{1}{2} \tfrac{1}{2} \rangle \)
+                & \(=\) 
+                &\( | \uparrow \uparrow \ \rangle \) \\[10pt]
+            \( | 1 \ 0 \rangle \) 
+                & \(=\)
+                & \( \tfrac{1}{\sqrt{2}} 
+                    | \tfrac{1}{2} \tfrac{1}{2} \rangle | \tfrac{1}{2} \tfrac{-1}{2} \rangle +
+                    | \tfrac{1}{2} \tfrac{-1}{2} \rangle | \tfrac{1}{2} \tfrac{1}{2} \rangle \Big) \)
+                & \(=\)
+                & \( \tfrac{\sqrt{2}}{2} \big( | {\scriptstyle \uparrow \downarrow} \rangle +
+                    | {\scriptstyle \downarrow \uparrow} \rangle \big) \) \\[10pt]
+            \( | 1 \ \text{-}1 \rangle \)
+                & \(=\)
+                & \( | \tfrac{1}{2} \tfrac{-1}{2} \rangle | \tfrac{1}{2} \tfrac{-1}{2} \rangle \)
+                & \(=\)
+                & \( | \downarrow \downarrow \ \rangle \)
+        \end{tabular} } 
+    \right\} \indent \text{Triplet}: \ s=1 \\[15pt]
+    \left.
+        { \setlength{\tabcolsep}{3pt}
+        \begin{tabular}{c c c c c}
+            \( | 0 \ 0 \rangle \)
+            & \(=\)
+            & \( \tfrac{1}{\sqrt{2}} \Big( 
+                | \tfrac{1}{2} \tfrac{1}{2} \rangle | \tfrac{1}{2} \tfrac{-1}{2} \rangle -
+                | \tfrac{1}{2} \tfrac{-1}{2} \rangle | \tfrac{1}{2} \tfrac{1}{2} \rangle \Big) \)
+            & \(=\)
+            & \( \tfrac{\sqrt{2}}{2} \big( | {\scriptstyle \uparrow \downarrow} \rangle - 
+                | {\scriptstyle \downarrow \uparrow} \rangle \big) \)
+        \end{tabular} }
+    \right\} \indent \text{Singlet}: \ s=0 
+\end{gathered} \right. \)
+}
+
+%--------------------------------------------------------------------------------------------------------
+% 2 Objects with General Spin
+\newpage
+\subsubsection{2 Objects w/ Any Spin}
+
+\vspace{5pt} \noindent
+\begin{minipage}[t]{.6\textwidth}
+    \setlength{\parindent}{.5cm}
+    \noindent
+    \(\bullet\) \(| \chi_1 \rangle\) has spin, \(s_1\); and \(| \chi_2 \rangle\) has spin, \(s_2\)\\[10pt]
+    \(\bullet\) \(s_\text{max} = s_2 + s_1\) and \(s_\text{min} = s_2 - s_1\)\\[10pt]
+    \(\bullet\) Possible total \(| s \ m \rangle\) must satisfy (not proven here)
+    \begin{center}
+        \(\begin{aligned}
+            &\boldsymbol{1.)} \ s_\text{min} \leq s \leq s_\text{max},  
+                \ \ \ \ \boldsymbol{2.)} \ -s \leq m \leq s, \\[5pt]
+            &\boldsymbol{3.)} \ \text{have integer differences}
+        \end{aligned}\)
+    \end{center}
+
+    \vspace{20pt} In general, 
+    \[ \boxed{ | s \ m \rangle = \sum_{1'2'} C_{sms_{1'}m_{1'}s_{2'}m_{2'}} \ | s_{1'} \ m_{1'} \rangle 
+        \otimes | s_{2'} \ m_{2'} \rangle } \] 
+    where the sum is over all poss. int. diff. values that satisfy\\[10pt]
+    \(\begin{aligned}
+        s_{1'} + s_{2'} &= s,&        0 \leq \ &s_{1'} \leq s_1,&            0 \leq &\ s_{2'} \leq s_2, \\
+        m_{1'} + m_{2'} &= m,&  -s_{1'} \leq \ &m_{1'} \leq s_{1'},&   -s_{2'} \leq &\ m_{2'} \leq s_{2'}, 
+    \end{aligned}\)\\[10pt]
+    and \(C\) are the corresponding Clebsh-Gordan coefficients, whose squared value is
+    the probability of measuring the \(\chi_1 \otimes \chi_2\) state represented by that term.
+\end{minipage}
+\hspace{10pt}
+\fbox{
+\begin{minipage}[t]{.33\textwidth}
+    \vspace{5pt}
+    \begin{center}
+        \underline{Possible Combined \( |s \ m\rangle \)}
+    \end{center}
+    \setlength{\parindent}{.5cm}
+    \begin{center} \( \begin{aligned}
+        (2s_\text{max}+1) &\left\{ \begin{tabular}{l}
+            \( \Big| s_\text{max} \ \ s_\text{max} \Big\rangle \)\\[5pt]
+            \( \Big| s_\text{max} \ \ s_\text{max} {\scriptstyle - 1} \Big\rangle \)\\[5pt]
+            \indent \ \ \(...\) \\[5pt]
+            \( \Big| s_\text{max} \ \ {\scriptstyle -} s_\text{max} \Big\rangle \) \\[5pt]
+        \end{tabular} \right.\\
+        &\left\{ \begin{tabular}{l}
+            \( \Big| s_\text{max} {\scriptstyle - 1} \ \ s_\text{max} {\scriptstyle - 1} \Big\rangle \)\\[5pt]
+            \( \Big| s_\text{max} {\scriptstyle - 1} \ \ s_\text{max} {\scriptstyle - 2} \Big\rangle \)\\[5pt]
+            \indent \ \ \(...\) \\[5pt]
+        \end{tabular} \right. \\
+        &\indent \indent \ \ \ ...\\
+        &\indent \indent \ \ \ ...\\
+        (2s_\text{min} + 1) &\left\{ \begin{tabular}{l}
+            \( \Big| s_\text{min} \ \ s_\text{min} \Big\rangle \)\\[5pt]
+            \indent \ \ \(...\)\\[5pt]
+            \( \Big| s_\text{min} \ \ {\scriptstyle -} s_\text{min} \Big\rangle \)
+        \end{tabular} \right. 
+    \end{aligned} \) \end{center}
+    \vspace{.1cm}
+\end{minipage}
+}
+
+\vspace{20pt} 
+    More easily, if \(m_1\) and \(m_2\) are also known from the start, then \(m = m_1 + m_2\), and
+\[ \boxed{ | s_1 \ m_1 \rangle \otimes | s_2 \ m_2 \rangle 
+    = \sum_s C'_{sms_{1}m_{1}s_{2}m_{2}} \ | s \ {\scriptstyle (m_1+m_2)} \rangle} \]
+where the sum is only over all possible \(s\) as satisfied above - \textbf{1.), 2.) and 3.)}.
+The coefficient \(C'\) also takes the same 6 variables as \(C\) but the numbers 
+and their primes are swapped (e.g., \(s_1 \leftrightarrow s_{1'}\)).
+In this case, the total z-component, \(m\), is known. The only unknown is the total spin, \(s\), 
+whose probability when measured is \((C')^2\).
+
+%--------------------------------------------------------------------------------------------------------------------
+\newpage
+\subsection{Electron in Magnetic Field}
+
+\vspace{10pt} \noindent
+\(\mu_\text{clas.} = IA = \frac{q}{2 \pi r} v (\pi r^2) 
+    = \frac{q}{2 \pi r} \frac{L}{m r} (\pi r^2) = \left( \frac{q}{2m} \right) L\)\\[10pt]
+\(\mu_\text{quan.} = \left( \frac{g_e q}{2m} \right) S = \left( \frac{q}{m} \right) S = \gamma S\)
+\[\begin{aligned}
+    \tau_\mu &= \mu \times B \\[5pt]
+    F_\mu &= \nabla(\mu \dotP B)
+\end{aligned}
+\indent , \indent\begin{aligned}
+    H &= -\mu \dotP B \\[5pt]
+    &= - \gamma S \dotP B
+\end{aligned}\]
+
+% Larmor Procession
+\vspace{20pt} \noindent
+\underline{Larmor Precession}\\[10pt]
+\(\begin{aligned}
+    B &= B_0 \hat{k}\\[10pt]
+    H &= - \gamma B_0 S_z \\[5pt]
+    &= - \gamma B_0 \left( \begin{matrix} 
+            \tfrac{\hbar}{2} & 0\\
+            0 & -\tfrac{\hbar}{2}
+        \end{matrix} \right) \\[10pt]
+\end{aligned} 
+\ \ \Rightarrow \ \
+\begin{aligned}
+    \chi(t) &= \cos(\alpha / 2) \left(\begin{matrix}
+            1\\
+            0
+        \end{matrix}\right) e^{- \frac{i}{\hbar} E_1 t} 
+        + \sin(\alpha / 2) \left(\begin{matrix}
+            0\\
+            1
+        \end{matrix}\right) e^{- \frac{i}{\hbar} E_2 t}\\[5pt]
+    &= \left(\begin{matrix}
+            \cos(\alpha / 2) e^{- \frac{i}{\hbar} E_1 t} \\
+            \sin(\alpha / 2) e^{- \frac{i}{\hbar} E_2 t}
+        \end{matrix}\right)\\[20pt]
+    \left(\begin{matrix}
+        \langle S_x \rangle\\[5pt]
+        \langle S_y \rangle\\[5pt]
+        \langle S_z \rangle
+    \end{matrix}\right) &=
+    \left(\begin{matrix}
+        \frac{\hbar}{2} \sin(\alpha) \cos(\gamma B_0 t)\\[5pt]
+        - \frac{\hbar}{2} \sin(\alpha)\sin(\gamma B_0 t)\\[5pt]
+        \frac{\hbar}{2} \cos(\alpha)
+    \end{matrix}\right) \indent \text{\scriptsize(torque from \(B\) with \(S\) leads to precession)}
+\end{aligned}\)
+
+% Stern-Gerlach
+\vspace{20pt} \noindent
+\underline{Stern-Gerlach}\\[10pt]
+
+%-------------------------------------------------------------------------------------------------------------
+% Bosons and Fermions
+\newpage
+\section{Bosons and Fermions}
+
+% Distinguishable Particles
+\vspace{5pt} \noindent
+Distinguishable Particles: \indent
+\(\boxed{ \psi(r_1,r_2) \equiv \psi_a(r_1) \psi_b(r_2) }\)
+
+% Indistinguishable Particles
+\vspace{15pt} \noindent
+Indistinguishable Particles:
+\[\underline{P_x f(x_1, x_2; \ y_1, y_2; \ ...) \quad = \quad \pm \ f(x_2, x_1; \ y_1, y_2; \ ...)}\]
+
+\vspace{5pt} \indent \(\begin{aligned}
+    &\begin{aligned}
+        &\text{Boson:}\\
+        &\big( s \in \{ 0,1,2,... \} \big)
+    \end{aligned}& \indent \psi_+(r_1,r_2) 
+        &\equiv \frac{1}{\sqrt{2}} \Big[ \psi_a(r_1) \psi_b(r_2) + \psi_b(r_1) \psi_a(r_2) \Big] \\[5pt]
+        && \Aboxed{ \psi(r_1,r_2) &= \psi(r_2,r_1) } 
+        \indent \rightarrow \indent \boxed{P_i \Psi = \Psi} 
+        \indent \text{\scriptsize(symmetric)}\\[10pt]
+    &\begin{aligned}
+        &\text{Fermion:}\\
+        &\big( s \in \{ \tfrac{1}{2}, \tfrac{3}{2}, \tfrac{5}{2}, ... \} \big)
+    \end{aligned}& \indent \psi_-(r_1,r_2) 
+        &\equiv \frac{1}{\sqrt{2}} \Big[ \psi_a(r_1) \psi_b(r_2) - \psi_b(r_1) \psi_a(r_2) \Big]\\[5pt]
+        && \Aboxed{ \psi(r_1,r_2) &= - \psi(r_2,r_1) }
+        \indent \rightarrow \indent \boxed{P_i \Psi = - \Psi} 
+        \indent \text{\scriptsize(antisymmetric)}
+\end{aligned}\)
+
+% Exchange Forces
+\subsection{Exchange Forces: \indent \(\Big\langle (x_1 - x_2)^2 \Big\rangle 
+    = \langle x_1^2 \rangle + \langle x_2^2 \rangle 
+    - 2 \langle x_1 x_2 \rangle\)}
+
+% Equations
+\vspace{5pt}
+\hspace{.5cm} \fbox{ \(\begin{aligned}
+    &\text{Dist. Part. \ :}&  \big\langle {\scriptstyle (\Delta x)^2} \big\rangle 
+        &= \big\langle {\scriptstyle (\Delta x)^2} \big\rangle _d = \langle x^2 \rangle_a + \langle x^2 \rangle_b 
+        - 2 \langle x \rangle_a \langle x \rangle_b\\[10pt]
+    &\text{Symmetric:}&        \big\langle {\scriptstyle (\Delta x)^2} \big\rangle 
+        &= \big\langle {\scriptstyle (\Delta x)^2} \big\rangle _d -
+        2 \ \big\Vert \left\langle \psi_b \right| x \left| \psi_a \right\rangle \big\Vert^2 
+        \indent \text{\scriptsize(attractive if overlap)}\\[10pt]
+    &\text{Antisymmetric:}&      \big\langle {\scriptstyle (\Delta x)^2} \big\rangle 
+        &= \big\langle {\scriptstyle (\Delta x)^2} \big\rangle _d +
+        2 \ \big\Vert \left\langle \psi_b \right| x \left| \psi_a \right\rangle \big\Vert^2
+        \indent \text{\scriptsize(repulsive if overlap)}
+\end{aligned}\) }
+
+% Boson/Fermion <x1x2>
+\vspace{10pt} \noindent
+\(\bullet \ \begin{aligned}[t]
+    \langle x_1 x_2 \rangle &= \frac{1}{2} \int \Big[ \psi_a(r_1)^* \psi_b(r_2)^* 
+        \pm \psi_b(r_1)^* \psi_a(r_2)^* \Big] x_1 x_2 \Big[ \psi_a(r_1) \psi_b(r_2) 
+        \pm \psi_b(r_1) \psi_a(r_2) \Big] dx_1 dx_2\\[5pt]
+    &= \ \begin{aligned}[t]
+            &   \frac{1}{2} \langle x \rangle_a \langle x \rangle_b +
+                \frac{1}{2} \langle x \rangle_b \langle x \rangle_a \\[5pt]
+            &\pm \frac{1}{2} \Big\langle \psi_b(r_1) \Big| x_1 \Big| \psi_a(r_1) \Big\rangle 
+                \Big\langle \psi_a(r_2) \Big| x_2 \Big| \psi_b(r_2) \Big\rangle \pm \frac{1}{2} 
+                \Big\langle \psi_a(r_1) \Big| x_1 \Big| \psi_b(r_1) \Big\rangle
+                \Big\langle \psi_b(r_2) \Big| x_2 \Big| \psi_a(r_2) \Big\rangle
+        \end{aligned}\\[10pt]
+    &= \langle x \rangle_a \langle x \rangle_b \pm
+    \big\Vert \left\langle \psi_b \right| x \left| \psi_a \right\rangle \big\Vert^2
+\end{aligned}\)
+
+\vspace{15pt} \noindent
+Two Electrons: \\[5pt]
+\indent \(\psi{\scriptstyle(r_1,r_2)} \chi{\scriptstyle(m_1,m_2)} = \left\{\begin{aligned} 
+    \begin{gathered}
+        \text{\scriptsize(singlet)}\\
+        - \psi{\scriptstyle(r_1,r_2)} \chi{\scriptstyle(m_2,m_1)} 
+    \end{gathered}&&
+        &\Rightarrow& &\begin{aligned}
+            &\chi \ \text{\scriptsize is antisymmetric so} \\
+            &\psi \ \text{\scriptsize is symmetric}
+        \end{aligned}& 
+        &\Rightarrow& &\text{Attractive} \\[5pt]
+    \begin{gathered}
+        \text{\scriptsize(triplet)}\\
+        - \psi{\scriptstyle(r_2,r_1)} \chi{\scriptstyle(m_1,m_2)} 
+    \end{gathered}&&
+        &\Rightarrow& &\begin{aligned}
+            &\chi \ \text{\scriptsize is symmetric so} \\
+            &\psi \ \text{\scriptsize is antisymmetric}
+        \end{aligned}& 
+        &\Rightarrow& &\text{Repulsive} \\
+\end{aligned}\right.\)
+
+\newpage
+\subsection{Statistics}
+Sterling's Approx: \indent \(\begin{aligned}
+    \log(z!) &\approx z \log(z) - z \indent \indent z \gg 1 \ \ \text{or} \ \ z = 0\\
+    \frac{d}{dz} \ \log(z!) &\approx \log(z)
+\end{aligned}\)\\[15pt]
+Lagrange Multiplier: \indent \(\begin{gathered}
+    G(X,\alpha,\beta) = \log(Q{\scriptstyle(X)}) + \alpha f_1(X) + \beta f_2(X)\\[5pt]
+    \frac{\partial G}{\partial \alpha}[Q_\text{max}] = 0, \indent
+    \frac{\partial G}{\partial \beta}[Q_\text{max}] = 0, \indent
+    \frac{\partial G}{\partial N_n}[Q_\text{max}] = 0
+\end{gathered}\)
+
+\vspace{10pt} \noindent
+\rule[0pt]{1\textwidth}{.5pt}
+
+\[\begin{aligned}
+    &\sum_n N_n = N &       &\sum_n N_n E_n = E\\
+    f_1(X) &= N - \sum_n N_n = 0 & \indent \indent f_2(X) &= E - \sum_n N_n E_n = 0
+\end{aligned}\]
+
+Let there be \(N_n\) particles in the \(E_n\) energy level having \(d_n\) degeneracies, and
+\(Q(N_1, N_2, ...)\) be the number of possible configurations for such a state given \(X = (N_1, N_2, ..., N_n)\).
+
+\vspace{25pt} \noindent
+\(\begin{aligned}
+    &\text{Dist.}&     &\left\{ \begin{aligned}
+        &\boldsymbol{1.)}\ \begin{aligned}[t]
+            Q(X) &= \prod_n 
+            \left( \begin{matrix} 
+                N - N_1 - ... - N_{n-1} \\ 
+                N_n 
+            \end{matrix}\right) d_n^{N_n} \\
+            &= N! \prod_n \frac{d_n^{N_n} }{N_n!}
+        \end{aligned}\\[10pt]
+        &\boldsymbol{2.)}\ \log(Q) = \log(N!) + \sum_n \begin{aligned}[t]
+            N_n \log(d_n) \\[5pt]
+            - \log(N_n!)
+        \end{aligned}
+    \end{aligned} \indent \indent \begin{aligned}
+        &\boldsymbol{3.)}\ \frac{\partial G}{\partial N_n} \approx \begin{aligned}
+            &\log(d_n) - \log(N_n) \\[5pt]
+            &- \alpha - \beta E_n
+        \end{aligned} = 0\\[10pt]
+        &\boldsymbol{4.)}\ N_n = \frac{d_n}{e^{\beta E_n + \alpha}}
+    \end{aligned} \right. \\[20pt]
+    &\text{Fermion}&   &\left\{ \begin{aligned}
+        &\boldsymbol{1.)}\ Q(X) = \prod_n 
+            \left( \begin{matrix} 
+                d_n \\ 
+                N_n 
+            \end{matrix}\right)\\[10pt]
+        &\boldsymbol{2.)}\ \log(Q) = \sum_n \begin{aligned}[t]
+            &\log(d_n!) - \log(N_n!) \\[5pt]
+            &- \log[(d_n - N_n)!]
+        \end{aligned}
+    \end{aligned} \indent \indent \begin{aligned}
+        &\boldsymbol{3.)}\ \frac{\partial G}{\partial N_n} \approx \begin{aligned}
+            &- \log(N_n) + \log(d_n - N_n) \\[5pt]
+            &- \alpha - \beta E_n 
+        \end{aligned} = 0\\[10pt] 
+        &\boldsymbol{4.)}\ N_n = \frac{d_n}{e^{\beta E_n + \alpha} + 1}
+    \end{aligned} \right.\\[20pt]
+    &\text{Boson}&     &\left\{ \begin{aligned}
+        &\boldsymbol{1.)}\ Q(X) = \prod_n 
+            \left( \begin{matrix} 
+                N_n + d_n - 1 \\ 
+                N_n 
+            \end{matrix}\right)\\[10pt]
+        &\boldsymbol{2.)}\ \log(Q) = \sum_n \begin{aligned}[t]
+            &\log[(N_n + d_n - 1)!] \\[5pt]
+            &- \log(N_n!) \\[5pt]
+            &- \log[(d_n - 1)!]
+        \end{aligned}
+    \end{aligned} \indent \indent \begin{aligned}
+        &\boldsymbol{3.)}\ \frac{\partial G}{\partial N_n} \approx \begin{aligned}
+            &\log(N_n + d_n - 1) - \log(N_n) \\[5pt]
+            &- \alpha - \beta E_n 
+        \end{aligned} = 0\\[10pt]
+        &\boldsymbol{4.)}\ N_n = \frac{d_n - 1}{e^{\beta E_n + \alpha} - 1} 
+            \approx \frac{d_n}{e^{\beta E_n + \alpha} - 1}
+    \end{aligned} \right.
+\end{aligned}\)
+
+%-------------------------------------------------------------------------------------------------------------------
+\newpage
+Given some substance in thermal equilibrium,
+\[\beta = \frac{1}{k_b T} \indent \indent \mu(T) \equiv - \frac{\alpha}{k_b T}\]
+where \(\mu\) depends on the situation.
+
+\[\begin{aligned}
+    \tfrac{N_n}{d_n}: \indent n(\epsilon) \quad = \quad \begin{cases} 
+        \frac{1}{ e^{ (\epsilon - \mu) / k_b T } }       & \indent \text{Maxwell-Boltzmann}\\[10pt]
+        \frac{1}{ e^{ (\epsilon - \mu) / k_b T } + 1}    & \indent \text{Fermi-Dirac} \\[10pt]
+        \frac{1}{ e^{ (\epsilon - \mu) / k_b T } - 1}    & \indent \text{Bose-Einstein}
+    \end{cases}
+\end{aligned}\]
+
+%-------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------
+% Perturbation Theory
+\newpage
+\section{Perturbation Theory}
+% Expansion of Terms
+\(\begin{aligned}
+    H^{(0)} \psi_n &= E_n \psi_n \\
+    &\downarrow\\
+    H \psi_n' &= E_n' \psi_n'\\[5pt]
+    \Big( H^{(0)} + \lambda H^{(1)} \Big) \Big( \psi_n + \lambda \psi_n^{(1)} + \lambda^2 \psi_n^{(2)} + ... \Big) 
+        &= \Big( E_n + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)} + ... \Big) 
+        \Big( \psi_n + \lambda \psi_n^{(1)} + \lambda^2 \psi_n^{(2)} + ... \Big)\\[10pt]
+    \begin{gathered}
+        \cancel{ \lambda^0 H^{(0)} \psi_n }\\[5pt]
+        + \ \lambda^1 ( H^{(0)} \psi_n^{(1)} + H^{(1)} \psi_n ) \\[5pt]
+        + \ \lambda^2 ( H^{(0)} \psi_n^{(2)} + H^{(1)} \psi_n^{(1)}) \\[5pt]
+        + \ ...
+    \end{gathered} \ \ &= \ \
+        \begin{aligned}
+            &\cancel{ \lambda^0 E_n \psi_n }\\[5pt]
+            + \ &\lambda^1 ( E_n \psi_n^{(1)} + E_n^{(1)} \psi_n ) \\[5pt]
+            + \ &\lambda^2 ( E_n \psi_n^{(2)} + E_n^{(1)} \psi_n^{(1)} + E_n^{(2)} \psi_n ) \\[5pt]
+            + \ &...
+        \end{aligned} \indent\indent {\scriptstyle (\lambda = 1)}
+\end{aligned}\)
+
+
+% Non-Degenerate
+\subsection{Non-Degenerate Theory}
+
+% Finding 1st order approx, E^1 and psi^1
+\vspace{10pt} \noindent
+\(\underline{ E_n^{(1)} , \ \psi_n^{(1)} :} \begin{aligned}[t]
+    H^{(0)} \psi_n^{(1)} + H^{(1)} \psi_n &= E_n \psi_n^{(1)} + E_n^{(1)} \psi_n \\[10pt]
+    \langle \psi_m | \ \ \ ( - H^{(1)} + E_n^{(1)} ) | \psi_n \rangle 
+        &= \langle \psi_m | \ \ \ (H^{(0)} - E_n) | \psi_n^{(1)} \rangle \\[5pt]
+    &= \langle \psi_m | \ \ \ (H^{(0)} - E_n) \sum c_i | \psi_i \rangle \\
+    &= \sum c_i (E_i - E_n) \langle \psi_m | \psi_i \rangle\\
+    - \langle \psi_m | H^{(1)} | \psi_n \rangle + E_n^{(1)} \langle \psi_m | \psi_n \rangle 
+        &= c_m (E_m - E_n)
+\end{aligned}\)\\[10pt]
+\[ \boxed{ E_n^{(1)} = \langle \psi_n | H^{(1)} | \psi_n \rangle } \indent \indent 
+    \boxed{ \psi_n^{(1)} = \sum_{m \neq n} \frac{\langle \psi_m | H^{(1)} | \psi_n \rangle}{E_n - E_m} \psi_m
+    + (0) \psi_n } \]
+
+% Finding 2nd order approx, E^2   
+\vspace{20pt} \noindent
+\(\underline{ E_n^{(2)} :} \indent \begin{aligned}[t]
+    \begin{gathered}
+        \cancel{ E_n \langle \psi_n | \psi_n^{(2)} \rangle }
+        + E_n^{(1)} \cancel{ \langle \psi_n | \psi_n^{(1)} \rangle }\\[5pt]
+        + E_n^{(2)} \langle \psi_n | \psi_n \rangle 
+    \end{gathered}
+        \ \ &= \ \ \cancel{ \langle H^{(0)} \psi_n | \psi_n^{(2)} \rangle } 
+        + \langle \psi_n | H^{(1)} | \psi_n^{(1)} \rangle \\
+    &= \sum_{m \neq n} \frac{\langle \psi_m | H^{(1)} | \psi_n \rangle}{E_n - E_m} 
+        \langle \psi_n | H^{(1)} | \psi_m \rangle \\[5pt]
+    \Aboxed{ E_n^{(2)} &= \sum_{m \neq n} \frac{ \Big| \langle \psi_m | H^{(1)} | \psi_n \rangle \Big|^2 }{E_n - E_m} }
+\end{aligned}\)
+
+%--------------------------------------------------------------------------------------------------------------------------
+% Degenerate Perturbation
+\newpage
+\subsection{Degenerate Perturbation Theory {\scriptsize (see Matrix Operators)}}
+
+% Degenerate State
+\vspace{5pt} \noindent 
+\(\begin{aligned}
+    \Psi &= \sum_i \left( c_i^{(\psi)}{\scriptstyle[\Psi]} \right) \psi_i \\[5pt]
+    &\equiv \sum_i c_i^{(\psi)} \psi_i \\[5pt]
+    &= c_0^{(\psi)} \psi_0 + c_1^{(\psi)} \psi_1 + ...
+\end{aligned}\) \indent , \indent
+\(\forall \psi_i: \indent \begin{aligned}
+    &\bullet \ H^{(0)} \psi_i = E_n \psi_i 
+        \indent \underline{ \text{\scriptsize(\(\psi_n\) are degenerate eigenfunctions of \(H^{(0)}\))} }\\[5pt]
+    &\bullet \ \langle \psi_i | \psi_j \rangle = \delta_{ij} \\[5pt]
+    &\bullet \ \langle \psi_i | \hat{Q} | \psi_j \rangle \equiv Q_{ij}    
+\end{aligned}\)
+
+\vspace{5pt}\noindent
+\rule[0pt]{1\textwidth}{.5pt}
+
+\vspace{5pt} \noindent
+\(\begin{aligned}
+    E_n \Psi^{(1)} + E^{(1)} \Psi &= H^{(0)} \Psi^{(1)} + H^{(1)} \Psi
+        \indent \text{\scriptsize(first order)} \\[10pt]
+    \cancel{ E_n \langle \psi_i | \Psi^{(1)} \rangle } + E^{(1)} \langle \psi_i | \Psi \rangle 
+        &= \cancel{ \langle H^{(0)} \psi_i | \Psi^{(1)} \rangle } + \langle \psi_i | H^{(1)} | \Psi \rangle\\[5pt]
+    &= \langle \psi_i | H^{(1)} | c_0 \psi_0 + c_1 \psi_1 + ... \rangle \\[5pt]
+    c_i E^{(1)}
+        &= c_0 \langle \psi_i | H^{(1)} | \psi_0 \rangle + c_1 \langle \psi_i | H^{(1)} | \psi_1 \rangle + ...\\
+    E^{(1)} 
+        \left(\begin{matrix} 
+            c_0{\scriptstyle[\Psi]} \\
+            c_1{\scriptstyle[\Psi]} \\
+            \vdots
+        \end{matrix}\right)^{(\psi)}
+        &= 
+        \left(\begin{matrix} 
+            H^{(1)}_{0 0} & H^{(1)}_{0 1} & ...\\
+            H^{(1)}_{1 0} & H^{(1)}_{1 1} & ...\\
+            \vdots & \vdots
+        \end{matrix}\right)^{(\psi)}
+        \left(\begin{matrix} 
+            c_0{\scriptstyle[\Psi]} \\
+            c_1{\scriptstyle[\Psi]} \\
+            \vdots
+        \end{matrix}\right)^{(\psi)} 
+        \ \ \Rightarrow \ \ \boxed{
+        \begin{gathered}[b]
+            \text{\scriptsize(solve for \(E^{(1)}, \vec{c}^{\ (\psi)}{\scriptstyle[\Psi]}\))}\\
+            \left\Vert\begin{matrix} 
+                H^{(1)}_{a a} - E^{(1)} & H^{(1)}_{a b}               & ...\\
+                H^{(1)}_{b a}             & H^{(1)}_{b b} - E^{(1)}   & ...\\
+                \vdots  & \vdots
+            \end{matrix}\right\Vert
+        \end{gathered} = 0 }\\[10pt]
+\end{aligned}\) 
+
+\noindent
+In general, \\[10pt]
+\(\begin{aligned}
+    E_i^{(1)} \vec{c}^{\ (\psi)}{\scriptstyle[\Psi_i]} \ \ 
+        &= \ \ \overline{H^{(1)}}^{\ (\psi)} \ \vec{c}^{\ (\psi)}{\scriptstyle[\Psi_i]} 
+        \indent\indent \text{\scriptsize(\(i\)th eigen-)}\\[5pt]
+    E_i^{(1)}
+        \left(\begin{matrix} 
+            |\\
+            \vec{c}\ {\scriptstyle[\Psi_i]}\\
+            |    
+        \end{matrix}\right)^{(\psi)}
+        &= \left(\begin{matrix} 
+            |   & |     \\
+            \vec{c}\ {\scriptstyle[\Psi_i]} & \vec{c}\ {\scriptstyle[\Psi_i]} & ...\\
+            |   & |     
+        \end{matrix}\right)^{(\psi)}
+        \left(\begin{matrix} 
+            E_0^{(1)} & 0 & ...\\
+            0 & E_1^{(1)} & ...\\
+            \vdots & \vdots
+        \end{matrix}\right)
+        \left(\begin{matrix} 
+            -   & \vec{c}^{\ *}{\scriptstyle[\Psi_i]} & -\\
+            -   & \vec{c}^{\ *}{\scriptstyle[\Psi_i]} & -\\
+                & \vdots    & 
+        \end{matrix}\right)^{(\psi)}
+        \left(\begin{matrix} 
+            |\\
+            \vec{c}\ {\scriptstyle[\Psi_i]}\\
+            |    
+        \end{matrix}\right)^{(\psi)}
+\end{aligned}\)
+
+\vspace{10pt} \noindent
+Instead of solving the characteristic polynomial, it would be wise to choose a basis \(\{\psi\}\) such that
+\(\vec{c}^{\ (\psi)}{\scriptstyle[\Psi_i]} = ( ... 0\ 0\ 1_{(i)}\ 0\ 0\ ...)^T \ \Leftrightarrow \ \Psi_i = \psi_i\),
+making \(\overline{H^{(1)}}^{(\psi)}\) diagonal with eigenvalue entries. These are the energy 
+eigenvalues, \(E_i^{(1)} = \big( H^{(1)} \big)_{ii}^{(\psi)} 
+= \langle \psi_i | H^{(1)} | \psi_i \rangle \), which is just like first-order non-Perturbation energy. 
+This also means \(|\psi_i\rangle\) are eigenfunctions of \(H^{(1)}\) (see Matrix Operators).
+
+\vspace{10pt} \noindent
+\begin{minipage}{.3\textwidth}
+    \setlength{\parindent}{.5cm}
+    It is best to find a hermitian operator, \(\hat{A}\), that commutes with \(H^{(0)}\) and \(H^{(1)}\),
+    whose eigenvalues within the degenerate basis are unique. The corresponding eigenfunctions will be 
+    a basis that makes \(H^{(1)}\) diagonal. This will also make them eigenfunctions of \(H^{(1)}\).
+\end{minipage}
+\hspace{.75cm}
+\begin{minipage}{.7\textwidth}
+    \(1.\ A = A^\dagger\)\\[5pt]
+    \(2.\ [A,H^{(0)}]=0 \ \rightarrow \ \Big\{ \exists \{\Psi\} \ | \ \ 
+        (A\Psi_n = a_n \Psi_n) , \ \ (H^{(0)}\Psi_n = E_n \Psi_n) \Big\}\) \\[5pt]
+    \(3.\ \{\psi\} \subset \{\Psi\} \ \ \text{s.t} \ \ \forall \psi_i : \ \left\{
+        \begin{aligned}
+            &\left( H^{(0)} \psi_i = E_n \psi_i \right) , \ \ \text{\scriptsize\(\leftarrow\) degenerate}\\[3pt]
+            &\left( A \psi_i = a_i \psi_i | \right) , \ \
+            \left( \forall{\scriptstyle(i \neq j)} \ a_i \neq a_j \right)            
+        \end{aligned} \right.
+    \)\\[7pt]
+    \(4.\ [A,H^{(1)}]=0 \ \Rightarrow \ \begin{aligned}[t]
+            0 &= \langle A \psi_i | H^{(1)} | \psi_j \rangle - \langle \psi_i | H^{(1)} | A \psi_j \rangle\\
+            0 &= (a_i - a_j) H^{(1)}_{ij}\\
+            0 &= H^{(1)}_{ij} \ \ \ \ \checkedbox
+        \end{aligned}\)
+\end{minipage}
+
+%------------------------------------------------------------------------------------------------------------------------
+% Apply Perturbation Theory to Hydrogen Atom Corrections
+\newpage
+\subsection{Hydrogen Energy Corrections}
+% Fine Structure Correction
+\subsubsection{Fine Structure - \(\alpha^4 mc^2\)}
+{\scriptsize The Dirac Equation can derive the total fine structure correction with a \(\alpha^4\) order approx.}
+
+\vspace{15pt}\noindent
+% Relativistic
+\underline{1. Relativistic}, \ \(\boldsymbol{\hat{p}^4}\)
+\begin{align*}
+    T &= \sqrt{p^2c^2 + m^2c^4} - mc^2 \\[5pt]
+    &= \frac{ (\tfrac{1}{2}) }{1!} \left( \frac{p}{mc} \right) 
+        + \frac{ (\tfrac{1}{2}) (1 - \tfrac{1}{2}) }{2!} \left( \frac{p}{mc} \right)^2  + ...\\[5pt]
+    &= \frac{p^2}{2m} - \frac{p^4}{8 m^3 c^2} + ...\\
+    &\downarrow\\
+    H^{(1)}_r &= - \frac{p^4}{8 m^3 c^2} \indent \indent
+        \begin{minipage}{.5\textwidth}
+            \scriptsize(For some reason \(\hat{p}^4\) needs to be hermitian to use perturbation theory. 
+            It only isn't when \(l=0\), while \(\hat{p}^2\) always is hermitian. See Prob. 6.15)    
+        \end{minipage}
+\end{align*}
+
+\vspace{5pt} \noindent
+\(L^2\) and \(L_z\) should commute with \(p^4\) because the perturbation is spherically symmetric, meaning 
+\(l\) and \(m_l\) should be conserved (see Operator Evolution). Their eigenvalues are also distinct 
+(taking the eigenfunctions of \(nlm_l\) together) within each set of \(n^2\) degeneracies, so their eigenvectors and 
+eigenvalues can be used. \(n, l\) and \(m_l\) the "good" numbers.
+
+\vspace{10pt}
+\(\begin{aligned}
+    \langle r^{-1} \rangle &= \tfrac{1}{n^2 a_0^1 }\\[5pt]
+    \langle r^{-2} \rangle &= \tfrac{1}{ (l + 1/2) n^3 a_0^2 }
+\end{aligned}\)
+\hspace{10pt}
+\rule[-85pt]{.5pt}{170pt}
+\hspace{10pt}
+\(\begin{aligned}
+    \langle \psi_{nlm_l} | H^{(1)}_r | \psi_{nlm_l} \Big\rangle 
+        &= \frac{- 1}{8 m^3 c^2} \langle \psi_{nlm_l} | p^4 | \psi_{nlm_l} \rangle\\[5pt]
+    &= \frac{- 1}{8 m^3 c^2} \langle p^2 \psi_{nlm_l} | p^2 | \psi_{nlm_l} \rangle\\[5pt]
+    &= \frac{- 1}{8 m^3 c^2} \Big\langle \big[ 2m(E_n-V) \big]^2 \Big\rangle\\[5pt]
+    &= \frac{- 4m^2}{8 m^3 c^2} \langle E_n^2 -2E_nV + V^2 \rangle\\[5pt]
+    &= - \frac{E_n^2}{2mc^2} \left[ \frac{4n}{l + 1/2} - 3\right]
+\end{aligned}\)
+
+% Spin Orbit Coupling
+\vspace{20pt}
+\noindent
+\underline{2. Spin-Orbit Coupling}, \ \(\boldsymbol{S_e \dotP L_e}\)
+
+\vspace{10pt} \noindent 
+{\scriptsize In the electron's frame of reference, the proton is spinning around it, creating a \(B\)-field 
+affecting its magnetic dipole moment. The non-inertial reference frame requires multiplying by the Thomas 
+procession correction, which in this case is \(C_T = g_e-1 = 1/2\). In the lab frame, the moving electron's 
+magnetic dipole moment creates an electric dipole moment, which is affected by the proton charge. The latter
+is much harder to calculate.}
+
+%-----------------------------------------------------------------------------------------------------------------------
+\begin{center}
+    \(\begin{aligned}
+        H_{so}^{(1)} &= - C_T \ \mu_e \dotP B(L_e)  
+            \hspace{1cm} \text{\scriptsize(See Electron in Magnetic Field)}\\[5pt]
+        &= \frac{kqq}{2} \frac{1}{m^2 c^2 r^3} S_e \dotP L_p\\[5pt]
+        &= \frac{kqq}{2m} \frac{1}{m c^2} \frac{S \dotP L}{r^3} 
+            = \frac{e^2}{8 \pi \epsilon_0 m^2 c^2} \frac{S \dotP L}{r^3} 
+    \end{aligned}\)
+\end{center}
+
+\vspace{5pt} \noindent
+\(S \dotP L\) does not commute with \(L\) or \(S\) (meaning \(m_l\) and \(m_s\) are bad), but 
+\([S \dotP L, S^2] = [S \dotP L, L^2] = 0\). The sum of the two, \(J \equiv L + S\), and 
+\(J^2\) also commute with the perturbation. They are all conserved, and their unique
+eigenvalues per set of degeneracies - \(l, s{\scriptstyle=1/2}, j, m_j\) - are the "good" 
+numbers (along with \(n\)).
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+    S \dotP L &= \frac{1}{2} \left( J^2 - L^2 - S^2\right)\\[5pt]
+    \langle r^{-3} \rangle &= \frac{1}{l(l+1/2)(l+1)n^3a_0^3}
+\end{aligned}\)
+\hspace{5pt}
+\rule[-75pt]{.5pt}{150pt}
+\hspace{5pt}
+\(\begin{aligned}
+    \langle {\scriptstyle nljm_j} | H^{(1)}_{so} | {\scriptstyle nljm_j} \rangle 
+        &= \frac{kqq}{2m} \frac{1}{m c^2} \frac{\hbar^2 [ j(j+1) - l(l+1) - s(s+1) ]}{ 2 l(l+1/2)(l+1) n^3 a_0^3} \\[5pt]
+    &= \frac{kqq}{4 m n^4} \frac{\hbar^2 \alpha^3 m^3 c^3}{\hbar^3 m c^2} 
+        \frac{n [ j(j+1) - l(l+1) - s(s+1) ]}{l(l+1/2)(l+1)}\\[5pt]
+    &= \frac{kqq}{4 \hbar c n^4} \frac{\alpha^3 m^2 c^4}{m c^2} 
+        \frac{n [ j(j+1) - l(l+1) - s(s+1) ]}{l(l+1/2)(l+1)}\\[5pt]
+    &= \frac{E_n^2}{mc^2} \left\{ \frac{ n \left[ j(j+1) - l(l+1) - 3/4 \right] }{ l (l+1/2) (l+1) } \right\}
+\end{aligned}\)
+
+% Darwin Term
+\vspace{20pt}\noindent
+\underline{3. Darwin Term (correction for \(H_{so}^{(1)}\) when \(l=0\))} skipped
+
+% Total Correction
+\vspace{20pt}\noindent
+\underline{4. Total Correction}\\[15pt]
+\begin{minipage}{.5\textwidth}
+    \(\begin{aligned}
+        E^{(1)}_{fs} &= E^{(1)}_r + E^{(1)}_{so} \\[5pt]
+        &= - \frac{E_n^2}{2mc^2} \left[ \frac{4n}{l + \tfrac{1}{2}} - 3\right] + \frac{E_n^2}{mc^2} 
+            \left\{ \frac{ n \left[ j(j+1) - l(l+1) - 3/4 \right] }{ l (l+1/2) (l+1) } \right\}\\[5pt]
+        &= \frac{E_n^2}{2mc^2} \left( 3 - \frac{4n}{j + 1/2} \right) 
+            \hspace{20pt} {\scriptstyle(j = l \pm 1/2)}\\
+        &\downarrow\\
+        E_{nj} &= E_n + E^{(1)}_{fs}\\[5pt]
+        &= E_n \left[ 1 
+            - \frac{E_n}{2mc^2} \left( \frac{4n}{j + 1/2} - 3 \right) \right]\\[5pt]
+        &= -\frac{\alpha^2 mc^2}{2n^2} \left[ 1 
+            + \frac{\alpha^2}{n^2} \left( \frac{n}{j + 1/2} - 3/4 \right) \right]
+    \end{aligned}\) 
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+    \vspace{3cm}
+    Fine structure splits the \(l\) energy degeneracies. However, since \(j = l \pm 1/2\), there are still two \(j\)
+    degeneracies if \(n>2\). Overall, the good numbers to use for stationary state
+    solutions to the hydrogen atom w/ fine structure correction are \(n, l, s{\scriptstyle=1/2}, j, m_j\). Note, 
+    \(J^2, L^2, \text{ and } S^2\) always commute(?)
+\end{minipage}
+
+
+%------------------------------------------------------------------------------------------------------------------------
+% Zeeman Effect
+\newpage
+\subsubsection{Zeeman Effect (Ext. \(B\)-Field)}
+\begin{align*}
+    H_B^{(1)} &= - (\mu_s + \mu_l) \dotP B_\text{ext}
+        \indent\indent \text{\scriptsize(see Electron in Magnetic Field)}\\[5pt]
+    &= - \left( \frac{g_e q}{2m}S + \frac{q}{2m}L \right) \dotP B_\text{ext}\\[5pt]
+    &= \frac{e}{2m} \left( 2S + L \right) \dotP B_\text{ext}
+\end{align*}
+
+% Weak Zeeman
+\vspace{5pt} \noindent
+\underline{Weak Zeeman (\(B_\text{ext} \ll B_\text{int}\))}\\[-10pt]
+\begin{align*}
+    H_{WZ}^{(1)} &= \frac{e}{2m} B_\text{ext} \dotP (2S + L)  \\[5pt]
+    &= \frac{e}{2m} B_\text{ext} \dotP ( J + S )
+\end{align*}
+
+\vspace{5pt}\noindent
+Fine structure effects dominate the Zeeman effect, so the fine structure numbers are the good ones: 
+\(n,l,s{\scriptstyle=1/2},j\), and \(m_j\). \(m_s\) can't be used for \(\langle S \rangle\), so instead use the fact that
+the "vector" \(J = L+S\) is conserved, so a \textbf{time-averaged} \(S\)-component to the \(J\) "vector" can be defined as
+\(S_\text{ave} = \frac{S \dotP J}{J^2} J\), where \(S \dotP J = \frac{1}{2} \left( J^2 + S^2 - L^2 \right)\).
+
+\vspace{-10pt}
+\begin{align*}
+    E^{(1)}_\text{WZ} &= \frac{e}{2m} B_\text{ext} \dotP 
+        \langle {\scriptstyle nljm_j} | J + S_\text{ave} | {\scriptstyle nljm_j}\rangle\\[5pt]
+    &= \frac{e}{2m} B_\text{ext} \dotP 
+        \left\langle J \left( 1 + \frac{S \dotP J}{J^2} \right) \right\rangle\\[5pt]
+    &= \frac{e}{2m} B_\text{ext} \dotP \langle J \rangle 
+        \left(1 + \frac{ j(j+1) - l(l+1) + 3/4 }{ 2 j (j+1) }\right)\\[5pt]
+    &= \frac{e\hbar}{2m} B_\text{ext} m_j
+        \left(1 + \frac{ j(j+1) - l(l+1) + 3/4 }{ 2 j (j+1) }\right)
+        \indent \indent \text{\scriptsize(let \(B_\text{ext}\) be parallel to the z-axis)}\\[5pt]
+    &= \mu_B B_\text{ext} m_j g_j \indent \indent \begin{aligned}
+            &{\scriptstyle \mu_B = \text{Bohr magneton} = 5.788 \times 10^{-5} \ \text{ev/T}}\\
+            &{\scriptstyle g_j = \text{Lande g-factor}}\\
+        \end{aligned}
+\end{align*}
+
+% Strong Zeeman
+\vspace{10pt}\noindent
+\underline{Strong Zeeman (\(B_\text{ext} \gg B_\text{int}\))}\\[5pt]
+For a strong magnetic field parallel to the z-axis, \(m_l\) and \(m_s\) are stuck in the same place, 
+making them and \(l\) conserved. The external torque, however, means that the total angular momentums, 
+\(j\) and \(m_j\) are not. Though unneeded, obviously \(s{\scriptstyle=1/2}\). 
+
+\begin{center} \(\begin{aligned}
+    E_{SZ}^{(1)} &= \frac{e}{2m} B_\text{ext} \langle 2S_z + L_z \rangle\\[5pt]
+    &= \mu_B B_\text{ext} (2m_s + m_l)
+\end{aligned}\) \end{center}
+
+\noindent
+The spin-orbit correction must be changed with respect to the new good numbers, \(m_l\) and \(m_s\). 
+The relativistic correction uses the same numbers, so it stays the same.
+
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+    E_\text{so}^{(1)} &= \frac{e^2}{8 \pi \epsilon_0 m^2 c^2} 
+        \left\langle \frac{S_x L_x + S_y L_z + S_z L_z}{r^3} \right\rangle \\[5pt]
+    &= \frac{e^2}{8 \pi \epsilon_0 m^2 c^2} \frac{0 + 0 + \hbar^2 m_s m_l}{l (l+1/2) (l+1) n^3 a_0^3}\\[15pt]
+    &= \frac{kqq}{2 m^2 c^2} \frac{\hbar^2}{(\hbar / \alpha m c)^3 n^3}\frac{m_s m_l}{l (l+1/2) (l+1)}\\[5pt]
+    &= \frac{kqq}{2\hbar c} \frac{\alpha^3 m^2 c^4}{4 mc^2 n^4}\frac{4n m_s m_l}{l (l+1/2) (l+1)}\\[5pt]
+    &= \frac{E_n^2}{2mc^2} \frac{4n m_s m_l}{l (l+1/2) (l+1)}\\
+\end{aligned}\)
+\(\ \ \rightarrow \ \)
+\(\begin{aligned}[t]
+    E_\text{fs}^{(1)} &= E_\text{so}^{(1)} + E_\text{r}^{(1)}\\[5pt]
+    &= \frac{E_n^2}{2mc^2} \frac{4n m_s m_l}{l (l+1/2) (l+1)}
+        + \frac{E_n^2}{2mc^2} \left[ 3 - \frac{4n}{l + 1/2} \right]\\[5pt]
+    &= \frac{4n E_n^2}{2mc^2} \left[ \frac{m_s m_l}{l (l+1/2) (l+1)} 
+        + \frac{3}{4n} - \frac{1}{l + 1/2} \right]\\
+    &\downarrow\\
+    E_{nlm_lm_s} &= E_n + E_\text{SZ}^{(1)} + E_\text{fs}^{(1)}
+\end{aligned}\)
+
+% Intermediate Zeeman
+\vspace{25pt}\noindent
+\underline{Intermediate Zeeman (\(B_\text{ext} \sim B_\text{int}\))}\\[10pt]
+There are no good numbers here (see Degenerate Perturbation Theory). The basis is chosen to be 
+\(|j \ m_j \rangle = \sum_i C_i |l\ m_l \rangle \otimes |s\ m_s \rangle\) (see 2 Objects w/ Any Spin), as it makes
+\(\overline{H^{(1)}}^{(e)}\) easier (instead of using \(l, m_l, m_s\)).
+
+\begin{center}
+    \(\begin{aligned}
+        &1.)\ \psi_i = |j\ m_{j}\rangle_i&
+            &2.)\ \Big( \langle l\ m_l | \langle s\ m_s | \Big)_x 
+            \Big( |l\ m_l \rangle |s\ m_s \rangle \Big)_y = \delta_{xy}\\[5pt]
+        &3.)\ Q_{rc}^{(\psi)} = \langle \psi_r | \hat{Q} | \psi_c \rangle& \hspace{1.5cm}
+            &4.)\ \psi_i \ \ \text{s.t.}\ \ \left\{\begin{aligned}
+                &0 \leq l < n\\[5pt]
+                &j_{(l\pm)} = l \pm 1/2, \\[5pt]
+                & 2l^2 < i \leq 2(l {\scriptstyle+} 1)^2
+            \end{aligned}\right.
+    \end{aligned}\)
+\end{center}
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+    \begin{aligned}
+        \langle {\scriptstyle jm_j} | H^{(1)}_{fs} | {\scriptstyle jm_j} \rangle 
+            &= \frac{E_n^2}{2mc^2} \left( 3 - \frac{4n}{j + 1/2} \right)\\[5pt]
+        &\equiv \gamma_n \left( 3 - \frac{4n}{j + 1/2} \right)    
+    \end{aligned}\\[15pt]
+    \begin{aligned}
+        \langle {\scriptstyle jm_j} | H^{(1)}_{IZ} | {\scriptstyle jm_j} \rangle 
+        &= \langle {\scriptstyle jm_j} | H^{(1)}_{IZ} 
+            \Big( C_i | {\scriptstyle lm_l} \rangle \otimes | {\scriptstyle sm_s} \rangle \Big)\\
+        &= \mu_B B_\text{ext} (2m_s + m_l) C_i^2\\
+        &\equiv \beta (2m_s + m_l) C_i^2
+    \end{aligned}
+\end{aligned}\)
+\hspace{5pt}
+\rule[-75pt]{.5pt}{150pt}
+\hspace{5pt}
+\(\begin{gathered}
+    \begin{aligned}
+        &\overline{H^{(1)}}^{(jm_j)} = \overline{H^{(1)}_{fs}}^{(jm_j)} + \overline{H^{(1)}_{IZ}}^{(jm_j)}\\[10pt]
+        &\text{See Griffith Prob. 6.25 for example with \(n=2\)}
+    \end{aligned}
+\end{gathered}\)
+
+% Stark Effect
+\newpage
+\subsubsection{Stark Effect (Small Ext. \(E\)-Field)}
+
+\(\begin{aligned}
+    &\bullet \ H^{(1)} = - p \dotP E = eE \dotP r \indent \indent \text{\scriptsize(small r)}\\[5pt]
+    &\bullet \ n=1 \ \rightarrow \ H^{(1)} = 0\\[5pt]
+    &\bullet \ n=2 \ \rightarrow \ \begin{cases} 
+            H^{(1)} = 0             & \indent m = \pm 1\\[5pt]
+            H^{(1)} = k e |E| a_0   & \indent m = 0 
+                \indent \indent \text{\scriptsize(\(k\) is some constant)}
+        \end{cases}
+\end{aligned}\)
+
+
+% Lamb Shift
+\subsubsection{Lamb Shift (quantitized \(E\)-field) - \(\alpha^5 mc^2\) (skipped)}
+
+% Hyperfine
+\subsubsection{Hyperfine (Spin-Spin), \(\boldsymbol{S_p \dotP S_e}\) - \(m/m_p \ \alpha^4 mc^2\)}
+
+(Coupling between the electron magnetic moment and the magnetic field from the proton magnetic moment)
+
+\(\begin{aligned}
+    &\mu_e = - \frac{g_e e}{2m_e} S_e = - \frac{e}{m_e} S_e, 
+        \hspace{1cm} \mu_p = \frac{g_p e}{2m_p} S_p\\[5pt]
+    &B(\mu_p) = \frac{\mu_0}{4\pi r^3} [3( \vec{\mu_p} \dotP \hat{r} ) \hat{r} - \vec{\mu_p} ] 
+        + \frac{2\mu_0}{3} \vec{\mu_p} \delta^3(r)
+\end{aligned}\)
+\hspace{10pt}
+\rule[-43pt]{.5pt}{90pt}
+\hspace{10pt}
+\(\begin{aligned}
+    H^{(1)}_{hf} &= -\mu_e \dotP B(\mu_p)\\
+    &= ...\\
+    &\downarrow\\
+    E^{(1)}_{hf} &= \left(\frac{e}{m_e} \right) \left( \frac{2\mu_0}{3} \frac{g_p e}{2m_p} \right) 
+        \langle S_e \dotP S_p \rangle \big| \psi_{nlm}(0) \big|^2
+\end{aligned}\)
+
+\vspace{20pt} \noindent
+In the ground state, \(\big| \psi_{100}(0) \big|^2 = 1/(\pi a_0^3)\). \(S_e^2, S_p^2\), and the 
+sum \(S=S_e + S_p\) commute with \(S_e \dotP S_p\), so \(s_e, s_p, m_s, s^2\) are the good numbers.
+\(S_e\) and \(S_p\) do not, so \(m_{se}\) and \(m_{sp}\) are not good numbers.
+
+\vspace{20pt}
+\(\begin{aligned}
+    E^{(1)}_{hf} &= \left(\frac{e}{m_e} \right) \left( \frac{2}{3\epsilon_0 c^2} \frac{g_p e}{2m_p} \right) 
+        \frac{1}{2 \pi a_0^3} \langle S^2 - S^2_e - S^2_p \rangle \\[5pt]
+    &= \frac{g_p e^2}{4 \pi \epsilon_0 c^2 m_p m_e} 
+        \frac{4 \alpha^3 m_e^3 c^3 \hbar^2 }{3 \hbar^3} \left[ \frac{s(s+1)}{2} - 3/4 \right]\\[5pt]
+    &= \frac{4}{3} g_p \frac{m_e}{m_p} \alpha^4 m_e c^2 \left[ \frac{s(s+1)}{2} - 3/4 \right]\\[5pt]
+    &= \frac{4}{3} g_p \frac{m_e}{m_p} \alpha^4 m_e c^2 \cdot 
+        \begin{cases}
+            \frac{1}{4}     &   \indent s=1 \ \ (\text{triplet})\\
+            \frac{-3}{4}    &   \indent s=0 \ \ (\text{singlet})
+        \end{cases} \indent \rightarrow \indent \begin{aligned}
+            &\Delta E = 5.88 \times 10^{-6} \text{\ eV} \\[5pt]
+            &\lambda = 21 \text{\ cm}, \ \ \ \nu = 1420 \text{\ MHz}
+        \end{aligned}
+\end{aligned}\)
+
+%----------------------------------------------------------------------------------------------------------------------
+% Variation Principle
+\newpage
+\subsection{Variation Principle - Approx. Ground State Energy}
+
+\(\psi = \sum c_n \psi_n \ \rightarrow \ E(\psi) > E_0 = E(\psi_0)\)
+
+\vspace{10pt}
+\indent \(\begin{aligned}
+    &\psi \equiv f(b,x), \indent \langle H \rangle 
+        = \langle T \rangle + \langle V \rangle\\[10pt]
+    &b_\text{min}: \ \frac{d}{db} \langle H \rangle = 0 \\[5pt]
+    &E_\text{gs} \approx 
+        \Big\langle f(b_\text{min}, x) \Big| H \Big| f(b_\text{min}, x) \Big\rangle
+\end{aligned}\)
+
+% Adiabatic Theorem
+\subsection{Adiabatic Theorem - Slow Changing of Potential}
+
+\vspace{15pt} 
+\hspace{.5cm} \(\begin{aligned}
+    t = \tau   \ \rightarrow \ \begin{aligned}
+        &H{\scriptstyle(t=\tau)}    = H'\\[5pt]
+        &\psi{\scriptstyle(t=\tau)} = \psi_n^{(H')}\\[5pt]
+        &E(\psi)                    = E_n^{(H')}
+    \end{aligned}
+\end{aligned}\)
+\hspace{20pt}
+\(\begin{aligned}
+    t = 0      \ \rightarrow \ \begin{aligned}
+        &H{\scriptstyle(t=0)}       = H_0\\[5pt]
+        &\psi{\scriptstyle(t=0)}    = \psi_n^{(H_0)}\\[5pt]
+        &E(\psi)                    = E_n^{(H_0)}
+    \end{aligned}
+\end{aligned}\)
+
+% Selection Rules
+\subsection{Selection Rules - Orbital Transitions}
+
+\noindent
+Electric Dipole Approximation ONLY: \(\lambda_\gamma \gg\) atom length \(\rightarrow \ E, B\) feels homogenously oscillating to the atom
+
+\vspace{10pt}\noindent
+\(\psi_{nlm} \rightarrow \psi_{n'l'm'}\):\\
+
+\noindent
+\(\bullet \ \Delta m \in \{ -1,0,1 \}\)\\
+\indent \(s(\gamma) = 1 \ \rightarrow \ m_s(\gamma) \in \{ -\hbar, 0, \hbar \}\)\\
+\indent \(E = E\hat{z} \ \rightarrow \ \Delta m = 0\) 
+
+\vspace{10pt}\noindent
+\(\bullet \ \Delta l = \pm 1\)\\
+\indent \(1s \leftrightarrow 2p\)\\
+\indent Exception: \((2s \rightarrow 1s)\) through two-photon emission
+
+\vspace{10pt}\noindent
+\(\bullet \ \Delta j \in \{ -1,0,1 \}\)\\
+\indent Exception: \((j=0 \rightarrow j=0)\) not allowed
+
+% Blackbody Radiation
+\section{Blackbody Radiation}
+
+\(\begin{aligned}
+    &\bullet \ \text{Power Spectrum}: \ \ I'{\scriptsize(\omega)} = 
+        \frac{\hbar^3 \omega^3}{h^2c^2} \frac{1}{e^{\hbar \omega / k_b T} - 1} \ \left[ \tfrac{I}{\Omega \dotP f} \right]
+        &&\indent \text{\scriptsize(\(\mu = 0\) for photons since photon number isnt conserved)}\\[5pt]
+    &\bullet \ \text{Stefan-Boltzmann Law}: \ \ I = \frac{dP}{dA} \propto T^4 
+        &&\indent \text{!! important !!}\\[5pt]
+    &\bullet \ \text{Wien's Displacement Law}:\ \ \lambda_\text{max} = \frac{ 2.9 \times 10^{-3} }{T}\ [\text{m}]
+        &&\indent \text{\scriptsize(mode of spectrum)}
+\end{aligned}\)
+
+% Klein Gordon
+\newpage
+\section{Klein-Gordon Equation (Free Particle)}
+
+\begin{gather*}
+    (p^2c^2 +m^2c^4)\psi = E^2 \psi\\[5pt]
+    (-E^2 + p^2c^2 + m^2c^4)\psi = 0\\[5pt]
+    \left[ - (E/c)^2 + p^2 + (mc)^2 \right] \psi = 0\\[5pt]
+    \frac{\left[ - (E/c)^2 + p^2 + (mc)^2 \right]}{\hbar^2} \psi = 0\\[5pt]
+    \left[ \frac{1}{c^2} \frac{\partial}{\partial t}^2 - \nabla^2 
+        + \left( \frac{mc}{\hbar} \right)^2 \right] \psi = 0\\[5pt]
+    \boxed{ (\square^2 + \mu^2) \psi = 0 }
+\end{gather*}
+
+% Dirac Equation
+\section{Dirac Equation}
+
+\begin{gather*}
+    \mu^2 = - \square^2\\[5pt]
+    \mu = \sqrt{\nabla^2 - \tfrac{1}{c^2} \partial_t}^2     
+        = A \partial_x + B \partial_y + C \partial_z + \tfrac{i}{c} D \partial_t\\[20pt]
+    \begin{aligned}
+        \partial_x^2 + \partial_y^2 + \partial_z^2 - \frac{1}{c^2} \frac{\partial}{\partial t}^2 &= 
+            (A \partial_x + B \partial_y + C \partial_z + \frac{i}{c} D \partial_t)^2\\[5pt]   
+        &= \begin{aligned}[t]
+            &A^2 \partial_x^2 + B^2 \partial_y^2 + C^2 \partial_z^2 - D^2 \tfrac{1}{c^2} \partial_t^2\\
+            &+ [AB+BA]\partial_x\partial_y + [AC+CA]\partial_x\partial_z + [AD+AD]\tfrac{i}{c}\partial_x\partial_t\\
+            &+ [BC+CB]\partial_y\partial_z + [BD+BD]\tfrac{i}{c}\partial_y\partial_t\\
+            &+ [CD+CD]\tfrac{i}{c}\partial_z\partial_t
+        \end{aligned}
+    \end{aligned}\\[20pt]
+    D=\gamma^0, \indent A=i\gamma^1, \indent B=i\gamma^2, \indent C=i\gamma^3\\[10pt]
+    \gamma^\mu = \left[ 
+        \left(\begin{matrix}
+            I_2 & 0\\
+            0 & I_2
+        \end{matrix}\right),  
+        \left(\begin{matrix}
+            0 & \sigma_x\\
+            -\sigma_x & 0
+        \end{matrix}\right),  
+        \left(\begin{matrix}
+            0 & \sigma_y\\
+            -\sigma_y & 0
+        \end{matrix}\right), 
+        \left(\begin{matrix}
+            0 & \sigma_z\\
+            -\sigma_z & 0
+        \end{matrix}\right)
+        \right]\\[20pt]
+    \boxed{ \begin{aligned}
+        (i\hbar \gamma^\mu \partial_\mu - mc) \psi &= 0\\
+        (i \slashed{\partial} - m)\psi &= 0 \indent \indent \text{\scriptsize(natural units)}
+    \end{aligned} }
+\end{gather*}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\newpage
+\section{Integral Form}
+
+\hspace{.5cm} \(\begin{aligned}
+    \psi(r) &= \psi_0(r) + \int g(r-r_0) V(r_0) \psi(r_0) \ d^3r 
+        \indent \indent g(r) = -\frac{m}{2\pi \hbar^2} \frac{e^{ikr}}{r}\\[5pt]
+    &= \psi_0 + \int g V \psi{\scriptstyle(r_0)}\\
+    &= \psi_0 + \int g V \psi_0 + \int \int g V g V \psi{\scriptstyle(r_0)}\\
+    &= \psi_0 + \int g V \psi_0 + \int \int g V g V \psi_0 + \int \int g V g V g V \psi_0 + ...
+\end{aligned}\)
+
+\end{document}

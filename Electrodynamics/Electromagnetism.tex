@@ -1,0 +1,2051 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[landscape, left=.75in, right=.75in, top=.75in, bottom = 1in]{geometry}
+
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{esint}
+\usepackage{cancel}
+
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{multirow}
+
+\newcommand*{\bfr}{\mathbf{r}}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+\newcommand*{\cursr}{\scripty{r}}		% Cursive r
+\newcommand*{\cursrr}{\scripty{r}\ }
+
+\newcommand*{\dotP}{\boldsymbol \cdot}		% Dot Product
+
+\begin{document}
+%--------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------
+% Maxwell's Equations
+\section{Maxwell's Equations}
+\hfill \break 
+% Gauss's Law Electricity
+\begin{minipage}[t]{0.35\textwidth}
+\textbf{Gauss's Law for Electricity (GLE)}
+\setlength{\jot}{2ex}
+\begin{gather*}
+	\boxed{ \oiint \vec{E} \dotP d\vec{a} = \frac{Q}{\epsilon_0} }\\
+	\iiint (\nabla \dotP \vec{E})\ dV = \frac{\iiint \rho\ dV}{\epsilon_0} \\
+	\boxed{ \nabla \dotP \vec{E} = \frac{\rho}{\epsilon_0} }
+\end{gather*}
+\end{minipage} 
+\hspace{0.15\textwidth}
+\begin{minipage}[t]{0.35\textwidth}
+% Gauss's Law Magnetism
+\textbf{Gauss's Law for Magnetism (GLM)}
+\setlength{\jot}{2ex}
+\begin{gather*}
+	\boxed{ \oiint \vec{B} \dotP d\vec{a} = 0 }\\
+	\iiint (\nabla \dotP \vec{B} )\ dV = 0 \\
+	\boxed{ \nabla \dotP \vec{B} = 0 }
+\end{gather*}
+\end{minipage} 
+
+\hfill \break \\ \\
+% Faraday's Law Induction
+\begin{minipage}[t]{0.35\textwidth}
+\textbf{Faraday's Law of Induction (FLI)}
+\setlength{\jot}{2ex}
+\begin{gather*}
+	\boxed{ \oint \vec{E} \dotP d\vec{l} = -\frac{d\Phi_B}{dt} }\\
+	\iint (\nabla \times \vec{E}) \dotP d\vec{a} = -\frac{d}{dt} \iint \vec{B} \dotP d\vec{a} \\
+	\boxed{ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} }
+\end{gather*}
+\end{minipage} 
+\hspace{0.15\textwidth}
+% Maxwell-Ampere's Law
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{Maxwell-Ampere's Law (MAL)}
+\setlength{\jot}{2ex}
+\begin{gather*}
+	\boxed{ \oint \vec{B} \dotP d\vec{l} = \mu_0 \left( I + \epsilon_0 \frac{d\Phi_E}{dt} \right) }\\ 
+	\iint (\nabla \times \vec{B}) \dotP d\vec{a} = \mu_0 \iint \vec{J} \dotP d\vec{a}
+		+ \mu_0\epsilon_0\frac{d}{dt} \iint \vec{E} \dotP d\vec{a}\\
+	\boxed{ \nabla \times \vec{B} = \mu_0 \left( \vec{J} 
+		+ \epsilon_0 \frac{\partial \vec{E}}{\partial t} \right) }
+\end{gather*} 
+\end{minipage} 
+
+\hfill \break \\
+% Lorentz Force Law
+\begin{minipage}[t]{0.35\textwidth}
+\textbf{Lorentz Force Law (LFL)}
+\[ \boxed{ \vec{F} = q\vec{E} + q \vec{v} \times \vec{B} } \]
+\end{minipage}
+\hspace{0.15\textwidth}
+\begin{minipage}[t]{0.35\textwidth}
+\textbf{Conservation of Charge (COC)}
+\setlength{\jot}{2ex}
+\begin{gather*} 
+	\vec{J} = \frac{1}{\mu_0} \nabla \times \vec{B} - \epsilon_0 \frac{\partial \vec{E}}{\partial t} \\
+	\boxed{ \nabla \dotP \vec{J} = - \frac{\partial \rho}{\partial t} }
+\end{gather*}
+\end{minipage}
+
+%----------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------
+% Examples
+\newpage
+\subsection{Electrostatic/Magnetostatic Examples}
+\begin{minipage}[t]{0.5\textwidth}
+	\textbf{Using GLE}
+	
+	% Point Charges E field
+	\hfill \break
+	\textbf{1. \ \ \ Point Charges}\\[10pt]
+	\( \vec{E} = E(r)\hat{r} \)
+	\begin{align*}
+		\frac{Q}{\epsilon_0} &= \oiint E(r)\hat{r} \dotP d\vec{a}\\
+		&= E(r)\hat{r} \dotP \oiint r^2 \sin{\phi} \ | d\vec{\phi} \times d\vec{\theta} |\\
+		&= E(r)\hat{r} \dotP 4 \pi r^2 \hat{r}\\ \\
+		\vec{E}(r) &= \frac{Q}{4 \pi \epsilon_0 r^2} \hat{r}
+			\ \Rightarrow \ \dfrac{1}{4 \pi \epsilon_0} \sum_i \dfrac{Q_i}{ | \vec{ \cursr_i } |^2 } \hat{\cursr_i}
+	\end{align*}
+
+	% Coulomb Force and E-field
+	\vspace{5pt}
+	\textbf{Coulomb's Law (CL):}\\[10pt]
+	\( \displaystyle 
+		\boxed{  \vec{E}( \vec{ \mathbf{r} } )
+			= \dfrac{1}{4 \pi \epsilon_0} \int \dfrac{dQ}{ | \vec{\cursrr} |^2 } \hat{\cursrr} 
+			\ \ \ \ \ \ 
+			\vec{ \mathbf{r} } \in \mathbb{R}^3, \ \vec{\cursrr} = \vec{ \mathbf{r} } - \vec{l'}
+		} \\ \\ \\
+		\boxed{
+			\vec{F}( \vec{ \mathbf{r} } ) \ = \ q\vec{E} 
+		}
+	\)
+\end{minipage}
+\rule[-428pt]{.5pt}{440pt}
+\hspace{0.01\textwidth}
+\begin{minipage}[t]{0.55\textwidth}
+	\textbf{Using MAL} 
+	
+	% Biot Savart Law
+	\vspace{15pt}
+	\textbf{Biot-Savart Law (BSL):} \\ 
+	(see potential, \(\vec{A}\), for derivation) \\[10pt]
+	\( \boxed{ \begin{aligned}
+		\vec{B}( \vec{ \mathbf{r} } ) &= k_\mu
+			\int \frac{ \vec{J} dV \times \hat{\cursrr} }{|\vec{ \cursrr } |^2}, 
+			\ \ \ \ \ \ \vec{ \mathbf{r} } \in \mathbb{R}^3, 
+			\ \ \vec{\cursrr} = \vec{ \mathbf{r} } - \vec{l'}\\[5pt]
+		&= k_\mu \int \frac{ I{\scriptstyle(\vec{l'})}\ d\vec{l'}  \times \hat{\cursrr} }{|\vec{ \cursrr } |^2} 
+	\end{aligned} }\)
+
+	\vspace{15pt}
+	\(  \boxed{ \vec{F} = q\hat{v} \times \vec{B} } \)
+	
+	% Infinite Wire B field using MAL
+	\vspace{20pt}
+	\textbf{1. \ \ \ Infinite Line w/ Steady Current (SC)} \\[10pt]
+	\( \vec{B} = B(r)\hat{ \theta } \)
+
+	\vspace{15pt}
+	Use MAL
+	\begin{align*}
+		\mu_o I &= \oint B(r) \hat{ \theta } \dotP d\vec{ L }\\
+		&= B(r)\hat{ \theta } \dotP \oint r d\vec{ \theta }\\
+		&= B(r)\hat{ \theta } \dotP 2 \pi r \hat{ \theta }\\ \\
+		\vec{B}(r) &= \frac{\mu_0 I}{2 \pi r} \hat{\theta}
+	\end{align*}
+	
+	\vfill
+	cont.
+\end{minipage}
+
+
+%--------------------------------------------------------------------------------------------------
+% Sphere E field
+\newpage \noindent
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{2. \ \ \ Sphere w/ Constant Charge Density (CCD)}\\ \\
+Let \(R\) be the radius.\\
+\[ \vec{E}(r) = \frac{ Q(r) }{4 \pi \epsilon_0 r^2} \hat{r} \]\\
+\[ Q(r) = \begin{cases}
+	Q & (r > R)\\
+	Q_{r<R} = \iiint_0^r \frac{dQ}{dV} \ dV & (r < R)
+\end{cases} \]
+
+% Conductive Sphere E field
+\hfill \break
+\begin{itemize}
+	\item \emph{Conductor} \\ \\
+	\( Q_{r<R} = 0
+	\ \ \ \Rightarrow \ \ \ \vec{E}(r) = \begin{cases}
+		\dfrac{ Q }{4 \pi \epsilon_0 r^2} \hat{r} & (r > R)\\
+		0 & (r < R)
+	\end{cases} \)
+\end{itemize}
+
+% Insulative Sphere E field
+\hfill \break
+\begin{itemize}
+	\item \emph{Insulator w/ CCD and \(\epsilon = \epsilon_0\)} \\ \\
+	\( Q_{r<R} = \int \frac{Q}{V} \ dV = Q \frac{\int dV}{V} = Q \frac{r^3}{R^3}\\ \\
+	\Rightarrow \ \vec{E}(r) = \begin{cases}
+		\dfrac{ Q }{4 \pi \epsilon_0 r^2} \hat{r} & (r > R)\\ \\
+		\dfrac{ Q r}{4 \pi \epsilon_0 R^3} \hat{r} & (r < R)
+	\end{cases} \)
+\end{itemize}
+\end{minipage}
+\rule[-438pt]{.5pt}{450pt}
+\hspace{.01\textwidth}
+% Infinite Wire B-field from BSL
+\begin{minipage}[t]{0.5\textwidth}
+Use BSL\\
+\begin{align*}
+	\vec{B}(r) &= \frac{\mu_0 I}{4 \pi}
+		\int \frac{ \ d\vec{z} \times \hat{\cursrr} }{|\vec{ \cursrr } |^2} \\ \\
+	&= \frac{\mu_0 I}{4 \pi} 
+		\int_{-\infty}^{\infty} \frac{ \ d\vec{z} \times \hat{\cursrr} }{r^2 + z^2} \\ \\
+	&= \frac{\mu_0 I}{4 \pi} 
+		\int_{-\infty}^{\infty} \frac{ \ d\vec{z} \times (r\hat{r} - z\hat{z}) }{ (r^2 + z^2)^{3/2} } \\ \\
+	&= \frac{\mu_0 I r}{4 \pi} 
+		\int_{-\infty}^{\infty} \frac{dz}{ (r^2 + z^2)^{3/2} } \ \hat{\theta} \\ \\
+	&= \frac{\mu_0 I r}{4 \pi} 
+		\frac{z}{ r^2 \sqrt{r^2 + z^2} } \bigg|_{-\infty}^{\infty} \ \hat{\theta} \\ \\
+	&= \frac{\mu_0 I }{2 \pi r} \hat{\theta}
+\end{align*}
+\end{minipage}
+
+%--------------------------------------------------------------------------------------------------
+% Constant Field Solutions
+\newpage \noindent 
+\textbf{Constant Field Solutions (Capacitor/Solenoid)}
+
+\hfill \break
+% E-Field
+\begin{minipage}[t]{0.5\textwidth}
+	% Two Parallel Planes (Capacitor)
+	\textbf{3. \ \ \ 
+		\begin{minipage}[t]{.7\textwidth} 
+			Two Infinite Parallel Planes \\ Capacitor w/ CCD (\( +Q, -Q \))
+		\end{minipage}
+	} \\[10pt]
+	\( \vec{E} = E(z)\hat{z} \)
+	\begin{align*}
+		\frac{Q}{\epsilon_0} &= \oiint E(z)\hat{z} \dotP d\vec{a}\\
+		&= E(z)\hat{z} \dotP \oiint xy \ |d\vec{x} \times d\vec{y}|\\
+		&= E(z)\hat{z} \dotP xy \hat{z}\\ \\
+		\vec{E}(z) &= \dfrac{1}{\epsilon_0} \frac{dQ}{dA} \hat{z} = \dfrac{\sigma}{\epsilon_0} \hat{z}
+	\end{align*}
+
+	% One Plane
+	\hfill \break
+	\textbf{4. \ \ \ One Infinite Plane w/ CCD}\\[10pt]
+	\( \vec{E} = E(z)\hat{z} \)
+	\begin{align*}
+		\frac{Q}{\epsilon_0} &= \oiint E(z)\hat{z} \dotP d\vec{a}\\
+		&= E(z)\hat{z} \dotP 2 \oiint xy \ |d\vec{x} \times d\vec{y}|\\
+		&= E(z)\hat{z} \dotP 2xy \hat{z}\\ \\
+		\vec{E}(z) &= \dfrac{1}{2 \epsilon_0} \frac{dQ}{dA} \hat{z} = \dfrac{\sigma}{2 \epsilon_0} \hat{z}
+	\end{align*}
+\end{minipage}
+\rule[-438pt]{.5pt}{450pt}
+\hspace{0.01\textwidth}
+% B-Field
+\begin{minipage}[t]{0.5\textwidth}
+	% Solenoid
+	\textbf{2. \ \ \ Infinite Long Solenoid Coil w/ SC}\\[10pt]
+	Let \(R\) be the coil radius. \( \vec{B} = B(r) \hat{z} = B(r<R) \hat{z} \)\\
+	\begin{align*}
+		\mu_o NI &= \oint B(r) \hat{z} \dotP d\vec{ L }\\
+		&= (B_{r<R}) \hat{z} \dotP \oint d\vec{L}\\
+		&= (B_{r<R}) \hat{z} \dotP L \hat{z}\\ \\
+		\vec{B}(r) &= \begin{cases}
+			\frac{\mu_0 I N}{L} \hat{z} = \mu_0 I n_l \ \hat{z} & (0<r<R) \\
+			0 & (r>R)
+		\end{cases}
+	\end{align*}
+
+	% Ring Solenoid
+	\hfill \break
+	\textbf{3. \ \ \ Closed, Thin Solenoid Ring w/ SC}\\ \\
+	Let \(R_l\) be the ring radius and \(R_c\) be the coil radius.\\ \\
+	\( \vec{B} \ = \ B(r) \hat{ \theta } 
+		\ = \ B({\scriptstyle R_l-R_c < r < R_l+R_c}) \hat{ \theta } 
+		\ \approx \ B( R_l ) \hat{ \theta }\)\\
+	\begin{align*}
+		\mu_o NI &= \oint B(r) \hat{ \theta } \dotP d\vec{ L }\\
+		&= B(r) \hat{ \theta } \dotP 2 \pi R_l \ \hat{ \theta }\\ \\
+		\vec{B}(r) &= \begin{cases} 
+			\dfrac{\mu_0 I N}{2 \pi R_l} \hat{ \theta } & (R_{l-c}<r<R_{l+c}) \\
+			0 & \text{else}
+		\end{cases}
+	\end{align*}
+\end{minipage}
+
+%----------------------------------------------------------------------------------------
+% Integrating
+\newpage 
+\noindent
+\textbf{Integrate w/ CFL and BSL}
+
+\vspace{10pt}\noindent
+% Electric Field
+\begin{minipage}[t]{.37\textwidth}
+	% Ring w/ CCD
+	\textbf{5. \ \ \ Ring w/ CCD centered at origin \(O\)}
+	
+	\vspace{10pt}
+	Let \(R\) be the ring radius, \(\lambda\) the charge density, \\[7pt]
+	and \(\phi\) be \(\angle OzR\).
+
+	\vspace{5pt}
+	\[ \displaystyle E(0,0,z) \hat{z} = \frac{1}{4 \pi \epsilon_0} \int \frac{dq}{\cursrr^2} \vec{\cursrr}\]
+
+	\vspace{10pt}
+	\(\begin{aligned}
+		\vec{E}(0,0,z) &= \frac{1}{4 \pi \epsilon_0} \int \frac{\lambda (R d\theta)}{\cursrr^2} \vec{\cursrr}\\[10pt]
+		&= \frac{k \lambda}{z^2 + R^2} \int_0^{2\pi} Rd\theta\ \cos{\phi}\ \hat{z} \\[15pt]
+		&= \boxed{ \frac{k \lambda (2\pi R) z}{(z^2 + R^2)^{3/2}}\ \hat{z} }\\[10pt]
+		&= \boxed{ \frac{k \lambda}{D}\ \frac{2\pi R}{D} \cos{\phi}\ \hat{z}}
+	\end{aligned}\)
+\end{minipage}
+\hspace{0.01\textwidth}
+\rule[-438pt]{.5pt}{450pt}
+\hspace{0.01\textwidth}
+% Magnetic Field
+\begin{minipage}[t]{.57\textwidth}
+	% Ring w/ SC
+	\textbf{4. \ \ \ Ring w/ SC centered at origin \(O\)}
+
+	\vspace{10pt}
+	Let \(R\) be the ring radius and \(\phi\) be \(\angle O_\text{rigin}zR\).
+	\[ \displaystyle B(0,0,z) \hat{z} = \frac{\mu_0 I}{4 \pi} 
+			\int \frac{ d\vec{l} \times \hat{\cursrr} }{| \vec{\cursrr} |^2} \]
+
+	\vspace{5pt}
+	\(\begin{aligned} 
+		&\vec{B}(0,0,z) = \frac{\mu_0 I}{4 \pi} \int \frac{R d\vec{\theta} \times \hat{\cursrr}}{\cursrr^2}\\[10pt]
+		&\ \ \ \begin{aligned}
+			&= \frac{k_\mu I}{z^2 + R^2} \int R d\theta \ \hat{\theta} \times \frac{z\hat{z}-R\hat{r}}{\sqrt{z^2 + R^2}} 
+				&&\text{or}\quad 
+				\frac{k_\mu I}{z^2 + R^2} \int_0^{2\pi} R d\theta \ \sin{\phi}\ \hat{z}\\[10pt]
+			&= \frac{k_\mu I R}{ (z^2 + R^2)^{3/2} } \ 
+				\left[ 2 \pi R \hat{z} + \cancel{z \int_0^{2 \pi} \hat{r} d\theta} \right] 
+				&&\text{or}\quad 
+				\frac{k_\mu I}{z^2 + R^2} \int_0^{2\pi} R d\theta \ \tfrac{R}{\sqrt{z^2 + R^2}}\ \hat{z}\\[15pt]
+			&= \boxed{ \frac{k_\mu I(2\pi R)R}{ (z^2 + R^2)^{3/2} } \ \hat{z} }\\[10pt]
+			&= \boxed{ \frac{k_\mu I}{D}\ \frac{2\pi R}{D} \sin{\phi}\ \hat{z} }
+		\end{aligned}
+	\end{aligned}\)
+\end{minipage}
+
+%------------------------------------------------------------------------
+\newpage
+
+\noindent
+% Electric Field
+\begin{minipage}[t]{.48\textwidth}
+	% Line Charge
+	\vspace{20pt}	
+	\textbf{6. \ \ \ Line Charge w/ CCD and one edge at the origin \(O\)}
+	
+	\vspace{10pt}	
+	Let \(L\) be the line length, \(\lambda\) the charge density,
+	and \(\theta_0\) be \(\angle OyL\).
+
+	\vspace{5pt}
+	\[ \displaystyle E_y(0,0,y) \hat{y} = \frac{1}{4 \pi \epsilon_0} \int \frac{dq}{\cursrr^2} \vec{\cursrr}_y\]
+
+	\vspace{10pt}
+	\(\begin{aligned}
+		E_y(0,0,y) &= k \int \frac{\lambda dx}{\cursrr^2} \vec{\cursrr}_y\\[10pt]
+		&= k \lambda \int \frac{ dx}{y^2 + x^2} \cos{\theta}
+			\ \ , \hspace{20pt} x = y \tan{\theta}\\[10pt]
+		&= \frac{k \lambda}{y^2} \int_0^{\theta_0} \frac{y \sec^2{\theta}}{1 + \tan^2{\theta}} \cos{\theta}\\[10pt]
+		&= \frac{k \lambda}{y} \int_0^{\theta_0} \cos{\theta} = \frac{k \lambda}{y} \sin{\theta_0} \\[15pt]
+		&= \boxed{ \frac{k \lambda L}{y \sqrt{y^2+L^2}} } \quad = \quad \boxed{ \frac{k \lambda}{y} \sin{\theta_0}}
+	\end{aligned}\)
+
+	\vspace{30pt}
+	Use this result to find \textit{Finite Line Charge} and \textit{Square Ring}.
+\end{minipage}
+\hspace{0.01\textwidth}
+\rule[-438pt]{.5pt}{430pt}
+\hspace{0.01\textwidth}
+% Magnetic Field
+\begin{minipage}[t]{.48\textwidth}
+	% Finite Wire
+	\vspace{20pt}	
+	\textbf{5. \ \ \ Finite Wire w/ SC and one edge at the origin \(O\)}
+	
+	\vspace{10pt}	
+	Let \(L\) be the wire length and \(\theta_0\) be \(\angle OyL\).
+
+	\vspace{5pt}
+	\[ \displaystyle B_z(0,0,y) \hat{z} = k_\mu I \int \frac{ d\vec{l} \times \hat{\cursrr} }{| \vec{\cursrr} |^2}\]
+
+	\vspace{10pt}
+	\(\begin{aligned}
+		B_z(0,0,y) \hat{z}&= k_\mu I \int \frac{ d\vec{x} \times \hat{\cursrr} }{| \vec{\cursrr} |^2}\\[10pt]
+		&= k_\mu I \int \frac{dx}{y^2 + x^2} \sin{(\theta+90)}
+			\ \ , \hspace{20pt} x = y \tan{\theta}\\[10pt]
+			&= \frac{k_\mu I}{y^2} \int_0^{\theta_0} \frac{y \sec^2{\theta}}{1 + \tan^2{\theta}} \cos{\theta}\\[10pt]
+			&= \frac{k_\mu I}{y} \int_0^{\theta_0} \cos{\theta} = \frac{k_\mu I}{y} \sin{\theta_0} \\[10pt]
+			&= \boxed{ \frac{k_\mu I L}{y \sqrt{y^2+L^2}} } = \quad \boxed{ \frac{k_\mu I}{y} \sin{\theta_0}}
+	\end{aligned}\)
+
+	\vspace{30pt}
+	Use this result to find \textit{Finite Wire} and \textit{Square Wire}.
+\end{minipage}
+
+%----------------------------------------------------------------------------------------------------
+% Field Energies
+\newpage
+\subsection{Field Energies}
+The sum of the work to move a collection of charges considering 
+the potential from each other charge comes out to be
+\[ \boldsymbol{ W = \frac{1}{2} \sum_i q_i V(r_i) } \]
+
+% E-field Energy
+\vspace{15pt} \noindent
+\begin{minipage}{.49\textwidth}
+	\underline{E-field Energy (electrostatic...)}
+
+	\vspace{10pt}
+	\(\begin{gathered}
+		E = \frac{1}{2} C V^2 = \frac{1}{2} V Q\\[10pt]
+		\begin{aligned}
+				\boxed{ W_\text{vol} = \frac{1}{2} \iiint V \rho \ d\tau }
+				&= \frac{\epsilon_0}{2} \iiint V (\nabla \dotP \vec{E}) \ d\tau \\
+				&= \frac{\epsilon_0}{2} \iiint \vec{E} \dotP ( \vec{E} )
+					+ \nabla \dotP (V \vec{E}) \ d\tau \\
+				&= \boxed{ \frac{\epsilon_0}{2} \iiint \vec{E}^2 \ d\tau 
+					+ \frac{\epsilon_0}{2} \iint (V \vec{E}) \dotP d\vec{a} } \\
+				\Aboxed{ W_E &= \frac{\epsilon_0}{2} \iiint \vec{E}^2 \ d\tau }
+					\ \ \ \text{(if \(\rho=0\) at \(\infty\))}
+			\end{aligned}
+	\end{gathered}\)
+\end{minipage}
+% B- field Energy
+\begin{minipage}{.5\textwidth}
+	\underline{B-field Energy}
+
+	\vspace{10pt}
+	\(\begin{gathered}
+		E = \frac{1}{2} L I^2 = \frac{1}{2} \Phi_B I = \frac{1}{2} \oint \vec{A} \dotP \vec{I} \ dl\\[10pt]
+		\begin{aligned}
+				\boxed{ W_\text{vol} = \frac{1}{2} \iiint \vec{A} \dotP \vec{J} \ d\tau }
+				&= \frac{1}{2 \mu_0} \iiint \vec{A} \dotP (\nabla \times \vec{B}) \ d\tau \\
+				&= \frac{1}{2 \mu_0} \iiint \vec{B} \dotP ( \vec{B} )
+					- \nabla \dotP (\vec{A} \times \vec{B}) \ d\tau\\
+				&= \boxed{ \frac{1}{2 \mu_0} \iiint \vec{B}^2 \ d\tau
+					- \frac{1}{2 \mu_0} \oiint (\vec{A} \times \vec{B}) \dotP d\vec{a} }\\
+				\Aboxed{ W_B &= \frac{1}{2 \mu_0} \iiint \vec{B}^2 \ d\tau }
+					\ \ \ \text{(if \(\vec{I}=0\) at \(\infty\))}
+			\end{aligned}
+	\end{gathered}\) 
+\end{minipage}
+
+%----------------------------------------------------------------------------------------------------
+% Circuits/Ohm's Law
+\newpage
+\subsection{Circuits/Ohm's Law}
+\noindent
+\begin{tabular}{c}
+	\underline{Ohm's Law}\\[5pt]
+	In Ohmic material, 
+\end{tabular}
+\ \ \(\rightarrow\) \ \ \
+\( \begin{gathered}
+	\boldsymbol{\sigma} \text{: Conductivity}\\[5pt]
+	J \approx \sigma (E + v \times B)\\
+	\boxed{ J \approx \sigma E }
+\end{gathered} \)
+\indent \(\Rightarrow\) \indent
+\( \begin{gathered}
+	\boxed{V = IR}\\
+	\boxed{P = VI}
+\end{gathered} \)
+\indent \rule[-35pt]{.5pt}{70pt} \indent 
+\( \begin{aligned}
+	&\text{\underline{Example: Wire w/ Two Plates}} \\[5pt]
+	&I = (\sigma E) A = \left( \frac{\sigma A}{L} \right) V \ \ \ \Rightarrow \ \ \
+	V = I \left( \frac{L}{\sigma A} \right) = IR
+\end{aligned} \)
+
+% Circuit Components Equations
+\vspace{10pt}
+\fbox{
+	\begin{tabular}{l|c|c|c|c|c}
+		\underline{Resistor}:
+			& \(V_R = IR\)
+			& \(P = VI\) 
+			&
+			& \(R = \dfrac{\rho l}{A}\)
+			& \(Z_R = R\)\\
+		& & & &\\
+		\underline{Capacitor}:	
+			& \(Q = CV_C\)	
+			& \(E_C = \dfrac{1}{2}CV_C^2\) 
+			& \(\begin{aligned}
+					Q_\uparrow &= Q_0 (1-e^{-t/\tau})\\
+					Q_\downarrow &= Q_0 e^{-t/\tau}
+				\end{aligned}\)
+			& \(C = \dfrac{\kappa \epsilon_0 A}{d} = \dfrac{\epsilon A}{d}\)
+			& \(Z_C = \dfrac{1}{i\omega C}\)\\
+		& & & &\\
+		\underline{Inductor}:	
+			& \(\begin{aligned}
+					&\Phi_B = LI \\[2pt]
+					&V_L = - L \frac{d I}{dt}
+				\end{aligned}\)
+			& \(E_L = \dfrac{1}{2}LI^2\)
+			& \(\begin{aligned}
+					I_\uparrow &= I_0 (1-e^{-t/\tau})\\
+					I_\downarrow &= I_0 e^{-t/\tau}
+				\end{aligned}\)
+			& \(L = \dfrac{\mu_0 N^2 A}{l}\)
+			& \(Z_L = i\omega L\)
+	\end{tabular}
+} \hspace{20pt}
+\(\begin{aligned}
+	% Open/Short Circuits
+	&\begin{array}{r l}
+		\text{Open Circuit}:	&R = \infty\\
+		\text{Short Circuit}:	&R = 0
+	\end{array}\\[10pt]
+	% Constants
+	&\underline{\text{Constants}}\\
+	&\begin{aligned}
+		\tau_{RC} &= RC\\
+		\tau_{RL} &= L/R\\
+		\omega_{R,LC} &= 1/\sqrt{LC}
+	\end{aligned}
+\end{aligned}\)
+
+% AC Filters
+\vspace{20pt}\noindent
+\underline{AC Filters}\\[10pt]
+\indent\(\begin{aligned}[t]
+	&\text{Low Pass (Non-Zero \(\overline{\text{Probe}}\))}:\\[5pt]
+	&\bullet\ R \overline{C}\\[5pt]
+	&\bullet\ L \overline{R}
+\end{aligned}
+\hspace{1.5cm}
+\begin{aligned}[t]
+	&\text{High Pass (Non-Zero \(\overline{\text{Probe}}\))}:\\[5pt]
+	&\bullet\ C \overline{R}\\[5pt]
+	&\bullet\ R \overline{L}
+\end{aligned}
+\hspace{1.5cm}
+\begin{aligned}[t]
+	&\text{Band Pass (Zero \(\overline{\text{Probe}}\))}:\\[5pt]
+	&\bullet\ R \overline{LC}\\
+	&\bullet\ \text{Bandwidth} = \left( \text{FWHM} = 2\beta = \frac{b}{m} \right)= \frac{R}{L}
+\end{aligned}\)
+
+\vspace{20pt}\noindent
+% Other Components
+\begin{minipage}[t]{.52\textwidth}
+	\underline{Other Components}\\[10pt]
+	\(\begin{array}{l c|l}
+		->|- 	&\text{Diode} 	&\text{One Way Voltage} 
+			\ \ \text{\scriptsize(if \(>\) Bias Voltage)}\\[10pt]
+		=|>- 	&\text{Op-Amp} &V_1 - V_2 \ \propto\ V_\text{OA} 
+			\ \ \text{\scriptsize(Clipping If Too Large \(V_\text{OA}\))}\\[10pt]
+		=|)- &\text{And}\\[10pt]
+		=)>- &\text{Or}
+	\end{array}\)	
+\end{minipage}
+% De Morgan's Law
+\begin{minipage}[t]{.44\textwidth}
+	\underline{De Morgan's Law}\\[10pt]
+	\(\begin{aligned}
+		&\bullet\ \overline{A \dotP B} = \overline{A} + \overline{B}\\[5pt]
+		&\bullet\ \overline{A + B} = \overline{A} \dotP \overline{B}
+	\end{aligned}\)
+\end{minipage}
+
+
+%----------------------------------------------------------------------------------------------------------------------------
+% Faraday's Law
+\newpage
+\subsection{Quasistatic (FLI)}
+
+\vspace{10pt}\noindent
+% Force on a Wire
+\(\begin{aligned}
+	&\text{\underline{Force on Wire in B-Field}}:\\[5pt]
+	&\ \ \ \begin{aligned}
+			F &= qv \times B\\
+			\Aboxed{ F &= LI \times B }
+		\end{aligned}
+\end{aligned}\)
+\hspace{2cm}
+% EMF
+\(\begin{array}{l}
+	\text{\underline{EMF}}:\\[10pt]
+	\ \ \ \boxed{ \mathcal{E} = - \dfrac{d \Phi_B}{dt} = \oint \vec{E} \dotP d\vec{l} }
+\end{array}\)
+\hspace{1.5cm}
+% Mutual Induction
+\begin{tabular}{l}
+	\underline{Mutual Inductance}:\\[10pt]
+	\ \ \fbox{ \setlength{\tabcolsep}{0pt}
+		\begin{tabular}{l}
+			Flux Through \(B\): \ \ \(\Phi_B = M \cdot I_A\)\\[5pt]
+			Flux Through \(A\): \ \ \(\Phi_A = M \cdot I_B\)
+		\end{tabular} }
+\end{tabular}
+
+% Faraday's Law
+\vspace{30pt}\noindent
+\underline{Faraday's Law}
+
+\vspace{10pt}\noindent
+\begin{center}
+	\setlength{\tabcolsep}{20pt}
+	\begin{tabular}{p{.25\textwidth}|p{.27\textwidth}|p{.2\textwidth}}
+		{1. Lorentz}: & {2. Faraday}: & {3. Faraday}: \\[10pt]
+		Square Circuit with \(\vec{v}(t)\) leaving Constant B-Field (out) 
+			& Constant B-Field (out) with \(- \vec{v}(t)\) leaving Square Circuit 
+			& Square Circuit in Increasing B-Field (out) \\ 
+		& & \\
+		\(I\) is out & \(I\) is out & \(I\) is in
+	\end{tabular}
+\end{center}
+
+\vspace{15pt}\noindent 
+\textbf{\underline{Examples:}}\\[15pt]
+\noindent
+\begin{minipage}[t]{.46\textwidth}
+	\(B\)-Field Work:\\[5pt]
+	\( \big( \vec{v} \dotP \vec{l} = 0 \big) \ \rightarrow \ \) 
+	\( \begin{aligned}[t]
+		W_B &= \int \vec{F} \dotP d\vec{l} \\[5pt]
+		&= \int ( q \vec{v} \times \vec{B} ) \dotP d\vec{l} \\[5pt]
+		\Aboxed{ W_B &= 0 } \hspace{.5cm} \text{(magnetic fields do no work)}
+	\end{aligned} \)	
+\end{minipage}
+\rule[-165pt]{.5pt}{185pt}
+\hspace{20pt}
+\begin{minipage}[t]{.49\textwidth}
+	Velocity of wire in (1.): \ \ \ \ \ \
+	\( \begin{aligned}[t]
+		I(t) R &= V(t) = \left| \frac{d \Phi_B}{dt} \right| = B h v(t) \\[15pt]
+		F_B(t) &= - h I(t) B \\[5pt]
+		&= - \frac{B^2 h^2 v(t)}{R} \\[15pt]
+		F &= m a(t) \\
+		\Aboxed{ m \frac{dv}{dt} &= F_B + F_\text{ext} = F_\text{ext} - \frac{B^2 h^2 v(t)}{R} }
+	\end{aligned} \)
+\end{minipage}
+
+%------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------
+% Potentials
+\newpage
+\section{Potentials and Fields}
+% ME for P
+\subsection{Maxwell's Equations for Potentials}
+% GLM for Potentials
+\hfill \break
+\begin{minipage}[t]{0.5\textwidth}
+	\textbf{1. GLM for Potentials (GLMP)}
+	\begin{center}
+	\begin{tabular}{c c}
+		\( \nabla \dotP \vec{B} = 0 \) & \\ \\
+		\( \nabla \dotP ( \nabla \times \vec{A} ) = 0 \ , \) & \( \boldsymbol{ \vec{A'} = \vec{A} + \nabla \lambda } \)\\ \\
+		\( \boxed{ \vec{B} = \nabla \times \vec{A}
+			\ \Rightarrow \ \Phi_B = \oint \vec{A} \dotP d\vec{l} \ } \) & 
+	\end{tabular}
+	\end{center}
+\end{minipage} 
+\hspace{0\textwidth}
+% FLI for Potentials
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{2. FLI for Potentials (FLIP)}
+\begin{center}
+\begin{tabular}{c c}
+	\( \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} \) & \\ \\
+	\( \nabla \times \vec{E} = \nabla \times \left ( 0 - \frac{\partial \vec{A}}{\partial t} \right ) \) & \\ \\
+	\( \boxed{ \vec{E} = - \nabla V - \frac{\partial \vec{A}}{\partial t} } \ , \) & 
+		\( \boldsymbol{ V' = V + \frac{\partial \lambda}{\partial t} } \) 
+\end{tabular}
+\end{center}
+\end{minipage} 
+
+\hfill \break \newline
+% GLE for Potentials
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{3. GLE for Potentials (GLEP)}
+\begin{gather*}
+	\nabla \dotP \vec{E} = \frac{\rho}{\epsilon_0} \\ \\
+	- \nabla^2 V - \frac{\partial (\nabla \dotP \vec{A})}{\partial t} = \frac{\rho}{\epsilon_0} \\ \\
+	\boxed{ \Box^2 V - \frac{\partial}{\partial t} ( \partial_\mu A^\mu ) = \frac{\rho}{\epsilon_0} }\\
+\end{gather*}
+\end{minipage} 
+\hspace{0\textwidth}
+% MAL for Potentials
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{4. MAL for Potentials (MALP)}
+\begin{gather*}
+	\nabla \times \vec{B} - \frac{1}{c^2} \frac{\partial \vec{E}}{\partial t} = \mu_0 \vec{J} \\ \\
+	\frac{1}{c^2} \frac{\partial^2 \vec{A}}{\partial t^2} - \nabla^2 \vec{A} 
+		+ \nabla \left ( \frac{1}{c^2} \frac{\partial V}{\partial t} + \nabla \dotP \vec{A} \right )
+		= \mu_0 \vec{J} \\ \\
+	\boxed{ \Box^2 \vec{A} + \nabla ( \partial_\mu A^\mu )
+		= \mu_0 \vec{J} } \\
+\end{gather*} 
+\end{minipage} 
+
+\vspace{15pt} \noindent
+\textbf{Field Energy (see Capacitor/Solenoid in Circuits)}:\\[10pt]
+\begin{minipage}{.5\textwidth}
+	\[ \boxed{W_E = \frac{1}{2} \iiint V \rho \ d\tau} 
+		\ = \frac{\epsilon_0}{2} \int E^2 \ d\tau 
+		\ \ \text{(if \(\rho=0\) at \(\infty\))} \]
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\[ \boxed{ W_B = \frac{1}{2} \iiint \vec{A} \dotP \vec{J} \ d\tau }
+		\ = \frac{1}{2 \mu_0} \int B^2 \ d\tau 
+		\ \ \text{(if \(\vec{J}=0\) at \(\infty\))} \]
+\end{minipage}
+%----------------------------------------------------------------------------------------
+% Cases and Gauge Freedoms
+\newpage
+\subsection{Cases and Freedoms}
+\begin{minipage}[t]{0.4\textwidth}
+	GLMP and FLIP say that
+	\begin{gather*}
+		\vec{B} = \nabla \times \vec{A} \\
+		\vec{E} =  -\nabla V - \frac{\partial \vec{A}}{\partial t}
+	\end{gather*}
+
+	\hfill \break \\
+	In the electrostatic case, \\ \\
+	\fbox{
+		\textbf{ Electrostatics:} \
+		\( \boldsymbol{ \begin{gathered} 
+			( \nabla \times E \Leftrightarrow \partial_t A \Leftrightarrow  \partial_t B ) = 0 \\[5pt]
+			\Rightarrow \ \partial_t \rho = 0  
+		\end{gathered} } \) 
+	}
+\end{minipage}
+\hspace{0.05\textwidth}
+\rule[-288pt]{.5pt}{300pt}
+\hspace{0.05\textwidth}
+\begin{minipage}[t]{0.5\textwidth}
+	GLEP and MALP say that
+	\begin{gather*}
+		 - \nabla^2 V - \frac{\partial (\nabla \dotP \vec{A})}{\partial t} 
+			= \frac{\rho}{\epsilon_0}\\
+		\frac{1}{c^2} \frac{\partial^2 \vec{A}}{\partial t^2} - \nabla^2 \vec{A} 
+			+ \nabla \left ( \frac{1}{c^2} \frac{\partial V}{\partial t} + \nabla \dotP \vec{A} \right )
+			= \mu_0 \vec{J}
+	\end{gather*}
+
+	\hfill \break \\
+	Freedom may be chosen to what \( \nabla \dotP \vec{A} \) equals. \\ \\
+	\fbox{ \textbf{ Coulomb Gauge:} \ \ \ \( \boldsymbol{ \nabla \dotP \vec{A} = 0 } \) }
+	\begin{itemize}
+		\item \fbox{ \textbf{Magnetostatics:} \ \ \ \( \boldsymbol{ \partial_t E = 0 \ \Rightarrow \ \partial_t \vec{J} = 0 } \) }
+	\end{itemize}
+	\hfill \break
+	\fbox{ \textbf{ Lorenz Gauge:} \ \ \ \( \displaystyle \boldsymbol{ \nabla \dotP \vec{A} 
+		= -\frac{1}{c^2} \frac{\partial V}{\partial t}
+		\ \Leftrightarrow \ \partial_\mu A^\mu = 0 } \) }
+\end{minipage}
+
+\hfill \break \\ \\
+In general, 
+\( \vec{A} \) and \(V\) can be [gauge] transformed while keeping \( \vec{E} \) and \( \vec{B} \) the same by 
+\begin{align*} 
+	\Aboxed{ V'&= V - \frac{d\lambda}{dt} } \indent (\lambda \ \text{is a scalar function})\\
+	\Aboxed{ \vec{A'} &=  \vec{A} + \nabla \lambda } 
+\end{align*} 
+
+%-----------------------------------------------------------------------------------
+% Potentials for Electro/Magnetostatics
+\newpage
+\hfill \break
+\begin{minipage}[t]{0.5\textwidth}
+	\textbf{Electrostatic Potentials}
+	\hfill \break \\
+	\underline{Electrostatics}: \( \boldsymbol{ \left ( \partial_t \vec{A} = 0 
+	\ \Rightarrow \ \partial_t \rho = 0 \right ) } \). \\ \\
+	Using GLE to find \(E\) or using FLIP, 
+	\[ \nabla \times \vec{E} = 0 \ \Rightarrow 
+		\begin{cases}
+			\displaystyle \oint \vec{E} \dotP d\vec{l} = 0 \\ \\
+			\boxed{ \vec{E} = -\nabla V }
+		\end{cases}\]
+	\( \Rightarrow \) 
+	\begin{align*}
+		\int_a^b \nabla \vec{V} \dotP d\vec{l} = & \ \boxed{ V(\vec{ \mathbf{r} }) \bigg|_a^b 
+			= - \int_a^b \vec{E} \dotP d\vec{l} = W_E/q} \\ \\
+		& \ \boxed{ V(\vec{ \mathbf{r} }) = - \int \vec{E} \dotP d\vec{l} + V_0 }
+	\end{align*}
+	\hfill \break \\
+	and from this (or GLEP) \\
+	\begin{center}
+		\fbox{ 
+			\begin{tabular}{l}
+				\emph{Poisson Equation}: \ \ \ \( \displaystyle \boldsymbol{ \nabla^2 V 
+					= - \frac{ \rho (\vec{r'}) }{\epsilon_0} } \) \\ \\
+				\( \displaystyle \rho_{\infty} = 0 \ \Rightarrow \ \boldsymbol{ \vec{V}( \vec{ \mathbf{r} } ) 
+					= \frac{1}{4 \pi \epsilon_0} \int \frac{ \rho ( \vec{r'} ) }{\cursrr} \ d\tau' } \)
+			\end{tabular}
+		}		
+	\end{center}
+\end{minipage}
+\rule[-438pt]{.5pt}{450pt}
+\hspace{0.03\textwidth}
+\begin{minipage}[t]{0.5\textwidth}
+	\textbf{Coulomb Gauge \& Magnetostatic Potentials}
+	\hfill \break \\
+	\underline{Coulomb Guage}: Choose \( \boldsymbol{ \left ( \nabla \dotP \vec{A} = 0 \right ) } \)\\ \\
+	Using GLEP,
+	\begin{center}
+	\fbox{
+		\begin{tabular}{l}
+			\emph{Poisson Equation}: \ \ \ \( \displaystyle \boldsymbol{ \nabla^2 V 
+				= -\frac{ \rho( \vec{r'}, t)}{\epsilon_0} } \)\\ \\
+			\( \displaystyle \rho_{\infty} = 0 \ \Rightarrow \ \boldsymbol{ V( \vec{ \mathbf{r} } )
+				= \frac{1}{4 \pi \epsilon_0} \int \frac{ \rho ( \vec{r'}, t) }{\cursrr} \ d\tau' } \)
+		\end{tabular}
+	}
+	\end{center}
+
+	\hfill \break
+	If charges move, \(V\) updates immediately - not at light speed. Only 
+	\(\vec{E}\) can be physically measured, and updates at light speed.
+	\(\vec{A}\) is difficult to find using MALP except for special cases 
+	like Magnetostatics. \\
+
+	As always, GLMP says \[ \boxed{ \boldsymbol{ \Phi_B = \int \vec{A} \dotP d\vec{l} } } \]
+
+	\hfill \break \\
+	\underline{Magnetostatics}: \( \boldsymbol{ \left ( \partial_t \vec{E} = 0 \ \Rightarrow \ \partial_t \vec{J} = 0 \right ) } \) \\ \\
+	Using MALP,
+	\begin{center} 
+	\fbox{
+		\begin{tabular}{l}
+			\emph{Poisson Equation}: \ \ \ \( \displaystyle \boldsymbol{ \nabla^2 \vec{A} 
+				= - \mu_0 \vec{J}( \vec{r'} ) } \)\\ \\
+			\( \displaystyle \vec{J}_{\infty} = 0 \ \Rightarrow \ \boldsymbol{ \vec{A}( \vec{ \mathbf{r} } )
+				= k_\mu \int \frac{ \vec{J} ( \vec{r'} ) }{\cursrr} \ d\tau' } \)
+		\end{tabular}
+	}
+	\end{center}
+
+\end{minipage}
+
+%--------------------------------------------------------------------------------------------------
+% Electrostatic V Examples
+\newpage
+\subsubsection{Potential Examples}
+\vspace{10pt}
+\begin{minipage}[t]{0.5\textwidth}
+	\textbf{1. \ \ \ Point Charges}\\[10pt]
+	Reference Choice: \( V(\infty) = 0\)
+	\[ V( r ) = - \int_{ \infty }^{r} \frac{k Q}{(r')^2} dr'
+		= \frac{Q}{4 \pi \epsilon_0} \frac{1}{r} \]
+	\[ \boldsymbol{ V(\vec{ \mathbf{r} }) \ 
+		= \ \frac{1}{4 \pi \epsilon_0} \sum_i \frac{Q_i}{\cursr_i \ } } \]
+	
+	% Coloumb Potential
+	\vspace{20pt}
+	\textbf{Coulomb Potential}: \indent 
+	\( \displaystyle \boxed{ V(\vec{ \mathbf{r} }) 
+		= \frac{1}{4 \pi \epsilon_0} \int \frac{dq}{| \vec{\cursr_i} |} }\)
+
+	% Work
+	\vspace{20pt}
+	\textbf{Work}: \indent 
+	\( \displaystyle \boxed{ W = \frac{1}{2} \sum q_i V(\vec{ \mathbf{r} }_i) } \)
+\end{minipage}
+\rule[-438pt]{.5pt}{450pt}
+\hspace{0.02\textwidth}
+\begin{minipage}[t]{0.5\textwidth}
+	\textbf{1. \ \ \ }\\ \\
+
+	
+	\hfill \break
+	\textbf{2. \ \ \ }\\ \\
+
+	\hfill \break
+	\textbf{3. \ \ \ }\\ \\
+	
+\end{minipage}
+
+%-----------------------------------------------------------------------------------------------------------------
+\newpage
+\noindent
+\begin{minipage}[t]{.61\textwidth}
+	% Sphere Potential
+	\textbf{2. \ \ \ Sphere}\\ \\
+	Reference Choice:  \( V(\infty) = 0\) \\ \\
+	Let \(R\) be the radius.
+	\[ V(r) = - \int_{\infty}^r \vec{E}(r') \dotP d\vec{r'} \]
+
+	\begin{itemize}
+		\item \emph{Conductor}\\ \\
+		\( E(r) = \begin{cases}
+			\dfrac{k Q}{r^2}\\ \\
+			0 
+		\end{cases} 
+		\Rightarrow \ \ \ V(r) = \begin{cases}
+			\dfrac{ Q }{4 \pi \epsilon_0 r} & \ \ (r > R)\\ \\
+			\dfrac{ Q }{4 \pi \epsilon_0 R} & \ \ (r < R)
+		\end{cases} \)
+	\end{itemize}
+	\begin{itemize}
+		\item \emph{Insulator w/ CCD and \(\epsilon = \epsilon_0\)} \\ \\
+		\( E(r) = \begin{cases}
+			\dfrac{k Q}{r^2}\\ \\
+			\dfrac{k Q r}{R^3}
+		\end{cases} 
+		\Rightarrow \ \ \ V(r) = \begin{cases}
+			\dfrac{ Q }{4 \pi \epsilon_0 r} & \ \ (r > R)\\ \\
+			\dfrac{ Q }{4 \pi \epsilon_0 R} + \dfrac{Q r'^2}{8 \pi \epsilon_0 R^3} \bigg|_{r}^{R} & \ \ (r < R)
+		\end{cases} \)
+	\end{itemize}
+\end{minipage}
+\rule[-300pt]{.5pt}{300pt}
+\hspace{0.02\textwidth}
+\begin{minipage}[t]{0.4\textwidth}
+	\textbf{1. \ \ \ }\\ \\
+
+	
+	\hfill \break
+	\textbf{2. \ \ \ }\\ \\
+
+	\hfill \break
+	\textbf{3. \ \ \ }\\ \\
+	
+\end{minipage}
+
+%--------------------------------------------------------
+\newpage
+\noindent \textbf{Charges at \(\infty\)}
+\hfill \break \\
+\begin{minipage}[t]{0.5\textwidth}
+	\textbf{3. \ \ \ (Infinite) Parallel Plate Capacitor}\\ \\
+	Reference Choice: \( V(h) = 0 \)\\ \\
+	Let the Capacitor Height be \(h\) 
+	\[ V( z ) = - \int_{h}^{z} \frac{\sigma}{\epsilon_0} \hat{z} \dotP d\vec{z}
+		= \frac{\sigma (h-z)}{\epsilon_0} 
+		\ \ \ \ \indent (0 \leq z \leq h)
+	\]
+	
+	\hfill \break
+	\textbf{4. \ \ \ (Infinite) Single Plate w/ CCD}\\ \\
+	Reference Choice: \( V(0) = 0 \)
+	\[ V( z ) = - \int_{0}^{z} \frac{\sigma}{2 \epsilon_0} \hat{z} \dotP d\vec{z}
+		= - \frac{\sigma z}{2 \epsilon_0} 
+		\ \ \ \ \indent (0 \leq z < \infty) 
+	\]
+	\hfill \break 
+	Try \( V(\infty) = 0 \). (A charge distribution 
+		stretching to infinity DNE, so choose a diff. reference point.)
+	
+	\hfill \break
+	\textbf{5. \ \ \ Infinite Line w/ CCD}\\ \\
+	Reference Choice: \( V(1) = 0 \)
+	\begin{align*}
+		V(r) &= - \int_{1}^{r} \dfrac{ \lambda }{2 \pi r \epsilon_0} \hat{r} \dotP d\vec{r} \\
+		&= - \dfrac{ \lambda }{2 \pi \epsilon_0} \ln{r}
+	\end{align*}
+	\hfill \break
+	Try \( V(\infty) = 0 \) (same problem above). \\	
+\end{minipage}
+\hspace{0.02\textwidth}
+\rule[-438pt]{.5pt}{450pt}
+\hspace{0.02\textwidth}
+\begin{minipage}[t]{0.4\textwidth}
+	\textbf{3. \ \ \ }\\ \\
+	
+	\hfill \break
+	\textbf{4. \ \ \ }\\ \\
+
+	\hfill \break
+	\textbf{5. \ \ \ }\\ \\
+
+\end{minipage}
+
+%-----------------------------------------------------------------------------------------
+% Multipole Expansion
+\newpage
+\subsection{Multipole Expansion}
+% 1/r expansion
+\begin{center}
+\begin{minipage}[t]{0.3\textwidth}
+	\begin{align*}
+		\cursr^2 &= r^2 + (r')^2 - 2( \vec{\bfr} \dotP \vec{r'} ) \\
+		&= r^2 \left [ 1 + \frac{r'}{r} \left ( \frac{ r' }{r} - 2\frac{ \vec{\bfr} \dotP \vec{r'} }{r'r} \right ) \right ] \\
+		&= r^2 \left ( 1 + \epsilon \right )
+	\end{align*}
+\end{minipage}
+\hspace{0\textwidth}
+\begin{minipage}[t]{0.01\textwidth}
+	\hfill \break \\ \\ \\
+	\( \Rightarrow \)
+\end{minipage}
+\hspace{0\textwidth}
+\begin{minipage}[t]{0.3\textwidth}
+	\begin{align*}
+		\frac{1}{\cursrr} &= \frac{1}{r} ( 1 + \epsilon )^{-1/2} \\
+		&= \boldsymbol{ \frac{1}{r} \sum_{n=0} \left ( \frac{r'}{r} \right )^n 
+			P_n \left ( \hat{r'} \dotP \hat{\bfr} \right ) }\ \ \ \ \text{(Legendre Polynomials)}
+	\end{align*}	
+\end{minipage}
+\end{center}
+\rule{0.75\paperwidth}{0.1pt}
+
+% V Multipole Expansion
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{align*}
+		V( \vec{ \mathbf{r} } ) &= \frac{1}{4 \pi \epsilon_0} 		
+			\int \frac{1}{\cursrr} \ \rho( \vec{r'} ) d\tau' \\
+		&= \boxed{ \frac{1}{4 \pi \epsilon_0} \sum_n \frac{1}{r^{n+1}} 
+			\int (r')^n P_n (\cos{\alpha}) \ \rho( \vec{r'} ) d\tau' }
+	\end{align*}
+	\begin{gather*}
+		= \frac{1}{4 \pi \epsilon_0} \left [
+		\begin{tabular}{c}
+			\( \displaystyle \frac{1}{r} \int \rho( \vec{r'} ) d\tau' 
+				+ \frac{1}{r^2} \int \vec{r'} \dotP \hat{\bfr} \ \rho( \vec{r'} ) d\tau' \) \\ \\
+			\( \displaystyle + \ \frac{1}{r^3} \int (r')^2 P_2 ( \hat{r'} \dotP \hat{\bfr} ) \ \rho( \vec{r'} ) d\tau' 
+				+ \frac{1}{r^4} \int... \)
+		\end{tabular}
+		\right ]
+	\end{gather*}
+	\begin{center}
+		\fbox{
+			\begin{tabular}{c}
+				\( \displaystyle V_{\text{mon}} = \frac{1}{4 \pi \epsilon_0 r} \int \rho( \vec{r'} ) d\tau' \) \\ \\
+				\( \displaystyle V_{\text{dip}} =  \frac{1}{4 \pi \epsilon_0 r^2} 
+					\left ( \int \vec{r'} \ \rho( \vec{r'} ) d\tau' \right ) \dotP \hat{\bfr} 
+					= \frac{ \vec{ \mathbf{p} } \dotP \hat{\bfr} }{4 \pi \epsilon_0 r^2} \)
+			\end{tabular}
+		}		
+	\end{center}
+	\hfill \break \\
+	\(V\) is the dipole term. \( \mathbf{p} \) is the dipole moment.
+\end{minipage}
+\rule[-328pt]{.5pt}{320pt}
+\hspace{0.03\textwidth}
+% A Multipole Expansion
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{align*}
+		\vec{A} ( \vec{ \mathbf{r} } ) &= k_\mu	\int \frac{1}{\cursrr} \ \vec{J}( \vec{r'} ) d\tau' \\
+		&= \boxed{ k_\mu \sum_n \frac{1}{r^{n+1}} 
+			\int (r')^n P_n (\cos{\alpha}) \ \vec{J}( \vec{r'} ) d\tau' }
+	\end{align*}
+	\begin{gather*}
+		= k_\mu \left [
+		\begin{tabular}{c}
+			\( \displaystyle \frac{1}{r} \int \vec{J}( \vec{r'} ) d\tau' 
+				+ \frac{1}{r^2} \int \vec{r'} \dotP \hat{\bfr} \ \vec{J}( \vec{r'} ) d\tau' \) \\ \\
+			\( \displaystyle + \ \frac{1}{r^3} \int (r')^2 P_2 ( \hat{r'} \dotP \hat{\bfr} ) \ \vec{J}( \vec{r'} ) d\tau' 
+				+ \frac{1}{r^4} \int... \)
+		\end{tabular}
+		\right ]
+	\end{gather*}
+
+	\hfill \break
+	Steady current: \ 
+		\fbox{
+			\begin{tabular}{c}
+				\( \displaystyle A_{\text{mon}} = \frac{\mu_0 I}{4 \pi r} \oint dl' = 0 \) \\ \\
+				\( \displaystyle A_{\text{dip}} =  \frac{k_\mu}{r^2} 
+					I \int \vec{r'} \dotP \hat{\bfr} \ dl'
+					= \frac{k_\mu}{r^2} I \int d\vec{a'} \times \hat{\bfr} \)\\ \\
+				\( \displaystyle = \frac{k_\mu}{r^2} \left ( I\vec{a} \right ) \times \hat{\bfr} 
+					= \frac{\mu_0 \vec{ \mathbf{m} } \times \hat{\bfr}}{4 \pi r^2} \)
+			\end{tabular}
+		}		
+	\hfill \break \\
+	\(A\) is the dipole term. \( \mathbf{m} \) is the dipole moment.
+\end{minipage}
+
+%--------------------------------------------------------
+% Ideal Dipoles
+\newpage
+\noindent \textbf{Ideal Dipoles}
+\hfill \break \\
+% V Dipole
+\begin{minipage}[t]{0.5\textwidth}
+	Let dipole (2 charges) \( \vec{ \mathbf{p} } = p \hat{z} = 2dq \hat{z} \) and centered at the origin. \\ \\
+	\(\lim d \rightarrow 0, \ q \rightarrow \infty \) \ :
+	\begin{align*}
+		V( \vec{ \mathbf{r} } ) &= \frac{1}{4 \pi \epsilon_0} \sum_{n=0}^\infty 
+			\frac{ d^n P_n (\cos{\alpha}) q+ (-d)^n P_n (\cos{\alpha}) (-q) }{4 \pi \epsilon_0 \ r^{n+1}} \\ \\
+		&= \frac{1}{4 \pi \epsilon_0} \sum_{n=0}^\infty \frac{ P_n (\cos{\alpha}) q d^n }{r^{n+1}} [ 1 + (-1)^n ] \\ \\
+		&= \frac{1}{4 \pi \epsilon_0} \sum_{m=0}^\infty \frac{ P_m (\cos{\alpha}) }{r^{2m+2}} (2 q d) d^{2m} \\ \\
+		&= \frac{1}{4 \pi \epsilon_0} \sum_{m=0}^\infty \frac{ P_m (\cos{\alpha}) }{r^{2m+2}} p d^{2m} \\ \\
+		&= \frac{1}{4 \pi \epsilon_0} \frac{ P_0 (\cos{\alpha}) }{r^{2}} p + 0 + 0 + ...
+	\end{align*}
+	\hfill \break
+	\( \boxed{ \text{Ideal Dip:} \ \ \ \ \  V_{ \text{dip} }( \vec{ \mathbf{r} } ) 
+		= \frac{1}{4 \pi \epsilon_0} \frac{ \vec{ \mathbf{p} } \dotP \hat{\cursrr} }{\cursrr^{2}} } \)
+\end{minipage}
+\hspace{0.03\textwidth}
+\rule[-388pt]{.5pt}{400pt}
+\hspace{0.03\textwidth}
+% A Dipole
+\begin{minipage}[t]{0.5\textwidth}
+	Let dipole (ring) \( \vec{ \mathbf{m} } = m \hat{z} = Ia \hat{z} \) and centered at the origin. \\ \\
+	\(\lim a = \pi d^2 \rightarrow 0, \ I \rightarrow \infty \) \ :
+	\begin{align*}
+		\vec{A}( \vec{ \mathbf{r} } ) &= k_\mu \sum_{n=0}^\infty 
+			\frac{Id^n}{r^{n+1}} \int P_n (\cos{\alpha}) \ d\vec{l'}\\ \\
+		&= k_\mu \left( 
+				\begin{tabular}{c}
+					\( \displaystyle \frac{I}{r} \int d\vec{l}' 
+						+ \frac{I}{r^2} \int ( d \hat{r'} \dotP \hat{\bfr} ) \ d\vec{l}' \) \\ \\
+					\( \displaystyle + \ \frac{Id^2}{r^3} \int 
+						\left[ \frac{3}{2} \left( 1 + 2 \frac{d \hat{r'} \dotP \hat{\bfr}}{d} + 1 \right) 
+						- \frac{1}{2} \right] d\vec{l}' \) \\ \\ 
+					\( \displaystyle + \ I d^2 \sum_{n=3}^\infty \frac{d^{n-2}}{r^{n+1}} \int P_n (\hat{r'} \dotP \hat{\bfr}) \ d\vec{l}' \)	
+				\end{tabular} 
+			\right) \\ \\
+		&= k_\mu \left( 0
+			+ \frac{I \pi d^2}{r^2} ( \hat{z} \times \hat{\bfr} )
+			+ \frac{3 I \pi d^3}{r^3} ( \hat{z} \times \hat{\bfr} )
+			+ \frac{m}{\pi} (0 + ...) \right)\\ \\
+		&= k_\mu \left( 0
+			+ \frac{m}{r^2} ( \hat{z} \times \hat{\bfr} )
+			+ 0 + 0 + ... \right)
+	\end{align*}
+	\hfill \break
+	\( \boxed{ \text{Ideal Dip:} \ \ \ \ \ \vec{A}_{ \text{dip} }( \vec{ \mathbf{r} } ) 
+		= k_\mu \frac{ \vec{ \mathbf{m} } \times \hat{\cursrr} }{\cursrr^{2}} } \)
+\end{minipage}
+
+%--------------------------------------------------------
+% Multipole Examples
+\subsubsection{Multipole Examples}
+\hfill \break
+\begin{minipage}[t]{0.5\textwidth}
+	\textbf{3. \ \ \ }\\ \\
+	
+	\hfill \break
+	\textbf{4. \ \ \ }\\ \\
+
+	\hfill \break
+	\textbf{5. \ \ \ }\\ \\
+
+\end{minipage}
+\hspace{0.02\textwidth}
+\rule[-388pt]{.5pt}{400pt}
+\hspace{0.02\textwidth}
+\begin{minipage}[t]{0.4\textwidth}
+	\textbf{3. \ \ \ }\\ \\
+	
+	\hfill \break
+	\textbf{4. \ \ \ }\\ \\
+
+	\hfill \break
+	\textbf{5. \ \ \ }\\ \\
+
+\end{minipage}
+
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+% EM in Matter Equations
+\newpage
+\section{Electrodynamics in Matter}
+\subsection{Ideal Dipoles}
+% V Dipole
+\begin{minipage}[t]{0.49\textwidth}
+	\[\boxed{ \vec{ \mathbf{p} } = \int r' \dotP \rho(r') \ d\tau' }\]
+	% F and U for ideal dipole
+	\begin{tabular}{c | c}
+		\( \begin{aligned} 
+			\vec{F}_{\text{dip}} &= q E \bigg|^{ \vec{r} + \vec{d} }_{ \vec{r} } = q \Delta \vec{E}\\
+			&\approx \left[ q \sum_i \left( \nabla E_i \dotP \vec{d} \ \right) \hat{i} \right] \\
+			\end{aligned} \)
+		& \( \begin{aligned} 
+			U_{\text{ES dip}} &= q V \bigg|^{ \vec{r} + \vec{d} }_{ \vec{r} } = q \Delta V \\
+			&= q \int_{\vec{r}}^{\vec{r}+\vec{d}} - \vec{E} \dotP d\vec{l} \\ 
+			\end{aligned} \) \\ 
+		\\ \\
+		\( \boxed{ \vec{F}_{\text{dip}} = ( \vec{\mathbf{p}} \dotP \nabla ) \vec{E} } \)	
+		& \( \boxed{ U_{\text{ES dip}} =  - \vec{ \mathbf{p} } \dotP \vec{E} } \)
+  	\end{tabular}
+	% Torque for Ideal Dipole
+	\hfill \break
+	\begin{gather*}
+		\vec{N}_{\text{center}} = r \times F = \vec{d} \times q\vec{E} \\
+		\boxed{ \vec{N}_{\text{dip}} = \vec{\mathbf{p}} \times \vec{E} }
+	\end{gather*}	
+
+	% Polarization
+	\hfill \break \\
+	\fbox{ \textbf{Polarization}: \ \( \vec{P} = \dfrac{d\vec{\mathbf{p}}}{d\tau} \) } \ \ \ \ \ \ \ \
+	\( \displaystyle \left( \frac{\hat{ \cursrr }}{\cursrr^2} = \nabla' \frac{1}{\cursrr} \right) \)
+	\hfill \break \\
+	\begin{align*}
+		V(\vec{ \mathbf{r} }) &= \frac{1}{4 \pi \epsilon_0} 
+			\int_\nu \frac{ \vec{P}( \vec{r'} ) \dotP \hat{ \cursrr } }{\cursrr^2} \ d\tau' \\
+		&= \frac{1}{4 \pi \epsilon_0} \int_\nu \frac{ - \nabla' \dotP \vec{P}( \vec{r'} ) }{\cursr} \ d\tau' 
+			+ \frac{1}{4 \pi \epsilon_0} \int_S \frac{ \vec{P}( \vec{r'} ) \dotP \hat{n} }{\cursr} \ da'
+	\end{align*}
+	\begin{center}
+		\begin{tabular}{c m{.1cm} c}
+			\( \boxed{ \rho_b = - \nabla \dotP \vec{P} } \) 
+			& &
+			\( \boxed{ \sigma_b = \vec{P} \dotP \hat{n} } \)
+		\end{tabular}
+	\end{center}
+
+\end{minipage}
+\hspace{0\textwidth}
+\rule[-400pt]{.5pt}{400pt}
+\hspace{0.01\textwidth}
+% A Dipole
+\begin{minipage}[t]{0.5\textwidth}	
+	\[\boxed{ \vec{ \mathbf{m} } = \sum I \vec{a} }\]
+	% F and U for Ideal Dipole
+	\begin{minipage}[t]{0.5\textwidth}
+		\begin{align*} 
+			\vec{F}_{\text{sqr. dip}} &= q \vec{v} \times \vec{B} \\
+			&= \pm IL \vec{x} \times B \hat{z} \\
+			&= \pm \ I L B \ \hat{y} \\ \\
+			\vec{N}_{\text{sqr. dip}} &= 2 \left[ \frac{\pm \vec{W}}{2} \times \pm I L B \hat{y} \right] \\
+			&= I(LW) \sin{\theta} B \ \hat{x} \\ \\
+			&\boxed{ \vec{N}_{\text{dip}} = \vec{\mathbf{m}} \times \vec{B} }
+		\end{align*}
+	\end{minipage}
+	\hspace{0.01\textwidth}
+	\rule[-185pt]{.5pt}{185pt}
+	\begin{minipage}[t]{0.4\textwidth}
+		\begin{gather*} 
+			\boxed{ \vec{F}_{\text{dip}} = \nabla ( \vec{\mathbf{m}} \dotP \vec{B} ) } ??? \\ \\
+			\boxed{ U_{\text{dip}} =  - \vec{ \mathbf{m} } \dotP \vec{B} }
+		\end{gather*}
+	\end{minipage}
+
+	% Magnetization
+	\hfill \break \\ \\
+	\fbox{ \textbf{Magnetization}: \ \( \vec{M} = \dfrac{d\vec{\mathbf{m}}}{d\tau} \) } \ \ \ \ \ \ \ \ \
+	\( \displaystyle \left( \frac{\hat{ \cursrr }}{\cursrr^2} = \nabla' \frac{1}{\cursrr} \right) \)
+	\hfill \break
+	\begin{align*}
+		\vec{A}(\vec{ \mathbf{r} }) &= k_\mu \int_\nu \frac{ \vec{M}( \vec{r'} ) 
+			\times \hat{ \cursrr } }{\cursrr^2} \ d\tau' \\
+		&= k_\mu \int_\nu \frac{ \nabla' \times \vec{M}( \vec{r'} ) }{\cursr} \ d\tau' 
+			+ k_\mu \int_S \frac{ \vec{M}( \vec{r'} ) \times \hat{n} }{\cursr} \ da'
+	\end{align*}
+	\begin{center}
+		\begin{tabular}{c m{.1cm} c}
+			\( \boxed{ \vec{J}_b = \nabla \times \vec{M} } \) 
+			& &
+			\( \boxed{ \vec{K}_b = \vec{M} \times \hat{n} } \)
+		\end{tabular}
+	\end{center}
+
+\end{minipage}
+
+\newpage
+\subsection{Maxwell's Equations in Matter}
+\hfill \break
+% Gauss's Law Electricity
+\begin{minipage}[t]{0.3\textwidth}
+	\textbf{GLE in Matter (GLEM)}
+	\setlength{\jot}{2ex}
+	\begin{align*}
+		\nabla \dotP \epsilon_0 \vec{E} &= \rho = \rho_b + \rho_f\\
+		&= - \nabla \dotP \vec{P} + \nabla \dotP D
+	\end{align*}
+	\begin{align*}
+		\nabla \dotP \left( \epsilon_0 \vec{E} + \vec{P} \right) = \nabla \dotP D
+	\end{align*}
+	\vspace{.2cm}
+	\begin{center}
+	\fbox{
+		\begin{tabular}{c m{.2cm} c}
+			\multicolumn{3}{c}{
+				\( \vec{D} = \epsilon_0 \vec{E} + \vec{P} \)
+			} \\ \\
+			\multirow{3}{*}{ \( \nabla \dotP \vec{D} = \rho_f \) }
+				& & \( - \nabla \dotP \vec{P} = \rho_b \) \\
+			\\
+			& & \( \vec{P} \dotP \hat{n} = \sigma_b \)
+		\end{tabular} 
+	}
+	\end{center}
+\end{minipage} 
+\hspace{0.01\textwidth}
+\begin{minipage}[t]{0.3\textwidth}
+	\textbf{COC in Matter (COCM)}
+	\begin{align*}
+		\nabla \dotP \vec{J}_p &= - \dfrac{\partial \rho_b}{\partial t} \\
+		&= \dfrac{\partial}{\partial t} \left( \nabla \dotP \vec{ \mathbf{P} } \right)
+	\end{align*}
+	\[ \boxed{ \frac{\partial \vec{ \mathbf{P} }}{\partial t} = \vec{J}_p } \]	
+\end{minipage}
+\hspace{0.01\textwidth}
+\begin{minipage}[t]{0.35\textwidth}
+	% Maxwell-Ampere's Law
+	\textbf{MAL in Matter (MALM)}
+	\begin{align*}
+		\nabla \times \frac{1}{\mu_0} \vec{B} &= \vec{J} + \epsilon_0 \frac{\partial \vec{E}}{\partial t}
+			= \vec{J_b} + \vec{J_f} + \vec{J_p} + \epsilon_0 \frac{\partial \vec{E}}{\partial t} \\
+		&= \nabla \times M + \vec{J_f} + \frac{\partial \vec{ \mathbf{P} }}{\partial t} 
+			+ \epsilon_0 \frac{\partial \vec{E}}{\partial t}
+	\end{align*}
+	\begin{align*}
+		\nabla \times \left( \frac{1}{\mu_0} \vec{B} - M \right)
+			&= \vec{J_f} + \frac{\partial}{\partial t} \left( \epsilon_0 \vec{E} + \vec{ \mathbf{P} } \right)
+	\end{align*}
+
+	\hfill \break \\
+	\fbox{
+		\begin{tabular}{c m{.2cm} c}
+			\multicolumn{3}{c}{ \( \displaystyle \vec{H} = \frac{1}{\mu_0} \vec{B} - \vec{M} \) }\\
+			\\
+			\multirow{3}{*}{ \( \displaystyle \nabla \times \vec{H} = \vec{J_f} + \frac{\partial \vec{D}}{\partial t} \) }
+				& & \( \nabla \times \vec{M} = \vec{J}_b \) \\
+			\\
+			& & \( \vec{M} \times \hat{n} = \vec{K}_b \)
+		\end{tabular}
+	} 
+\end{minipage}
+
+\hfill \break
+\begin{center}
+% Faraday's Law Induction
+\begin{minipage}[t]{0.35\textwidth}
+	\textbf{Faraday's Law of Induction (FLI)}
+	\[ \boxed{ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} } \]
+	\hfill \break 
+	\fbox{ Electrostatics: \ \( \nabla \times \vec{D} = \nabla \times \vec{P} \) }
+\end{minipage} 
+\hspace{0.15\textwidth} 
+% Gauss's Law Magnetism
+\begin{minipage}[t]{0.35\textwidth}
+	\textbf{Gauss's Law for Magnetism (GLM)}
+	\[ \boxed{ \nabla \dotP \vec{B} = 0 } \]
+	\[ \boxed{ \nabla \dotP \vec{H} = - \nabla \dotP \vec{M} } \]
+\end{minipage} 
+\end{center}
+
+%-----------------------------------------------------------------------------------------
+% Linear Matter
+\newpage
+\subsection{Linear Matter}
+\hfill \break
+\begin{minipage}[t]{0.48\textwidth}
+	\setlength{\parindent}{.5cm}
+	
+	\noindent \underline{Electric Susceptibility}: \( \chi_e \) \\ \\
+	\indent \indent \( \vec{ P } = \chi_e \epsilon_0 \vec{E} \)
+
+	\hfill \break
+	Susceptibility Tensor: \\ \\
+	\indent \indent \( \vec{ P } = 
+		\begin{pmatrix}
+			\chi_{e_{xx}} & \chi_{e_{xy}} & \chi_{e_{xz}} \\
+			\chi_{e_{yx}} & \chi_{e_{yy}} & \chi_{e_{yz}} \\
+			\chi_{e_{zx}} & \chi_{e_{zy}} & \chi_{e_{zz}}
+		\end{pmatrix}
+		\epsilon_0 \vec{E} \)
+
+	\hfill \break \\ \\
+	\underline{Relative Permittivity}: \( \epsilon_r = 1 + \chi_e \)\\ \\
+	\indent \indent \( \begin{aligned}[t]
+			\vec{D} &= ( 1 + \chi_e ) \epsilon_0 \vec{E} \\ 
+			&= \epsilon_r \epsilon_0 \vec{E}\\
+			&= \epsilon \vec{E}
+	\end{aligned} \)
+
+\end{minipage}
+\hspace{0.02\textwidth}
+\rule[-430pt]{.5pt}{440pt}
+\hspace{0.02\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
+	\setlength{\parindent}{.5cm}
+	
+	\noindent \underline{Magnetic Susceptibility}: \( \chi_m \) \\ \\
+	\indent \indent \( \vec{ M } = \chi_m \vec{H} \)
+
+	\hfill \break
+	Susceptibility Tensor: \\ \\
+	\indent \indent \( \vec{ M } =
+		\begin{pmatrix}
+			\chi_{m_{xx}} & \chi_{m_{xy}} & \chi_{m_{xz}} \\
+			\chi_{m_{yx}} & \chi_{m_{yy}} & \chi_{m_{yz}} \\
+			\chi_{m_{zx}} & \chi_{m_{zy}} & \chi_{m_{zz}}
+		\end{pmatrix}
+		\vec{H} \)
+
+	\hfill \break \\
+	Bound Current: \\ \\
+	\indent \indent \( \begin{aligned}
+		\vec{J}_b &= \nabla \times \left( \chi_m \vec{H} \right) \\
+		&= \chi_m \left( \vec{J}_f + \partial_t \vec{D} \right) 
+	\end{aligned} \)
+
+	\hfill \break \\ \\
+	\underline{Relative Permeability}: \( \mu_r = 1 + \chi_m \)\\ \\
+	\indent \indent \( \begin{aligned}[t]
+			\vec{B} &= ( 1 + \chi_m ) \mu_0 \vec{H} \\ 
+			&= \mu_r \mu_0 \vec{H}\\
+			&= \mu \vec{H}
+	\end{aligned} \)
+\end{minipage}
+
+%-----------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------
+% Boundary Conditions
+\newpage
+\section{Boundary Conditions}
+% E field Boundaries
+\begin{minipage}[t]{.45\textwidth}
+	\hfill \break
+	\( \boxed{ \Delta \vec{E} = \dfrac{\sigma}{\epsilon_0} \hat{n} } \)
+	\begin{enumerate}
+		\item {
+			\( \boxed{ \displaystyle \Delta E_{\parallel} = 0 } \)  \ \ \ 
+			\begin{tabular}{|c}
+				\( \displaystyle \oint \vec{E} \dotP d\vec{L} \ = 
+					- \oiint_{0-}^{0+} \frac{\partial \vec{B}}{\partial t} \dotP d\vec{a} \) \\ \\
+				\( \displaystyle (E_{\parallel}^{+} - E_{\parallel}^{-}) L = 0 \)
+			\end{tabular}
+		} \\ \\
+		\item {
+			% \hfill \break \\ \\
+			\begin{tabular}{c}
+				\( \boxed{ \displaystyle \Delta E_{\perp} = \frac{\sigma}{\epsilon_0} } \) \\ \\
+				\( \boxed{ \displaystyle \Delta D_{\perp} = \sigma_f } \)
+			\end{tabular}
+			\ \ \
+			\begin{tabular}{|c}
+				\( \displaystyle \oiint \vec{E} \dotP d\vec{a} = Q/\epsilon_0 \) \\ \\
+				\( \displaystyle ( E_{\perp}^{+} - E_{\perp}^{-} ) a = \frac{\sigma a}{\epsilon_0} \) 
+			\end{tabular}
+		}
+	\end{enumerate}
+
+	\hfill \break \\
+	\underline{Electrostatics: \( \nabla \times \vec{E} = 0 \) } \\
+	
+	\( \boxed{ \Delta V = 0 } \) \ \ \ 
+	\begin{tabular}{|c}
+		\\
+		\( \displaystyle V \ \bigg|_{0-}^{0+}= - \int_{0-}^{0+} \vec{E} \dotP dL \)\\
+		\\
+	\end{tabular}
+
+	\hfill \break \\
+	\( \boxed{ \Delta \dfrac{\partial V}{ \partial n } = -\dfrac{\sigma}{\epsilon_0} } \) \ \ \ 
+	\begin{tabular}{|c}
+		\\
+		\( \Delta (\nabla V) \dotP \hat{n} \) \\
+		\\
+	\end{tabular}
+	
+	\hfill \break \\
+	\( \boxed{ \Delta \vec{D}_{\parallel} = \Delta \vec{P}_{\parallel} } \) \ \ \ 
+	\begin{tabular}{|c}
+		\\
+		\( \nabla \times \vec{D} = \nabla \times \vec{P} \)\\
+		\\
+	\end{tabular}
+\end{minipage}
+\hspace{0\textwidth}
+\rule[-445pt]{.5pt}{445pt}
+\hspace{0.02\textwidth}
+% B field Boundaries
+\begin{minipage}[t]{.55\textwidth}
+	\hfill \break
+	\( \boxed{ \Delta \vec{B} = \mu_0 \vec{K} \times  \hat{n} } \) \\
+	\begin{enumerate}
+		\item {
+			\( \boxed{ \displaystyle \Delta B_{\perp} = 0 } \) \ \ \ 
+			\begin{tabular}{|c}
+				\( \displaystyle \oiint \vec{B} \dotP d\vec{a} = 0 \) \\ \\
+				\( \displaystyle (B_{\perp}^{+} - B_{\perp}^{-}) a = 0 \) 
+			\end{tabular}
+		} \\ \\
+		\item {
+			\begin{tabular}{c}
+				\( \boxed{ \displaystyle \Delta \vec{B}_{\parallel} = \mu_0 \vec{K} \times \hat{n}  } \) \\ \\
+				\( \boxed{ \displaystyle \Delta \vec{H}_{\parallel} = \vec{K}_f \times \hat{n}  } \)
+			\end{tabular}
+			\ \ \ 
+			\begin{tabular}{|c}
+				\( \displaystyle \oint \frac{\vec{B}}{\mu_0} \dotP dL = \oiint_{0-}^{0+} 
+					\left ( \vec{J} + \frac{\epsilon_0 \partial \vec{E}}{\partial t} \right ) 
+					\dotP d\vec{a} \)\\ \\
+				\( \displaystyle (B_{\parallel}^{+} - B_{\parallel}^{-}) L = \mu_0 I_{enc} \) \\ \\
+				\( \displaystyle \Delta B_{\parallel}L = \mu_0 K L = (\mu_0 \vec{K} \times \hat{n}) \dotP \vec{L} \)
+			\end{tabular}
+		}
+	\end{enumerate}
+
+	\hfill \break \\
+	\( \boxed{ \Delta A_{\parallel} = 0 } \) \ \ \
+	\begin{tabular}{|c}
+		\( \displaystyle \oint \vec{A} \dotP d\vec{l} = \Phi_B = 0 \)
+	\end{tabular}
+
+	\hfill \break \\
+	\underline{Magnetostatic: \( \nabla \dotP \vec{A} = 0 \) } \\ \\
+	\( \boxed{ \Delta A_{\perp} = 0 } \) \ \ \
+	\begin{tabular}{|c}
+		\( \displaystyle \oiint_{0-}^{0+} \vec{A} \dotP d\vec{a} = 0 \)
+	\end{tabular}	
+
+	\hfill \break \\ 
+	\( \boxed{ \Delta \frac{\partial \vec{A}}{\partial n} = -\mu_0 \vec{K} } \) \ \ \ 
+	\begin{tabular}{|m{1.5cm} c c}
+		\multicolumn{3}{|c}{
+			\( \displaystyle \Delta ( \nabla \times \vec{A} )
+			= \left( - \frac{\partial A_y^+}{\partial z} + \frac{\partial A_y^-}{\partial z} \right) \hat{x}
+			+ \left( \frac{\partial A_x^+}{\partial z} - \frac{\partial A_x^-}{\partial z} \right) \hat{y} \)
+		} \\ \\
+		 & \( = -\mu_0 K \hat{y} \) & 
+	\end{tabular}
+\end{minipage}
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+% Work-Energy, Radiation, and Momentum
+\newpage
+\section{Work-Energy, Radiation, and Momentum}
+The sum of the work to move a collection of charges considering the potential from each other charge 
+comes out to be
+\[ \boldsymbol{ W = \frac{1}{2} \sum_i q_i V(r_i) } \]
+
+% Field Energies
+\subsection{Field Energies}
+\vspace{-10pt}
+\begin{gather*}
+	W_E = \frac{\epsilon_0}{2} \int \vec{E}^2 d\tau 
+	\indent \indent W_B = \frac{1}{2\mu_0} \int \vec{B}^2 d\tau\\ \\
+	U_{EB} = \frac{1}{2} \int \epsilon_0 \vec{E}^2 + \frac{1}{\mu_0} \vec{B}^2 \ d\tau 
+		= \frac{1}{2} \int u_{EB} \ d\tau
+\end{gather*}
+
+\vspace{20pt}\noindent
+% Energy Conservation
+\begin{minipage}[t]{.53\textwidth}
+	\subsection{Energy Conservation}
+
+	% Energy and Poynting Vector
+	\vspace{5pt}
+	\(\begin{gathered}
+		\boxed{ \ \ \text{\emph{Poynting Vector}:} \ \ \ \vec{S} = \frac{1}{\mu_0} (\vec{E} \times \vec{B}) 
+			= \frac{1}{2\mu_0} \text{Re}(\mathbf{\tilde E} \times \mathbf{\tilde B}^*) \ \ }\\[15pt]
+		\boxed{ I = \langle P_\text{ow}/A \rangle = \langle S \rangle = \frac{1}{2} c \epsilon_0 E^2 }\\[10pt]
+		-P_\text{ow} = \frac{dW}{dT} + \frac{dU_{EB}}{dt} = - \int \vec{S} \dotP d\vec{a}\\[5pt]
+		\frac{d}{dt}(u_{mech} + u_{EB}) =  -\nabla \dotP \vec{S} 
+	\end{gathered}\)	
+\end{minipage}
+% Radiation
+\begin{minipage}[t]{.46\textwidth}
+	\subsection{Radiation}
+
+	% Accelerating Charge
+	\vspace{5pt}\noindent
+	\underline{Accelerating Charge}\\
+	\(\displaystyle \text{Larmor Formula}\ \ (v \ll c):\ P_\text{ow}
+		= \left(\frac{2k_\epsilon}{3c^3}\right) q^2 a^2\)
+
+	% Electric Dipole
+	\vspace{15pt}\noindent
+	\underline{Electric Dipole Radiation}\\[10pt]
+	\(\begin{array}{r l}
+		\text{Dipole Moment}:	&\vec{\mathbf{p}}(t) = p_0 \cos{(\omega t)} \hat{z}\\[10pt]
+		\text{Intensity}:		&\langle S \rangle 
+			= \left( \dfrac{k_\epsilon}{8\pi c^3} \right) p^2_0 \omega^4\ \dfrac{\sin^2 \theta}{r^2}\\[15pt]
+		\text{Power}:			&\langle P \rangle_E = \left( \dfrac{k_\epsilon}{3c^3} \right) p^2_0 \omega^4
+	\end{array}\)
+
+	% Magnetic Dipole
+	\vspace{15pt}\noindent
+	\underline{Magnetic Dipole Radiation}:\ \ \(\langle P \rangle_B 
+		= \left(\dfrac{k_\mu}{3c^3}\right) m^2_0 \omega^4\)
+\end{minipage}
+
+% % Examples
+% \subsubsection{Examples}
+
+%---------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Momentum and Stress Tensor
+\subsection{Momentum Conservation}
+\begin{tabular}{c}
+	\( \left( a \dotP \overleftrightarrow T \right)_i  = \sum_n a_n T_{in} \) \\[20pt]
+	\( T_{ij} = \epsilon_0 \left( E_i E_j - \frac{1}{2} \delta_{ij} E^2 \right) 
+		+ \frac{1}{\mu_0} \left( B_i B_j - \frac{1}{2} \delta_{ij} B^2 \right) \) 
+\end{tabular}
+
+\begin{center}
+\begin{minipage}{0.3\textwidth}
+	\begin{align*}
+		F_i &= \int f_i d\tau \\
+		&= \oint_S \left( \overleftrightarrow T \dotP da \right)_i 
+			- \frac{1}{c^2}\frac{d}{dt}\int_V S d\tau \\ \\ 
+		\frac{ dP_{mech} }{dt} &= \int_V \left( \nabla \dotP \overleftrightarrow T \right)_i d\tau 
+			- \frac{dP_{EM}}{dt} \\
+	\end{align*}
+	\begin{gather*}
+		\frac{d}{dt} (P_{mech} + P_{EM})_i 
+			= \int_V \left( \nabla \dotP \overleftrightarrow T \right)_i d\tau \\ \\
+		L_{EM} = \vec{r} \times P_{EM}		
+	\end{gather*}
+\end{minipage}
+\hspace{0.1\textwidth}
+\begin{minipage}{0.3\textwidth}
+	\begin{align*}
+		{\bf f}_i &= \epsilon_0 E_i + (\vec{J} \times \vec{B})_i \\
+		&= \left( \nabla \dotP \overleftrightarrow T \right)_i 
+			- \frac{1}{c^2} \frac{\partial \vec{S}_i}{\partial t} \\ \\
+		\frac{\partial}{\partial t} (p_{mech})_i 
+			&= \left( \nabla \dotP \overleftrightarrow T \right)_i 
+			- \frac{\partial}{\partial t} (p_{EM})_i \\
+	\end{align*}
+	\begin{gather*}
+		\frac{\partial}{\partial t} (p_{mech} + p_{EM})_i 
+			= \left( \nabla \dotP \overleftrightarrow T \right)_i \\ \\
+		l_{EM} = \vec{r} \times p_{EM}
+	\end{gather*}
+\end{minipage}
+\end{center}
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+% Lorenz Gauge
+\newpage
+\section{Potentials in \underline{Lorenz Gauge (nonstatic sources)}}
+See Potentials for Recap
+
+\vspace{10pt}\noindent
+\begin{minipage}[t]{0.47\textwidth}
+	If choose \( \boldsymbol{ \left ( \nabla \dotP \vec{A} = -\frac{1}{c^2} \frac{\partial V}{\partial t}
+		\ \Leftrightarrow \ \partial_\mu A^\mu = 0 \right ) } \)
+	
+	\begin{center}
+		\fbox{\(\begin{aligned}
+			\boldsymbol{ \Box^2 V = \dfrac{\rho}{\epsilon_0} } \\[5pt]
+			\boldsymbol{ \Box^2 \vec{A} = \mu_0 \vec{J} }
+		\end{aligned}\)}		
+	\end{center}
+
+	Solutions satisfying these three equations (thus satisfying \\ Maxwell's Eq.) are,
+	
+	\begin{center}
+		\fbox{
+			\begin{tabular}{c}
+				\( \boldsymbol{ \displaystyle V( \vec{ \mathbf{r} }, t) = \frac{1}{4 \pi \epsilon_0} \int
+					\frac{ \rho( \vec{r'}, t_r) }{\cursrr} \ d\tau' } \) \\ \\
+				\( \boldsymbol{ \displaystyle \vec{A}( \vec{ \mathbf{r} }, t) = k_\mu \int
+					\frac{ \vec{J}( \vec{r'},t_r) }{\cursrr} \ d\tau' } \)
+			\end{tabular}
+		}		
+	\end{center}
+	
+	where \( t_r = t - \dfrac{\cursr}{c} \). \\[7pt]
+	Notice that charges move, \(V\) and \(\vec{A}\) update at the speed of light.
+	\( t_r = t + \frac{\cursr}{c} \) is also a solution, though not physically real.
+\end{minipage}
+\hspace{0.03\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
+	Using GLMP and FLIP to find the fields,
+
+	\vspace{15pt}
+	\fbox{\(\begin{aligned}
+		&\text{\emph{Jefimenko Equations}:}\\[10pt]
+		&\ \ \ \ \begin{gathered}
+			\mathbf{ \vec{E}( \vec{ \mathbf{r} }, t) = \frac{1}{4 \pi \epsilon_0} 
+				\int \left [ \frac{ \rho ( \vec{ \mathbf{r} }, t_r ) }{\cursr^2} \hat{\cursrr} 
+				+ \frac{ \dot{\rho} ( \vec{ \mathbf{r} }, t_r ) }{c^2} \hat{\cursrr} 
+				+ \frac{ \vec{J} ( \vec{ \mathbf{r} }, t_r ) }{c^2 \cursr} \right ] d\tau' }\ \ \ \\[10pt]
+			\mathbf{ \vec{B}( \vec{ \mathbf{r} }, t) = k_\mu
+				\int \left [ \frac{ \vec{J} ( \vec{ \mathbf{r} }, t_r ) }{\cursr^2} 
+				+ \frac{ \dot{ \vec{J} } ( \vec{ \mathbf{r} }, t_r ) }{c \cursr} \right ] \times \hat{\cursrr} d\tau' }\\[5pt]
+		\end{gathered}
+	\end{aligned}\)}
+
+	\vspace{20pt}
+	It's usually easier solve for the potentials first instead of fields directly. In 
+	the electrostatic and magnetostatic limits, CL and BSL are recovered.
+\end{minipage}
+
+% ----------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------
+% Waves
+\newpage
+\section{EM Waves}
+
+\[ f(z,t) = \text{Re}[ \tilde f(z,t) ] = \text{Re}\left[ Ae^{i(kz-wt+\delta)} \right] \] \\
+$\omega$ is the same throughout! (?) \\ \\
+$\displaystyle \frac{\lambda_1}{\lambda_2} = \frac{k_2}{k_1} = \frac{v_1}{v_2} = \frac{n_2}{n_1}$ \\ \\ \\
+${\bf \tilde f(z,t; \delta = 0): }\ \tilde A_I e^{ i(k_1z-wt) } + \tilde A_R e^{ i(-k_1z-wt) } \Rightarrow \tilde A_T e^{ i(k_2z-wt) }$ \\
+
+$\tilde A_I + \tilde A_R = \tilde A_T;\ \ \  k_1( \tilde A_I - \tilde A_R ) = k_2 \tilde A_T$ \\ 
+
+$\displaystyle \tilde A_R e^{i\delta_R} = \left( \frac{v_2 - v_1}{v_2 + v_1} \right) \tilde A_I e^{i\delta_I}; \ \ \ 
+	\tilde A_T e^{i\delta_T} = \left( \frac{2v_2}{v_2 + v_1} \right) \tilde A_I e^{i\delta_I}$ \\
+
+$A_R = \left( \displaystyle \frac{|v_2 - v_1|}{v_2 + v_1} \right) A_I; \ \ \ A_T = \left( \displaystyle \frac{2v_2}{v_2 + v_1} \right)A_I$
+	% Vacuum
+\subsection{Vacuum, $\vec{v}_{||} \vec{E}_{||} \hat z$}
+\[\tilde B_0 = \frac{k}{w}(\hat z \times \tilde E_0) = \frac{1}{c}(\hat z \times \tilde E_0) \] \\
+\[ \vec{S} = cu_{EM} \hat z = c \epsilon_0 E_0^2 \cos^2(kw,wt+\delta) \hat z\]
+\[ I_{nt} = \left< S \right> = \frac{1}{2} c \epsilon_0 E_0^2\]
+\[ P_{res} = \frac{I_{nt}}{c}\]
+
+%-------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Linear Media
+\subsection{Linear Media}
+
+% Initial Info
+\vspace{10pt}
+\(\begin{gathered}
+	D = \epsilon E;\ \ \ B = \mu H \\[5pt]
+	\tilde B_0 = \frac{1}{v}(\hat z \times \tilde E_0)
+\end{gathered}
+\hspace{1cm}
+\rule[-30pt]{.5pt}{70pt}
+\hspace{1cm}
+\begin{aligned}
+	&\bullet \ \boxed{ n = \frac{c}{v} }\\[5pt]
+	&\bullet \ n = \sqrt{ \frac{ \epsilon \mu }{ \epsilon_0 \mu_0 } } 
+		\approx \sqrt{ \frac{\epsilon}{\epsilon_0} } 
+		= \sqrt{ \epsilon_r }
+\end{aligned}
+\hspace{1.5cm}
+\begin{aligned}
+	&\bullet\ k_I v_1 = k_R v_1 = k_T v_2 = \omega \\[5pt]
+	&\bullet\ k_I \sin{\theta_I} = \big( k_R \sin{\theta_R} = k_R \sin{\theta_I} \big) = k_T \sin{\theta_T}\\[5pt]
+	&\bullet\ \text{Snell's Law}:\ \boxed{ n_1 \sin \theta_I = n_2 \sin \theta_T }
+\end{aligned}\)
+
+% Fresnel's Equations Oblique Incidence
+\vspace{20pt} \noindent
+\underline{Fresnel's Equations Oblique Incidence}
+\indent \(\left( \alpha =\displaystyle \frac{\cos \theta_T}{\cos \theta_I} 
+	= \frac{\scriptstyle \sqrt{1 - (n_1/n_2)^2\sin{\theta_I}^2} }{\cos \theta_I} \ , \ \ 
+	\beta = \frac{\mu_1 v_1}{\mu_2 v_2} \approx \frac{v_1}{v_2} \right)\)
+
+% P-Polarized 
+\vspace{15pt}\noindent
+\(\bullet\)\ P-Polarized (\(E_\parallel\ \text{to Plane of Incidence}\)):\\[10pt]
+% Fresnel Oblique
+\(\begin{aligned}[t]
+	&\tilde E_R = \left( \frac{\alpha-\beta}{\alpha+\beta} \right) \tilde E_I\ ;\ \ \ 
+		\tilde E_T = \left( \frac{2}{\alpha+\beta} \right) \tilde E_I\\[10pt]	
+	&\ \ \ R = \frac{I_R}{I_I} = \left( \frac{E_R}{E_I} \right)^2 
+		= \left( \frac{\alpha-\beta}{\alpha+\beta} \right)^2 \\[10pt]
+	&\ \ \ T = \frac{I_T}{I_I} = \frac{\epsilon_2 v_2}{\epsilon_1 v_1} 
+		\left( \frac{E_T}{E_I} \right)^2 \frac{\cos \theta_T}{\cos \theta_I} 
+		= \alpha \beta \left( \frac{2}{\alpha+\beta} \right)^2
+\end{aligned}
+\hspace{20pt}
+% Reflection Shift/Angles
+\begin{aligned}[t]
+	&\text{Reflection Shift/Angles} \left( \alpha - \beta \stackrel{?}{=} 0 \right): \ \tan^2 \theta_I 
+		\stackrel{?}{=} \left( \tfrac{n_2}{n_1} \right)^2 \tfrac{1-\beta^2}{1 - (n_2/n_1)^2}\\[10pt]
+	&\begin{array}{r l}
+		\text{In-Phase}\ (\delta = 0,\ \alpha > \beta):			& \tan{\theta_I} > n_2/n_1\\[5pt]
+		\text{Out-of-Phase}\ (\delta = \pi,\ \alpha < \beta):	& \tan{\theta_I} < n_2/n_1\\[10pt]
+		\text{Brewster's Angle}\ (R = 0):						& \boxed{ \tan{\theta_{I=b}} = n_2/n_1 }\ ,\ 
+			\boxed{ \theta_R + \theta_T = 90 }\\[5pt]
+		\text{Critical Angle}\ (T=0):							& \boxed{ \sin{\theta_{I=c}} = n_2/n_1}\ , \ 
+			\boxed{ \theta_R = 90 } \hspace{.4cm} \begin{gathered}
+				{\scriptstyle(n_1>n_2)}\\[-3pt]
+				{\scriptstyle(\text{evanescent if } >\ \theta_c)}
+			\end{gathered}
+	\end{array}
+\end{aligned}\)
+
+% S-Polarized
+\vspace{15pt}\noindent
+\(\bullet\)\ S-Polarized (\(E_\perp\ \text{to Plane of Incidence}\)):\\[10pt]
+% Fresnel Oblique
+\(\begin{aligned}[t]
+	&\tilde E_R = \left( \frac{1-\alpha\beta}{1+\alpha\beta} \right) E_I\ ;\ \ \ 
+		\tilde E_T = \left( \frac{2}{1+\alpha\beta} \right) E_I \\[10pt]
+	&\ \ \ R = \frac{I_R}{I_I} = \left( \frac{E_R}{E_I} \right)^2 
+		= \left( \frac{1-\alpha\beta}{1+\alpha\beta} \right)^2 \\[10pt]
+	&\ \ \ T = \frac{I_T}{I_I} 
+		= \frac{\epsilon_2 v_2}{\epsilon_1 v_1} \alpha \left( \frac{E_T}{E_I} \right)^2 
+		= \alpha \beta \left( \frac{2}{1+\alpha\beta} \right)^2
+\end{aligned}
+\hspace{35pt}
+% Reflection Shift/Angles
+\begin{aligned}[t]
+	&\text{Reflection Shift/Angles} \left( 1-\alpha\beta \stackrel{?}{=} 0 \right): \ \alpha\beta 
+		\ \approx\ \tfrac{ \sqrt{ \beta^2 - \sin{\theta_I}^2 } }{ \cos{\theta_I} }\\[10pt]
+	&\begin{array}{r l}
+		\text{In-Phase}\ (\delta = 0,\ 1>\alpha\beta):			& n_1 > n_2\\[5pt]
+		\text{Out-of-Phase}\ (\delta = \pi,\ 1<\alpha\beta):	& n_2 > n_1\\[10pt]
+		\text{Brewster Angle}\ (R=0):							& n_1=n_2\ \ (\text{None})\\[5pt]
+		\text{Critical Angle}\ (T=0):							& \boxed{ \sin{\theta_{I=c}} = n_2/n_1}\ , \ 
+			\boxed{ \theta_R = 90 } \hspace{.4cm} \begin{gathered}
+				{\scriptstyle(n_1>n_2)}\\[-3pt]
+				{\scriptstyle(\text{evanescent if } >\ \theta_c)}
+			\end{gathered}
+	\end{array}
+\end{aligned}\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+% Diffraction and Interference
+\newpage
+\subsection{Diffraction and Interference}
+% Double Slit
+\vspace{5pt}
+\begin{minipage}[t]{.49\textwidth}
+	\setlength{\parindent}{.5cm}\noindent
+	\underline{Double Slit Interference}: \hspace{.1cm} \((d \ll L)\)\\[10pt]
+	\indent\(\begin{aligned}
+		\text{Maxima}:\ \ d \sin{\theta} &= m \lambda\\[5pt]
+		\text{Minima}:\ \ d \sin{\theta} &= (m + \tfrac{1}{2}) \lambda
+	\end{aligned}\)	
+\end{minipage}
+% Single Slit
+\begin{minipage}[t]{.49\textwidth}
+	\setlength{\parindent}{.5cm}\noindent
+	\underline{Single Slit Diffraction}: \hspace{.1cm} \((a \ll L,\ a \sim \lambda)\)\\[10pt]
+	\indent\(\begin{aligned}
+		&\text{Minima}:\ \ a \sin{\theta} = m \lambda, \ \ m \neq 0
+	\end{aligned}\)
+\end{minipage}
+
+\vspace{5pt}\noindent
+% Circular Aperture
+\begin{minipage}{.49\textwidth}
+	\setlength{\parindent}{.5cm}\noindent
+	\underline{Circular Aperture}: \hspace{.1cm} \((\text{Diameter:}\ D \ll L)\)\\[10pt]
+	\indent\(\begin{aligned}
+		&\theta = \text{Twice the normal, vertical angle}\\[5pt]
+		&\text{1st Minima}:\ \ D \sin{\theta} = 1.22 \lambda
+	\end{aligned}\)	
+\end{minipage}
+% Bragg Diffraction
+\begin{minipage}{.49\textwidth}
+	\setlength{\parindent}{.5cm}\noindent
+	\underline{Bragg [X-Ray] Diffraction}: \hspace{.1cm} \((\text{Atom Distance}:\ d \sim \lambda)\)\\[10pt]
+	\indent\(\begin{aligned}
+		&\theta = \text{Angle from Horizontal (not vertical/normal)}\\[5pt]
+		&\bullet \ \text{Maxima}:\ \ (2d) \sin{\theta} = m \lambda 
+	\end{aligned}\)
+\end{minipage}
+
+\vspace{15pt}\noindent
+% Optical Path Length
+\begin{minipage}[t]{.49\textwidth}
+	\setlength{\parindent}{.5cm}\noindent
+	\underline{Optical Path Length}: \hspace{.1cm} 
+		\((n_1 \rightarrow n_2,\ \lambda \rightarrow \tfrac{\lambda}{n},\ v_n = f\tfrac{\lambda}{n})\)\\[10pt]
+	\indent\(\begin{aligned}
+		&\bullet\ \delta = \tfrac{2\pi d}{\lambda / n} = k (nd) \\[-2pt]
+		&\bullet\ \Delta x_n = nd = n v \Delta t = c \Delta t 
+			\indent \begin{gathered}
+				\text{\scriptsize(\(t\), time through medium \(n\))}\\[-5pt]
+				\text{\scriptsize(\(2dn\) for thin film reflec.)}
+			\end{gathered}
+	\end{aligned}\)	
+\end{minipage}
+% Boundary Reflection
+\begin{minipage}[t]{.49\textwidth}
+	\setlength{\parindent}{.5cm}\noindent
+	\underline{Boundary Reflection}: \hspace{.1cm} \((n_1 \rightarrow n_2)\)\\[10pt]
+	\indent\(\begin{aligned}
+		&n_2 < n_1:\ \ \delta \text{ += } 0\\[5pt]
+		&n_2 > n_1:\ \ \delta \text{ += } \pi
+	\end{aligned}\)
+\end{minipage}
+
+% Lenses and Mirrors
+\vspace{30pt}\noindent
+\begin{minipage}[t]{.48\textwidth}
+	\subsection{Lenses and Mirrors (\(\lambda \ll a\))}
+	\vspace{10pt}
+	{\setlength{\tabcolsep}{2pt} \begin{tabular}{r l}
+		\underline{Draw Picture} : &\ \(\begin{aligned}[t]
+				&1.\ \overline{f, y{\scriptstyle[s]}, L_\text{ens}} 
+					\rightarrow \overline{L_\text{ens}, y'{\scriptstyle[s']}, \infty}\\[5pt]
+				&2.\ \overline{\infty, y{\scriptstyle[s]}, L_\text{ens}}
+					\rightarrow \overline{f', L_\text{ens}, y'{\scriptstyle[s']}}
+			\end{aligned}\)\\[30pt]
+		Imaging Eq. :	&\ \(\frac{n_1}{s} + \frac{n_2}{s'} = \frac{n_2-n_1}{R}\)\\[10pt]
+		\hline \\
+		Thin Lens Eq. : &\ \(\frac{1}{f} = \frac{1}{s} + \frac{1}{s'} 
+		 		\hspace{1cm} (\text{\scriptsize Focal Length, \(f=f'\)}) \)\\[10pt]
+		Lensmaker Eq. : &\ \(\frac{1}{f} 
+			= \left( \tfrac{n_2}{n_1}-1 \right) \left( \frac{1}{R_1} - \frac{1}{R_2} \right)
+			\ \ \ \begin{gathered}
+				\text{\scriptsize(\(R_2\) is [-] for}\\[-5pt]
+				\text{\scriptsize concave lens)}
+			\end{gathered}\)\\[10pt]
+		Lens Magnf. : &\ \(M_T \equiv \frac{y'}{y} = - \frac{s'}{s} = \frac{f}{f-s}
+			\ \ \ \ \ \ {\setlength{\arraycolsep}{3pt}\begin{array}{r l}
+				\scriptstyle\text{Virtual}: & \scriptstyle f > s\\[-3pt]
+				\scriptstyle\text{Real}: 	& \scriptstyle s < f
+			\end{array}}\)\\[10pt]
+		Spherical Mirror : &\ \(f = R/2\)
+	\end{tabular}}
+\end{minipage}
+% Other
+\begin{minipage}[t]{.51\textwidth}
+	\subsection{Other}
+	\vspace{10pt}
+	\(\begin{aligned}
+		&\begin{aligned}
+				% Rayleigh Scattering
+				\text{Rayleigh Scattering}\ (\lambda \gg a):	&\ \ I \ \propto\ I_0\left( \frac{a^6}{\lambda^4} \right)
+					\ \ \ \ \begin{gathered}
+						\text{\scriptsize(Dipole Radiation,}\\[-5pt]
+						\text{\scriptsize polarized)}
+					\end{gathered}\\
+				% Doppler Effect
+				\text{{\scriptsize[Sound]} Doppler Effect}\ (v \ll c):	&\ \ 
+					f_r = \left( \frac{v + v_r}{v - v_s} \right) f_s
+					\hspace{.75cm} \begin{gathered}
+						{\scriptstyle(\text{frequency}, f)}\\[-5pt]
+						{\scriptstyle(v_r,\ v_s \text{ are } [+]}\\[-8pt]
+						{\scriptstyle\text{if } \rightarrow\leftarrow)}
+					\end{gathered}
+			\end{aligned}\\
+		% Standing Sound Waves
+		&\underline{\text{Standing Sound Wave}}\\
+		&\ \ \ \bullet\ \text{Open Pipe}: L = n \left( \tfrac{\pi}{2} \right) \ \ \ \ \ \begin{gathered}
+				\text{\scriptsize(Ends are nodes/infl.}\\[-5pt]
+				\text{\scriptsize pts. of 0 press.)}
+			\end{gathered}\\
+		&\ \ \ \bullet\ \text{Half Pipe}: L = (2n+1) \left( \tfrac{\pi}{4} \right) \ \ \ \ \ \begin{gathered}
+				\text{\scriptsize(Open End is a node, Closed}\\[-5pt]
+				\text{\scriptsize is an antinode/maxi. press.)}
+			\end{gathered}\\[5pt]
+		% Malus's Law
+		&\text{\underline{Malus's Law}}: \begin{array}{l l}
+			I = I_0 \cos^2{\theta} 	&\text{\scriptsize(polarized)}\\
+			I = I_0/2 				&\text{\scriptsize(unpolarized)}
+		\end{array}
+	\end{aligned}\)
+\end{minipage}
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Conductor (free current density != 0)
+\subsection{Conductor; $J_{free} \neq 0$}
+
+\[J_{free} = \sigma E\]
+
+\vspace{10pt}
+$\tilde E(z,t) = \tilde E_0 e^{ i(\tilde k z - wt) }; \ \ \ \tilde B(z,t) = \tilde B_0 e^{ i(\tilde k z - wt) }$
+
+\vspace{10pt}
+$\tilde k = k + i\kappa; \ \ \ \tilde k^2 = \mu \epsilon \omega^2 + i\mu \sigma \omega$
+
+\vspace{10pt}
+$k = \omega \displaystyle \sqrt{ \frac{\epsilon \mu}{2} } 
+	\sqrt{ \sqrt{1 + \left( \frac{\sigma}{\epsilon \omega} \right)^2} +1}\ ; \ \ \ \kappa = \omega 
+	\sqrt{ \frac{\epsilon \mu}{2} } 
+	\sqrt{ \sqrt{1 + \left( \frac{\sigma}{\epsilon \omega} \right)^2} - 1}$
+
+\vspace{20pt}\noindent
+Skin depth: $d = \displaystyle \frac{1}{\kappa}$ \\
+Wave (phase) velocity: $v = \displaystyle \frac{\omega}{k}$ \\
+Group velocity (carries energy): $v_g = \frac{d\omega}{dk} < c$ \\
+Index Ref: $n = \displaystyle \frac{ck}{\omega}$
+\[\frac{B_0}{E_0} = \frac{K}{\omega} = |\tilde k|/\omega 
+	= \sqrt{\epsilon \mu \sqrt{1 + \left( \frac{\sigma}{\epsilon \omega} \right)^2 } }\] 
+$\tilde \beta =\displaystyle \frac{\mu_1 v_1}{\mu_2 \omega} \tilde k$ \\[10pt]
+$\tilde E_R = \left( \displaystyle \frac{1-\tilde \beta}{1+\tilde \beta} \right) \tilde E_I;\ \ \ 
+	\tilde E_T = \left( \displaystyle \frac{2}{1+\tilde\beta} \right) \tilde E_I$
+
+%-------------------------------------------------------------------------------------------------------------------------------
+\newpage
+\subsection{Wave Guides}
+\[E^{||} = 0; \ \ \ B^{\perp} = 0\]
+TE Waves: \( E_z = 0;\ \ \ $ TM Waves: $B_z = 0;\ \ \ $ TEM Waves: $E_z = B_z = 0 \)
+
+\begin{align*}
+E_x = \frac{i}{ (w/c)^2 - k^2 } \left( k\frac{\partial E_z}{\partial x} + \omega\frac{\partial B_z}{\partial y} \right) \\
+E_y = \frac{i}{ (w/c)^2 - k^2 } \left( k\frac{\partial E_z}{\partial y} - \omega\frac{\partial B_z}{\partial x} \right) \\
+B_x = \frac{i}{ (w/c)^2 - k^2 } \left( k\frac{\partial B_z}{\partial x} - \frac{\omega}{c^2} \frac{\partial E_z}{\partial y} \right) \\
+B_Y = \frac{i}{ (w/c)^2 - k^2 } \left( k\frac{\partial B_z}{\partial Y} + \frac{\omega}{c^2} \frac{\partial E_z}{\partial X} \right)
+\end{align*}
+
+\hfill \break \\
+Solving Rectangular Wave Guides: \\ \\
+\( \text{TE}_{mn \neq 00} \): 
+\( \displaystyle \left[ \frac{\partial^2}{\partial x^2} 
+	+ \frac{\partial^2}{\partial y^2} + (\omega / c)^2 -k^2 \right] B_z = 0 \) \\
+
+$B_z = X(x)Y(y)$\\
+\[ \frac{\partial^2 X}{\partial x^2} = -k_x^2 X;\ \ \ \frac{\partial^2 Y}{\partial y^2} = -k_y^2 Y\]
+\[ -k_x^2 - k_y^2 + (w/c)^2 -k^2 = 0\] 
+$B_z = B_0\cos(m\pi x/a)\cos(n\pi y/b)$ \\ \\
+$\omega < \omega_{mn} = c\pi \sqrt{ (m/a)^2 + (n/b)^2 }$ \\ \\ \\
+TM: \( \displaystyle \left[ \frac{\partial^2}{\partial x^2} 
+	+ \frac{\partial^2}{\partial y^2} + (\omega / c)^2 -k^2 \right] E_z = 0 \)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+% Del
+\newpage
+\section{Del}
+\vspace{5pt}
+\(\begin{aligned}
+	\nabla F \quad &= \quad \left \langle \dfrac{\partial}{\partial r} , 
+		\ \frac{1}{r} \dfrac{\partial}{\partial \theta} , 
+		\ \frac{1}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} \right \rangle F \\
+	\\
+	\nabla \dotP \vec{A} \quad &= \quad \frac{1}{r^2 \sin{\theta}} \left\langle \dfrac{\partial}{\partial r} , 
+		\ \dfrac{\partial}{\partial \theta} , \ \dfrac{\partial}{\partial \phi} \right\rangle 
+		\ \dotP \ r^2 \sin{\theta} 
+		\left\langle A_r , \ \frac{1}{r} A_\theta , \ \frac{1}{ r \sin{\theta} } A_\phi \right\rangle \\
+	\\
+	\nabla \times \vec{A} \quad &= \quad \dfrac{1}{ r^2 \sin{\theta} } 
+		\begin{Vmatrix}
+			\hat{r} 					 & r \hat{\theta} 			    & r \sin{\theta} \hat{\phi}\\ \\
+			\dfrac{\partial}{\partial r} & \dfrac{\partial}{\partial \theta} & \dfrac{\partial}{\partial \phi}\\ \\
+			A_r							 & r A_\theta				    & r \sin{\theta} A_\phi
+		\end{Vmatrix} \\
+\end{aligned}\)
+
+\vspace{20pt}
+\(\begin{aligned}
+	\relax[ \vec{A} \times (\vec{B} \times \vec{C}) ]_i 
+		&= \vec{A} \dotP ( B_i \vec{C} ) - \vec{A} \dotP ( \vec{B} C_i ) \\ \\
+	\vec{A} \times (\vec{B} \times \vec{C}) 
+	&= \vec{A} \dotP ( \vec{B} \otimes \vec{C} ) - \vec{A} \dotP ( \vec{B} \vec{C} )\\
+	&= \vec{A} \dotP ( \vec{B} \otimes \vec{C} ) - \vec{A} \dotP ( \vec{B} \otimes \vec{C} )^T\\
+	&= ( A^T ( BC^T )^T )^T - ( A^T ( BC^T ) )^T
+\end{aligned}\)
+
+\end{document}
+
+

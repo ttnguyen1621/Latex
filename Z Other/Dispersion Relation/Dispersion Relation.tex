@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{enumitem, amssymb, amsmath, parskip}
+\usepackage[left=.75in, top=1in, bottom = 1in]{geometry}
+
+\newcommand\italicmath{\mathversion{italic}}
+\DeclareMathVersion{italic}
+\SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
+\SetSymbolFont{letters}  {italic}{OML}{cmm} {m}{it}
+\SetSymbolFont{symbols}  {italic}{OMS}{cmsy}{m}{n}
+\SetMathAlphabet\mathsf{italic}{OT1}{cmss}{m}{sl}
+\SetMathAlphabet\mathit{italic}{OT1}{cmr}{m}{it}
+
+\newcommand\bitalicmath{\mathversion{bitalic}}
+\DeclareMathVersion{bitalic}
+\SetSymbolFont{operators}{bitalic}{OT1}{cmr} {bx}{it}
+\SetSymbolFont{letters}  {bitalic}{OML}{cmm} {b}{it}
+\SetSymbolFont{symbols}  {bitalic}{OMS}{cmsy}{b}{n}
+\SetMathAlphabet\mathsf{bitalic}{OT1}{cmss}{bx}{sl}
+\SetMathAlphabet\mathit{bitalic}{OT1}{cmr}{bx}{it}
+
+\begin{document}
+	\section*{Dispersion Relation}
+	\bigskip\bigskip
+	\boldmath $$\Psi(t) = \int_{-\infty}^{\infty} \ \Phi(k) e^{i[kx-\omega(k) t]} \ dk$$ \unboldmath
+    \begin{eqnarray*}
+        kx-\omega(k) t &=& kx - k_0x + k_0x - \left[ w(k_0) + w'(k_0)(k-k_0) + \frac{w''(k_0)}{2!}(k-k_0)^2 + ... \right]t \\ \\
+        &=& (k-k_0)x - \left[ w'(k_0)(k-k_0) + \frac{w''(k_0)}{2!}(k-k_0)^2 + ... \right]t + (k_0x - w(k_0)t) \\ \\
+        &=& (k-k_0) \left(x - \left[ w'(k_0) + \frac{w''(k_0)}{2!}(k-k_0) + ... \right]t\right) + (k_0x - w(k_0)t)
+    \end{eqnarray*}
+
+    Let $s = k-k_0$, and for large $s$ let $\Phi(k)=\Phi(k_0+s)$ be small, meaning the wave is mostly \
+    monochromatic about $k_0$ (the peak of $\Phi$), and only small $s$ are important.
+    
+    \begin{eqnarray*}
+        kx-\omega(k) t &\approx& (k-k_0) \left[x - w'(k_0)t \right] + (k_0x - w(k_0)t) \\ \\
+        \Psi(t) &=& \int_{-\infty}^{\infty} \ \Phi(k) e^{i[kx-\omega(k)t]} \ dk \\ \\
+        &\approx& e^{i(k_0x - w(k_0)t)}\int_{-\infty}^{\infty} \ \Phi(k) e^{i(k-k_0)[x- w'(k_0)t]} \ dk \\ \\
+        &=& e^{i(k_0x - w(k_0)t)}\int_{-\infty}^{\infty} \ \Phi(k_0 + s) e^{is[x- w'(k_0)t]} \ ds \\ \\
+        &=& e^{i(k_0x - w(k_0)t)} F(x- w'(k_0)t)
+    \end{eqnarray*}
+    
+    For simpler waves like $cos[n(x-v_1t)]cos[m(x-v_2t)]$, the smaller wavenumber is the envelope and the bigger\
+    wavenumber is the internal wave, so if $n < m$ then the group velocity is $v_1$. Since $s < k_0$, the group\ 
+    velocity for each term in the infinite sum (or integral) is $w'(k_0)$. Since each term has the same speed, the\
+    sum, $F$, will also move at that speed. $F$ is the envelope and $e^{i(k_0x - w(k_0)t)}$ is the internal wave\ 
+    with the phase velocity $w(k_0)/k_0$.
+
+    For QM only $||\Psi||^2$ matters physically, so $||\Psi||^2 = ||F(x- w'(k_0)t)||^2$.
+
+\newpage
+	\section*{Dispersion Relation}
+	\bigskip\bigskip
+	\boldmath $$\Psi(t) = \int_{-\infty}^{\infty} \ \Phi(k) e^{i[kx-\omega(k) t]} \ dk$$ \unboldmath
+    \begin{eqnarray*}
+        kx-\omega(k) t &=& kx - \left[ w(k_0) + w'(k_0)(k-k_0) + \frac{w''(k_0)}{2!}(k-k_0)^2 + ... \right]t \\ \\
+        &=& kx - (k-k_0) \left[ w'(k_0) + \frac{w''(k_0)}{2!}(k-k_0) + ... \right]t - w(k_0) t \\ \\
+        &=& \begin{aligned}
+			&k \left( x - \left[ w'(k_0) + \frac{w''(k_0)}{2!}(k-k_0) + ... \right]t \right) \\[5pt]
+			&+ \left( k_0 \left[ w'(k_0) + \frac{w''(k_0)}{2!}(k-k_0) + ... \right]- w(k_0) \right) t
+		\end{aligned}
+    \end{eqnarray*}
+
+    Let $s = k-k_0$, and for large $s$ let $\Phi(k)=\Phi(k_0+s)$ be small, meaning the wave is mostly \
+    monochromatic about $k_0$ (the peak of $\Phi$), and only small $s=k-k_0$ are important.
+    
+    \begin{eqnarray*}
+        kx-\omega(k) t &\approx& k \left[ x - w'(k_0) t \right] + \left[ k_0 w'(k_0) - w(k_0) \right] t \\ \\
+        \Psi(t) &=& \int_{-\infty}^{\infty} \ \Phi(k) e^{i[kx-\omega(k)t]} \ dk \\ \\
+        &\approx& e^{i [ k_0 w'(k_0) - w(k_0) ] t}\int_{-\infty}^{\infty} \ \Phi(k) e^{i k [x- w'(k_0)t]} \ dk \\ \\
+        &=& e^{i [ k_0 w'(k_0) - w(k_0) ] t} F(x- w'(k_0)t)
+    \end{eqnarray*}
+    
+    For simpler waves like $cos[n(x-v_1t)]cos[m(x-v_2t)]$, the smaller wavenumber is the envelope and the bigger\
+    wavenumber is the internal wave, so if $n < m$ then the group velocity is $v_1$. Since $s < k_0$, the group\ 
+    velocity for each term in the infinite sum (or integral) is $w'(k_0)$. Since each term has the same speed, the\
+    sum, $F$, will also move at that speed. $F$ is the envelope and $e^{i(k_0x - w(k_0)t)}$ is the internal wave\ 
+    with the phase velocity $w(k_0)/k_0$.
+
+    For QM only $||\Psi||^2$ matters physically, so $||\Psi||^2 = ||F(x- w'(k_0)t)||^2$.
+\end{document}
+

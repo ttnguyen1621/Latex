@@ -1,0 +1,336 @@
+\documentclass[12pt]{article}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+
+\newcommand\italicmath{\mathversion{italic}}
+\DeclareMathVersion{italic}
+\SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
+\SetSymbolFont{letters}  {italic}{OML}{cmm} {m}{it}
+\SetSymbolFont{symbols}  {italic}{OMS}{cmsy}{m}{n}
+\SetMathAlphabet\mathsf{italic}{OT1}{cmss}{m}{sl}
+\SetMathAlphabet\mathit{italic}{OT1}{cmr}{m}{it}
+
+\newcommand\bitalicmath{\mathversion{bitalic}}
+\DeclareMathVersion{bitalic}
+\SetSymbolFont{operators}{bitalic}{OT1}{cmr} {bx}{it}
+\SetSymbolFont{letters}  {bitalic}{OML}{cmm} {b}{it}
+\SetSymbolFont{symbols}  {bitalic}{OMS}{cmsy}{b}{n}
+\SetMathAlphabet\mathsf{bitalic}{OT1}{cmss}{bx}{sl}
+\SetMathAlphabet\mathit{bitalic}{OT1}{cmr}{bx}{it}
+
+\newcommand*{\dotP}{\boldsymbol \cdot}				% Dot Product
+\newcommand*{\contra}[1]{\boldsymbol {#1}^{\mu}}	% Contravariant vector
+\newcommand*{\covar}[1]{\boldsymbol {#1}_{\mu}}		% Covariant vector
+% \newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+
+\begin{document}
+
+% Charged Particle to Matter Interactions
+\noindent
+\underline{\(\{\pm\}\)-\{Matter\} Interactions}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ \text{Cross Section of Ball is \(\pi R^2 \ \sim\ \) Probability of Collision} \\[5pt]
+    &\bullet\ \text{\(\alpha\) Range/Path Length is \(10^{-5}\) m}\\[5pt]
+    &\bullet\ \text{\(e\) Range/Path Length is \(10^{-3}\) m}\\[5pt]
+    &\bullet\ \text{\(\alpha\) almost always interact with atomic-\(e\)}\\[5pt]
+    &\bullet\ \text{\(e\) mostly interact with atomic-\(e\) and sometimes atomic nuclei}\\[5pt]
+    &\bullet\ \text{\(\alpha\) travel in straighter lines}\\[5pt]
+    &\bullet\ \text{\(e\) bounce and scatter more often}\\[5pt]
+    &\bullet\ \text{\(\alpha\) lose small fractions of energy on collisions}\\[5pt]
+    &\bullet\ \text{\(e\) lose large fractions of energy from collisions and bremsstrahlung \(\propto Z\)}\\[5pt]
+    &\bullet\ \text{At rel. speeds \((> mc^2)\), all part. lose minimum \(\sim\)1 KeV/cm in air (min. ionizing particle)}
+\end{aligned}\)
+
+% Photon Interactions
+\vspace{20pt}\noindent
+\underline{Photon Interactions (Emits Electrons)}
+
+\vspace{10pt}
+\indent\(\begin{array}{c l|l|c|c|c}
+    % Photoelectric Effect
+    \text{Low}\ E_\gamma
+        & \text{\scriptsize(few KeV)}
+        & Z^4 
+        & \gamma\text{-\scriptsize \{Atom\}}
+        & \text{Photoelectric Absorption} 
+        & E_\text{emit, \(e\)} = E_\gamma - E_\text{bind}
+        \\[5pt]
+    \hline
+    & & & &\\[-10pt]
+    % Compton Scattering
+    \text{Med}\ E_\gamma
+        & \begin{gathered}
+                \text{\scriptsize(tens KeV to}\\[-7pt]
+                \text{\scriptsize few MeV)}
+            \end{gathered}
+        & Z 
+        & \gamma\text{-\scriptsize \{Electron\}}
+        & \text{Compton Scattering}       
+        & \Delta \lambda_\gamma = \frac{h}{mc} (1-\cos{\theta})
+        \\[5pt]
+    \hline
+    & & & &\\[-5pt]
+    % Pair Production
+    \begin{gathered}[t]
+            \text{High}\ E_\gamma\\
+            \text{\scriptsize\(\big( E_\gamma > 2m_e c^2 \big)\)}
+        \end{gathered} 
+        & \text{\scriptsize(\(>\) tens MeV)}
+        & Z^2
+        & \gamma\text{-\scriptsize \{Nucleus\}}
+        & \text{Pair Production} 
+        & \gamma \rightarrow e^{-} + e^{+}
+\end{array}\)
+
+% Particle Energy Detection
+\vspace{25pt}\noindent
+\underline{Particle Energy Detection}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ \begin{minipage}[t]{.96\textwidth}
+            \(\{\pm\}\) (mainly electrons) goes past a scintillator with a high \(Z\) to increase the \(\gamma\)-interaction 
+            cross section (e.g., NaI/Tl, where I has a high \(Z\))
+        \end{minipage}\\[5pt]
+    &\bullet\ \text{\(e\) produces visible light propto its energy when it goes past the scintillator.}\\[5pt]
+    &\bullet\ \text{The visible light is directed into a photomultiplier tube, producing a current and voltage.}\\[5pt]
+    &\bullet\ \text{An analyzer reads the voltage, ideally propto the original photon that produced the electron.}\\[5pt]
+    &\bullet\ \text{The detector is calibrated by irradiating it with a light source of known energy.}
+\end{aligned}\)
+
+% Radioactive Decay
+\vspace{20pt}\noindent
+\underline{Radioactive Decay}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ N = N_0 e^{-t/\tau}\\[5pt]
+    &\bullet\ \tfrac{1}{\tau} = \sum_i \tfrac{1}{\tau_i} \indent \text{\scriptsize(multiple decay ``channels'')}
+\end{aligned}\)
+
+%--------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+% Lasers
+\noindent
+\underline{Lasers}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ \begin{minipage}[t]{.96\textwidth}
+            Generally, an Optical Pump provides energy to push a particle state from ground state (0) to (3), which quickly 
+            drops to metastable state (2), and more slowly drops to (1). As it drops from (2) to (1), its photon is absorbed 
+            by another particle in (2), which emits two photons to be absorbed by another in (2), which multiplies exponentially. 
+            All photons end up with the same freq. and phase. If (0) and (1) are close enough, it's called 3-level 
+            instead of 4-level.
+        \end{minipage}\\[5pt]
+    &\bullet\ \text{\underline{Solid State (Nd:YAG)} - Y in Al Garnet, with Nd (sometimes replacing the Y) having 4-levels}\\[5pt]
+    &\bullet\ \begin{minipage}[t]{.96\textwidth}
+            \underline{Collisional Gas (He-Ne)} - Collisions between the two are the level transitions, of which there can be many.
+        \end{minipage}\\[5pt]
+    &\bullet\ \text{\underline{Molecular Gas (CO\(_2\))} - Triangle shape provides vibrational energy levels; also is cheap}\\[10pt]
+    &\bullet\ \text{Dye Laser - A dye dissolved in liquid. Chain of carbon transfers electrons (also gives color).}\\[5pt]
+    &\bullet\ \begin{minipage}[t]{.96\textwidth}
+            Semiconductor - Pumping excites \(e\) from the bottom of the conduction band to the holes at the top of the 
+            valence band, releasing recombination radiation.
+        \end{minipage}\\[5pt]
+    &\bullet\ \begin{minipage}[t]{.96\textwidth}
+            Free Electron - \(e\) accelerate back and forth between an \(E\)-field, releasing bremsstrahlung. No energy levels
+            but there's still amplification.
+        \end{minipage}\\[5pt]
+    &\bullet\ \text{Interferometers - Split light in two, recombine to see interference from diff. path lengths.}
+\end{aligned}\)
+
+% Decay Types
+\vspace{20pt}\noindent
+\underline{Decay Types}\\[10pt]
+\(\begin{array}{r l}
+    \text{Strong Force -}   & \text{Usually \(10^{-23}\) sec.}\\[5pt]
+    \text{EM Force -}       & \text{Usually \(10^{-18}\) - \(10^{-16}\) sec. and photons}\\[5pt]
+    \text{Weak Force -}     & \text{Usually \(10^{-10}\) - \(10^{-8}\) sec. and neutrinos}
+\end{array}\)
+
+% Nuclear Forces
+\vspace{20pt}\noindent
+\underline{Nuclear Forces}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ \text{Quarks are \textit{confined} to color neutral \textit{color singlets}.}\\[5pt]
+    &\bullet\ \text{First proton excited state is}\ \Delta^{+} \text{.}\\[5pt]
+    &\bullet\ \text{Mesons have int. spin (0,1) and Baryons have half-spins (1/2, 3/2).}\\[5pt]
+    &\bullet\ \big( n \rightarrow p^{+} e^{-}\ \overline{\nu}_{e} \big) \ 
+        \text{Neutron Decay takes} \sim \text{15 min., except with Protons/SF in Nucleus}\\[5pt]
+    &\bullet\ {\setlength{\tabcolsep}{5pt}\begin{tabular}[t]{r c r l}
+        Nuclear Diameter        &\(\sim\) &femptometers &(10\(^{-15}\) m).\\
+        Atomic Diameter         &\(\sim\) &picometers   &(10\(^{-12}\) m).\\
+        Solid Atoms Distance    &\(\sim\) &angstroms    &(10\(^{-10}\) m).\\
+        Air Atoms Distance      &\(\sim\) &nanometers   &(10\(^{-9}\) m).\\
+        Bacteria Width          &\(\sim\) &micrometers  &(10\(^{-6}\) m).
+    \end{tabular}}\\[5pt]
+    &\bullet\ \text{Gamma radiation comes from excited nuclei states and don't change their composition.}\\[5pt]
+    &\bullet\ \text{Heavy Nuclei Decay to Lead.}
+\end{aligned}\)
+
+%--------------------------------------------------------
+\newpage
+
+% Symmetry/Cons/Other
+\noindent
+\underline{Symmetries, Conservation, and Recent Discoveries}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ \text{Conservation of Baryon Number and Each of the Three Lepton Numbers.}\\[5pt]
+    &\bullet\ \text{Charge, Baryon, and Lepton cons. are symmetries by some multiplication of phase \(e^{i\alpha}\).}\\[5pt]
+    &\bullet\ \{\alpha\}\ \text{is cont.}\ \rightarrow\ \text{it is a Continuous Symmetry.}\\[5pt]
+    &\bullet\ \alpha \neq \alpha(x) \rightarrow\ \text{it is a Global Symmetry.}\\[5pt]
+    &\bullet\ \alpha = \alpha(x)\ \rightarrow\ \text{it is a Guage Symmetry.}\\[5pt]
+    &\bullet\ C,P,T\ \text{ are Discrete Symmetries.}\\[5pt]
+    &\bullet\ \text{All Lorentz Invariant Theories must be symmetric under \(CPT\).}\\[5pt]
+    &\bullet\ \text{Weak Interaction is Maximumally Parity-Violating (only L-hand decays, shown in \(^{60}\)Co decay).}\\[15pt]
+    &\bullet\ \text{Higgs Boson Mass}\ =\ \text{125 GeV.}\\[5pt]
+    &\bullet\ \text{Neutrino Oscillations show Mass Differences (not exact values).}\\[5pt]
+    &\bullet\ \begin{minipage}[t]{.96\textwidth}
+            Dark Matter might be WIMPS and might interact with WF; galaxies spin faster + Bullet Cluster.
+        \end{minipage}
+\end{aligned}\)
+
+% Crystal Structure
+\vspace{20pt}\noindent
+\underline{Crystal Structure (fuckin hell)}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ \text{14 Bravias Lattices, but only these three conventional unit cells are important here:}\\[5pt]
+    &\begin{tabular}{r c c c}
+                                        & Vertex Dist. & Primative Unit (idgi) 
+                & Volume (idrk) \\[5pt]
+            \hline\\[-7pt]
+            Simple Cubic               & \(a\)                         & Cube  
+                & \(V=a^3\) \\[5pt]
+            Body-centered cubic (BCC)  & \(\tfrac{\sqrt{3}}{2} \ a \)  & Octahedron (2 square pyramids) 
+                & \(V/2\) \\[5pt]
+            Face-centered cubic (FCC)  & \(\tfrac{\sqrt{2}}{2} \ a\)   & Parallelpiped                     
+                & \(V/4\)
+        \end{tabular}\\[10pt]
+    &\bullet\ \text{The Fourier Transform of a lattice is it's \textit{reciprocal} or \textit{dual}.}\\[5pt]
+    &\bullet\ \text{Dual Side Length } = \frac{2\pi}{a}\\[5pt]
+    &\bullet\ \text{Dual(Simple Cubic) = Itself}\\[5pt]
+    &\bullet\ \text{Dual(BCC) = FCC; Dual(FCC) = BCC.}\\[5pt]
+    &\bullet\ \text{Dual(Hexagonal Lattice [HL]) = HL rotated through a 30\(^\circ\) angle.}\\[5pt]
+    &\bullet\ \text{Primitive Unit of Dual\((X)\) is called the \textit{(1st) Brillouin Zone} of \(X\).}
+\end{aligned}\)
+
+%----------------------------------------------------------------------------
+\newpage
+% Electrons in Metals
+\noindent
+\underline{Electrons in Metals (Fermi)}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ \text{\(e\) have Momentum in Fermi Sphere/Sea, and free \(e\) in Fermi Surface with \(|k| = k_F\).}\\[5pt]
+    &\bullet\ k_F = (3\pi^2)^{1/3} n^{1/3} \indent {\scriptstyle(n\ =\ \text{\scriptsize electron density})}\\[5pt]
+    &\bullet\ \text{Fermi Energy:}\ \ E_F = \frac{\hbar^2 k_F^2}{2m}\\[5pt]
+    &\bullet\ \begin{gathered}[t]
+        \text{Density of States:}\\
+        \text{\scriptsize(\# \(e\) States for E)}
+    \end{gathered} \ \ \
+        \rho(E) = \left( \tfrac{V \sqrt{2}}{\pi^2 \hbar^3} \right) m^{3/2}\ E^{1/2}\\[5pt]
+    &\bullet\ \text{Total \# \(e\):}\ \ N = \int_0^{E_F} \rho\ dE \ \ \Rightarrow\ \ 
+        \rho(E_F) = \frac{3}{2} \frac{N}{E_F}\\[5pt]
+    &\bullet\ \text{\# Conducting \(e\):}\ \ N_C \ \approx\ \rho(E_F) k_b T \ \sim\ \frac{N k_b T}{E_F}
+\end{aligned}\)
+
+% Semiconductors/Superconductors
+\vspace{20pt}\noindent
+\underline{Semiconductors/Superconductors}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ \text{Energy is needed for \(e\) to cross the band gap from valence to conduction.}\\[5pt]
+    &\bullet\ \text{Higher \(T\) thus needed to increase conductivity and electron energy/density.}\\[5pt]
+    &\bullet\ \begin{minipage}[t]{.96\textwidth}
+            n-type doping/junction: 4 \(e^{-}\) valence in Si/Ge/Sn (group 14), 
+            doped with 5 \(e\) excess P/As/Sb (group 15).
+        \end{minipage}\\[5pt]
+    &\bullet\ \text{p-type doping/junction: \(e\) Hole\(^+\) excess by doping (group 14) 
+        with 3 valence B/Al (group 13).}\\[5pt]
+    &\bullet\ \begin{minipage}[t]{.96\textwidth}
+            Meissner Effect: Persistant \(I\) on surface cancel internal \(B\) field exponentially from surface. Akin to
+            giving a photon mass to decrease the EM force strength.
+        \end{minipage}\\[5pt]
+    &\bullet\ \text{Cooper Pair (BCS Theory): \(e\) are Paired together (like bosons) to get lower-than-\(E_F\) energies.}
+\end{aligned}\)
+
+% Astrophysics
+\vspace{20pt}\noindent
+\underline{Astrophysics}\\[10pt]
+\(\begin{aligned}
+    &\bullet\ ds^2 = dt^2 - a(t)^2 \big( dx^2 + dy^2 + dz^2 \big) 
+        \indent\indent \begin{gathered}
+            \scriptstyle a\ \text{\scriptsize is scale factor of COSMO, not matter-filled space} \\[-10pt]
+            \scriptstyle(\text{\scriptsize space expanding}\ \rightarrow\ a\ \text{\scriptsize is increasing func. of } t)
+        \end{gathered}\\[5pt]
+    &\bullet\ \text{Cosmo-Expansion \(\gamma\) Redshift:}\ \ 
+        \frac{\lambda_0}{\lambda_T} = \frac{a(\text{today})}{a(T)} 
+        \indent\indent T =\ \text{time before}\\[5pt]
+    &\bullet\ \text{Blackbody Cooling:}\ \ 2\lambda_\text{max} \ \propto\ \frac{1}{T/2} 
+        \indent\indent \text{\scriptsize(cosmos 2x means temp. 1/2x)}\\[5pt]
+    &\bullet\ \text{Hubble's Law:}\ \ v_\text{recess.} = H_0{\scriptstyle(t)} D
+        \indent\indent \text{\scriptsize(2x distance is 2x speed)}\\[5pt]
+    &\bullet\ \text{Redshift as Time:}\ \ z(T) = \tfrac{\lambda_0}{\lambda(T)} - 1
+        \indent\indent \text{\scriptsize(at ``redshift 3'' means time in past when \(\lambda\) was 400\% smaller)}\\[5pt]
+    &\bullet\ \text{Cosmo \(\neq\) Doppler Redshift:}\ \ \begin{aligned}[t]
+            \text{Speed} &\leftrightarrow \text{Doppler}\\
+            \text{Distance} &\leftrightarrow \text{Cosmo}
+        \end{aligned}
+\end{aligned}\)
+
+%-----------------------------------------------------------------
+\newpage
+% Nobel Prizes
+\noindent
+\underline{Nobel Prizes}\\[10pt]
+\begin{tabular}{l}
+    \(\bullet\) 2017 (Gravity Wave Detection): LIGO with 10\(^{-18}\)m shift with laser crossing many times.\\[5pt]
+    \(\bullet\) 1993 (Gravity Wave Indirect): Measured Pulsar Pair Orbit energy loss from GW.\\[5pt]
+    \(\bullet\) \begin{minipage}[t]{.96\textwidth}
+            2015 (Neutrino Oscillations): WF Hamiltonian (Flavor) doesn't commute with Free Particle (momentum/mass). 
+            Sun makes \(\nu_e\), but less are detected on Earth.
+        \end{minipage}\\[20pt]
+    \(\bullet\) 2014 (Blue LED): GaN semiconductor has direct band gap of (3.4 \(>\) 3) eV, for UV light. 
+\end{tabular}
+
+% Numbers to Memorize
+\vspace{20pt}\noindent
+\underline{Memorize Numbers/Facts}\\[10pt]
+\(\begin{aligned}[t]
+    &\bullet\ c = \text{3E8 m/s}\\
+    &\bullet\ h = \text{6.626 E-34 Js}\\
+    &\bullet\ \hbar c = \text{200 MeV} \dotP \text{fm}\\
+    &\bullet\ \alpha = 1/137 = .0073\\
+    &\bullet\ a_0 = \text{ 42.9 pm }\\
+    &\bullet\ m_e = \text{.511 MeV} / c^2\\
+    &\bullet\ E_n = -13.6 Z \tfrac{Z^2}{n^2}\ \text{eV} \\
+    &\bullet\ n_A = \text{6.02E23}\\
+    &\bullet\ k_b: \text{300K} = \tfrac{1}{40} \text{eV}\\
+    &\bullet\ \text{1 atm}\ \approx \ \text{100 kPa}\\
+    &\bullet\ \text{1 atm},\ \text{300K}\ \leftrightarrow\ \text{22.4 L}\\
+    &\bullet\ \text{1 L} = \text{1E3 cm\(^3\) or mL}\\
+    &\bullet\ 1\ \tfrac{\text{g}}{\text{cm}^3} = \text{1E3}\ \tfrac{\text{kg}}{\text{m}^3}\\
+    &\bullet\ c_\text{water} = 4.18\ \tfrac{\text{J/K}}{g}\\
+    &\bullet\ 1\ \text{cal} = 4.18\ \text{J}\\
+    &\bullet\ v_\text{sound} = \text{340 m/s}\\[3pt]
+    &\bullet\ \text{Rel. IG}:\ C_V = 3 k_b\\
+    &\bullet\ T_\text{CMB} = \text{2.725 K}\ ; \ \ \lambda_\text{CMB} = \text{1.9 mm}\\
+    &\bullet\ T_\text{Sun} = 5000\ \text{K} ; \ \ \lambda_\text{Sun} = \text{550 nm}\\
+    &\bullet\ \text{BE}_\text{Nucleon} \ \sim \ \text{MeV}; \ \ E_\text{part. accel} \ \sim \ \text{GeV}\\
+    &\bullet\ E_\text{UV} \ \sim \ \text{eV}; \ \ E_\text{X-ray} \ \sim \ \text{keV}
+\end{aligned}
+\hspace{2cm}
+\begin{aligned}[t]
+    &\bullet\ E_n = \tfrac{-\alpha^2 (Zm_e)c^2}{2} \tfrac{Z^2}{n^2} = \tfrac{\hbar^2 k_n^2}{2m_e} Z \tfrac{Z^2}{n^2}\\
+    &\bullet\ \alpha = \tfrac{kqq}{\hbar c}\\
+    &\bullet\ a_0 = \tfrac{\hbar^2}{m_e kqq}\\
+    &\bullet\ T^2 \ \propto\ a^3\\
+    &\bullet\ D\sin{\theta} = 1.22\lambda\\
+    &\bullet\ \lambda_\text{max} = \tfrac{\text{2.9E-3 m\(\dotP\)K}}{T}\\
+    &\bullet\ K = C + 273.15^\circ\\
+    &\bullet\ v_\text{sound}^2 = {\tfrac{K}{\rho}} = {\tfrac{\gamma P}{\rho}} 
+        = {\gamma \tfrac{NkT/V}{Nm/V}} = \tfrac{\gamma kT}{m}
+\end{aligned}\)
+
+\vfill\noindent
+\rule{1\textwidth}{.5pt}
+\end{document}
