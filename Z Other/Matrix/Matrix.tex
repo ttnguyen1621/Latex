@@ -28,7 +28,6 @@
 
 % P Norm and Condition Number
 \subsection{\(p\)-Norm and Condition Number}
-
 \vspace{10pt}\noindent
 % Vectors
 \begin{minipage}[t]{.49\textwidth}
@@ -119,7 +118,6 @@
 % Residual, and Error Bounds when Solving Ax = b
 \newpage
 \subsection{Error Bounds and Residuals}
-
 % Error Bound
 \vspace{10pt}\noindent
 \underline{Error Bound}:\ \ \(\boxed{ \displaystyle \frac{\Vert \hat{x} - x \Vert}{\Vert x \Vert} 
@@ -206,12 +204,9 @@
 % LU Decomposition to Solve Linear System of Eq
 \newpage
 \subsection{Gaussian Elimination with LU/PLU/PLDUQ Decomposition}
-
 % Elementary Elimination Matrices
 \vspace{10pt}\noindent
-\underline{Elementary Elimination Matrices, \(L_k\)}
-
-\vspace{10pt}\noindent
+\underline{Elementary Elimination Matrices, \(L_k\)}\\[10pt]
 \(\begin{aligned}[t]
 	&\\[-20pt]
 	&\text{\scriptsize\(\left(\begin{matrix}
@@ -378,12 +373,9 @@
 % Gaussian-Jordan
 \newpage
 \subsection{Gaussian-Jordan with MD Decomposition}
-
 % Elementary Elimination Matrices
 \vspace{10pt}\noindent
-\underline{Elementary Elimination Matrices, \(M_k\)}
-
-\vspace{10pt}\noindent
+\underline{Elementary Elimination Matrices, \(M_k\)}\\[10pt]
 \(\begin{aligned}[t]
 	&\\[-20pt]
 	&\text{\scriptsize\(\left(\begin{matrix}
@@ -495,18 +487,113 @@
 	\end{aligned}\)}
 \)
 
+%----------------------------------------------------------------
 % Symmetric
+\vspace{15pt}
 \subsection{Symmetric Matrices}
+% Positive Definite Def
+\vspace{5pt}
+\underline{Positive Definite}:\ \ \(\boxed{x^T Ax \geq 0}\) \\[15pt]
+% Cholesky Factorization
+\underline{Cholesky Factorization for Sym., Pos. Def.}:\ \ \(\boxed{A = LL^T = LDL^T}\)\\[15pt]
+\text{\scriptsize\(\begin{aligned}
+	&\left(\begin{matrix}
+			a_{11} & a_{21} & a_{31} & \dots\\
+			a_{21} & a_{22} & a_{32} & \dots\\
+			a_{31} & a_{32} & a_{33} & \dots\\
+			\vdots & \vdots & \vdots & \ddots
+		\end{matrix}\right) 
+		=
+		\left(\begin{matrix}
+			l_{11} & 0 		& 0 	 & \dots\\
+			l_{21} & l_{22} & 0 	 & \dots\\
+			l_{31} & l_{32} & l_{33} & \dots\\
+			\vdots & \vdots & \vdots & \ddots
+		\end{matrix}\right)
+		\left(\begin{matrix}
+			l_{11} 	& l_{21} 	& l_{31} & \dots\\
+			0 		& l_{22} 	& l_{32} & \dots\\
+			0 		& 0 		& l_{33} & \dots\\
+			\vdots & \vdots & \vdots & \ddots
+		\end{matrix}\right)  
+		= 
+		\left(\begin{matrix}
+			l_{11}^2 		& \dots 						& \dots 							& \dots\\
+			l_{21} l_{11} 	& l_{21}^2 + l_{22}^2 			& \dots 							& \dots\\
+			l_{31} l_{11} 	& l_{31}l_{21} + l_{32}l_{22} 	& l_{31}^2 + l_{32}^2 + l_{33}^2 	& \dots\\
+			\vdots & \vdots & \vdots & \ddots
+		\end{matrix}\right)\\[5pt]
+	% Notes
+	&\begin{aligned}[t]
+			&\bullet\ \text{Pivoting not needed}\\
+			&\bullet\ \text{Well defined (always works)}\\
+		\end{aligned}
+		\hspace{2cm}
+		\begin{aligned}[t]
+			&\bullet\ \text{Only lower triangle needed for storage}\\
+			&\bullet\ A = LDL^T \text{ is sometimes useful, where \(D\) is diag.}
+		\end{aligned}
+\end{aligned}\)}
 
+% Symmetrix Indefinite Matrices
 \vspace{10pt}
-\underline{Positive Definite}:\ \ \(x^T Ax \geq 0\) \\[10pt]
-\underline{Cholesky Factorization for Sym., Pos. Def.}: \ 
+\underline{Symmetric Indefinite Matrices}\\[5pt]
+\text{\scriptsize\(\begin{aligned}
+	&\bullet\ \text{Pivoting Needed}:\ \boxed{PAP^T = LDL^T}\\
+	&\bullet\ \text{Ideally, \(D\) is diag., but if not possible, 
+		then \(D\) is tridiag. (Aasen) or 1x1/2x2 block diag. (Bunch, Parlett, Kaufmann, etc.)}
+\end{aligned}\)}
 
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+\newpage
+% Banded
+\subsection{Banded Matrices}
+\vspace{5pt}
+\text{\scriptsize\(\begin{aligned}
+	&\bullet\ \text{Similar to normal Gaussian Elim., but less work since more zeroes}\\
+	&\bullet\ \text{Pivoting means bandwidth will expand no more than double}\\
+	&\bullet\ \text{Only \(\mathcal{O}(\beta n)\) storage needed} 
+\end{aligned}\)}
+
+%-----------------------------------------------------------------
+% Rank 1 Update with Sherman-Morrison
+\vspace{10pt}
+\subsection{Rank-1 Update with Sherman-Morrison}
+\vspace{5pt}
+\(
+	\begin{aligned}[t]
+		\Tilde{A} \tilde{x} = b &= (A - uv^T) \tilde{x} \\[10pt]
+		\ \rightarrow \ \tilde{x} &= \Tilde{A}^{-1}b 
+	\end{aligned}
+	\hspace{10pt}
+	\rule[-62pt]{.5pt}{80pt}
+	\hspace{10pt}
+	\boxed{
+	\setlength{\arraycolsep}{3pt}\begin{array}[t]{r c r c r c l}
+		\Tilde{A}^{-1} 	&=& (A-uv^T)^{-1} 	&=& A^{-1} 		&+& \tfrac{A^{-1} u}{1 - v^T (A^{-1}u)}\ v^T A^{-1}\\[10pt]
+		\Tilde{A}^{-1}b &=& \tilde{x} 				&=& (A^{-1} b) 	&+& \tfrac{A^{-1} u}{1 - v^T (A^{-1}u)}\ v^T (A^{-1} b)\\[10pt]
+		& & & & 										x 			&+& \tfrac{y}{1 - v^T y}\ v^T x
+	\end{array} }
+\)
+
+% General Woodbury Formula
+\vspace{10pt}
+\underline{General Woodbury Formula}: \ \ 
+	\(\boxed{ (A-UV^T)^{-1} = A^{-1} + (A^{-1}U)(I - V^T A^{-1} U)^{-1}\ v^T A^{-1} }\) \\[10pt]
+% Notes
+\text{\scriptsize\(\begin{aligned}
+	&\bullet\ \text{\(U\) and \(V\) are general \(n \times k\) matrices}\\
+	&\bullet\ \text{No guarantee of numerical stability, so caution is needed}
+\end{aligned}\)}
+
+%------------------------------------------------------------------
 % Complexity
-\vspace{20pt}
-\subsection{Complexity}
-
 \vspace{10pt}
+\subsection{Complexity}
+\vspace{5pt}
 \(\setlength{\arraycolsep}{3pt}\begin{array}{r c c c c c c l}
 	\text{Explicit Inversion}: 
 		&\begin{aligned}
@@ -558,14 +645,92 @@
 		&LUx = b
 		&\rightarrow
 		&\mathcal{O}(\beta n)
-		\\[5pt]	
+		\\[10pt]	
+	\text{Sherman-Woodbury}:
+		&\Tilde{A} = A-uv^T
+		&\rightarrow
+		&\mathcal{O}(n^2)
+		&\ ,\ 
+		&\tilde{x} = \Tilde{A}b
+		&\rightarrow
+		&\mathcal{O}(n^2)
 \end{array}\)
 
-\subsection{Rank-1 Update with Sherman-Morrison}
+%-----------------------------------------------------------------
+\vspace{20pt}
+% Diagonal Scaling
+\begin{minipage}[t]{.45\textwidth}
+	\subsection{Diagonal Scaling}
+	% Ill conditioned
+	\vspace{5pt}
+	Ill-conditioned\\[5pt]
+	\text{\scriptsize\(\begin{aligned}[t]
+		\left(\begin{matrix}
+			1 & 0 \\
+			0 & \epsilon
+		\end{matrix}\right)
+		\left(\begin{matrix}
+			x_1 \\ x_2
+		\end{matrix}\right)
+		=
+		\left(\begin{matrix}
+			1 \\ \epsilon
+		\end{matrix}\right)
+	\end{aligned}\)}\\[15pt]	
+	% Well conditioned
+	Well-conditioned\\[5pt]
+	\text{\scriptsize\(\begin{aligned}[t]
+		\left(\begin{matrix}
+			1 & 0 \\
+			0 & 1/\epsilon
+		\end{matrix}\right)
+		\left(\begin{matrix}
+			1 & 0 \\
+			0 & \epsilon
+		\end{matrix}\right)
+		\left(\begin{matrix}
+			x_1 \\ x_2
+		\end{matrix}\right)
+		=
+		\left(\begin{matrix}
+			1 & 0 \\
+			0 & 1/\epsilon
+		\end{matrix}\right)
+		\left(\begin{matrix}
+			1 \\ \epsilon
+		\end{matrix}\right)
+	\end{aligned}\)}	
+	
+	% Notes
+	\vspace{10pt}
+	\(\begin{aligned}
+		\text{\scriptsize \(\bullet\ \) No general way to correct poor scaling}
+	\end{aligned}\)
+\end{minipage}
+%-----------------------------------------------------------------
+% Iterative Refinement
+\begin{minipage}[t]{.53\textwidth}
+	\subsection{Iterative Refinement}
+	\vspace{5pt}
+	\text{\scriptsize\(\arraycolsep=3pt \begin{array}{r c l c l}
+		r_0 &=& b - Ax_0 = A \Delta x_0\\
+		r_1 &=& b - A(x_0 + \Delta x_0) &=& b - Ax_1 = A \Delta x_1\\
+		r_2 &=& b - A(x_1 + \Delta x_1) &=& b - Ax_2 = A \Delta x_2\\[5pt]
+		\cline{1-3}
+		\multicolumn{1}{|r}{\rule[-7pt]{0pt}{20pt} x} &=& \multicolumn{1}{l|}{\displaystyle x_0\ +\ \lim_{n=0}^{\infty} \Delta x_n}
+			& & \text{\scriptsize(terminate when \(r_n\) is small enough)}\\
+		\cline{1-3}
+	\end{array}\)}
 
-\subsection{Diagonal Scaling}
-
-\subsection{Iterative Refinement}
+	% Notes
+	\vspace{10pt}
+	\text{\scriptsize\(\begin{aligned}
+		&\bullet\ \text{Double storage needed to hold original matrix}\\
+		&\bullet\ \text{\(r_n\) usually must be computed with higher precision than \(x_n\)}\\
+		&\bullet\ \text{Useful for badly scaled systmes, or making unstable systems stable}\\
+		&\bullet\ \text{If \(x_n\) is not accurate, \(r_n\) might not need better accuracy}
+	\end{aligned}\)}
+\end{minipage}
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
