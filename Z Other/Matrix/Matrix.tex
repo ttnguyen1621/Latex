@@ -742,15 +742,27 @@
 \section{Least \(\Vert r \Vert\) Linear Regression/Fit for \(Ax + r = b\)}
 
 % Assumptions
-\(\begin{aligned}
+\(\begin{aligned}[t]
 	&\bullet\ A = A_{m \times n} \hspace{10pt} {\scriptstyle(m > n)}\\[5pt]
-	&\bullet\ \text{rank}(A) = n \hspace{10pt} \text{\scriptsize(full column rank)}\begin{aligned}[t]
-			&\rightarrow\ x \text{ is unique (see proof???)}
-		\end{aligned}
+	&\bullet\ \Vert r\text{\scriptsize\((y=Ax)\)} \Vert \text{ is cont. \& coer.} 
+	\ \rightarrow \ \exists \Vert r\text{\scriptsize\((y)\)} \Vert_\text{min}
+\end{aligned}
+\hfill
+\begin{aligned}[t]
+	&\bullet \ r\text{\scriptsize\((y)\)} \text{ is strictly convex} \ \rightarrow \ y=Ax \text{ is unique}\\[5pt]
+	&\bullet\ \begin{gathered}[t]
+			\text{rank}(A) = n\\[-3pt]
+			\text{\scriptsize(full column rank)}
+		\end{gathered} 
+		\ \Rightarrow
+		\arraycolsep=3pt \begin{array}[t]{r c c c c}
+			A(x_1 - x_2) &=& 0 & &			\text{\scriptsize(unique \(x\))}\\
+			(x_1 - x_2) &=& 0 &\rightarrow& x_1 = x_2 
+		\end{array}
 \end{aligned}\)
 
 % Example: Vandermonde Matrix 
-\vspace{15pt}
+\vspace{5pt}
 \underline{Example - Vandermonde Matrix, \(A\)}:\\[10pt]
 \(
 	Ax = \text{\scriptsize \(
@@ -840,7 +852,7 @@
 \end{aligned}\)
 
 % Cross Product Matrix
-\vspace{15pt}
+\vspace{10pt}
 \begin{minipage}[t]{.49\textwidth}
 	\underline{Cross-Product Matrix of \(A\)}:\ \ \(\boxed{A^T A}\)\\[10pt]
 	\(\begin{array}{r l}
@@ -904,20 +916,24 @@
 		the working precision must carry more than these digits.
 	\end{minipage}\)
 
+% Norm and Conditioning
 \vspace{15pt}
-\(\begin{aligned}
-	&\bullet\ \Vert A \Vert = \max_{x \neq 0} \frac{\Vert Ax \Vert}{\Vert x \Vert} 
-		= \max_{x \neq 0} \frac{\Vert AA^+ b \Vert}{\Vert A^+ b \Vert}\\
-	&\bullet\ \text{cond}(A) = \begin{cases}
-			\Vert A \Vert_2 \cdot \Vert A^+ \Vert_2 & \hspace{10pt} \text{rank}(A) = n\\
-			\infty & \hspace{10pt} \text{rank}(A) < n
-		\end{cases}\\
-	&\bullet\ \text{info can be lost}\\
-	&\bullet\ \text{cond}(A^T A) = [\text{cond}(A)]^2 
-\end{aligned}\)
+\underline{Norm and Conditioning}:\\[10pt]
+% Norm
+\begin{minipage}[t]{.49\textwidth}
+	\(\boxed{ \Vert A \Vert = \max_{x \neq 0} \left( \frac{\Vert Ax \Vert}{\Vert x \Vert} 
+	= \frac{\Vert AA^+ b \Vert}{\Vert A^+ b \Vert} \right) }\)
+\end{minipage}
+% Cond(A)
+\begin{minipage}[t]{.49\textwidth}
+	\(\boxed{ \text{cond}(A) = \begin{cases}
+		\Vert A \Vert_2 \cdot \Vert A^+ \Vert_2 & \hspace{10pt} \text{rank}(A) = n\\
+		\infty & \hspace{10pt} \text{rank}(A) < n
+	\end{cases} }\)
+\end{minipage}
 
 % Error Bound for Change in Vector b
-\vspace{15pt}\noindent
+\vspace{20pt}\noindent
 \(\begin{aligned}[t]
 	&A^T A(x + \Delta x) = A^T A(b + \Delta b)\\[5pt]
 	&\hspace{10pt} \setlength{\arraycolsep}{3pt}\begin{array}{l c c c}
@@ -957,6 +973,35 @@
 			&= \big( \scriptstyle [\text{cond}(A)]^2 \tan \theta
 				+ \text{cond}(A) \big) \tfrac{\Vert \Delta A \Vert}{\Vert A \Vert}
 		\end{aligned} }
+\end{aligned}\)
+
+\vspace{15pt}
+% Other notes
+\(\begin{aligned}
+	&\bullet\ \text{Condition number is a func. of cond\((A)\) and \(b\)}\\[5pt]
+	&\bullet\ \text{A near \(Pb \approx 0\) or \(\theta\approx 90^\circ\) is bad-conditioned/highly sensitive}
+\end{aligned}\)
+
+\vspace{15pt}
+\underline{System of Normal Equations Issues}:\\[10pt]
+\(\begin{aligned}
+	&\bullet\ \text{Info can be lost forming \(A^TA\), e.g, \ } 
+		A = \text{\scriptsize\(\left(\begin{matrix}
+			1 & 0 \\ 
+			\epsilon & 0 \\ 
+			0 & \epsilon
+		\end{matrix}\right)\)} 
+		\ \rightarrow \ 
+		A^T A = \text{\scriptsize\(\left(\begin{matrix}
+			1 + \epsilon^2 & 1 \\ 
+			1 & 1 + \epsilon^2
+		\end{matrix}\right)\)} 
+		\ \approx \ \text{\scriptsize\(\left(\begin{matrix}
+			1 & 1 \\ 
+			1 & 1
+		\end{matrix}\right)\)} 
+		\hspace{10pt} \text{\scriptsize(singular)} \\[.3cm]
+	&\bullet\ \text{System of Normal Equations:}\ \ \boxed{ \text{cond}(A^T A) = [\text{cond}(A)]^2 }
 \end{aligned}\)
 
 \vspace{20pt}
