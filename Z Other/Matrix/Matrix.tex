@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 \usepackage{enumitem, amssymb, amsmath, amsfonts, mathtools, parskip}
+\usepackage{cancel}
 
 % \newcommand\italicmath{\mathversion{italic}}
 % \DeclareMathVersion{italic}
@@ -731,6 +732,378 @@
 		&\bullet\ \text{If \(x_n\) is not accurate, \(r_n\) might not need better accuracy}
 	\end{aligned}\)}
 \end{minipage}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+% Least r Linear Regression/Fit
+\newpage
+\section{Least \(\Vert r \Vert\) Linear Regression/Fit for \(Ax + r = b\)}
+
+% Assumptions
+\(\begin{aligned}
+	&\bullet\ A = A_{m \times n} \hspace{10pt} {\scriptstyle(m > n)}\\[5pt]
+	&\bullet\ \text{rank}(A) = n \hspace{10pt} \text{\scriptsize(full column rank)}\begin{aligned}[t]
+			&\rightarrow\ x \text{ is unique (see proof???)}
+		\end{aligned}
+\end{aligned}\)
+
+% Example: Vandermonde Matrix 
+\vspace{15pt}
+\underline{Example - Vandermonde Matrix, \(A\)}:\\[10pt]
+\(
+	Ax = \text{\scriptsize \(
+		\left(\begin{matrix}
+			- \vec{f}(t_1) -\\ 
+			\vdots\\ 
+			- \vec{f}(t_m) -
+		\end{matrix}\right) 
+		\left(\begin{matrix}
+			|\\
+			\vec{x}\\
+			| 
+		\end{matrix}\right) 
+		=
+		\left(\begin{matrix}
+			y(t_1)\\ 
+			\vdots\\ 
+			y(t_m)
+		\end{matrix}\right) 
+		=
+		\left(\begin{matrix}
+			|\\ 
+			\vec{y}\\ 
+			|
+		\end{matrix}\right) 
+	\)} 
+	= (x^T A^T)^T 
+	\hspace{7pt} , \hspace{15pt}
+	y(t) = \sum_{i=1}^n x_i f_i(t) = \vec{x} \cdot \vec{f}
+\)
+
+\vspace{15pt}
+\(
+	% Vector b decomp.
+	\begin{aligned}
+		&\text{\underline{Decompose \(b\)}}:\\[5pt]
+		&{\arraycolsep=3pt \begin{array}{r c c c c}
+				b &=& Ax &+& r \\[3pt]
+				&=& y 	&+& r \\[3pt]
+				&=& Pb 	&+& P_\perp b
+			\end{array}}
+	\end{aligned}
+	\hspace{.5cm}
+	\rule[-35pt]{.5pt}{75pt}
+	\hspace{.5cm}
+	% Orthogonal Projector Matrix
+	\begin{aligned}
+		&\underline{\text{Projector of A, \(P\)}}\\[10pt]
+		&\begin{array}{r l}
+			% Projector Def
+			\text{Projector}: & \begin{gathered}[t]
+					P^2 = P\\[-3pt]
+					\text{\scriptsize(Idempotent)}
+				\end{gathered}
+				\ \rightarrow\ 
+				\begin{gathered}[t]
+					PA = A\\[-3pt]
+					\text{\scriptsize(Projector of A)}
+				\end{gathered}\\[15pt]
+			% Ortho. Proj.
+			\underline{\text{Orthogonal Projector}}: & P^T = P \ \rightarrow\ P_\perp A = (I - P)A = 0
+		\end{array}
+	\end{aligned}
+\)
+
+% Minimize residual, r
+\vspace{15pt}
+\underline{Minimize residual, \(r\)}:\\[10pt]
+\(\begin{aligned}[t]
+	\nabla \Vert r \Vert_2^2 &= 0 \hspace{20pt} 
+		\text{\scriptsize\(\left(\tfrac{\partial r^2}{\partial x_i} = 0 \right)\)}\\[5pt]
+	&= \nabla\left[ (b-Ax)^T(b-Ax) \right]\\[5pt]
+	&= \nabla\left( b^T b - 2 x^T A^T b + x^T A^T Ax \right)\\[5pt]
+	0 &= 2 A^T Ax - 2 A^T b\\
+	&\downarrow\\
+	A^TAx &= A^T b
+\end{aligned}
+\hspace{2cm}
+\begin{aligned}[t]
+	\Vert r \Vert_2^2 &= \Vert Pr + P_\perp r \Vert_2^2 = \Vert b - Ax \Vert^2\\
+	&= \Vert Pr \Vert^2 + \Vert P_\perp r \Vert^2\\
+	&= \cancel{ \Vert Pb - Ax \Vert_2^2 } + \Vert P_\perp b \Vert_2^2 \\
+	&\downarrow\\
+	Ax &= Pb\\
+	A^T Ax &= A^T P b = (P^T A)^T b \\
+	A^T Ax &= A^T b \hspace{10pt} \text{\scriptsize(System of Normal Equations)}
+\end{aligned}\)
+
+% Cross Product Matrix
+\vspace{15pt}
+\begin{minipage}[t]{.49\textwidth}
+	\underline{Cross-Product Matrix of \(A\)}:\ \ \(\boxed{A^T A}\)\\[10pt]
+	\(\begin{array}{r l}
+		\text{Symmetric}: & (A^T A)^T = A^T A\\[10pt]
+		\text{Pos. Def.}: & \begin{aligned}[t]
+				&\text{rank}(A) = n\\
+				&\rightarrow \ \begin{aligned}[t]
+						&\big\langle x \big| A^T Ax \big\rangle = x^T A^T A x\\
+						&= (Ax)^T (Ax) \\
+						&= \Vert Ax \Vert^2 \geq 0
+					\end{aligned} \\
+			\end{aligned} \\[2.2cm]
+		\text{Nonsingular}: & \begin{aligned}[t]
+				&A^T A x = 0 \\
+				&\rightarrow\ \Vert Ax \Vert^2 = 0 = Ax \\
+				&\rightarrow\ (x = 0)
+			\end{aligned} 
+	\end{array}\)	
+\end{minipage}
+% System of Normal Equations
+\hfill
+\begin{minipage}[t]{.49\textwidth}
+	\underline{System of Normal Equations}: \ \ \(\boxed{A^T Ax = A^T b}\)\\[20pt]
+	\underline{Pseudoinverse, \(A^+\)}\\[10pt]
+	\(
+		\boxed{ \begin{aligned}
+			x &= (A^T A)^{-1} A^T b \\[3pt]
+			&\equiv A^+ b
+		\end{aligned} }
+		\ \ \ \rightarrow \ \ \
+		\boxed{ \begin{aligned}
+			A^+ &\equiv (A^T A)^{-1} A^T \\
+			A^+ A &= I
+		\end{aligned} }
+	\)\\[20pt]
+	\underline{Ortho. Proj., \(P\)}\\[10pt]
+	\(
+		\boxed{ \begin{aligned}[t]
+			Ax &= A (A^T A)^{-1} A^T b \\
+			&= Pb
+		\end{aligned} }
+		\ \ \ \rightarrow \ \ \
+		\boxed{ \begin{aligned}[t]
+			P &= A (A^T A)^{-1} A^T \\
+			&= A A^+ 
+		\end{aligned} }
+	\)
+\end{minipage}
+
+%------------------------------------------------------------------------
+% Residual, and Error Bounds when Solving Ax = b
+\subsection{Error Bounds and Residuals}
+% Error Bound
+\vspace{10pt}\noindent
+\underline{Error Bound}:\ \ \(\boxed{ \displaystyle \frac{\Vert \Delta x \Vert}{\Vert x \Vert} 
+	\ \lessapprox\ \text{cond}(A)\ \epsilon_\text{mach} } 
+	\ \rightarrow \ \begin{minipage}{8cm}
+		\scriptsize
+		A computed solution is expected to lose about \(\log_{10}(\text{cond}(A))\) digits, so
+		the input data must be more accurate to these digits and 
+		the working precision must carry more than these digits.
+	\end{minipage}\)
+
+\vspace{15pt}
+\(\begin{aligned}
+	&\bullet\ \Vert A \Vert = \max_{x \neq 0} \frac{\Vert Ax \Vert}{\Vert x \Vert} 
+		= \max_{x \neq 0} \frac{\Vert AA^+ b \Vert}{\Vert A^+ b \Vert}\\
+	&\bullet\ \text{cond}(A) = \begin{cases}
+			\Vert A \Vert_2 \cdot \Vert A^+ \Vert_2 & \hspace{10pt} \text{rank}(A) = n\\
+			\infty & \hspace{10pt} \text{rank}(A) < n
+		\end{cases}\\
+	&\bullet\ \text{info can be lost}\\
+	&\bullet\ \text{cond}(A^T A) = [\text{cond}(A)]^2 
+\end{aligned}\)
+
+% Error Bound for Change in Vector b
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+	&A^T A(x + \Delta x) = A^T A(b + \Delta b)\\[5pt]
+	&\hspace{10pt} \setlength{\arraycolsep}{3pt}\begin{array}{l c c c}
+			\bullet\ &\Vert \Delta x \Vert 	&\leq& \Vert A^+ \Vert \cdot \Vert \Delta b \Vert
+		\end{array}\\[10pt]
+	&\rightarrow\ \boxed{ \begin{aligned}[t]
+			\tfrac{\Vert \Delta x \Vert}{\Vert \hat{x} \Vert} 
+				&\leq \left( \text{cond}(A) \tfrac{\Vert b \Vert}{\Vert Ax \Vert} \right) 
+				\tfrac{\Vert \Delta b \Vert}{\Vert b \Vert}\\[5pt]
+			&= \left( \text{cond}(A) \tfrac{1}{\cos \theta} \right) 
+				\tfrac{\Vert \Delta b \Vert}{\Vert b \Vert}
+		\end{aligned} }
+\end{aligned}
+% Residual
+\hfill
+\begin{aligned}[t]
+	&(A + \Delta A)^T (A + \Delta A)(x + \Delta x) = (A + \Delta A)^T b\\[10pt]
+	&\hspace{10pt} \begin{aligned}
+			&\bullet\ \text{\scriptsize\(\begin{aligned}[t]
+					&\cancel{A^T A x} + A^T \Delta A x + (\Delta A)^T A x + \bcancel{ (\Delta A)^T \Delta A x }\\
+					&\ \ + A^T A \Delta x 
+						+ \bcancel{ A^T \Delta A \Delta x} 
+						+ \bcancel{ (\Delta A)^T A \Delta x } 
+						+ \bcancel{ (\Delta A)^T \Delta A \Delta x }
+				\end{aligned}\ \ =\ \ \cancel{A^T b} + (\Delta A)^T b \)}\\[10pt]
+			&\bullet\ \begin{aligned}[t]
+					\Vert \Delta x \Vert 
+						&= \Vert (A^T A)^{-1}(\Delta A)^T r - A^+ \Delta A x \Vert\\[5pt]
+					&\leq \Vert (A^T A)^{-1} \Vert \cdot \Vert \Delta A \Vert \cdot \Vert r \Vert 
+						+ \Vert A^+ \Vert \cdot \Vert \Delta A \Vert \cdot \Vert x \Vert
+				\end{aligned}
+		\end{aligned}\\[10pt]
+	&\rightarrow\ \boxed{ \begin{aligned}[t]
+			\tfrac{\Vert \Delta x \Vert}{\Vert \hat{x} \Vert} 
+				&\leq \left( \scriptstyle [\text{cond}(A)]^2 \tfrac{\Vert r \Vert}{\Vert Ax \Vert} 
+				+ \text{cond}(A) \right) \tfrac{\Vert \Delta A \Vert}{\Vert A \Vert}\\[5pt]
+			&= \big( \scriptstyle [\text{cond}(A)]^2 \tan \theta
+				+ \text{cond}(A) \big) \tfrac{\Vert \Delta A \Vert}{\Vert A \Vert}
+		\end{aligned} }
+\end{aligned}\)
+
+\vspace{20pt}
+\(\begin{aligned}
+	&\bullet\ \text{Augemented Systems - skipped}\\
+	&\bullet\ \Big\{ Q = Q_{m \times n}\ \Big|\ \text{span}(Q) = \text{span}(A)\ , \ \ Q^T Q = I \Big\} 
+		\ \rightarrow\ P = Q Q^T \hspace{10pt} \text{\scriptsize(orthonormal projector?)}\\
+	&\bullet\ Q^+ = (Q^T Q)^{-1} Q^T = Q^T\\
+	&\bullet\ \begin{aligned}[t]
+			Q^T Ax &= Q^T Pb = Q^T Q Q^T b \\
+			Q^T Ax &= Q^T b \hspace{10pt} \text{\scriptsize(System of Orthonormal Equations?)}
+		\end{aligned}\\[20pt]
+	&\bullet\ \text{2-norm Preserved}: \ \begin{aligned}[t]
+			\Vert Qv \Vert^2 = \langle Qv | Qv \rangle = \langle v | Q^TQv \rangle = \Vert v \Vert^2
+		\end{aligned}\\	
+	&\bullet\ Rx = c_1 \ \rightarrow\
+		Q^T b = 
+		\left(\begin{matrix}
+			R \\ 
+			0
+		\end{matrix}\right) 
+		\vec{x} + 
+		\left(\begin{matrix}
+			0\\
+			\vec{c}_2
+		\end{matrix}\right)
+		=
+		\left(\begin{matrix}
+			\vec{c}_1\\
+			\vec{c}_2
+		\end{matrix}\right) 
+		\hspace{20pt} \text{\scriptsize(\(R\) is upp. triang.)}\\
+	&\bullet\ \text{Reduced QR Factorization}:\ A = Q \left(\begin{matrix}
+			R\\ 0
+		\end{matrix}\right)
+		= 
+		\left(\begin{matrix}
+			Q_1 & Q_2
+		\end{matrix}\right)
+		\left(\begin{matrix}
+			R\\ 0
+		\end{matrix}\right)
+		= Q_1 R
+\end{aligned}\)
+
+\newpage
+\(\begin{aligned}
+	&\bullet\ \text{Householder Transformation/Elementary Reflector}:\ 
+		H = I - (2\hat{v}) \hat{v}^T = I - \frac{(2v)v^T}{v^Tv}\\
+	&\bullet\ H = H^T = H^{-1} \hspace{10pt} \text{\scriptsize(symmetric and orthogonal)}\\
+	&\bullet\ \alpha e_1 = Ha = a - (2v)\frac{v \cdot a}{v \cdot v} 
+		\ \rightarrow\ v = (a - \alpha e_1) \frac{v \cdot v}{2v \cdot a}
+		\ \rightarrow\ v = (a - \alpha e_1)\\
+	&\bullet\ \alpha = \pm \Vert a \Vert \ \Rightarrow\ \text{Choose } \alpha = - \text{sign}(a_1) \Vert a \Vert\\
+	&\bullet\ \text{Just use \(v\) to transform \(a\) - don't find \(H\)}\\
+	&\bullet\ \langle H_i \dots H_1r | e_j \rangle = 0 \hspace{10pt} \text{\scriptsize\((1 \leq j \leq i)\)}\\
+	&\bullet\ \text{\(\begin{aligned}[t]
+			Q^TAx + Q^Tr &= Q^Tb\\
+			\left(\begin{matrix}
+					\\[-12pt]
+					& Q_1^T &
+					\\[2pt]
+					\hline
+					\\[-10pt]
+					& Q_2^T &
+					\\[1pt]
+				\end{matrix}\right)
+				\left.\left(\begin{matrix} 
+					\\[-5pt]
+					Q_1\\
+					\\[-3pt]
+				\end{matrix}\right.\right| \left.\begin{matrix}
+					\\[-5pt]
+					Q_2\\
+					\\[-3pt]
+				\end{matrix} \right) 
+				\left( \begin{matrix}
+					R\\
+					0
+				\end{matrix}\right)
+				x
+				+ 
+				\left(\begin{matrix}
+					\\[-12pt]
+					& Q_1^T &
+					\\[2pt]
+					\hline
+					\\[-10pt]
+					& Q_2^T &
+					\\[1pt]
+				\end{matrix}\right) r
+				&= 
+				\left(\begin{matrix}
+					\\[-12pt]
+					& Q_1^T &
+					\\[2pt]
+					\hline
+					\\[-10pt]
+					& Q_2^T &
+					\\[1pt]
+				\end{matrix}\right) b\\
+			\left( \begin{matrix}
+					Rx\\
+					0
+				\end{matrix}\right)
+				+ \left( \begin{matrix}
+					0\\
+					r'
+				\end{matrix}\right)	
+				&= \left( \begin{matrix}
+					Q_1^T b\\
+					Q_2^T b
+				\end{matrix}\right)	
+		\end{aligned}\)}\\
+	&\bullet\ v_i = \text{\scriptsize\(\left(\begin{matrix}
+			0\\
+			\vdots\\
+			a_i\\
+			\vdots\\
+			a_m
+		\end{matrix}\right)\)} - \alpha e_i 
+		= \left(\begin{matrix}
+			0&\dots&0&(a_i - \alpha)&a_{i+1}&\dots&a_m
+		\end{matrix}\right)^T
+\end{aligned}\)
+
+\(\begin{aligned}
+	&\bullet\ \text{Givens Rotation}:\ 
+		\left(\begin{matrix}
+			c & s\\
+			-s& c
+		\end{matrix}\right) 
+		\ \rightarrow \ Gx = 
+		G \left(\begin{matrix} 
+			x_1\\
+			x_2 
+		\end{matrix}\right) 
+		= \pm 
+		\left(\begin{matrix} 
+			\Vert x \Vert \\
+			0 
+		\end{matrix}\right)\\
+	&\bullet\ c = \frac{a_1}{\sqrt{a_1^2 + a_2^2}}\ , \ \ s = \frac{a_2}{\sqrt{a_1^2 + a_2^2}}\\
+	&\bullet\ \text{Avoid squaring any number \(\gg 1\) to prevent overflow/underflow}\\
+	&\bullet\ t = \tfrac{a_2}{a_1} < 1 \ \rightarrow \ c = \frac{1}{\sqrt{1+t^2}}\ , \ \ s = c \cdot t\\
+	&\bullet\ \tau = \tfrac{a_1}{a_2} < 1 \ \rightarrow \ s = \frac{1}{\sqrt{1+\tau^2}}\ , \ \ c = s \cdot \tau\\
+\end{aligned}\)
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
