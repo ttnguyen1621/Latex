@@ -3,6 +3,8 @@
 \usepackage{enumitem, amssymb, amsmath, amsfonts, mathtools, parskip}
 \usepackage{cancel}
 
+\newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
+
 % \newcommand\italicmath{\mathversion{italic}}
 % \DeclareMathVersion{italic}
 % \SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
@@ -489,6 +491,7 @@
 \)
 
 %----------------------------------------------------------------
+%----------------------------------------------------------------
 % Symmetric
 \vspace{15pt}
 \subsection{Symmetric Matrices}
@@ -560,6 +563,7 @@
 \end{aligned}\)}
 
 %-----------------------------------------------------------------
+%-----------------------------------------------------------------
 % Rank 1 Update with Sherman-Morrison
 \vspace{10pt}
 \subsection{Rank-1 Update with Sherman-Morrison}
@@ -590,6 +594,7 @@
 	&\bullet\ \text{No guarantee of numerical stability, so caution is needed}
 \end{aligned}\)}
 
+%------------------------------------------------------------------
 %------------------------------------------------------------------
 % Complexity
 \vspace{10pt}
@@ -657,6 +662,7 @@
 		&\mathcal{O}(n^2)
 \end{array}\)
 
+%------------------------------------------------------------------
 %-----------------------------------------------------------------
 \vspace{20pt}
 % Diagonal Scaling
@@ -708,6 +714,8 @@
 		\text{\scriptsize \(\bullet\ \) No general way to correct poor scaling}
 	\end{aligned}\)
 \end{minipage}
+
+%------------------------------------------------------------------
 %-----------------------------------------------------------------
 % Iterative Refinement
 \begin{minipage}[t]{.53\textwidth}
@@ -838,7 +846,7 @@
 	&= \nabla\left( b^T b - 2 x^T A^T b + x^T A^T Ax \right)\\[5pt]
 	0 &= 2 A^T Ax - 2 A^T b\\
 	&\downarrow\\
-	A^TAx &= A^T b
+	A^TAx &= A^T b \hspace{10pt} \text{\scriptsize(Solvable with Cholesky)}
 \end{aligned}
 \hspace{2cm}
 \begin{aligned}[t]
@@ -902,8 +910,37 @@
 	\)
 \end{minipage}
 
+%-------------------------------------------------------------------------
+%-------------------------------------------------------------------------
+%-------------------------------------------------------------------------
+%-------------------------------------------------------------------------
+% Issues with System of Normal Equations
+\newpage
+\underline{System of Normal Equations Issues}:\\[10pt]
+\(\begin{aligned}
+	&\bullet\ \text{Info can be lost forming \(A^TA\), e.g, \ } 
+		A = \text{\scriptsize\(\left(\begin{matrix}
+			1 & 0 \\ 
+			\epsilon & 0 \\ 
+			0 & \epsilon
+		\end{matrix}\right)\)} 
+		\ \rightarrow \ 
+		A^T A = \text{\scriptsize\(\left(\begin{matrix}
+			1 + \epsilon^2 & 1 \\ 
+			1 & 1 + \epsilon^2
+		\end{matrix}\right)\)} 
+		\ \approx \ \text{\scriptsize\(\left(\begin{matrix}
+			1 & 1 \\ 
+			1 & 1
+		\end{matrix}\right)\)} 
+		\hspace{10pt} \text{\scriptsize(singular)} \\[.3cm]
+	&\bullet\ \text{System of Normal Equations:}\ \ \boxed{ \text{cond}(A^T A) = [\text{cond}(A)]^2 }
+\end{aligned}\)
+
+%------------------------------------------------------------------------
 %------------------------------------------------------------------------
 % Residual, and Error Bounds when Solving Ax = b
+\vspace{15pt}
 \subsection{Error Bounds and Residuals}
 % Error Bound
 \vspace{10pt}\noindent
@@ -917,7 +954,7 @@
 	\end{minipage}\)
 
 % Norm and Conditioning
-\vspace{15pt}
+\vspace{10pt}
 \underline{Norm and Conditioning}:\\[10pt]
 % Norm
 \begin{minipage}[t]{.49\textwidth}
@@ -933,7 +970,7 @@
 \end{minipage}
 
 % Error Bound for Change in Vector b
-\vspace{20pt}\noindent
+\vspace{15pt}\noindent
 \(\begin{aligned}[t]
 	&A^T A(x + \Delta x) = A^T A(b + \Delta b)\\[5pt]
 	&\hspace{10pt} \setlength{\arraycolsep}{3pt}\begin{array}{l c c c}
@@ -945,7 +982,12 @@
 				\tfrac{\Vert \Delta b \Vert}{\Vert b \Vert}\\[5pt]
 			&= \left( \text{cond}(A) \tfrac{1}{\cos \theta} \right) 
 				\tfrac{\Vert \Delta b \Vert}{\Vert b \Vert}
-		\end{aligned} }
+		\end{aligned} }\\[20pt]
+	% Other notes
+	&\begin{aligned}
+			&\bullet\ \text{\scriptsize Cond. number is a func. of cond\((A)\) and \(b\)}\\
+			&\bullet\ \text{\scriptsize \(Pb \approx 0\) or \(\theta\approx 90^\circ\) is highly sensitive}
+		\end{aligned}
 \end{aligned}
 % Residual
 \hfill
@@ -975,147 +1017,273 @@
 		\end{aligned} }
 \end{aligned}\)
 
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+% Augmented Matrix
 \vspace{15pt}
-% Other notes
+\subsection{Solving \(A^TAx = A^Tb\) with an Augmented Matrix}
+\vspace{10pt}
+% Equations
+\[
+	\arraycolsep=1pt
+	\begin{array}{r c c c c}
+		r &+& Ax &\ =\ & b\\[5pt]
+		A^Tr & & &\ =\ & 0
+	\end{array}
+	\ \ \Rightarrow \ \
+	\left(\begin{matrix}
+		I & A\\
+		A^T & 0
+	\end{matrix}\right)
+	\left(\begin{matrix}
+		r \\
+		x
+	\end{matrix}\right)
+	= 
+	\left(\begin{matrix}
+		b\\
+		0
+	\end{matrix}\right)
+	\ \ \Rightarrow \ \
+	\left(\begin{matrix}
+		\alpha I & A\\
+		A^T & 0
+	\end{matrix}\right)
+	\left(\begin{matrix}
+		r/\alpha \\
+		x
+	\end{matrix}\right)
+	= 
+	\left(\begin{matrix}
+		b\\
+		0
+	\end{matrix}\right)
+\]
+
+% Notes
+\vspace{5pt}
 \(\begin{aligned}
-	&\bullet\ \text{Condition number is a func. of cond\((A)\) and \(b\)}\\[5pt]
-	&\bullet\ \text{A near \(Pb \approx 0\) or \(\theta\approx 90^\circ\) is bad-conditioned/highly sensitive}
+	&\bullet\ \text{Solvable with \(LU\) Decomp or Symm. Pos. Def. Methods} \\
+	&\bullet\ \alpha \text{ "controls the relative weights of the two subsystems in chooing pivots from either"}\\
+	&\bullet\ \alpha = \max a_{ij}/1000 \hspace{20pt} \text{\scriptsize(rule of thumb)}\\
+	&\bullet\ \text{MATLAB uses it for large, sparse systems}
 \end{aligned}\)
 
-\vspace{15pt}
-\underline{System of Normal Equations Issues}:\\[10pt]
-\(\begin{aligned}
-	&\bullet\ \text{Info can be lost forming \(A^TA\), e.g, \ } 
-		A = \text{\scriptsize\(\left(\begin{matrix}
-			1 & 0 \\ 
-			\epsilon & 0 \\ 
-			0 & \epsilon
-		\end{matrix}\right)\)} 
-		\ \rightarrow \ 
-		A^T A = \text{\scriptsize\(\left(\begin{matrix}
-			1 + \epsilon^2 & 1 \\ 
-			1 & 1 + \epsilon^2
-		\end{matrix}\right)\)} 
-		\ \approx \ \text{\scriptsize\(\left(\begin{matrix}
-			1 & 1 \\ 
-			1 & 1
-		\end{matrix}\right)\)} 
-		\hspace{10pt} \text{\scriptsize(singular)} \\[.3cm]
-	&\bullet\ \text{System of Normal Equations:}\ \ \boxed{ \text{cond}(A^T A) = [\text{cond}(A)]^2 }
-\end{aligned}\)
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+% QR Decomposition
+\newpage
+\subsection{QR Decomposition}
+% Motivation
+\vspace{5pt}
+\underline{Motivation}: \ \(
+	\begin{gathered}
+		Q^T A = \text{\scriptsize\(\left(\begin{matrix}
+				R \\ 
+				0
+			\end{matrix}\right)\)}\\[5pt]
+		\text{\scriptsize(\(R\) is upp. triag.)}
+	\end{gathered}
+	\ \ \rightarrow \ \
+	\arraycolsep=2pt
+	\begin{array}{r c c c l}
+		Q^T Ax &+& Q^T r &=& Q^T b \\[5pt]
+		\text{\scriptsize\(\left(\begin{matrix}
+				Rx \\ 
+				0
+			\end{matrix}\right)\)}
+			&+& 
+			\text{\scriptsize\(\left(\begin{matrix}
+				r_1' \\[2pt]
+				r_2'
+			\end{matrix}\right)\)}
+			&=&
+			\text{\scriptsize\(\left(\begin{matrix}
+				b_1' \\[2pt]
+				b_2'
+			\end{matrix}\right)\)}
+	\end{array}
+	\ \ \rightarrow \ \
+	\begin{aligned}
+		\Vert r' \Vert^2 &= \cancel{ \Vert b_1' - Rx \Vert^2 } + \Vert b_2' \Vert^2 \\
+		&\downarrow\\[-7pt]
+		Rx &= b_1' \ , \ \ r' = \text{\scriptsize\(\left(\begin{matrix}
+				0 \\ 
+				b_2'
+			\end{matrix}\right)\)} 
+			\hspace{12pt} \text{\scriptsize(solve with back-sub)}
+	\end{aligned}
+\)
 
-\vspace{20pt}
-\(\begin{aligned}
-	&\bullet\ \text{Augemented Systems - skipped}\\
-	&\bullet\ \Big\{ Q = Q_{m \times n}\ \Big|\ \text{span}(Q) = \text{span}(A)\ , \ \ Q^T Q = I \Big\} 
-		\ \rightarrow\ P = Q Q^T \hspace{10pt} \text{\scriptsize(orthonormal projector?)}\\
-	&\bullet\ Q^+ = (Q^T Q)^{-1} Q^T = Q^T\\
-	&\bullet\ \begin{aligned}[t]
-			Q^T Ax &= Q^T Pb = Q^T Q Q^T b \\
-			Q^T Ax &= Q^T b \hspace{10pt} \text{\scriptsize(System of Orthonormal Equations?)}
-		\end{aligned}\\[20pt]
-	&\bullet\ \text{2-norm Preserved}: \ \begin{aligned}[t]
-			\Vert Qv \Vert^2 = \langle Qv | Qv \rangle = \langle v | Q^TQv \rangle = \Vert v \Vert^2
-		\end{aligned}\\	
-	&\bullet\ Rx = c_1 \ \rightarrow\
-		Q^T b = 
-		\left(\begin{matrix}
-			R \\ 
-			0
-		\end{matrix}\right) 
-		\vec{x} + 
-		\left(\begin{matrix}
-			0\\
-			\vec{c}_2
-		\end{matrix}\right)
-		=
-		\left(\begin{matrix}
-			\vec{c}_1\\
-			\vec{c}_2
-		\end{matrix}\right) 
-		\hspace{20pt} \text{\scriptsize(\(R\) is upp. triang.)}\\
-	&\bullet\ \text{Reduced QR Factorization}:\ A = Q \left(\begin{matrix}
+% QR Decomp
+\vspace{5pt}
+\(\hspace{20pt} \begin{aligned}[t]
+	&\underline{\text{Orthogonal Matrix, \(Q\)}}\\[2pt]
+	&\boxed{ Q^T Q = QQ^T = I }
+\end{aligned} 
+\hfill
+\begin{aligned}[t]
+	&\underline{\text{QR Factorization}}\\[2pt]
+	&\boxed{ A = Q \left(\begin{matrix}
+			R\\ 0
+		\end{matrix}\right) }
+\end{aligned}
+\hfill
+\begin{aligned}[t]
+	&\underline{\text{Reduced QR Factorization}}\\[2pt]
+	&\boxed{ A = Q \left(\begin{matrix}
 			R\\ 0
 		\end{matrix}\right)
 		= 
-		\left(\begin{matrix}
-			Q_1 & Q_2
-		\end{matrix}\right)
+		\bigg(\begin{matrix}
+			Q_\parallel & Q_\perp
+		\end{matrix}\bigg)
 		\left(\begin{matrix}
 			R\\ 0
 		\end{matrix}\right)
-		= Q_1 R
+		= Q_\parallel R }
 \end{aligned}\)
 
+% Interpretations
+\vspace{15pt}
+% 1. Q^T is a rotation
+\begin{minipage}[t]{.49\textwidth}
+	\textbf{1.} \hspace{5pt} \begin{minipage}[t]{7cm}
+		\textbf{\(Q^T\) is a span\((A)\) Plane Rotation}\\[3pt]
+		\textbf{through \(\mathbb{R}^m\) to span\(\big( [R\ \ 0]^T \big)\)}
+	\end{minipage}
+
+	% Orthogonal Matrix Rotates/Reflects and preserves the norm
+	\vspace{10pt}
+	\fbox{
+		\(\begin{aligned}
+			&\text{2-norm Preserved {\scriptsize(\(Q\) is a rotation/reflection)}}\\[5pt]
+			&\bullet\ \begin{aligned}[t]
+					\Vert Q v \Vert^2 &= \langle v | Q^TQv \rangle = \Vert v \Vert^2\\
+					\Vert Q^T v \Vert^2 &= \langle v | QQ^Tv \rangle = \Vert v \Vert^2
+				\end{aligned}\\[5pt]
+		\end{aligned}\)
+	}
+
+	% Describe how Q^T transforms A to R
+	\vspace{10pt}
+	\(\begin{gathered}
+		\begin{array}{l c l}
+			\bullet\ Q^T = H_n\dots H_1 &\ &\bullet\ H_i^T H_i = H_i H_i^T = I \\[3pt]
+			\bullet\ A = [a_1\ \dots\ a_n] &\ &\bullet\ I_n = [e_1\ \dots\ e_n]
+		\end{array}\\[10pt]
+		\arraycolsep=3pt \begin{array}{r c l}
+				H_1 a_1 &=& \alpha e_1 
+					\hspace{15pt}
+					\text{\scriptsize\(\left( \Vert a_1 \Vert = \vert \alpha \vert \right)\)}
+					\\[10pt]
+				H_i\dots H_1 a_i &=& \begin{gathered}[t]
+					{\scriptstyle \sum}^i_j\ c_j e_j \ =\ H_n\dots H_1 a_i\\[5pt]
+					\text{\scriptsize\(\left( \Vert a_i \Vert^2 = \vert \alpha \vert^2 
+						= {\scriptstyle \sum}_j^i\ c_j^2 \right)\)}
+				\end{gathered}
+					\\[27pt]
+				\langle r | a_i \rangle &=& 0
+					\hspace{27pt}
+					\text{\scriptsize\((1 \leq i \leq n)\)}
+					\\[7pt]
+				\langle H_i \dots H_1r | e_j \rangle &=& 0 
+					\hspace{27pt}
+					\text{\scriptsize\((1 \leq j \leq i)\)}
+			\end{array}
+	\end{gathered}\)
+
+	% Conclusion
+	\vspace{15pt}
+	\(\rightarrow\) \fbox{ 
+		\begin{minipage}[t]{7.5cm}
+			\(Q^TA\) rotates \(A\) until the column vectors are aligned with certain axes described above
+		\end{minipage}
+	}
+\end{minipage}
+\vline
+% 2. A is a linear sum of Q
+\hfill
+\begin{minipage}[t]{.48\textwidth}
+	\textbf{2.} \hspace{5pt} \begin{minipage}[t]{7cm}
+		\textbf{\(A\) is a Lin. Sum of \(Q_\parallel\)'s Orthogonal}\\[3pt]
+		\textbf{Column Vectors Given by \(R\)}
+	\end{minipage}
+
+	% System of Orthogonal Equations
+	\vspace{15pt}
+	\(\begin{aligned}
+		&\Big\{ Q_\parallel = Q_{m \times n}\ \Big|\ \text{span}(Q_\parallel) = \text{span}(A) \Big\} \\[5pt]
+		&\rightarrow\ Q^+ = (Q^T Q)^{-1} Q^T = Q^T\\[5pt]
+		&\rightarrow\ P = Q_\parallel Q_\parallel^T\\[5pt]
+		&\rightarrow\ \begin{aligned}[t]
+				Q_\parallel^T Ax &= Q_\parallel^T Pb = \cancel{Q_\parallel^T Q_\parallel} Q_\parallel^T b \\[4pt]
+				&= Q_\parallel^T b \hspace{10pt} \text{\scriptsize(System of Orthogonal Equations?)}
+			\end{aligned}
+	\end{aligned}\)
+
+	% Describe how R changes Q to A
+	\vspace{20pt}
+	\(\begin{aligned}
+		&A = Q_\parallel R = \text{\scriptsize\(
+			\left(\begin{matrix}
+				| & \hspace{-7pt} |	& \hspace{-7pt} | \\
+				\vec{q_1} &\hspace{-7pt}\dots &\hspace{-7pt}\vec{q_n}\\
+				| & \hspace{-7pt} |	& \hspace{-7pt} | \\
+			\end{matrix}\right) 
+			\left(\begin{matrix}
+				r_{11} & \hspace{-5pt} \dots \hspace{-5pt} & r_{1n} \\[-5pt]
+				0 & \hspace{-5pt} \ddots \hspace{-5pt} & \vdots \\
+				0 & \hspace{-5pt} 0 \hspace{-5pt} & r_{nn}
+			\end{matrix}\right)\)}
+			= \text{\scriptsize\(
+				\left(\begin{matrix}
+					| & \hspace{-7pt} |	& \hspace{-7pt} | \\
+					\vec{a_1} &\hspace{-7pt}\dots &\hspace{-7pt}\vec{a_n}\\
+					| & \hspace{-7pt} |	& \hspace{-7pt} | \\
+				\end{matrix}\right)\)} \\
+		&\bullet\ \vec{a_j} = \sum_i^j r_{ij}\cdot \vec{q_i}
+	\end{aligned}\)
+
+	% Conclusion
+	\vspace{15pt}
+	\(\rightarrow\) \fbox{ 
+		\begin{minipage}[t]{7.5cm}
+			\(R\) transforms the \(Q_\parallel\) column vectors about \\[5pt]
+			span\((A)\), an \(\mathbb{R}^n\) plane, until they equal the\\[5pt]
+			column vectors of \(A\)
+		\end{minipage}
+	}
+\end{minipage}
+
+		% \ \ \rightarrow\ \begin{aligned}
+		% 	H_n\dots H_1 A &= \text{\scriptsize\(\left(\begin{matrix}
+		% 			R \\ 
+		% 			0
+		% 		\end{matrix}\right)\)}\\[5pt]
+		% 	H_n\dots H_1 r &= \text{\scriptsize\(\left(\begin{matrix}
+		% 			0 \\ 
+		% 			r'
+		% 		\end{matrix}\right)\)}\\[5pt]
+		% 	H_n\dots H_1 b &= b'
+		% \end{aligned}
+
+%---------------------------------------------------------------		
+%---------------------------------------------------------------		
+%---------------------------------------------------------------		
+%---------------------------------------------------------------		
 \newpage
+\subsubsection{Householder Transformation/Elementary Reflector}
 \(\begin{aligned}
-	&\bullet\ \text{Householder Transformation/Elementary Reflector}:\ 
-		H = I - (2\hat{v}) \hat{v}^T = I - \frac{(2v)v^T}{v^Tv}\\
+	&H = I - (2\hat{v}) \hat{v}^T = I - \frac{(2v)v^T}{v^Tv}\\
 	&\bullet\ H = H^T = H^{-1} \hspace{10pt} \text{\scriptsize(symmetric and orthogonal)}\\
 	&\bullet\ \alpha e_1 = Ha = a - (2v)\frac{v \cdot a}{v \cdot v} 
 		\ \rightarrow\ v = (a - \alpha e_1) \frac{v \cdot v}{2v \cdot a}
 		\ \rightarrow\ v = (a - \alpha e_1)\\
 	&\bullet\ \alpha = \pm \Vert a \Vert \ \Rightarrow\ \text{Choose } \alpha = - \text{sign}(a_1) \Vert a \Vert\\
 	&\bullet\ \text{Just use \(v\) to transform \(a\) - don't find \(H\)}\\
-	&\bullet\ \langle H_i \dots H_1r | e_j \rangle = 0 \hspace{10pt} \text{\scriptsize\((1 \leq j \leq i)\)}\\
-	&\bullet\ \text{\(\begin{aligned}[t]
-			Q^TAx + Q^Tr &= Q^Tb\\
-			\left(\begin{matrix}
-					\\[-12pt]
-					& Q_1^T &
-					\\[2pt]
-					\hline
-					\\[-10pt]
-					& Q_2^T &
-					\\[1pt]
-				\end{matrix}\right)
-				\left.\left(\begin{matrix} 
-					\\[-5pt]
-					Q_1\\
-					\\[-3pt]
-				\end{matrix}\right.\right| \left.\begin{matrix}
-					\\[-5pt]
-					Q_2\\
-					\\[-3pt]
-				\end{matrix} \right) 
-				\left( \begin{matrix}
-					R\\
-					0
-				\end{matrix}\right)
-				x
-				+ 
-				\left(\begin{matrix}
-					\\[-12pt]
-					& Q_1^T &
-					\\[2pt]
-					\hline
-					\\[-10pt]
-					& Q_2^T &
-					\\[1pt]
-				\end{matrix}\right) r
-				&= 
-				\left(\begin{matrix}
-					\\[-12pt]
-					& Q_1^T &
-					\\[2pt]
-					\hline
-					\\[-10pt]
-					& Q_2^T &
-					\\[1pt]
-				\end{matrix}\right) b\\
-			\left( \begin{matrix}
-					Rx\\
-					0
-				\end{matrix}\right)
-				+ \left( \begin{matrix}
-					0\\
-					r'
-				\end{matrix}\right)	
-				&= \left( \begin{matrix}
-					Q_1^T b\\
-					Q_2^T b
-				\end{matrix}\right)	
-		\end{aligned}\)}\\
 	&\bullet\ v_i = \text{\scriptsize\(\left(\begin{matrix}
 			0\\
 			\vdots\\
@@ -1123,32 +1291,37 @@
 			\vdots\\
 			a_m
 		\end{matrix}\right)\)} - \alpha e_i 
-		= \left(\begin{matrix}
-			0&\dots&0&(a_i - \alpha)&a_{i+1}&\dots&a_m
-		\end{matrix}\right)^T
+		= 
+		\text{\scriptsize\(\left(\begin{matrix}
+			0\\
+			\vdots\\
+			a_i - \alpha\\
+			\vdots\\
+			a_m
+		\end{matrix}\right)\)}
 \end{aligned}\)
 
-\(\begin{aligned}
-	&\bullet\ \text{Givens Rotation}:\ 
-		\left(\begin{matrix}
-			c & s\\
-			-s& c
-		\end{matrix}\right) 
-		\ \rightarrow \ Gx = 
-		G \left(\begin{matrix} 
-			x_1\\
-			x_2 
-		\end{matrix}\right) 
-		= \pm 
-		\left(\begin{matrix} 
-			\Vert x \Vert \\
-			0 
-		\end{matrix}\right)\\
-	&\bullet\ c = \frac{a_1}{\sqrt{a_1^2 + a_2^2}}\ , \ \ s = \frac{a_2}{\sqrt{a_1^2 + a_2^2}}\\
-	&\bullet\ \text{Avoid squaring any number \(\gg 1\) to prevent overflow/underflow}\\
-	&\bullet\ t = \tfrac{a_2}{a_1} < 1 \ \rightarrow \ c = \frac{1}{\sqrt{1+t^2}}\ , \ \ s = c \cdot t\\
-	&\bullet\ \tau = \tfrac{a_1}{a_2} < 1 \ \rightarrow \ s = \frac{1}{\sqrt{1+\tau^2}}\ , \ \ c = s \cdot \tau\\
-\end{aligned}\)
+% \(\begin{aligned}
+% 	&\bullet\ \text{Givens Rotation}:\ 
+% 		\left(\begin{matrix}
+% 			c & s\\
+% 			-s& c
+% 		\end{matrix}\right) 
+% 		\ \rightarrow \ Gx = 
+% 		G \left(\begin{matrix} 
+% 			x_1\\
+% 			x_2 
+% 		\end{matrix}\right) 
+% 		= \pm 
+% 		\left(\begin{matrix} 
+% 			\Vert x \Vert \\
+% 			0 
+% 		\end{matrix}\right)\\
+% 	&\bullet\ c = \frac{a_1}{\sqrt{a_1^2 + a_2^2}}\ , \ \ s = \frac{a_2}{\sqrt{a_1^2 + a_2^2}}\\
+% 	&\bullet\ \text{Avoid squaring any number \(\gg 1\) to prevent overflow/underflow}\\
+% 	&\bullet\ t = \tfrac{a_2}{a_1} < 1 \ \rightarrow \ c = \frac{1}{\sqrt{1+t^2}}\ , \ \ s = c \cdot t\\
+% 	&\bullet\ \tau = \tfrac{a_1}{a_2} < 1 \ \rightarrow \ s = \frac{1}{\sqrt{1+\tau^2}}\ , \ \ c = s \cdot \tau\\
+% \end{aligned}\)
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
