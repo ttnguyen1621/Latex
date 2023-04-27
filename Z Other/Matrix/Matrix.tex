@@ -1175,13 +1175,13 @@
 			\bullet\ A = [a_1\ \dots\ a_n] &\ &\bullet\ I_n = [e_1\ \dots\ e_n]
 		\end{array}\\[10pt]
 		\arraycolsep=3pt \begin{array}{r c l}
-				H_1 a_1 &=& \alpha e_1 
+				H_1 a_1 &=& \alpha_1 e_1 
 					\hspace{15pt}
-					\text{\scriptsize\(\left( \Vert a_1 \Vert = \vert \alpha \vert \right)\)}
+					\text{\scriptsize\(\left( \Vert a_1 \Vert = \vert \alpha_1 \vert \right)\)}
 					\\[10pt]
 				H_i\dots H_1 a_i &=& \begin{gathered}[t]
 					{\scriptstyle \sum}^i_j\ c_j e_j \ =\ H_n\dots H_1 a_i\\[5pt]
-					\text{\scriptsize\(\left( \Vert a_i \Vert^2 = \vert \alpha \vert^2 
+					\text{\scriptsize\(\left( \Vert a_i \Vert^2 = \vert \alpha_1 \vert^2 
 						= {\scriptstyle \sum}_j^i\ c_j^2 \right)\)}
 				\end{gathered}
 					\\[27pt]
@@ -1275,53 +1275,96 @@
 %---------------------------------------------------------------		
 %---------------------------------------------------------------		
 \newpage
-\subsubsection{Householder Transformation/Elementary Reflector}
+\subsubsection{Householder Transformation/Elementary Reflector, \(H\)}
+\[
+	\begin{aligned}
+		H\vec{a_1} &\ =\ \alpha_1 \vec{e_1} 
+			\hspace{20pt} \begin{gathered}
+				\text{\scriptsize\( \Vert a_1 \Vert = \vert \alpha_1 \vert \)}\\[-7pt]
+				\text{\scriptsize(rotation)}
+			\end{gathered}\\[5pt]
+		&\ =\ \begin{gathered}[t]
+				\boxed{ \vec{a_1} - 2\hat{v} (\hat{v} \cdot \vec{a_1}) }\\[-1pt]
+				\text{\scriptsize\(\big[ v_\perp \text{ bisects } \theta(a_1, e_1) \big]\)}
+			\end{gathered}
+	\end{aligned}
+	\ \ \ \rightarrow \ \ \
+	\boxed{ H = I - 2vv^T = I - \frac{2vv^T}{v^Tv} }
+	\hspace{20pt}
+	\begin{aligned}
+		&\bullet\ H = H^T = H^{-1}\\[-5pt]
+		&\text{\scriptsize(symmetric and orthogonal)}
+	\end{aligned}
+\]
+
+\vspace{5pt}
 \(\begin{aligned}
-	&H = I - (2\hat{v}) \hat{v}^T = I - \frac{(2v)v^T}{v^Tv}\\
-	&\bullet\ H = H^T = H^{-1} \hspace{10pt} \text{\scriptsize(symmetric and orthogonal)}\\
-	&\bullet\ \alpha e_1 = Ha = a - (2v)\frac{v \cdot a}{v \cdot v} 
-		\ \rightarrow\ v = (a - \alpha e_1) \frac{v \cdot v}{2v \cdot a}
-		\ \rightarrow\ v = (a - \alpha e_1)\\
-	&\bullet\ \alpha = \pm \Vert a \Vert \ \Rightarrow\ \text{Choose } \alpha = - \text{sign}(a_1) \Vert a \Vert\\
-	&\bullet\ \text{Just use \(v\) to transform \(a\) - don't find \(H\)}\\
-	&\bullet\ v_i = \text{\scriptsize\(\left(\begin{matrix}
-			0\\
-			\vdots\\
-			a_i\\
-			\vdots\\
-			a_m
-		\end{matrix}\right)\)} - \alpha e_i 
-		= 
-		\text{\scriptsize\(\left(\begin{matrix}
-			0\\
-			\vdots\\
-			a_i - \alpha\\
-			\vdots\\
-			a_m
-		\end{matrix}\right)\)}
+	&\bullet\ 
+		\begin{aligned}[t]
+			\alpha_1 e_1 = a_1 - (2v_1)\frac{v_1 \cdot a_1}{v_1 \cdot v_1} 
+				&\ \ \Rightarrow\ \ v_1 = (a_1 - \alpha e_1) \cancel{ \frac{v_1 \cdot v_1}{2v_1 \cdot a_1} } 
+				\hspace{15pt} \text{\scriptsize(magnitude doesn't matter)}
+				\\[5pt]
+			&\ \ \rightarrow\ \ \boxed{ v_1 = (a_1 - \alpha e_1) }
+				\\[10pt]
+			\alpha_1 = \pm \Vert a_1 \Vert
+				& \ \ \rightarrow\ \ \boxed{ \alpha_i = - \text{sign}(a_i) \Vert a_i \Vert }
+				\hspace{15pt} \text{\scriptsize(avoid "cancellation" in finite-calc. of \(v\) above)}
+				\\[5pt]
+			H_j\dots H_1 a_i = a_i^j 
+				& \ \ \rightarrow\ \ \boxed{ v_{j+1} = \text{\scriptsize\(\left(\begin{matrix}
+					0\\
+					\vdots\\
+					(a_i^j)_i\\
+					\vdots\\
+					(a_i^j)_m
+				\end{matrix}\right)\)} - \alpha_i e_i }
+		\end{aligned}
 \end{aligned}\)
 
-% \(\begin{aligned}
-% 	&\bullet\ \text{Givens Rotation}:\ 
-% 		\left(\begin{matrix}
-% 			c & s\\
-% 			-s& c
-% 		\end{matrix}\right) 
-% 		\ \rightarrow \ Gx = 
-% 		G \left(\begin{matrix} 
-% 			x_1\\
-% 			x_2 
-% 		\end{matrix}\right) 
-% 		= \pm 
-% 		\left(\begin{matrix} 
-% 			\Vert x \Vert \\
-% 			0 
-% 		\end{matrix}\right)\\
-% 	&\bullet\ c = \frac{a_1}{\sqrt{a_1^2 + a_2^2}}\ , \ \ s = \frac{a_2}{\sqrt{a_1^2 + a_2^2}}\\
-% 	&\bullet\ \text{Avoid squaring any number \(\gg 1\) to prevent overflow/underflow}\\
-% 	&\bullet\ t = \tfrac{a_2}{a_1} < 1 \ \rightarrow \ c = \frac{1}{\sqrt{1+t^2}}\ , \ \ s = c \cdot t\\
-% 	&\bullet\ \tau = \tfrac{a_1}{a_2} < 1 \ \rightarrow \ s = \frac{1}{\sqrt{1+\tau^2}}\ , \ \ c = s \cdot \tau\\
-% \end{aligned}\)
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+% Givens Rotation
+\vspace{10pt}
+\subsubsection{Givens Rotation, \(G\)}
+\vspace{5pt}
+\[\begin{aligned}
+	\boxed{ G = 
+		\left(\begin{matrix}
+			c & s\\
+			-s& c
+		\end{matrix}\right) }
+		&\ \rightarrow \ Gx = 
+		G \left(\begin{matrix} 
+			a_1\\
+			a_2 
+		\end{matrix}\right) 
+		= \pm 
+		\left(\begin{matrix} 
+			\Vert a \Vert \\
+			0 
+		\end{matrix}\right)
+		\hspace{25pt}
+		\begin{gathered}
+			\text{\scriptsize(creates 0's one at a time)}\\[-5pt]
+			\text{\scriptsize(useful for spare matrices)}
+		\end{gathered}\\[10pt]
+	&\ \rightarrow \ \boxed{ c = \frac{a_1}{\sqrt{a_1^2 + a_2^2}}\ , \ \ s = \frac{a_2}{\sqrt{a_1^2 + a_2^2}} }
+\end{aligned}\]
+
+\(\begin{aligned}
+	&\text{Avoid squaring any number \(\gg 1\) to prevent overflow/underflow}\\[5pt]
+	&\hspace{15pt} \begin{array}{c r c l c l}
+			\bullet & t = \tfrac{a_2}{a_1} < 1 &\rightarrow& c = \frac{1}{\sqrt{1+t^2}} &,& s = c \cdot t\\[5pt]
+			\bullet & \tau = \tfrac{a_1}{a_2} < 1 &\rightarrow& s = \frac{1}{\sqrt{1+\tau^2}} &,& c = s \cdot \tau\\
+		\end{array}
+\end{aligned}\)
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+% Gram-Schmidt Orthogonalization
+\vspace{10pt}
+\subsubsection{Gram-Schmidt Orthogonalization}
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
