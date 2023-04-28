@@ -1494,7 +1494,8 @@
 	&\bullet\ \text{\scriptsize Choose the next pivoting column based on norms of the smaller columns from remaining 
 		uncompleted submatrix.}\\
 	&\bullet\ \text{\scriptsize Repeat until the end (rank might be \(n\)) or if the max norm is smaller than 
-			some tolerance (rank might be \(k < n\))}
+			some tolerance (rank might be \(k < n\))}\\
+	&\bullet\ \text{\scriptsize Pivoting avoids working with 0's on the diag.}
 \end{aligned}\)
 
 %-----------------------------------------------------------
@@ -1534,6 +1535,16 @@
 	&\bullet\ \boxed{ \text{\scriptsize For another method or if underdetermined \((m < n)\), 
 		something like SVD Decomp. can be used.} }
 \end{aligned}\)
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+\newpage
+% Singular Value Decomposition
+\subsection{Singular Value Decomposition (SVD)}
+
+
 
 %----------------------------------------------------------------
 %----------------------------------------------------------------
