@@ -714,7 +714,6 @@
 		\text{\scriptsize \(\bullet\ \) No general way to correct poor scaling}
 	\end{aligned}\)
 \end{minipage}
-
 %------------------------------------------------------------------
 %-----------------------------------------------------------------
 % Iterative Refinement
@@ -751,17 +750,17 @@
 
 % Assumptions
 \(\begin{aligned}[t]
-	&\bullet\ A = A_{m \times n} \hspace{10pt} {\scriptstyle(m > n)}\\[5pt]
+	&\bullet\ A = A_{m \times n} \hspace{10pt} \boxed{ \text{\scriptsize\((m > n\),\ \ underdetermined\()\)} }\\[5pt]
 	&\bullet\ \Vert r\text{\scriptsize\((y=Ax)\)} \Vert \text{ is cont. \& coer.} 
 	\ \rightarrow \ \exists \Vert r\text{\scriptsize\((y)\)} \Vert_\text{min}
 \end{aligned}
 \hfill
 \begin{aligned}[t]
 	&\bullet \ r\text{\scriptsize\((y)\)} \text{ is strictly convex} \ \rightarrow \ y=Ax \text{ is unique}\\[5pt]
-	&\bullet\ \begin{gathered}[t]
+	&\bullet\ \boxed{ \begin{gathered}[t]
 			\text{rank}(A) = n\\[-3pt]
 			\text{\scriptsize(full column rank)}
-		\end{gathered} 
+		\end{gathered} }
 		\ \Rightarrow
 		\arraycolsep=3pt \begin{array}[t]{r c c c c}
 			A(x_1 - x_2) &=& 0 & &			\text{\scriptsize(unique \(x\))}\\
@@ -1108,8 +1107,8 @@
 	\ \ \rightarrow \ \
 	\begin{aligned}
 		\Vert r' \Vert^2 &= \cancel{ \Vert b_1' - Rx \Vert^2 } + \Vert b_2' \Vert^2 \\
-		&\downarrow\\[-7pt]
-		Rx &= b_1' \ , \ \ r' = \text{\scriptsize\(\left(\begin{matrix}
+		&\downarrow\\
+		\Aboxed{Rx &= b_1'} \ , \ r' = \text{\scriptsize\(\left(\begin{matrix}
 				0 \\ 
 				b_2'
 			\end{matrix}\right)\)} 
@@ -1258,24 +1257,14 @@
 	}
 \end{minipage}
 
-		% \ \ \rightarrow\ \begin{aligned}
-		% 	H_n\dots H_1 A &= \text{\scriptsize\(\left(\begin{matrix}
-		% 			R \\ 
-		% 			0
-		% 		\end{matrix}\right)\)}\\[5pt]
-		% 	H_n\dots H_1 r &= \text{\scriptsize\(\left(\begin{matrix}
-		% 			0 \\ 
-		% 			r'
-		% 		\end{matrix}\right)\)}\\[5pt]
-		% 	H_n\dots H_1 b &= b'
-		% \end{aligned}
-
 %---------------------------------------------------------------		
 %---------------------------------------------------------------		
 %---------------------------------------------------------------		
 %---------------------------------------------------------------		
+% Householder Transformations
 \newpage
 \subsubsection{Householder Transformation/Elementary Reflector, \(H\)}
+% Define H
 \[
 	\begin{aligned}
 		H\vec{a_1} &\ =\ \alpha_1 \vec{e_1} 
@@ -1297,6 +1286,7 @@
 	\end{aligned}
 \]
 
+% Solve for v
 \vspace{5pt}
 \(\begin{aligned}
 	&\bullet\ 
@@ -1319,6 +1309,13 @@
 					\vdots\\
 					(a_i^j)_m
 				\end{matrix}\right)\)} - \alpha_i e_i }
+				% Extra notes
+				\hspace{17pt}
+				\begin{aligned}
+					&\bullet\ \text{\scriptsize Store \(v_i\) and \(R\) into \(A\) and an extra \(n\)-vector.}\\
+					&\bullet\ \text{\scriptsize \(Q\) and \(H\) can be computed if needed.}\\
+					&\bullet\ \text{\scriptsize When column \(i\) is completed, row \(i\) is too.}
+				\end{aligned}
 		\end{aligned}
 \end{aligned}\)
 
@@ -1345,13 +1342,16 @@
 			0 
 		\end{matrix}\right)
 		\hspace{25pt}
-		\begin{gathered}
-			\text{\scriptsize(creates 0's one at a time)}\\[-5pt]
-			\text{\scriptsize(useful for spare matrices)}
-		\end{gathered}\\[10pt]
+		% Extra Notes
+		\begin{aligned}
+			&\bullet\ \text{\scriptsize creates 0's one at a time}\\[-5pt]
+			&\bullet\ \text{\scriptsize useful for spare matrices}\\[-5pt]
+			&\bullet\ \text{\scriptsize When column \(i\) is completed, row \(i\) is too.}\\[-5pt]
+		\end{aligned}\\[10pt]
 	&\ \rightarrow \ \boxed{ c = \frac{a_1}{\sqrt{a_1^2 + a_2^2}}\ , \ \ s = \frac{a_2}{\sqrt{a_1^2 + a_2^2}} }
 \end{aligned}\]
 
+% Minor change to reduce chance of overflow/underflow
 \(\begin{aligned}
 	&\text{Avoid squaring any number \(\gg 1\) to prevent overflow/underflow}\\[5pt]
 	&\hspace{15pt} \begin{array}{c r c l c l}
@@ -1365,6 +1365,183 @@
 % Gram-Schmidt Orthogonalization
 \vspace{10pt}
 \subsubsection{Gram-Schmidt Orthogonalization}
+\vspace{10pt}
+% Gram Schmidt Matrices
+\(
+	\begin{aligned}
+		Q_\parallel^T = 
+		\left(\begin{aligned}
+			&\widehat{q_1} : q_1 = a_1\\
+			&\widehat{q_2} : q_2 = a_2 - \widehat{q_1} (\widehat{q_1} \cdot a_2)\\
+			&\widehat{q_3} : q_3 = a_3 - \widehat{q_1} (\widehat{q_1} \cdot a_3) - \widehat{q_2} (\widehat{q_2} \cdot a_3)\\
+			&\hspace{3pt} \vdots\\
+			&\widehat{q_n} : q_n = a_n - {\scriptstyle\sum}_j^n\ \widehat{q_j} (\widehat{q_j} \cdot a_n)
+		\end{aligned}\right)
+	\end{aligned}
+	\ , \ \ 
+	\begin{aligned}
+		R = 
+		\left(\begin{matrix}
+			\Vert a_1 \Vert & \widehat{q_1} \cdot a_2 & \widehat{q_1} \cdot a_3 & \dots & \widehat{q_1} \cdot a_n\\
+			0 & \Vert a_2 \Vert & \widehat{q_2} \cdot a_3 & \dots & \widehat{q_2} \cdot a_n\\
+			0 & 0 & \Vert a_3 \Vert & \dots & \widehat{q_3} \cdot a_n\\
+			\vdots & \vdots & \ddots & \ddots & \vdots\\
+			0 & 0 & \dots & 0 & \Vert a_n \Vert
+		\end{matrix}\right)
+	\end{aligned}
+\)
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+\newpage
+% Classical Column Oriented Gram Schidt
+\underline{Classical, Column Oriented}:\ \ Find \(\widehat{q_i}\), then solve for \(\widehat{q_{i+1}}\), and
+	continue up to \(\widehat{q_n}\).
+
+% Notes
+\(\hspace{10pt} \begin{aligned}[t]
+	&\bullet\ \text{For a program, obviously \(a_k\) can be replaced by \(q_k\), so less storage is needed.}\\
+	&\bullet\ \text{Cancellation that causes loss of orthogonality occurs more when ill-conditioned.}\\
+	&\bullet\ \text{As a result, performing \(Q^T_\parallel b = b'_1\) isn't always best.}\\
+	&\bullet\ \text{Can't column-pivot, since that depends on rows being completed first.}
+\end{aligned}\)
+
+% Modified Row Oriented Gram Schidt
+\vspace{10pt}
+\underline{Modified, Row Oriented}:\ \ Let
+	\(q_i^\text{\scriptsize\([k]\)} = a_i - {\scriptstyle\sum}_j^k\ \widehat{q_j} (\widehat{q_j} \cdot a_i)\). For all
+	\(1\leq i \leq n\), solve for \(q_i^\text{\scriptsize\([k]\)}\) starting first \\[5pt] at \(k=1\), then continue 
+	until \(k=n\).
+
+% Notes
+\(\hspace{10pt} \begin{aligned}
+	&\bullet\ \text{Allows for column pivoting since rows are completed first.}\\
+	&\bullet\ \text{Cancellation, though still present, is less severe.}
+\end{aligned}\)
+
+% Augmented Gram Schmidt matrices
+\vspace{10pt}
+\underline{Augmented Matrix}\\[10pt]
+\(\begin{aligned}
+	\left(\begin{matrix}
+			A
+		\end{matrix}\right.
+		|
+		\left.\begin{matrix}
+			b
+		\end{matrix}\right)
+		&= 
+		\left(\begin{matrix}
+			Q_\parallel
+		\end{matrix}\right.
+		|
+		\left.\begin{matrix}
+			q_{n+1}
+		\end{matrix}\right)
+		\text{\scriptsize\(
+			\left(\begin{matrix}
+				R & b'_1\\
+				0 & \rho
+			\end{matrix}\right)
+		\)}\\[5pt]
+	\left(\arraycolsep=2pt \begin{array}{c c c c}
+			| & | & | & |\\
+			a_1 & .. & a_n & b\\
+			| & | & | & |
+		\end{array}\right)
+		&=
+		\left(\arraycolsep=1pt \begin{array}{c c c c}
+			| & | & | & |\\
+			\widehat{q_1} & \dots & \widehat{q_n} & q_{n+1}\\
+			| & | & | & |
+		\end{array}\right)
+		\text{\scriptsize\(\arraycolsep=1pt
+			\left(\begin{array}{c c c c}
+				r_{11} & \dots & r_{1n} & |\\
+				0 & \ddots & \vdots & b'_1\\[-5pt]
+				\vdots & \ddots & r_{nn} & |\\[5pt]
+				0 & \dots & 0 & \rho\\
+			\end{array}\right)
+		\)}
+\end{aligned}
+\hspace{20pt}
+\begin{aligned}
+	&\bullet\ \begin{minipage}[t]{7cm}
+			\scriptsize Use Gram-Schmidt QR on this, then solve \(Rx = b'_1\)
+		\end{minipage}\\
+	&\bullet\ \begin{minipage}[t]{7cm}
+			\scriptsize This method is prefered numerically to reduce \\
+			cancelling effects
+		\end{minipage}\\
+	&\bullet\ \begin{minipage}[t]{7cm}
+			\scriptsize Text didn't recommend what \(q_{+1}\) or \(\rho\) should be.
+		\end{minipage}\\ 
+	&\bullet\ \text{\scriptsize \(\rho\) or \((q_{n+1})_i\) looks like it should be 0.}\\
+	&\bullet\ \text{\scriptsize Idk, not much explained.}
+\end{aligned}\)
+
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+% Column-Pivoting
+\vspace{15pt}
+\subsubsection{Factorization with Column-Pivoting}
+\vspace{10pt}
+\(\begin{aligned}
+	&\bullet\ \text{\scriptsize Column with largest norm is pivoted to the current column \(i\) to be reduced, 
+		and current row \(i\) is completed too.}\\
+	&\bullet\ \text{\scriptsize Choose the next pivoting column based on norms of the smaller columns from remaining 
+		uncompleted submatrix.}\\
+	&\bullet\ \text{\scriptsize Repeat until the end (rank might be \(n\)) or if the max norm is smaller than 
+			some tolerance (rank might be \(k < n\))}
+\end{aligned}\)
+
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+% Rank-Deficiency
+\vspace{15pt}
+\subsubsection{Rank Deficiency (or Other) Case}
+\vspace{10pt}
+\(\begin{aligned}
+	&\underline{\text{If rank}(A) = k < n} : \ \ \boxed{ \arraycolsep=0pt \begin{array}{c c c l}
+			(Q^T AP) & (P^Tx) &=& Q^Tb\\[5pt]
+			\text{\scriptsize\(\left(\begin{matrix}
+					R\ & S\\
+					0\ & 0'
+				\end{matrix}\right)\)} 
+				& \text{\scriptsize\(\left(\begin{matrix}
+					z\\
+					0
+				\end{matrix}\right)\)} &\ \ =\ \ 
+				& \text{\scriptsize\(\left(\begin{matrix}
+					b'_1\\[3pt]
+					b'_2
+				\end{matrix}\right)\)}
+			\end{array} }
+			\hspace{30pt}
+			\begin{aligned}
+				&\text{\scriptsize\(\bullet\ 0'\) is approx. 0 since the remaining norms are too small.}\\[-5pt]
+				&\text{\scriptsize\(\bullet\ R = R_{k \times k}\)}\\[-5pt]
+				&\text{\scriptsize\(\bullet\ S\) is the remaining columns after \(R\) is completed.}\\[-5pt]
+				&\text{\scriptsize\(\bullet\) \fbox{There are multiple solutions for \(x\).}}
+			\end{aligned}\\[10pt]
+	&\bullet\ \text{\scriptsize For a quick solution, }\ \boxed{ Rz = b'_1\ , \ \ x = P\text{\scriptsize\(\left(\begin{matrix}
+			z\\
+			0
+		\end{matrix}\right)\)} }\\[5pt]
+	&\bullet\ \text{\scriptsize For the minimized-norm solution with the smallest \(\Vert x \Vert\), \(S\) must be annihilated.}\\
+	&\bullet\ \boxed{ \text{\scriptsize For another method or if underdetermined \((m < n)\), 
+		something like SVD Decomp. can be used.} }
+\end{aligned}\)
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+\newpage
+% Complexity
+\subsection{Complexity}
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
