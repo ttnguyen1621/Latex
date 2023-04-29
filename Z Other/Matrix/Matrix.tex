@@ -1423,7 +1423,7 @@
 
 % Augmented Gram Schmidt matrices
 \vspace{10pt}
-\underline{Augmented Matrix}\\[10pt]
+\underline{Augmented Matrix}:\\[10pt]
 \(\begin{aligned}
 	\left(\begin{matrix}
 			A
@@ -1482,12 +1482,16 @@
 	&\bullet\ \text{\scriptsize Idk, not much explained.}
 \end{aligned}\)
 
+% Extra
+\vspace{10pt}
+\underline{Reorthogonalizing}:\ \ Repeating procedure to straighten vectors (usually not needed)
+
 %-----------------------------------------------------------
 %-----------------------------------------------------------
 % Column-Pivoting
-\vspace{15pt}
+\vspace{7pt}
 \subsubsection{Factorization with Column-Pivoting}
-\vspace{10pt}
+\vspace{7pt}
 \(\begin{aligned}
 	&\bullet\ \text{\scriptsize Column with largest norm is pivoted to the current column \(i\) to be reduced, 
 		and current row \(i\) is completed too.}\\
@@ -1501,7 +1505,7 @@
 %-----------------------------------------------------------
 %-----------------------------------------------------------
 % Rank-Deficiency
-\vspace{15pt}
+\vspace{7pt}
 \subsubsection{Rank Deficiency (or Other) Case}
 \vspace{10pt}
 \(\begin{aligned}
@@ -1543,8 +1547,131 @@
 \newpage
 % Singular Value Decomposition
 \subsection{Singular Value Decomposition (SVD)}
+\vspace{5pt}
+\[ \boldsymbol{ \arraycolsep=3pt
+	\begin{array}{c c c c l}
+		A &=& \boxed{ U\Sigma V^T }
+			&=& \text{\scriptsize\(\left(\arraycolsep=3pt \begin{array}{c c c c c}
+				\rule[-20pt]{.05pt}{38pt} &\hspace{20pt}& \rule[-20pt]{.05pt}{38pt} & & \rule[-20pt]{.05pt}{38pt}\\
+				u_1 & \dots & u_k & .. & u_m\\
+				\rule[-20pt]{.05pt}{38pt} & &\rule[-20pt]{.05pt}{38pt}& & \rule[-20pt]{.05pt}{38pt}
+			\end{array}\right)
+			\left(\arraycolsep=1pt \begin{array}{c c c c}
+				\sigma_1 & 0 & \dots & 0\\
+				0 & \sigma_2 & \ddots & \vdots\\[-4pt]
+				0 & 0 & \ddots & 0\\[-3pt]
+				\vdots & \vdots & \ddots & \parbox{14pt}{\(\sigma_n\) \vspace{7pt}} \\
+				0 & 0 & \dots & 0\\[-4pt]
+				\vdots & \vdots & & \vdots\\
+				0 & 0 & \dots & 0
+			\end{array}\right)
+			\left(\begin{array}{c}
+				\rule[2pt]{20pt}{.1pt} v_1 \rule[2pt]{20pt}{.1pt}\\[-3pt]
+				\hspace{5pt}\\[-2pt]
+				\vdots\\[-2pt]
+				\hspace{5pt}\\[-2pt]
+				\rule[2pt]{20pt}{.1pt} v_k \rule[2pt]{20pt}{.1pt}\\[-4pt]
+				\vdots\\[-4pt]
+				\rule[2pt]{20pt}{.1pt} v_n \rule[2pt]{20pt}{.1pt}
+			\end{array}\right)\)}
+			\\[1.75cm]
+		&=& \boxed{ U_\parallel \Sigma_1 V^T }
+			&=& \left(\begin{matrix}
+				U_\parallel & U_\perp
+			\end{matrix}\right)
+			\left(\begin{matrix}
+				\Sigma_1 \\
+				0
+			\end{matrix}\right)
+			\text{\scriptsize\(
+				\left(\begin{matrix}
+					V_{0\perp}^T \\[5pt]
+					V_{0\parallel}^T
+				\end{matrix}\right)
+			\)}
+			\ =\ \displaystyle \boxed{ \sum_i^n \sigma_i \cdot u_i v_i^T }
+	\end{array}
+	\hspace{10pt} \vline \hspace{10pt}
+	\begin{aligned}
+		AA^T &= U \mathcal{D} U^T\\
+		A^TA &= VD V^T\\[3pt]
+		\mathcal{D} &= \Sigma \Sigma^T\\
+		D &= \Sigma^T \Sigma\\ 
+		\sigma_i &= \sqrt{d_i}\\
+	\end{aligned}
+} \]
 
+% Notes
+\(\begin{aligned}
+	&\bullet\ \text{Underdetermined, } m < n \text{ is possible too.}\\
+	&\bullet\ \text{Analagous to Gaussian-Jordan Diagonalization method.}\\
+	&\bullet\ U \text{ and } V \text{ are orthogonal; } u_i \text{ and } v_i 
+		\text{ are the respective ``left'' and ``right'' singular vectors.}\\
+	&\bullet\ \text{Usually, the singular values are ordered such that } \sigma_1 \geq \sigma_2 \geq \dots\\
+	&\bullet\ \forall(k < i),\ \sigma_i = 0 \ \ \Rightarrow\ \ \text{rank}(A) = k < n
+	\\[5pt]
+	&\bullet\ U_\parallel = U_{m \times k} : \ \  
+		\text{span}(U_\parallel) = \text{span}(A)\ , \ \ \text{span}(U_\perp) = \text{span}(A)^{\perp}\\
+	&\bullet\ V_{0\perp} = V_{n \times k} : \ \ 
+		\text{span}(V_{0\parallel}) = \text{null}(A)\ , \ \ \text{span}(V_{0\perp}) = \text{null}(A)^{\perp}
+		\hspace{30pt} \text{\scriptsize null\((A) = \{x : Ax = 0\}\)}
+\end{aligned}\)
 
+% Pseudoinverse
+\vspace{5pt}
+\underline{Pseudoinverse}: \ \ \(\boxed{ \begin{aligned}[t]
+	&A^+ \ \equiv \ V \Sigma^+ U^T\\
+	&\Sigma^+ \ \equiv\ \Big[ \Sigma^T \text{\ \ and\ \ } \sigma_i \rightarrow 1/\sigma_i 
+		\hspace{10pt} \text{\scriptsize\(\forall(\sigma_i \neq 0)\)} \Big]
+\end{aligned} }\)
+
+% Solution for x
+\(\begin{aligned}
+	&\bullet\ \begin{aligned}[t]
+		&Ax + r = b \ \rightarrow \\
+		&\boxed{ x = A^+ b = \big(V \Sigma^+ U^T \big) b }
+	\end{aligned}\\
+	&\bullet\ \boxed{ x_\text{min} = \sum_{\sigma_i \neq 0}\frac{u_i \cdot b}{\sigma_i}\ v_i } 
+		\hspace{20pt} \text{\scriptsize useful for ill-conditioned or rank deficient since small \(\sigma\) can be dropped.}
+\end{aligned}\)
+
+%---------------------------------------------------------
+%---------------------------------------------------------
+% Other uses
+\vspace{5pt}
+\subsubsection{Other uses}
+\vspace{5pt}
+\(\begin{array}{r l}
+	\text{{Euclidean 2-norm}}: 
+		& \displaystyle \Vert A \Vert_2 = \max_{x\neq 0} \tfrac{\Vert Ax \Vert_2}{\Vert x \Vert_2} = \sigma_\text{max}
+		\\[15pt]
+	\text{{Euclid. Cond. Num.}}:
+		& \text{cond}_2(A) = \sigma_\text{max} / \sigma_\text{min}
+		\\[5pt]
+	\text{{Lower Rank Approx.}}:
+		& A \ \approx\ A_k = \sum_i^k \sigma_i \left( u_i v_i^T \right)
+		\hspace{20pt}
+		\begin{aligned}
+			&\text{\scriptsize\(\bullet\) Closest rank\(=k\) matrix to \(A\) in the Frobinius norm.}\\[-3pt]
+			&\text{\scriptsize\(\bullet\) Frobinius Norm \(=\) Euclid. Norm for a ``vector'' in \(\mathbb{R}^{mn}\).}
+		\end{aligned}
+		\\[10pt]
+	\text{Total Least Squares}:
+		& \text{\scriptsize\(\begin{aligned}[t]
+			&\left[A\ |\ y\right]_{m\times(n+1)} = U\Sigma V_{(n+1)\times(n+1)}^T\\[5pt]
+			&\text{rank}\big( \big[\widehat{A}\ |\ y \big] \big) \leq n
+				\ \rightarrow \ \sigma_{n+1} = 0 
+				\ \rightarrow \ \widehat{A} \cdot v_{n+1} = 0\\[5pt]
+			&\left[\widehat{A}\ |\ y\right] \cdot \left[\begin{matrix} x \\ -1 \end{matrix}\right] = 0
+				\ \rightarrow \ \left[\begin{matrix} x \\ -1 \end{matrix}\right] \propto v_{n+1} 
+				= \left[\begin{matrix} \vec{\nu_n} \\ \nu_{n+1} \end{matrix}\right]
+				\ \rightarrow \ \boxed{ x = \frac{\vec{\nu_n}}{- \nu_{n+1}} }
+		\end{aligned}\)}
+		\hspace{15pt} \begin{aligned}[t]
+			&\\[-10pt]
+			&\text{-}\parbox[t]{3.7cm}{\scriptsize\(\widehat{A}\) is an \(A\) with uncertainty, like how \(y\) normally is.}
+		\end{aligned}
+\end{array}\)
 
 %----------------------------------------------------------------
 %----------------------------------------------------------------
@@ -1553,6 +1680,53 @@
 \newpage
 % Complexity
 \subsection{Complexity}
+
+% Cholesky
+\vspace{10pt}
+\(\begin{aligned}
+	&\text{Normal, Cholesky}\\[5pt]
+	&\hspace{10pt}\begin{aligned}[t]
+		&\bullet\ A^TA = A' \text{\ \ costs\ \ } \tfrac{mn^2}{2}\\[2pt]
+		&\bullet\ A' = LL^T \text{\ \ costs\ \ } \tfrac{n^3}{6}\\[2pt]
+		&\bullet\ \text{Rel. Err. } \propto\ [\text{cond}(A)]^2\\[4pt]
+		&\bullet\ \text{Bad if \ cond}(A) \approx 1/\sqrt{\epsilon_\text{mach}}
+	\end{aligned}
+\end{aligned}\)
+
+% Householder
+\vspace{10pt}
+\(\begin{aligned}
+	&\text{Householder}\\[5pt]
+	&\hspace{10pt}\begin{aligned}[t]
+		&\bullet\ Q^TA = R \text{\ \ costs\ \ } mn^2 - \tfrac{n^3}{3} \\[2pt]
+		&\bullet\ \text{Rel. Err. } \propto\ [\text{cond}(A)]^2 \Vert r \Vert_2 + \text{cond}(A)\\[4pt]
+		&\bullet\ \text{Bad if \ cond}(A) \approx 1/\epsilon_\text{mach}\\[2pt]
+		&\bullet\ \text{More accurate than Cholesky and broadly applicable}\\[2pt]
+		&\bullet\ \text{Usable for rank deficient or nearly rank-deficient}
+	\end{aligned}
+\end{aligned}\)
+
+% Givens
+\vspace{10pt}
+\(\begin{aligned}
+	&\text{Givens}\\[5pt]
+	&\hspace{10pt}\begin{aligned}[t]
+		&\bullet\ \text{The normal implementation needs 50\% more work than Householder.}\\[2pt]
+		&\bullet\ \text{A more complex implementation makes it comparable to Householder.}\\[2pt]
+		&\bullet\ \text{Useful if matrix is sparse or zeros need to be maintained.}
+	\end{aligned}
+\end{aligned}\)
+
+% SVD
+\vspace{10pt}
+\(\begin{aligned}
+	&\text{SVD}\\[5pt]
+	&\hspace{10pt}\begin{aligned}[t]
+		&\bullet\ \text{Most expensive cost at } \propto\ mn^2 + n^3 \text{ , perhaps 4-10 times or more.}\\[2pt]
+		&\bullet\ \text{Robust and reliable.}
+	\end{aligned}
+\end{aligned}\)
+
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
