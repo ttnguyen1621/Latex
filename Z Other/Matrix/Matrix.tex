@@ -1749,17 +1749,13 @@
 	\end{array}\)
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
-	% Factor Hermitian Into Unitary
-	\(\bullet\ H = UDU^{-1}\) \hspace{10pt} \text{\scriptsize(\(D\) is real)}
-
-	% Unitary From Hermitian
-	\bigskip
-	\(\bullet\ U = e^{iH} = U_{H} e^{iD} (U_{H})^\dagger\)
-
-	% Matrix Inverse Eigenvalues
-	\vspace{10pt}
-	\(\bullet\ Ax = \lambda x \ , \ \ \text{det}(A) \neq 0 
-		\ \Rightarrow \ A^{-1}x = (1/\lambda)x\)
+	\(\begin{aligned}[t]
+		&\bullet\ H = UDU^{-1} \hspace{10pt} \text{\scriptsize(\(D\) is real)}\\[5pt]
+		&\bullet\ U = e^{iH} = U_{H} e^{iD} (U_{H})^\dagger\\[5pt]
+		&\bullet\ Ax = \lambda x \ , \ \ \text{det}(A) \neq 0 
+			\ \Rightarrow \ A^{-1}x = (1/\lambda)x\\[5pt]
+		&\bullet\ ATx = \lambda Ty \ \rightarrow \ A \sim B = T^{-1}AT 
+	\end{aligned}\)
 \end{minipage}
 
 %--------------------------------------------------------------------------
