@@ -1736,33 +1736,175 @@
 \newpage
 \section{Matrix Information}
 \vspace{10pt}
+% Types
 \begin{minipage}[t]{.49\textwidth}
-	\(\hspace{10pt} \begin{array}[t]{r l}
+	\(\begin{array}[t]{r l}
 		\text{Symmetric}:& {S = S^T}\\[5pt]
 		\text{Hermitian}:& {H = H^\dagger}
-		\\[10pt]
+		\\[5pt]
 		\text{Orthogonal}:& {QQ^T = Q^T Q = I}\\[5pt]
 		\text{Unitary}:& {UU^\dagger = U^\dagger U = I}\\[5pt]
 		\text{Normal}:& AA^\dagger = A^\dagger A
-		\\[10pt]
-		\text{D}
+		\\[5pt]
+		\text{Diagonalizable}:& A = QDQ^{-1} \ \ \text{\scriptsize\(\left(\begin{gathered}
+				\text{must be}\\[-4pt]
+				\text{nondefective}
+			\end{gathered}\right)\)}\\[5pt]
+		\text{Hessenberg}:& \text{\scriptsize Triang. but with 0s}\\[5pt]
+		\text{Jordan Form}:& \text{\scriptsize Near diag. w/ entries in diag. above}
 	\end{array}\)
 \end{minipage}
+% notes
 \begin{minipage}[t]{.49\textwidth}
 	\(\begin{aligned}[t]
 		&\bullet\ H = UDU^{-1} \hspace{10pt} \text{\scriptsize(\(D\) is real)}\\[5pt]
 		&\bullet\ U = e^{iH} = U_{H} e^{iD} (U_{H})^\dagger\\[5pt]
 		&\bullet\ Ax = \lambda x \ , \ \ \text{det}(A) \neq 0 
 			\ \Rightarrow \ A^{-1}x = (1/\lambda)x\\[5pt]
-		&\bullet\ ATx = \lambda Ty \ \rightarrow \ A \sim B = T^{-1}AT 
+		&\bullet\ A(Tx) = \lambda (Tx) \ \rightarrow \ A \sim B = T^{-1}AT\\[5pt]
+		&\bullet\ \text{Simple: Normal [Algebraic] Mult. of 1}\\[5pt]
+		&\bullet\ \text{Defective: \(\begin{gathered}[t]
+				\text{Geo. Mult.}\\[-7pt]
+				\text{\scriptsize(eig. vec. \#)}
+			\end{gathered}\) \(<\) Alg. Mult.}
 	\end{aligned}\)
 \end{minipage}
 
+% Invariant Subspace
+\vspace{15pt}
+\underline{Invariant Subspace}: \ \ 
+	\(\{ \mathcal{S} :\ (A\mathcal{S} \subseteq \mathcal{S})
+	\ \equiv\ (\forall x \in \mathcal{S} \Rightarrow Ax \in \mathcal{S}) \}\)
+
+% Schur Form
+\vspace{15pt}
+\underline{Schur Form}\\[15pt]
+% Unitary Form
+\begin{minipage}[t]{.49\textwidth}
+	% Definition
+	\(
+		\hspace{10pt} \begin{gathered}
+			\text{Unitary}\\[-7pt]
+			\text{\scriptsize(for all)}
+		\end{gathered}\): \ \(\boxed{T^\dagger A T = R} \hspace{20pt} \begin{gathered}
+			\text{\scriptsize(\(T\) is unitary)}\\[-7pt]
+			\text{\scriptsize(\(R\) is upp. triang.)}
+		\end{gathered}
+	\)
+	
+	% Notes
+	\vspace{10pt}
+	\(
+		\begin{aligned}
+			&\bullet\ A\vec{x_i} = r_{ii} \vec{x_i} \\[5pt]
+			&\bullet\ \begin{gathered}[t]
+					\begin{aligned}[t]
+							0 &= (R - r_{ii} I)\ \vec{x_i}\\[5pt]
+							&= \text{\scriptsize\(\left(\arraycolsep=3pt \begin{array}{c c c}
+									R_{11} - r_{ii} I & \vec{u} & R_{13} \\[3pt]
+									0 & 0 & \vec{v}^{\ T} \\
+									\mathcal{O} & 0 & R_{33} - r_{ii} I
+								\end{array}\right)\)}
+								\vec{x_i}
+						\end{aligned}\\[5pt]
+					\Downarrow\\
+					\vec{x_i} = \text{\scriptsize\(\left(\begin{matrix}
+							\vec{y}\\ -1\\ 0
+						\end{matrix}\right)\)} \ :\ \begin{gathered}[t]
+							(R_{11} - r_{ii} I)\\[-5pt]
+							\text{\scriptsize(nonsingular)}
+						\end{gathered}\ \vec{y} = \vec{u}
+				\end{gathered}\\[5pt]
+			&\bullet\ \parbox[t]{.8\textwidth}{\scriptsize``Schur form of a real matrix will have complex
+				entries if the matrix has any complex eigenvalues''}
+		\end{aligned}
+	\)
+\end{minipage}
+% Real Form
+\begin{minipage}[t]{.49\textwidth}
+	% Definition
+	\(
+		\hspace{10pt} \begin{gathered}[t]
+			\text{Real}\\[-7pt]
+			\text{\scriptsize(only for }\\[-7pt]
+			\text{\scriptsize real matrix)}
+		\end{gathered}: \ \boxed{PAP^T = R} 
+		\hspace{20pt} 
+		\begin{gathered}
+			\text{\scriptsize(\(P\) is permu.)}\\[-7pt]
+			\text{\scriptsize(\(R\) is block upp. triang.)}
+		\end{gathered}
+	\)
+	
+	% Notes
+	\vspace{10pt}
+	\(
+		\begin{aligned}
+			&\bullet\ R = \left(\begin{matrix}
+					R_{11} & \dots & R_{1p}\\
+					\mathcal{O} & \ddots & \vdots\\
+					\mathcal{O} & \mathcal{O} & R_{pp}
+				\end{matrix}\right) \\[5pt]
+			&\bullet\ \lambda_i(A) = \lambda(R_{ii}) \\[5pt]
+			&\bullet\ R_{ii} = \begin{cases} 
+					R_{1\times1} & \text{\scriptsize(real eigenvalue of \(A\))}\\
+					R_{2\times 2} & \text{\scriptsize(complex eigenvalue pairs of \(A\))}
+				\end{cases}\\[5pt]
+			&\bullet\ \text{\scriptsize All other entries are real}
+		\end{aligned}
+	\)
+\end{minipage}
+
+% Blocked Upper Triangular
+\vspace{15pt}
+\hspace{10pt} Block Upper Triangular Transformation\\[10pt]
+\(\begin{aligned}
+	&\bullet\ \begin{aligned}[t]
+			&X_\parallel = \left(\vec{x_1} \ \dots \ \vec{x_p}\right) 
+				\ , \ \ Ax_i \in \text{span}(x_i) = \mathcal{S}\\[5pt]
+			&\Rightarrow \ AX_\parallel = X_\parallel B
+		\end{aligned}\\[5pt]
+	&\bullet\ I_n = X^{-1} X = \left(\begin{matrix}
+			Y_\parallel \\
+			Y_\perp
+		\end{matrix}\right) 
+		\left(\begin{matrix}
+			X_\parallel & X_\perp
+		\end{matrix}\right)
+		= 
+		\left(\begin{matrix}
+			Y_\parallel X_\parallel & Y_\parallel X_\perp\\
+			Y_\perp X_\parallel & Y_\perp X_\perp
+		\end{matrix}\right)
+		= 
+		\left(\begin{matrix}
+			I_{p} & \mathcal{O}\\
+			\mathcal{O} & I_{n-p}
+		\end{matrix}\right)\\[10pt]
+	&\bullet\ X^{-1}AX = \left(\begin{matrix}
+			Y_\parallel A X_\parallel & Y_\parallel A X_\perp\\
+			Y_\perp A X_\parallel & Y_\perp A X_\perp
+		\end{matrix}\right)
+		=
+		\left(\begin{matrix}
+			Y_\parallel X_\parallel B & Y_\parallel A X_\perp\\
+			Y_\perp X_\parallel B & Y_\perp A X_\perp
+		\end{matrix}\right)
+		=
+		\left(\begin{matrix}
+			B & Y_\parallel A X_\perp\\
+			\mathcal{O} & Y_\perp A X_\perp
+		\end{matrix}\right)
+		= R
+\end{aligned}\)
+
+\vfill
 %--------------------------------------------------------------------------
 %--------------------------------------------------------------------------
 %--------------------------------------------------------------------------
 %--------------------------------------------------------------------------
-\vspace{5pt}
+% \vspace{5pt}
+\newpage
 \subsection{Error Bound and Conditioning}
 
 % Error Bound for Eigenvalue
