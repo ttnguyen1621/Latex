@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage{enumitem, amssymb, amsmath, amsfonts, mathtools, parskip}
+\usepackage{cancel}
+
+\newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
+
+\begin{document}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+\section{Finding Eigenvalues}
+
+\subsection{Error Bound and Conditioning}
+
+% Error Bound for Eigenvalue
+\vspace{10pt}\noindent
+\(\begin{aligned}[t]
+	&A + \Delta A = Q(D + \Delta D)Q^{-1}\\[5pt]
+	&\hspace{10pt} \begin{aligned}
+			&\bullet\ v 			
+				= (\Delta\lambda I - D)^{-1} (\Delta D) v\\[5pt]
+			&\bullet\ \begin{aligned}[t]
+				\Vert (\Delta\lambda I - D)^{-1} \Vert_2^{-1} &\leq \Vert \Delta D \Vert_2\\[5pt]
+				\vert \Delta\lambda - \lambda_i \vert &\leq \Vert Q (\Delta A) Q^{-1} \Vert_2   
+			\end{aligned}
+		\end{aligned}\\[10pt]
+	&\rightarrow\ \boxed{ \vert \Delta\lambda - \lambda_i \vert
+		\leq \text{cond}(Q)\ \Vert \Delta A \Vert_2 }
+\end{aligned}
+\hspace{1.25cm}
+% Error for Simple Eigenvalues
+\begin{aligned}[t]
+	&(A + \Delta A)(x + \Delta x) = (\lambda + \Delta\lambda)(x + \Delta x)\\[5pt]
+	&\hspace{10pt} \begin{aligned}[t]
+			&\bullet\ Ax = \lambda x\ ,\ \ y^H A = \lambda y^H \\
+			&\bullet\ \underline{\lambda \text{\scriptsize\ is simple}} \ \Rightarrow \ y^H x \neq 0\ \ (?)\\
+			&\bullet\ \text{\scriptsize\(\begin{aligned}[t]
+				&y^H \bcancel{Ax} + \cancel{y^H A\Delta x} + y^H (\Delta A)x + y^H \xcancel{(\Delta A) \Delta x} \\
+				&\hspace{10pt} \approx y^H \bcancel{\lambda x} + \cancel{y^H \lambda \Delta x} 
+					+ y^H (\Delta\lambda) x + y^H \xcancel{(\Delta\lambda) \Delta x}
+			\end{aligned}\)}
+		\end{aligned}\\[10pt]
+	&\rightarrow\ \boxed{ \vert \Delta\lambda \vert
+		\ \lessapprox\ \frac{\Vert y \Vert_2 \cdot \Vert x \Vert_2}{\vert y^H x \vert}\ \Vert \Delta A \Vert_2
+		\ =\ \frac{1}{\cos\theta}\ \Vert \Delta A \Vert_2 }
+\end{aligned}\)
+
+% Notes
+\vspace{10pt}
+\(\begin{aligned}
+	&\bullet\ AA^\dagger = A^\dagger A \ \rightarrow \ \text{cond}(A) = 1\\
+	&\bullet\ \text{Non-simple (multiple) eigenvalue is complicated:}\\
+	&\bullet\ \text{allows } y^Hx = 0 \text{, depends on eigenvalue spacings, vector angles, etc.}\\
+	&\bullet\ \text{Balancing can improve conditioning - diagonal rescaling}
+\end{aligned}\)
+
+\end{document}
