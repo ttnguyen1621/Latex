@@ -1739,29 +1739,46 @@
 % Types
 \begin{minipage}[t]{.49\textwidth}
 	\(\begin{array}[t]{r l}
-		\text{Symmetric}:& {S = S^T}\\[5pt]
-		\text{Hermitian}:& {H = H^\dagger}
-		\\[5pt]
 		\text{Orthogonal}:& {QQ^T = Q^T Q = I}\\[5pt]
-		\text{Unitary}:& {UU^\dagger = U^\dagger U = I}\\[5pt]
-		\text{Normal}:& AA^\dagger = A^\dagger A
+		\text{Unitary}:& \begin{aligned}[t]
+				&UU^\dagger = U^\dagger U = I \\
+				&\Leftrightarrow\ U = e^{iH} = (U_{h}) e^{iD_h} (U_{h})^\dagger
+			\end{aligned}\\[23pt]
+		\text{Normal}:& AA^\dagger = A^\dagger A \ \Leftrightarrow\ A = UDU^\dagger
 		\\[5pt]
-		\text{Diagonalizable}:& A = QDQ^{-1} \ \ \text{\scriptsize\(\left(\begin{gathered}
-				\text{must be}\\[-4pt]
-				\text{nondefective}
-			\end{gathered}\right)\)}\\[5pt]
-		\text{Hessenberg}:& \text{\scriptsize Triang. but with 0s}\\[5pt]
-		\text{Jordan Form}:& \text{\scriptsize Near diag. w/ entries in diag. above}
+		\text{Symmetric}:& S = S^T = QDQ^T \hspace{10pt} \text{\scriptsize(\(D\) is real)}\\[5pt]
+		\text{Hermitian}:& H = H^\dagger = UDU^\dagger \hspace{10pt} \text{\scriptsize(\(D\) is real)}
 	\end{array}\)
 \end{minipage}
+\hfill
+\begin{minipage}[t]{.49\textwidth}
+	\(\begin{array}[t]{r l}
+		\text{Similar}:& \begin{aligned}[t]
+				&A(Tx) = \lambda (Tx) \\
+				&\rightarrow \ A \sim B = T^{-1}AT
+			\end{aligned}\\[22pt]
+		\text{Diagonalize}:& T^{-1}AQ = T 
+			\hspace{15pt} \text{\scriptsize\(\left(\begin{gathered}
+				\text{\(A\) is nondefective}\\[-4pt]
+				\text{\(B\) is nonsingular}
+			\end{gathered}\right)\)}\\[10pt]
+		\text{Hessenberg}:& \text{\scriptsize Triang. from any diag. but with 0s}\\[5pt]
+		\text{Jordan Form}:& \parbox[t]{4cm}{\scriptsize Nonsing. trans. into a near diag. w/ entries in diag. above}
+	\end{array}\)
+\end{minipage}
+
 % notes
+\vspace{5pt}
 \begin{minipage}[t]{.49\textwidth}
 	\(\begin{aligned}[t]
-		&\bullet\ H = UDU^{-1} \hspace{10pt} \text{\scriptsize(\(D\) is real)}\\[5pt]
-		&\bullet\ U = e^{iH} = U_{H} e^{iD} (U_{H})^\dagger\\[5pt]
 		&\bullet\ Ax = \lambda x \ , \ \ \text{det}(A) \neq 0 
 			\ \Rightarrow \ A^{-1}x = (1/\lambda)x\\[5pt]
-		&\bullet\ A(Tx) = \lambda (Tx) \ \rightarrow \ A \sim B = T^{-1}AT\\[5pt]
+		&\bullet\ \text{Shifting}:\ (A-\sigma I)x = (\lambda-\sigma)x
+	\end{aligned}\)
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.48\textwidth}
+	\(\begin{aligned}[t]
 		&\bullet\ \text{Simple: Normal [Algebraic] Mult. of 1}\\[5pt]
 		&\bullet\ \text{Defective: \(\begin{gathered}[t]
 				\text{Geo. Mult.}\\[-7pt]
@@ -1771,13 +1788,12 @@
 \end{minipage}
 
 % Invariant Subspace
-\vspace{15pt}
 \underline{Invariant Subspace}: \ \ 
 	\(\{ \mathcal{S} :\ (A\mathcal{S} \subseteq \mathcal{S})
 	\ \equiv\ (\forall x \in \mathcal{S} \Rightarrow Ax \in \mathcal{S}) \}\)
 
 % Schur Form
-\vspace{15pt}
+\vspace{10pt}
 \underline{Schur Form}\\[15pt]
 % Unitary Form
 \begin{minipage}[t]{.49\textwidth}
@@ -1828,10 +1844,10 @@
 			\text{Real}\\[-7pt]
 			\text{\scriptsize(only for }\\[-7pt]
 			\text{\scriptsize real matrix)}
-		\end{gathered}: \ \boxed{PAP^T = R} 
+		\end{gathered}: \ \boxed{Q^TAQ = R} 
 		\hspace{20pt} 
 		\begin{gathered}
-			\text{\scriptsize(\(P\) is permu.)}\\[-7pt]
+			\text{\scriptsize(\(Q\) is ortho.)}\\[-7pt]
 			\text{\scriptsize(\(R\) is block upp. triang.)}
 		\end{gathered}
 	\)
@@ -1850,7 +1866,8 @@
 					R_{1\times1} & \text{\scriptsize(real eigenvalue of \(A\))}\\
 					R_{2\times 2} & \text{\scriptsize(complex eigenvalue pairs of \(A\))}
 				\end{cases}\\[5pt]
-			&\bullet\ \text{\scriptsize All other entries are real}
+			&\bullet\ \text{\scriptsize All other entries are real}\\[5pt]
+			&\bullet\ \text{Reducible: If } PAP^{T} = R \hspace{10pt} \text{\scriptsize(\(P\) is permu.)}
 		\end{aligned}
 	\)
 \end{minipage}
@@ -1896,57 +1913,6 @@
 			\mathcal{O} & Y_\perp A X_\perp
 		\end{matrix}\right)
 		= R
-\end{aligned}\)
-
-\vfill
-%--------------------------------------------------------------------------
-%--------------------------------------------------------------------------
-%--------------------------------------------------------------------------
-%--------------------------------------------------------------------------
-% \vspace{5pt}
-\newpage
-\subsection{Error Bound and Conditioning}
-
-% Error Bound for Eigenvalue
-\vspace{10pt}\noindent
-\(\begin{aligned}[t]
-	&A + \Delta A = Q(D + \Delta D)Q^{-1}\\[5pt]
-	&\hspace{10pt} \begin{aligned}
-			&\bullet\ v 			
-				= (\Delta\lambda I - D)^{-1} (\Delta D) v\\[5pt]
-			&\bullet\ \begin{aligned}[t]
-				\Vert (\Delta\lambda I - D)^{-1} \Vert_2^{-1} &\leq \Vert \Delta D \Vert_2\\[5pt]
-				\vert \Delta\lambda - \lambda_i \vert &\leq \Vert Q (\Delta A) Q^{-1} \Vert_2   
-			\end{aligned}
-		\end{aligned}\\[10pt]
-	&\rightarrow\ \boxed{ \vert \Delta\lambda - \lambda_i \vert
-		\leq \text{cond}(Q)\ \Vert \Delta A \Vert_2 }
-\end{aligned}
-\hspace{1.25cm}
-% Error for Simple Eigenvalues
-\begin{aligned}[t]
-	&(A + \Delta A)(x + \Delta x) = (\lambda + \Delta\lambda)(x + \Delta x)\\[5pt]
-	&\hspace{10pt} \begin{aligned}[t]
-			&\bullet\ Ax = \lambda x\ ,\ \ y^H A = \lambda y^H \\
-			&\bullet\ \underline{\lambda \text{\scriptsize\ is simple}} \ \Rightarrow \ y^H x \neq 0\ \ (?)\\
-			&\bullet\ \text{\scriptsize\(\begin{aligned}[t]
-				&y^H \bcancel{Ax} + \cancel{y^H A\Delta x} + y^H (\Delta A)x + y^H \xcancel{(\Delta A) \Delta x} \\
-				&\hspace{10pt} \approx y^H \bcancel{\lambda x} + \cancel{y^H \lambda \Delta x} 
-					+ y^H (\Delta\lambda) x + y^H \xcancel{(\Delta\lambda) \Delta x}
-			\end{aligned}\)}
-		\end{aligned}\\[10pt]
-	&\rightarrow\ \boxed{ \vert \Delta\lambda \vert
-		\ \lessapprox\ \frac{\Vert y \Vert_2 \cdot \Vert x \Vert_2}{\vert y^H x \vert}\ \Vert \Delta A \Vert_2
-		\ =\ \frac{1}{\cos\theta}\ \Vert \Delta A \Vert_2 }
-\end{aligned}\)
-
-% Notes
-\vspace{10pt}
-\(\begin{aligned}
-	&\bullet\ AA^\dagger = A^\dagger A \ \rightarrow \ \text{cond}(A) = 1\\
-	&\bullet\ \text{Non-simple (multiple) eigenvalue is complicated:}\\
-	&\bullet\ \text{allows } y^Hx = 0 \text{, depends on eigenvalue spacings, vector angles, etc.}\\
-	&\bullet\ \text{Balancing can improve conditioning - diagonal rescaling}
 \end{aligned}\)
 
 \end{document}
