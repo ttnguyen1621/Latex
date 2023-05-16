@@ -2,6 +2,7 @@
 \usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 \usepackage{enumitem, amssymb, amsmath, amsfonts, mathtools, parskip}
 \usepackage{cancel}
+\usepackage[normalem]{ulem}
 
 \newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
 
@@ -1793,14 +1794,17 @@
 	\(\{ \mathcal{S} :\ (A\mathcal{S} \subseteq \mathcal{S})
 	\ \equiv\ (\forall x \in \mathcal{S} \Rightarrow Ax \in \mathcal{S}) \}\)
 
+%------------------------------------------------------------
+%------------------------------------------------------------
 % Schur Form
-\vspace{10pt}
-\underline{Schur Form}\\[15pt]
+\vspace{5pt}
+\subsection{Schur Form}
+\vspace{5pt}
 % Unitary Form
 \begin{minipage}[t]{.49\textwidth}
 	% Definition
 	\(
-		\hspace{10pt} \begin{gathered}
+		\begin{gathered}
 			\text{Unitary}\\[-7pt]
 			\text{\scriptsize(for all)}
 		\end{gathered}\): \ \(\boxed{T^\dagger A T = R} \hspace{20pt} \begin{gathered}
@@ -1841,7 +1845,7 @@
 \begin{minipage}[t]{.49\textwidth}
 	% Definition
 	\(
-		\hspace{10pt} \begin{gathered}[t]
+		\begin{gathered}[t]
 			\text{Real}\\[-7pt]
 			\text{\scriptsize(only for }\\[-7pt]
 			\text{\scriptsize real matrix)}
@@ -1874,8 +1878,8 @@
 \end{minipage}
 
 % Blocked Upper Triangular
-\vspace{15pt}
-\hspace{10pt} Block Upper Triangular Transformation\\[10pt]
+\vspace{10pt}
+\underline{Block Upper Triangular Transformation}\\[10pt]
 \(\begin{aligned}
 	&\bullet\ \begin{aligned}[t]
 			&X_\parallel = \left(\vec{x_1} \ \dots \ \vec{x_p}\right) 
@@ -1917,14 +1921,14 @@
 \end{aligned}\)
 
 %---------------------------------------------------------------
-%
-%
+%---------------------------------------------------------------
+%---------------------------------------------------------------
 %---------------------------------------------------------------
 \newpage
 % Upper Hessenberg Transformation
-\underline{Upper Hessenberg Transformation (see Householder)}\\[10pt]
+\subsection{Upper Hessenberg Transformation (see Householder)}
 \(\begin{aligned}
-	&\rightarrow\ H = I - \hat{v} \hat{v}^T\\
+	&\rightarrow\ H_j^{(k)} = I - \hat{v} \hat{v}^T\\
 	&\rightarrow\ v_{j+1} = \text{\scriptsize\(\left[\arraycolsep=2pt \begin{array}{c c c c c c c}
 			0 &\dots& 0 & (a_i^j)_k & \dots & (a_i^j)_m
 		\end{array}\right]\)}^T - \alpha_i e_i
@@ -1992,7 +1996,6 @@
 \vspace{10pt}
 \subsection{QR Iteration}
 % QR Iteration Intro
-\subsubsection{Intro}
 
 % Power Iteration
 \vspace{5pt}
@@ -2018,8 +2021,12 @@
 	&\bullet\ 
 \end{aligned}\)
 
+%--------------------------------------------------------------
+%
+%
+%--------------------------------------------------------------
 % Rayleigh Quotient
-\vspace{15pt}
+\newpage
 \underline{Rayleigh Quotient (for shifts)}:\\[10pt]
 \(\begin{aligned}[t]
 	\Big[ x \lambda + r = Ax \Big]
@@ -2032,10 +2039,6 @@
 	&\bullet\	
 \end{aligned}\)
 
-%--------------------------------------------------------------
-%--------------------------------------------------------------
-%--------------------------------------------------------------
-%--------------------------------------------------------------
 % Inverse Iteration
 \underline{Inverse [Power] Iteration}:\\[15pt]
 \(\begin{aligned}[t]
@@ -2051,7 +2054,7 @@
 
 % Inverse Iteration
 \vspace{15pt}
-\underline{Inverse Iteration W/ Shifts}:\\[15pt]
+\underline{Inverse Iteration w/ Shifts}:\\[15pt]
 \(\begin{aligned}[t]
 	&\boxed{ \Big[ ({\scriptstyle A-\sigma I})^k\ x_0 = x_{k} \Big]
 		\ \Rightarrow\ \Big[ ({\scriptstyle \lambda_1 - \sigma}) \rightarrow \tfrac{1}{\lambda_1 - \sigma} \Big] }
@@ -2064,7 +2067,7 @@
 
 % Deflation
 \vspace{15pt}
-\underline{Deflation (concept)}:\\[15pt]
+\underline{Deflation (concept)}:\\[10pt]
 \(\begin{aligned}
 	T^{-1}A_kT = 
 		\left( \begin{matrix}
@@ -2134,6 +2137,11 @@
 		\end{aligned}\\[5pt]
 	&\rightarrow\ \boxed{ A_{k+1} = R_{k+1} Q_{k+1}^{(A)} }
 \end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\ 
+\end{aligned}\)
 
 % Inverse QR Iteration
 \vspace{15pt}
@@ -2144,10 +2152,15 @@
 		\left( A_{k+1}^{-H} \ =\ R_{k+1}^{-H} Q_{k+1}^{(A)} \right) \\[10pt]
 	&\rightarrow\ \left( A^{-H} \right)^k = Q_{k} R_{k}^{-H}
 \end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\ 
+\end{aligned}\)
 
 % QR Iteration with shifts
 \vspace{15pt}
-\underline{QR Iteration with Shifts}\\[10pt]
+\underline{QR Iteration w/ Shifts \& Deflation}\\[10pt]
 \(\begin{aligned}
 	&\text{\scriptsize Rayleigh Quotient Shift: \ } \sigma 
 		= \tfrac{\langle q_p | A | q_p \rangle}{\langle q_p | q_p \rangle} = \langle q_p | A | q_p \rangle\\[5pt]
@@ -2159,15 +2172,30 @@
 			0 & \lambda_p
 		\end{matrix} \right)
 \end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\ 
+\end{aligned}\)
 
 % Hessenberg QR Iteration
 \vspace{15pt}
-\underline{Hessenberg QR Iteration}\\[10pt]
+\underline{Hessenberg QR Iteration [w/ Shifts]}\\
 \(\begin{aligned}
-	&\text{\scriptsize Rayleigh Quotient Shift: \ } \sigma 
-		= \tfrac{\langle q_p | A | q_p \rangle}{\langle q_p | q_p \rangle} = \langle q_p | A | q_p \rangle\\[5pt]
-	&\rightarrow\ Q_{k+1}^{(A)} R_{k+1} = A_k - \sigma I\\[5pt]
-	&\rightarrow\ R_{k+1} Q_{k+1}^{(A)} = A_{k+1} + \sigma I\\[5pt]
+	&\text{\scriptsize(see Hessenberg Transformation, \(H\))}\\[5pt]
+	&\text{\sout{\( H = H^{(1)} \ \Rightarrow\ H^H A H \)}} 
+		\ \ \text{\scriptsize isn't Hessenberg at all}\\[5pt]
+	&H = H^{(2)} \ \Rightarrow\ H^H A H \ \ \text{\scriptsize is Hessenberg at subdiag.}\\[5pt]
+	&\rightarrow\ A_1 = H^H A H = H A H\\[5pt]
+	&\rightarrow\ A_{k} \ [{\scriptstyle +\ \sigma I}] = R_k Q_k^{(A)} 
+		\hspace{15pt} \text{\scriptsize\((k>1)\)}\\[5pt]
+	&\rightarrow\ A_{k} \ [{\scriptstyle +\ \sigma I}] = R_k \Big( A_{k-1} \ [{\scriptstyle -\ \sigma I}] \Big) R_k^{-1}
+		\ \ \ \parbox{50pt}{\scriptsize is Hessenberg at subdiag.}
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\ 
 \end{aligned}\)
 
 \end{document}

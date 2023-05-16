@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1684215707 "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Matrix.tex" "Matrix.pdf" "Matrix" 1684215709
-  "Matrix.aux" 1684215709 3550 c06fda5fb640dd2eb4c27491cc50c6ca "pdflatex"
-  "Matrix.tex" 1684215706 75223 f04b949b037365a6aa0aa5245f70a0f0 ""
-  "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Matrix.tex" 1684215706 75223 f04b949b037365a6aa0aa5245f70a0f0 ""
+["pdflatex"] 1684257797 "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Matrix.tex" "Matrix.pdf" "Matrix" 1684257799
+  "Matrix.aux" 1684257799 3693 c6b174415f6dc467e2839c30c99ef264 "pdflatex"
+  "Matrix.tex" 1684257796 75940 f745b8a5429c39721a191077ed411ad0 ""
+  "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Matrix.tex" 1684257796 75940 f745b8a5429c39721a191077ed411ad0 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1650318317 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1650313675 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1650313675 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -35,6 +35,7 @@
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm" 1650315657 1124 6c73e740cf17375f03eec0ee63599741 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1650315657 1116 933a60c408fc0a863a92debe84b2d294 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1650315657 1120 8b7d695260f3cff42e636090a8002094 ""
+  "c:/texlive/2022/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm" 1650320704 520 4889cce2180234b97cad636b6039c722 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb" 1650313675 34793 ae7a3e2775dc0ce90475eeabcb46f9f1 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1650313675 32080 340ef9bf63678554ee606688e7b5339d ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb" 1650313675 32378 2b20eba6bb36c716382b6d96240eaa69 ""
@@ -68,6 +69,7 @@
   "c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty" 1650319657 1057 525c2192b5febbd8c1f662c9468335bb ""
   "c:/texlive/2022/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty" 1650320425 13807 952b0226d4efca026f0e19dd266dcc22 ""
   "c:/texlive/2022/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty" 1650321440 17859 4409f8f50cd365c68e684407e5350b1b ""
+  "c:/texlive/2022/texmf-dist/tex/generic/ulem/ulem.sty" 1650326112 15682 94f55b803e160cf7fb6e4d77d07cfe1d ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1650313675 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsfonts/amssymb.sty" 1650313675 13829 94730e64147574077f8ecfea9bb69af4 ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd" 1650313675 961 6518c6525a34feb5e8250ffa91731cff ""
