@@ -27,7 +27,7 @@
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
-\section{Solving System of Linear Equations \(Ax=b\)}
+\section{System of Linear Equations, \(Ax=b\)}
 
 % P Norm and Condition Number
 \subsection{\(p\)-Norm and Condition Number}
@@ -114,10 +114,10 @@
 	\end{aligned}\)
 \end{minipage}
 
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------
+%---------------------------------------------------------------
+%---------------------------------------------------------------
+%---------------------------------------------------------------
 % Residual, and Error Bounds when Solving Ax = b
 \newpage
 \subsection{Error Bounds and Residuals}
@@ -200,10 +200,10 @@
 		+ \mathcal{O}(t^2)}
 \end{aligned}\)
 
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
 % LU Decomposition to Solve Linear System of Eq
 \newpage
 \subsection{Gaussian Elimination with LU/PLU/PLDUQ Decomposition}
@@ -746,7 +746,7 @@
 %--------------------------------------------------------------------------------------------------------------------------------
 % Least r Linear Regression/Fit
 \newpage
-\section{Least \(\Vert r \Vert\) Linear Regression/Fit for \(Ax + r = b\)}
+\section{Least \(\Vert r \Vert\) Linear Regression/Fit, \(Ax + r = b\)}
 
 % Assumptions
 \(\begin{aligned}[t]
@@ -1754,13 +1754,14 @@
 \begin{minipage}[t]{.49\textwidth}
 	\(\begin{array}[t]{r l}
 		\text{Similar}:& \begin{aligned}[t]
-				&A(Tx) = \lambda (Tx) \\
+				&A(Ty) = \lambda (Ty) \\
 				&\rightarrow \ A \sim B = T^{-1}AT
 			\end{aligned}\\[22pt]
-		\text{Diagonalize}:& T^{-1}AQ = T 
+		\text{Diagonalize}:& T^{-1}AT = D 
 			\hspace{15pt} \text{\scriptsize\(\left(\begin{gathered}
 				\text{\(A\) is nondefective}\\[-4pt]
-				\text{\(B\) is nonsingular}
+				\text{\(T\) is nonsingular}\\[-4pt]
+				\text{\(D\) is diag.}
 			\end{gathered}\right)\)}\\[10pt]
 		\text{Hessenberg}:& \text{\scriptsize Triang. from any diag. but with 0s}\\[5pt]
 		\text{Jordan Form}:& \parbox[t]{4cm}{\scriptsize Nonsing. trans. into a near diag. w/ entries in diag. above}
@@ -1844,7 +1845,7 @@
 			\text{Real}\\[-7pt]
 			\text{\scriptsize(only for }\\[-7pt]
 			\text{\scriptsize real matrix)}
-		\end{gathered}: \ \boxed{Q^TAQ = R} 
+		\end{gathered}: \ \boxed{Q^T AQ = R} 
 		\hspace{20pt} 
 		\begin{gathered}
 			\text{\scriptsize(\(Q\) is ortho.)}\\[-7pt]
@@ -1913,6 +1914,243 @@
 			\mathcal{O} & Y_\perp A X_\perp
 		\end{matrix}\right)
 		= R
+\end{aligned}\)
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+% Solving Eigenvalue Equation
+\section{Eigenvalue Equation, \(Ax = \lambda x\)}
+
+% Error Bounds and Conditioning
+\subsection{Error Bound and Conditioning}
+
+% Error Bound for Eigenvalue
+\vspace{10pt}\noindent
+\(\begin{aligned}[t]
+	&A + \Delta A = Q(D + \Delta D)Q^{-1}\\[5pt]
+	&\hspace{10pt} \begin{aligned}
+			&\bullet\ v 			
+				= (\Delta\lambda I - D)^{-1} (\Delta D) v\\[5pt]
+			&\bullet\ \begin{aligned}[t]
+				\Vert (\Delta\lambda I - D)^{-1} \Vert_2^{-1} &\leq \Vert \Delta D \Vert_2\\[5pt]
+				\vert \Delta\lambda - \lambda_i \vert &\leq \Vert Q (\Delta A) Q^{-1} \Vert_2   
+			\end{aligned}
+		\end{aligned}\\[10pt]
+	&\rightarrow\ \boxed{ \vert \Delta\lambda - \lambda_i \vert
+		\leq \text{cond}(Q)\ \Vert \Delta A \Vert_2 }
+\end{aligned}
+\hspace{1.25cm}
+% Error for Simple Eigenvalues
+\begin{aligned}[t]
+	&(A + \Delta A)(x + \Delta x) = (\lambda + \Delta\lambda)(x + \Delta x)\\[5pt]
+	&\hspace{10pt} \begin{aligned}[t]
+			&\bullet\ Ax = \lambda x\ ,\ \ y^H A = \lambda y^H \\
+			&\bullet\ \underline{\lambda \text{\scriptsize\ is simple}} \ \Rightarrow \ y^H x \neq 0\ \ (?)\\
+			&\bullet\ \text{\scriptsize\(\begin{aligned}[t]
+				&y^H \bcancel{Ax} + \cancel{y^H A\Delta x} + y^H (\Delta A)x + y^H \xcancel{(\Delta A) \Delta x} \\
+				&\hspace{10pt} \approx y^H \bcancel{\lambda x} + \cancel{y^H \lambda \Delta x} 
+					+ y^H (\Delta\lambda) x + y^H \xcancel{(\Delta\lambda) \Delta x}
+			\end{aligned}\)}
+		\end{aligned}\\[10pt]
+	&\rightarrow\ \boxed{ \vert \Delta\lambda \vert
+		\ \lessapprox\ \frac{\Vert y \Vert_2 \cdot \Vert x \Vert_2}{\vert y^H x \vert}\ \Vert \Delta A \Vert_2
+		\ =\ \frac{1}{\cos\theta}\ \Vert \Delta A \Vert_2 }
+\end{aligned}\)
+
+% Notes
+\vspace{10pt}
+\(\begin{aligned}
+	&\bullet\ AA^\dagger = A^\dagger A \ \rightarrow \ \text{cond}(A) = 1\\
+	&\bullet\ \text{Non-simple (multiple) eigenvalue is complicated:}\\
+	&\bullet\ \text{allows } y^Hx = 0 \text{, depends on eigenvalue spacings, vector angles, etc.}\\
+	&\bullet\ \text{Balancing (diagonal rescaling) can improve conditioning}
+\end{aligned}\)
+
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+% QR Iteration
+\vspace{10pt}
+\subsection{QR Iteration}
+% QR Iteration Intro
+\subsubsection{Intro}
+
+% Power Iteration
+\vspace{5pt}
+\underline{Power Iteration}:\\[10pt]
+\(\begin{aligned}
+	A^k x_0 \ &=\ A^k \sum_{i=1}^n c_i v_i
+		\ =\ \sum_{i=1}^n c_i \left( A^k v_i \right)
+		\ =\ \sum_{i=1}^n c_i \left( \lambda_i^k v_i \right) 
+		\\[10pt]
+	&=\ \lambda_1^k \left[ \sum_{i=1}^j c_i v_i 
+		+ \sum_{i=j+1}^n c_i \cancel{ \left( \frac{\lambda_i}{\lambda_1} \right)^k } v_i  \right]
+		\hspace{15pt} \begin{gathered}
+			\text{\scriptsize\((\lambda_1 = ... = \lambda_j)\)} \\[-5pt]
+			\text{\scriptsize\((\lambda_1 \geq ... \geq \lambda_n)\)} 
+		\end{gathered}
+		\\[10pt]
+	\Aboxed{ \big( A^k x_0 &= x_k \big) \ \approx\ \lambda_1^k \ \sum_i^j c_i v_i 
+		\ \ =\ \lambda_1^k (c_1 v_1) \hspace{5pt} \text{ if \ } j=1}
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}[t]
+	&\bullet\ 
+\end{aligned}\)
+
+% Rayleigh Quotient
+\vspace{15pt}
+\underline{Rayleigh Quotient (for shifts)}:\\[10pt]
+\(\begin{aligned}[t]
+	\Big[ x \lambda + r = Ax \Big]
+	\ \Rightarrow \ \Big[ x^H x \lambda = x^H A x \Big] 
+	\ \Rightarrow \ \boxed{ \lambda = \frac{\langle x | Ax \rangle}{\langle x | x \rangle} }
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\	
+\end{aligned}\)
+
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+% Inverse Iteration
+\newpage
+\underline{Inverse [Power] Iteration}:\\[15pt]
+\(\begin{aligned}[t]
+	&\left[ \left( A^{-1} \right)^k x_0 = x_{k} \right]
+		\ \Rightarrow\ \boxed{ \big( A x_{k+1} = x_k \big)
+		\rightarrow \left( \lambda_1 \rightarrow \tfrac{1}{\lambda_1} \right) }
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}[t]
+	&\bullet\ 
+\end{aligned}\)
+
+% Inverse Iteration
+\vspace{15pt}
+\underline{Inverse Iteration W/ Shifts}:\\[15pt]
+\(\begin{aligned}[t]
+	&\boxed{ \Big[ ({\scriptstyle A-\sigma I})^k\ x_0 = x_{k} \Big]
+		\ \Rightarrow\ \Big[ ({\scriptstyle \lambda_1 - \sigma}) \rightarrow \tfrac{1}{\lambda_1 - \sigma} \Big] }
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}[t]
+	&\bullet\ 
+\end{aligned}\)
+
+% Deflation
+\vspace{15pt}
+\underline{Deflation (concept)}:\\[15pt]
+\(\begin{aligned}
+	T^{-1}A_kT = 
+		\left( \begin{matrix}
+			\lambda_1 & b^T\\
+			0 & A_{k+1}
+		\end{matrix} \right)
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\
+\end{aligned}\)
+
+% Simultaneous Iteration
+\vspace{15pt}
+\underline{Simultaneous/Subspace [Power] Iteration}:\\[10pt]
+\(\begin{aligned}
+	&X_0 = X_{n \times p} 
+		\ \ , \ \ \text{rank}(X_0) = p 
+		\\[10pt]
+	&\rightarrow \ X_{k+1} = AX_k = A^{k+1} X_0\\
+	&\rightarrow \ \lim_{k \rightarrow \infty} \text{span} \big( X_k \big) = \text{span}(A) 
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\
+\end{aligned}\)
+
+% Orthogonal Iteration
+\vspace{15pt}
+\underline{Orthogonal [Subspace] Iteration}:\\[10pt]
+\(\begin{aligned}
+	&X = X_{n \times p} 
+		\ \ , \ \ \text{rank}(X) = p 
+		\\[10pt]
+	&\rightarrow \ X_k = Q_k R_k 
+		\hspace{15pt} \text{\scriptsize\((Q = Q_{n\times p})\)}\\
+	&\rightarrow \ X_{k+1} = A Q_k \ \Big[ = Q_k B_{p \times p} \Big]
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\
+\end{aligned}\)
+
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+\newpage
+% QR Iteration
+\subsubsection{QR Iteration}
+\vspace{5pt}
+\(\begin{aligned}
+	&\begin{aligned}
+			X_{k+1} \ &\equiv\ A Q_{k} 
+				\hspace{15pt} (\text{\scriptsize use \(X_0 = I \ \rightarrow\ X_1 = A\)})\\
+			Q_{k+1} R_{k+1}\ &=\ Q_{k} \big( Q_{k}^H A Q_{k} \big)
+		\end{aligned}\\[5pt]
+	&\rightarrow\ \begin{aligned}[t]
+			&\boxed{ A_k \ \equiv\ Q_k^H X_{k+1} \ = \ Q_k^H A Q_k }\\[5pt]
+			&= \left\{ \begin{array}{r c c}
+					\big( Q_{k}^H Q_{k+1} \big) R_{k+1} &\equiv& \boxed{ Q_{k+1}^{(A)} R_{k+1} }\\[10pt]
+					Q_k^H ( Q_k R_k Q_{k-1}^H ) Q_k &=&  R_{k} Q_{k}^{(A)}
+				\end{array} \right.
+		\end{aligned}\\[5pt]
+	&\rightarrow\ \boxed{ A_{k+1} = R_{k+1} Q_{k+1}^{(A)} }
+\end{aligned}\)
+
+% Inverse QR Iteration
+\vspace{15pt}
+\underline{Inverse QR Iteration}\\[10pt]
+\(\begin{aligned}
+	&\left( A_{k}^{-H} \ =\ Q_{k+1}^{(A)} R_{k+1}^{-H} \right)
+		\ , \
+		\left( A_{k+1}^{-H} \ =\ R_{k+1}^{-H} Q_{k+1}^{(A)} \right) \\[10pt]
+	&\rightarrow\ \left( A^{-H} \right)^k = Q_{k} R_{k}^{-H}
+\end{aligned}\)
+
+% QR Iteration with shifts
+\vspace{15pt}
+\underline{QR Iteration with Shifts}\\[10pt]
+\(\begin{aligned}
+	&\text{\scriptsize Rayleigh Quotient Shift: \ } \sigma 
+		= \tfrac{\langle q_p | A | q_p \rangle}{\langle q_p | q_p \rangle} = \langle q_p | A | q_p \rangle\\[5pt]
+	&\rightarrow\ Q_{k+1}^{(A)} R_{k+1} = A_k - \sigma I\\[5pt]
+	&\rightarrow\ R_{k+1} Q_{k+1}^{(A)} = A_{k+1} + \sigma I\\[5pt]
+	&\rightarrow\ \text{Deflation: } \lim_{k\rightarrow\infty} A_k = 
+		\left( \begin{matrix}
+			A'_{k+1} & b^T\\
+			0 & \lambda_p
+		\end{matrix} \right)
+\end{aligned}\)
+
+% Hessenberg QR Iteration
+\vspace{15pt}
+\underline{Hessenberg QR Iteration}\\[10pt]
+\(\begin{aligned}
+	&\text{\scriptsize Rayleigh Quotient Shift: \ } \sigma 
+		= \tfrac{\langle q_p | A | q_p \rangle}{\langle q_p | q_p \rangle} = \langle q_p | A | q_p \rangle\\[5pt]
+	&\rightarrow\ Q_{k+1}^{(A)} R_{k+1} = A_k - \sigma I\\[5pt]
+	&\rightarrow\ R_{k+1} Q_{k+1}^{(A)} = A_{k+1} + \sigma I\\[5pt]
 \end{aligned}\)
 
 \end{document}
