@@ -1922,14 +1922,23 @@
 %---------------------------------------------------------------
 \newpage
 % Upper Hessenberg Transformation
-\underline{Upper Hessenberg Transformation}\\[10pt]
+\underline{Upper Hessenberg Transformation (see Householder)}\\[10pt]
 \(\begin{aligned}
-	&
+	&\rightarrow\ H = I - \hat{v} \hat{v}^T\\
+	&\rightarrow\ v_{j+1} = \text{\scriptsize\(\left[\arraycolsep=2pt \begin{array}{c c c c c c c}
+			0 &\dots& 0 & (a_i^j)_k & \dots & (a_i^j)_m
+		\end{array}\right]\)}^T - \alpha_i e_i
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\ \text{\scriptsize Extra 0s are added to \(v\) to start del. from a diff. row, \(k\).}
 \end{aligned}\)
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
 % Solving Eigenvalue Equation
+\vspace{15pt}
 \section{Eigenvalue Equation, \(Ax = \lambda x\)}
 
 % Error Bounds and Conditioning
