@@ -2000,33 +2000,86 @@
 % Power Iteration
 \vspace{5pt}
 \underline{Power Iteration}:\\[10pt]
-\(\begin{aligned}
-	A^k x_0 \ &=\ A^k \sum_{i=1}^n c_i v_i
-		\ =\ \sum_{i=1}^n c_i \left( A^k v_i \right)
-		\ =\ \sum_{i=1}^n c_i \left( \lambda_i^k v_i \right) 
-		\\[10pt]
-	&=\ \lambda_1^k \left[ \sum_{i=1}^j c_i v_i 
-		+ \sum_{i=j+1}^n c_i \cancel{ \left( \frac{\lambda_i}{\lambda_1} \right)^k } v_i  \right]
-		\hspace{15pt} \begin{gathered}
-			\text{\scriptsize\((\lambda_1 = ... = \lambda_j)\)} \\[-5pt]
-			\text{\scriptsize\((\lambda_1 \geq ... \geq \lambda_n)\)} 
-		\end{gathered}
-		\\[10pt]
-	\Aboxed{ \big( A^k x_0 &= x_k \big) \ \approx\ \lambda_1^k \ \sum_i^j c_i v_i 
-		\ \ =\ \lambda_1^k (c_1 v_1) \hspace{5pt} \text{ if \ } j=1}
+\(\begin{aligned}[t]
+	&\begin{aligned}[t]
+			A^k x_0 \ &=\ A^k \sum_{i=1}^n c_i v_i
+				\ =\ \sum_{i=1}^n c_i \left( A^k v_i \right)
+				\ =\ \sum_{i=1}^n c_i \left( \lambda_i^k v_i \right) 
+				\\[10pt]
+			&=\ \lambda_1^k \left[ \sum_{i=1}^j c_i v_i 
+				+ \sum_{i=j+1}^n c_i \cancel{ \left( \frac{\lambda_i}{\lambda_1} \right)^k } v_i  \right]
+				\hspace{10pt} \begin{gathered}
+					\text{\scriptsize\((\lambda_1 = ... = \lambda_j)\)} \\[-5pt]
+					\text{\scriptsize\((\lambda_1 \geq ... \geq \lambda_n)\)} 
+				\end{gathered}
+		\end{aligned}\\[10pt]
+	&\boxed{ \begin{aligned}[t]
+			A^k x_0 &= A x_{k-1} = x_k \\
+			&\approx\ \lambda_1^k \ \sum_i^j c_i v_i 
+			\ \ =\ \lambda_1^k (c_1 v_1) \hspace{5pt} \text{ if \ } j=1
+		\end{aligned} }
 \end{aligned}\)
 % Notes
 \hfill
 \(\begin{aligned}[t]
-	&\bullet\ 
+	&\bullet\ \text{\scriptsize Eigenvalue converges to \(\lambda_i\) of largest modulus.}\\
+	&\bullet\ \text{\scriptsize \(v_i\) converges to lin. com. if mult. max \(\lambda_i\).}\\
+	&\bullet\ \text{\scriptsize Normalize to norm\(_\infty = 1\) to prevent over/underflow.}\\
+	&\bullet\ \text{\scriptsize Fails if \(\langle v_i | x_0 \rangle = 0\) (unlikely w/ round. error).}\\
+	&\bullet\ \text{\scriptsize Real \(A\) and \(x_0\) won't ever converge a complex.}\\
+	&\bullet\ \text{\scriptsize Convergence Rate: \(C = \vert \lambda_2 / \lambda_1 \vert\)}
 \end{aligned}\)
 
 %--------------------------------------------------------------
 %
 %
 %--------------------------------------------------------------
-% Rayleigh Quotient
 \newpage
+% Power Iteration w/ Shifts
+\underline{Power Iteration w/ Shifts}:\\[15pt]
+\(\begin{aligned}[t]
+	&\boxed{ \Big[ A' x_{k-1} = ({\scriptstyle A-\sigma I}) x_{k-1} = x_k \Big]
+		\ \Rightarrow\ \Big[ {\scriptstyle (\lambda'_1 + \sigma)} \rightarrow \tfrac{1}{\lambda'_1 + \sigma} \Big] }
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}[t]
+	&\bullet\ \text{\scriptsize Convergence Rate: 
+		\(C = \left\vert \frac{\lambda_2 - \sigma}{\lambda_1 - \sigma} \right\vert < \vert \lambda_2 / \lambda_1 \vert\)}\\[3pt]
+	&\bullet\ \text{\scriptsize\(x_k \rightarrow v_1 \ : \ \sigma = (\lambda_2 + \lambda_n)/2\)}\\
+	&\bullet\ \text{\scriptsize\(x_k \rightarrow v_n \ : \ \sigma = (\lambda_1 + \lambda_{n-1})/2\)}\\
+\end{aligned}\)
+
+% Inverse Iteration
+\underline{Inverse [Power] Iteration}:\\[15pt]
+\(\begin{aligned}
+	&\left[ \left( A^{-1} \right)^k x_0 = x_{k} \right]
+		\ \Rightarrow\ \boxed{ \big( A x_{k+1} = x_k \big)
+		\rightarrow \left( \lambda_1 \rightarrow \tfrac{1}{\lambda_1} \right) }
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\ \text{\scriptsize Use LU Decomp. or Cholesky to solve for \(x_{k+1}\)}\\
+	&\bullet\ \text{\scriptsize Eigenvalue converges to \(\lambda_i\) of smallest modulus.}\\
+\end{aligned}\)
+
+% Inverse Iteration w/ Shifts
+\vspace{15pt}
+\underline{Inverse Iteration w/ Shifts}:\\[10pt]
+\(\begin{aligned}
+	&\boxed{ \Big[ A' x_{k+1} = ({\scriptstyle A-\sigma I}) x_{k+1} = x_k \Big]
+		\ \Rightarrow\ \Big[ {\scriptstyle (\lambda'_1 + \sigma)} \rightarrow \tfrac{1}{\lambda'_1 + \sigma} \Big] }
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\ \text{\scriptsize Eigenvalues converges to \(\lambda_i\) closest to \(\sigma\).}\\
+	&\bullet\ \parbox[t]{6cm}{\scriptsize Using a new shift each iteration requires refactoring each time.}
+\end{aligned}\)
+
+% Rayleigh Quotient
+\vspace{15pt}
 \underline{Rayleigh Quotient (for shifts)}:\\[10pt]
 \(\begin{aligned}[t]
 	\Big[ x \lambda + r = Ax \Big]
@@ -2036,37 +2089,12 @@
 % Notes
 \hfill
 \(\begin{aligned}
-	&\bullet\	
-\end{aligned}\)
-
-% Inverse Iteration
-\underline{Inverse [Power] Iteration}:\\[15pt]
-\(\begin{aligned}[t]
-	&\left[ \left( A^{-1} \right)^k x_0 = x_{k} \right]
-		\ \Rightarrow\ \boxed{ \big( A x_{k+1} = x_k \big)
-		\rightarrow \left( \lambda_1 \rightarrow \tfrac{1}{\lambda_1} \right) }
-\end{aligned}\)
-% Notes
-\hfill
-\(\begin{aligned}[t]
-	&\bullet\ 
-\end{aligned}\)
-
-% Inverse Iteration
-\vspace{15pt}
-\underline{Inverse Iteration w/ Shifts}:\\[15pt]
-\(\begin{aligned}[t]
-	&\boxed{ \Big[ ({\scriptstyle A-\sigma I})^k\ x_0 = x_{k} \Big]
-		\ \Rightarrow\ \Big[ ({\scriptstyle \lambda_1 - \sigma}) \rightarrow \tfrac{1}{\lambda_1 - \sigma} \Big] }
-\end{aligned}\)
-% Notes
-\hfill
-\(\begin{aligned}[t]
-	&\bullet\ 
+	&\bullet\ \text{\scriptsize Derived with Normal eq. / Least Lin. Regression}\\
+	&\bullet\ \text{\scriptsize Use \(\lambda\) as \(\sigma\) for shifts}
 \end{aligned}\)
 
 % Deflation
-\vspace{15pt}
+\vspace{10pt}
 \underline{Deflation (concept)}:\\[10pt]
 \(\begin{aligned}
 	T^{-1}A_kT = 
@@ -2078,40 +2106,47 @@
 % Notes
 \hfill
 \(\begin{aligned}
-	&\bullet\
+	&\bullet\ \parbox[t]{9cm}{\scriptsize Use \(A_{k+1}\) when \(\lambda_1\) is found to 
+		good accuracy, then repeat with remaining \(\lambda_i\).}
 \end{aligned}\)
 
 % Simultaneous Iteration
 \vspace{15pt}
 \underline{Simultaneous/Subspace [Power] Iteration}:\\[10pt]
-\(\begin{aligned}
+\(\begin{aligned}[t]
 	&X_0 = X_{n \times p} 
 		\ \ , \ \ \text{rank}(X_0) = p 
 		\\[10pt]
-	&\rightarrow \ X_{k+1} = AX_k = A^{k+1} X_0\\
-	&\rightarrow \ \lim_{k \rightarrow \infty} \text{span} \big( X_k \big) = \text{span}(A) 
+	&\rightarrow \ \boxed{ X_{k+1} = AX_k = A^{k+1} X_0 }\\
+	&\rightarrow \ \boxed{ \lim_{k \rightarrow \infty} \text{span} \big( X_k \big) = \text{span}(A) }
 \end{aligned}\)
 % Notes
 \hfill
-\(\begin{aligned}
-	&\bullet\
+\(\begin{aligned}[t]
+	&\bullet\ \text{\scriptsize All are found at the same time.}\\
+	&\bullet\ \parbox[t]{9cm}{\scriptsize Ill-conditioned since all columns of \(X_k\) converge to \(v_1\) 
+		(though at different rates so they're still ortho.).}\\
+	&\bullet\ \text{\scriptsize Normalize to norm\(_\infty = 1\) to prevent over/underflow.}
 \end{aligned}\)
 
 % Orthogonal Iteration
 \vspace{15pt}
 \underline{Orthogonal [Subspace] Iteration}:\\[10pt]
-\(\begin{aligned}
+\(\begin{aligned}[t]
 	&X = X_{n \times p} 
 		\ \ , \ \ \text{rank}(X) = p 
 		\\[10pt]
-	&\rightarrow \ X_k = Q_k R_k 
-		\hspace{15pt} \text{\scriptsize\((Q = Q_{n\times p})\)}\\
-	&\rightarrow \ X_{k+1} = A Q_k \ \Big[ = Q_k B_{p \times p} \Big]
+	&\rightarrow \ \boxed{ X_k = Q_k R_k 
+		\hspace{15pt} \text{\scriptsize\((Q = Q_{n\times p})\)} }\\
+	&\rightarrow \ \boxed{ X_{k+1} = A Q_k } \ = Q_k B_{p \times p}
 \end{aligned}\)
 % Notes
 \hfill
-\(\begin{aligned}
-	&\bullet\
+\(\begin{aligned}[t]
+	&\bullet\ \text{\scriptsize span\((Q) = \) span\((X)\) \ \ (see QR Decomp.).}\\
+	&\bullet\ \text{\scriptsize\(B_{p\times p}\) is triag. if 
+		\(\vert \lambda_i \vert > \vert \lambda_{i+1} \vert\); else it's block triag. \ \ (see Schur Form).}\\
+	&\bullet\ \text{\scriptsize Orthogonalization is expensive, and convergence may be slow.}
 \end{aligned}\)
 
 %--------------------------------------------------------------
@@ -2140,7 +2175,12 @@
 % Notes
 \hfill
 \(\begin{aligned}
-	&\bullet\ 
+	&\bullet\ \text{\scriptsize \(A_k = B_{p \times p}\) \ (from above), so diag. entries are \(\lambda\).}\\
+	&\bullet\ \parbox[t]{7.5cm}{\scriptsize If \((p=n)\) and \((X_0 = I)\), then 
+		\(\boxed{ Q_k = Q_1^{(A)} \dots Q_k^{(A)} }\) and \(\boxed{ R^{(k)} = R_k \dots R_1 }\).}\\
+	&\bullet\ \text{\scriptsize Since \((A = Q_1 R_1)\), then by induction, \(\boxed{ A^k = Q_k R^{(k)} }\)}\\
+	&\bullet\ \parbox[t]{7.5cm}{\scriptsize Still, orthogonalization is \(\mathcal{O}(n^3)\) expensive
+		and convergence may be slow.}
 \end{aligned}\)
 
 % Inverse QR Iteration
@@ -2150,32 +2190,45 @@
 	&\left( A_{k}^{-H} \ =\ Q_{k+1}^{(A)} R_{k+1}^{-H} \right)
 		\ , \
 		\left( A_{k+1}^{-H} \ =\ R_{k+1}^{-H} Q_{k+1}^{(A)} \right) \\[10pt]
-	&\rightarrow\ \left( A^{-H} \right)^k = Q_{k} R_{k}^{-H}
+	&\rightarrow\ \left( A^{-H} \right)^k = Q_{k}^{(A)} R_{k}^{-H}
 \end{aligned}\)
 % Notes
 \hfill
 \(\begin{aligned}
-	&\bullet\ 
+	&\bullet\ \text{\scriptsize\(R^H\) is low. triang.; \(Q^{(A)}\) is built backwards from \(v_n\) to \(v_1\).}\\
+	&\bullet\ \parbox[t]{7cm}{\scriptsize Columns of \(Q^{(A)}\) for inv. QR iter. 
+		of \(A^{H}\) are the same as QR iter. of \(A\).}\\
+	&\bullet\ \parbox[t]{7cm}{\scriptsize Means QR iter. of A is an implicit inv. iter., so shifts are recommended 
+		from \(v_n\) to \(v_1\) (see below).}
 \end{aligned}\)
 
 % QR Iteration with shifts
 \vspace{15pt}
 \underline{QR Iteration w/ Shifts \& Deflation}\\[10pt]
 \(\begin{aligned}
-	&\text{\scriptsize Rayleigh Quotient Shift: \ } \sigma 
-		= \tfrac{\langle q_p | A | q_p \rangle}{\langle q_p | q_p \rangle} = \langle q_p | A | q_p \rangle\\[5pt]
-	&\rightarrow\ Q_{k+1}^{(A)} R_{k+1} = A_k - \sigma I\\[5pt]
-	&\rightarrow\ R_{k+1} Q_{k+1}^{(A)} = A_{k+1} + \sigma I\\[5pt]
-	&\rightarrow\ \text{Deflation: } \lim_{k\rightarrow\infty} A_k = 
+	&\text{\scriptsize Rayleigh Quotient: \ } \sigma^{(n)} 
+		= \tfrac{\langle q_n | A | q_n \rangle}{\langle q_n | q_n \rangle} 
+		= {\scriptstyle \langle q_n | A | q_n \rangle}
+		= (A_k)_{nn}\\[5pt]
+	&\rightarrow\ \boxed{ Q_{k+1}^{(A)} R_{k+1} = A_k - \sigma_k^{(n)} I }\\[5pt]
+	&\rightarrow\ \boxed{ A_{k+1} = R_{k+1} Q_{k+1}^{(A)} + \sigma_k^{(n)} I }\\[5pt]
+	&\rightarrow\ \text{\scriptsize Deflation: } \lim_{k\rightarrow\infty} A_{k} = 
 		\left( \begin{matrix}
 			A'_{k+1} & b^T\\
-			0 & \lambda_p
+			0 & \sigma_k^{(n)}
 		\end{matrix} \right)
 \end{aligned}\)
 % Notes
 \hfill
 \(\begin{aligned}
-	&\bullet\ 
+	&\bullet\ \text{\scriptsize Diag. entries of \(A_k\) are automatically Rayleigh Quotients.}\\
+	&\bullet\ \text{\scriptsize \(\sigma\) is the last diag. entry, which corresponds to \(v_n\) (see above).}\\
+	&\bullet\ \parbox[t]{8cm}{\scriptsize If \(\sigma_k = \lambda_n \rightarrow\) the last row of 
+		\(Q_{k+1}^{(A)} R_{k+1}\) and \(R_{k+1}\) is 0 
+		\(\rightarrow\) the last row of \(R_{k+1} Q_{k+1}^{(A)}\) is 0 \(\rightarrow\) Deflation (see right).}\\
+	&\bullet\ \parbox[t]{8cm}{\scriptsize Fails if \(\sigma\) is halfway between two \(\lambda_i\) and favors neither.
+		Or cancellation occurs (rare). Also might require complex arithmatic. Other more robust shifts are available.
+		Convergence is only a few iterations, but cost to factor is still \(\mathcal{O}(n^3)\).}
 \end{aligned}\)
 
 % Hessenberg QR Iteration
@@ -2186,16 +2239,27 @@
 	&\text{\sout{\( H = H^{(1)} \ \Rightarrow\ H^H A H \)}} 
 		\ \ \text{\scriptsize isn't Hessenberg at all}\\[5pt]
 	&H = H^{(2)} \ \Rightarrow\ H^H A H \ \ \text{\scriptsize is Hessenberg at subdiag.}\\[5pt]
-	&\rightarrow\ A_1 = H^H A H = H A H\\[5pt]
-	&\rightarrow\ A_{k} \ [{\scriptstyle +\ \sigma I}] = R_k Q_k^{(A)} 
-		\hspace{15pt} \text{\scriptsize\((k>1)\)}\\[5pt]
-	&\rightarrow\ A_{k} \ [{\scriptstyle +\ \sigma I}] = R_k \Big( A_{k-1} \ [{\scriptstyle -\ \sigma I}] \Big) R_k^{-1}
-		\ \ \ \parbox{50pt}{\scriptsize is Hessenberg at subdiag.}
+	&\rightarrow\ \boxed{ A_1 = H^H A H = H A H }\\[5pt]
+	&\rightarrow\ \begin{aligned}[t]
+			&\boxed{ A_{k} \ [{\scriptstyle -\ \sigma I}] = R_k Q_k^{(A)} 
+				\hspace{15pt} \text{\scriptsize\((k>1)\)} }
+				\\[5pt]
+			&\hspace{10pt} = R_k \Big( A_{k-1} \ [{\scriptstyle -\ \sigma I}] \Big) R_k^{-1}
+				\ \ \ \parbox{50pt}{\scriptsize is Hessenberg at subdiag.}
+		\end{aligned}
 \end{aligned}\)
 % Notes
 \hfill
 \(\begin{aligned}
-	&\bullet\ 
+	&\bullet\ \text{\scriptsize Transformation to Hessenberg is done once and costs \(\mathcal{O}(n^3)\).}\\
+	&\bullet\ \parbox[t]{7.5cm}{\scriptsize Givens Rotations to factorize a Hessenberg matrix at each 
+		iter. costs \(\mathcal{O}(n^2)\).}\\
+	&\bullet\ \text{\scriptsize Less iter. needed since already near triagular.}\\
+	&\bullet\ \parbox[t]{7.5cm}{\scriptsize If \(A=A^H\), then the transform is tri-diag that costs 
+		\(\mathcal{O}(n)\) and \(A_k\) becomes diag.}\\
+	&\bullet\ \text{\scriptsize Still expensive if \(n\) is large.}\\
+	&\bullet\ \text{\scriptsize Excessive storage if large and sparse.}\\
+	&\bullet\ \text{\scriptsize No advantage if only a few \(\lambda_i\) are needed.}
 \end{aligned}\)
 
 \end{document}
