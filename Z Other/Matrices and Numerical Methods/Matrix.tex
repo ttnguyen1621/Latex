@@ -1327,7 +1327,7 @@
 \vspace{10pt}
 \subsubsection{Givens Rotation, \(G\)}
 \vspace{5pt}
-\[\begin{aligned}
+\(\begin{aligned}
 	\boxed{ G = 
 		\left(\begin{matrix}
 			c & s\\
@@ -1342,18 +1342,33 @@
 		\left(\begin{matrix} 
 			\Vert a \Vert \\
 			0 
-		\end{matrix}\right)
-		\hspace{25pt}
-		% Extra Notes
-		\begin{aligned}
-			&\bullet\ \text{\scriptsize creates 0's one at a time}\\[-5pt]
-			&\bullet\ \text{\scriptsize useful for spare matrices}\\[-5pt]
-			&\bullet\ \text{\scriptsize When column \(i\) is completed, row \(i\) is too.}\\[-5pt]
-		\end{aligned}\\[10pt]
+		\end{matrix}\right)\\
 	&\ \rightarrow \ \boxed{ c = \frac{a_1}{\sqrt{a_1^2 + a_2^2}}\ , \ \ s = \frac{a_2}{\sqrt{a_1^2 + a_2^2}} }
-\end{aligned}\]
+\end{aligned}
+\hspace{25pt}
+% Extra Notes
+\begin{aligned}
+	&\bullet\ \parbox[t]{6cm}{\scriptsize creates 0's one at a time, rotating all column vectors CLOCKWISE}\\[-3pt]
+	&\bullet\ \text{\scriptsize Doesn't necessarily preserve 0's.}\\[-5pt]
+	&\bullet\ \parbox[t]{6cm}{\scriptsize Create zeros columns-wise, starting from the bottom of the vector and moving up.}\\[-3pt]
+	&\bullet\ \text{\scriptsize useful for spare matrices}\\[-5pt]
+	&\bullet\ \text{\scriptsize When column \(i\) is completed, row \(i\) is too.}\\[-5pt]
+\end{aligned}\\[10pt]\)
+
+% Example of matrix
+\(\begin{aligned}
+	\text{Ex: }\ G_5(2,4) = \text{\scriptsize\(
+		\left(\begin{matrix}
+			1 & 0 & 0 & 0 & 0\\
+			0 & c & 0 & s & 0\\
+			0 & 0 & 1 & 0 & 0\\
+			0 & -s & 0 & c & 0\\
+			0 & 0 & 0 & 0 & 1\\
+		\end{matrix}\right)\)}
+\end{aligned}\)
 
 % Minor change to reduce chance of overflow/underflow
+\vspace{5pt}
 \(\begin{aligned}
 	&\text{Avoid squaring any number \(\gg 1\) to prevent overflow/underflow}\\[5pt]
 	&\hspace{15pt} \begin{array}{c r c l c l}
@@ -2635,7 +2650,7 @@
 % Lanczoz Iteration (when A is Symmetric)
 \subsubsection{Lanczoz Iteration (when \(A=A^H\))}
 
-%
+% Explanation
 \vspace{5pt}
 \(\begin{aligned}
 	&\boxed{ A = A^H \ \Rightarrow \ \begin{aligned}[t]
