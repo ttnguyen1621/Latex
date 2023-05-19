@@ -1383,11 +1383,11 @@
 	\begin{aligned}
 		R = 
 		\left(\begin{matrix}
-			\Vert a_1 \Vert & \widehat{q_1} \cdot a_2 & \widehat{q_1} \cdot a_3 & \dots & \widehat{q_1} \cdot a_n\\
-			0 & \Vert a_2 \Vert & \widehat{q_2} \cdot a_3 & \dots & \widehat{q_2} \cdot a_n\\
-			0 & 0 & \Vert a_3 \Vert & \dots & \widehat{q_3} \cdot a_n\\
+			\Vert q_1 \Vert & \widehat{q_1} \cdot a_2 & \widehat{q_1} \cdot a_3 & \dots & \widehat{q_1} \cdot a_n\\
+			0 & \Vert q_2 \Vert & \widehat{q_2} \cdot a_3 & \dots & \widehat{q_2} \cdot a_n\\
+			0 & 0 & \Vert q_3 \Vert & \dots & \widehat{q_3} \cdot a_n\\
 			\vdots & \vdots & \ddots & \ddots & \vdots\\
-			0 & 0 & \dots & 0 & \Vert a_n \Vert
+			0 & 0 & \dots & 0 & \Vert q_n \Vert
 		\end{matrix}\right)
 	\end{aligned}
 \)
@@ -2118,12 +2118,13 @@
 		\ \ , \ \ \text{rank}(X_0) = p 
 		\\[10pt]
 	&\rightarrow \ \boxed{ X_{k+1} = AX_k = A^{k+1} X_0 }\\
-	&\rightarrow \ \boxed{ \lim_{k \rightarrow \infty} \text{span} \big( X_k \big) = \text{span}(A) }
+	&\rightarrow \ \boxed{ \lim_{k \rightarrow \infty} \text{span} \big( X_k \big) = \text{span}(A_p) }
 \end{aligned}\)
 % Notes
 \hfill
 \(\begin{aligned}[t]
 	&\bullet\ \text{\scriptsize All are found at the same time.}\\
+	&\bullet\ \text{\scriptsize span\((A_p)\) is the span of the first \(p\) eigenvectors of largest magnitude.}\\
 	&\bullet\ \parbox[t]{9cm}{\scriptsize Ill-conditioned since all columns of \(X_k\) converge to \(v_1\) 
 		(though at different rates so they're still ortho.).}\\
 	&\bullet\ \text{\scriptsize Normalize to norm\(_\infty = 1\) to prevent over/underflow.}
@@ -2256,10 +2257,379 @@
 		iter. costs \(\mathcal{O}(n^2)\).}\\
 	&\bullet\ \text{\scriptsize Less iter. needed since already near triagular.}\\
 	&\bullet\ \parbox[t]{7.5cm}{\scriptsize If \(A=A^H\), then the transform is tri-diag that costs 
-		\(\mathcal{O}(n)\) and \(A_k\) becomes diag.}\\
+		\(\mathcal{O}(n)\) and \(A_k\) approaches diag.}\\
 	&\bullet\ \text{\scriptsize Still expensive if \(n\) is large.}\\
 	&\bullet\ \text{\scriptsize Excessive storage if large and sparse.}\\
 	&\bullet\ \text{\scriptsize No advantage if only a few \(\lambda_i\) are needed.}
 \end{aligned}\)
 
+%-----------------------------------------------------
+%-----------------------------------------------------
+%-----------------------------------------------------
+%-----------------------------------------------------
+% Krylov Subspace
+\newpage
+\subsection{Krylov Subspace}
+
+% Characteristic Polynomial
+\underline{Characteristic Polynomial}: \ \ 
+\(\begin{aligned}[t]
+	&\Big[ Ax = \lambda x \Big] \ \Rightarrow\ \Big[ p_n(\lambda) = 0 \Big]\\[5pt]
+	&\boxed{ p_n(\lambda) \ =\ \left( \text{\scriptsize\(\sum_{i=0}^{n-1}\)}\ c_i \lambda^i \right) + \lambda^n 
+		\ =\ c_0 + c_1 \lambda + \dots + c_{n-1}\lambda^{n-1} + \lambda^n }
+	\\[5pt]
+\end{aligned} \)
+
+% Companion Matrix
+\underline{Companion Matrix}: \ \ 
+\(\begin{aligned}
+	&\Big[ p_n(\lambda) = 0 \Big] \Rightarrow \ C_n x = \lambda x \ ,
+		\hspace{5pt} C_n = \text{\scriptsize\(
+			\left(\begin{matrix}
+				0 & 0 & \dots & 0 & -c_0\\
+				1 & 0 & \dots & 0 & -c_1\\
+				0 & 1 & \dots & 0 & -c_2\\
+				\vdots & \vdots & \ddots & \vdots & \vdots\\
+				0 & 0 & \dots & 1 & -c_{n-1}\\
+			\end{matrix}\right)
+		\)}
+		= \text{\scriptsize\(
+			\left(\arraycolsep=2pt \begin{array}{c c c c c}
+				e_2 & e_3 & \dots & e_n & -\vec{c}\
+			\end{array}\right)
+		\)}
+\end{aligned}\)
+
+% Krylov Matrix
+\vspace{5pt}
+\underline{Krylov Matrix}: \ \ \(\boxed{ 
+	K_k = K_{n\times k}
+	= \left(\begin{matrix}
+		x_0 & x_1 & \dots & x_{k-1} 
+	\end{matrix}\right)
+	= \left(\begin{matrix}
+		x_0 & A x_0 & \dots & A^{k-1} x_0
+	\end{matrix}\right) 
+} \hspace{15pt} \text{\scriptsize(\(x_0 \neq 0\) vector)}\)
+
+% Krylov Subspace Def
+\vspace{5pt}
+\underline{Krylov Subspace}: \ \ \(
+	\boxed{ \mathcal{K}_k = \text{span}(K_k) } 
+	\ \rightarrow \ 
+	\boxed{ \mathcal{K}_n = \text{span}(K_n) = \text{span}(A)}
+\)
+
+\vspace{10pt}
+\(
+	\hspace{10pt} 
+	\left. \begin{aligned}
+		AK_n &= \left(\begin{matrix}
+				x_1 & x_2 & \dots & x_n
+			\end{matrix}\right)\\[5pt]
+		&= K_n \left(\begin{matrix}
+				e_2 & e_3 & \dots & \vec{a}\
+			\end{matrix}\right)
+			\hspace{15pt} \text{\scriptsize\((\vec{a} = K_n^{-1}x_n)\)}\\[5pt]
+		&= K_n C_n
+	\end{aligned} \right\}
+	\ \Rightarrow\ \boxed{ K_n^{-1} A K_n = C_n }
+	\hspace{15pt}
+	\begin{aligned}
+		&\text{\scriptsize \(\bullet\) Assume \(\exists K^{-1}\)}\\[-5pt]
+		&\text{\scriptsize \(\bullet\) \(C_n\) is Hessenberg}\\[-5pt]
+		&\text{\scriptsize\(\bullet\ \)} \parbox[t]{5cm}{\scriptsize Sucessive columns of 
+			\(K_n\) converge to \(v_1\), so problem is ill-conditioned}
+	\end{aligned}
+\)
+
+%----------------------------------------------------
+%----------------------------------------------------
+% Arnoldi Iteration
+\subsubsection{Arnoldi Iteration }
+
+% Arnoldi Iteration is Modified, Column-Oriented Gram-Schmidt
+\vspace{5pt}
+\(\begin{aligned}
+	&\boxed{ K_n = Q_n R_n } \\
+	&\parbox[t]{9cm}{\scriptsize Arnoldi iteration is simply modified, column-oriented Gram-Schmidt, 
+		the benefit being that \(Q_n\) is built by column-vector. \(R_n\) is also built by column when building \(Q_n\).}\\
+	&\boxed{ 
+		\begin{aligned}
+			q_{n}^{[i+1]} \ &\equiv\ q_{n}^{[i]} - \widehat{q}_{i} \langle \widehat{q}_{i} | \widehat{q}_{n}^{\ [i]} \rangle\\[5pt]
+			q_{n}^{[i]} \ &\equiv\ \widehat{q}_{i} \langle \widehat{q}_{i} | \widehat{q}_{n}^{\ [i]} \rangle + q_{n}^{[i+1]}\\
+				&\equiv\ \text{\scriptsize\(\sum_{i'=i}^n \ \)} 
+				\widehat{q}_{i'} \langle \widehat{q}_{i'} | \widehat{q}_{n}^{\ [i']} \rangle 
+		\end{aligned} 
+		}
+		\ \left\{ \ 
+		\boxed{
+		\begin{aligned}
+			q_{n} &\equiv q_{n}^{[n]}\\[2pt]
+			q_{n}^{[1]} &\equiv A \widehat{q}_{n-1} \\
+			&= \text{\scriptsize\(\sum_{i=1}^n \ \)} \widehat{q}_{i} \langle \widehat{q}_{i} | \widehat{q}_{n}^{\ [i]} \rangle\\
+			q_1 &= x_0
+		\end{aligned} 
+		} 
+		\right.
+\end{aligned}\)
+\hfill 
+% K=QR Matrices
+\text{\scriptsize\(\begin{aligned}
+	Q_n^T &=
+		\left(\arraycolsep=2pt \begin{array}{c c l c l}
+			\widehat{q_1} &:& q_1 = x_0\\[-10pt]
+			\widehat{q_2} &:& q_2 = q_2^{[2]} &=& \overbrace{ A \widehat{q_1} }^{q_2^{[1]}}
+				- \widehat{q_1} (\widehat{q_1}^H \widehat{q_2}^{[1]})\\[5pt]
+			\widehat{q_3} &:& q_3 = q_3^{[3]} &=& \underbrace{ A \widehat{q_2} 
+				- \widehat{q_1} (r_{13}) }_{q_3^{[2]}} 
+				- \ \widehat{q_2} \langle \widehat{q_2} | \widehat{q_3}^{[2]} \rangle \\[-15pt]
+			\vdots &\\[-5pt]
+			\widehat{q}_{k} &:& q_{k} = q_k^{[k]} &=& A \widehat{q}_{k-1} 
+				- \text{\scriptsize\(\displaystyle \sum_{j=1}^{k-1}\)} \ \widehat{q_j} (r_{jk})
+		\end{array}\right)
+		\\
+	R_n &=
+		\left(\arraycolsep=3pt \begin{array}{c c c c c}
+			\Vert q_1 \Vert 
+				& \langle \widehat{q_1}|\widehat{q_2}^{[1]}\rangle 
+				& \langle\widehat{q_1}|\widehat{q_3}^{[1]}\rangle
+				& \dots 
+				& \langle\widehat{q_1}|\widehat{q_n}^{[1]}\rangle\\[2pt]
+			0 
+				& \Vert q_2 \Vert 
+				& \langle\widehat{q_2}|\widehat{q_3}^{[2]}\rangle 
+				& \dots 
+				& \langle\widehat{q_2}|\widehat{q_n}^{[2]}\rangle\\[2pt]
+			0 
+				& 0 
+				& \Vert q_3 \Vert 
+				& \dots & \langle\widehat{q_3}|\widehat{q_n}^{[3]}\rangle\\
+			\vdots 
+				& \vdots 
+				& \ddots 
+				& \ddots 
+				& \vdots\\
+			0 
+				& 0 
+				& \dots 
+				& 0 
+				& \Vert q_n \Vert
+		\end{array}\right)
+\end{aligned}\)}
+
+% Building Hessenberg matrix, H 
+\vspace{15pt}
+\(\begin{aligned}
+	&\begin{aligned}
+			\Aboxed{ Q_n^{-1} A Q_n &= R_n C_n R_n^{-1} \ \equiv\ H } \hspace{10pt} \Big( \begin{gathered}
+					\text{\scriptsize Still}\\[-7pt]
+					\text{\scriptsize Hessenberg}
+				\end{gathered} \Big) \\
+			\Aboxed{ A Q_n &= Q_n H }
+		\end{aligned}
+		\\[5pt]
+	&\parbox{8cm}{\scriptsize Instead of building \(R_n\) from \(K_n = Q_n R_n\), build \(H\) from \(AQ_n = Q_n H\) 
+		(also by column as \(Q_n\) is built).}
+		\\[5pt]
+	&\begin{aligned}
+		A \widehat{q_j} &= \text{\scriptsize\(\sum_{i=1}^n\)}\ \widehat{q_{i}} H_{ij}
+			= \text{\scriptsize\(\sum_{i=1}^n\)}\ \widehat{q_{i}} \langle \widehat{q_i} | \widehat{q}_{j+1}^{\ [i]} \rangle \\
+		\langle \widehat{q_i} | A | \widehat{q_j} \rangle &= H_{ij}  
+			= \langle \widehat{q_i} | \widehat{q}_{j+1}^{\ [i]} \rangle 
+	\end{aligned}
+\end{aligned}\)
+\hfill 
+% H Matrix
+\text{\scriptsize\(\begin{aligned}
+	H &= \text{\scriptsize\(
+		\left(\arraycolsep=2pt \begin{array}{c c c c c}
+			\langle \widehat{q_1}|A|\widehat{q_1}\rangle 
+				& \langle \widehat{q_1}|A|\widehat{q_2}\rangle
+				& \langle \widehat{q_1}|A|\widehat{q_3}\rangle
+				& \dots 
+				& \langle \widehat{q_1}|\widehat{q_n}^{[1]}\rangle\\[2pt]
+			\Vert q_2 \Vert 
+				& \langle \widehat{q_2}|\widehat{q_3}^{[2]}\rangle
+				& \langle \widehat{q_2}|\widehat{q_4}^{[2]}\rangle
+				& \dots 
+				& \langle \widehat{q_2}|\widehat{q_n}^{[2]}\rangle\\[2pt]
+			0 
+				& \Vert q_3 \Vert 
+				& \langle \widehat{q_3}|\widehat{q_4}^{[3]}\rangle 
+				& \dots 
+				& \langle \widehat{q_3}|\widehat{q_n}^{[3]}\rangle\\[2pt]
+			\vdots 
+				& \ddots 
+				& \ddots 
+				& \ddots 
+				& \vdots\\[2pt]
+			0 
+				& \dots 
+				& 0 
+				& \Vert q_{n} \Vert 
+				& \langle \widehat{q}_{n}|\widehat{q}_{n+1}^{\ [n]}\rangle
+		\end{array}\right)\)}
+\end{aligned}\)}
+
+%----------------------------------------------------
+%
+%
+%----------------------------------------------------
+\newpage
+% Rayleigh-Ritz Procedure
+\subsubsection{Rayleigh-Ritz Procedure}
+\(\boxed{ 
+	% Defines Q_k
+	\begin{aligned}
+		Q_n &= \left[\begin{matrix}
+				Q_k & U_{k}
+			\end{matrix}\right]
+			\\[7pt]
+		Q_k &= \text{\scriptsize\(\left[\arraycolsep=2pt\begin{array}{c c c c}
+				\widehat{q_1} & \widehat{q_2} & ... & \widehat{q_k}
+			\end{array}\right]\)}
+			\\
+		U_k &= \text{\scriptsize\(\left[\arraycolsep=2pt\begin{array}{c c c c}
+				\widehat{q}_{k+1} & ... & \widehat{q}_n
+			\end{array}\right]\)}
+	\end{aligned} 
+}
+\hspace{5pt}
+\Rightarrow
+\hspace{5pt}
+% Converts to "2x2" matrix
+\begin{aligned}
+	Q_n^H A Q_n &=  
+		\left[\begin{matrix}
+			Q_k^H \\[3pt]
+			U_{k}^H
+		\end{matrix}\right]
+		A 
+		\left[\begin{matrix}
+			Q_k & U_{k}
+		\end{matrix}\right]
+		\\
+	&= \left[\begin{matrix}
+			Q_k^H A Q_k & Q_k^H A U_{k}\\[3pt]
+			U_k^H A Q_k & U_k^H A U_{k}
+		\end{matrix}\right]
+		= H =
+		\left[\begin{matrix}
+			H_k & | | |\\[3pt]
+			\tilde{H}_k & | | |
+		\end{matrix}\right]
+\end{aligned}
+\hfill
+% Define H_k
+\begin{aligned}
+	&\bullet\ \begin{gathered}[t]
+			\boxed{H_k = Q_k^H A Q_k}\\[-5pt]
+			\text{\scriptsize(Is hessenberg)}\\[-7pt]
+			\text{\scriptsize(\(\sim\) Rayleigh Quot.)}
+		\end{gathered}\\[3pt]
+	&\bullet\ \boxed{ \tilde{H}_k =
+		\text{\scriptsize\(\left[\arraycolsep=2pt\begin{array}{c c}
+			\boldsymbol{0}^T & \Vert q_{k+1} \Vert \\[5pt]
+			\mathcal{O} & \boldsymbol{0}
+		\end{array}\right]\)} }
+\end{aligned}\)
+
+% Notes
+\vspace{5pt}
+\(\begin{aligned}
+	&\bullet\ \text{\scriptsize \(Q_k\) are the first \(k\) vectors of \(Q_n\) 
+		found through Arnoldi Iteration, called Arnoldi vectors.}\\
+	&\bullet\ \text{\scriptsize The eigenvalues of \(H_k\) are called Ritz values, 
+		and its eigenvectors premultiplied by \(Q_k\) are called Ritz vectors.}\\
+	&\bullet\ \text{\scriptsize At iteration \(H_{k=n} = H\), then the Ritz values/vectors are 
+		equal to the eigenvalues/vectors of \(A\).}\\
+	&\bullet\ \text{\scriptsize The Ritz values/vectors of \(H_k\) converge to 
+		\(A\)'s eigenvalues/vectors as \(k \rightarrow n\), and may be found from QR/Orthogonal iteration.}\\
+	&\bullet\ \text{\scriptsize Extreme eigenvalues are found quickest; shifting + inverting 
+		can be used to find interior eigenvalues.}\\
+	&\bullet\ \text{\scriptsize \(\big( \Vert q_{k+1} \Vert = 0 \rightarrow \tilde{H}_k = 0 \big) \rightarrow H\) is 
+		block triag., \(\mathcal{K}_k\) is an invar. subspace, and the Ritz values/vectors ARE \(A\)'s eigenvalues/vectors.}\\
+	&\bullet\ \parbox[t]{17cm}{\scriptsize For each \(k\)th iteration, multiplying \(Aq\) costs \(\mathcal{O}(n^2)\), 
+		orthogonalizing costs \(\mathcal{O}(kn)\), and computing the Ritz values/vectors costs \(\mathcal{O}(k^3)\).
+		Storage is also needed for \(Q_k\) and \(H_k\).
+		As this increases with \(k\), it's better to do a few iterations, then restart the Arnoldi process with a better
+		\(x_0\) based on already computed info.}
+\end{aligned}\)
+
+%----------------------------------------------------
+%----------------------------------------------------
+% Lanczoz Iteration (when A is Symmetric)
+\subsubsection{Lanczoz Iteration (when \(A=A^H\))}
+
+%
+\vspace{5pt}
+\(\begin{aligned}
+	&\boxed{ A = A^H \ \Rightarrow \ \begin{aligned}[t]
+			Q_n^H A Q_n &= H_n \ \ \text{\scriptsize hessen. and symm. \(=\) tridiag.} \\[5pt]
+			T_k &\equiv H_k \ \ \text{\scriptsize(common notation in practice)}
+		\end{aligned} }\\[5pt]
+	&\parbox[t]{9cm}{\scriptsize Similar to Arnoldi Iteration in building \(Q_n\) and \(H\) by column and using the 
+		Rayleigh-Ritz procedure to estimate the eigenvalues/vectors, but much more simplified with an only three-term 
+		reoccurance for \(Q_n\), and a symm. tridiag. \(H\) for storage and computation of the Ritz values/vectors.}
+\end{aligned}\)
+\hfill 
+% AQ=QH Matrices
+\text{\scriptsize\(\begin{aligned}
+	Q_n^T &=
+		\left(\arraycolsep=3pt \begin{array}{c c r c l}
+			\widehat{q_1} &:& q_1 &=& x_0
+			\\[-5pt]
+			\widehat{q_2} &:& q_2 &=& 
+				A \widehat{q_1}
+				- \widehat{q_1} \langle \widehat{q_1} | A \widehat{q_1} \rangle
+				- \overbrace{ \cancel{ \widehat{q_0} \langle q_1 | q_1 \rangle } }^{\equiv\ 0}
+				\\[5pt]
+			\widehat{q_3} &:& q_3 &=&  
+				A \widehat{q_2} 
+				- \widehat{q_2} \langle \widehat{q_2} | A \widehat{q_2} \rangle
+				- \widehat{q_1} \langle q_2 | q_2 \rangle
+				\\
+			\vdots &\\
+			\widehat{q}_{i+1} &:& q_{i+1} &=& 
+				A \widehat{q}_{i} 
+				- \widehat{q}_{i} \langle \widehat{q}_{i}  | A \widehat{q}_{i} \rangle
+				- \widehat{q}_{i-1} \langle q_{i} | q_{i}  \rangle
+			\end{array}\right)
+		\\[10pt]
+	H &= T = \text{\scriptsize\(
+		\left(\arraycolsep=2pt \begin{array}{c c c c c}
+			\langle \widehat{q_1}|A|\widehat{q_1}\rangle 
+				& \langle \widehat{q_2}|\widehat{q_2}\rangle
+				& 0
+				& 0
+				\\[2pt]
+			\Vert q_2 \Vert 
+				& \langle \widehat{q_2}|A|\widehat{q_2}\rangle 
+				& \ddots
+				& 0 
+				\\[2pt]
+			0 
+				& \ddots
+				& \ddots
+				& \Vert q_{n} \Vert
+				\\[5pt]
+			0 
+				& 0
+				& \Vert q_{n} \Vert
+				& \langle q_n | A| q_n \rangle
+		\end{array}\right)\)}
+\end{aligned}\)}
+
+% Notes
+\(\begin{aligned}
+	&\bullet\ \text{\scriptsize Only the diagonal and subdiagonal of \(T\) need to be stored.}\\
+	&\bullet\ \text{\scriptsize Extreme eigenvalues are found quickest; shifting + inverting 
+		can be used to find interior eigenvalues.}\\
+	&\bullet\ \text{\scriptsize \(\big( \Vert q_{k+1} \Vert = 0 \rightarrow \tilde{T}_k = 0 \big) \rightarrow T\) is 
+		block triag., \(\mathcal{K}_k\) is an invar. subspace, and the Ritz values/vectors ARE \(A\)'s eigenvalues/vectors.}\\
+	&\bullet\ \parbox[t]{17cm}{\scriptsize Finite-arithmatic means the vectors are more likely to lose orthogonality.
+		Reorthogonalizing them might be expensive, so sometimes it is ignored if the Ritz values are close enough. Not 
+		reorthogonalizing might lead to repeated eigenvalues.}
+	\end{aligned}\)
 \end{document}
