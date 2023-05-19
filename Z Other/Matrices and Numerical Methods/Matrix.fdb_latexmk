@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1684460185 "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Matrix.tex" "Matrix.pdf" "Matrix" 1684460188
-  "Matrix.aux" 1684460187 4174 f05efbb1c09fd26f15c676138218af81 "pdflatex"
-  "Matrix.tex" 1684460182 94481 d06e52e53409e041496c08e9f055f460 ""
-  "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Matrix.tex" 1684460182 94481 d06e52e53409e041496c08e9f055f460 ""
+["pdflatex"] 1684466378 "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Matrix.tex" "Matrix.pdf" "Matrix" 1684466380
+  "Matrix.aux" 1684466380 4175 36fd7f9dc29801952c6bf505239b39b9 "pdflatex"
+  "Matrix.tex" 1684466377 97022 b5f56600ec55eb947ccfe6db606c3baa ""
+  "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Matrix.tex" 1684466377 97022 b5f56600ec55eb947ccfe6db606c3baa ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1650318317 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1650313675 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1650313675 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -99,6 +99,7 @@
   "c:/texlive/2022/texmf-dist/tex/latex/mathtools/mathtools.sty" 1650321794 59398 061078e853e620354ba0437103cbd0fe ""
   "c:/texlive/2022/texmf-dist/tex/latex/mathtools/mhsetup.sty" 1650321794 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "c:/texlive/2022/texmf-dist/tex/latex/parskip/parskip.sty" 1650323253 4288 94714aa7f535440f33181fec52a31963 ""
+  "c:/texlive/2022/texmf-dist/tex/latex/setspace/setspace.sty" 1650325030 22913 a27d7908fc6f0385466454a966a316eb ""
   "c:/texlive/2022/texmf-dist/tex/latex/tools/calc.sty" 1650325950 10214 00ce62e730d0cfe22b35e8f1c84949c7 ""
   "c:/texlive/2022/texmf-dist/web2c/texmf.cnf" 1650313242 40171 cdab547de63d26590bebb3baff566530 ""
   "c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1650326957 4448422 53302d27d6d34c8e3e97ce3a8b4bdfa7 ""

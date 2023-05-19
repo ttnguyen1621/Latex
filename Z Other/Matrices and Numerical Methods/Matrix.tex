@@ -2,6 +2,7 @@
 \usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 \usepackage{enumitem, amssymb, amsmath, amsfonts, mathtools, parskip}
 \usepackage{cancel}
+\usepackage{setspace}
 \usepackage[normalem]{ulem}
 
 \newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
@@ -1363,63 +1364,134 @@
 
 %----------------------------------------------------------------
 %----------------------------------------------------------------
+%----------------------------------------------------------------
+%----------------------------------------------------------------
 % Gram-Schmidt Orthogonalization
-\vspace{10pt}
-\subsubsection{Gram-Schmidt Orthogonalization}
-\vspace{10pt}
-% Gram Schmidt Matrices
-\(
-	\begin{aligned}
-		Q_\parallel^T = 
-		\left(\begin{aligned}
-			&\widehat{q_1} : q_1 = a_1\\
-			&\widehat{q_2} : q_2 = a_2 - \widehat{q_1} (\widehat{q_1} \cdot a_2)\\
-			&\widehat{q_3} : q_3 = a_3 - \widehat{q_1} (\widehat{q_1} \cdot a_3) - \widehat{q_2} (\widehat{q_2} \cdot a_3)\\
-			&\hspace{3pt} \vdots\\
-			&\widehat{q_n} : q_n = a_n - {\scriptstyle\sum}_j^n\ \widehat{q_j} (\widehat{q_j} \cdot a_n)
-		\end{aligned}\right)
-	\end{aligned}
-	\ , \ \ 
-	\begin{aligned}
-		R = 
-		\left(\begin{matrix}
-			\Vert q_1 \Vert & \widehat{q_1} \cdot a_2 & \widehat{q_1} \cdot a_3 & \dots & \widehat{q_1} \cdot a_n\\
-			0 & \Vert q_2 \Vert & \widehat{q_2} \cdot a_3 & \dots & \widehat{q_2} \cdot a_n\\
-			0 & 0 & \Vert q_3 \Vert & \dots & \widehat{q_3} \cdot a_n\\
-			\vdots & \vdots & \ddots & \ddots & \vdots\\
-			0 & 0 & \dots & 0 & \Vert q_n \Vert
-		\end{matrix}\right)
-	\end{aligned}
-\)
-
-%-------------------------------------------------------------
-%-------------------------------------------------------------
-%-------------------------------------------------------------
-%-------------------------------------------------------------
 \newpage
-% Classical Column Oriented Gram Schidt
-\underline{Classical, Column Oriented}:\ \ Find \(\widehat{q_i}\), then solve for \(\widehat{q_{i+1}}\), and
-	continue up to \(\widehat{q_n}\).
+\subsubsection{Gram-Schmidt Orthogonalization}
 
-% Notes
-\(\hspace{10pt} \begin{aligned}[t]
-	&\bullet\ \text{For a program, obviously \(a_k\) can be replaced by \(q_k\), so less storage is needed.}\\
-	&\bullet\ \text{Cancellation that causes loss of orthogonality occurs more when ill-conditioned.}\\
-	&\bullet\ \text{As a result, performing \(Q^T_\parallel b = b'_1\) isn't always best.}\\
-	&\bullet\ \text{Can't column-pivot, since that depends on rows being completed first.}
+\vspace{5pt}
+% Classical, Column-Oriented Gram Schmidt
+\(\begin{aligned}
+	&\parbox{10cm}{\setstretch{1.1} \underline{Column-Oriented}:
+		Build the \(\widehat{q_i}\) column vector first, then solve for \(\widehat{q}_{i+1}\), 
+		and continue up to \(\widehat{q_n}\).}\\[5pt]
+	&\parbox{10cm}{\setstretch{1.1} \underline{Classical}:
+		Each sucessive term in the sum for \(q_i\) depends on the original vector, \(a_i\).}\\
+	% Notes
+	&\bullet\ \text{\scriptsize Extra storage is needed for \(a_i\).}\\	
+	&\bullet\ \parbox[t]{9cm}{\scriptsize Cancellation that causes loss of orthogonality occurs more when ill-conditioned.
+		As a result, performing \(Q^T_\parallel b = b'_1\) isn't always best.}\\
+	&\bullet\ \text{\scriptsize Can't column-pivot, since that depends on rows being completed first.}
 \end{aligned}\)
+\hfill
+% QR Matrices
+\text{\scriptsize\(
+	\begin{aligned}
+		Q_\parallel^T &= 
+			\left(\begin{aligned}
+				&\widehat{q_1} : q_1 = a_1\\
+				&\widehat{q_2} : q_2 = a_2 - \widehat{q_1} (\widehat{q_1} \cdot a_2)\\
+				&\widehat{q_3} : q_3 = a_3 - \widehat{q_1} (\widehat{q_1} \cdot a_3) - \widehat{q_2} (\widehat{q_2} \cdot a_3)\\
+				&\hspace{3pt} \vdots\\
+				&\widehat{q_n} : q_n = a_n - {\scriptstyle\sum}_j^n\ \widehat{q_j} (\widehat{q_j} \cdot a_n)
+			\end{aligned}\right)
+			\\[5pt]
+		R &= 
+			\left(\begin{matrix}
+				\Vert q_1 \Vert & \widehat{q_1} \cdot a_2 & \widehat{q_1} \cdot a_3 & \dots & \widehat{q_1} \cdot a_n\\
+				0 & \Vert q_2 \Vert & \widehat{q_2} \cdot a_3 & \dots & \widehat{q_2} \cdot a_n\\
+				0 & 0 & \Vert q_3 \Vert & \dots & \widehat{q_3} \cdot a_n\\
+				\vdots & \vdots & \ddots & \ddots & \vdots\\
+				0 & 0 & \dots & 0 & \Vert q_n \Vert
+			\end{matrix}\right)
+	\end{aligned}
+\)}
 
-% Modified Row Oriented Gram Schidt
+% Modified Gram-Schmidt
+\vspace{20pt}
+\(\begin{aligned}[t]
+	&\parbox{9.25cm}{\setstretch{1.1} \underline{Modified}:
+		Each sucessive term in the \(q_i\) sum, \(q_i^{[k+1]}\), depends on its previous term, \(q_i^{[k]}\).}\\[5pt]
+	&\boxed{ 
+		\begin{aligned}
+			q_{i}^{[k+1]} \ &\equiv\ q_{i}^{[k]} - \widehat{q}_{k} \langle \widehat{q}_{k} | \widehat{q}_{i}^{\ [k]} \rangle\\[5pt]
+			q_{i}^{[k]} \ &\equiv\ \widehat{q}_{k} \langle \widehat{q}_{k} | \widehat{q}_{i}^{\ [k]} \rangle + q_{i}^{[k+1]}\\
+				&\equiv\ \text{\scriptsize\(\sum_{k'=k}^i \ \)} 
+				\widehat{q}_{k'} \langle \widehat{q}_{k'} | \widehat{q}_{i}^{\ [k']} \rangle 
+		\end{aligned} 
+		}
+		\ \left\{ \ 
+		\boxed{
+		\begin{aligned}
+			q_{i} &\equiv q_{i}^{[i]}\\[2pt]
+			q_{i}^{[1]} &\equiv a_i \\
+			&= \text{\scriptsize\(\sum_{k=1}^i \ \)} \widehat{q}_{k} \langle \widehat{q}_{k} | \widehat{q}_{i}^{\ [k]} \rangle\\
+			q_1 &= x_0
+		\end{aligned} 
+		} 
+		\right.
+		\\[5pt]
+	% Notes
+	&\bullet\ \text{\scriptsize No storage for \(a_i\) is needed.}\\[-5pt]
+	&\bullet\ \text{\scriptsize Less error in orthog. with finite-precision arithmatic.}
+\end{aligned}\)
+\hfill 
+% QR matrices
+\text{\scriptsize\(\begin{aligned}[t]
+	&\\[-25pt]
+	Q_n^T &=
+		\left(\arraycolsep=2pt \begin{array}{c c l c l}
+			\widehat{q_1} &:& q_1 = a_1\\[-6pt]
+			\widehat{q_2} &:& q_2 = q_2^{[2]} &=& \overbrace{ a_2 }^{q_2^{[1]}}
+				- \ \widehat{q_1} (\widehat{q_1} \cdot \widehat{q_2}^{[1]})\\[5pt]
+			\widehat{q_3} &:& q_3 = q_3^{[3]} &=& \underbrace{ a_3 
+				- \widehat{q_1} (r_{13}) }_{q_3^{[2]} \hspace{20pt}} 
+				- \ \widehat{q_2} \langle \widehat{q_2} | \widehat{q_3}^{[2]} \rangle \\[-15pt]
+			\vdots &\\[-5pt]
+			\widehat{q}_{n} &:& q_{n} = q_n^{[n]} &=& a_n
+				- \text{\scriptsize\(\displaystyle \sum_{m=1}^{n-1}\)} \ \widehat{q}_m (r_{mn})
+		\end{array}\right)
+		\\
+	R_n &=
+		\left(\arraycolsep=3pt \begin{array}{c c c c c}
+			\Vert q_1 \Vert 
+				& \langle \widehat{q_1}|\widehat{q_2}^{[1]}\rangle 
+				& \langle\widehat{q_1}|\widehat{q_3}^{[1]}\rangle
+				& \dots 
+				& \langle\widehat{q_1}|\widehat{q_n}^{[1]}\rangle\\[2pt]
+			0 
+				& \Vert q_2 \Vert 
+				& \langle\widehat{q_2}|\widehat{q_3}^{[2]}\rangle 
+				& \dots 
+				& \langle\widehat{q_2}|\widehat{q_n}^{[2]}\rangle\\[2pt]
+			0 
+				& 0 
+				& \Vert q_3 \Vert 
+				& \dots & \langle\widehat{q_3}|\widehat{q_n}^{[3]}\rangle\\
+			\vdots 
+				& \vdots 
+				& \ddots 
+				& \ddots 
+				& \vdots\\
+			0 
+				& 0 
+				& \dots 
+				& 0 
+				& \Vert q_n \Vert
+		\end{array}\right)
+\end{aligned}\)}
+
+% Row Oriented Gram Schidt
 \vspace{10pt}
-\underline{Modified, Row Oriented}:\ \ Let
-	\(q_i^\text{\scriptsize\([k]\)} = a_i - {\scriptstyle\sum}_j^k\ \widehat{q_j} (\widehat{q_j} \cdot a_i)\). For all
-	\(1\leq i \leq n\), solve for \(q_i^\text{\scriptsize\([k]\)}\) starting first \\[5pt] at \(k=1\), then continue 
+\underline{Row Oriented}:\ \ For all
+	\(1\leq i \leq n\), solve for \(q_i^\text{\scriptsize\([k]\)}\) starting first at \(k=1\), then continue 
 	until \(k=n\).
-
+	\\[5pt]
 % Notes
 \(\hspace{10pt} \begin{aligned}
-	&\bullet\ \text{Allows for column pivoting since rows are completed first.}\\
-	&\bullet\ \text{Cancellation, though still present, is less severe.}
+	&\bullet\ \text{\scriptsize Allows for column pivoting since rows are completed first.}\\[-5pt]
+	&\bullet\ \text{\scriptsize Cancellation, though still present, is less severe.}
 \end{aligned}\)
 
 % Augmented Gram Schmidt matrices
@@ -1490,7 +1562,8 @@
 %-----------------------------------------------------------
 %-----------------------------------------------------------
 % Column-Pivoting
-\vspace{7pt}
+\newpage
+% \vspace{7pt}
 \subsubsection{Factorization with Column-Pivoting}
 \vspace{7pt}
 \(\begin{aligned}
@@ -1545,8 +1618,8 @@
 %----------------------------------------------------------------
 %----------------------------------------------------------------
 %----------------------------------------------------------------
-\newpage
 % Singular Value Decomposition
+\newpage
 \subsection{Singular Value Decomposition (SVD)}
 \vspace{5pt}
 \[ \boldsymbol{ \arraycolsep=3pt
@@ -2378,9 +2451,9 @@
 \text{\scriptsize\(\begin{aligned}
 	Q_n^T &=
 		\left(\arraycolsep=2pt \begin{array}{c c l c l}
-			\widehat{q_1} &:& q_1 = x_0\\[-10pt]
+			\widehat{q_1} &:& q_1 = x_0\\[-7pt]
 			\widehat{q_2} &:& q_2 = q_2^{[2]} &=& \overbrace{ A \widehat{q_1} }^{q_2^{[1]}}
-				- \widehat{q_1} (\widehat{q_1}^H \widehat{q_2}^{[1]})\\[5pt]
+				- \ \widehat{q_1} (\widehat{q_1}^H \widehat{q_2}^{[1]})\\[5pt]
 			\widehat{q_3} &:& q_3 = q_3^{[3]} &=& \underbrace{ A \widehat{q_2} 
 				- \widehat{q_1} (r_{13}) }_{q_3^{[2]}} 
 				- \ \widehat{q_2} \langle \widehat{q_2} | \widehat{q_3}^{[2]} \rangle \\[-15pt]
@@ -2588,7 +2661,7 @@
 			\widehat{q_3} &:& q_3 &=&  
 				A \widehat{q_2} 
 				- \widehat{q_2} \langle \widehat{q_2} | A \widehat{q_2} \rangle
-				- \widehat{q_1} \langle q_2 | q_2 \rangle
+				- \widehat{q_1} \langle q_2 | q_2 \rangle QR
 				\\
 			\vdots &\\
 			\widehat{q}_{i+1} &:& q_{i+1} &=& 
