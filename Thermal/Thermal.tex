@@ -782,7 +782,12 @@
         &\begin{aligned}[t]
                 P &= P_\text{no attraction} + P_\text{vdW}\\[7pt]
                 &= \frac{NkT}{V - Nb} - \frac{\partial}{\partial V} \big( U_\text{pot. e. attraction} \big)\\[5pt]
-                &= \frac{NkT}{V - Nb} - \frac{\partial}{\partial V} \left( \frac{-a}{V/N} \cdot N \right)\\[5pt]
+                &= \frac{NkT}{V - Nb} - \frac{\partial}{\partial V}  
+                    \begin{aligned}[t]
+                        \big( - & a \left[ \tfrac{N}{V} \right] \cdot N \big) \\[-4pt]
+                        &\text{\scriptsize(\(\uparrow\) dens. = \(\uparrow\) attract.)}
+                    \end{aligned} 
+                    \\[-1pt]
                 &= \frac{NkT}{V - Nb} - \frac{aN^2}{V^2}
             \end{aligned}\\[3pt]
         &\Rightarrow \boxed{ \left( P + \frac{aN^2}{V^2} \right) \left( V - Nb \right) = Nk_b T }\\[20pt]
