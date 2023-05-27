@@ -1499,9 +1499,7 @@
 
 % Row Oriented Gram Schidt
 \vspace{10pt}
-\underline{Row Oriented}:\ \ For all
-	\(1\leq i \leq n\), solve for \(q_i^\text{\scriptsize\([k]\)}\) starting first at \(k=1\), then continue 
-	until \(k=n\).
+\underline{Row Oriented}:\ \ For all \(1\leq i \leq n\), build each \(q_i\) from it's sum, term by term.
 	\\[5pt]
 % Notes
 \(\hspace{10pt} \begin{aligned}
@@ -2720,4 +2718,34 @@
 		Reorthogonalizing them might be expensive, so sometimes it is ignored if the Ritz values are close enough. Not 
 		reorthogonalizing might lead to repeated eigenvalues.}
 	\end{aligned}\)
+
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+% Jacobi's Method for Symmetric Matrices
+\vfill
+\subsection{Jacobi Method (when \(A=A^T\))}
+\(\begin{aligned}
+	&J \text{ is a Givens Rotation Matrix}\\[5pt]
+	&\boxed{ A_{k+1} = J^T A_k J 
+		= J^T \text{\scriptsize\(\left(\begin{matrix}
+			a & b\\
+			b & d
+		\end{matrix}\right)\)}
+		\text{\scriptsize\(\left(\begin{matrix}
+			c & s\\
+			-s & c
+		\end{matrix}\right)\)} } \\
+	&\boxed{ 0 = 1 + t \cdot \tfrac{(a-d)}{b} - t^2 }
+		\hspace{10pt} \text{\scriptsize(Choose smaller \(\left\vert t=\tfrac{s}{c} \right\vert\))}
+\end{aligned}\)
+% Notes
+\hfill
+\(\begin{aligned}
+	&\bullet\ \text{\scriptsize Creates 0s by rotating the column vectors and then the row vectors.}\\[-3pt]
+	&\bullet\ \text{\scriptsize The row vector rotation doesn't preserve 0s at all.}\\[-3pt]
+	&\bullet\ \text{\scriptsize\(\lim_{k\rightarrow\infty} A_k =\) Diag.}\\
+	&\bullet\ \text{\scriptsize Each matrix sweep costs the same as tridiag. + QR}\\[-3pt]
+	&\bullet\ \text{\scriptsize Easy to use with parallel-computing.}
+\end{aligned}\)
+
 \end{document}

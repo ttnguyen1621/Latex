@@ -782,7 +782,7 @@
         &\begin{aligned}[t]
                 P &= P_\text{no attraction} + P_\text{vdW}\\[7pt]
                 &= \frac{NkT}{V - Nb} - \frac{\partial}{\partial V} \big( U_\text{pot. e. attraction} \big)\\[5pt]
-                &= \frac{NkT}{V - Nb} - \frac{\partial}{\partial V} \left( a \frac{-N}{V} \cdot N \right)\\[5pt]
+                &= \frac{NkT}{V - Nb} - \frac{\partial}{\partial V} \left( \frac{-a}{V/N} \cdot N \right)\\[5pt]
                 &= \frac{NkT}{V - Nb} - \frac{aN^2}{V^2}
             \end{aligned}\\[3pt]
         &\Rightarrow \boxed{ \left( P + \frac{aN^2}{V^2} \right) \left( V - Nb \right) = Nk_b T }\\[20pt]
@@ -793,12 +793,12 @@
 \begin{minipage}[t]{.56\textwidth}
     \setlength{\parindent}{.5cm}
     \scriptsize
-    An isotherm \((P,V)\) is either a monotonic decrease like an exponential curve for \(T \geq T_c\) (one-to-one), 
+    An isotherm \((V,P)\) is either a monotonic decrease like an exponential curve for \(T \geq T_c\) (one-to-one), 
     or like a mexican-hat curve for smaller \(T < T_c\) (not one-to-one). The mexican-hat curve could be misinterpreted
     since it looks like decreasing volume will start decreasing pressure at the hill/peak of the curve. Graphing 
     \((G,P)\) parametrically with decreasing \(V\), one sees that the line does a triangular loop and intersects itself 
     at the point of vapor pressure. Since the thermodynamic stable state is at the lowest \(G\), the system will skip 
-    the loop (representing unstable states). On the \((P,V)\) graph, this corresponds to a flat, straight line at the 
+    the loop (representing unstable states). On the PV diagram, this corresponds to a flat, straight line at the 
     vapor pressure between the curve's two critical points (in the differential sense) - the peak and trough - 
     connecting a higher volume to a lower volume (the mexican-hat is not one-to-one). This sharp decrease in volume at 
     the same pressure describes a phase change from higher volume gas to lower volume liquid at vapor pressure. The 
@@ -810,7 +810,7 @@
 
     \underline{Maxwell Construction}:
     To find the vapor pressure without graphing \((G,P)\) and finding the intersection, note that
-    \[0 = \int_\text{loop} dG = \int_\text{loop} \left( \tfrac{\partial G}{\partial P} \right)_t dP
+    \[0 = \int_\text{loop} dG = \int_\text{loop} \left( \tfrac{\partial G}{\partial P} \right)_{N,T} dP
         = \int_\text{loop} V dP.\] 
 \end{minipage}
 
