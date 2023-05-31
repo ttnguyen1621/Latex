@@ -12,8 +12,135 @@
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
 % Solving Nonlinear Equation (1-D)
-\section{Solving Nonlinear Equation (1-D)}
+\section{Solving Nonlinear Equations}
 
+% 1-Dimension
+\subsection{One Dimension/Equation \hspace{15pt} {\scriptsize skipped a lot}}
 
+% Root multiplicity
+\vspace{10pt}
+\underline{Root Multiplicity, \(m\)}: \ \(0 = f(\bar{x}) = f'(\bar{x}) = ... = f^{(m-1)}(\bar{x}) 
+    \hspace{15pt} \text{\scriptsize(Simple Root: \(m=1\))}\) 
+
+% K-th iteration error
+\vspace{10pt}
+\underline{\(k\)-th Iteration Error}: \ \(\boxed{ e_k = x_k - \bar{x} }\)
+% Convergence rate
+\hfill
+\underline{Convergence Rate, \(r\)}: \ \(\displaystyle 
+    \boxed{ \lim_{k \rightarrow \infty} \frac{ \Vert e_{k+1} \Vert }{ \Vert e_k \Vert^r } = C }
+    \hspace{15pt} \text{\scriptsize(\(0 < C < 1\) if \(r = 1\))} \)
+
+% Interval Bisection
+\vspace{10pt}
+\underline{Iterval Bisection (Finding \(y=0\))}: \ \(
+    \boxed{ [f(a) < 0] \ ,\  [f(b) > 0] \ , \ [f \text{ is cont.}] 
+    \ \Rightarrow\ \exists m \text{ s.t. } f(m) = 0 }
+\)
+
+% Fixed-Point Iteration
+\vspace{10pt}
+\underline{Fixed-Point Iteration (Finding \(y=x\))}: \ \(\boxed{ \text{cont. } f(x) = 0 
+    \ \Rightarrow\ \text{Find } g(x) = x } \rightarrow \boxed{ x_{k+1} = g(x_k) }\)
+
+% ~ Banach FP Theorem conditions
+\vspace{2pt}
+\hspace{5pt} \(\begin{aligned}
+    &\sim \text{Banach-Fixed Point Theorem (there are many FP theorems)}\\[5pt]
+    &\bullet\ \text{\(g\) is Contractive (over a domain): \ \ dist}(g(x), g(y)) \leq q \cdot \text{dist}(x,y)
+        \hspace{15pt} \text{\scriptsize\(q \in [0,1)\)}\\[5pt]
+    &\bullet\ e_{k+1} = [x_{k+1} - \bar{x}] = [g(x_k) - g(\bar{x})] = g'(\xi_k) (x_k - \bar{x}) = g'(\xi_k) e_k \\[5pt]
+    &\bullet\ \forall \vert g'(\xi_k) \vert < G < 1 
+        \ \Rightarrow\ \Big( \vert e_{k+1} \vert \leq G \vert e_k \vert \leq ... \leq G^k \vert e_0 \vert \Big)
+        \ \Rightarrow\ \lim_{k\rightarrow\infty} e_{k} = 0
+        \hspace{15pt} \text{\scriptsize(\(G = \max g'\) over domain)} \\[5pt]
+    &\bullet\ \lim_{k\rightarrow\infty} \vert g'(\xi_k) \vert = \boxed{ 
+        \begin{gathered}[t]
+            \Big( 0 < \vert g'(\bar{x}) \vert < 1 \Big) \\[-3pt]
+            \text{\scriptsize(one contractive condition)}
+        \end{gathered}
+         = C } \hspace{15pt} \text{\scriptsize(\(r=1\))}\\[5pt]
+    &\bullet\ \boxed{g'(\bar{x}) = 0} \ \Rightarrow\ \big[ g(x_k) - g(\bar{x}) \big] = \tfrac{g''(\xi_k)}{2}(x_k - \bar{x})^2 
+        \ \Rightarrow\ \boxed{ \left\vert \tfrac{g''(\bar{x})}{2} \right\vert = C } 
+        \hspace{15pt} \text{\scriptsize(\(r=2\) if \(\bar{x}\) is an \(m=2\) root of g)}
+\end{aligned}\)
+
+% Newton's Method
+\vspace{10pt}
+\underline{Newton's Method (Finding \(y=0\))}:
+
+\hspace{5pt} \(\begin{aligned}
+    &f(\bar{x}) = 0 = f(x_k + h_k) \ \approx\ f(x_k) + f'(x_k) h_k 
+        \ \Rightarrow\ \boxed{ x_{k+1} = x_k + h_k = x_k - \tfrac{f(x_k)}{f'(x_k)} }\\[5pt]
+    &\bullet\ \boxed{ g(x) \equiv x - \tfrac{f(x)}{f'(x)}}\ \Rightarrow \ 
+        g(\bar{x}) = \bar{x} \ , \ \boxed{ g'(\bar{x}) = \tfrac{f(\bar{x}) f''(\bar{x})}{f'(\bar{x})^2} = 0 } \ , \ \boxed{ r = 2 } 
+        \hspace{15pt} \text{\scriptsize(if \(\bar{x}\) is a simple root of \(f\))}\\[5pt]
+    &\bullet\ \bar{x} \text{ is an } m > 1 \text{ root of } f \ \Rightarrow \ \boxed{ r = 1 \ , \ C = 1 - 1/m }
+        \hspace{15pt} \text{\scriptsize(proof not given)}
+\end{aligned}\)
+
+% Secant Method
+\vspace{10pt}
+\underline{Secant Method (Finding \(y=0\))}:
+
+\hspace{5pt} \(\begin{aligned}
+    &f'(x_k) \ \approx\ \tfrac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}} 
+        \hspace{15pt} \parbox{3cm}{\scriptsize Approx. \(f'(x_k)\) with a secant line's slope} 
+        \hspace{5pt} \ \Rightarrow \ 
+        \boxed{ x_{k+1} = x_k + h_k = x_k - \tfrac{x_k - x_{k-1}}{f(x_k) - f(x_{k-1})} f(x_k) }
+        \\[5pt]
+    &\bullet\ \boxed{ r = r_+ \approx 1.618 }: \ r_+^2 - r_+ - 1 = 0 \hspace{15pt} \text{\scriptsize(proof hard)}\\[5pt]
+    &\bullet\ \text{\scriptsize Lower cost of iter. offsets the larger number of iter. compared to Newton's Method with derivatives}
+\end{aligned}\)
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+% m-dimension/equations
+\newpage
+\subsection{\(m\) Dimensions/System of Equations \hspace{15pt} {\scriptsize stuff skipped}}
+
+% Newton's Method
+\vspace{10pt}
+\underline{Newton's Method (Solving \(\vec{y}=0\))}:
+
+\hspace{5pt} \(\begin{aligned}
+    &\boxed{ \left\{ J_f(\vec{x}) \right\}_{ij} = \tfrac{\partial f_i(\vec{x})}{\partial x_j} }: \ \
+        \boxed{ J_f(\vec{x}_k) \vec{h}_k = - \vec{f}(x_k) }
+        \ \Rightarrow\ \boxed{ \vec{x}_{k+1} = \vec{x}_k + \vec{h}_k = \vec{x}_k - J_f(\vec{x}_k)^{-1} \vec{f}(\vec{x}_k) }
+        \\[5pt]
+    &\bullet\ \boxed{ \vec{g}(\vec{x}) \equiv \vec{x} - J_f(\vec{x})^{-1} \vec{f}(\vec{x}) }\ \Rightarrow \ 
+        \begin{aligned}
+            J_g(\bar{x}) &= \begin{gathered}[t]
+                    \cancel{ I - J_f(\bar{x})^{-1} J_f(\bar{x}) }\\[-3pt]
+                    \text{\scriptsize(if \(J_f(\bar{x})\) is nonsingular)}
+                \end{gathered} 
+                + \sum_{i=1}^n f_i(\bar{x}) H_i(\bar{x})
+                \hspace{20pt} \parbox[t]{2.2cm}{\scriptsize \vspace{-10pt} 
+                \(H_i =\) component matrix of the \\ tensor, \(D_x J_f(\bar{x})\)}
+                \\[5pt]
+            &= \mathcal{O} \ \Rightarrow \ \boxed{ r = 2 }
+                \hspace{15pt} \text{\scriptsize(uh.....)}
+        \end{aligned}
+        \\[5pt]
+    &\bullet\ \text{\scriptsize \(LU\) fact. of the Jacobian costs \(\mathcal{O}(n^3)\)}
+\end{aligned}\)
+
+% Secant Method
+\vspace{10pt}
+\underline{Broyden's [Secant Updating] Method (Solving \(\vec{y}=0\))}:
+
+\hspace{5pt} \(\begin{aligned}
+    &\boxed{ B_k \vec{h}_k = - \vec{f}(x_k) }
+        \ \Rightarrow \ \boxed{ \vec{x}_{k+1} = \vec{x}_k + \vec{h}_k }
+        \ , \ \boxed{ B_{k+1} = B_k + \tfrac{f(x_{k+1}) h_k^T}{h_k^T h_k} }
+        \hspace{15pt} \text{\scriptsize(cost is \(\mathcal{O}(n^3)\))}
+        \\[5pt]
+    &\bullet\ B_{k+1} (\vec{x}_{k+1} - \vec{x}_k) \ =\ B_{k+1} \vec{h}_k \ =\ f(\vec{x}_{k+1}) - f(\vec{x}_k)\\[5pt]
+    &\bullet\ B_{k} \text{\scriptsize \ factorization is updated to factorization of } 
+        B_{k+1} \text{\scriptsize \ at cost } \mathcal{O}(n^2) \text{\scriptsize \ instead of directly from the above eq.}\\[5pt]
+    &\bullet\ \text{\scriptsize Lower cost of iter. offsets the larger number of iter. compared to Newton's Method with derivatives}
+\end{aligned}\)
 
 \end{document}
