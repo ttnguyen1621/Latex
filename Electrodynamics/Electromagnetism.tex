@@ -2037,14 +2037,17 @@ TM: \( \displaystyle \left[ \frac{\partial^2}{\partial x^2}
 \end{aligned}\)
 
 \vspace{20pt}
-\(\begin{aligned}
+\(\begin{array}{r c l c l}
 	\relax[ \vec{A} \times (\vec{B} \times \vec{C}) ]_i 
-		&= \vec{A} \dotP ( B_i \vec{C} ) - \vec{A} \dotP ( \vec{B} C_i ) \\ \\
+		&=& \vec{A} \dotP ( B_i \vec{C} ) - \vec{A} \dotP ( \vec{B} C_i ) 
+		\\[10pt]
 	\vec{A} \times (\vec{B} \times \vec{C}) 
-	&= \vec{A} \dotP ( \vec{B} \otimes \vec{C} ) - \vec{A} \dotP ( \vec{B} \vec{C} )\\
-	&= \vec{A} \dotP ( \vec{B} \otimes \vec{C} ) - \vec{A} \dotP ( \vec{B} \otimes \vec{C} )^T\\
-	&= ( A^T ( BC^T )^T )^T - ( A^T ( BC^T ) )^T
-\end{aligned}\)
+		&=& \boxed{ ( \vec{A} \dotP ( \vec{B} \otimes \vec{C} )^T )^T - ( \vec{A} \dotP \vec{B} \otimes \vec{C} )^T }
+		&=& ( \vec{A} \otimes \vec{B} ) \cdot \vec{C} - ( \vec{A} \dotP \vec{B} \otimes \vec{C} )^T 
+		\\[5pt]
+	&=& ( A^T ( BC^T )^T )^T - ( A^T BC^T )^T
+		&=& (AB^T)^T C - ( A^T BC^T )^T
+\end{array}\)
 
 \end{document}
 

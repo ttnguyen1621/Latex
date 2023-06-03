@@ -499,7 +499,9 @@
 \subsection{Symmetric Matrices}
 % Positive Definite Def
 \vspace{5pt}
-\underline{Positive Definite}:\ \ \(\boxed{x^T Ax \geq 0}\) \\[15pt]
+\underline{Positive Definite}:\ \ \(\boxed{x^T Ax > 0} 
+	\ \Leftrightarrow\ \boxed{ \lambda > 0 }
+	\hspace{10pt} \text{\scriptsize\((Ax = \lambda x)\)} \) \\[15pt]
 % Cholesky Factorization
 \underline{Cholesky Factorization for Sym., Pos. Def.}:\ \ \(\boxed{A = LL^T = LDL^T}\)\\[15pt]
 \text{\scriptsize\(\begin{aligned}
@@ -1822,7 +1824,7 @@
 % Matrix Information
 \newpage
 \section{Matrix Information}
-\vspace{10pt}
+\vspace{5pt}
 % Types
 \begin{minipage}[t]{.49\textwidth}
 	\(\begin{array}[t]{r l}
@@ -1834,7 +1836,8 @@
 		\text{Normal}:& AA^\dagger = A^\dagger A \ \Leftrightarrow\ A = UDU^\dagger
 		\\[5pt]
 		\text{Symmetric}:& S = S^T = QDQ^T \hspace{10pt} \text{\scriptsize(\(D\) is real)}\\[5pt]
-		\text{Hermitian}:& H = H^\dagger = UDU^\dagger \hspace{10pt} \text{\scriptsize(\(D\) is real)}
+		\text{Hermitian}:& H = H^\dagger = UDU^\dagger \hspace{10pt} \text{\scriptsize(\(D\) is real)}\\[5pt]
+		\text{Jacobian}:& J_f = \vec{\nabla} \vec{f} = ( \vec{\nabla} \otimes \vec{f}\ )^T = ( \vec{\nabla} \vec{f\ }^T )^T
 	\end{array}\)
 \end{minipage}
 \hfill
@@ -1851,7 +1854,8 @@
 				\text{\(D\) is diag.}
 			\end{gathered}\right)\)}\\[10pt]
 		\text{Hessenberg}:& \text{\scriptsize Triang. but from any diag.}\\[5pt]
-		\text{Jordan Form}:& \parbox[t]{4cm}{\scriptsize Nonsing. trans. into a near diag. w/ entries in diag. above}
+		\text{Jordan Form}:& \parbox[t]{4cm}{\scriptsize Nonsing. trans. into a near diag. w/ entries in diag. above}\\[15pt]
+		\text{Hessian}:& H_f = \vec{\nabla} \cdot (\vec{\nabla} f)^T
 	\end{array}\)
 \end{minipage}
 
@@ -1883,7 +1887,7 @@
 %------------------------------------------------------------
 %------------------------------------------------------------
 % Schur Form
-\vspace{5pt}
+% \vspace{5pt}
 \subsection{Schur Form}
 \vspace{5pt}
 % Unitary Form
@@ -1964,7 +1968,7 @@
 \end{minipage}
 
 % Blocked Upper Triangular
-\vspace{10pt}
+% \vspace{10pt}
 \underline{Block Upper Triangular Transformation}\\[10pt]
 \(\begin{aligned}
 	&\bullet\ \begin{aligned}[t]
