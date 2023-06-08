@@ -31,7 +31,7 @@
 %--------------------------------------------------------------------------------------------------------------------------------
 \section{System of Linear Equations, \(Ax=b\)}
 
-% P Norm and Condition Number
+% P Norm
 \subsection{\(p\)-Norm and Condition Number}
 \vspace{10pt}\noindent
 % Vectors
@@ -55,22 +55,7 @@
 		\bullet & \Vert x \Vert_1 &\leq&  \sqrt{n}\ \Vert x \Vert_2 	&\leq& \sqrt{n}\ \Vert x \Vert_\infty
 	\end{array}\)
 \end{minipage}
-\begin{minipage}[t]{.49\textwidth}
-	\setlength{\parindent}{.5cm}
-	% Func/Vector Condition Number
-	\noindent
-	\underline{Function/Vector Condition Number}:\\[15pt]
-	\indent\(\begin{aligned}
-		\text{cond}\Big( f(x) \Big) 
-		&= \left\vert \frac{[f(\hat{x}) - f(x)] / f(x)}{[\hat{x} - x] / x} \right\vert\\[5pt]
-		&= \left\vert \frac{\Delta y / y}{\Delta x / x}\right\vert 
-			= \left\vert \frac{y' \cdot \Delta x / y}{\Delta x / x}\right\vert\\[5pt]
-		&= \left\vert \frac{x f'(x)}{f(x)}\right\vert
-	\end{aligned}\)
-\end{minipage}
-
 % Matrices
-\vspace{20pt}\noindent
 \begin{minipage}[t]{.49\textwidth}
 	% Matrix P Norm
 	\underline{Matrix \(p\)-Norm}: \ \ 
@@ -94,9 +79,57 @@
 		\scriptstyle \text{necessarily in general)}
 	\end{gathered}\)
 \end{minipage}
+
+% Condition Numbers
+\vspace{20pt}\noindent
+% Func/Vector Condition Number
+\begin{minipage}[t]{.50\textwidth}
+	% Solving for f(x)
+	\underline{Func./Vec. Condition Number (Solve for \(y\))}:
+
+	\vspace{15pt}
+	\(\begin{aligned}
+		% Rel. Cond. Number
+		&\begin{aligned}
+				\text{[rel.]}\ \text{cond}_f(x) 
+				&= \left\vert \frac{\Delta y / y}{\Delta x / x}\right\vert 
+					= \left\vert \tfrac{\text{Rel. Forward Err.}}{\text{Rel. Backward Err.}} \right\vert
+					\\[3pt]
+				&= \boxed{ \left\vert \tfrac{[f(\hat{x}) - f(x)] / f(x)}{[\hat{x} - x] / x} \right\vert	}
+					\hspace{15pt}\text{\scriptsize(vector)}
+					\\[3pt]
+				&= \boxed{ \left\vert \tfrac{x f'(x)}{f(x)}\right\vert }
+					\hspace{15pt}\text{\scriptsize(func.)}
+			\end{aligned}
+			\\[13pt]
+		% Abs Cond. Number
+		&\begin{aligned}
+				\begin{gathered}[t]
+						\text{[abs.]}\ \text{cond}_f(\hat{x}) \\[3pt]
+						\left( \begin{gathered}
+								\text{\scriptsize use when \(f(x) = 0\)}\\[-7pt]
+								\text{\scriptsize or \(x=0\)}
+							\end{gathered} \right)
+					\end{gathered} \ 
+				&= \left\vert \frac{\Delta y}{\Delta x}\right\vert 
+					= \left\vert \tfrac{\text{Abs. Forward Err.}}{\text{Abs. Backward Err.}} \right\vert
+					\\[-20pt]
+				&= \boxed{ \left\vert f'(\hat{x}) \right\vert }
+			\end{aligned}
+	\end{aligned}\)
+
+	% Solving for x
+	\vspace{30pt}
+	\underline{Inverse Condition Number (Solve for \(x\))}:
+
+	\vspace{15pt}
+	\(\begin{aligned}
+		\boxed{ \text{cond}_{f^{-1}}(x) \ =\ 1 / \text{cond}_f(x) }
+	\end{aligned}\)
+\end{minipage}
+% Matrix Condition Number
 \begin{minipage}[t]{.49\textwidth}
 	\setlength{\parindent}{.5cm}
-	% Matrix Condition Number
 	\noindent
 	\underline{Matrix Condition Number}:\\[15pt]
 	\indent\(\begin{aligned}
