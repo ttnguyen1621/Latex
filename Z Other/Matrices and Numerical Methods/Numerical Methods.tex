@@ -1,8 +1,10 @@
 \documentclass[12pt]{article}
 \usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 \usepackage{enumitem, amssymb, amsmath, amsfonts, mathtools, parskip}
+\usepackage{relsize}
 \usepackage{cancel}
 
+\newcommand{\hs}{\hspace{1pt}}
 \newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
 
 \begin{document}
@@ -12,13 +14,9 @@
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
 % Solving Nonlinear Equation (1-D)
-\section{Solving Nonlinear Equations}
-
-% 1-Dimension
-\subsection{One Dimension/Equation \hspace{15pt} {\scriptsize skipped a lot}}
+\section{Solving Nonlinear Equations [by Root Finding \(y=0\)]}
 
 % Root multiplicity
-\vspace{10pt}
 \underline{Root Multiplicity, \(m\)}: \ \(0 = f(\bar{x}) = f'(\bar{x}) = ... = f^{(m-1)}(\bar{x}) 
     \hspace{15pt} \text{\scriptsize(Simple Root: \(m=1\))}\) 
 
@@ -30,6 +28,12 @@
 \underline{Convergence Rate, \(r\)}: \ \(\displaystyle 
     \boxed{ \lim_{k \rightarrow \infty} \frac{ \Vert e_{k+1} \Vert }{ \Vert e_k \Vert^r } = C }
     \hspace{15pt} \text{\scriptsize(\(0 < C < 1\) if \(r = 1\))} \)
+
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+% 1-Dimension
+\vspace{5pt}
+\subsection{One Dimension/Equation \hspace{15pt} {\scriptsize skipped a lot}}
 
 % Interval Bisection
 \vspace{10pt}
@@ -81,7 +85,7 @@
 
 % Secant Method
 \vspace{10pt}
-\underline{Secant Method (Finding \(y=0\))}:
+\underline{Secant Method/Linear Interpolation (Finding \(y=0\))}:
 
 \hspace{5pt} \(\begin{aligned}
     &f'(x_k) \ \approx\ \tfrac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}} 
@@ -93,12 +97,18 @@
     &\bullet\ \text{\scriptsize Lower cost of iter. offsets the larger number of iter. compared to Newton's Method with derivatives}
 \end{aligned}\)
 
-%------------------------------------------------------------------
-%------------------------------------------------------------------
-%------------------------------------------------------------------
-%------------------------------------------------------------------
-% m-dimension/equations
+%-------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
 \newpage
+% Inverse Parabolic Interpolation
+\underline{Inverse Parabolic Interpolation}: \ Use 3 pts to approx. an inverse [sideways] parabola
+
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+% m-dimension/equations
+\vspace{15pt}
 \subsection{\(m\) Dimensions/System of Equations \hspace{15pt} {\scriptsize stuff skipped}}
 
 % Newton's Method
@@ -116,14 +126,14 @@
                     \cancel{ I - J_f(\bar{x})^{-1} J_f(\bar{x}) }\\[-3pt]
                     \text{\scriptsize(if \(J_f(\bar{x})\) is nonsingular)}
                 \end{gathered} 
-                + \sum_{i=1}^n f_i(\bar{x}) H_i(\bar{x})
+                + \sum_{i=1}^n H_i(\bar{x}) f_i(\bar{x})
                 \hspace{20pt} \parbox[t]{2.2cm}{\scriptsize \vspace{-10pt} 
                 \(H_i =\) component matrix of the \\ tensor, \(D_x J_f(\bar{x})\)}
                 \\[5pt]
             &= \mathcal{O} \ \Rightarrow \ \boxed{ r = 2 }
                 \hspace{15pt} \text{\scriptsize(uh... idk)}
         \end{aligned}
-        \\[5pt]
+        \\
     &\bullet\ \text{\scriptsize \(LU\) fact. of the Jacobian costs \(\mathcal{O}(n^3)\)}
 \end{aligned}\)
 
@@ -142,5 +152,934 @@
         B_{k+1} \text{\scriptsize \ at cost } \mathcal{O}(n^2) \text{\scriptsize \ instead of directly from the above eq.}\\[5pt]
     &\bullet\ \text{\scriptsize Lower cost of iter. offsets the larger number of iter. compared to Newton's Method with derivatives}
 \end{aligned}\)
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+% Optimization/Minimum Finding
+\vspace{10pt}
+\section{Optimizing [By Finding \(\min f(\vec{x}) = f(\bar{x})\)]}
+
+\subsection{Function Shape and Convexity}
+
+\vspace{5pt}
+% Coercivity
+\parbox{.37\textwidth}{
+    \underline{Coercive}: \ \(\boxed{ \lim_{x \rightarrow \pm \infty} f(x) = \infty }\)
+}
+% Unimodal
+\parbox{.62\textwidth}{
+    \underline{Unimodal}: \ \(
+        \begin{gathered}
+            a \leq \bar{x} \leq b \\[-5pt]
+            x_1 < x_2    
+        \end{gathered}
+        \ : \ 
+        \arraycolsep=2pt \boxed{ \begin{array}{c c l}
+            x_2 < \bar{x} &\ \rightarrow\ & f(x_1) > f(x_2)\\ 
+            \bar{x} < x_1 &\ \rightarrow\ & f(x_1) < f(x_2)
+        \end{array} }
+    \)
+}
+
+% Global Minimum
+\vspace{5pt}
+\(\begin{aligned}
+    &\underline{ \exists \text{ global } \min f \text{ if} }\\[3pt]
+    &\hspace{10pt} \begin{aligned}
+            &\bullet\ \text{\scriptsize cont. \(f\) on a closed and bounded set}\\
+            &\bullet\ \text{\scriptsize cont. \(f\) is coercive on a closed, unbounded set}\\
+            &\bullet\ \text{\scriptsize cont. \(f\) on a set and has a nonempty, closed, and bounded sublevel set}\\
+            &\bullet\ \text{\scriptsize domain set is unbounded: cont. \(f\) is 
+                coercive \(\Leftrightarrow\) all sublevel sets are bounded}
+        \end{aligned}
+\end{aligned}\)
+
+% Convexity
+\vspace{8pt}
+\(\begin{aligned}
+    &\underline{ \text{\(f\) is convex [on a convex set]} }: \\[3pt]
+    &\hspace{10pt} \begin{aligned}
+            &\bullet\ \text{\scriptsize any sublevel set is convex}\\
+            &\bullet\ \text{\scriptsize any local min. is a global min}
+        \end{aligned}
+\end{aligned}\)
+\hfill
+\(\begin{aligned}
+    &\underline{ \text{\(f\) is strictly convex [on a convex set]} }:\\[3pt]
+    &\hspace{10pt} \begin{aligned}
+            &\bullet\ \text{\scriptsize any local min. is a unique global min.}\\
+            &\bullet\ \text{\scriptsize if set is unbounded: \(f\) is 
+                coercive \(\Leftrightarrow\) \(f\) has a unique global min.} 
+        \end{aligned}
+\end{aligned}\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+% Derivative Tests of Un/constrained Optimization
+\subsection{Derivative Tests (Gradient, Jacobian, Hessian) and Lagrangians}
+
+% Function requirements
+\vspace{5pt}
+\underline{Req.} : \ \( \boxed{ 
+    \text{\scriptsize cont. } f(\bar{x}) = \min f 
+    \ ,\ \text{\scriptsize cont. } \vec{\nabla} f(\bar{x})
+    \ ,\ \text{\scriptsize cont. }  H_f(\bar{x})
+} \)
+
+% Taylor's Theorem
+\vspace{5pt}
+\underline{Taylor's Theorem}: \( \boxed{
+    \arraycolsep=2pt \begin{array}{c c c c l c}
+        f{\scriptstyle(\bar{x} + \vec{s}\hspace{1pt})} - f{\scriptstyle(\bar{x})} &=
+            &\vec{\nabla} \begin{gathered}[b]
+                    {\scriptstyle \alpha_1 \hspace{1pt} \in\hspace{1pt} (0,1)}
+                        \\[-5pt]
+                    f{\scriptstyle(\bar{x} + \alpha_1 \vec{s}\hspace{1pt})}
+                \end{gathered} \cdot \vec{s}
+            &=
+            &\vec{\nabla} f{\scriptstyle(\bar{x})} \cdot \vec{s} 
+                + \tfrac{1}{2} 
+                \langle \vec{s}\hspace{1pt} | 
+                \begin{gathered}[b]
+                    {\scriptstyle \alpha_2 \hspace{1pt}\in\hspace{1pt} (0,1)}
+                        \\[-5pt]
+                    H_f{\scriptstyle(\bar{x} + \alpha_2 \vec{s} \hspace{1pt})}
+                \end{gathered} 
+                | \vec{s} \hspace{1pt} \rangle
+            &\geq\ 0
+            \\[5pt]
+        f{\scriptstyle(\vec{x} + s \hat{u})} - f{\scriptstyle(\vec{x})} &=
+            &\vec{\nabla} f{\scriptstyle(\vec{x} + \alpha_1 s \hat{u})} \cdot s \hat{u}
+            &=
+            &\vec{\nabla} f{\scriptstyle(\vec{x})} \cdot \vec{s} 
+                + \tfrac{s^2}{2} 
+                \langle \hat{u} | 
+                H_f{\scriptstyle(\vec{x} + \alpha_2 \vec{s} \hspace{1pt})}
+                | \hat{u} \rangle
+    \end{array}
+}\)
+
+% Taylor Results
+\hspace{5pt} \(\begin{aligned}[t]
+    &\bullet 
+        \ \lim_{s \rightarrow 0} 
+        \left( 
+            \tfrac{ f{\scriptstyle(\vec{x} + \vec{s}\hspace{1pt})} -  f{\scriptstyle(\vec{x})} }{ s }
+            = \vec{\nabla} f{\scriptstyle(\vec{x} + \alpha_1 s \hat{u})} \cdot \cancel{s} \hat{u} 
+        \right) 
+        \Rightarrow \left( 
+            {\scriptstyle \vec{\nabla} f{\scriptstyle(\bar{x})} \cdot \hat{u} \ \geq\ 0}
+            \rightarrow 
+            \boxed{ {\scriptstyle \vec{\nabla} f{\scriptstyle(\bar{x})} \cdot \vec{s} \ \geq\ 0} } 
+        \right)
+        \hspace{3pt} , \hspace{5pt} 
+        \boxed{ \parbox{3.7cm}{
+            \scriptsize Cauchy-Schwarz \(\rightarrow\) \\[3pt]
+            \( \max \vec{\nabla} f{\scriptstyle(\vec{x})} \cdot \hat{u}\)
+            if \(\vec{u} = \vec{\nabla} f(\vec{x})\)
+        } }
+        \\[5pt]
+    &\bullet
+        \begin{aligned}[t]
+            &\boxed{ \vec{u} = \mp \vec{\nabla} f{\scriptstyle(\vec{x})} }
+                \Rightarrow \ 
+                \lim_{s \rightarrow 0} 
+                \left( 
+                    \tfrac{ f{\scriptstyle(\vec{x} + \vec{s}\hspace{1pt})} -  f{\scriptstyle(\vec{x})} }{ s }
+                    = \mp \cancel{s} \tfrac{
+                        \vec{\nabla} f{\scriptstyle(\vec{x} + \alpha_1 s \hat{u})}
+                        \cdot 
+                        \vec{\nabla} f{\scriptstyle(\vec{x})} 
+                    }{
+                        \Vert \vec{\nabla} f{\scriptstyle(\vec{x})} \Vert
+                    }
+                \right)
+                = \mp \Vert \vec{\nabla} f{\scriptstyle(\vec{x})} \Vert 
+                \ \tfrac{<}{>}\ 0
+                \hspace{15pt}
+                \boxed{ 
+                    \parbox{2.9cm}{
+                        \scriptsize if \(\pm \vec{\nabla} f(\vec{x}) \neq 0\),
+                        its dir. is an ascent/descent.
+                    }
+                }
+        \end{aligned}
+        \\[5pt]
+    &\bullet 
+        \ \lim_{s \rightarrow 0} 
+        \left(
+            \tfrac{ 
+                f{\scriptstyle(\vec{x} + \vec{s}\hspace{1pt})} -  f{\scriptstyle(\vec{x})} 
+                + f{\scriptstyle(\vec{x} - \vec{s}\hspace{1pt})} -  f{\scriptstyle(\vec{x})} 
+            }{ s^2 }
+            =
+            \tfrac{\scriptstyle 
+                \langle \hat{u} | 
+                H_f(\vec{x} + \alpha_2 \vec{s} \hspace{1pt}) + H_f(\vec{x} - \alpha_3 \vec{s} \hspace{1pt}) 
+                | \hat{u} \rangle
+            }{ 2 }
+        \right)
+        = {\scriptstyle \langle \hat{u} | H_f(\vec{x}) | \hat{u} \rangle}
+        \ \Rightarrow \
+        \boxed{ {\scriptstyle \langle \vec{s}\hspace{1pt} | H_f(\bar{x}) | \vec{s}\hspace{1pt} \rangle \ \geq\ 0} } 
+\end{aligned}\)
+
+% Unconstrained Optimization Conditions
+\vspace{15pt}
+\subsubsection{Unconstrained Optimization Conditions}
+
+% Taylor's Theorem
+\vspace{5pt}
+\(
+    \bullet\ \begin{aligned}
+        &\boxed{ f(\bar{x}) = \min f }
+            \ \Leftrightarrow \ 
+            \text{\scriptsize\(
+                \left( 
+                    \hspace{5pt}
+                    \begin{gathered}
+                        \vec{\nabla} f (\bar{x}) \cdot \vec{s} \geq 0
+                            \ , \ \vec{\nabla} f (\bar{x}) \cdot - \vec{s} \geq 0\\
+                        \ \Rightarrow\ \boxed{ \vec{\nabla} f (\bar{x}) = 0 }
+                    \end{gathered}
+                    \hspace{10pt} , \hspace{10pt}
+                    \begin{gathered}
+                        \vec{u} = - \vec{\nabla} f(\bar{x})\\
+                        \ \Rightarrow\ \boxed{ \vec{\nabla} f (\bar{x}) = 0 }
+                    \end{gathered}
+                    \hspace{10pt} , \hspace{10pt}
+                    \boxed{ 
+                        \begin{gathered}
+                            \text{\scriptsize(for strict convexity)}\\
+                            \langle \vec{s}\hspace{1pt} | H_f(\bar{x}) | \vec{s}\hspace{1pt} \rangle > 0
+                        \end{gathered} 
+                    }
+                    \hspace{5pt}
+                \right)
+            \)}
+    \end{aligned}
+\)
+
+% Optimization
+\vspace{10pt}
+\(
+    \begin{aligned}[t]
+        &\text{\underline{Optimization}} 
+            \hspace{10pt} 
+            f: \ \ \mathbb{R}^n \rightarrow \mathbb{R}
+            \hspace{20pt}
+            \boxed{ \min f(\vec{x}) = y} 
+            \\[10pt]
+        % Lagrangian and Hessian
+        &\hspace{10pt} 
+            \boxed{ \mathcal{L}(\vec{x}) = f(\vec{x}) }
+            \hspace{10pt} , \hspace{12pt}
+            \boxed{ \nabla \mathcal{L}(\bar{x}) = 0 }
+            \hspace{10pt} , \hspace{12pt}
+            \boxed{ 
+                H_\mathcal{L} = \nabla_{xx} \mathcal{L}: \ \
+                \langle s | H_\mathcal{L}(\bar{x}) | s \rangle > 0 
+            }
+            \ \Rightarrow \ \boxed{ y = f(\bar{x}) }
+    \end{aligned}
+\)
+
+% Constrained Optimization Conditions
+\vspace{15pt}
+\subsubsection{Constrained Optimization Conditions}
+
+% Taylor's Theorem
+\vspace{5pt}
+\(
+    \bullet\ 
+    \boxed{
+        \begin{gathered}
+            \vec{s} = \text{\scriptsize feasable direction} \\[-3pt]
+            {\scriptstyle f(\bar{x}) = \min f \text{ \ given \ } g,\ h}
+        \end{gathered}
+    }
+    \ \Leftrightarrow \ 
+    \left(\hspace{5pt}
+        \boxed{ \vec{\nabla} f(\bar{x}) \cdot \vec{s} \ \geq\ 0 }
+        \hspace{5pt} , \hspace{5pt} 
+        \boxed{ \langle \vec{s} \hspace{1pt} | H_f(\bar{x}) | \vec{s} \hspace{1pt} \rangle \ \geq\ 0 }
+    \hspace{5pt}\right)
+\)
+
+% Optimization
+\vspace{10pt}
+\(
+    \text{\underline{Optimization}}
+    \hspace{10pt}
+    \text{\scriptsize\(
+        \begin{aligned}
+            f:& \ \ \mathbb{R}^n \rightarrow \mathbb{R}\\
+            g:& \ \ \mathbb{R}^n \rightarrow \mathbb{R}^{m}\\
+            h:& \ \ \mathbb{R}^n \rightarrow \mathbb{R}^p\\[5pt]
+        \end{aligned}
+    \)}
+    \hspace{20pt}
+    \boxed{ 
+        \min f(\vec{x}) = y 
+        \ \ \ \text{\scriptsize w/} \ \ \
+        \left(\begin{matrix}
+            \vec{g} \text{\scriptsize\((\vec{x})\)} = 0\\
+            \vec{h} \text{\scriptsize\((\vec{x})\)} \leq 0
+        \end{matrix}\right) 
+    }
+    \hspace{20pt}
+    {\scriptstyle
+        \begin{aligned}
+            \text{\underline{active}} :     &\ \ h_i(\bar{x}) = 0
+                \\
+            \text{\underline{inactive}} :   &\ \ h_i(\bar{x}) < 0
+                \ \rightarrow\ 
+                \begin{gathered}[b]
+                    \text{\scriptsize(see KKT)}\\[-3pt]
+                    \bar{\mu}_i = 0
+                \end{gathered}
+                \\
+        \end{aligned}
+    }
+\)
+
+\hspace{10pt} \(
+    % Lagrangian
+    \begin{aligned}
+        &\boxed{ 
+                \begin{aligned}
+                    &\mathcal{L} {\scriptstyle(\vec{x}, \vec{\lambda}, \vec{\mu})}
+                        = f(\vec{x}) + \vec{\lambda} \cdot \vec{g}(\vec{x})  + \vec{\mu} \cdot \vec{h}(\vec{x})  \\
+                    &\hspace{10pt} = f + \text{\scriptsize\(\sum_i^m\)}\ \lambda_i g_i
+                        + \cancel{ \text{\scriptsize\(\sum_i^p\)}\ \mu_i h_i }
+                        \hspace{10pt} \begin{gathered}
+                            \text{\scriptsize (KKT) if} \\[-9pt]
+                            {\scriptstyle \vec{x} \ =\ \bar{x}}
+                        \end{gathered}
+                \end{aligned}
+            }
+            \hspace{7pt} , \hspace{7pt}
+            % Gradient
+            \boxed{
+                \begin{aligned}
+                    \nabla \mathcal{L} {\scriptstyle(\bar{x}, \bar{\lambda}, \bar{\mu})}
+                    &= \text{\scriptsize\(
+                            \left( \begin{matrix}
+                                \nabla_x \mathcal{L} = 0\\
+                                \nabla_\lambda \mathcal{L} = 0\\
+                                \nabla_\mu \mathcal{L} \leq 0
+                            \end{matrix} \right)
+                        \)}
+                        = \text{\scriptsize\(
+                            \left( \begin{matrix}
+                                \nabla f \text{\scriptsize\((\bar{x})\)} 
+                                    + J_g^T \text{\scriptsize\((\bar{x})\)} \bar{\lambda} 
+                                    + J_h^T \text{\scriptsize\((\bar{x})\)} \bar{\mu}\\
+                                \vec{g} \text{\scriptsize\((\bar{x})\)}\\
+                                \vec{h} \text{\scriptsize\((\bar{x})\)}
+                            \end{matrix} \right)
+                        \)}
+                \end{aligned}
+            } \\[5pt]
+        % Hessian
+        &H_\mathcal{L} {\scriptstyle(\bar{x}, \bar{\lambda}, \bar{\mu})} = 
+            \text{\scriptsize\(\left( \begin{matrix}
+                \nabla_{xx} \mathcal{L} & \nabla_{x\lambda} \mathcal{L} & \nabla_{x\mu} \mathcal{L}\\
+                \nabla_{\lambda x} \mathcal{L} & \nabla_{\lambda\lambda} \mathcal{L} & \nabla_{\lambda\mu} \mathcal{L}\\
+                \nabla_{\mu x} \mathcal{L} & \nabla_{\mu\lambda} \mathcal{L} & \nabla_{\mu\mu} \mathcal{L}  
+            \end{matrix}\right)\)}
+            =
+            \begin{gathered}[t]
+                \text{\scriptsize\(
+                        \left( \begin{matrix}
+                            \nabla_{xx} \mathcal{L} & J_g^T & J_{h}^T\\
+                            J_g & 0 & 0\\
+                            J_{h} & 0 & 0 
+                        \end{matrix}\right)
+                    \)}
+                    \\
+                \text{\scriptsize(can't be pos. def.)}
+            \end{gathered}
+            \hspace{3pt} , \hspace{10pt}
+            \boxed{
+                \nabla_{xx} \mathcal{L} {\scriptstyle(\bar{x}, \bar{\lambda}, \bar{\mu})}
+                = H_f + \text{\scriptsize\(\sum_i^m\)}\ \bar{\lambda}_i H_{g_i}
+                + \text{\scriptsize\(\sum_i^{\text{act} \leq p}\)}\ \bar{\mu}_i H_{h_i}
+            }
+    \end{aligned}
+\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+\hspace{10pt}\(
+    % Cases for Solution
+    \begin{aligned}
+        &\bullet\ \underline{ \text{\scriptsize Assume \(m\leq n\) (not overdetermined)} }\\
+        &\bullet\ y = f(\bar{x}) : \ \nabla \mathcal{L}{\scriptstyle(\bar{x}, \bar{\lambda}, \bar{\mu})} \ ...
+            \ , \ 
+            \boxed{ p = 0 :\ \ Z^T (\nabla_{xx} \mathcal{L}) Z > 0 
+            \hspace{15pt} {\scriptstyle \text{col. of } Z \ =\ \text{basis of null}(J_g) } }
+            \\[5pt]
+        &\bullet\ \underline{ \text{\scriptsize Assume \(h_i\) don't contradict each other?} }
+            \hspace{15pt}
+            \underline{ \text{\scriptsize Assume full rank\((J_{h_\text{act}})\)} }\\
+        &\bullet\ y = f(\bar{x}) : \ \nabla \mathcal{L}{\scriptstyle(\bar{x}, \bar{\lambda}, \bar{\mu})} \ ...
+            \ , \ 
+            \boxed{ p > 0 ,\ \text{\scriptsize Karush-Kuhn-Tucker (KKT)}:\ \ 
+            \bar{\mu}_i \geq 0 ,\ \bar{\mu}_i h_i(\bar{x}) = 0 }
+            \hspace{10pt} \begin{gathered}
+                \text{\scriptsize (2nd deriv. cond. }\\[-9pt]
+                \text{\scriptsize not given)}
+            \end{gathered}\\
+    \end{aligned}    
+\)
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+% One Dimension Minimum
+\vspace{5pt}
+\subsection{Unconstrained One Dimension/Independent Variable}
+
+% Interval Golden Search
+\underline{[Interval] Golden-Section Search (if Unimodal)}: 
+\ \(\boxed{ \tau^2 = 1 - \tau = .382 }\ ,\ \boxed{r = 1}\ ,\ \boxed{C = \tau}\)
+
+\vspace{5pt}
+\hspace{10pt}\(
+    [a < x_1 < x_2 < b]: \ 
+    \left\{ \ \arraycolsep=0pt \begin{array}{r c c c c c c c c}
+        f(x_1) > f(x_2)     &\ \ \rightarrow\ \ & \big[ & x_1  &\ <\ & x_2 \ <\ x_1 + \tau (b-x_1)    &\ <\ & b   & \big] \\[5pt]
+        f(x_1) \leq f(x_2)  &\ \ \rightarrow\ \ & \big[ & a    &\ <\ \ & a + (1-\tau)(x_2 - a) \ <\ x_1 &\ \ <\ \ & x_2 & \big]
+    \end{array}\right.
+\)
+
+% Newton's Method
+\vspace{15pt}
+\underline{Newton's Method}: \ \(
+    f(\bar{x}) = f(x+h) 
+    \ \approx\ f(x) + f'(x) h + \tfrac{1}{2} f''(x) h^2 
+    = g(h)
+\) 
+
+\vspace{5pt}
+\hspace{10pt}\(
+    g(\tfrac{-b}{2a}) = \min g \ \text{\scriptsize(or max)}
+    \ \Rightarrow\ \boxed{ x_{k+1} = x_k + h_k = x_k - \tfrac{b}{2a} = x_k - \tfrac{f'(x)}{f''(x)} } \ ,\ \boxed{r=2}
+\)
+
+% Linear Interpolation
+\vspace{15pt}
+\underline{Sucessive Linear Interpolation [Secant Method]}: \ {\scriptsize Not useful, since line usually has no minimun}
+
+% Sucessive Parabolic Interpolation
+\vspace{5pt}
+\underline{Sucessive Parabolic Interpolation}: \ {
+    \scriptsize Use 3 pts to approx. a parabola w/ \(\boxed{r = 1.324}\) \ (not guarenteed)
+}
+
+%---------------------------------------------------------------
+%
+%
+%
+% Unconstrained m-dimensions
+\vspace{5pt}
+\subsection{Unconstrained \(m\)-Dimensions/Independent Variables}
+
+% Steepest Descent
+\vspace{5pt}
+\underline{Steepest [Gradient] Descent/Line Search (go down \( -\nabla f{\scriptstyle(\vec{x}_k)} \))}: 
+
+\hspace{10pt} \(\begin{aligned}
+    % Descent Algorithm
+    &\boxed{ \phi(\alpha) = f \big( \vec{x} - \alpha \vec{\nabla} f{\scriptstyle(\vec{x})} \big) }
+        \ , \
+        \boxed{ \phi(\alpha_k) = \min \phi }
+        \ \Rightarrow \ 
+        \boxed{ \vec{x}_{k+1} = \vec{x}_k - \alpha_k \vec{\nabla} f(\vec{x}_k) } 
+        \hspace{20pt}
+        \boxed{r=1 \ ,\ C \text{\scriptsize varies} }
+        \\[10pt]
+    % Notes
+    &\bullet
+        \ \vec{\nabla} f{ \scriptstyle ( \vec{x}_k ) } \cdot \vec{\nabla} f{ \scriptstyle ( \vec{x}_{k+1} ) } = 0
+        \ \Rightarrow \ 
+        \text{\scriptsize Path will zig-zag to the min. (not too efficient)}
+\end{aligned}\)
+
+% Newton's Method
+\vspace{5pt}
+\underline{Newton's Method}: \ \(
+    f(\bar{x}) = f(\vec{x} + \vec{h})
+    \ \approx \ f(\vec{x})
+    + \vec{\nabla} f(\vec{x}) \cdot \vec{h} 
+    + \tfrac{1}{2} \langle \vec{h} | H_f(\vec{x}) | \vec{h} \rangle
+\)
+
+\hspace{10pt}\(\begin{aligned}
+    &\boxed{ H_f(\vec{x}_k) \hspace{1pt} \vec{h}_k = - \vec{\nabla} f(\vec{x}_k) } 
+        \ \Rightarrow \ \boxed{ \vec{x}_{k+1} = \vec{x}_k + \vec{h}_k }
+        \hspace{10pt}, \hspace{10pt} \boxed{ r=2 }
+\end{aligned}\)
+
+% Secant Updating
+\vspace{10pt}
+\underline{BFGS [Secant Updating] Method}: \ \(
+    \boxed{ B_k \vec{h}_k = - \vec{\nabla} f(\vec{x}_k) } \ ,\ \boxed{ \vec{y}_k = \vec{\nabla} f(x_{k+1}) - \vec{\nabla} f(x_{k}) }     
+\)
+
+\hspace{5pt} \(\begin{aligned}
+    &\Rightarrow \ \boxed{ \vec{x}_{k+1} = \vec{x}_k + \vec{h}_k }
+        \ , \ \boxed{ 
+            B_{k+1} = B_k 
+            + \tfrac{| y_k \rangle \langle y_k |}{\langle y_k | h_k \rangle} 
+            - \tfrac{B_k | h_k \rangle \langle h_k | B_k}{\langle h_k | B_k | H_k \rangle}
+        }
+        \hspace{15pt} \text{\scriptsize(cost is \(\mathcal{O}(n^3)\))}
+        \\
+    &\bullet\ \text{\scriptsize Preserves symmetry and pos. def.}\\
+    &\bullet\ B_{k} \text{\scriptsize \ factorization is updated to factorization of } 
+        B_{k+1} \text{\scriptsize \ at cost } \mathcal{O}(n^2) \text{\scriptsize \ instead of directly from the above eq.}
+        \\
+    &\bullet\ \text{\scriptsize Lower cost of iter. offsets the larger number of iter. compared to Newton's Method with derivatives}
+\end{aligned}\)
+
+%-------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+% Conjugate Gradient 
+\underline{Conjugate Gradient [Line Search]} : \ 
+
+\vspace{5pt}
+\hspace{10pt}\(
+    \boxed{ 
+        \vec{h}_{k+1} = \vec{\nabla} f(\vec{x}_{k+1}) 
+        - \tfrac{ 
+            \vec{\nabla} f(\vec{x}_{k+1}) \cdot \vec{\nabla} f(\vec{x}_{k+1})
+        }{
+            \vec{\nabla} f(\vec{x}_{k}) \cdot \vec{\nabla} f(\vec{x}_k)
+        } 
+        \ \vec{h}_{k} 
+    } 
+    \hspace{10pt}
+    \text{\scriptsize(Fletcher and Reeves)}
+    \ \Rightarrow\ \boxed{ \vec{x}_{k+1} = \vec{x}_k - \alpha_k \vec{h}_k }
+\)
+
+% Notes
+\vspace{5pt}
+\(\begin{aligned}
+    &\bullet\ \text{\scriptsize Seq. of conj. (where \((a,b) = \langle a | H_f | b \rangle \)) search directions
+        implicitly accumulates info. about \(H_f\).}
+        \\
+    &\bullet\ \text{\scriptsize Better for nonlin. to use } \
+        \boxed{ 
+            \vec{h}_{k+1} = \vec{\nabla} f(\vec{x}_{k+1}) 
+            - \tfrac{ 
+                \vec{\nabla} f(\vec{x}_{k+1}) \cdot \vec{\nabla} f(\vec{x}_{k+1}) 
+                - \vec{\nabla} f(\vec{x}_{k}) \cdot \vec{\nabla} f(\vec{x}_{k+1})
+            }{
+                \vec{\nabla} f(\vec{x}_{k}) \cdot \vec{\nabla} f(\vec{x}_k)
+            } 
+            \ \vec{h}_{k} 
+        }
+        \hspace{10pt} \text{\scriptsize(Polak and Ribiere)}
+        \\
+    &\bullet\ \text{\scriptsize Restart algorithm after \(n\) iter. using last point as the new initial; 
+        a quadratic func. finishes after at most \(n\) iter.}
+\end{aligned}\)
+
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+% Nonlinear Least Squares
+\subsubsection{Nonlinear Least Squares, \(\big\{ \min \Vert \vec{r}(\vec{x}) \Vert^2 : \
+    \vec{f}{\scriptstyle(\vec{a}, \vec{x})} + \vec{r}{\scriptstyle(\vec{x})} = \vec{b} \hspace{1pt} \big\}    
+\)}
+
+% Diff. between Linear and Nonlinear Least Squares
+\vspace{10pt}
+\[
+    \arraycolsep=2pt \begin{array}{c c c}
+        \text{Linear Least Squares} 
+            &
+            &\text{Nonlinear Least Squares}
+            \\[5pt] 
+        \left(\begin{matrix}
+                \vdots\\
+                - \vec{a}_i -\\
+                \vdots
+            \end{matrix}\right)
+            \left(\begin{matrix}
+                |\\
+                \vec{x}\\
+                |
+            \end{matrix}\right)
+            +
+            \left(\begin{matrix}
+                |\\
+                \vec{r}\\
+                |
+            \end{matrix}\right) 
+            =
+            \left(\begin{matrix}
+                |\\
+                \vec{b}\\
+                |
+            \end{matrix}\right) 
+            &\ \ \ \Rightarrow \ \ \
+            &\left(\begin{matrix}
+                    |\\
+                    \vec{f}{\scriptstyle (\vec{a}, \vec{x}) }_i\\
+                    |
+                \end{matrix}\right)
+                +
+                \left(\begin{matrix}
+                    |\\
+                    \vec{r}\\
+                    |
+                \end{matrix}\right) 
+                =
+                \left(\begin{matrix}
+                    |\\
+                    \vec{b}\\
+                    |
+                \end{matrix}\right) 
+    \end{array}
+\]
+
+% Normal Algorithm
+\vspace{5pt}
+\(
+    \begin{gathered}
+        \boxed{ \phi(\vec{x}) \ \equiv\ \tfrac{1}{2} \vec{r} \cdot \vec{r} \hspace{1pt} }
+            \ , \
+            \boxed{ - \vec{\nabla} \phi(\vec{x}) = - J_r^T \vec{r} }
+            \\[5pt]
+        \boxed{ H_\phi(\vec{x}) = J_r^T J_r + \sum_i H_{r_i} \vec{r}_i }
+    \end{gathered}
+    \ \ : \ \
+    \begin{gathered}
+        \text{\scriptsize Newton's Method}\\
+        \boxed{ H_\phi(\vec{x}_k) \hspace{1pt} \vec{h}_k = - \vec{\nabla} \phi(\vec{x}_k) }\\[-3pt]
+        \text{\scriptsize(usually expensive to compute)}
+    \end{gathered}
+    \ \Rightarrow \ 
+    \boxed{ \vec{x}_{k+1} = \vec{x}_k + \vec{h}_k }
+\)
+
+% Gauss-Newton Method
+\vspace{15pt}
+\underline{Gauss-Newton Method}: \ \(
+    \text{If \(\vec{r}\) is small} 
+    \ \Rightarrow\ H_\phi \approx J_r^T J_r
+    \ \Rightarrow\ \boxed{
+        J_r^T ( J_r \vec{h}_k ) = - J_r^T \vec{r}{\scriptstyle(\vec{x}_k)}
+        \hspace{20pt} \begin{gathered}
+            \text{\scriptsize System of}\\[-5pt]
+            \text{\scriptsize Normal Equations}
+        \end{gathered} 
+    }
+\)
+
+% Levenberg-Marquardt Method
+\vspace{15pt}
+\underline{Levenberg-Marquardt Method (Gauss-Newton + Line Search)}: 
+
+\vspace{5pt}
+\(
+    \hspace{10pt}\begin{aligned}
+        &\boxed{ 
+                (J_r^T J_r + \mu_k I) \vec{h}_k = - J_r^T \vec{r}{\scriptstyle(\vec{x}_k)} 
+                \ \Rightarrow \ 
+                \vec{x}_{k+1} = \vec{x} + \vec{h_k}
+            }
+            \\[5pt]
+        &\Rightarrow\ \boxed{
+                \left(\begin{matrix}
+                    J_r^T{\scriptstyle(\vec{x})} & \sqrt{ \mu_k } I
+                \end{matrix}\right)
+                \left(\begin{matrix}
+                    J_r{\scriptstyle(\vec{x})} \\
+                    \sqrt{ \mu_k } I
+                \end{matrix}\right)
+                \vec{h}_k
+                = 
+                \left(\begin{matrix}
+                    J_r^T{\scriptstyle(\vec{x})} & \sqrt{ \mu_k } I
+                \end{matrix}\right)
+                \left(\begin{matrix}
+                    - \vec{r}{\scriptstyle(\vec{x}_k)} \\
+                    0
+                \end{matrix}\right)
+            }
+    \end{aligned}
+\)
+\hfill
+\(
+    \begin{aligned}
+        &\text{\underline{\scriptsize Regularization}}\\
+        &\bullet\ \parbox[t]{4.4cm}{\scriptsize Replacing \(H_{r_i} \vec{r}_i\) terms with a \\ scalar mult. of \(I\).} \\
+        &\bullet\ \parbox[t]{4.4cm}{\scriptsize Shifting the Gauss-Newton Hessian to make it pos. def (or boosting its rank).}\\
+    \end{aligned}
+\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+% Constrained Optimization
+\vspace{10pt}
+\subsection{Constrained \(m\)-Dimensions/Independent Variables}
+
+\(
+    \begin{gathered}
+        \text{\scriptsize Newton's Method}\\
+        \boxed{ H_\mathcal{L} \hspace{1pt} \vec{h}_k = - \vec{\nabla} \mathcal{L} }
+    \end{gathered}
+    \ \ \vline \ \
+    % KKT Matrix
+    \begin{gathered}
+        \underline{\text{\scriptsize KKT Matrix (Eq. Constr)}}\\
+        \begin{aligned}
+                \text{\scriptsize\(
+                    \left( \begin{matrix}
+                        \nabla_{xx} \mathcal{L} & J_g^T \\
+                        J_g & 0
+                    \end{matrix}\right)
+                    \left( \begin{matrix}
+                        \vec{s}_k\\
+                        \ \vec{\delta}_k\ 
+                    \end{matrix}\right)
+                \)}
+                &= - \text{\scriptsize\(
+                        \left( \begin{matrix}
+                            \nabla f \text{\scriptsize\((\bar{x})\)} 
+                                + J_g^T \text{\scriptsize\((\bar{x})\)} \bar{\lambda}\\
+                            \vec{g} \text{\scriptsize\((\bar{x})\)}
+                        \end{matrix} \right)
+                    \)}
+                    \\[5pt]
+                \Aboxed{
+                    \text{\scriptsize\(
+                        \left( \begin{matrix}
+                            B & J^T \\
+                            J & 0
+                        \end{matrix}\right)
+                        \left( \begin{matrix}
+                            {s}\\
+                            {\delta} 
+                        \end{matrix}\right)
+                    \)}
+                    &= - \text{\scriptsize\(
+                            \left( \begin{matrix}
+                                {w}\\
+                                {g}  
+                            \end{matrix} \right)
+                        \)}
+                }
+            \end{aligned}
+    \end{gathered}
+    \hspace{5pt} \Rightarrow \hspace{5pt}
+    \begin{gathered}
+        \text{\scriptsize \underline{[Sequential] Quadratic Programming (SQP) Problem}}\\[5pt]
+        \min_s \Big( \vec{s}_k \cdot \vec{\nabla}_{x} \mathcal{L} 
+            + \tfrac{1}{2} \langle \vec{s}_k | \vec{\nabla}_{xx} \mathcal{L} | \vec{s}_k \rangle \Big)
+            \\[5pt]
+        \text{s.t.} \ \ \ J_g{\scriptstyle(\vec{x}_k)} \hspace{1pt} \vec{s}_k + \vec{g}{\scriptstyle(\vec{x}_k)} = 0
+    \end{gathered}
+\)
+
+% Direct Solution
+\vspace{10pt}
+\underline{Direct Solution}: \ \parbox{.8\textwidth}{
+    \scriptsize KKT Matrix is sym. and sparse 
+    \(\rightarrow\) solve for \(\vec{h}_k\) using sym. indef. factorization w/ some pivoting
+}
+
+% Column/Range-Space Method
+\vspace{10pt}
+\underline{\(\begin{gathered}[b]
+        \text{\scriptsize(Column-Space)}\\
+        \text{Range-Space}
+    \end{gathered}\) 
+    Method}: \ 
+\(
+    \boxed{Bs = -w - J^T \delta}
+    \hspace{15pt} , \hspace{15pt}
+    \begin{aligned}
+        Js = -g \ &\rightarrow \ JB^{-1}(- w - J^T \delta) = - g\\
+        &\rightarrow\ \boxed{ (JB^{-1}J^T) \delta = g - JB^{-1} w }
+    \end{aligned}
+\)
+
+% Notes
+\vspace{5pt}
+\hspace{10pt}\(\begin{aligned}[t]
+    &\bullet\ \text{\scriptsize Solve for \(\delta\), then for \(s\).}\\
+    &\bullet\ \text{\scriptsize \(B\) must be nonsingular and \(J\) full rank.}
+\end{aligned}\)
+\hspace{20pt}
+\(\begin{aligned}[t]
+    &\bullet\ \parbox[t]{.5\textwidth}{\scriptsize Forming \((JB^{-1}J^T)_{m \times m}\) leads to issues 
+        similar to forming \(A^T A\) (loss of info. and degrades conditioning).}
+        \\
+    &\bullet\ \text{\scriptsize Useful if \(m\) is small.}
+\end{aligned}\)
+
+% Null-Space Method
+\vspace{5pt}
+\underline{Null-Space Method}: \ \(
+    J^T = \text{\scriptsize\(
+        \Big( Q_\parallel \ \ Q_\perp \Big) 
+        \left(\begin{matrix}
+            R\\ 
+            0
+        \end{matrix}\right)
+    \)}
+    \hspace{20pt}
+    {\scriptstyle(Q_\parallel \hspace{1pt} \in\hspace{1pt} \mathbb{R}^{n\times m})}
+    \hspace{10pt} \Rightarrow \hspace{10pt}
+    \boxed{ \begin{aligned}
+        J Q_\parallel &= R^T\\
+        J Q_\perp &= 0
+    \end{aligned} }
+\)
+
+% Solving for s and delta
+\hspace{10pt}\(
+    \arraycolsep=2pt \begin{array}{r c c c l}
+        \text{Find } u_\parallel &:\ 
+            &Js \ \equiv\ \Big( JQ_\parallel u_\parallel + \cancel{JQ_\perp} u_\perp \Big)
+            &= \
+            &\boxed{ R^T u_\parallel = -g }
+            \\[10pt]
+        \text{Find } u_\perp &:\
+            &Q_\perp^T \big( Bs + J^T \delta= -w \big)
+            &\rightarrow\ 
+            &(Q_\perp^T B Q_\parallel) u_\parallel + (Q_\perp^T B Q_\perp) u_\perp = - Q_\perp^T w     
+                - (\cancel{JQ_\perp})^T \delta
+            \\[5pt]
+        &
+            &
+            &
+            &\boxed{
+                    (Q_\perp^T B Q_\perp) u_\perp 
+                    = - Q_\perp^T w - (Q_\perp^T B Q_\parallel) u_\parallel
+                }
+            \\[10pt]
+        \text{Find } \delta &:\
+            &Q_\parallel^T \big( J^T \delta = -w - Bs \big) 
+            &\rightarrow\
+            &\boxed{ R \delta
+                = - Q_\parallel^T w - Q_\parallel^T B ( Q_\parallel u_\parallel - Q_\perp u_\perp ) }
+    \end{array}
+\)
+
+% Notes
+\vspace{5pt}
+\hspace{10pt}\(\begin{aligned}[t]
+    &\bullet\ \text{\scriptsize Near a min., \((Q_\perp^T B Q_\perp)\) can be Cholesky factored.}\\
+    &\bullet\ \text{\scriptsize \(J\) must be full rank and \(R\) nonsingular.}
+\end{aligned}\)
+\hspace{20pt}
+\(\begin{aligned}[t]
+    &\bullet\ \text{\scriptsize Avoids issues with loss of info. and degraded conditioning.}\\
+    &\bullet\ \text{\scriptsize Useful if \(m\) is large, so \(n-m\) is small.}
+\end{aligned}\)
+
+% Line Divider
+\vspace{5pt}
+\rule{1\textwidth}{.5pt}
+\vspace{5pt}
+
+% Decent Initial Guess for Lambda
+\underline{Decent Initial \(\vec{\lambda}_0\) Guess Given an \(\vec{x}_0\)}: \ \(
+    \boxed{    
+        J_g^T{\scriptstyle(\vec{x}_0)} \hs \vec{\lambda}_0 + \vec{r} = - \vec{\nabla} f{\scriptstyle(\vec{x}_0)}
+    }
+    \hspace{15pt}
+    \text{\scriptsize(Linear Least Sq.)}
+\)
+
+% Penalty Method
+\vspace{5pt}
+\( 
+    \begin{gathered}
+        \underline{\text{Penalty Func. Method}}\\[2pt]
+        \boxed{ \lim_{\rho \rightarrow \infty} \vec{x}_\rho = \bar{x} }\\
+        (\text{\scriptsize ``Under approp. conds.''})
+    \end{gathered}
+    \ \vline \ \ \ 
+    \boxed{
+        \begin{array}{r l}
+            % Simple Penalty Func.
+            \begin{gathered}
+                \text{\scriptsize One Simple Function}\\[-5pt]
+                (\text{\scriptsize Ill-conditioned \(\rho \gg 1\)})
+            \end{gathered} :
+                &\displaystyle \min_{\vec{x}} \phi_\rho(\vec{x}) = f(\vec{x}) + \tfrac{1}{2} \rho \Vert g(\vec{x}) \Vert^2
+                \\[15pt]
+            % Augmented Lagrangian
+            \begin{gathered}
+                \text{\scriptsize Augmented Lagrangian}\\[-5pt]
+                (\text{\scriptsize Less Ill-conditioned})
+            \end{gathered} :
+                &\displaystyle \min_{\vec{x}} \mathcal{L}_\rho(\vec{x}) = f(\vec{x}) + \vec{\lambda}_0 \cdot \vec{g}(\vec{x}) 
+                + \tfrac{1}{2} \rho \Vert g(\vec{x}) \Vert^2
+        \end{array}
+    }
+\)
+
+% Barrier Method
+\vspace{10pt}
+\( 
+    \begin{gathered}
+        \underline{\text{Barrier Func. Method}}\\[2pt]
+        \boxed{ \lim_{\rho \rightarrow 0} \vec{x}_\rho = \bar{x} }\\
+        (\text{\scriptsize ``Under approp. conds.''})
+    \end{gathered}
+    \ \vline \ \ \ 
+    \boxed{
+        \begin{array}{r l}
+            % Inverse
+            \begin{gathered}
+                \text{\scriptsize Inverse}
+            \end{gathered} :
+                &\displaystyle \min_{\vec{x}} \phi_\rho(\vec{x}) = f(\vec{x}) 
+                - \rho \sum_i^p \frac{1}{ h_i{\scriptstyle(\vec{x})} }
+                \\[15pt]
+            % Logarithmic
+            \begin{gathered}
+                \text{\scriptsize Logarithmic}
+            \end{gathered} :
+                &\displaystyle \min_{\vec{x}} \phi_\rho(\vec{x}) = f(\vec{x}) 
+                - \rho \sum_i^p \log{ ( -h_i{\scriptstyle(\vec{x})} ) }
+        \end{array}
+    }
+    \hspace{10pt}
+    \boxed{ \text{\scriptsize(For Ineq. Constr.)} }
+\)
+
+% Notes
+\vspace{5pt}
+\(\begin{aligned}
+    &\bullet\ \parbox[t]{.95\textwidth}{\scriptsize Along with line search and trust region (not explained), 
+        a merit func. - using perhaps a penalty func. - can be used to make an algorithm more robust.}
+        \\
+    &\bullet\ \text{\scriptsize An active set strategy (not explained) can be used with an SQP method 
+        for ineq.-constr. problems.}
+        \\
+    &\bullet\ \text{\scriptsize A penalty method penalizes points that violates constraints, 
+        but doesn't avoid them. Barrier methods do.}
+\end{aligned}\)
+
 
 \end{document}
