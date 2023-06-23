@@ -6,6 +6,7 @@
 
 \newcommand{\hs}{\hspace{1pt}}
 \newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
+\newcommand{\hsvec}[1]{\vec{\hs #1}}
 
 \begin{document}
 
@@ -578,7 +579,7 @@
 
 % Linear Interpolation
 \vspace{15pt}
-\underline{Sucessive Linear Interpolation [Secant Method]}: \ {\scriptsize Not useful, since line usually has no minimun}
+\underline{Sucessive Linear Interpolation [Secant Method]}: \ {\scriptsize Not useful, since lines have no unique minimun}
 
 % Sucessive Parabolic Interpolation
 \vspace{5pt}
@@ -897,8 +898,13 @@
     \end{gathered}
 \)
 
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+
 % Direct Solution
-\vspace{10pt}
+% \vspace{10pt}
 \underline{Direct Solution}: \ \parbox{.8\textwidth}{
     \scriptsize KKT Matrix is sym. and sparse 
     \(\rightarrow\) solve for \(\vec{h}_k\) using sym. indef. factorization w/ some pivoting
@@ -1014,7 +1020,8 @@
 \( 
     \begin{gathered}
         \underline{\text{Penalty Func. Method}}\\[2pt]
-        \boxed{ \lim_{\rho \rightarrow \infty} \vec{x}_\rho = \bar{x} }\\
+        \boxed{ \lim_{\rho \rightarrow \infty} \vec{x}_\rho = \bar{x} } 
+            \hspace{5pt} \text{\scriptsize (not explained)}\\
         (\text{\scriptsize ``Under approp. conds.''})
     \end{gathered}
     \ \vline \ \ \ 
@@ -1081,5 +1088,402 @@
         but doesn't avoid them. Barrier methods do.}
 \end{aligned}\)
 
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+% Polynomial Interpolation
+\section{[Polynomial] Interpolation, \(f(t_i) = \sum_j x_j \hs \phi_j(t_i) = \hsvec{\phi}\hs(t_i) \cdot \hsvec{x}\)}
+
+\[
+    \begin{gathered}
+        \det(A) \neq 0\\[5pt]
+        \text{Given } \hsvec{\phi},\\[-2pt]
+        \text{solve for } \hsvec{x}
+    \end{gathered}
+    \hspace{10pt}
+    \vline
+    \hspace{10pt}
+    \begin{aligned}
+        &A\hsvec{x} 
+            = \left(\begin{matrix}
+                \vdots\\
+                - \ \hsvec{\phi}{\scriptstyle(t_i)} \ -\\
+                \vdots
+            \end{matrix}\right)
+            \left(\begin{matrix}
+                |\\
+                \hsvec{x}\\
+                |
+            \end{matrix}\right)
+            = \hsvec{y} = \left(\begin{matrix}
+                \vdots\\
+                f{\scriptstyle(t_i)}\\
+                \vdots
+            \end{matrix}\right)
+    \end{aligned}
+\]
+
+% Notes
+\vspace{5pt}
+\(\begin{aligned}
+    &\bullet\ \parbox[t]{.95\textwidth}{\scriptsize Runge Phenom.: As \(n\) increases, evenly-spaced \(t_i\) could produce a 
+        high-dimensional polynomial \(f(t)\) that tends to be extremely wavey near the endpoints (like Gibbs phenom.).
+        Choosing \(t_i\) to be Chebyshev nodes between the two endpoints mitigates this.}
+        \\
+    &\bullet\ \text{\scriptsize Interpolation w/ other func. like rationals are possible.}
+\end{aligned}\)
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+% Taylor Series Polynomial Interpolation
+\vspace{5pt}
+\subsection{Taylor Series Polynomial Interpolation}
+\vspace{5pt}
+\[
+    \arraycolsep=3pt
+    \begin{array}{l c c c l c l c l c l}
+        f_n(t) &=& f(t_0) 
+            &+& f'(t_0) (t-t_0) 
+            &+& \tfrac{ f''(t_0) }{2} (t-t_0)^2 
+            &+& \dots &+& \tfrac{ f^{(n)}(t_0) }{n!} (t-t_0)^n\\[5pt]
+        f_n(t+h) &=& f(t) 
+            &+& f'(t) h 
+            &+& \tfrac{ f''(t) }{2}\hs h^2 
+            &+& \dots 
+            &+& \tfrac{ f^{(n)}(t) }{n!}\hs h^n
+    \end{array}
+\]
+
+% Notes
+\vspace{5pt}
+\(\begin{aligned}
+    &\bullet\ \text{\scriptsize Can interpolate an \(n\)-polynomial from \(n+1\) points/derivatives/info.}
+\end{aligned}\)
+
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+% Monomial Basis Functions/Vandermonde Matrix
+\vspace{10pt}
+\subsection{Monomial Basis Functions \(\rightarrow\) Vandermonde Matrix}
+
+\vspace{5pt}
+\(
+    % Basis Functions
+    \boxed{ 
+        \begin{aligned}
+            \hsvec{\phi}(t) &= \big( 1, t, t^2,\ \dots\ , t^{n-1} \big)^T\\[5pt]
+            f(t) &= x_1 + x_2 t + \dots + x_n t^{n-1}
+        \end{aligned}
+    }
+    \hspace{10pt}
+    \vline
+    \hspace{10pt}
+    % Matrix
+    \begin{gathered}[b]
+        \text{\scriptsize(Full, Dense}
+            \\[-7pt]
+        \text{\scriptsize Vandermonde Matrix) }
+            \\
+        \left(\begin{matrix}
+            1 & t_1 & \dots & t_1^{n-1}\\
+            \vdots & \vdots & &\vdots \\
+            1 & t_n & \dots & t_n^{n-1}\\
+        \end{matrix}\right)
+    \end{gathered}
+    \left(\begin{matrix}
+        \vdots\\
+        x_i\\
+        \vdots
+    \end{matrix}\right)
+    = \vec{y}
+    % Notes
+    \hfill
+    \begin{aligned}
+        &\bullet\ \parbox[t]{4cm}{\scriptsize Solved with \(\mathcal{O}(n^3)\) work using 
+            Gauss. Elim. (\(\mathcal{O}(n^2)\) is possible with other tech.).}
+            \\
+        &\bullet\ \parbox[t]{4cm}{\scriptsize Ill-conditioned since sucessive \\ 
+            \(t^j\) look the same at higher \(j\).}
+            \\[20pt]
+    \end{aligned}
+\)
+
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+% Lagrange Basis Functions (Fundamental Polynomials)/Identity Matrix
+\vspace{5pt}
+\subsection{Lagrange Basis Functions (Fund. Polynomials) \(\rightarrow\) Identity Matrix}
+
+\vspace{5pt}
+% Basis Functions
+\(
+    \begin{aligned}
+        &\boxed{ 
+            \begin{aligned}
+                l(t) &= (t-t_1)(t-t_2)\dots(t-t_n)\\
+                w_j &= (t_j - t_j) / l(t_j) \hspace{10pt} \text{\scriptsize(barycentric weights)}
+            \end{aligned} 
+        }
+            \\[10pt]
+        &\begin{aligned}
+            \Aboxed{ \phi_j(t) &= \tfrac{ l(t) / (t-t_j) }{ l(t_j) / (t_j-t_j) } 
+                = l(t) \frac{w_j}{t-t_j} }
+                \\
+            \phi_j(t_i) &= \delta_{ij} \ \Rightarrow \ \boxed{ \hsvec{\phi}(t_i) = \vec{e}_i }
+        \end{aligned}
+            \\[10pt]
+        &\begin{aligned}
+            \Aboxed{ f(t) &= \hsvec{x} \cdot \hsvec{\phi}(t)
+                = l(t) \Big[ x_1 \tfrac{w_1}{t-t_1} + \dots + x_n \tfrac{w_n}{t-t_n} \Big] }
+                \\
+            f(t_j) &= x_j = y_i
+        \end{aligned}
+    \end{aligned}
+\)
+\hspace{5pt}
+\vline
+\hspace{5pt}
+\begin{minipage}{.45\textwidth}
+    % Matrix
+    \[
+        \begin{gathered}[b]
+            \text{\scriptsize(Diag. Iden. Matrix)}\\
+            \text{\scriptsize\(
+                \left(\begin{matrix}
+                    1 & 0 & \dots\\
+                    0 & 1 & \ddots\\
+                    \vdots & \ddots & \ddots
+                \end{matrix}\right) 
+                \)}
+        \end{gathered}
+        \hs \vec{x} = \vec{y}
+    \]
+
+    % Notes
+    \vspace{5pt}
+    \(\begin{aligned}
+        &\bullet\ \text{\scriptsize Finding \(w_j\) is \(\mathcal{O}(n^2)\) work.}\\
+        &\bullet\ \text{\scriptsize Finding \(f(t)\) from \(w_j\)'s is \(\mathcal{O}(n)\) work.}\\
+        &\bullet\ \boxed{ \parbox[t]{1\textwidth}{\scriptsize Updating with an extra point \((t_{n+1}, y_{n+1})\) 
+            is \(\mathcal{O}(n)\) work by \\ changing \(w_j = w_j/(t_j-t_{n+1})\) and finding \(w_{n+1}\).} }\\
+        &\bullet\ \text{\scriptsize Basis func. are more varied \(\rightarrow\) better-conditioned.}\\
+        &\bullet\ \boxed{ \int_{t_1}^{t_n} f(t) dt = \sum_{i=1}^n y_i \int_{t_1}^{t_n} \phi_i(t) dt }
+    \end{aligned}\)
+\end{minipage}    
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%---------------------------------------------------------------------------------------------------------------------------------
+% Newton Basis Functions/Lower Triangular Matrix
+\newpage
+\subsection{Newton Basis Functions \(\rightarrow\) Low. Triang. Matrix}
+
+\vspace{5pt}
+\(
+    % Basis Functions
+    \begin{aligned}
+        &\boxed{ 
+            \begin{aligned}
+                \phi_j(t) &= (t-t_1)(t-t_2)\dots(t-t_{j-1})\\
+                \hsvec{\phi}(t) &= \big[ 1, (t-t_1), (t-t_1)(t-t_2),\ \dots \big]^T
+            \end{aligned}
+            }
+            \\[5pt]
+        &\boxed{ f(t) = x_1 + x_2(t-t_1) + \dots + x_n \phi_n(t) }
+    \end{aligned}
+    \hspace{10pt}
+    \vline
+    \hspace{10pt}
+    % Matrix
+    \begin{aligned}
+        &\begin{gathered}[b]
+            \text{\scriptsize(Low. Triang. Matrix)}\\
+            \text{\scriptsize\(
+                \left(\begin{matrix}
+                    1 & 0 & 0 & \dots \\
+                    1 & t_1-t_2 & 0 & \dots\\
+                    1 & t_3-t_2 & (t_3-t_1)(t_3-t_2) & \ddots\\
+                    \vdots & \vdots & \vdots & \ddots
+                \end{matrix}\right) 
+                \)}
+        \end{gathered}
+            \text{\scriptsize\( 
+                \left(\begin{matrix}
+                    \vdots\\
+                    x_i\\
+                    \vdots
+                \end{matrix}\right)
+            \)} 
+            = \vec{y}
+    \end{aligned}
+\)
+
+% Notes
+\vspace{5pt}
+\(\begin{aligned}
+    &\bullet\ \text{\scriptsize For. sub. is \(\mathcal{O}(n^2)\).}\\
+    &\bullet\ \text{\scriptsize Cond. of \(A\) depends on ordering of points \(\rightarrow\) best to order points from
+        their dist. to their mean/other num.}\\
+    &\bullet\ \text{\scriptsize Basis func. are more varied \(\rightarrow\) better-conditioned.}
+\end{aligned}\)
+
+% Updating
+\vspace{15pt}
+\begin{minipage}[t]{.5\textwidth}
+    \underline{Incremental Updating Newton Interpolation}:
+    
+    \vspace{5pt}
+    \(f_{n+1}(t) = f_n(t) + x_{n+1}\hs \phi_{n+1}(t)\)
+
+    \vspace{10pt}
+    \(
+        \begin{aligned}
+            &\begin{aligned}
+                y_{n+1} &= f_{n+1}(t_{n+1})\\
+                &= f_n(t_{n+1}) + x_{n+1}\hs \phi_{n+1}(t_{n+1})
+            \end{aligned}
+                \\[5pt]
+            &\Rightarrow\ \boxed{ f_{j+1}(t) = f_j(t) + \tfrac{ y_{j+1} - f_j(t_{j+1}) }{ \phi_{j+1}(t_{j+1}) } \phi_{j+1}(t) }
+        \end{aligned}
+    \)
+\end{minipage}
+% Divided Differences
+\begin{minipage}[t]{.49\textwidth}
+    \underline{Divided Differences Newton Interpolation}:
+    
+    \vspace{5pt}
+    \(\displaystyle
+        g[t_1, \dots , t_k] \ \equiv\ \frac{ g[t_2, \dots , t_k] - g[t_1, \dots , t_{k-1}] }{t_k - t_1}
+    \)
+
+    \vspace{5pt}
+    \(
+        \boxed{
+            \vec{x} 
+            = \text{\scriptsize\(
+                \left(\begin{matrix}
+                    x_1\\
+                    x_2\\
+                    x_3\\
+                    \vdots
+                \end{matrix}\right)
+            \)}
+            = \text{\scriptsize\(
+                \left(\begin{matrix}
+                    g[t_1]\\
+                    g[t_1, t_2]\\
+                    g[t_1, t_2, t_3]\\
+                    \vdots        
+                \end{matrix}\right)
+            \)}
+        }
+        \hspace{20pt}
+        % Notes
+        \begin{aligned}
+            &\bullet\ \text{\scriptsize Also costs \(\mathcal{O}(n^2)\).}\\
+            &\bullet\ \parbox[t]{2cm}{\scriptsize Less prone to over/underflow.}
+        \end{aligned}
+    \)
+\end{minipage}
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+% Orthogonal Polynomial Basis
+\vspace{5pt}
+\subsection{Orthogonal Polynomial Basis (no method given)}
+
+% Inner Product
+\vspace{10pt}
+\parbox[t]{.55\textwidth}{%
+    \underline{Inner Product}:\ \ \(
+        \boxed{
+            \langle \hsvec{u} | \hsvec{v} \hs \rangle_{ab}^w 
+            = \int_a^b \left[ u(t) v(t) \right] w(t) \ dt 
+        }
+    \)
+}
+% Orthogonal Polynomials
+\parbox[t]{.44\textwidth}{%
+    \underline{Orthogonal Polynomials}:\ \ \(
+        \boxed{
+            \langle u_i | u_j \rangle
+            = \delta_{ij}
+        }
+    \)
+}
+
+% Three-Term Recurrence
+\vspace{5pt}
+\underline{Three-Term Recurrence}: \ \ \(
+    \boxed{ f_{k+1}(t) = \big[ A(k)t + B(k) \big] f_k(t) - C(k) f_{k-1}(t) } 
+    \hspace{20pt} {\scriptstyle(A(k) \hs \neq\hs 0)}
+\)
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+% Piecewise Hermite Cubic Interpolation
+\subsection{Piecewise [Hermite] Cubic Interpolation}
+
+% Picewise Cubic
+\parbox[t]{5cm}{
+    \underline{Piecewise Cubic}: \\[5pt]
+    {\scriptsize 
+        \(n\) knots/pts. \(\Rightarrow\ n-1\) cubics \\
+        \(\Rightarrow\) \fbox{ \(4(n-1)\) param./eq.} 
+    }
+}
+% Hermite Interpolation Def
+\parbox[t]{5cm}{
+    \underline{Hermite Interpolation}: \\[5pt]
+    {\scriptsize 
+        Using \(k\)-th derivatives as info.\\
+        Extra equations can be used \\
+        for monotonicity/convexity.
+    }
+}
+% Hermite Cubic Interp.
+\parbox[t]{7cm}{
+    \underline{Hermite Cubic Interpolation}: \\[5pt] 
+    {\scriptsize 
+        Continuous 0th and 1st derivatives; \ \(n-1\) cubics \\
+        \(\Rightarrow [2(n-1)]_\text{1st deriv. eq} + [n-2]_\text{2nd deriv. eq.}\) \\
+        \(=\) \fbox{ \(3n-4\) eq. \(\Rightarrow\ n\) free/extra param./eq}
+    }
+}
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+% Piecewise Cubic [Spline] Interpolation
+\subsection{Piecewise Cubic [Spline] Interpolation}
+
+% Spline
+\parbox[t]{4.5cm}{
+    \underline{Spline}: \\[4pt] 
+    {\scriptsize 
+        A piecewise func. of \(n\)-polynomials that is \(n\)-differentiable (of differentiability class \(C^{n-1}\), 
+        or \(n-1\) cont. differentiable).
+    }
+}
+\hspace{.75cm}
+% Cubic Spline Interp.
+\parbox[t]{6.5cm}{
+    \underline{Cubic Spline Interpolation}: \\[5pt] 
+    {\scriptsize 
+        Cont. 0th, 1st, and 2nd derivatives; \ \(n-1\) cubics \\
+        \(\Rightarrow [2(n-1)]_\text{1st} + [n-2]_\text{2nd} + [n-2]_\text{3rd}\)\\
+        \(=\) \fbox{ \(4n-6\) eq. \(\Rightarrow\ 2\) free/extra param./eq}
+    }
+}
+\hspace{.75cm}
+% B-Spline Basis Func.
+\parbox[t]{4.5cm}{
+    \underline{\(B\)-splines (basis func.)}: \\[4pt] 
+    {\scriptsize 
+        Orthog. \(\{\phi_j(t)\}\) are \(j\)-poly. splines w/ local compact support and look like bells.
+        (not much detail here).
+    }
+}
 
 \end{document}
