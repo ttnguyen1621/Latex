@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1687483517 "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Numerical Methods.tex" "Numerical Methods.pdf" "Numerical Methods" 1687483521
-  "Numerical Methods.aux" 1687483520 3499 ceecdca7b758e32913e068334e8d9823 "pdflatex"
-  "Numerical Methods.tex" 1687483515 57283 6fac4273005937609896f5e927772719 ""
-  "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Numerical Methods.tex" 1687483515 57283 6fac4273005937609896f5e927772719 ""
+["pdflatex"] 1687980303 "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Numerical Methods.tex" "Numerical Methods.pdf" "Numerical Methods" 1687980304
+  "Numerical Methods.aux" 1687980304 4754 71c713a0c6571f32eca9a059cc24e82c "pdflatex"
+  "Numerical Methods.tex" 1687980302 85518 f3d1d98de93e6b41331836123e17095d ""
+  "c:/Users/ringo/CS/LaTeX/Z Other/Matrices and Numerical Methods/Numerical Methods.tex" 1687980302 85518 f3d1d98de93e6b41331836123e17095d ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1650318317 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1650313675 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1650313675 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -58,8 +58,10 @@
   "c:/texlive/2022/texmf-dist/tex/latex/amsmath/amsopn.sty" 1650313688 4128 8eea906621b6639f7ba476a472036bbe ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsmath/amstext.sty" 1650313688 2444 926f379cc60fcf0c6e3fee2223b4370d ""
   "c:/texlive/2022/texmf-dist/tex/latex/base/article.cls" 1650320540 20144 8a7de377ae7a11ee924a7499611f5a9d ""
+  "c:/texlive/2022/texmf-dist/tex/latex/base/ifthen.sty" 1650320540 5157 f308c7c04889e16c588e78aa42599fae ""
   "c:/texlive/2022/texmf-dist/tex/latex/base/size12.clo" 1650320540 8449 bc7344e882df4d7e51c046514dee83e4 ""
   "c:/texlive/2022/texmf-dist/tex/latex/cancel/cancel.sty" 1650315187 7592 dd751af313a16a0308545d5bfd7aaaa2 ""
+  "c:/texlive/2022/texmf-dist/tex/latex/dashbox/dashbox.sty" 1650316666 5179 d00d3ec621aa883320a0a2d298a03157 ""
   "c:/texlive/2022/texmf-dist/tex/latex/enumitem/enumitem.sty" 1650317487 51697 f8f08183cd2080d9d18a41432d651dfb ""
   "c:/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1650317540 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "c:/texlive/2022/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1650317698 46845 3b58f70c6e861a13d927bff09d35ecbc ""

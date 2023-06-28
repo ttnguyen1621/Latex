@@ -3,10 +3,13 @@
 \usepackage{enumitem, amssymb, amsmath, amsfonts, mathtools, parskip}
 \usepackage{relsize}
 \usepackage{cancel}
+\usepackage{dashbox}
 
 \newcommand{\hs}{\hspace{1pt}}
 \newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
 \newcommand{\hsvec}[1]{\vec{\hs #1}}
+\newcommand{\dboxed}[1]{\dbox{\ensuremath{#1}}}
+\newcommand{\mathscriptsize}[1]{\text{\scriptsize\(#1\)}}
 
 \begin{document}
 
@@ -1093,9 +1096,16 @@
 %----------------------------------------------------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------------
 % Polynomial Interpolation
-\section{[Polynomial] Interpolation, \(f(t_i) = \sum_j x_j \hs \phi_j(t_i) = \hsvec{\phi}\hs(t_i) \cdot \hsvec{x}\)}
+\section{[Polynomial] Interpolation, \(f(t_i) = \hat{f}(t_i) = \sum_j x_j \hs \phi_j(t_i) \)}
 
-\[
+\(
+    \begin{aligned}
+        \hat{f}(t_i) &= \sum_j x_j \hs \phi_j(t_i)\\
+        &= \hsvec{\phi}\hs(t_i) \cdot \hsvec{x}
+    \end{aligned}
+    \hspace{10pt}
+    \vline
+    \hspace{10pt}
     \begin{gathered}
         \det(A) \neq 0\\[5pt]
         \text{Given } \hsvec{\phi},\\[-2pt]
@@ -1122,41 +1132,63 @@
                 \vdots
             \end{matrix}\right)
     \end{aligned}
-\]
+\)
 
 % Notes
 \vspace{5pt}
 \(\begin{aligned}
     &\bullet\ \parbox[t]{.95\textwidth}{\scriptsize Runge Phenom.: As \(n\) increases, evenly-spaced \(t_i\) could produce a 
-        high-dimensional polynomial \(f(t)\) that tends to be extremely wavey near the endpoints (like Gibbs phenom.).
+        high-dimensional polynomial \(\hat{f}(t)\) that tends to be extremely wavey near the endpoints (like Gibbs phenom.).
         Choosing \(t_i\) to be Chebyshev nodes between the two endpoints mitigates this.}
         \\
     &\bullet\ \text{\scriptsize Interpolation w/ other func. like rationals are possible.}
-\end{aligned}\)
+        \\
+    &\bullet\ \text{\scriptsize Error: } {\scriptstyle 
+        \text{\scriptsize\(
+            \begin{gathered}
+                \max\\[-5pt]
+                {t \in [t_1,t_n]}
+            \end{gathered}\)} 
+            \ \left| \hat{f} - f 
+            \ =\ \frac{ f^{(n)}(\xi) }{n!} \prod_i (t-t_i) \right| 
+            \ \leq\ \left| \max \frac{ f^{(n)}(t) }{n!} \right| 
+            \left| \frac{(n-1)! h^n}{4} \right|
+            \ =\ \boxed{ 
+                \text{\scriptsize\(
+                    \begin{gathered}
+                        \max\\[-5pt]
+                        {t \in [t_1,t_n]}
+                    \end{gathered}
+                    \ \left| f^{(n)}(t)\hs \frac{ h^n }{ 4n } \right|
+                \)}
+            } 
+        } 
+        \hspace{2pt} \rightarrow \hspace{2pt}
+        \parbox{3cm}{\scriptsize error decreases if \(f^{(n)}\)\\ is well behaved}
+    \end{aligned}\)
 
 %------------------------------------------------------------------
 %------------------------------------------------------------------
 % Taylor Series Polynomial Interpolation
-\vspace{5pt}
 \subsection{Taylor Series Polynomial Interpolation}
 \vspace{5pt}
 \[
     \arraycolsep=3pt
     \begin{array}{l c c c l c l c l c l}
-        f_n(t) &=& f(t_0) 
+        \hat{f}_n(t) &=& f(t_0) 
             &+& f'(t_0) (t-t_0) 
             &+& \tfrac{ f''(t_0) }{2} (t-t_0)^2 
-            &+& \dots &+& \tfrac{ f^{(n)}(t_0) }{n!} (t-t_0)^n\\[5pt]
-        f_n(t+h) &=& f(t) 
+            &+& \dots &+& \tfrac{ f^{(n-1)}(t_0) }{(n-1)!} (t-t_0)^{n-1}\\[5pt]
+        \hat{f}_n(t+h) &=& f(t) 
             &+& f'(t) h 
             &+& \tfrac{ f''(t) }{2}\hs h^2 
             &+& \dots 
-            &+& \tfrac{ f^{(n)}(t) }{n!}\hs h^n
+            &+& \tfrac{ f^{(n-1)}(t) }{(n-1)!}\hs h^{n-1}
     \end{array}
 \]
 
 % Notes
-\vspace{5pt}
+\vspace{-5pt}
 \(\begin{aligned}
     &\bullet\ \text{\scriptsize Can interpolate an \(n\)-polynomial from \(n+1\) points/derivatives/info.}
 \end{aligned}\)
@@ -1164,7 +1196,6 @@
 %-----------------------------------------------------------------
 %-----------------------------------------------------------------
 % Monomial Basis Functions/Vandermonde Matrix
-\vspace{10pt}
 \subsection{Monomial Basis Functions \(\rightarrow\) Vandermonde Matrix}
 
 \vspace{5pt}
@@ -1173,7 +1204,7 @@
     \boxed{ 
         \begin{aligned}
             \hsvec{\phi}(t) &= \big( 1, t, t^2,\ \dots\ , t^{n-1} \big)^T\\[5pt]
-            f(t) &= x_1 + x_2 t + \dots + x_n t^{n-1}
+            \hat{f}(t) &= x_1 + x_2 t + \dots + x_n t^{n-1}
         \end{aligned}
     }
     \hspace{10pt}
@@ -1212,7 +1243,6 @@
 %-----------------------------------------------------------------
 %-----------------------------------------------------------------
 % Lagrange Basis Functions (Fundamental Polynomials)/Identity Matrix
-\vspace{5pt}
 \subsection{Lagrange Basis Functions (Fund. Polynomials) \(\rightarrow\) Identity Matrix}
 
 \vspace{5pt}
@@ -1234,16 +1264,16 @@
         \end{aligned}
             \\[10pt]
         &\begin{aligned}
-            \Aboxed{ f(t) &= \hsvec{x} \cdot \hsvec{\phi}(t)
+            \Aboxed{ \hat{f}(t) &= \hsvec{x} \cdot \hsvec{\phi}(t)
                 = l(t) \Big[ x_1 \tfrac{w_1}{t-t_1} + \dots + x_n \tfrac{w_n}{t-t_n} \Big] }
                 \\
-            f(t_j) &= x_j = y_i
+            \hat{f}(t_j) &= x_j = y_i
         \end{aligned}
     \end{aligned}
 \)
-\hspace{5pt}
+\hfill
 \vline
-\hspace{5pt}
+\hfill
 \begin{minipage}{.45\textwidth}
     % Matrix
     \[
@@ -1264,13 +1294,13 @@
     \vspace{5pt}
     \(\begin{aligned}
         &\bullet\ \text{\scriptsize Finding \(w_j\) is \(\mathcal{O}(n^2)\) work.}\\
-        &\bullet\ \text{\scriptsize Finding \(f(t)\) from \(w_j\)'s is \(\mathcal{O}(n)\) work.}\\
-        &\bullet\ \boxed{ \parbox[t]{1\textwidth}{\scriptsize Updating with an extra point \((t_{n+1}, y_{n+1})\) 
-            is \(\mathcal{O}(n)\) work by \\ changing \(w_j = w_j/(t_j-t_{n+1})\) and finding \(w_{n+1}\).} }\\
+        &\bullet\ \text{\scriptsize Finding \(\hat{f}(t)\) from \(w_j\)'s is \(\mathcal{O}(n)\) work.}\\
+        &\bullet\ \boxed{ \parbox[t]{.9\textwidth}{\scriptsize Updating with an extra point \((t_{n+1}, y_{n+1})\) 
+            is \(\mathcal{O}(n)\) work \\by changing \(w_j = w_j/(t_j-t_{n+1})\) and finding \(w_{n+1}\).} }\\
         &\bullet\ \text{\scriptsize Basis func. are more varied \(\rightarrow\) better-conditioned.}\\
-        &\bullet\ \boxed{ \int_{t_1}^{t_n} f(t) dt = \sum_{i=1}^n y_i \int_{t_1}^{t_n} \phi_i(t) dt }
+        &\bullet\ \boxed{ \int_{t_1}^{t_n} \hat{f}(t) dt = \sum_{i=1}^n y_i \int_{t_1}^{t_n} \phi_i(t) dt }
     \end{aligned}\)
-\end{minipage}    
+\end{minipage}  
 
 %---------------------------------------------------------------------------------------------------------------------------------
 %
@@ -1291,7 +1321,7 @@
             \end{aligned}
             }
             \\[5pt]
-        &\boxed{ f(t) = x_1 + x_2(t-t_1) + \dots + x_n \phi_n(t) }
+        &\boxed{ \hat{f}(t) = x_1 + x_2(t-t_1) + \dots + x_n \phi_n(t) }
     \end{aligned}
     \hspace{10pt}
     \vline
@@ -1335,17 +1365,19 @@
     \underline{Incremental Updating Newton Interpolation}:
     
     \vspace{5pt}
-    \(f_{n+1}(t) = f_n(t) + x_{n+1}\hs \phi_{n+1}(t)\)
+    \(\hat{f}_{n+1}(t) = \hat{f}_n(t) + x_{n+1}\hs \phi_{n+1}(t)\)
 
     \vspace{10pt}
     \(
         \begin{aligned}
             &\begin{aligned}
-                y_{n+1} &= f_{n+1}(t_{n+1})\\
-                &= f_n(t_{n+1}) + x_{n+1}\hs \phi_{n+1}(t_{n+1})
+                y_{n+1} &= \hat{f}_{n+1}(t_{n+1})\\
+                &= \hat{f}_n(t_{n+1}) + x_{n+1}\hs \phi_{n+1}(t_{n+1})
             \end{aligned}
                 \\[5pt]
-            &\Rightarrow\ \boxed{ f_{j+1}(t) = f_j(t) + \tfrac{ y_{j+1} - f_j(t_{j+1}) }{ \phi_{j+1}(t_{j+1}) } \phi_{j+1}(t) }
+            &\Rightarrow\ \boxed{ 
+                \hat{f}_{j+1}(t) = \hat{f}_j(t) + \tfrac{ y_{j+1} - \hat{f}_j(t_{j+1}) }{ \phi_{j+1}(t_{j+1}) } \phi_{j+1}(t) 
+                }
         \end{aligned}
     \)
 \end{minipage}
@@ -1379,11 +1411,11 @@
                 \end{matrix}\right)
             \)}
         }
-        \hspace{20pt}
+        \hspace{10pt}
         % Notes
         \begin{aligned}
             &\bullet\ \text{\scriptsize Also costs \(\mathcal{O}(n^2)\).}\\
-            &\bullet\ \parbox[t]{2cm}{\scriptsize Less prone to over/underflow.}
+            &\bullet\ \parbox[t]{3cm}{\scriptsize Less prone to \\ over/underflow.}
         \end{aligned}
     \)
 \end{minipage}
@@ -1417,7 +1449,7 @@
 % Three-Term Recurrence
 \vspace{5pt}
 \underline{Three-Term Recurrence}: \ \ \(
-    \boxed{ f_{k+1}(t) = \big[ A(k)t + B(k) \big] f_k(t) - C(k) f_{k-1}(t) } 
+    \boxed{ \hat{f}_{k+1}(t) = \big[ A(k)t + B(k) \big] \hat{f}_k(t) - C(k) \hat{f}_{k-1}(t) } 
     \hspace{20pt} {\scriptstyle(A(k) \hs \neq\hs 0)}
 \)
 
@@ -1485,5 +1517,674 @@
         (not much detail here).
     }
 }
+
+%------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------
+% Numerical Integration
+\newpage
+\section{Numerical Integration/Quadrature, \(I(f) \equiv \int_a^b f(x)\hs dx\)}
+
+% Infinity Norm and Ccondition Number
+\subsection{\(\infty\)-Norm and Condition Number}
+
+\vspace{5pt}
+% Infinity Norm
+\begin{minipage}[t]{.36\textwidth}
+    \underline{Function \(\infty\)-Norm}: \\[10pt] 
+    \fbox{ \(\Vert f(x) \Vert_\infty = \max_{x \in [a,b]} f(x)\) }    
+\end{minipage}
+% Abs. Cond Number for Integration if \hat{b}
+\begin{minipage}[t]{.63\textwidth}
+    \underline{[Abs.] Integration Condition Number if \(\hat{b}\)}: \\[10pt]
+    \(
+        \left\vert \int_a^{\hat{b}} f(x)\hs dx - \int_a^b f(x)\hs dx \right\vert
+        = \left\vert \int_b^{\hat{b}} f(x)\ dx \right\vert
+        \ \leq\ \boxed{ (\hat{b}-b) \Vert f(x) \Vert_\infty }
+    \)    
+\end{minipage}
+
+\vspace{5pt}
+% Abs. Cond Number for Integration if \hat{f}
+\begin{minipage}[t]{.56\textwidth}
+    \underline{[Abs.] Integration Condition Number if \(\hat{f}\)}: \\[10pt]
+    \(
+        \begin{aligned}
+            \left\vert \int_a^b \hat{f}(x) - f(x)\ dx \right\vert
+                &\ \leq\ \int_a^b \left\vert \hat{f}(x) - f(x) \right\vert dx
+                \\
+            &\ \leq\ (b-a) \Vert \hat{f}(x) - f(x) \Vert_\infty
+                \\
+            \left\vert \frac{\Delta I}{\Delta f} \right\vert 
+                &\ \leq\ \boxed{ b-a }
+        \end{aligned}
+    \)    
+\end{minipage}
+% Rel. Cond Number for Integration if \hat{f}
+\begin{minipage}[t]{.43\textwidth}
+    \underline{[Rel.] Integration Condition Number if \(\hat{f}\)}: \\[10pt]
+    \(
+        \begin{aligned}
+            \left\vert \frac{\Delta I / I}{\Delta f / f} \right\vert 
+                &\ \leq\ \frac{(b-a) / \left\vert \int_a^b f(x) dx \right\vert}{1 / \Vert f(x) \Vert_\infty}
+                \\[5pt]
+            &\ =\ \boxed{ \frac{(b-a) \Vert f(x) \Vert_\infty }{\left\vert \int_a^b f(x) dx \right\vert} }
+        \end{aligned}
+    \)
+\end{minipage}
+
+%---------------------------------------------------------------
+%---------------------------------------------------------------
+% Interpolary Quadrature Rule
+\vspace{-5pt}
+\subsection{1-D [Interpolary] Quadrature Rule for \(f \approx \hat{f}\)}
+
+% Basis for \hat{f}
+\(
+    \underline{ \hat{f} \in P_{n-1} } :
+    \ \ \hat{f}(x) 
+    = \left(\begin{gathered}
+        \hsvec{y} \cdot \hsvec{\phi}(x) = \sum_{i=1}^n f(x_i)\hs \phi_i(x) \\
+        \text{\scriptsize(Lagrange Basis Vectors)}
+    \end{gathered}\right)
+    = \left(\begin{gathered}
+        \sum_{j=0}^{n-1} c_j\hs x^j \\
+        \text{\scriptsize(Monomial Basis Vetors)}
+    \end{gathered}\right)
+    \hspace{20pt} \begin{aligned}
+        &{\scriptstyle\bullet\ x_1\ <\ \dots\ <\ x_n}\\ 
+        &{\scriptstyle\bullet\ f(x_i) \ =\ \hat{f}(x_i)}
+    \end{aligned}
+\)
+
+% Quadrature Rule
+\(\displaystyle
+    \Rightarrow\ \boxed{ Q_n(f) 
+        \ \equiv\ I(\hat{f}) 
+        =  \int_a^b \hat{f}(x)\hs dx 
+        = \sum_{i=1}^n f(x_i) \int_a^b \phi_i(x)\hs dx 
+        = \sum_{i=1}^n f(x_i)\hs w_i
+        }
+        \hspace{20pt} \begin{aligned}
+            &{\scriptstyle \bullet\ \boxed{\scriptstyle x_i,\ w_i \ \rightarrow\ 2n \text{\scriptsize\ max param.} } }\\[-4pt]
+            &{\scriptstyle \bullet\ a\ \leq\ x_1\ <\ \dots\ <\ x_n\ \leq\ b} \\[-7pt]
+            &\text{\scriptsize \(\bullet\ \) closed if equality, open if not}
+        \end{aligned}
+\)
+
+% Math to Method of Undetermined Coefficients
+\vspace{5pt}
+\hspace{5pt} \(\arraycolsep=2pt
+    \begin{array}{c c c}
+        \displaystyle \int_a^b \left( \sum_{j=0}^{n-1} c_j\hs x^j \right) dx 
+            &=
+            &\displaystyle \sum_{i=1}^n \left( \sum_{j=0}^{n-1} c_j\hs x_i^j \right) w_i
+            \\[30pt]
+        \displaystyle \sum_{j=0}^{n-1} c_j \left( \int_a^b x^j dx \right) 
+            &=
+            &\displaystyle \sum_{j=0}^{n-1} c_j \left( \sum_{i=1}^n x_i^j \hs w_i \right)
+            \\[20pt]
+        \multicolumn{3}{c}{ \text{\scriptsize(maybe some dot product to isolate terms)} }
+    \end{array}
+    \hspace{5pt} \Rightarrow \hspace{5pt}
+\)
+% Method of Undetermined Coefficients
+\begin{minipage}{.48\textwidth}
+    \hspace{17pt} \underline{Method of Undetermined Coefficients}    
+    
+    \vspace{8pt}
+    \(
+        \begin{aligned}
+            \int_a^b x^j dx = \sum_{i=1}^n x_i^j \hs w_i 
+                &\ =\ \tfrac{ b^{j+1} - a^{j+1} }{ j+1 } \ \equiv\ z_j
+                \\[-7pt]
+            &\hspace{20pt} \rightarrow\ \boxed{ \scriptstyle z_0 \ =\ \sum w_i \ =\ b-a }
+                \\[5pt]
+            \Aboxed{ 
+                \begin{gathered}[b]
+                    \text{\scriptsize(Vandermode Matrix)}
+                        \\
+                    \text{\scriptsize\(
+                            \left(\begin{matrix}
+                                1 & 1 & 1 & \dots\\
+                                x_1 & x_2 & x_3 & \dots\\[3pt]
+                                x_1^2 & x_2^2 & x_3^2 & \dots\\
+                                \vdots & \vdots & \vdots
+                            \end{matrix}\right)
+                        \)}
+                \end{gathered}
+                \hsvec{w}
+                &\ =\ \hsvec{z}
+                \hspace{20pt} \begin{gathered}
+                    \text{\scriptsize \underline{System of Moment}}\\[-5pt]
+                    \text{\scriptsize \underline{Equations}}
+                \end{gathered}
+                \ \
+            }
+        \end{aligned}
+    \)
+\end{minipage}
+
+% Notes
+\vspace{15pt}
+\(\begin{aligned}
+    &\underline{ \text{Error } I}:
+        \ \ | \Delta I | 
+        \ \leq\ (b-a) \Vert f-\hat{f} \Vert_\infty 
+        \ \leq\ \tfrac{b-a}{4n}\hs h^n \Vert f^{(n)} \Vert_\infty 
+        \ \leq\ \boxed{ \tfrac{h^{n+1}}{4} \Vert f^{(n)} \Vert_\infty }
+        \hspace{5pt} \rightarrow \hspace{5pt}
+        \parbox{3cm}{\scriptsize error decreases if \(f^{(n)}\)\\ is well behaved}
+        \\[10pt]
+    &\underline{ \text{Error } Q_n}:
+        \ \begin{aligned}[t]
+            &g \approx f 
+                \ \rightarrow \ \begin{aligned}[t]
+                    &| Q_n(f) - Q_n(g) | \\
+                    &= {\scriptstyle \left| \sum w_i \big[ f{\scriptstyle(x_i)} - g{\scriptstyle(x_i)} \big] \right| }
+                \end{aligned}
+                \ \leq\ \boxed{ \scriptstyle \sum | w_i | \cdot \Vert f - g \Vert_\infty }
+                \ \Rightarrow\ \begin{aligned}[t]
+                    &\boxed{\forall w_i \geq 0 \ \rightarrow\ \text{\scriptsize cond}(Q_n) = b-a }\\
+                    &\text{\scriptsize(otherwise using \(Q_n\) might be unstable.)}
+                \end{aligned}
+        \end{aligned}
+\end{aligned}\)
+
+%
+%
+%
+%------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+% Rule Degree
+\underline{[Rule] Degree, \(d\)}: \ \fbox{ 
+    \(\forall p(x) \in P_d\), rule \(Q(p) = I(p)\), but not \(\forall p \in P_{d+1}\) 
+}
+
+% Newton-Cotes Quadrature
+\vspace{10pt}
+\underline{Newton-Cotes Quadrature [Rule]}: \ \fbox{\(n\) evenly-spaced \(x_i \ \rightarrow\ n\) param. for \(w_i\)}
+
+% Midpoint, Trap, Simpson Rules
+\(\hspace{10pt} \arraycolsep=2pt \begin{array}{r c c c l}
+    \text{Midpoint Rule}\ {\scriptstyle(Q_1)}
+        &:\ \
+        &M(f) = \tfrac{b-a}{1}\hs f(\tfrac{a+b}{2})
+        &\hspace{30pt} 
+        &\hsvec{w} = (b-a)\hs [1]^T
+        \\[5pt]
+    \text{Trapezoidal Rule}\ {\scriptstyle(Q_2)}
+        &:\ \
+        &T(f) = \frac{b-a}{2}\ [f(a) + f(b)]
+        &
+        &\hsvec{w} = (b-a)\hs [\tfrac{1}{2}, \tfrac{1}{2}]^T
+        \\[5pt]
+    \text{Simpsons's Rule}\ {\scriptstyle(Q_3)}
+        &:\ \
+        &S(f) = \frac{b-a}{6}\ [f(a) + 4f(\tfrac{a+b}{2}) + f(b)]
+        & 
+        &\hsvec{w} = (b-a)\hs [\tfrac{1}{6}, \tfrac{4}{6}, \tfrac{1}{6}]^T
+\end{array}\)
+
+% Notes
+\vspace{10pt}
+\(\hspace{10pt} \begin{aligned}
+    % Taylor Expansion and Error
+    &\bullet\ \text{Taylor Expansion and Error}\\
+    &\begin{aligned}[t]
+            % Taylor Expansion
+            f(x) &= \boxed{ \sum_{m=0} \tfrac{f^{(m)}(\tfrac{a+b}{2})}{m!} (x-\tfrac{a+b}{2})^m }
+                \\[10pt]
+            % Trapezoid Expansion
+            T(f) &= \tfrac{b-a}{2}
+                \sum_{m=0} \tfrac{f^{(m)}(\tfrac{a+b}{2})}{m!} \tfrac{ (b-a)^m }{ 2^m } \left[(-1)^m + 1\right] 
+                \\[5pt]
+            &= \sum_{m=0}^\text{even} \dboxed{ \tfrac{f^{(m)}(\tfrac{a+b}{2})}{2^m m!} }\hs (b-a)^{m+1} \\
+            &= \boxed{ M(f) + \sum_{m=2}^\text{even} \dboxed{ E_m(f) }\hs h^{m+1} }
+                \\[10pt]
+            % Simpson Expansion
+            S(f) &= \boxed{ \tfrac{2}{3} M(f) + \tfrac{1}{3} T(f) }
+        \end{aligned}
+        \hspace{10pt}
+        \begin{aligned}[t]
+            % Integral Expansion
+            I(f) &= \sum_{m=0} \tfrac{f^{(m)}(\tfrac{a+b}{2})}{(m+1)!} \tfrac{ (2x-a-b)^{m+1} }{ 2^{m+1} } \big|_a^b \\[5pt]
+            &= \sum_{m=0}^\text{even} \tfrac{ f^{(m)}(\tfrac{a+b}{2}) }{ 2^{m} (m+1)! }\hs (b-a)^{m+1}\\
+            % Midpoint Error
+            &= \boxed{ M(f) + \sum_{m=2}^\text{even} \tfrac{ E_m(f) }{ m+1 }\hs h^{m+1} }
+                \hspace{10pt} \begin{gathered}
+                    \text{\scriptsize \(Q_1\) error is \(f^{(2)}\)}\\[-5pt]
+                    \text{\scriptsize derivative, not \(f^{(1)}\)!}
+                \end{gathered}
+                \\
+            % Trapezoid Error
+            &= \boxed{ T(f) - \sum_{m=2}^\text{even} m\hs \tfrac{E_m(f)}{m+1}\hs h^{m+1} }
+                \hspace{10pt} \begin{gathered}
+                    \text{\scriptsize \(Q_2\) error is \(f^{(2)}\) \&}\\[-5pt]
+                    \text{\scriptsize twice as large as \(Q_1\)}
+                \end{gathered}
+                \\
+            % Simpson Error
+            &= \boxed{ S(f) - \sum_{m=4}^\text{even} \tfrac{m-2}{3} \hs \tfrac{ E_m(f) }{ m+1 } \hs h^{m+1} }
+                \hspace{10pt} \begin{gathered}
+                    \text{\scriptsize \(Q_3\) error is \(f^{(4)}\)}\\[-5pt]
+                    \text{\scriptsize derivative, not \(f^{(3)}\)!}
+                \end{gathered}
+        \end{aligned}
+        \\[10pt]    
+    % Degree/Error
+    &\bullet\ \arraycolsep=2pt 
+        \begin{array}[t]{r c c c c l}
+            n \text{ is even} &: \ \
+                &\text{\scriptsize \(Q_n\) error is expected \(f^{(n)}\) derivative}
+                &\hspace{10pt}
+                &Q(p_{n-1}) = I(p_{n-1})
+                &\rightarrow\ \boxed{d = n-1}
+                \\[5pt]
+            n \text{ is odd} &: \ \
+                &\text{\scriptsize \(Q_n\) error is \(f^{(n+1)}\) derivative}
+                &
+                &Q(p_{n}) = I(p_{n})
+                &\rightarrow\ \boxed{d = n}
+        \end{array}
+        \\[5pt]
+    % Error Difference
+    &\bullet\ \text{\scriptsize \underline{2 Rule Error}: \ Est. diff. between \(T(f)\) and \(M(f)\) can be used 
+        to est. \(I(f)\) error in using either.}
+        \\[5pt]
+    % Progressive
+    &\bullet\ \text{\scriptsize Can use subinterval, so can be \underline{progressive}.}\\
+    % Runge Phenom
+    &\bullet\ \text{\scriptsize Evenly-spaced \(x_i\) exibit the Runge Phenom.} 
+        \rightarrow\ \boxed{ Q_\infty(f) \text{ isn't always } I(f) }
+        \\[5pt]
+    % Ill Conditioned
+    &\bullet\ \boxed{ \text{\scriptsize Ill-conditioned and unstable} }:\ 
+        (n \geq 11 \Rightarrow \exists w_i < 0) ,\ \left( {\scriptstyle \sum_i^\infty}\hs |w_i| \rightarrow \infty \right) 
+\end{aligned}\)
+
+% Clenshaw-Curtis Quadrature
+\vspace{15pt}
+\underline{Curtis-Clenshaw Quadrature [Rule]}:\ \ \fbox{\(n\) Chebyshev Nodes, \(x_i \ \rightarrow\ n\) param. for \(w_i\)}
+
+% Notes
+\vspace{10pt}
+\(\hspace{10pt} \begin{aligned}[t]
+    &\bullet\ \forall n: \forall w_i > 0 \ \Rightarrow\ \text{\scriptsize cond}(Q) = b-a\\
+    &\bullet\ \lim_{n\rightarrow\infty} C_n(f) = I(f)\\
+    &\bullet\ \boxed{ d_n = n-1 }
+\end{aligned}
+\hfill
+\begin{aligned}[t]
+    &\bullet\ \parbox[t]{6cm}{\scriptsize \(\exists\)\ an algorithm w/ Chebyshev polynomials 
+        to find integrand w/o solving for \(w_i\).}\\
+    &\bullet\ \text{\scriptsize Using Chebyshev polynomial zeroes is the classical CCQ.}\\
+    &\bullet\ \text{\scriptsize Using Chebyshev extrema leads to a progressive rule [practical CCQ].} 
+\end{aligned}\)
+
+%
+%
+%
+%------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+% Guassian Quadrature
+\underline{Guassian Quadrature [Rule]}:\ \ \fbox{\(2n\) free param. for \(x_i,\ w_i\)} \(\Rightarrow\ \boxed{ d_n = 2n-1 }\) 
+
+% Notes
+\vspace{10pt}
+\(\hspace{10pt} \begin{aligned}[t]
+    % System of Moment Equations
+    &\bullet\ x_i, w_i : \ \
+        x_{n < i \leq 2n} = w_{n < i \leq 2n} = 0
+        \ \rightarrow \
+        \boxed{
+            \text{\scriptsize\(
+                \left(\ \begin{matrix}
+                    1 & \dots & 1 & 0 & \dots\\
+                    x_1 & \dots & x_n & 0 & \dots\\[3pt]
+                    x_1^2 & \dots & x_n^2 & 0 & \dots\\
+                    \vdots&  & \vdots & \vdots
+                \end{matrix}\ \right)
+                \left(\begin{matrix}
+                    \vdots\\
+                    w_n\\
+                    0\\[-4pt]
+                    \vdots\\
+                \end{matrix}\right) 
+            \)}
+            \ =\ \hsvec{z}(a,b)
+        }
+        \hspace{20pt}
+        \boxed{ \text{\scriptsize usually \(x_i \notin \mathbb{Q}\)} }
+        \\
+    % Orthogonal Polynomials
+    &\bullet\ \text{Ortho. Poly.}:\ \ 
+        \begin{gathered}[t]
+            \langle p_n{\scriptstyle(x)} | x^k \rangle_{ab} = 0 \\
+            {\scriptstyle(k = 0,\ \dots,\ n-1)}
+        \end{gathered}
+        \ \Rightarrow\ \boxed{ 
+            x_i:\ \begin{array}[t]{c c}
+                p_n(x_i) = 0, & x_i \in \mathbb{R}, \\
+                x_i \neq x_{j \neq i}, & x_i \in (a,b)
+            \end{array}
+        } 
+        \hspace{20pt}
+        \begin{aligned}
+            \\[-9pt]
+            {\scriptstyle[-1,1]} 
+                &- \text{\scriptsize Legendre}
+                \\[-7pt]
+            {\scriptstyle(-\infty,\infty)} 
+                &- \text{\scriptsize Hermite}
+                \\[-7pt]
+            {\scriptstyle[0,\infty)} 
+                &- \text{\scriptsize Laguerre}
+                \\[-7pt]
+        \end{aligned}
+        \\[5pt]
+    % Interval Transform
+    &\bullet\ \text{\scriptsize Interval Transform}:\ \boxed{ 
+        \int_a^b f(t)\hs dt = \tfrac{b-a}{\beta-\alpha} \int_\alpha^\beta f(t)\hs dx
+        \hspace{20pt} t = \tfrac{ (b-a)x + a\beta - b\alpha }{ \beta - \alpha } 
+    }
+        \\[5pt]
+    % Convergence
+    &\bullet\ \forall n: \forall w_i > 0 \ \Rightarrow\ \text{\scriptsize cond}(Q) = b-a
+        \hspace{25pt} \bullet\ \lim_{n\rightarrow\infty} G_n(f) = I(f)
+        \\
+    % Not progressive
+    &\bullet\ n = 2m+1\ \rightarrow\ \tfrac{a+b}{2} \in \{x_i\}_n;\ \ 
+        \text{\scriptsize otherwise usually } \{x_i\}_n \cup \{x_i\}_{\neq n} = 0
+        \ \rightarrow\ \boxed{ \text{\scriptsize Not progressive} }
+        \\[5pt]
+    % Progressive Rules
+    &\bullet\ \text{\scriptsize\(
+        \arraycolsep=2pt \begin{array}[t]{r c c l}
+            % Gauss-Kronrod
+            \underline{ \text{Progressive Gauss-Kronrod} , K_{2n+1} }: 
+                &n \text{ from } G_n
+                &\rightarrow\ \begin{aligned}
+                        n+1 &\text{ param for } x_{i>n}\\[-3pt]
+                        2n+1 &\text{ param for } w_i
+                    \end{aligned}
+                &\Rightarrow \ \boxed{d_{2n+1} = 3n+1 < 4n+1}
+                \\[5pt]
+            % GK 2 Rule Error
+            \text{GK 2-Rule Error}:
+                &\multicolumn{3}{l}{ 
+                    \boxed{ \Delta I(f) \approx (200|G_n - K_{2n+1}|)^{1.5} } 
+                    }
+                \\[10pt]
+            % Gauss Patterson
+            \text{Progressive Gauss-Patterson}, P_{4n+3}: 
+                &2n+1 \text{ from } K_{2n+1}
+                &\rightarrow\ \begin{aligned}
+                        2n+2 &\text{ param for } x_{i>n}\\[-3pt]
+                        4n+3 &\text{ param for } w_i
+                    \end{aligned}
+                &\Rightarrow \ \boxed{d_{4n+3} = 6n+4 < 8n+5}
+        \end{array}
+        \)}
+        \\
+    % Closed Intervals
+    &\bullet\ \text{\scriptsize\(
+        \arraycolsep=2pt \begin{array}[t]{r r l}
+            \text{Closed Gauus-Randau}: 
+                &x_i \in [a,b) \text{ or } (a,b] 
+                &\rightarrow \ \boxed{d = 2n-2}
+                \\[3pt]
+            \text{Closed Gauus-Lobatto}: 
+                &x_i \in [a,b] 
+                &\rightarrow \ \boxed{d = 2n-3}
+        \end{array}
+        \)}
+\end{aligned}\)
+
+% Composite [Subinterval] Quadrature
+\vspace{10pt}
+\underline{Composite [\(k\)-Subintervals] Quadrature for Rule \(Q_n\)}: \ \(
+    Q_n \ \rightarrow \ Q_{kn} \text{ \ or \ } Q_{kn-(k-1)} , 
+\)
+
+\(\hspace{10pt}\begin{aligned}
+    &\bullet\ \lim_{k\rightarrow\infty} C_{k,n} 
+        = \mathscriptsize{ \sum_{j=1}^{k\rightarrow\infty} } \left[ 
+            \mathscriptsize{ \sum_{i=1}^n }\hs 
+            w_i f{\scriptstyle(x_{ji})} 
+        \right]
+        = \mathscriptsize{ \sum_{i=1}^n }\hs 
+            \tfrac{w_i}{h_k} \left[ 
+            \mathscriptsize{ \sum_{j=1}^{k\rightarrow\infty} } 
+            h_k f{\scriptstyle(x_{ji})} 
+        \right]
+        = I(f) \mathscriptsize{ \sum_{i=1}^n }\hs \tfrac{w_i}{h_k} 
+        = I(f)     
+        \hspace{25pt} \mathscriptsize{ 
+            \begin{aligned}
+                &\begin{aligned}
+                    h_k &= (b-a)/k \\[-2pt]
+                    &\geq (x_{jn}- x_{j1})
+                \end{aligned}
+                    \\[2pt]
+                &\boxed{d \geq 0} \ \Rightarrow\ \sum w_i = h_k 
+            \end{aligned}
+        }
+        \\
+    &\bullet\ \text{Error}:\ \mathcal{O}(h^{m+1}) 
+        \ \rightarrow\ \mathcal{O}(kh_k^{m+1}) 
+        = \boxed{ \mathcal{O}(h_k^{m}) }
+        \hspace{20pt} {\scriptstyle(k>1)}
+\end{aligned}\)
+
+% Adaptive Quadrature
+\vspace{10pt}
+\underline{Adaptive Quadrature for Rule \(Q_n\)}:\ \ Divide subinterval until a tolerance is met.
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+% n-Dim Integration
+\subsection{\(n\)-D Integration}
+
+{\tabcolsep=5pt
+    \begin{tabular}{r l}
+        {Double Integral}:
+            &Use a pair of 1-D routines for the inner/outer integral.
+            \\[5pt]
+        {\(\scriptstyle (n>2)\)-Dimension Integral}:
+            &Monte Carlo is best (error \(\scriptstyle 1/\sqrt{n} \ \rightarrow\ 0\)).
+    \end{tabular}
+}
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+% Other Integrals
+\subsection{Other Integrals}
+
+{\tabcolsep=5pt
+    \begin{tabular}{r l}
+        Tabular Data:
+            &Integrate a piecewise interpolant.
+            \\[5pt]
+        Improper Integral:
+            &\parbox[t]{10cm}{Separate the integral, do a variable change, \\or add/subtract a term to remove singularities.}
+            \\[20pt]
+        (Fredholm) Integral Equations:
+            &skipped 
+    \end{tabular}
+}
+
+\newpage
+%------------------------------------------------------------------
+%
+%
+%------------------------------------------------------------------
+% Richardson Extrapolation [Romberg Integration]
+\subsection{Richardson Extrapolation [for Integration]}
+
+\vspace{5pt}
+\(\hspace{10pt}
+    \begin{aligned}
+        % Richardson Extrap.
+        &\arraycolsep=2pt \begin{array}{l c c c c c c}
+                F(h) &= 
+                    &I(f) 
+                    &+ 
+                    &a_1 h^p 
+                    &+ 
+                    &\mathcal{O}(h^{q > p})
+                    \\[5pt]
+                F(\tfrac{h}{k}) &=   
+                    &I(f) 
+                    &+ 
+                    &a_1 ( \tfrac{h}{k} )^p 
+                    &+ 
+                    &\mathcal{O}(h^{r \geq q})
+            \end{array}
+            \hspace{10pt} \Rightarrow \hspace{10pt}
+            \boxed{ I(f) = \frac{ k^{p} \hs F( \tfrac{h}{k} ) - F(h) }{ k^{p} - 1 } + \mathcal{O}(h^{q>p}) }
+            \\[10pt]
+        % Romberg Integr.
+        &\bullet\ \text{Romberg Integration [Quadratic Extrapolation for Comp. Trapezoidal Rule]}:
+            \\[5pt]
+        % Taylor Exp. for Trap. Rule w/ Error
+        &\begin{aligned}
+                T(f, \tfrac{h}{2^k} ) &= I(f) 
+                    + 2^k \left[ a_1 ( \tfrac{h}{2^k} )^3 
+                    + \mathcal{O}(\tfrac{h}{2^k}^{5}) \right]
+                    \\
+                T_{k,j=0} &= I(f) 
+                    + h a_1 [\tfrac{h}{2^k}]^2 
+                    + h\hs \mathcal{O}([\tfrac{h}{2^k}]^4)
+                    \\[15pt]
+                4T_{k+1,0} &= 4I(f) 
+                    + h a_1 [\tfrac{h}{2^k}]^2 
+                    + \tfrac{h}{4}\hs \mathcal{O}( [\tfrac{h}{2^{k}}]^4)
+            \end{aligned}
+            \hspace{10pt} \Rightarrow \hspace{10pt}
+            % Recursive Alg.
+            \begin{aligned}
+                T_{k+1, j+1} &\equiv \frac{ 4^{j+1}\ T_{k+1, j} - T_{k, j} }{ 4^{j+1} - 1 }
+                    \hspace{20pt} {\scriptstyle (1 \leq j \leq k)}
+                    \\[5pt]
+                \Aboxed{ I(f) &= T_{k, j} + \mathcal{O}(h^{2j+2}) }
+            \end{aligned}
+    \end{aligned}
+\)
+
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+% Numerical Differentiation
+\vspace{5pt}
+\section{Numerical Differentiation}
+
+% Conditioning
+\underline{Conditioning}:\ \ {\scriptsize Inverse of Integration - which smoothes noisy data - so %
+    derivatives are inherently sensitive to small changes.%
+} 
+
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+% Finite-Difference Approx
+\vspace{10pt}
+\begin{minipage}[t]{.5\textwidth}
+    \subsection{Finite-Difference Approx}
+
+    \(\arraycolsep=2pt \begin{array}{r c c c l}
+        f'(x) &= 
+            &\frac{f(x+h) - f(x)}{h} 
+            &- 
+            &\mathscriptsize{\displaystyle\sum_{n=2}^\infty}\hs \frac{f^{(n)}(x)}{n!} h^{n-1}
+            \\
+        &= 
+            &\frac{f(x) - f(x-h)}{h} 
+            &- 
+            &\mathscriptsize{\displaystyle\sum_{n=2}^\infty}\hs \frac{f^{(n)}(x)}{n!} (-h)^{n-1}
+            \\
+        &= 
+            &\frac{f(x+h) - f(x-h)}{2h} 
+            &- 
+            &\mathscriptsize{\displaystyle\sum_{n=3}^\text{odd}}\hs \frac{f^{(n)}(x)}{n!} h^{n-1}
+    \end{array}\)   
+    
+    % Notes
+    \vspace{10pt}
+    \(\bullet\ \text{\scriptsize Use more points \(n\) for higher order approx.}\)
+\end{minipage}
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+% Deriving Polynomial Interpolant
+\begin{minipage}[t]{.49\textwidth}
+    \subsection{Deriving Interpolant}
+
+    \(\begin{aligned}
+        &\begin{aligned}
+                f(x) &\ \approx\ \hat{f}_n(x) = p_{n-1}(x) \in P_{n-1}\\
+                f^{(m)}(x)&\ \approx\ \hat{f}_n^{(m)}(x)
+            \end{aligned}   
+            \\[5pt]
+        &\bullet\ \text{\scriptsize Equivalent but easier than finite-diff. approach.}\\
+        &\bullet\ \text{\scriptsize Using more points \(n\) leads to better accuracy.}\\
+        &\bullet\ \text{\scriptsize Polynomials, or other interpolants like trig. func. can be used.}
+    \end{aligned}\)
+\end{minipage}
+
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+% Richardson Extrapolation
+\vspace{10pt}
+\subsection{Richardson Extrapolation [for Differentiation]}
+
+\vspace{5pt}
+\(\hspace{10pt}
+    \begin{aligned}
+        % Richardson Extrap.
+        &\arraycolsep=2pt \begin{array}{l c c c c c c}
+                F(h) &= 
+                    &D(f) 
+                    &+ 
+                    &a_1 h^p 
+                    &+ 
+                    &\mathcal{O}(h^{q > p})
+                    \\[5pt]
+                F(\tfrac{h}{k}) &=   
+                    &D(f) 
+                    &+ 
+                    &a_1 ( \tfrac{h}{k} )^p 
+                    &+ 
+                    &\mathcal{O}(h^{r \geq q})
+            \end{array}
+            \hspace{10pt} \Rightarrow \hspace{10pt}
+            \boxed{ D(f) = \frac{ k^{p} \hs F( \tfrac{h}{k} ) - F(h) }{ k^{p} - 1 } + \mathcal{O}(h^{q>p}) }
+            \\[10pt]
+        % Example
+        &\bullet\ \text{E.g.} \hspace{10pt} D(f) = \tfrac{f(x+h) - f(x)}{h} + \mathcal{O}(h)
+            \\[10pt]
+        &\hspace{10pt}\begin{aligned}
+                F(h) &= \frac{f(x+h) - f(x)}{h}\\[5pt]
+                F(\tfrac{h}{2}) &= \frac{f(x + \tfrac{h}{2}) - f(x)}{h/2}
+            \end{aligned}
+            \hspace{10pt} \Rightarrow \hspace{10pt}
+            \boxed{ 
+                D(f) = \frac{ 
+                    2 \cdot \tfrac{f(x + h/2) - f(x)}{h/2} 
+                    - \tfrac{f(x+h) - f(x)}{h}
+                }{ 2-1 }
+                + \mathcal{O}(h^2)
+            }
+    \end{aligned}
+\)
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%
+\newpage
 
 \end{document}
