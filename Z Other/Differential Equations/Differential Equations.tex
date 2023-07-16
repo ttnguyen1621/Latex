@@ -2,9 +2,10 @@
 \usepackage{enumitem}
 \usepackage{amssymb}
 \usepackage{amsmath}
-\usepackage[left=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 
 \newcommand\italicmath{\mathversion{italic}}
+\newcommand{\hs}{\hspace{1pt}}
 \DeclareMathVersion{italic}
 \SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
 \SetSymbolFont{letters}  {italic}{OML}{cmm} {m}{it}
@@ -22,22 +23,48 @@
 
 
 \begin{document}
-% An Easy First Order Differential (& Transport Equation)
-\section{An Easy First Order Differential (\& Transport Equation)}
-\boldmath $$A(x) \ u_x + \alpha(x) \ B(y) \ u_y = f(u)$$ \unboldmath
-\\ \\
-$\displaystyle \frac{dy}{dx} = \frac{ \frac{dy}{dt} }{ \frac{dx}{dt} } = \frac{\alpha(x) B(y)}{A(x)}\ \ \Rightarrow\ \ \int \frac{dy}{B(y)} = \int \frac{\alpha(x)}{A(x)} dx \ \ \Rightarrow\ \ Y(y) = X(x) + C $ \\ \\
+
+% An Easy First Order Differential (including Advection/Transport Equation)
+\section{An Easy First Order Differential {\small(including Advection/Transport)}}
+
+\vspace{5pt}
+\boldmath \[A(x)\hs u_x + \alpha(x)\hs B(y)\hs u_y = f(u)\] \unboldmath
+
+\vspace{20pt}
+\(\displaystyle 
+	\frac{dy}{dx} = \frac{ \frac{dy}{dt} }{ \frac{dx}{dt} } \equiv \frac{\alpha(x) B(y)}{A(x)}\ 
+	\ \Rightarrow\ 
+	\ \int \frac{dy}{B(y)} = \int \frac{\alpha(x)}{A(x)}\hs dx \ \ \Rightarrow\ \ Y(y) = X(x) + C 
+\)
+
+\vspace{30pt} \noindent
+\(
+	\begin{aligned}
+		C &= Y(y)-X(x) \\
+		\epsilon &= x \\
+	\end{aligned}
+	\hspace{15pt} \vline \hspace{15pt}
+	\begin{aligned}
+		u_x &\ =\ u_C\displaystyle \frac{dC}{dx} 
+			+ u_{\epsilon}\frac{d\epsilon}{dx}
+			\ =\ \frac{-\alpha(x)}{A(x)} u_C 
+			+ u_{\epsilon}
+			\\[20pt]
+		u_y &\ =\ u_C\displaystyle \frac{dC}{dy} 
+			+ u_{\epsilon}\frac{d\epsilon}{dy}
+			\ =\ \frac{1}{B(y)} u_C		
+	\end{aligned}
+\)
+
+\vspace{20pt}
 \begin{eqnarray*}
-C &=& Y(y)-X(x) \\
-\epsilon &=& x \\
+	f(u) &=& A(x) u_x + \alpha(x) B(y) u_y \\ \\
+	&=& A(x) \left[ \frac{ -\alpha(x) }{ A(x) } u_C + u_{\epsilon} \right] 
+		+ \frac{ \alpha(x) B(y) }{ B(y) } u_C 
+		\\ \\
+	&=& A(\epsilon) \frac{\partial u}{\partial \epsilon} \\ \\
 \end{eqnarray*}
-$u_x\ =\ u_C\displaystyle \frac{dC}{dx} +u_{\epsilon}\frac{d\epsilon}{dx}\ =\ \frac{-\alpha(x)}{A(x)} u_C + u_{\epsilon}$ \\ \\ \\
-$u_y\ =\ u_C\displaystyle \frac{dC}{dy} +u_{\epsilon}\frac{d\epsilon}{dy}\ =\ \frac{1}{B(y)} u_C$ \\ \\
-\begin{eqnarray*}
-f(u) &=& A(x)u_x + \alpha(x) B(y)u_y \\ \\
-&=& A(x)\left[ \frac{-\alpha(x)}{A(x)}u_C + u_{\epsilon} \right] + \frac{\alpha(x) B(y)}{B(y)}u_C \\ \\
-&=& A(\epsilon) \frac{\partial u}{\partial \epsilon} \\ \\
-\end{eqnarray*}
+
 \begin{minipage}{0.60\textwidth}
 	{\bitalicmath $f(u) \neq 0:$} $\ \ \displaystyle \int \frac{du}{f(u)} = \int \frac{d\epsilon}{A(\epsilon)}$ \\ \\ \\
 	$\gamma(u) = h(\epsilon) + g(C)$ \\ \\
@@ -48,7 +75,12 @@ f(u) &=& A(x)u_x + \alpha(x) B(y)u_y \\ \\
 	{\bitalicmath $f(u) = 0:$} $\ \ \ \ \displaystyle\frac{\partial u}{\partial \epsilon} = 0$ \\ \\ \\
 	$u(x,y) = g(C) = g[\ Y(y)-X(x)\ ]$ \\ \\ \\
 \end{minipage}
-\\ \\
+
+%----------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
 % Quadratic-esque Equations (pre-Wave Equation)
 \section{Quadratic-esque Equations (pre-Wave Equation)}
 \boldmath \begin{eqnarray*}
