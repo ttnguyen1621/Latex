@@ -1589,7 +1589,7 @@
         \text{\scriptsize(Lagrange Basis Vectors)}
     \end{gathered}\right)
     = \left(\begin{gathered}
-        \sum_{j=0}^{n-1} c_j\hs x^j \\
+        \sum_{j=1}^{n} c_j\hs x^{j-1} \\
         \text{\scriptsize(Monomial Basis Vetors)}
     \end{gathered}\right)
     \hspace{20pt} \begin{aligned}
@@ -1613,61 +1613,83 @@
         \end{aligned}
 \)
 
-% Math to Method of Undetermined Coefficients
+% Method of Undetermined Coefficients / System of Moment Equations
 \vspace{5pt}
-\hspace{5pt} \(\arraycolsep=2pt
-    \begin{array}{c c c}
-        \displaystyle \int_a^b \left( \sum_{j=0}^{n-1} c_j\hs x^j \right) dx 
+\underline{Method of Undetermined Coefficients (MUC) / System of Moment Equations}  
+
+\vspace{5pt}
+\(
+    % Math to MUC
+    \mathscriptsize{ \arraycolsep=2pt \begin{array}{c c c}
+        \displaystyle \int_a^b \left( \sum_{j=1}^{n} c_j\hs x^{j-1} \right) dx 
             &=
-            &\displaystyle \sum_{i=1}^n \left( \sum_{j=0}^{n-1} c_j\hs x_i^j \right) w_i
-            \\[30pt]
-        \displaystyle \sum_{j=0}^{n-1} c_j \left( \int_a^b x^j dx \right) 
+            &\displaystyle \sum_{i=1}^n \left( \sum_{j=1}^{n} c_j\hs x_i^{j-1} \right) w_i
+            \\[20pt]
+        \displaystyle \sum_{j=1}^{n} c_j \left( \int_a^b x^{j-1} dx \right) 
             &=
-            &\displaystyle \sum_{j=0}^{n-1} c_j \left( \sum_{i=1}^n x_i^j \hs w_i \right)
+            &\displaystyle \sum_{j=1}^{n} c_j \left( \sum_{i=1}^n x_i^{j-1} \hs w_i \right)
             \\[20pt]
         \multicolumn{3}{c}{ \text{\scriptsize(maybe some dot product to isolate terms)} }
-    \end{array}
-    \hspace{5pt} \Rightarrow \hspace{5pt}
-\)
-% Method of Undetermined Coefficients
-\begin{minipage}{.48\textwidth}
-    \hspace{17pt} \underline{Method of Undetermined Coefficients}    
-    
-    \vspace{8pt}
-    \(
+    \end{array} }
+    \hfill \Rightarrow \hfill 
+    % MUC Conclusion
+    \begin{gathered}
         \begin{aligned}
-            \int_a^b x^j dx = \sum_{i=1}^n x_i^j \hs w_i 
-                &\ =\ \tfrac{ b^{j+1} - a^{j+1} }{ j+1 } \ \equiv\ z_j
-                \\[-7pt]
-            &\hspace{20pt} \rightarrow\ \boxed{ \scriptstyle z_0 \ =\ \sum w_i \ =\ b-a }
-                \\[5pt]
-            \Aboxed{ 
-                \begin{gathered}[b]
-                    \text{\scriptsize(Vandermode Matrix)}
-                        \\
-                    \text{\scriptsize\(
-                            \left(\begin{matrix}
-                                1 & 1 & 1 & \dots\\
-                                x_1 & x_2 & x_3 & \dots\\[3pt]
-                                x_1^2 & x_2^2 & x_3^2 & \dots\\
-                                \vdots & \vdots & \vdots
-                            \end{matrix}\right)
-                        \)}
-                \end{gathered}
-                \hsvec{w}
-                &\ =\ \hsvec{z}
-                \hspace{20pt} \begin{gathered}
-                    \text{\scriptsize \underline{System of Moment}}\\[-5pt]
-                    \text{\scriptsize \underline{Equations}}
-                \end{gathered}
-                \ \
-            }
-        \end{aligned}
-    \)
-\end{minipage}
+                \Aboxed{ \mathscriptsize{\sum_{i=1}^n} \hs f{\scriptstyle(x_i)} \hs w_i 
+                    &= \hat{F}{\scriptstyle(b)} - \hat{F}{\scriptstyle(a)} }
+                    \\
+                %
+                    &\hs \hs \downarrow
+                    \\
+                \Aboxed{ \mathscriptsize{\sum_{i=1}^n} \hs x_i^{j-1} \hs w_i 
+                    &= \tfrac{b^{j}}{j} - \tfrac{a^{j}}{j} }
+                    \\
+                %
+                    &\equiv z_j
+            \end{aligned}
+            \\[5pt]
+        \bullet\ \boxed{ \scriptstyle z_1 \ =\ \sum w_i \ =\ b-a }
+    \end{gathered}
+    \hfill
+    % MUC Vandermonde Matrices
+    \boxed{ \begin{aligned}
+        \begin{gathered}[b]
+                \text{\scriptsize(Vandermode Matrix)}
+                    \\
+                \mathscriptsize{\left[\begin{matrix}
+                        1 & 1 & 1 & \dots\\
+                        x_1 & x_2 & x_3 & \dots\\[3pt]
+                        x_1^2 & x_2^2 & x_3^2 & \dots\\
+                        \vdots & \vdots & \vdots
+                    \end{matrix}\right]}
+            \end{gathered}
+            \hsvec{w}
+            &= \hsvec{z}
+            \\
+        \mathscriptsize{\left[\begin{matrix}
+                1 & 0 & 0 & \dots\\
+                a & 1 & 1 & \dots\\
+                \tfrac{a^2}{2} & x_1 & x_2 & \dots\\
+                \vdots & \vdots & \vdots 
+            \end{matrix}\right]}
+            \mathscriptsize{\left[\begin{matrix}
+                1\\
+                |\\
+                \hsvec{w} \hs\\
+                |
+            \end{matrix}\right]}
+            &=
+            \mathscriptsize{\left[\begin{matrix}
+                1\\
+                b\\
+                \tfrac{b^2}{2} \\
+                \vdots
+            \end{matrix}\right]}
+    \end{aligned} }
+\)
 
 % Notes
-\vspace{15pt}
+\vspace{10pt}
 \(\begin{aligned}
     &\underline{ \text{Error } I}:
         \ \ | \Delta I | 
@@ -2075,12 +2097,13 @@
     \end{aligned}
 \)
 
-%-----------------------------------------------------------------
-%-----------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+\newpage
 %-----------------------------------------------------------------
 %-----------------------------------------------------------------
 % Numerical Differentiation
-\vspace{5pt}
+% \vspace{5pt}
 \section{Numerical Differentiation}
 
 % Conditioning
@@ -2180,11 +2203,1106 @@
     \end{aligned}
 \)
 
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+% Method of Undetermined Coefficients / System of Moment Equations
+\subsection{\small Method of Undetermined Coefficients (MUC) / System of Moment Equations}  
+
+% Quadrature Rule
+\(\displaystyle
+    \boxed{ \big( D_n(f) \big) (a)
+        \ \equiv\ \frac{d f}{dx}(a)
+        = \frac{d\hat{f}}{dx}(a)
+        = \sum_{i=1}^n f(x_i) \hs \phi'_i(a)\hs
+        = \sum_{i=1}^n f(x_i)\hs w_i
+        }
+        \hspace{20pt} \begin{aligned}
+            &{\scriptstyle \bullet\ \boxed{\scriptstyle x_i,\ w_i \ \rightarrow\ 2n \text{\scriptsize\ max param.} } }\\[-4pt]
+            % &{\scriptstyle \bullet\ a\ \leq\ x_1\ <\ \dots\ <\ x_n\ \leq\ b} \\[-7pt]
+            % &\text{\scriptsize \(\bullet\ \) closed if equality, open if not}
+        \end{aligned}
+\)
+
+\vspace{5pt}
+\(
+    % Math to MUC
+    \mathscriptsize{ \arraycolsep=2pt \begin{array}{c c c}
+        \displaystyle \left( \frac{d}{dx} \sum_{j=1}^{n} c_j\hs x^{j-1} \right) {(a)}
+            &=
+            &\displaystyle \sum_{i=1}^n \left( \sum_{j=1}^{n} c_j\hs x_i^{j-1} \right) w_i
+            \\[20pt]
+        \displaystyle \sum_{j=1}^{n} c_j \frac{d (x^{j-1}) }{dx} {(a)}
+            &=
+            &\displaystyle \sum_{j=1}^{n} c_j \left( \sum_{i=1}^n x_i^{j-1} \hs w_i \right)
+            \\[20pt]
+        \multicolumn{3}{c}{ \text{\scriptsize(maybe some dot product to isolate terms)} }
+    \end{array} }
+    \hfill \Rightarrow \hfill 
+    % MUC Conclusion
+    \begin{gathered}
+        \begin{aligned}
+                \Aboxed{ \mathscriptsize{\sum_{i=1}^n} \hs f{\scriptstyle(x_i)} \hs w_i 
+                    &= \tfrac{d \hat{f}}{dx} {\scriptstyle(a)} }
+                    \\
+                %
+                    &\hs \hs \downarrow
+                    \\
+                \Aboxed{ \mathscriptsize{\sum_{i=1}^n} \hs x_i^{j-1} \hs w_i 
+                    &= \tfrac{d (x^{j-1}) }{dx} {\scriptstyle(a)} }
+                    \\
+                %
+                    &\equiv z_j
+            \end{aligned}
+            \\[5pt]
+        \bullet\ \boxed{ \scriptstyle z_1 \ =\ \sum w_i \ =\ 0 }
+    \end{gathered}
+    \hfill
+    % MUC Vandermonde Matrices
+    \boxed{ 
+        \begin{gathered}[b]
+            \text{\scriptsize(Vandermode Matrix)}
+                \\
+            \mathscriptsize{\left[\begin{matrix}
+                    1 & 1 & 1 & \dots\\
+                    x_1 & x_2 & x_3 & \dots\\[3pt]
+                    x_1^2 & x_2^2 & x_3^2 & \dots\\
+                    \vdots & \vdots & \vdots
+                \end{matrix}\right]}
+        \end{gathered}
+        \hsvec{w}
+        = \hsvec{z}
+        = \mathscriptsize{\left[\begin{matrix}
+            0\\
+            1\\
+            2a\\
+            \vdots
+        \end{matrix}\right]}
+    }
+\)
+
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
+% Initial Value Problems for ODEs
+\newpage
+\section{Initial Value Problems for ODEs: \(
+    \hsvec{y'}{\scriptstyle(t)} = \hsvec{f}{\scriptstyle(t,\hsvec{y})}
+    ;\ \hsvec{y}{\scriptstyle(t_0)}
+\)}
+
+% Terms
+\vspace{5pt}
+\(\arraycolsep=2pt 
+    \begin{array}{r c l}
+        k \text{-th Order}: &\hspace{5pt}
+            &f(t, y, \dots, y^{(k)}) = 0
+            \\[5pt]
+        \text{Autonomous}: &\hspace{5pt}
+            &f(y, \dots, y^{(k)}) = 0
+    \end{array}
+    \hspace{1.5cm}
+    \begin{array}{r c l}
+        \text{Linear}: &\hspace{5pt}
+            &\hsvec{a}(t) \cdot [y(t), \dots, y^{(k)}(t)]^T = b(t) 
+            \\[5pt]
+        \text{Homogeneous}: &\hspace{5pt}
+            &b(t) = 0
+    \end{array}
+\)
+
+% System of ODEs
+\vspace{5pt}
+\underline{ \(\begin{gathered}
+    \text{\(k\)-th Order}\\[-5pt]
+    \text{System of \(n\)}\\[-5pt]
+    \text{Coupled ODEs}
+\end{gathered}\) }\ : 
+\ \ \(
+    \hsvec{y'_i}(t) 
+    = \mathscriptsize{ 
+        \left[ \begin{gathered}
+            y_i'(t)\\
+            u_2'(t) \\[-4pt]
+            \vdots\\[-4pt]
+            u_{k-1}'(t) \\
+            u_k'(t)
+        \end{gathered} \right] 
+    }
+    = \mathscriptsize{ 
+        \left[ \ \begin{gathered}
+            u_2(t)\\
+            u_3(t)\\[-4pt]
+            \vdots\\[-4pt]
+            u_k(t)\\
+            f(t, u_1, \dots, u_k)
+        \end{gathered} \ \right]
+    }
+    \hspace{5pt} \Rightarrow \hspace{5pt}
+    \boxed{ 
+        \hsvec{y'}(t) 
+        = \mathscriptsize{ 
+            \left[ \begin{gathered}
+                \hsvec{\ y'_1}(t) \\[-4pt]
+                \vdots\\[-4pt]
+                \hsvec{\ y'_n}(t)
+            \end{gathered} \right] 
+        }
+        = \hsvec{f}(t, \hsvec{y}) 
+        = \mathscriptsize{ 
+            \left[ \begin{gathered}
+                \hsvec{f_1}(t, \hsvec{y}) \\[-4pt]
+                \vdots\\[-4pt]
+                \hsvec{f_n}(t, \hsvec{y})
+            \end{gathered} \right] 
+        }
+    }
+\)
+
+% Nonautonomous -> Autonomous
+\underline{Nonautonomous \(\rightarrow\) Autonomous}:\ \ \(
+    \boxed{ 
+        \hsvec{y'} = f(t, \hsvec{y})
+        \ \rightarrow \ 
+        \mathscriptsize{
+            \left[ \hs \begin{aligned}
+                \hsvec{y'} &= f(y_{n+1}, \hsvec{y}) \\
+                y'_{n+1} &= 1
+            \end{aligned} \hs \right]
+        }
+    }
+\)
+
+%---------------------------------------------------------------
 %
+%
+%---------------------------------------------------------------
+% Stability/Conditioning
+\subsection{ODE Stability (Conditioning)}
+
+% Unique/Exist if Lipschitz Cont.
+\underline{Unique/Exists if Lipschitz Continuous}: \\[5pt] 
+\(
+    \Vert{ \hsvec{f}(t, \hat{y}) - \hsvec{f}(t, \hsvec{y}) }\Vert_\infty 
+    \leq L \Vert{ \hat{y} - \hsvec{y} }\Vert^{\alpha = 1}_\infty
+    = \big( \max \Vert{ J_f(t, \hsvec{y}) }\Vert \big) \cdot \Vert{ \hat{y} - \hsvec{y} }\Vert
+    \hspace{30pt} \text{\scriptsize Assured if \(\hsvec{f}\) is differentiable }
+\)
+
+% Bound
+\vspace{5pt}
+\(
+    \underline{ \hat{y'} = \hat{f}(t, \hat{y}) }: 
+    \ \ \Vert{ \hat{y} - \hsvec{y} }\Vert_\infty 
+    \leq e^{L(t-t_0)} \Vert{ \hat{y}(t_0) - \hsvec{y}(t_0) }\Vert_\infty
+    + \frac{ e^{L(t-t_0)} - 1 }{L} \left( \max \Vert{ \hat{f} - \hsvec{f} }\Vert \right)
+    \hspace{20pt} \Big( \begin{gathered}
+        \text{\scriptsize cont./well-posed but}\\[-7pt]
+        \text{\scriptsize possibly sensitive}
+    \end{gathered} \Big)
+\)
+
+% Stability epsilon-delta
+\vspace{5pt}
+\underline{Stable (\(\epsilon\)-\(\delta\))}:\ \ \(
+    \forall \epsilon>0, \exists \delta > 0 :\ 
+    \Vert{ \hat{y}(t_0) - \hsvec{y}(t_0) }\Vert < \delta 
+    \Rightarrow \Vert{ \hat{y}(t) - \hsvec{y}(t) }\Vert < \epsilon
+    \hspace{20pt} \text{\scriptsize(exp. above ruled out)}
+\)
+
+% Asymtotically stable
+\vspace{5pt}
+\underline{Asymptotically Stable}:\ \ \(\displaystyle \lim_{t \rightarrow \infty}\Vert{ \hat{y}(t) - \hsvec{y}(t) }\Vert = 0\)
+
+% One dimension ODE
+\[
+    y' = \lambda y \ \Rightarrow \ \lim_{t \rightarrow \infty} y = y_0 e^{\lambda t} 
+    \hspace{10pt} \left\{ \mathscriptsize{ 
+        \begin{array}{r c l}
+            \text{Re}(\lambda) < 0 &\rightarrow& \text{Asymp. Stable [Cond.]}\\
+            \text{Re}(\lambda) = 0 &\rightarrow& \text{Oscillating (Stable Cond.)}\\
+            \text{Re}(\lambda) > 0 &\rightarrow& \text{Unstable [Cond.]}\\
+        \end{array} 
+    } \right.
+\]
+
+\(
+    \hspace{.5cm} \begin{aligned}
+        % Linear System of ODEs
+        &\underline{\text{Linear System of ODEs}}\\
+        &\boxed{ \hsvec{y'} = A\hsvec{y} }\\
+        &\hsvec{y}(0) = \hsvec{y}_0
+            \\[10pt]
+        % Nonlinear System of ODEs
+        &\underline{\text{Noninear System of ODEs}}\\
+        &\boxed{ \hsvec{y'} = \hsvec{f}(t, \hsvec{y}) }\\
+        &\rightarrow\ \hsvec{y'} \approx J_f{\scriptstyle(t, \hsvec{y})} \hs \hsvec{y}
+    \end{aligned}
+    \hspace{1cm} \rightarrow \hspace{1cm}
+    \begin{aligned}
+        % A is diagonalizable / J_f is diagonalizable & f is autonomous
+        &\bullet\ A \text{ is diagonalizable %
+            / \(J_f\) is diagonalizable}
+            \\
+        &\Rightarrow\ \hsvec{y}_0 = \sum a_i \hsvec{v}_i
+            , \ \ \hsvec{y}(t) = \sum a_i \hsvec{v}_i \hs e^{\lambda_i t}
+            \\[5pt]
+        &\rightarrow \ \mathscriptsize{ 
+            \arraycolsep=3pt \left\{ \begin{array}{r c l}
+                \forall \lambda_i \ \ \text{Re}(\lambda_i) < 0 &\rightarrow& \text{Asymp. Stable [Cond.]}\\
+                \forall \lambda_i \ \ \text{Re}(\lambda_i) = 0 &\rightarrow& \text{Stable [Cond.]}\\
+                \exists \lambda_i \ \ \text{Re}(\lambda_i) > 0 &\rightarrow& \text{Unstable [Cond.]}\\
+            \end{array} \right.
+            }\\[5pt] 
+        % A Isn't diagonalizable / J_f isnt diagonalizable & f is autonomous 
+        &\bullet\ A \text{ isn't diagonalizable %
+            / \(J_f\) isn't diagonalizable}
+            \\[5pt]
+        &\rightarrow \text{\scriptsize 
+            Stable [Cond.] if \ \(
+                \forall \lambda_i \ \ 
+                \arraycolsep=3pt \begin{array}{r c l}
+                    \bullet\ \text{Re}(\lambda_i) &\leq& 0 \\
+                    \bullet\ \text{Re}(\lambda_i) &<& 0 \text{ if \(\lambda_i\) isn't simple.} 
+                \end{array}
+            \)
+            }\\[5pt]
+        % A = A(t) / f isn't autonomous
+        &\bullet\ A = A(t) \text{ / } \vec{f} \text{ isn't autonomous} \ \rightarrow\ J_f = J_f(t, \hsvec{y})\\
+        &\rightarrow\ \text{\scriptsize Might not be long-term stable}
+    \end{aligned}
+\)
+
+%----------------------------------------------------------
+%
+%
+%----------------------------------------------------------
 \newpage
 
+% Algorithm Stability and Error
+\subsection{Algorithm Stability and Error}
+
+% Local Truncation Error
+\underline{Local [Trunc.] Error (Accuracy)}: \ \ \(
+    \hsvec{l}_k = \hsvec{y}_k{\scriptstyle(t_k)} - \hsvec{y}_{k-1}{\scriptstyle(t_k)}
+    = \mathcal{O}(h_k^{p+1}) 
+    \ \rightarrow \
+    \tfrac{ \hsvec{l}_k }{ h_k } = \mathcal{O}(h_k^{p})
+    \hspace{20pt} \boxed{ \text{\scriptsize(Order \(p\))} }
+\)
+
+% Global Truncation Error
+\underline{Global [Trunc.] Error (Stability)}: \ \ \(
+    \hsvec{e}_k 
+    = \hsvec{y}_k - \hsvec{y}(t_k) 
+    \ =\ \mathcal{O}(\widehat{h_k}^p) \hspace{20pt} \text{\scriptsize(under ``reasonable'' conditions)}
+\)
+
+% Growth/Amplification Factor
+\underline{\(\begin{gathered}
+    \text{Growth/}\\[-5pt]
+    \text{Amplification}\\[-5pt]
+    \text{Factor}, g
+\end{gathered}\)}\ : \ \ \(
+    \begin{aligned}
+        &\bullet\ y' = \lambda y \ \Rightarrow\ y_k = g^k \hs y_0
+            \ \left\{ \ \mathscriptsize{ \begin{aligned}
+                |g| \leq 1 &\ \rightarrow\ \text{Stable}\\[-4pt]
+                |g| > 1 &\ \rightarrow\ \text{Unstable}
+            \end{aligned} } \right.
+            \\
+        &\bullet\ \hsvec{e}_{k+1}  = g \hsvec{e}_k + \hsvec{l}_{k+1} 
+            \ \left\{ \ \mathscriptsize{ \begin{aligned}
+                \rho(g) \leq 1 &\ \rightarrow\ \text{Stable}\\[-4pt]
+                \rho(g) > 1 &\ \rightarrow\ \text{Unstable}
+            \end{aligned} } \right.
+            % Spectral Radius
+            \hspace{20pt} \big( \ \begin{gathered}
+                \text{\scriptsize Spectral Radius, \(\rho(\mathbb{R}^{n \times n})\)}, \\[-9pt]
+                \text{\scriptsize may vary with \(t\)}
+            \end{gathered} \ \big)
+    \end{aligned}
+\)
+
+% Unconditionally Stable
+\underline{Unconditionally Stable}: \ \ If stable alg. when \(
+    (\forall h,\ h > 0),
+    \ (\forall\lambda_i,\ \text{Re}{\scriptstyle(\lambda_i)} < 0 \Rightarrow \text{\scriptsize Stable [Cond.]}) 
+\)
+
+% Implicit vs Explicit Method
+\underline{Implicit Method}: \ \ \(y_{k+1} = y_{k+1}{\scriptstyle(t_k,\ t_{k+1},\ \dots)}\)
+    \hspace{20pt} \text{\scriptsize(usually more stable than expicit methods, \(y_{k+1} = y_{k+1}{\scriptstyle(t_k)}\))}
+
+%----------------------------------------------------------
+%----------------------------------------------------------
+% ODE Stiffness
+\subsection{ODE Stiffness}
+% Asymptotic Stiffness
+\underline{[Asymptotic] Stiffness}: \ \ \(\begin{aligned}[t]
+    &\bullet\ \text{\scriptsize Rapid asymp. decay to convergence; 
+        Re\((\lambda_i(J_f)) \ll\ \sim 0\) and differ greatly in magnitude.}
+        \\[-5pt]
+    &\bullet\ \parbox[t]{.7\textwidth}{\scriptsize Normally small \(h_k\) required; %
+        \underline{even w/ an alg. with no local error, a perturbation of an initial}\\[2pt] %
+        \underline{value may cause a step to overshoot to neighboring solutions/level sets.}
+        }\\[-1pt]
+    &\bullet\ \text{\scriptsize Implicit methods with greater range of %
+        stability allow larger \(h_k\) for stiff ODEs than explicit ones.}
+\end{aligned}\)
+
+% Oscillatory Stiffness
+\underline{[Oscillatory] Stiffness}: \ \ {\scriptsize Rapid oscillation stiffness; %
+    \(|{ \text{Im}(\lambda_i(J_f)) }| \gg\ \sim 0\) and differ greatly in magnitude. Treatment not given.%
+}
+
+%------------------------------------------------------------
+%------------------------------------------------------------
+% Taylor Series Methods
+\subsection{Taylor Series Algorithms, \(\displaystyle \boxed{ 
+        \hsvec{y}{\scriptstyle(t+h)} = \hsvec{y}{\scriptstyle(t)}
+        + \mathscriptsize{\sum_i^p}\hs \tfrac{h^i}{i!} \hsvec{y}^{(i)}{\scriptstyle(t)}
+        + \mathcal{O}{\scriptstyle (h^{p+1})}
+    }
+\)}
+
+% Local Error Tolerance
+\underline{\(
+    \begin{gathered}
+        \text{Local Error}\\[-5pt]
+        \text{Tolerance}
+    \end{gathered}
+\)}\ : 
+\ \ \(
+    \tfrac{h^{p+1}}{(p+1)!} \Vert{ \hsvec{y}^{(p+1)}{\scriptstyle(t)} }\Vert \leq tol
+    \ \Rightarrow \
+    \boxed{ h_k \ \lesssim\ \sqrt[p+1]{ (p+1)! \cdot tol / \Vert{ \hsvec{y}^{(p+1)}_k }\Vert } }
+    \hspace{20pt} \Big( \hs \begin{gathered}
+        \text{\scriptsize Could use finite}\\[-7pt]
+        \text{\scriptsize diff for \(\Vert{ \hsvec{y}''_k }\Vert\)}
+    \end{gathered} \hs \Big)
+\)
+
+% Euler's Method
+\underline{[Explicit] Forward Euler's Method (1st Order)}: \ \ \(\hsvec{y}_{k+1} 
+    \ =\ \hsvec{y}_k + h_k \hsvec{y'}_k
+    \ =\ \boxed{ \hsvec{y}_k + h_k \hsvec{f}{\scriptstyle(t_k, \hsvec{y}_k)} }
+\)
+
+% Euler's Method Algorithm Stability
+\(\hspace{15pt}
+    \begin{aligned}
+        % One Dimensional
+        &\bullet\ g:\ y_k = (1 + h_k \lambda)^k \hs y_0
+            \ \Rightarrow \ 
+            % Accuracy
+            \mathscriptsize{ e^{\lambda h} = g + \mathcal{O}(h^2) }
+            \hspace{10pt} \boxed{\scriptstyle p=1}
+            \hspace{10pt} , \hspace{10pt} 
+            % Stable Radius 
+            \mathscriptsize{
+                |1 + h\lambda| \leq 1 \ \rightarrow\ \boxed{ \text{Stable if } \lambda: |1/h + \lambda| \leq 1/h }
+            } 
+            \\
+        % Multidimension
+        &\bullet\ \begin{aligned}[t]
+                g:\ \hsvec{e}_{k+1} &= \hsvec{y}_{k+1} - \hsvec{y}{\scriptstyle(t_k + h_k)} 
+                    = \big[ \hsvec{y}_k + h_k \hsvec{y'}_k \big]
+                    - \big[ \hsvec{y}{\scriptstyle(t_k)} + h_k \hsvec{y'}{\scriptstyle(t_k)} + \mathcal{O}(h_k^2) \big]      
+                    \\
+                &= \big[ \hsvec{y}_k - \hsvec{y}{\scriptstyle(t_k)} \big]
+                    + h_k \big[ \hsvec{f}{\scriptstyle(t_k, \hsvec{y}_k)} - \hsvec{f}{\scriptstyle(t_k, \hsvec{y}(t_k))} \big]
+                    - \mathcal{O}(h_k^2)
+                    \hspace{10pt} \boxed{\scriptstyle p=1}
+                    \\
+                &= \hsvec{e}_k 
+                    + h_k \bar{J}_f \hsvec{e}_k - \mathcal{O}(h_k^2)
+                    % Mean Value Theorem
+                    \hspace{10pt} , \hspace{10pt}
+                    \Big(\hs
+                        \begin{gathered}
+                            \text{\scriptsize From Mean}\\[-9pt]
+                            \text{\scriptsize Value Theorem}
+                        \end{gathered} 
+                        \hspace{5pt} : \hspace{5pt}
+                        \bar{J}_f \hsvec{e}_k = \mathscriptsize{\int_0^1} J_f( 
+                            {\scriptstyle t_k,\ \alpha \hsvec{y}_k + (1-\alpha) \hsvec{y}(t_k)} 
+                        ) \hs d\alpha \cdot \hsvec{e}_k
+                    \hs\Big)
+                    \\
+                &= \big[ I + h_k \bar{J}_f \big] \hsvec{e}_k 
+                    + \hsvec{l}_{k+1}
+                    \ \Rightarrow \ 
+                    % Stable Radius 
+                    \mathscriptsize{ \begin{aligned}
+                        \Aboxed{ \rho{\scriptstyle(I + h_k \bar{J}_f)} \leq 1 &\ \rightarrow\ \text{Stable} }
+                    \end{aligned} }
+            \end{aligned}
+            \\
+        % Stiffness tolerance
+        \vspace{5pt}
+        &\bullet\ \underline{\text{Stiffness Tolerance}}: \ \boxed{ 
+            h_k \cdot \min( \text{Re}( \lambda_i{\scriptstyle(J_f)} ) ) \ll -1 
+            }
+            \hspace{10pt}
+            \text{\scriptsize(small tolerance, not uncond. stable)}
+    \end{aligned}
+\)
+
+% Backwards Euler's Method
+\underline{[Imp.] Backwards Euler's Method}: \ \ \(\hsvec{y}_{k+1} 
+    \ =\ \boxed{ \hsvec{y}_k + h_k \hsvec{f}{\scriptstyle(t_{k+1}, \hsvec{y}_{k+1})} }
+    \hspace{20pt}
+    \Big(\hs \begin{gathered}
+        \text{\scriptsize Solve Nonlin. Eq.; use init.}\\[-9pt]
+        \text{\scriptsize guess from an explicit method}
+    \end{gathered}\hs \Big)
+\)
+
+% Backwards Euler's Method Algorithm Stability
+\(\hspace{15pt}
+    \begin{aligned}
+        % One Dimensional
+        &\bullet\ g:\ y_k = (\tfrac{1}{1 - h_k \lambda})^{k} \hs y_0
+            \ \Rightarrow \
+            % Accuracy
+            \mathscriptsize{ e^{\lambda h} = 1/(1 - h \lambda) + \mathcal{O}(h^2) } 
+            \hspace{10pt} \boxed{\scriptstyle p=1}
+            \hspace{10pt} , \hspace{10pt}
+            % Stable Radius 
+            \mathscriptsize{ \begin{aligned}
+                \Aboxed{ |1 - h\lambda| \geq 1 &\ \rightarrow\ \text{Unconditionally Stable} }\\
+            \end{aligned} }
+            \\[5pt]
+        % Multidimensional
+        &\bullet\ g: \ \rho({\scriptstyle(I - h J_f)^{-1}}) \leq 1 
+            \ \ \text{\scriptsize(\emph{sic} \(h J_f\))}
+            \ \rightarrow\ \boxed{ \text{\scriptsize Unconditionally Stable \(\rightarrow\) Greater Stiffness Tol.} } 
+    \end{aligned}
+\)
+
+% 2nd Order
+% \vspace{5pt}
+\underline{\(\begin{gathered}
+    \text{[Exp.]}\ p=2
+\end{gathered}\)}\ : 
+\ \ \(
+    \hsvec{y}_{k+1} = \hsvec{y}_k 
+        + h_k \hsvec{y'}_k 
+        + \tfrac{h_k^2}{2} \hsvec{y''}_k
+    = \boxed{ \hsvec{y}_k 
+        + h_k \hsvec{f}{\scriptstyle(t_k, \hsvec{y}_k)} 
+        + \tfrac{h_k^2}{2} \left( \hsvec{f}_t{\scriptstyle(t_k, \hsvec{y}_k)} 
+            + \hsvec{f}_y{\scriptstyle(t_k, \hsvec{y}_k)} \hsvec{f}{\scriptstyle(t_k, \hsvec{y}_k)} 
+        \right) }
+\)
+
+%
+%
+%------------------------------------------------------------
+%------------------------------------------------------------
+\newpage
+% Explicit Runge-Kutta Methods
+\subsection{[Exp.] Runge-Kutta Algorithms}
+
+\[\boxed{
+    \hsvec{y}_{k+1} \ =\ \hsvec{y}_k + h_k \sum_{i=1}^{s} b_i k_i  
+    \hspace{15pt} , \hspace{15pt}
+    k_i = \hsvec{f}( t_k + c_i h_k,\ \hsvec{y}_k + h_k \hs \mathscriptsize{\sum_j^{i-1}}\hs a_{ij}k_j )
+    \hspace{15pt} , \hspace{15pt}
+    \mathscriptsize{\sum_i^s}\hs b_i = 1
+}\]
+
+% Heun's Method/Trapezoid Rule
+\vspace{-5pt}
+\underline{\(\begin{gathered}
+    \text{Heun's Method/}\\[-3pt]
+    \text{Trapezoid Rule}\\[-3pt]
+    (p=2, s=2)
+\end{gathered}\)}\ : 
+\ \ \(
+    \begin{aligned}
+        \hsvec{y}_{k+1} &\ \approx\ \hsvec{y}_k + \tfrac{h_k}{2} \big[
+                \hsvec{f}{\scriptstyle(t_k, \hsvec{y}_k)} 
+                + \hsvec{f}{\scriptstyle(t_{k+1}, \hsvec{y}_{k+1})}
+            \big] 
+            \hspace{10pt}
+            \text{\scriptsize(See Multistep Trap. Rule Below)}
+            \\
+        &\ =\ \boxed{ 
+                \hsvec{y}_k 
+                + \tfrac{h_k}{2} \big[
+                    \hsvec{f}{\scriptstyle(t_k, \hsvec{y}_k)} 
+                    + \hsvec{f}( {\scriptstyle t_k + h_k,\ \hsvec{y}_{k} + h_k \hsvec{f}(t_k, \hsvec{y}_k) } )
+                \big]
+            }\\
+        &\ =\ \hsvec{y}_k + \tfrac{h_k}{2} \left[ k_1 + k_2 \right]
+    \end{aligned}
+    \hspace{-40pt}
+    \mathscriptsize{ \begin{aligned}
+            \\[10pt]
+        \hsvec{c} = \left[ \begin{matrix}
+                0\\
+                1
+            \end{matrix} \right]
+            &, 
+            \left[ \begin{matrix}
+                \\
+                1 & 
+            \end{matrix} \right]
+            = a
+            \\
+        &, \left[ \tfrac{1}{2}, \tfrac{1}{2} \right]^T = \hsvec{b} 
+    \end{aligned} }
+\)
+
+% RK4/Simpsons Rule
+\vspace{5pt}
+\underline{\(\begin{gathered}
+    \text{RK4/}\\[-3pt]
+    \text{Simpson's Rule}\\[-3pt]
+    (p=4, s=4)
+\end{gathered}\)}\ : 
+\ \ \(
+    \begin{aligned}
+        \hsvec{y}_{k+1} &\ =\ \hsvec{y}_k + \tfrac{h_k}{6} \big[ k_1 + 2 k_2 + 2 k_3+ k_4 \big]
+    \end{aligned}
+    \hspace{10pt}
+    \mathscriptsize{ \begin{aligned}
+        \hsvec{c} = \left[ \begin{matrix}
+                0\\
+                1/2\\
+                1/2\\
+                1
+            \end{matrix} \right]
+            &, 
+            \left[ \begin{matrix}
+                \\
+                \tfrac{1}{2} \\
+                0 & \tfrac{1}{2}\\
+                0 & 0 & 1 & \ \
+            \end{matrix} \right]
+            = a
+            \\
+        &, \left[\ \tfrac{1}{6}\ \ \ \tfrac{2}{6}\ \ \ \tfrac{2}{6}\ \ \tfrac{1}{6}\ \right]^T = \hsvec{b} 
+    \end{aligned} }
+\)
+
+% Notes
+\vspace{5pt}
+\(\begin{aligned}
+    &\bullet\ \text{\scriptsize Explicit Runge-Kutta have no error estimates to base step-size on.}\\[-5pt]
+    &\bullet\ \text{\scriptsize Embedded [paired] RK methods have pair-diff. error estimates.}\\[-10pt]
+    &\bullet\ \text{\scriptsize Implicit RK methods exist for stiff ODEs: \(
+            k_i = \hsvec{f}( t_k + c_i h_k,\ \hsvec{y}_k + h_k \hs \mathscriptsize{\sum_j^{s}}\hs a_{ij}k_j )
+        \)}
+\end{aligned}\)
+
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+% [Linear] Multistep Algorithms
+\subsection{[Linear] Multistep Algorithms ({\scriptsize May Use Previous Points/Not Self-Starting})}
+
+\[
+    \begin{gathered}
+        \text{Interpolate}\\[-5pt]
+        \text{\scriptsize(use MUC for coefficients)}\\[-7pt]
+        {\scriptstyle(\forall t_k,\ \text{\scriptsize Let } h=1)}
+    \end{gathered}
+    \hspace{15pt}
+    \boxed{
+        \hsvec{y}_{k+1} \ =\ \sum_{i=1}^m \alpha_i \hs y_{k-(i-1)} 
+        \ +\ h \sum_{i=0}^m \beta_i \hsvec{y'}_{k+1-i}
+    }    
+    \hspace{15pt} \text{\scriptsize or} \hspace{15pt}
+    \boxed{
+        \begin{gathered}
+            \mathscriptsize{ \sum_{i=0} a_i y_{k+1-i} = h \sum_{i=0} b_i y'_{k+1-i} }
+                \\
+            \text{\scriptsize(Explicit if \(\beta_0 = 0\))}
+        \end{gathered}
+    }
+\]
+
+% Adams Method
+\underline{\(\begin{gathered}
+    \text{Adams Methods}\\[-1pt]
+    \mathscriptsize{ \begin{aligned}
+        &\text{Explicit = Adams-Bashforth (AB)}\\[-4pt]
+        &\text{Implicit = Adams-Moulton (AM)}
+    \end{aligned} }
+\end{gathered}\)}\ : 
+\ \ \(\displaystyle 
+    \boxed{
+        \hsvec{y}_{k+1}
+        \ =\ \hsvec{y}_k
+        + h \hs \mathscriptsize{\sum_{i=0}^m} \hs \beta_i \hsvec{y'}_{k+1-i}
+    }
+    \ \Leftrightarrow\ \mathscriptsize{
+        \begin{aligned}
+            \hsvec{y}_{k+1} - \hsvec{y}_k
+                &\ =\ \mathscriptsize{\sum} \hs \hsvec{y'}_{k+1-i} \hs 
+                \mathscriptsize{\int_{t_k}^{t_k+h}} \phi_{k+1-i}{\scriptstyle(t)} \hs dt
+                \\[-3pt]
+            \tfrac{t_{k+1}^j}{j} - \tfrac{t_{k}^j}{j} &\ =\ \mathscriptsize{\sum} \hs t_{k+1-i}^{j-1} \hs w_{k+1-i}
+        \end{aligned}
+    }
+\)
+
+% Explicit 2-Step
+\underline{\(\begin{gathered}
+    \text{2-Step AB}
+\end{gathered}\)}\ : 
+\ \ \(
+    \begin{gathered}
+        {\scriptstyle t_{k-1}=0}\\[-7pt]
+        {\scriptstyle h=1}
+    \end{gathered}
+    \ ,\ 
+    \begin{aligned}[t]
+        &\mathscriptsize{ 
+            % 3x3 Matrix
+            \begin{aligned}[b]
+                &\hspace{6pt} \arraycolsep=5pt \begin{array}{l l l}
+                        y_k & y'_k & \ y'_{k-1}
+                    \end{array}
+                    \\
+                &\left[\arraycolsep=5pt \begin{array}{c c c}
+                        1     & 0      & 0\\
+                        t_k   & 1      & 1\\
+                        t_k^2 & 2t_k   & 2t_{k-1}
+                    \end{array}\right]
+            \end{aligned}
+            \left[\begin{matrix}
+                \alpha_1\\ 
+                h\beta_1\\
+                h\beta_2
+            \end{matrix}\right]
+            = 
+            \begin{gathered}[b]
+                y_{k+1}\\
+                \left[\arraycolsep=2pt\begin{array}{c}
+                        1\\ 
+                        t_{k+1}\\
+                        t_{k+1}^2
+                    \end{array}\right]
+            \end{gathered}
+            \hspace{10pt} \text{or} \hspace{10pt}
+            % 2x2 Matrix
+            \begin{aligned}[b]
+                &\hspace{6pt} \arraycolsep=5pt \begin{array}{l l}
+                        t_k^{j-1} & t_{k-1}^{j-1}
+                    \end{array}
+                    \\
+                &\left[\arraycolsep=5pt \begin{array}{c c}
+                        1    & 1\\
+                        t_k  & t_{k-1}
+                    \end{array}\right]
+            \end{aligned}
+            \left[\begin{matrix}
+                h \beta_1\\
+                h \beta_2
+            \end{matrix}\right]
+            = 
+            \begin{gathered}[b]
+                (t_{k+1}^{j} - t_k^{j})/j\\
+                \left[\arraycolsep=2pt\begin{array}{c}
+                        t_{k+1} - t_k\\
+                        ( t_{k+1}^2 - t_{k}^2 )/2
+                    \end{array}\right]
+            \end{gathered}
+            }\\
+        % Solution
+        &\Rightarrow\
+            \boxed{
+                \hsvec{y}_{k+1} = \hsvec{y_k} + h \left( \tfrac{3}{2} \hsvec{y'}_k- \tfrac{1}{2} \hsvec{y'}_{k-1} \right)
+            }
+    \end{aligned}
+\)
+
+% Implicit 2-Step/Trapezoid Rule
+\vspace{5pt}
+\underline{\(\begin{gathered}
+    \text{2-Step AM/}\\[-3pt]
+    \text{Trapezoid Rule}\\[-3pt]
+\end{gathered}\)}\ : 
+\ \ \(
+    \begin{aligned}
+        % 2x2 Matrix
+        &\begin{gathered}
+                {\scriptstyle t_k=0}\\[-7pt]
+                {\scriptstyle h=1}
+            \end{gathered}
+            \hspace{10pt} 
+            \mathscriptsize{
+                \begin{aligned}[b]
+                    &\hspace{6pt} \arraycolsep=4pt \begin{array}{l l}
+                            t_{k+1} & \ t_{k}
+                        \end{array}
+                        \\
+                    &\left[\arraycolsep=5pt \begin{array}{c c}
+                            1    & 1\\
+                            t_{k+1}  & t_{k}
+                        \end{array}\right]
+                \end{aligned}
+                \left[\begin{matrix}
+                    h \beta_0\\
+                    h \beta_1
+                \end{matrix}\right]
+                = 
+                \begin{gathered}[b]
+                    (t_{k+1}^{j} - t_k^{j})/j\\
+                    \left[\arraycolsep=2pt\begin{array}{c}
+                            t_{k+1} - t_k\\
+                            ( t_{k+1}^2 - t_{k}^2 )/2
+                        \end{array}\right]
+                \end{gathered}
+            }
+            \hspace{10pt} \text{\scriptsize or} \hspace{10pt}
+            % Taylor Series
+            \hsvec{y}_k + h \hsvec{y'}_k + \tfrac{h^2}{2} \left[ 
+                \tfrac{ \hsvec{y'}_{k+1} - \hsvec{y'}_{k} }{ h }
+            \right]
+            \\
+        &\hspace{10pt} \text{\scriptsize or} \hspace{10pt} 
+            % Trapezoid
+            \hsvec{y}_k + \tfrac{(t_k + h) - t_k}{2} \big[ \hsvec{y'}_k + \hsvec{y'}_{k+1} \big]
+            % Solution
+            \ \Rightarrow\ 
+            \boxed{ 
+                \hsvec{y}_{k+1} 
+                \ =\ \hsvec{y}_k 
+                + \tfrac{h}{2} \big[
+                    \hsvec{y'}_k
+                    + \hsvec{y'}_{k+1}
+                \big]
+            }
+    \end{aligned}
+\)
+
+% Trapezoid Rule Algorithm Stability
+\vspace{5pt}
+\(\hspace{15pt}
+    \begin{aligned}
+        % One Dimensional
+        &\bullet\ g:\ y_k = (\tfrac{1 + h \lambda / 2}{1 - h \lambda / 2})^{k} \hs y_0
+            \ \Rightarrow \ 
+            % Accuracy
+            \mathscriptsize{ e^{\lambda h} = g + \mathcal{O}(h^3) } 
+            \hspace{10pt} \boxed{\scriptstyle p=2}
+            \hspace{10pt} , \hspace{10pt}
+            % Stable Radius
+            \mathscriptsize{ \begin{gathered}
+                \boxed{ |g| < 1 \ \rightarrow\ \text{Unconditionally Stable} }\\
+            \end{gathered} }
+            \\[5pt]
+        % Multidimension
+        &\bullet\ g: \ \rho({\scriptstyle(I + h J_f)(I - h J_f)^{-1}}) < 1 
+            \ \ \text{\scriptsize(\emph{sic} \(h J_f\))}
+            \ \rightarrow\ \boxed{ \text{\scriptsize Unconditionally Stable \(\rightarrow\) Greater Stiffness Tol.} } 
+            \\[5pt]
+        % Local Trunc. Error
+        &\bullet\ \text{Local Error Tolerance}:\ \boxed{
+                \tfrac{2}{2+1} \tfrac{ 1 }{ 2^2 2! } 
+                \Vert{ \hsvec{f}''( {\scriptstyle t_k + h/2,\ \hsvec{y}(t_k + h/2) } ) }\Vert
+                \hs h^3 
+                \ \lesssim\ tol
+            }
+    \end{aligned}
+\)
+
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+\newpage
+%
+%
+% Backwards Differentiation Formula Methods
+\underline{\(\begin{gathered}
+    \text{Backwards Differentiation}\\[-3pt]
+    \text{Formula (BDF) Methods}    
+\end{gathered}\)}\ : 
+\ \ \(\displaystyle 
+    \boxed{
+        \hsvec{y}_{k+1}
+        \ =\ \mathscriptsize{\sum_{i=1}^m} \hs \alpha_i \hs \hsvec{y}_{k-(i-1)} 
+        + h \beta_0 \hsvec{y'}_{k+1}
+    }
+    \ , \ \mathscriptsize{
+        \begin{aligned}
+            \hsvec{y'}_{k+1}
+                &= \sum \hs \hsvec{y}_{k+1-i} \phi'_{k+1-i}{\scriptstyle(t_{k+1})}
+                \\
+            \tfrac{d(t^{j-1})}{dt}(t_{k+1})
+                &= \sum \hs t_{k+1-i}^{j-1} w_{k+1-i}
+        \end{aligned}
+    }
+\)
+
+% Explicit 2-Step BDF
+\vspace{5pt}
+\underline{\(\begin{gathered}
+    \text{2-Step BDF}
+\end{gathered}\)}\ : 
+\ \ \(
+    \begin{gathered}
+        {\scriptstyle t_{k-1}=0}\\[-7pt]
+        {\scriptstyle h=1}
+    \end{gathered}
+    \ ,\ 
+    \begin{aligned}[t]
+        &\mathscriptsize{ 
+            % 3x3 Matrix
+                \begin{aligned}[b]
+                    &\hspace{6pt} \arraycolsep=5pt \begin{array}{l l l}
+                            y_k & y_{k-1} & \ y'_{k+1}
+                        \end{array}
+                        \\
+                    &\left[\arraycolsep=5pt \begin{array}{c c c}
+                            1     & 1           & 0\\
+                            t_k   & t_{k-1}     & 1\\
+                            t_k^2 & t^2_{k-1}   & 2t_{k+1}
+                        \end{array}\right]
+                \end{aligned}
+                \left[\begin{matrix}
+                    \alpha_1\\ 
+                    \alpha_2\\ 
+                    h\beta_0
+                \end{matrix}\right]
+                = 
+                \begin{gathered}[b]
+                    y_{k+1}\\
+                    \left[\arraycolsep=2pt\begin{array}{c}
+                            1\\ 
+                            t_{k+1}\\
+                            t_{k+1}^2
+                        \end{array}\right]
+                \end{gathered}
+            }
+            \hspace{10pt} \text{\scriptsize or} \hspace{10pt}
+            % Differentiated Interpolation
+            \mathscriptsize{ 
+                \begin{aligned}[b]
+                    &\hspace{6pt} \arraycolsep=5pt \begin{array}{l l l}
+                        t_{k+1}^{j-1} & t_k^{j-1} & t_{k-1}^{j-1}
+                        \end{array}
+                        \\
+                    &\left[\arraycolsep=5pt \begin{array}{c c c}
+                            1           & 1     & 1\\
+                            t_{k+1}     & t_k   & t_{k-1} \\
+                            t^2_{k+1}   & t^2_k & t^2_{k-1}
+                        \end{array}\right]
+                \end{aligned}
+                \left[\begin{matrix}
+                    1/h\beta_0\\ 
+                    -\alpha_1/h\beta_0\\ 
+                    -\alpha_2/h\beta_0
+                \end{matrix}\right]
+                = 
+                \begin{gathered}[b]
+                    ({\scriptstyle j-1})(t_{k+1}^{j-2})\\
+                    \left[\arraycolsep=2pt\begin{array}{c}
+                            0\\ 
+                            1\\
+                            2t_{k+1}
+                        \end{array}\right]
+                \end{gathered}
+            }
+            \\[5pt]
+        % Solution
+        &\Rightarrow\
+        \boxed{
+            \hsvec{y}_{k+1} = \tfrac{4}{3} \hsvec{y}_k 
+            - \tfrac{1}{3} \hsvec{y}_{k-1} 
+            + h \left( \tfrac{2}{3} \hsvec{y'}_{k+1} \right)
+        }
+    \end{aligned}
+\)
+
+% Kinda-Generalized Adams
+\vspace{5pt}
+\underline{Kinda-Generalized Adams (Interpolating \(y'(t)\) then Integrating)}
+
+\(\arraycolsep=0pt 
+    \begin{array}{r l c l c r l}
+        \displaystyle \mathscriptsize{\sum_{i=0}^m} \hs \left[ \widehat{\mathcal{I}} \phi_{k+1-i}(t) \right]
+            &y'_{k+1-i} 
+            &\hspace{5pt} = \hspace{5pt} 
+            &\widehat{\mathcal{I}} y'(t)
+            &\hspace{5pt} = \hspace{5pt} 
+            &\displaystyle \mathscriptsize{\sum_{i=0}^m} \hs a_{k+1-i}
+            &\hs y_{k+1-i} 
+            \\[15pt]
+        \displaystyle \mathscriptsize{\sum_{i=0}^m} \hs \left[ b_{k+1-i} \right]
+            &\tfrac{d (t^{j-1})}{dt}_{k+1-i}
+            &= 
+            &\widehat{\mathcal{I}} \tfrac{d (t^{j-1})}{dt}
+            &= 
+            &\displaystyle \mathscriptsize{\sum_{i=0}^m} \hs a_{k+1-i}
+            &\hs t^{j-1}_{k+1-i} 
+    \end{array}
+    \hspace{20pt}
+    % Notes
+    \boxed{
+    \mathscriptsize{ \begin{aligned}
+        &\bullet\ \widehat{\mathcal{I}} f(t) = \int_{t_k}^{t_{k+1}} f(t) \hs dt \hspace{10pt} \text{\scriptsize(Adams)} \\
+        &\bullet\ \widehat{\mathcal{I}} f(t) 
+            = \big( \hsvec{a} \cdot \left[ 1, e^{-h\nabla}, \dots , e^{-mh\nabla} \right] F \big)(t_{k+1})
+    \end{aligned} }
+    }
+\)
+
+% Kinda-Generalized BDF
+\vspace{5pt}
+\underline{Kinda-Generalized BDF (Interpolating \(y(t)\) then Deriving)}
+
+\(\arraycolsep=0pt 
+    \begin{array}{r l c l c r l}
+        \displaystyle \mathscriptsize{\sum_{i=0}^m} \hs \left[ \widehat{\mathcal{D}} \phi_{k+1-i}(t) \right]
+            &y_{k+1-i}
+            &\hspace{5pt} = \hspace{5pt} 
+            &\widehat{\mathcal{D}} y(t)
+            &\hspace{5pt} = \hspace{5pt} 
+            &\displaystyle \mathscriptsize{\sum_{i=0}^m} \hs b_{k+1-i}
+            &\hs y'_{k+1-i} 
+            \\[15pt]
+        \displaystyle \mathscriptsize{\sum_{i=0}^m} \hs \left[ a_{k+1-i} \right] \hs
+            &t^{j-1}_{k+1-i}
+            &= 
+            &\widehat{\mathcal{D}} t^{j-1}
+            &= 
+            &\displaystyle \mathscriptsize{\sum_{i=0}^m} \hs b_{k+1-i}
+            &\hs \tfrac{d (t^{j-1})}{dt}_{k+1-i} 
+    \end{array}
+    \hspace{20pt}
+    % Notes
+    \boxed{
+    \mathscriptsize{ \begin{aligned}
+        &\bullet\ \widehat{\mathcal{D}} f(t) = \tfrac{df}{dt}(t_{k+1}) \hspace{10pt} \text{\scriptsize(BDF)} \\
+        &\bullet\ \widehat{\mathcal{D}} f(t) 
+            = \big( \hsvec{b} \cdot \left[ 1, e^{-h\nabla}, \dots , e^{-mh\nabla} \right] f' \big)(t_{k+1})
+    \end{aligned} }
+    }
+\)
+
+% Predictor-Corrector pairs/PECE
+\vspace{10pt}
+\underline{\(\begin{gathered}
+    \text{PECE - Predict[or], Evaluate}\\[-3pt]
+    \text{Correct[or], Evaluate}
+\end{gathered}\)}\ :
+\ \ \parbox{.65\textwidth}{\scriptsize%
+    A set of previous point values is used in an explicit multistep algorithm as a \emph{predictor} to find %
+    the next value, \(y_{k+1}\). The derivative is then \emph{evaluated} at this next time as %
+    \(y'_{k+1} = f(t_{k+1}, y_{k+1})\). With this derivative, an improved value for \(y_{k+1}\) %
+    is found with an implicit multistep algorithm as a \emph{corrector}. The derivative \(y'_{k+1}\) can then be improved
+    by \emph{evaluating} it again with the improved \(y_{k+1}\) from the corrector. The implicit corrector
+    can be repeated to re-evaluate \(y_{k+1}\) and \(y'_{k+1}\) until convergence. PECE is explicit.
+}
+
+% Notes
+\vspace{5pt}
+\(\begin{aligned}[t]
+    &\bullet\ \text{\scriptsize Mult. methods must be used to get previous values.}\\[-5pt]
+    &\bullet\ \parbox[t]{.4\textwidth}{\scriptsize \underline{Changing step-size \(h\) is hard} since %
+        interpolation is most convenient for equal-spaced points.}
+\end{aligned}
+\hspace{1.5cm}
+\begin{aligned}[t]
+    &\bullet\ \text{\scriptsize Relatively hard to code.}\\[-5pt]
+    &\bullet\ \text{\scriptsize Not all imp. methods are unconditionally stable.}\\[-5pt]
+    &\bullet\ \text{\scriptsize Method pairs can be used for error estimates.}
+\end{aligned}\)
+
+% Multivalue Methods
+% \vspace{10pt}
+\subsection{Multivalue Methods}
+
+\(
+    y' = f(t,y)
+    \hspace{10pt} , \hspace{10pt}
+    \hsvec{y}_k = \left[ y_k,\ h y'_k,\ \tfrac{h^2}{2} y''_k,\ \tfrac{h^3}{3!} y'''_k \right]^T
+    \hspace{10pt} , \hspace{10pt}
+    \hsvec{y}_{k+1} = \left[ y_{k+1},\ h y'_{k+1},\ \tfrac{h^2}{2} y''_{k+1},\ \tfrac{h^3}{3!} y'''_{k+1} \right]^T
+\)
+
+\(
+    % By = \hat{Y}
+    \begin{aligned}
+        \hsvec{\hat{y}}_{k+1} 
+            &\hs \equiv \hs B\hsvec{y}_k 
+            = \begin{gathered}[b]
+                \big(\begin{gathered}
+                    \text{\scriptsize Pascal's}\\[-9pt]
+                    \text{\scriptsize Triangle}
+                \end{gathered}\big)
+                \\[-5pt]
+                \left[\mathscriptsize{\begin{matrix}
+                    1 & 1 & 1 & 1\\
+                    0 & 1 & 2 & 3\\
+                    0 & 0 & 1 & 3\\
+                    0 & 0 & 0 & 1
+                \end{matrix}}\right]
+            \end{gathered}
+            \left[\mathscriptsize{\begin{aligned}
+                &y_k\\[2pt] 
+                h &y'_k\\[2pt] 
+                (h^2/2!) &y''_k\\[2pt] 
+                (h^3/3!) &y'''_k
+            \end{aligned}}\right]
+            \\
+        \left[\mathscriptsize{\begin{aligned}
+            &\hat{y}_{k+1}\\[2pt] 
+            h &\hat{y}'_{k+1}\\[2pt] 
+            (h^2/2!) &\hat{y}''_{k+1}\\[2pt] 
+            (h^3/3!) &\hat{y}'''_{k+1}
+        \end{aligned}}\right]
+            &= \left[\mathscriptsize{
+                \begin{aligned}
+                    &[y_k + h y'_k + (h^2/2!) y''_k + (h^3/3!) y'''_k]\\[2pt] 
+                    h&[y'_k + h y''_k + (h^2/2!) y'''_k]\\[2pt] 
+                    (h^2/2!)&[y''_k + h y'''_k]\\[2pt] 
+                    (h^3/3!)&[y'''_k]
+                \end{aligned}
+            }\right]
+    \end{aligned}
+    \hspace{3pt} \Rightarrow \hspace{3pt}
+    \begin{aligned}
+        % Conclusion
+        &\begin{aligned}
+                \hsvec{y}_{k+1}   
+                    &= \hsvec{\hat{y}}_{k+1} + \alpha \hsvec{r}
+                    \\
+                \left[\mathscriptsize{\begin{aligned}
+                        &y_{k+1}\\[2pt] 
+                        h &y'_{k+1}\\[2pt] 
+                        \tfrac{h^2}{2!} &y''_{k+1}\\[2pt] 
+                        \tfrac{h^3}{3!} &y'''_{k+1}
+                    \end{aligned}}\right]
+                    &= \left[\mathscriptsize{\begin{aligned}
+                        &\hat{y}_{k+1}\\[2pt] 
+                        h &\hat{y}'_{k+1}\\[2pt] 
+                        \tfrac{h^2}{2!} &\hat{y}''_{k+1}\\[2pt] 
+                        \tfrac{h^3}{3!} &\hat{y}'''_{k+1}
+                    \end{aligned}}\right]
+                    + h({\scriptstyle y'_{k+1} - \hat{y}'_{k+1}}) 
+                    \left[\mathscriptsize{\begin{matrix}
+                        r_1 = \tfrac{3}{8}\\[2pt]
+                        1\\[2pt]
+                        r_3 = \tfrac{3}{4}\\[2pt]
+                        r_4 = \tfrac{1}{6}
+                    \end{matrix}}\right]
+            \end{aligned}
+            \\[5pt]
+        % Notes
+        &\bullet\ \text{\scriptsize Equivalent to Multistep Methods.}\\[-5pt]
+        &\bullet\ \text{\scriptsize Easy to change step size \(h\) at \(\hsvec{y}_i\).}\\[-5pt]
+        &\bullet\ \text{\scriptsize Easy to change order \(p\) from \(\hsvec{r}\).}\\[-5pt]
+    \end{aligned}
+\)
+
+
+
+
 \end{document}
+
