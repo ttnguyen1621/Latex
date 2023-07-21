@@ -2282,10 +2282,10 @@
 
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
+\newpage
 %--------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------
 % Initial Value Problems for ODEs
-\newpage
 \section{Initial Value Problems for ODEs: \(
     \hsvec{y'}{\scriptstyle(t)} = \hsvec{f}{\scriptstyle(t,\hsvec{y})}
     ;\ \hsvec{y}{\scriptstyle(t_0)}
@@ -2373,9 +2373,15 @@
     }
 \)
 
+% Initial Value (vs Boundary Value)
+\begin{center}
+    \fbox{
+        \(\hsvec{y}(t_0)\) for an IVP like \(\left\{ u''(t) = f(t),\ u(t_0) = \alpha,\ u'(t_0) = \beta \right\}\) %
+        contains the IC.
+    }
+\end{center}
+
 %---------------------------------------------------------------
-%
-%
 %---------------------------------------------------------------
 % Stability/Conditioning
 \subsection{ODE Stability (Conditioning)}
@@ -2474,12 +2480,11 @@
     \end{aligned}
 \)
 
-%----------------------------------------------------------
-%
-%
-%----------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
 \newpage
-
+%----------------------------------------------------------
+%----------------------------------------------------------
 % Algorithm Stability and Error
 \subsection{Algorithm Stability and Error}
 
@@ -2683,7 +2688,6 @@
 \)
 
 % 2nd Order
-% \vspace{5pt}
 \underline{\(\begin{gathered}
     \text{[Exp.]}\ p=2
 \end{gathered}\)}\ : 
@@ -3301,8 +3305,325 @@
     \end{aligned}
 \)
 
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+% Boundary Value Problems for ODEs
+\section{Boundary Value Equations for ODEs}
+\[
+    \hsvec{y}'(t) = \hsvec{f}{\scriptstyle(t, \hsvec{y})};
+    \ \ \hsvec{g}\Big( \hsvec{y}{\scriptstyle(a)},\ \hsvec{y}{\scriptstyle(b)} \Big) = 0;
+    \ \ \text{E.g., }\ u''(t) = f(t),\ u(a) = \alpha,\ u(b) = \beta
+\]
+
+% BVP vs an IVP
+\begin{center}
+    \fbox{
+        \(\hsvec{y}(t_0)\) isn't known for a BVP like \(\left\{ u''(t) = f(t),\ u(a) = \alpha,\ u(b) = \beta \right\}\) %
+        since \(u'(a)\) isn't given.
+    }
+\end{center}
+
+% Separated Boundary Conditions
+\vspace{5pt}
+\underline{Separated [Boundary Conditions]}:\ \ \( 
+    \hsvec{g} \ \text{ s.t. } \ g_1 = g_1( \hsvec{y}{\scriptstyle(a)} ),
+    \ \ g_2 = g_2( \hsvec{y}{\scriptstyle(b)} ), 
+    \ \ \dots\ \ g_{2n}
+\)
+
+% Linear Boundary Conditions
+\underline{Linear [Boundary Conditions]}:\ \ \(
+    \hsvec{g} \ \text{ s.t. } \ B_a \hsvec{y}{\scriptstyle(a)} + B_b \hsvec{y}{\scriptstyle(b)} 
+    = \mathscriptsize{
+        \left[\begin{matrix}
+            |\\
+            - \ B_a\  -\\
+            |
+        \end{matrix}\right]
+        \left[\begin{matrix}
+            |\\
+            \hsvec{y}{\scriptstyle(a)}\\
+            |
+        \end{matrix}\right]
+        + \left[\begin{matrix}
+            |\\
+            - \ B_b\  -\\
+            |
+        \end{matrix}\right]
+        \left[\begin{matrix}
+            |\\
+            \hsvec{y}{\scriptstyle(b)}\\
+            |
+        \end{matrix}\right]
+    }
+    = \hsvec{c}
+\)
+
+% Linear BVP
+\underline{Linear BVP}:\ \ Linear ODE + Linear BC \(\ \Rightarrow\ \hsvec{y}' = A(t) \hsvec{y} + \hsvec{b}(t)\)
+
+\vspace{-5pt}
+\hspace{15pt}\(\begin{aligned}
+    &\bullet\ 
+        \begin{gathered}[b]
+            \text{\scriptsize Fund. Sol. Matrix}\\
+            Y(t) = \mathscriptsize{\left[\begin{matrix}
+                    |\\
+                    \dots \ y_i(t) \ \dots\\
+                    |
+                \end{matrix}\right]}
+        \end{gathered} : 
+        \ \ \begin{gathered}[b]
+            \text{\scriptsize Sol. Modes}\\
+            \Big( \hsvec{y}_i' = A(t) \hsvec{y}_i\ ,\ \ \hsvec{y}_i(a) = \hsvec{e}_i \Big)
+        \end{gathered}
+        \ \Rightarrow\ \begin{gathered}
+            \\[-25pt]
+            \boxed{ Q \equiv B_a Y(a) + B_b Y(b) }\\
+            \boxed{ \exists Q^{-1} \Leftrightarrow \ \text{\scriptsize exists a unique solution to BVP} }
+        \end{gathered}
+        \\[5pt]
+    &\bullet\ \arraycolsep=3pt \begin{array}[t]{c c c c c c c}
+            \Phi(t)         &\equiv &Y(t) Q^{-1} &= &Y(t) Y^{-1}(a) B^{-1}_a    &+& Y(t) Y^{-1}(b) B^{-1}_b\\[2pt]
+            \Phi^{-1}(s)    &\equiv &Q Y^{-1}(s) &= &B_a Y(a) Y^{-1}(s)         &+& B_b Y(b) Y^{-1}(s)
+        \end{array}
+        \\[5pt]
+    &\bullet\ G(s,t) = \arraycolsep=0pt \left\{\begin{array}{r l l l c l}
+                &\Phi(t) B_a &\Phi(a) &\Phi^{-1}(s) &\hspace{20pt}    &s \in [a,t]\\
+            -   &\Phi(t) B_b &\Phi(b) &\Phi^{-1}(s) &                 &s \in (t,b]
+        \end{array}\right.
+        \ \Rightarrow\
+        \boxed{ \hsvec{y}(t) = \Phi(t) \hsvec{c} \ + \int_a^b G(s,t) \hsvec{b}(s) \hs ds }
+        \\[5pt]
+    &\bullet\ \hsvec{y}(t) \leq \kappa \left( \Vert \hsvec{c} \Vert \ + \int_a^b \Vert{ \hsvec{b}(s) }\Vert \hs ds \right)
+        \ \Rightarrow \
+        \hat{y}(t) - \hsvec{y}(t) = \boxed{ 
+            \Delta \hsvec{y}(t) \leq \kappa \left( 
+                \Vert{ \Delta \hsvec{c} }\Vert \ + \int_a^b \Vert{ \Delta \hsvec{b}(s) }\Vert \hs ds 
+            \right) 
+        }
+        \\[5pt]
+    &\bullet\ \parbox{.9\textwidth}{\scriptsize Conditioning/Stability depends on both the growth of the solution modes %
+            and BC. A BVP's solution is \underline{determined at all the points simultaneously}. [dictonomy skipped]
+        }
+\end{aligned}\)
+
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+% Intro Algorithms/Methods
+\vspace{10pt}
+\subsection{Intro Methods}
+
+% Shooting Method
+\vspace{10pt}
+\underline{Shooting Method}: \ \ \parbox{.8\textwidth}{\scriptsize %
+    Guess the IVP init. cond. as \(\hat{u}'(a)\) and use an IVP method to approx. \(u(t)\). %
+    Iterate with a better guess by comparing the end BC to \(\hat{u}(b)\).
+}
+
+\(\begin{aligned}[t]
+    &\bullet\ \text{\scriptsize E.g. }\  
+        u'', u(a), u(b)
+        \ : \ \
+        y_0 = \mathscriptsize{\left[\begin{matrix}
+            u(a)\\
+            \hat{u}'(a)
+        \end{matrix}\right]}
+        \ \rightarrow \ 
+        y_k = \mathscriptsize{\left[\begin{matrix}
+            \hat{u}(t)\\
+            \hat{u}'(t)
+        \end{matrix}\right]}
+        \ \rightarrow \ 
+        y_n = \mathscriptsize{\left[\begin{matrix}
+            \hat{u}(b)\\
+            \hat{u}'(b)
+        \end{matrix}\right]}
+        \ , \ \ 
+        \text{\scriptsize and compare \(\hat{u}(b)\) to \(u(b)\).}
+        \\
+    &\bullet\ \text{\scriptsize IVP might be unstable even if BVP is stable, or the IVP for an init. guess might not be %
+        integrable over the interval.}
+        \\
+    &\bullet\ \text{\scriptsize Multiple shooting (over subintervals) improves conditioning but is a larger system to solve.}\\
+    &\bullet\ \text{\scriptsize The approx. sol. isn't cont. or differentiable, since the points are discrete.}
+\end{aligned}\)
+
+% Finite Difference Method
+\vspace{15pt}
+\underline{Finite Difference Method}: \ \ \parbox{.7\textwidth}{\scriptsize %
+    Solve a system to approx. \(u(t_i)\) from the BC and a set of mesh points, \(t_i\), by replacing %
+    derivatives with a finite diff. approx.
+}
+
+\(\begin{aligned}
+    &\bullet\ \text{E.g. }\ 
+        u'', u(a), u(b)
+        \ : \ \
+        y_0 = u{\scriptstyle(a)},
+        \ y_{n+1} = u{\scriptstyle(b)};
+        \ u'(t_{1 \leq i \leq n}) = \tfrac{y_{i+1} - y_{i-1}}{2h},
+        \ u''(t_i) = \tfrac{y_{i+1} - 2y_i + y_{i-1}}{h^2}
+        \\
+    &\bullet\ \text{\scriptsize The finite diff. means the system matrix (or Jacobian if nonlinear) is typically sparse/banded.}\\
+    &\bullet\ \parbox[t]{.95\textwidth}{\scriptsize Infinite mesh points converge to the solution if %
+        the finite diff. method is consistent (truncation error goes to 0 as \(h\) does) and stable (small perturb. are bounded).}
+        \\
+    &\bullet\ \text{\scriptsize The approx. sol. isn't cont. or differentiable, since the points are discrete.}
+\end{aligned}\)
 
 
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+% Weighted Residual Methods
+\subsection{Weighted Residual Methods (Interpolation)}
+
+\(
+    \begin{gathered}
+        \text{E.g., }\ u''(t) = f(t) \ \approx\ v''{\scriptstyle(t, \hsvec{x})} = \sum_i^n x_i \phi''_i(t)\\
+        u(a), u(b)\\[3pt]
+        r{\scriptstyle(t, \hsvec{x})} = \hsvec{x} \cdot \hspace{-4pt} \hsvec{\ \phi''}(t) - f(t)
+    \end{gathered}
+    \hspace{10pt} \vline \hspace{10pt}
+    \begin{gathered}
+        \text{\scriptsize If}\\[-7pt]
+        \int_a^b r{\scriptstyle(t, \hsvec{x})} \hs w_i(t) \hs dt = 0\\
+        \Rightarrow\ A \hsvec{x} = \hsvec{b}
+    \end{gathered}
+    \ : \ \ \boxed{ 
+        \begin{aligned}
+            A &= \int_a^b \hsvec{\ \phi''}(t) \hsvec{w}^T(t) \hs dt = 0\\[5pt]
+            \hsvec{b} &= \int_a^b f(t) \hsvec{w}(t) \hs dt
+        \end{aligned} 
+    }
+\)
+
+\vspace{5pt}
+\begin{center}
+    \fbox{
+        Solve a system for \(\hsvec{x}\) from the BC, \(v(a) = u(a),\ v(b) = u(b)\), and \(1 < i < n:\ b_i = A_i \hsvec{x}\)
+    }
+\end{center}
+
+% Collocation Method
+\vspace{10pt}
+\underline{Collocation Method}: \parbox{6.5cm}{\scriptsize Solve a system for \(\hsvec{x}\) from the BC and %
+    the points interpolated at \(u''(t_{1<i<n}) = \sum x_i \phi''_i(t_i) = v''(t_i)\)}\ ;
+    \ \ \(w_i(t) = \delta(t-t_i)\) 
+
+\(\begin{aligned}
+    &r{\scriptstyle(t_i, \hsvec{x})} = \boxed{ \hsvec{x} \cdot \hspace{-4pt} \hsvec{\ \phi''}(t_i) - f(t_i) = 0} \\
+    &\bullet\ \text{E.g., }
+        \ \ t_1 = a < ... < t_n = b:
+        \ v(a) = u(a),
+        \ v(b) = u(b),
+        \ v''(t_{1<i<n}) = \sum x_i \phi''_i(t_i) = f(t)
+        \\
+    &\bullet\ \parbox{.95\textwidth}{\scriptsize %
+        System doesn't necessarily converge or is exact at the interpolated points, since the derivative %
+        (\(u''\)) is interpolated, not the function itself (\(u\)).
+    }
+        \\
+    &\bullet\ \parbox[t]{.95\textwidth}{\scriptsize %
+            Basis func. w/ global support (e.g., poly. or trig. func.) yield a spectral/pseudospectral method. They're %
+            very accurate for the number of points used but non-orthog. bases require solving a dense system, and some %
+            are ill-conditioned (like monomials). An orthog. basis can be solved efficiently with a FFT.
+        }
+        \\
+    &\bullet\ \parbox[t]{.95\textwidth}{\scriptsize %
+            Basis func. w/ compact support (e.g., B-splines) yield a finite element method. The basis functions are %
+            near-orthog, so the system is usually well-conditioned and often sparse.
+        }
+        \\
+\end{aligned}\)
+
+% Least Squares Residual Method
+\vspace{15pt}
+\underline{Least Squares Residual Method}: \ \ \(w_i(t) = \tfrac{\partial r}{\partial x_i} = \phi''_i(t)\)
+
+\(
+    \min \tfrac{1}{2} \displaystyle \int_a^b \Vert{ r }\Vert^2 \hs dt
+    \ \ \Rightarrow\ \
+    \begin{aligned}[t]
+        0 \ =\ \int_a^b r{\scriptstyle(t, \hsvec{x})} \hs \phi_i''(t) \hs dt 
+            &\ =\ \boxed{ 
+                \sum_{j=1}^n \left( \int_a^b \phi''_j(t) \phi''_i(t) \hs dt \right) x_j 
+                - \int_a^b f(t) \phi''_i(t) \hs dt 
+            }
+            \\[5pt]
+        0 &\ =\ A \hsvec{x} - \hsvec{b}
+    \end{aligned}    
+\)
+
+% Least Squares Notes
+\(\begin{aligned}
+    &\bullet\ \text{\scriptsize \(A\) usually isn't symmetric, and entries involve 2nd derivatives.}
+\end{aligned}\)
+
+% Galerkin Method
+\vspace{15pt}
+\underline{Galerkin Method}: \ \ \(w_i(t) = \phi_i(t);\ \ \phi_i(t) \ \text{ satisfy the relevant BC/homogeneous BC (HBC).}\)
+
+\(
+    \begin{aligned}[t]
+        \int_a^b r{\scriptstyle(t, \hsvec{x})} \hs \phi_i(t) \hs dt = 0
+            \ \Rightarrow \int_a^b f(t) \phi_i(t) \hs dt
+            &= \int_a^b v''{\scriptstyle(t, \hsvec{x})} \phi_i(t) \hs dt
+            = \bcancel{
+                    v'{\scriptstyle(t, \hsvec{x})} \hs \cancelto{0}{ \phi_i(t) \Big|_a^b } 
+                }
+                - \int_a^b v'{\scriptstyle(t, \hsvec{x})} \phi'_i(t) \hs dt
+            \\[5pt]  
+        \Aboxed{ 
+            \text{\scriptsize(Load vector)} \hspace{10pt} b_i = \int_a^b f(t) \phi_i(t) \hs dt 
+            &= \sum_{j=1}^n \left( - \int_a^b \phi'_j(t) \phi'_i(t) \hs dt \right) x_i
+            = A_{i} \hsvec{x}
+            \hspace{10pt} \text{\scriptsize(Stiffness matrix \(A\) is sym.)}
+        }
+    \end{aligned}    
+\)
+
+% Galerkin Notes
+\(\begin{aligned}
+    &\bullet\ \text{E.g., }\ v(a) = u(a),\ v(b) = u(b),\ b_{1<i<n} = A_i \hsvec{x}
+        \hspace{20pt} \text{\scriptsize(All BC/HBC are satisfied)}\\
+    &\bullet\ \parbox{.95\textwidth}{\scriptsize 
+            The approx. solution using a finite number of basis functions. best approx. the %
+            true sol. when the residual is orthog. to the span of all the basis functions. 
+        }
+        \\
+    &\bullet\ \text{\scriptsize Bases may have global support or compact local support.}\\[-3pt]
+    &\bullet\ \text{\scriptsize Approx. sol. might have a lower order differentiability}.\\[-3pt]
+    &\bullet\ \text{\scriptsize Approx. sol. is integrable, but need not be cont./differentiable [like pointwise-interpolation].}
+\end{aligned}\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+\newpage
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+% Partial Differential Equations (PDEs)
+\section{Partial Differential Equations (PDEs)}
+
+\[\arraycolsep=3pt \begin{array}{r r c c}
+    \text{Transport Eq. (Linear)}:          &u_t = cu_x             &+& f(t,x)\\
+    \text{Diffusion Eq. (Parabolic)}:       &u_t \hs =\hs c u_{xx}  &+& f(t,x)\\
+    \text{Wave Eq. (Hyperbolic)}:           &u_{tt} - c u_{xx}      &=& f(t,x)\\
+    \text{Laplace/Poisson Eq. (Elliptic)}:  &u_{yy} + c u_{xx}      &=& f(x,y)
+\end{array}\]
+
+% Notes
+\vspace{10pt}
+\(\begin{aligned}
+    &\bullet\ \text{Time-Dependant Functions (Diffusion/Wave) can use IVP techniques to solve.}\\
+    &\bullet\ \text{Time-Independant Functions (Laplace) can use BVP techniques to solve.}\\
+    &\bullet\ \text{Everything skipped.}
+\end{aligned}\)
 
 \end{document}
-
