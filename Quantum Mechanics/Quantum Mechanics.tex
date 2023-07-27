@@ -8,6 +8,8 @@
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 \newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
 \newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\mathscriptsize}[1]{\text{\scriptsize\(#1\)}}
 
 % \title{Quantum Mechanics}
 % \author{ringoffire0 }
@@ -72,7 +74,7 @@
                 \(\psi\) can be lin. sum of real or complex, so choose real \(\psi\)
             \end{itemize}
         \item Linear: \( \boxed{ \Psi(x,t) 
-            = \sum_n \ \psi_n(x) \ e^{- \frac{i}{\hbar} E_n t} } \)\\
+            = \sum_n \ c_n \hs \psi_n(x) \hs e^{- \frac{i}{\hbar} E_n t} } \)\\
         \item \(\sigma^2_H = \langle H^2\rangle - \langle H \rangle^2  = 0
             \ \Rightarrow \ \) measuring stationary state, \(\Psi_n\), returns one \(E\) 
             (determinate state)
@@ -184,19 +186,18 @@
     % Psi Expansion
     \( \begin{gathered}
             \Psi{\scriptstyle(x,0)} = \int_{-\infty}^{\infty} c_y \Psi_y \ dy \\[10pt]
-            = \int_{-\infty}^{\infty} \Psi{\scriptstyle(y,0)} \ 
-            \delta{\scriptstyle(x-y)} dy
+            = \int_{-\infty}^{\infty} \Psi{\scriptstyle(y,0)} \hs \delta{\scriptstyle(x-y)} \ dy
         \end{gathered} \)
     & \( \begin{gathered}
-            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} c_p \Psi_p \ dp \\[10pt]
+            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} c_p \Psi_p \hs \phi\mathscriptsize{(E_p, t)} \ dp \\[10pt]
             = \int_{-\infty}^{\infty} \Phi{\scriptstyle(p,0)}
-            \left( e^{-\frac{i}{\hbar} \frac{p^2}{2m} t} \right)
+            \left[ e^{-\frac{i}{\hbar} \frac{p^2}{2m} t} \right]
             \frac{e^{\frac{i}{\hbar} px}}{\sqrt{2 \pi \hbar}} \ dp
         \end{gathered} \)
     & \( \begin{gathered}
-            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} c_n \Psi_n \ dn \\[10pt]
+            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} c_n \Psi_n \hs \phi\mathscriptsize{(E_n, t)} \ dn \\[10pt]
             = \int_{-\infty}^{\infty} c_n
-                \left( e^{\frac{-i}{\hbar}E_n t} \right) \Psi_n \ dn
+                \left[ e^{\frac{-i}{\hbar}E_n t} \right] \Psi_n \ dn
         \end{gathered} \) \\ 
     && \\ 
     \hline && \\
@@ -207,13 +208,13 @@
             \delta{\scriptstyle(x-y)} \Psi{\scriptstyle(x,0)}\ dx
         \end{aligned} \)
     & \( \begin{aligned}
-            c_p &= \langle \Psi_p | \Psi \rangle \\[5pt]
+            c_p(t) &= \langle \Psi_p | \Psi\mathscriptsize{(x,t)} \rangle \\[5pt]
             \Aboxed{ \Phi{\scriptstyle(p,t)} &= \int_{-\infty}^{\infty} 
                 \frac{e^{\frac{-i}{\hbar} px}}{\sqrt{2 \pi \hbar}}
                 \Psi{\scriptstyle(x,t)} \ dx }
         \end{aligned} \)
     & \( \begin{aligned}
-            c_n(t) &= \langle \Psi_n | \Psi \rangle \\[5pt]
+            c_n(t) &= \langle \Psi_n | \Psi\mathscriptsize{(x,t)} \rangle \\[5pt]
             c_n(t) &= \int_{-\infty}^{\infty} \Psi_n^* \Psi{\scriptstyle(x,t)} \ dx
         \end{aligned} \) \\ 
     && \\ 

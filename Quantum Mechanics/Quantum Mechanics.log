@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  1 MAY 2023 00:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  27 JUL 2023 02:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -166,20 +166,20 @@ File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 ) (./Quantum Mechanics.aux)
 \openout1 = `"Quantum Mechanics.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -249,329 +249,329 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 \Gin@req@height=\dimen171
 \Gin@req@width=\dimen172
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 24.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 24.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 67--69
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 69--71
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--76
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
 
  []
 
 
-Overfull \hbox (10.16603pt too wide) in paragraph at lines 61--106
+Underfull \hbox (badness 10000) in paragraph at lines 76--78
+
+ []
+
+
+Overfull \hbox (10.16603pt too wide) in paragraph at lines 63--108
 []   [] 
  []
 
 [1
 
 {c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 167--221
+Underfull \hbox (badness 10000) in paragraph at lines 169--222
 
  []
 
 [2]
-Overfull \hbox (2.61107pt too wide) in paragraph at lines 228--255
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 229--256
 [] [] 
  []
 
 
-Overfull \hbox (4.21622pt too wide) in paragraph at lines 257--275
+Overfull \hbox (4.21622pt too wide) in paragraph at lines 258--276
 []$\OMS/cmsy/m/n/12 ^^O  \OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 ] = [][] \OML/cmm/m/it/12 f[] [][] dx \OT1/cmr/m/n/12 = [][] \OML/cmm/m/it/12 f[] \OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 	[]\OMS/cmsy/m/n/12 j[] \OML/cmm/m/it/12 dx \OT1/cmr/m/n/12 = [][] 	[][]\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 	[] \OML/cmm/m/it/12 dx \OT1/cmr/m/n/12 = []$ 
  []
 
 
-Overfull \hbox (10.8551pt too wide) in paragraph at lines 277--324
+Overfull \hbox (10.8551pt too wide) in paragraph at lines 278--325
 []$\OMS/cmsy/m/n/12 ^^O [][]$ 
  []
 
 [3]
-Overfull \hbox (24.7039pt too wide) in paragraph at lines 332--351
+Overfull \hbox (24.7039pt too wide) in paragraph at lines 333--352
 \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^L\OMS/cmsy/m/n/12 i \OT1/cmr/m/n/12 = []\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 \OMS/cmsy/m/n/12 i [] [] j\OML/cmm/m/it/12 e[]\OMS/cmsy/m/n/12 i [] [] [][]$ 
  []
 
 [4]
-Overfull \hbox (214.48323pt too wide) in paragraph at lines 522--561
+Overfull \hbox (214.48323pt too wide) in paragraph at lines 523--562
 []$[][]$ 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 655--678
+Underfull \hbox (badness 10000) in paragraph at lines 656--679
 
  []
 
 
-Overfull \hbox (12.72331pt too wide) in paragraph at lines 686--734
+Overfull \hbox (12.72331pt too wide) in paragraph at lines 687--735
 [] [] 
  []
 
 
-Overfull \hbox (4.53973pt too wide) in paragraph at lines 741--749
+Overfull \hbox (4.53973pt too wide) in paragraph at lines 742--750
 \OMS/cmsy/m/n/12 ) $ $[][]$ 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 800--823
+Underfull \hbox (badness 10000) in paragraph at lines 801--824
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 824--826
+Underfull \hbox (badness 10000) in paragraph at lines 825--827
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 840--842
+Underfull \hbox (badness 10000) in paragraph at lines 841--843
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 856--874
+Underfull \hbox (badness 10000) in paragraph at lines 857--875
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 946--954
+Underfull \hbox (badness 10000) in paragraph at lines 947--955
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 954--959
+Underfull \hbox (badness 10000) in paragraph at lines 955--960
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 974--978
+Underfull \hbox (badness 10000) in paragraph at lines 975--979
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 979--987
+Underfull \hbox (badness 10000) in paragraph at lines 980--988
 
  []
 
 [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 1026--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1027--1034
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1034--1035
+Underfull \hbox (badness 10000) in paragraph at lines 1035--1036
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 1049--1055
+Underfull \hbox (badness 10000) in paragraph at lines 1050--1056
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1049--1055
+Underfull \hbox (badness 10000) in paragraph at lines 1050--1056
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1059--1082
+Underfull \hbox (badness 10000) in paragraph at lines 1060--1083
 
  []
 
 
-Overfull \hbox (2.61107pt too wide) in paragraph at lines 1059--1082
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 1060--1083
 []$ $[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1091--1113
+Underfull \hbox (badness 10000) in paragraph at lines 1092--1114
 
  []
 
 
-Overfull \hbox (2.61107pt too wide) in paragraph at lines 1116--1139
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 1117--1140
 $[]$ $[]$ 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 1140--1141
+Underfull \hbox (badness 10000) in paragraph at lines 1141--1142
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1140--1141
+Underfull \hbox (badness 10000) in paragraph at lines 1141--1142
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1176--1216
+Underfull \hbox (badness 10000) in paragraph at lines 1177--1217
 
  []
 
 
-Overfull \hbox (17.78716pt too wide) in paragraph at lines 1153--1219
+Overfull \hbox (17.78716pt too wide) in paragraph at lines 1154--1220
 [] [] 
  []
 
 [13] [14]
-Overfull \hbox (1.65587pt too wide) in paragraph at lines 1247--1265
+Overfull \hbox (1.65587pt too wide) in paragraph at lines 1248--1266
 [][]$ 
  []
 
 [15]
-Overfull \hbox (4.08513pt too wide) in paragraph at lines 1387--1387
+Overfull \hbox (4.08513pt too wide) in paragraph at lines 1388--1388
 []\OT1/cmr/bx/n/12 Potential Well [][]$[]$ [][]$[]$ 
  []
 
 [16]
-Overfull \hbox (2.61107pt too wide) in paragraph at lines 1413--1454
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 1414--1455
 [] [] 
  []
 
 [17]
-Overfull \hbox (12.73103pt too wide) in paragraph at lines 1507--1532
+Overfull \hbox (12.73103pt too wide) in paragraph at lines 1508--1533
 [] [] 
  []
 
 [18]
-Overfull \hbox (2.61107pt too wide) in paragraph at lines 1590--1629
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 1591--1630
 [] [] 
  []
 
 
-Overfull \hbox (6.42978pt too wide) in paragraph at lines 1669--1686
+Overfull \hbox (6.42978pt too wide) in paragraph at lines 1670--1687
 []$[]$   []   $[]$ 
  []
 
 [19]
-Overfull \hbox (2.61107pt too wide) in paragraph at lines 1722--1746
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 1723--1747
 [] [] 
  []
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 1919--1925
+Underfull \hbox (badness 10000) in paragraph at lines 1920--1926
 
  []
 
 
-Overfull \hbox (8.41237pt too wide) in paragraph at lines 1905--1943
+Overfull \hbox (8.41237pt too wide) in paragraph at lines 1906--1944
 []   []   [] 
  []
 
 
-Overfull \hbox (46.60292pt too wide) in paragraph at lines 1966--1976
+Overfull \hbox (46.60292pt too wide) in paragraph at lines 1967--1977
 []$[][]$ 
  []
 
 [21]
-Overfull \hbox (61.96326pt too wide) in paragraph at lines 2015--2045
+Overfull \hbox (61.96326pt too wide) in paragraph at lines 2016--2046
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2015--2045
+Underfull \hbox (badness 10000) in paragraph at lines 2016--2046
 
  []
 
 [22]
-Overfull \hbox (0.73495pt too wide) in paragraph at lines 2184--2184
+Overfull \hbox (0.73495pt too wide) in paragraph at lines 2185--2185
  [][]$ 
  []
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 2251--2253
+Underfull \hbox (badness 10000) in paragraph at lines 2252--2254
 
  []
 
 [24] [25]
-Overfull \hbox (7.58487pt too wide) in paragraph at lines 2374--2433
+Overfull \hbox (7.58487pt too wide) in paragraph at lines 2375--2434
 $[][]$ 
  []
 
 [26] [27]
-Overfull \hbox (7.81573pt too wide) in paragraph at lines 2456--2476
+Overfull \hbox (7.81573pt too wide) in paragraph at lines 2457--2477
 $[][]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2482--2492
+Underfull \hbox (badness 10000) in paragraph at lines 2483--2493
 
  []
 
 [28]
-Overfull \hbox (22.27448pt too wide) in paragraph at lines 2533--2569
+Overfull \hbox (22.27448pt too wide) in paragraph at lines 2534--2570
 $[][]$ 
  []
 
 
-Underfull \hbox (badness 1584) in paragraph at lines 2615--2618
+Underfull \hbox (badness 1584) in paragraph at lines 2616--2619
 \OT1/cmr/m/n/12 tions will be a ba-sis that
  []
 
 
-Overfull \hbox (26.5617pt too wide) in paragraph at lines 2612--2637
+Overfull \hbox (26.5617pt too wide) in paragraph at lines 2613--2638
 $[]$   $[]$ 
  []
 
 [29] [30]
-Overfull \hbox (8.83397pt too wide) in paragraph at lines 2715--2732
+Overfull \hbox (8.83397pt too wide) in paragraph at lines 2716--2733
 $[][]$   []   $[][]$ 
  []
 
 
-Overfull \hbox (83.23784pt too wide) in paragraph at lines 2741--2754
+Overfull \hbox (83.23784pt too wide) in paragraph at lines 2742--2755
 []$[][]$ 
  []
 
 
-Overfull \hbox (2.61107pt too wide) in paragraph at lines 2738--2762
+Overfull \hbox (2.61107pt too wide) in paragraph at lines 2739--2763
 []$ $[]$ 
  []
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 2776--2778
+Underfull \hbox (badness 10000) in paragraph at lines 2777--2779
 
  []
 
 
-Overfull \hbox (20.37111pt too wide) in paragraph at lines 2822--2841
+Overfull \hbox (20.37111pt too wide) in paragraph at lines 2823--2842
 $[][]$ $  \OMS/cmsy/m/n/12 ! $ $[][]$ 
  []
 
 [32] [33] [34]
-Underfull \hbox (badness 10000) in paragraph at lines 2992--2994
+Underfull \hbox (badness 10000) in paragraph at lines 2993--2995
 
  []
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 3013.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 3014.
 
 
-Overfull \hbox (10.2616pt too wide) in paragraph at lines 3012--3021
+Overfull \hbox (10.2616pt too wide) in paragraph at lines 3013--3022
 $[][]$ 
  []
 
 [35] [36] [37] (./Quantum Mechanics.aux) ) 
 Here is how much of TeX's memory you used:
- 3991 strings out of 478238
- 62480 string characters out of 5847939
- 395517 words of memory out of 5000000
- 22177 multiletter control sequences out of 15000+600000
+ 3993 strings out of 478238
+ 62496 string characters out of 5847939
+ 395535 words of memory out of 5000000
+ 22179 multiletter control sequences out of 15000+600000
  483948 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,27n,71p,603b,306s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on "Quantum Mechanics.pdf" (37 pages, 417683 bytes).
+Output written on "Quantum Mechanics.pdf" (37 pages, 417771 bytes).
 PDF statistics:
  257 PDF objects out of 1000 (max. 8388607)
  164 compressed objects within 2 object streams
