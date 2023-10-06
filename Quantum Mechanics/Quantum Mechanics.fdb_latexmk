@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1690442735 "c:/Users/ringo/CS/LaTeX/Quantum Mechanics/Quantum Mechanics.tex" "Quantum Mechanics.pdf" "Quantum Mechanics" 1690442739
-  "Quantum Mechanics.aux" 1690442739 6125 127fcd427cf023b51366b7f0fcf23811 "pdflatex"
-  "Quantum Mechanics.tex" 1690442732 135607 aea81b18d1f8a8999af403ddda785907 ""
-  "c:/Users/ringo/CS/LaTeX/Quantum Mechanics/Quantum Mechanics.tex" 1690442732 135607 aea81b18d1f8a8999af403ddda785907 ""
+["pdflatex"] 1696550395 "c:/Users/ringo/CS/LaTeX/Quantum Mechanics/Quantum Mechanics.tex" "Quantum Mechanics.pdf" "Quantum Mechanics" 1696550397
+  "Quantum Mechanics.aux" 1696550397 6134 3e858a0a474bc9e55331cbd21031569b "pdflatex"
+  "Quantum Mechanics.tex" 1696550393 136949 9e25ee1636138ddc1770bcc2fe7b3439 ""
+  "c:/Users/ringo/CS/LaTeX/Quantum Mechanics/Quantum Mechanics.tex" 1696550393 136949 9e25ee1636138ddc1770bcc2fe7b3439 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1650315815 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1650318317 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1650317257 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -78,7 +78,6 @@
   "c:/texlive/2022/texmf-dist/tex/latex/amsmath/amsopn.sty" 1650313688 4128 8eea906621b6639f7ba476a472036bbe ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsmath/amstext.sty" 1650313688 2444 926f379cc60fcf0c6e3fee2223b4370d ""
   "c:/texlive/2022/texmf-dist/tex/latex/base/article.cls" 1650320540 20144 8a7de377ae7a11ee924a7499611f5a9d ""
-  "c:/texlive/2022/texmf-dist/tex/latex/base/inputenc.sty" 1650320540 5049 969aec05d5f39c43f8005910498fcf90 ""
   "c:/texlive/2022/texmf-dist/tex/latex/base/size12.clo" 1650320540 8449 bc7344e882df4d7e51c046514dee83e4 ""
   "c:/texlive/2022/texmf-dist/tex/latex/cancel/cancel.sty" 1650315187 7592 dd751af313a16a0308545d5bfd7aaaa2 ""
   "c:/texlive/2022/texmf-dist/tex/latex/carlisle/slashed.sty" 1650315209 5327 8b3c95b5f71136add36a4a0bb1507594 ""
@@ -92,6 +91,7 @@
   "c:/texlive/2022/texmf-dist/tex/latex/graphics/trig.sty" 1650318908 4009 187ea2dc3194cd5a76cd99a8d7a6c4d0 ""
   "c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1650320442 31644 9b75b7ffdb38fbd7bb4502cd6b086a3c ""
   "c:/texlive/2022/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1650320847 678 4792914a8f45be57bb98413425e4c7af ""
+  "c:/texlive/2022/texmf-dist/tex/latex/mathtools/empheq.sty" 1650321794 46840 5d1bd8b17a285b97e58ae6cb634d6305 ""
   "c:/texlive/2022/texmf-dist/tex/latex/mathtools/mathtools.sty" 1650321794 59398 061078e853e620354ba0437103cbd0fe ""
   "c:/texlive/2022/texmf-dist/tex/latex/mathtools/mhsetup.sty" 1650321794 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty" 1650322436 6149 2398eec4faa1ee24ff761581e580ecf1 ""

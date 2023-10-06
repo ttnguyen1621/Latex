@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[landscape, left=.75in, right=.75in, top=.75in, bottom = 1in]{geometry}
+\usepackage[landscape, left=.75in, right=.75in, top=.75in, bottom=.75in]{geometry}
 \usepackage{pdflscape}
 \usepackage{pbox}
 
@@ -51,10 +51,9 @@
 		% Gauss's Law Electricity
 		\textbf{Gauss's Law for Electricity (GLE)}
 		
-		% \vspace{-5pt}
 		\begin{gather*}
 			\boxed{ \oiint \vec{E} \dotP d\vec{a} = \frac{Q}{\epsilon_0} }\\
-			\iiint (\nabla \dotP \vec{E})\ dV = \frac{\iiint \rho\ dV}{\epsilon_0} \\
+			\iiint (\nabla \dotP \vec{E})\ dV = \frac{\iiint \hspace{-1pt} \rho\hs\hs dV}{\epsilon_0} \\
 			\boxed{ \nabla \dotP \vec{E} = \frac{\rho}{\epsilon_0} }
 		\end{gather*} 
 	} &
@@ -93,8 +92,27 @@
 	{
 		% Lorentz Force Law
 		\textbf{Lorentz Force Law (LFL)}
-		\[ \boxed{ \vec{F} = q\vec{E} + q \vec{v} \times \vec{B} } \]
-	} 
+		\begin{gather*}
+			\boxed{ \vec{F} = q\vec{E} + q \vec{v} \times \vec{B} }\\
+			\boxed{ \hsvec{f} \equiv \dfrac{\partial \vec{F}}{\partial V} = \rho \vec{E} + \vec{J} \times \vec{B} }\\
+		\end{gather*} 
+	} &
+	{
+		% Jefimenko Equations
+		Jefimenko Equations:
+
+		\vspace{-15pt}
+		\begin{align*}
+			\vec{E}( \vec{ \mathbf{r} }, t) & = k_\epsilon
+				\int \left [ \frac{ \rho ( \vec{ \mathbf{r} }, t_r ) }{\cursr^{\hs\hs 2}} \hat{\cursrr} 
+				+ \frac{ \dot{\rho} ( \vec{ \mathbf{r} }, t_r ) }{c \cursr} \hat{\cursrr} 
+				- \frac{ \dot{\vec{J}} ( \vec{ \mathbf{r} }, t_r ) }{c^2 \cursr} \right ] d\tau'
+				\\
+			\vec{B}( \vec{ \mathbf{r} }, t) & = k_\mu
+				\int \left [ \frac{ \vec{J} ( \vec{ \mathbf{r} }, t_r ) }{\cursr^{\hs\hs 2}} 
+				+ \frac{ \dot{ \vec{J} } ( \vec{ \mathbf{r} }, t_r ) }{c \cursr} \right ] \times \hat{\cursrr} \hs d\tau'
+		\end{align*}
+	}
 \end{tabular}
 }
 
@@ -176,7 +194,6 @@
 	\end{aligned}\)
 \end{minipage}
 
-% \vspace{15pt}
 % D'alambertian
 \vfill
 \textbf{D'alambertian}\\[10pt]
@@ -373,9 +390,9 @@
 } } ** \)
 \hspace{20pt}
 \parbox{.35\textwidth}{\scriptsize 
-	(proof?) Single charges do not constitute a current. Free charges (unaffected by external forces holding them) %
+	Single charges do not constitute a current. Free charges (unaffected by external forces holding them) %
 	will always, by self-interaction through their E-field, create an unconstant current and thus unconstant B-field. %
-	Under static conditions, a free space must have a \(\rho = 0\).%
+	Under static conditions, a free space must have a \(\rho = 0\). See below for more info. %
 }
 
 % Electrostatic Conductors
@@ -384,35 +401,66 @@
 
 % Conductor rules
 \vspace{10pt}
-\(\begin{aligned}
-	& \bullet\ \rho \mss{(\hsvec{r}_m)} = 0 \ \Rightarrow \ E = E_{!m} \\[5pt]
-	& \hspace{10pt} \begin{aligned}[t]
-			% E_perp on boundary = 0 required then Equipotential at boundary
-			& \begin{aligned}
-					& \big[ 
-							\underline{ \vec{E}_{!m\perp} \mss{(\hsvec{b}\hs)} = 0 }
-							\ \Rightarrow\ \mss{\oint_{l \in B} \hspace{-8pt} \vec{E} \cdot d\hsvec{l}} = 0
-						\big] 
-						\Leftrightarrow 
-						\underline{
-							\big[ \phi_{!m} \mss{(\hsvec{b}\hs)} = \phi_0 \big]
-						}
-						\\
-					& \hspace{10pt} \land\ \vec{E}_{!m} \mss{(\hsvec{r}_m)} \neq 0 
-						\ \Rightarrow\ \mss{\oint_{l \in B, V_m} \hspace{-20pt} \vec{E} 
-						\cdot d\hsvec{l}} \neq 0 
-						\ \ \crossbox 
-						\\
-					& \hspace{10pt} \Rightarrow\ \underline{ \vec{E}_{!m} \mss{(\hsvec{r}_m)} = 0 } 
-						\ , \ \phi_{!m} \mss{(\hsvec{r}_m)} = \phi_0
-				\end{aligned}
-				\\[5pt]
-			% Circuit Wire case
-			& \vec{E}_{!m} \mss{(\hsvec{r}_m)} \neq 0 \hspace{5pt} (\text{\scriptsize circuit wire \(J = J_0\)})
-				\ \Rightarrow\ \nabla^2 E = \tfrac{\nabla \rho}{\epsilon_0}
+\(
+	% Finite Point Charges
+	\begin{aligned}[t]
+		& - \parbox[t]{.3\textwidth}{\scriptsize %
+				Suppose there is a finite set of positive point charges %
+				\(\{ \delta_{i} \ |\ i \leq n,\ v_i = 0,\ E(x_i) = 0 \}\), %
+				such as a charge at every integer coordinate in \(\mathbb{R}^3\). %
+				If \(\delta_i\) is a free charge only to move by electrical forces, %
+				by Gauss's Law the only way \(x_i\) is a stable critical point is %
+				if there is a negative charge at \(x_i\), which there isn't. %
+				\(\forall n > 1\), any free charge in \(\mathbb{R}^3\) cannot be in stable equilibrium. %
+				See below for neutral equilibrium. %
+			}
+			\\[5pt]
+		& - \parbox[t]{.3\textwidth}{\scriptsize %
+				On a surface/boundary where movement is restricted to lower dimensions (perhaps by mechanical forces), %
+				Gauss's Law won't apply, so these lesser free charges can be in stable equilibrium, such as %
+				charges evenly distributed over a sphere. Note that E = 0 at \(x_i\) and symmetric points in between \(x_i\). %
+				In the \(\lim {n \rightarrow \infty}\) then \( E_\parallel = 0\) for the entire boundary.
+			}
+			\\[5pt]
+		& - \parbox[t]{.3\textwidth}{\scriptsize %
+				If a surface dist. creates a neutral equi. inside the surface (see right) and a point charge were inside the %
+				boundary at \(x_i\), the surface charges will polarize and make \(E(x_i)\) unstable.
+			}
+	\end{aligned}
+	\hspace{20pt}
+	% Inf Point Charges = Charge Distribution
+	\begin{aligned}[t]
+		& \bullet\ \rho \mss{(\hsvec{r}_m)} = 0 \ \Rightarrow \ E = E_{!m} \\[5pt]
+		% E_perp on boundary = 0 required then Equipotential at boundary
+		& \begin{aligned}
+				& \big[ 
+						\hs \underline{ \vec{E}_{!m\parallel} \mss{(\hsvec{b}\hs)} = 0 }
+						\ \Rightarrow\ \mss{\oint_{l \in B} \hspace{-8pt} \vec{E} \cdot d\hsvec{l}} = 0
+					\big] 
+					\Leftrightarrow 
+					\underline{
+						\big[ \phi_{!m} \mss{(\hsvec{b}\hs)} = \phi_0 \big]
+					}
+					\\
+				& \hspace{10pt} \land\ \vec{E}_{!m} \mss{(\hsvec{r}_m)} \neq 0 
+					\ \Rightarrow\ \mss{\oint_{l \in B, V_m} \hspace{-20pt} \vec{E} 
+					\cdot d\hsvec{l}} \neq 0 
+					\ \ \crossbox 
+					\\
+				& \hspace{10pt} \Rightarrow\ \underline{ \vec{E}_{!m} \mss{(\hsvec{r}_m)} = 0 } 
+					\ , \ \phi_{!m} \mss{(\hsvec{r}_m)} = \phi_0 
+					\hspace{15pt} \text{\scriptsize(neutr. equi.)}
+			\end{aligned}
+			\\[5pt]
+		% Circuit Wire case
+		& \begin{aligned}
+				& \vec{E}_{!m\parallel} \mss{(\hsvec{b}\hs)} \neq 0 \ \land\ \vec{E}_{!m} \mss{(\hsvec{r}_m)} \neq 0 
+					\\[5pt]
+				& \hspace{10pt} \land\ J = J_0 \neq 0
+					\hspace{15pt} (\text{\scriptsize circuit wire})
 		\end{aligned}
-\end{aligned}\)
-
+	\end{aligned}
+\)
 
 \end{landscape}
 
@@ -510,7 +558,7 @@
 		Q_{r<R} = \iiint_0^r \frac{dQ}{dV} \ dV & (r < R)
 	\end{cases} \]
 
-	% Conductive Sphere E field
+	% E field
 	\vspace{10pt}
 	\begin{itemize}
 		\item \emph{Conductor}\\[10pt]
@@ -674,7 +722,7 @@
 	\textbf{4. \ \ \ Ring w/ SC centered at origin \(O\)}
 
 	\vspace{10pt}
-	Let \(R\) be the ring radius and \(\phi\) be \(\angle O_\text{rigin}zR\).
+	Let \(R\) be the ring radius and \(\phi\) be \(\angle OzR\).
 	\[ \displaystyle B(0,0,z) \hat{z} = \frac{\mu_0 I}{4 \pi} 
 			\int \frac{ d\vec{l} \times \hat{\cursrr} }{| \vec{\cursrr} |^2} \]
 
@@ -719,13 +767,13 @@
 		E_y(0,0,y) &= k \int \frac{\lambda dx}{\cursrr^2} \vec{\cursrr}_y\\[10pt]
 		&= k \lambda \int \frac{ dx}{y^2 + x^2} \cos{\theta}
 			\ \ , \hspace{20pt} x = y \tan{\theta}\\[10pt]
-		&= \frac{k \lambda}{y^2} \int_0^{\theta_0} \frac{y \sec^2{\theta}}{1 + \tan^2{\theta}} \cos{\theta}\\[10pt]
-		&= \frac{k \lambda}{y} \int_0^{\theta_0} \cos{\theta} = \frac{k \lambda}{y} \sin{\theta_0} \\[15pt]
+		&= \frac{k \lambda}{y^2} \int_0^{\theta_0} \frac{y \sec^2{\theta} \hs\hs d\theta}{1 + \tan^2{\theta}} \cos{\theta}\\[10pt]
+		&= \frac{k \lambda}{y} \int_0^{\theta_0} \cos{\theta} \hs\hs d\theta = \frac{k \lambda}{y} \sin{\theta_0} \\[15pt]
 		&= \boxed{ \frac{k \lambda L}{y \sqrt{y^2+L^2}} } \quad = \quad \boxed{ \frac{k \lambda}{y} \sin{\theta_0}}
 	\end{aligned}\)
 
 	\vspace{30pt}
-	Use this result to find \textit{Finite Line Charge} and \textit{Square Ring}.
+	Use this result to find \textit{Finite Line}, \textit{Square Ring}, and \textit{Infinite Line}.
 \end{minipage}
 % Divider
 \hfill\vline\hfill
@@ -742,16 +790,24 @@
 
 	\vspace{10pt}
 	\(\begin{aligned}
-		B_z(0,0,y) \hat{z}&= k_\mu I \int \frac{ d\vec{x} \times \hat{\cursrr} }{| \vec{\cursrr} |^2}\\[10pt]
-		&= k_\mu I \int \frac{dx}{y^2 + x^2} \sin{(\theta+90)}
-			\ \ , \hspace{20pt} x = y \tan{\theta}\\[10pt]
-			&= \frac{k_\mu I}{y^2} \int_0^{\theta_0} \frac{y \sec^2{\theta}}{1 + \tan^2{\theta}} \cos{\theta}\\[10pt]
-			&= \frac{k_\mu I}{y} \int_0^{\theta_0} \cos{\theta} = \frac{k_\mu I}{y} \sin{\theta_0} \\[10pt]
-			&= \boxed{ \frac{k_\mu I L}{y \sqrt{y^2+L^2}} } = \quad \boxed{ \frac{k_\mu I}{y} \sin{\theta_0}}
+		B_z(0,0,y) \hs \hat{z}
+			& = k_\mu I \int \frac{ d\vec{x} \times \hat{\cursrr} }{| \vec{\cursrr} |^2}
+				\\[10pt]
+			& = k_\mu I \int \frac{dx \hs \hat{z} }{y^2 + x^2} \sin{(\theta+90)}
+				\ \ , \hspace{20pt} x = y \tan{\theta}
+				\\[10pt]
+			& = \frac{k_\mu I}{y^2} \int_0^{\theta_0} 
+				\frac{y \sec^2{\theta} \hs\hs d\theta}{1 + \tan^2{\theta}} \cos{\theta} \hs \hat{z} 
+				\\[10pt]
+			& = \frac{k_\mu I}{y} \int_0^{\theta_0} \cos{\theta} \hs\hs d\theta \hs \hat{z} 
+				= \frac{k_\mu I}{y} \sin{\theta_0} \hs \hat{z} 
+				\\[10pt]
+			& = \boxed{ \frac{k_\mu I L}{y \sqrt{y^2+L^2}} \hs \hat{z} } 
+				= \quad \boxed{ \frac{k_\mu I}{y} \sin{\theta_0} \hs \hat{z} }
 	\end{aligned}\)
 
 	\vspace{30pt}
-	Use this result to find \textit{Finite Wire} and \textit{Square Wire}.
+	Use this result to find \textit{Finite Wire}, \textit{Square Wire}, and \textit{Infinite Wire}.
 \end{minipage}
 
 %-----------------------------------------------------------------
@@ -791,7 +847,7 @@ the potential from each other charge comes out to be
 
 	\vspace{10pt}
 	\(\begin{gathered}
-		E = \frac{1}{2} L I^2 = \frac{1}{2} \Phi_B I = \frac{1}{2} \oint \vec{A} \dotP \vec{I} \ dl\\[10pt]
+		E = \frac{1}{2} L I^2 = \frac{1}{2} \Phi_B I = \frac{1}{2} \oint I \vec{A} \dotP d\hsvec{l}\\[10pt]
 		\begin{aligned}
 				\boxed{ W_\text{vol} = \frac{1}{2} \iiint \vec{A} \dotP \vec{J} \ d\tau }
 				&= \frac{1}{2 \mu_0} \iiint \vec{A} \dotP (\nabla \times \vec{B}) \ d\tau \\
@@ -1049,7 +1105,7 @@ the potential from each other charge comes out to be
 	\begin{gather*}
 		\nabla \dotP \vec{E} = \frac{\rho}{\epsilon_0} \\ \\
 		- \nabla^2 V - \frac{\partial (\nabla \dotP \vec{A})}{\partial t} = \frac{\rho}{\epsilon_0} \\ \\
-		\boxed{ \Box^2 V - \frac{\partial}{\partial t} ( \partial_\mu A^\mu ) = \frac{\rho}{\epsilon_0} }\\
+		\boxed{ - \Box^2 V - \frac{\partial}{\partial t} ( \partial_\mu A^\mu ) = \frac{\rho}{\epsilon_0} }\\
 	\end{gather*}
 \end{minipage} 
 \hspace{0\textwidth}
@@ -1061,7 +1117,7 @@ the potential from each other charge comes out to be
 		\frac{1}{c^2} \frac{\partial^2 \vec{A}}{\partial t^2} - \nabla^2 \vec{A} 
 			+ \nabla \left ( \frac{1}{c^2} \frac{\partial V}{\partial t} + \nabla \dotP \vec{A} \right )
 			= \mu_0 \vec{J} \\ \\
-		\boxed{ \Box^2 \vec{A} + \nabla ( \partial_\mu A^\mu )
+		\boxed{ - \Box^2 \vec{A} + \nabla ( \partial_\mu A^\mu )
 			= \mu_0 \vec{J} } \\
 	\end{gather*} 
 \end{minipage} 
@@ -1179,16 +1235,7 @@ In general,
 	\]
 
 	\vspace{10pt}
-	If \(\boldsymbol{B = \nabla \times A = \nabla \times (A' + \nabla \lambda) = 0 }\), then \\[5pt]
-	let \(A' = - \nabla \lambda \ \Leftrightarrow\ \lambda = - \int A' \cdot dl\)
-
-	\vspace{10pt}\hspace{5pt}
-	\(
-		\begin{aligned}[t]
-			&\bullet\ A = 0 \rightarrow \tfrac{\partial A}{\partial t} = 0\\
-			&\bullet\ E = -\nabla( V -\tfrac{\partial \lambda}{\partial t}) - \tfrac{\partial A'}{\partial t} = - \nabla V
-		\end{aligned}
-	\)
+	Choose \( \tfrac{\partial A}{\partial t} = 0 \ \Rightarrow\ \boxed{ E = - \nabla V } \)
 
 	\vspace{10pt}
 	\begin{align*}
@@ -1199,6 +1246,7 @@ In general,
 
 	\vspace{10pt}
 	and from this (or GLEP)
+	% Poisson Equation for V and rho
 	\begin{center}
 		\fbox{ 
 			\begin{tabular}{l}
@@ -1209,13 +1257,28 @@ In general,
 			\end{tabular}
 		}		
 	\end{center}
+
+	% Uniqueness Theorem
+	\vspace{10pt}
+	\fbox{
+		\parbox{.85\textwidth}{\baselineskip=15pt
+			\vspace{5pt}
+			\emph{PE Uniqueness Theorem}: \ \ Given \(\rho\) and \(V\) at the boundary, %
+			\(V\) is unique in the space containing \(\rho\) enclosed by the surface. %
+			\vspace{5pt}
+		}
+	}
+
 \end{minipage}
 % Divider
 \hfill\vline\hfill
 \begin{minipage}[t]{0.45\textwidth}
 	\textbf{Coulomb Gauge \& Magnetostatic Potentials}
-	\hfill \break \\
-	\underline{Coulomb Guage}: Choose \( \boldsymbol{ \left ( \nabla \dotP \vec{A} = 0 \right ) } \)\\ \\
+
+	\vspace{10pt}
+	\underline{Coulomb Guage}: Choose \( \boldsymbol{ \left ( \nabla \dotP \vec{A} = 0 \right ) } \)
+
+	\vspace{10pt}
 	Using GLEP,
 	\begin{center}
 	\fbox{
@@ -1228,16 +1291,19 @@ In general,
 	}
 	\end{center}
 
-	\hfill \break
+	\vspace{10pt}
 	If charges move, \(V\) updates immediately - not at light speed. Only 
 	\(\vec{E}\) can be physically measured, and updates at light speed.
 	\(\vec{A}\) is difficult to find using MALP except for special cases 
-	like Magnetostatics. \\
+	like Magnetostatics.
 
+	\vspace{10pt}
 	As always, GLMP says \[ \boxed{ \boldsymbol{ \Phi_B = \oint \vec{A} \dotP d\vec{l} } } \]
 
-	\hfill \break \\
-	\underline{Magnetostatics}: \ \( \boldsymbol{ \partial_t \vec{E} = 0 } \) \\ \\
+	\vspace{10pt}
+	\underline{Magnetostatics}: \ \( \boldsymbol{ \partial_t \vec{E} = 0 } \)
+
+	\vspace{10pt}
 	Using MALP,
 	\begin{center} 
 	\fbox{
@@ -1258,7 +1324,9 @@ In general,
 %--------------------------------------------------------------
 % Electrostatic V Examples
 \newpage
-\subsubsection{Potential Examples}
+\begin{landscape}
+
+\subsubsection{Electrostatic Potential Examples}
 \vspace{10pt}
 \begin{minipage}[t]{0.5\textwidth}
 	\textbf{1. \ \ \ Point Charges}\\[10pt]
@@ -1279,32 +1347,19 @@ In general,
 	\textbf{Work}: \indent 
 	\( \displaystyle \boxed{ W = \frac{1}{2} \sum q_i V(\vec{ \mathbf{r} }_i) } \)
 \end{minipage}
-\rule[-438pt]{.5pt}{450pt}
-\hspace{0.02\textwidth}
-\begin{minipage}[t]{0.5\textwidth}
-	\textbf{1. \ \ \ }\\ \\
 
-	
-	\hfill \break
-	\textbf{2. \ \ \ }\\ \\
-
-	\hfill \break
-	\textbf{3. \ \ \ }\\ \\
-	
-\end{minipage}
-
-%-----------------------------------------------------------------------------------------------------------------
-\newpage
-\noindent
+\vspace{30pt}
 \begin{minipage}[t]{.61\textwidth}
 	% Sphere Potential
-	\textbf{2. \ \ \ Sphere}\\ \\
-	Reference Choice:  \( V(\infty) = 0\) \\ \\
+	\textbf{2. \ \ \ Sphere}
+
+	\vspace{15pt}
+	Reference Choice:  \( V(\infty) = 0\)\\[15pt]
 	Let \(R\) be the radius.
 	\[ V(r) = - \int_{\infty}^r \vec{E}(r') \dotP d\vec{r'} \]
 
 	\begin{itemize}
-		\item \emph{Conductor}\\ \\
+		\item \emph{Conductor}\\[15pt]
 		\( E(r) = \begin{cases}
 			\dfrac{k Q}{r^2}\\ \\
 			0 
@@ -1315,7 +1370,7 @@ In general,
 		\end{cases} \)
 	\end{itemize}
 	\begin{itemize}
-		\item \emph{Insulator w/ CCD and \(\epsilon = \epsilon_0\)} \\ \\
+		\item \emph{Insulator w/ CCD and \(\epsilon = \epsilon_0\)}\\[15pt]
 		\( E(r) = \begin{cases}
 			\dfrac{k Q}{r^2}\\ \\
 			\dfrac{k Q r}{R^3}
@@ -1326,38 +1381,36 @@ In general,
 		\end{cases} \)
 	\end{itemize}
 \end{minipage}
-\rule[-300pt]{.5pt}{300pt}
-\hspace{0.02\textwidth}
-\begin{minipage}[t]{0.4\textwidth}
-	\textbf{1. \ \ \ }\\ \\
 
-	
-	\hfill \break
-	\textbf{2. \ \ \ }\\ \\
-
-	\hfill \break
-	\textbf{3. \ \ \ }\\ \\
-	
-\end{minipage}
+\end{landscape}
 
 %------------------------------------------------------------------
 %
 %
 %
 \newpage
-\noindent \textbf{Charges at \(\infty\)}
-\hfill \break \\
-\begin{minipage}[t]{0.5\textwidth}
-	\textbf{3. \ \ \ (Infinite) Parallel Plate Capacitor}\\ \\
-	Reference Choice: \( V(h) = 0 \)\\ \\
+
+\begin{minipage}[t]{0.48\textwidth}
+	% Charges at Infinity
+	\noindent \textbf{Charges at \(\infty\)}
+
+	\vspace{30pt}
+	% Parallel Plate Capacitor
+	\textbf{3. \ \ \ (Infinite) Parallel Plate Capacitor}
+
+	\vspace{15pt}
+	Reference Choice: \( V(h) = 0 \)\\[15pt]
 	Let the Capacitor Height be \(h\) 
 	\[ V( z ) = - \int_{h}^{z} \frac{\sigma}{\epsilon_0} \hat{z} \dotP d\vec{z}
 		= \frac{\sigma (h-z)}{\epsilon_0} 
 		\ \ \ \ \indent (0 \leq z \leq h)
 	\]
 	
-	\hfill \break
-	\textbf{4. \ \ \ (Infinite) Single Plate w/ CCD}\\ \\
+	\vspace{10pt}
+	% Single Plate
+	\textbf{4. \ \ \ (Infinite) Single Plate w/ CCD}
+
+	\vspace{15pt}
 	Reference Choice: \( V(0) = 0 \)
 	\[ V( z ) = - \int_{0}^{z} \frac{\sigma}{2 \epsilon_0} \hat{z} \dotP d\vec{z}
 		= - \frac{\sigma z}{2 \epsilon_0} 
@@ -1367,27 +1420,83 @@ In general,
 	Try \( V(\infty) = 0 \). (A charge distribution 
 		stretching to infinity DNE, so choose a diff. reference point.)
 	
-	\hfill \break
-	\textbf{5. \ \ \ Infinite Line w/ CCD}\\ \\
+	\vspace{20pt}
+	% Infinite Line
+	\textbf{5. \ \ \ Infinite Line w/ CCD}
+
+	\vspace{15pt}
 	Reference Choice: \( V(1) = 0 \)
 	\begin{align*}
 		V(r) &= - \int_{1}^{r} \dfrac{ \lambda }{2 \pi r \epsilon_0} \hat{r} \dotP d\vec{r} \\
 		&= - \dfrac{ \lambda }{2 \pi \epsilon_0} \ln{r}
 	\end{align*}
-	\hfill \break
-	Try \( V(\infty) = 0 \) (same problem above). \\	
-\end{minipage}
-\hspace{0.02\textwidth}
-\rule[-438pt]{.5pt}{450pt}
-\hspace{0.02\textwidth}
-\begin{minipage}[t]{0.4\textwidth}
-	\textbf{3. \ \ \ }\\ \\
-	
-	\hfill \break
-	\textbf{4. \ \ \ }\\ \\
 
-	\hfill \break
-	\textbf{5. \ \ \ }\\ \\
+	Try \( V(\infty) = 0 \) (same problem above).
+\end{minipage}
+\hspace{10pt}
+\begin{minipage}[t]{.48\textwidth}
+	
+	% Method of Images
+	\noindent \textbf{Method of Images (Uniqueness Theorem)}
+
+	% Point and Infinite plate Boundary V=0
+	\vspace{20pt}
+	\textbf{6. \ \ \ \( 
+			\left[ \begin{aligned}
+				&\bullet\ \delta_q \text{ at } x_0 \\
+				&\bullet\ V(0,y,z) = 0 
+			\end{aligned} \right]
+			\ ==\ 
+			\left[ \begin{aligned}
+				&\bullet\ \delta_q \text{ at } x_0 \\
+				&\bullet\ \delta_{-q} \text{ at } -x_0 
+			\end{aligned} \right] 
+		\)
+	}
+
+	% Point Outside of Conductive Sphere Boundary
+	\vspace{20pt}
+	\textbf{7. \ \ \ \( 
+		\left[ \begin{aligned}
+			&\bullet\ \delta_q \text{ at } x_0 \\
+			&\bullet\ \parbox[t]{9.47cm}{
+					Conductive sphere at origin \(\mathbf{O}\), of radius \(R < x_0\) and charge \(Q\)
+				}
+		\end{aligned} \right]
+	\) }
+
+	\vspace{5pt}\hspace{25pt}
+	\(
+		\ ==\ 
+		\left[ \begin{aligned}
+			&\bullet\ \delta_q \text{ at } x_0 \\
+			&\bullet\ \delta_{-q\lambda} \text{ at } \big\{ x_1 \hs\big|\hs \tfrac{R}{x_0} = \tfrac{x_1}{R} = \lambda \big\} \\
+			&\bullet\ \delta_{q\lambda + Q} \text{ at } \mathbf{O} 
+				\hspace{10pt} \text{\scriptsize(\(V=0\) grounded sphere \(\rightarrow\ Q=-q\lambda \))}\\
+		\end{aligned} \right]		
+	\)
+
+	% Point Inside of Conductive Sphere Boundary
+	\vspace{20pt}
+	\textbf{8. \ \ \ \( 
+		\left[ \begin{aligned}
+			&\bullet\ \delta_q \text{ at } x_0 \\
+			&\bullet\ \parbox[t]{9.47cm}{
+					Conductive sphere at origin \(\mathbf{O}\), of radius \(R > x_0\) and charge \(Q\).
+				}
+		\end{aligned} \right]
+	\) }
+
+	\vspace{5pt}\hspace{25pt}
+	\(
+		\ ==\ 
+		\left[ \begin{aligned}
+			&\bullet\ \delta_q \text{ at } x_0 \\
+			&\bullet\ \delta_{-q/\lambda} \text{ at } \big\{ x_1 \hs\big|\hs \tfrac{R}{x_0} = \tfrac{x_1}{R} = \lambda \big\} \\
+			&\bullet\ \delta_{q + Q} \text{ at } \mathbf{O} 
+				\hspace{10pt} \text{\scriptsize(\(V=0\) grounded sphere \(\rightarrow\ Q=-q \))}\\
+		\end{aligned} \right]		
+	\)
 
 \end{minipage}
 
@@ -1399,32 +1508,26 @@ In general,
 \newpage
 \subsection{Multipole Expansion}
 % 1/r expansion
-\begin{center}
-\begin{minipage}[t]{0.3\textwidth}
-	\begin{align*}
-		\cursr^2 &= r^2 + (r')^2 - 2( \vec{\bfr} \dotP \vec{r'} ) \\
+\vspace{5pt}
+\begin{center}\(
+	\begin{aligned}
+		\cursr^{\hs\hs2} &= r^2 + (r')^2 - 2( \vec{\bfr} \dotP \vec{r'} ) \\
 		&= r^2 \left [ 1 + \frac{r'}{r} \left ( \frac{ r' }{r} - 2\frac{ \vec{\bfr} \dotP \vec{r'} }{r'r} \right ) \right ] \\
 		&= r^2 \left ( 1 + \epsilon \right )
-	\end{align*}
-\end{minipage}
-\hspace{0\textwidth}
-\begin{minipage}[t]{0.01\textwidth}
-	\hfill \break \\ \\ \\
-	\( \Rightarrow \)
-\end{minipage}
-\hspace{0\textwidth}
-\begin{minipage}[t]{0.3\textwidth}
-	\begin{align*}
+	\end{aligned}
+	\hspace{10pt}\Rightarrow\hspace{10pt}
+	\begin{aligned}
 		\frac{1}{\cursrr} &= \frac{1}{r} ( 1 + \epsilon )^{-1/2} \\
 		&= \boldsymbol{ \frac{1}{r} \sum_{n=0} \left ( \frac{r'}{r} \right )^n 
 			P_n \left ( \hat{r'} \dotP \hat{\bfr} \right ) }\ \ \ \ \text{(Legendre Polynomials)}
-	\end{align*}	
-\end{minipage}
-\end{center}
-\rule{0.75\paperwidth}{0.1pt}
+	\end{aligned}
+\)\end{center}
+
+% Divider
+\hrulefill
 
 % V Multipole Expansion
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
 	\begin{align*}
 		V( \vec{ \mathbf{r} } ) &= \frac{1}{4 \pi \epsilon_0} 		
 			\int \frac{1}{\cursrr} \ \rho( \vec{r'} ) d\tau' \\
@@ -1451,13 +1554,14 @@ In general,
 			\end{tabular}
 		}		
 	\end{center}
-	\hfill \break \\
+	
+	\vspace{20pt}
 	\(V\) is the dipole term. \( \mathbf{p} \) is the dipole moment.
 \end{minipage}
-\rule[-328pt]{.5pt}{320pt}
-\hspace{0.03\textwidth}
+% Divider
+\hfill\vline\hfill
 % A Multipole Expansion
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
 	\begin{align*}
 		\vec{A} ( \vec{ \mathbf{r} } ) &= k_\mu	\int \frac{1}{\cursrr} \ \vec{J}( \vec{r'} ) d\tau' \\
 		&= \boxed{ k_\mu \sum_n \frac{1}{r^{n+1}} 
@@ -1486,7 +1590,8 @@ In general,
 					= \frac{\mu_0 \vec{ \mathbf{m} } \times \hat{\bfr}}{4 \pi r^2} \)
 			\end{tabular}
 		}		
-	\hfill \break \\
+	
+	\vspace{20pt}
 	\(A\) is the dipole term. \( \mathbf{m} \) is the dipole moment.
 \end{minipage}
 
@@ -1494,10 +1599,11 @@ In general,
 % Ideal Dipoles
 \newpage
 \noindent \textbf{Ideal Dipoles}
-\hfill \break \\
+
+\vspace{15pt}
 % V Dipole
-\begin{minipage}[t]{0.5\textwidth}
-	Let dipole (2 charges) \( \vec{ \mathbf{p} } = p \hat{z} = 2dq \hat{z} \) and centered at the origin. \\ \\
+\begin{minipage}[t]{0.48\textwidth}
+	Let dipole (2 charges) \( \vec{ \mathbf{p} } = p \hat{z} = 2dq \hat{z} \) and centered at the origin. \\[15pt]
 	\(\lim d \rightarrow 0, \ q \rightarrow \infty \) \ :
 	\begin{align*}
 		V( \vec{ \mathbf{r} } ) &= \frac{1}{4 \pi \epsilon_0} \sum_{n=0}^\infty 
@@ -1511,12 +1617,11 @@ In general,
 	\( \boxed{ \text{Ideal Dip:} \ \ \ \ \  V_{ \text{dip} }( \vec{ \mathbf{r} } ) 
 		= \frac{1}{4 \pi \epsilon_0} \frac{ \vec{ \mathbf{p} } \dotP \hat{\cursrr} }{\cursrr^{2}} } \)
 \end{minipage}
-\hspace{0.03\textwidth}
-\rule[-388pt]{.5pt}{400pt}
-\hspace{0.03\textwidth}
+% Divider
+\hfill\vline\hfill
 % A Dipole
-\begin{minipage}[t]{0.5\textwidth}
-	Let dipole (ring) \( \vec{ \mathbf{m} } = m \hat{z} = Ia \hat{z} \) and centered at the origin. \\ \\
+\begin{minipage}[t]{0.48\textwidth}
+	Let dipole (ring) \( \vec{ \mathbf{m} } = m \hat{z} = Ia \hat{z} \) and centered at the origin. \\[15pt]
 	\(\lim a = \pi d^2 \rightarrow 0, \ I \rightarrow \infty \) \ :
 	\begin{align*}
 		\vec{A}( \vec{ \mathbf{r} } ) &= k_\mu \sum_{n=0}^\infty 
@@ -1548,7 +1653,7 @@ In general,
 % Multipole Examples
 \subsubsection{Multipole Examples}
 \hfill \break
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
 	\textbf{3. \ \ \ }\\ \\
 	
 	\hfill \break
@@ -1558,10 +1663,9 @@ In general,
 	\textbf{5. \ \ \ }\\ \\
 
 \end{minipage}
-\hspace{0.02\textwidth}
-\rule[-388pt]{.5pt}{400pt}
-\hspace{0.02\textwidth}
-\begin{minipage}[t]{0.4\textwidth}
+% Divider
+\hfill\vline\hfill
+\begin{minipage}[t]{0.48\textwidth}
 	\textbf{3. \ \ \ }\\ \\
 	
 	\hfill \break
@@ -1572,18 +1676,20 @@ In general,
 
 \end{minipage}
 
-%-----------------------------------------------------------------------------------------------
-%-----------------------------------------------------------------------------------------------
-%-----------------------------------------------------------------------------------------------
-%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
 % EM in Matter Equations
 \newpage
 \section{Electrodynamics in Matter}
 \subsection{Ideal Dipoles}
 % V Dipole
-\begin{minipage}[t]{0.49\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
 	\[\boxed{ \vec{ \mathbf{p} } = \int r' \dotP \rho(r') \ d\tau' }\]
+
 	% F and U for ideal dipole
+	\begin{center}
 	\begin{tabular}{c | c}
 		\( \begin{aligned} 
 			\vec{F}_{\text{dip}} &= q E \bigg|^{ \vec{r} + \vec{d} }_{ \vec{r} } = q \Delta \vec{E}\\
@@ -1597,18 +1703,21 @@ In general,
 		\( \boxed{ \vec{F}_{\text{dip}} = ( \vec{\mathbf{p}} \dotP \nabla ) \vec{E} } \)	
 		& \( \boxed{ U_{\text{ES dip}} =  - \vec{ \mathbf{p} } \dotP \vec{E} } \)
   	\end{tabular}
+	\end{center}
+
 	% Torque for Ideal Dipole
-	\hfill \break
+	\vspace{-5pt}
 	\begin{gather*}
 		\vec{N}_{\text{center}} = r \times F = \vec{d} \times q\vec{E} \\
 		\boxed{ \vec{N}_{\text{dip}} = \vec{\mathbf{p}} \times \vec{E} }
 	\end{gather*}	
 
 	% Polarization
-	\hfill \break \\
-	\fbox{ \textbf{Polarization}: \ \( \vec{P} = \dfrac{d\vec{\mathbf{p}}}{d\tau} \) } \ \ \ \ \ \ \ \
-	\( \displaystyle \left( \frac{\hat{ \cursrr }}{\cursrr^2} = \nabla' \frac{1}{\cursrr} \right) \)
-	\hfill \break \\
+	\vspace{10pt}
+	\fbox{ \textbf{Polarization}: \ \( \vec{P} = \dfrac{d\vec{\mathbf{p}}}{d\tau} \) } 
+		\hspace{30pt}
+		\( \displaystyle \left( \frac{\hat{ \cursrr }}{\cursrr^2} = \nabla' \frac{1}{\cursrr} \right) \)
+	
 	\begin{align*}
 		V(\vec{ \mathbf{r} }) &= \frac{1}{4 \pi \epsilon_0} 
 			\int_\nu \frac{ \vec{P}( \vec{r'} ) \dotP \hat{ \cursrr } }{\cursrr^2} \ d\tau' \\
@@ -1624,14 +1733,14 @@ In general,
 	\end{center}
 
 \end{minipage}
-\hspace{0\textwidth}
-\rule[-400pt]{.5pt}{400pt}
-\hspace{0.01\textwidth}
+% Divider
+\hfill\vline\hfill
 % A Dipole
-\begin{minipage}[t]{0.5\textwidth}	
+\begin{minipage}[t]{0.48\textwidth}	
 	\[\boxed{ \vec{ \mathbf{m} } = \sum I \vec{a} }\]
+
 	% F and U for Ideal Dipole
-	\begin{minipage}[t]{0.5\textwidth}
+	\begin{minipage}[t]{0.48\textwidth}
 		\begin{align*} 
 			\vec{F}_{\text{sqr. dip}} &= q \vec{v} \times \vec{B} \\
 			&= \pm IL \vec{x} \times B \hat{z} \\
@@ -1641,9 +1750,8 @@ In general,
 			&\boxed{ \vec{N}_{\text{dip}} = \vec{\mathbf{m}} \times \vec{B} }
 		\end{align*}
 	\end{minipage}
-	\hspace{0.01\textwidth}
-	\rule[-185pt]{.5pt}{185pt}
-	\begin{minipage}[t]{0.4\textwidth}
+	\hfill\vline\hfill
+	\begin{minipage}[t]{0.48\textwidth}
 		\begin{gather*} 
 			\boxed{ \vec{F}_{\text{dip}} = \nabla ( \vec{\mathbf{m}} \dotP \vec{B} ) } ??? \\ \\
 			\boxed{ U_{\text{dip}} =  - \vec{ \mathbf{m} } \dotP \vec{B} }
@@ -1651,10 +1759,11 @@ In general,
 	\end{minipage}
 
 	% Magnetization
-	\hfill \break \\ \\
-	\fbox{ \textbf{Magnetization}: \ \( \vec{M} = \dfrac{d\vec{\mathbf{m}}}{d\tau} \) } \ \ \ \ \ \ \ \ \
-	\( \displaystyle \left( \frac{\hat{ \cursrr }}{\cursrr^2} = \nabla' \frac{1}{\cursrr} \right) \)
-	\hfill \break
+	\vspace{30pt}
+	\fbox{ \textbf{Magnetization}: \ \( \vec{M} = \dfrac{d\vec{\mathbf{m}}}{d\tau} \) } 
+		\hspace{30pt}
+		\( \displaystyle \left( \frac{\hat{ \cursrr }}{\cursrr^2} = \nabla' \frac{1}{\cursrr} \right) \)
+
 	\begin{align*}
 		\vec{A}(\vec{ \mathbf{r} }) &= k_\mu \int_\nu \frac{ \vec{M}( \vec{r'} ) 
 			\times \hat{ \cursrr } }{\cursrr^2} \ d\tau' \\
@@ -1671,6 +1780,11 @@ In general,
 
 \end{minipage}
 
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-----------------------------------------------------------------------------------------------------------------------------------
+% Maxwell's Equations in Matter
 \newpage
 \subsection{Maxwell's Equations in Matter}
 \hfill \break
@@ -1724,7 +1838,7 @@ In general,
 			&= \vec{J_f} + \frac{\partial}{\partial t} \left( \epsilon_0 \vec{E} + \vec{ \mathbf{P} } \right)
 	\end{align*}
 
-	\hfill \break \\
+	\vspace{10pt}
 	\fbox{
 		\begin{tabular}{c m{.2cm} c}
 			\multicolumn{3}{c}{ \( \displaystyle \vec{H} = \frac{1}{\mu_0} \vec{B} - \vec{M} \) }\\
@@ -1737,7 +1851,7 @@ In general,
 	} 
 \end{minipage}
 
-\hfill \break
+\vspace{20pt}
 \begin{center}
 % Faraday's Law Induction
 \begin{minipage}[t]{0.35\textwidth}
@@ -1785,9 +1899,8 @@ In general,
 	\end{aligned} \)
 
 \end{minipage}
-\hspace{0.02\textwidth}
-\rule[-430pt]{.5pt}{440pt}
-\hspace{0.02\textwidth}
+% Divider
+\hfill\vline\hfill
 \begin{minipage}[t]{0.48\textwidth}
 	\setlength{\parindent}{.5cm}
 	
@@ -1942,39 +2055,88 @@ In general,
 %----------------------------------------------------------------------------------------
 % Work-Energy, Radiation, and Momentum
 \newpage
-\section{Work-Energy, Radiation, and Momentum}
-The sum of the work to move a collection of charges considering the potential from each other charge 
-comes out to be
-\[ \boldsymbol{ W = \frac{1}{2} \sum_i q_i V(r_i) } \]
+\section{Energy, Radiation, and Momentum}
 
-% Field Energies
-\subsection{Field Energies}
-\vspace{-10pt}
-\begin{gather*}
-	W_E = \frac{\epsilon_0}{2} \int \vec{E}^2 d\tau 
-	\indent \indent W_B = \frac{1}{2\mu_0} \int \vec{B}^2 d\tau\\ \\
-	U_{EB} = \frac{1}{2} \int \epsilon_0 \vec{E}^2 + \frac{1}{\mu_0} \vec{B}^2 \ d\tau 
-		= \frac{1}{2} \int u_{EB} \ d\tau
-\end{gather*}
-
-\vspace{20pt}\noindent
 % Energy Conservation
-\begin{minipage}[t]{.53\textwidth}
-	\subsection{Energy Conservation}
+\subsection{Energy Conservation}
+\vspace{5pt}
+\begin{minipage}[t]{.48\textwidth}
+	% Change in Mechanical Work / Time
+	\(\begin{aligned}[t]
+		\frac{dW_{mech}}{dt} 
+			& = \vec{F} \cdot \hsvec{v} 
+			= q\vec{E} \cdot \hsvec{v}
+			+ q \cancel{ \hsvec{v} \times \vec{B} \cdot \hsvec{v} }
+			\\[5pt]
+		& = \int \vec{E} \cdot \vec{J} \ d\tau \hspace{20pt} \mss{(J = \rho_+ v_+ + \rho_- v_-)} 
+			\\[5pt]
+		& = \int - \frac{1}{2} \frac{\partial}{\partial t} \left( \epsilon_0 E^2 + \tfrac{1}{\mu_0} B^2 \right) 
+			- \nabla \cdot \left( \tfrac{1}{\mu_0} \vec{E} \times \vec{B} \right) d\tau
+	\end{aligned}\)
 
-	% Energy and Poynting Vector
 	\vspace{5pt}
-	\(\begin{gathered}
-		\boxed{ \ \ \text{\emph{Poynting Vector}:} \ \ \ \vec{S} = \frac{1}{\mu_0} (\vec{E} \times \vec{B}) 
-			= \frac{1}{2\mu_0} \text{Re}(\mathbf{\tilde E} \times \mathbf{\tilde B}^*) \ \ }\\[15pt]
-		\boxed{ I = \langle P_\text{ow}/A \rangle = \langle S \rangle = \frac{1}{2} c \epsilon_0 E^2 }\\[10pt]
-		-P_\text{ow} = \frac{dW}{dT} + \frac{dU_{EB}}{dt} = - \int \vec{S} \dotP d\vec{a}\\[5pt]
-		\frac{d}{dt}(u_{mech} + u_{EB}) =  -\nabla \dotP \vec{S} 
-	\end{gathered}\)	
+	% Boxed Solution
+	\fbox{
+	\(\arraycolsep=2pt \begin{array}{c c c c l}
+		\dfrac{dW_{mech}}{dt} 
+			& = 
+			& \displaystyle - \frac{d}{dt} \int u_{em} \hs\hs d\tau 
+			& - 
+			& \displaystyle \int \nabla \cdot \vec{S} \hs\hs d\tau
+			\\[10pt]
+		& = 
+			& \displaystyle - \int \frac{\partial u_{em}}{\partial t} \hs\hs d\tau 
+			& -
+			& \displaystyle \oint \vec{S} \cdot d\hsvec{a}
+	\end{array}\)
+	}
 \end{minipage}
+\hspace{10pt}
+\begin{minipage}[t]{.43\textwidth}
+	% Field Energy Density and Poynting Vector
+	\vspace{-23pt}
+	\fbox{
+	\(\begin{aligned}[t]
+		& \begin{gathered}
+				\text{\emph{Field Energy}}\\[-5pt]
+				\text{\emph{Density}}
+			\end{gathered}: 
+			\ \ \ u_{em} = \tfrac{dW_e}{d\tau} + \tfrac{dW_m}{d\tau} 
+			= \tfrac{\epsilon_0}{2} E^2 + \tfrac{1}{2\mu_0} B^2
+			\\[5pt]
+		& \begin{gathered}
+				\text{\emph{Poynting Vector}}\\[-5pt]
+				\text{\scriptsize(Energy Flux Density)}
+			\end{gathered}: 
+			\ \ \ \vec{S} = \tfrac{1}{\mu_0} (\vec{E} \times \vec{B}) 
+			= \tfrac{1}{2\mu_0} \text{Re}(\mathbf{\tilde E} \times \mathbf{\tilde B}^*)
+	\end{aligned}\)
+	}
+
+	\vspace{-10pt}
+	% Power and Intensity
+	\begin{center}
+		\fbox{ 
+		\(\begin{aligned}
+			\int \vec{S} \dotP d\vec{a} 
+				& = - \left( \frac{dW_{mech}}{dT} + \frac{dU_{em}}{dt} \right) = P_\text{ow} 
+				\\[5pt]
+			\nabla \dotP \vec{S} 
+				& = - \frac{\partial}{\partial t}(u_{mech} + u_{em}) 
+		\end{aligned}\)	
+		}
+	\end{center}
+
+	\vspace{-10pt}
+	\[ \boxed{ I = \langle P_\text{ow}/A \rangle = \langle S \rangle = \frac{1}{2} c \epsilon_0 E^2 } \]
+
+\end{minipage}
+\hfill
+
 % Radiation
+\vspace{15pt}
 \begin{minipage}[t]{.46\textwidth}
-	\subsection{Radiation}
+	\subsubsection{Radiation}
 
 	% Accelerating Charge
 	\vspace{5pt}\noindent
@@ -1998,51 +2160,140 @@ comes out to be
 		= \left(\dfrac{k_\mu}{3c^3}\right) m^2_0 \omega^4\)
 \end{minipage}
 
-% % Examples
-% \subsubsection{Examples}
 
 %---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%---------------------------------------------------------------------------------------------------------------------------------
 \newpage
-% Momentum and Stress Tensor
-\subsection{Momentum Conservation}
-\begin{tabular}{c}
-	\( \left( a \dotP \overleftrightarrow T \right)_i  = \sum_n a_n T_{in} \) \\[20pt]
-	\( T_{ij} = \epsilon_0 \left( E_i E_j - \frac{1}{2} \delta_{ij} E^2 \right) 
-		+ \frac{1}{\mu_0} \left( B_i B_j - \frac{1}{2} \delta_{ij} B^2 \right) \) 
-\end{tabular}
 
-\begin{center}
-\begin{minipage}{0.3\textwidth}
-	\begin{align*}
-		F_i &= \int f_i d\tau \\
-		&= \oint_S \left( \overleftrightarrow T \dotP da \right)_i 
-			- \frac{1}{c^2}\frac{d}{dt}\int_V S d\tau \\ \\ 
-		\frac{ dP_{mech} }{dt} &= \int_V \left( \nabla \dotP \overleftrightarrow T \right)_i d\tau 
-			- \frac{dP_{EM}}{dt} \\
-	\end{align*}
-	\begin{gather*}
-		\frac{d}{dt} (P_{mech} + P_{EM})_i 
-			= \int_V \left( \nabla \dotP \overleftrightarrow T \right)_i d\tau \\ \\
-		L_{EM} = \vec{r} \times P_{EM}		
-	\end{gather*}
+% Momentum Conservation
+\subsection{Momentum Conservation}
+\vspace{5pt}
+\begin{minipage}[t]{.48\textwidth}
+	% Change in Force / Change in Volume
+	\(\begin{aligned}[t]
+		\frac{\partial \vec{F}}{\partial \tau} 
+			&\ =\ \hsvec{f} 
+			\ =\ \rho \vec{E} + \vec{J} \times \vec{B}
+			\\[5pt]
+		& \ =\ \begin{aligned}[t]
+				& \epsilon_0 \left[ \big( \nabla \cdot \vec{E} \big) \vec{E} 
+					+ \big( \vec{E} \cdot \nabla \big) \vec{E} \right]
+					+ \tfrac{1}{\mu_0} \left[ \big( \nabla \cdot \vec{B} \big) \vec{B} 
+					+ \big( \vec{B} \cdot \nabla \big) \vec{B} \right]
+					\\[2pt]
+				&- \frac{1}{2} \nabla \left( \epsilon_0 E^2 + \tfrac{1}{\mu_0} B^2 \right)
+					- \tfrac{\partial}{\partial t} \left( \epsilon_0 \vec{E} \times \vec{B}\right)
+			\end{aligned}
+			\\[5pt]
+		& \ =\ \nabla \cdot \overleftrightarrow{T} - \frac{\partial}{\partial t} \left( \epsilon_0 \mu_0 \vec{S} \right)
+			\ = \ \nabla \cdot \overleftrightarrow{T} - \frac{\partial \hsvec{g}_{em}}{\partial t}
+	\end{aligned}\)
+	
+	\vspace{5pt}
+	% Boxed Solution
+	\fbox{
+	\(\arraycolsep=2pt \begin{array}{c c c c c c}
+		\dfrac{dp_{mech}}{dt}
+			& = 
+			& \displaystyle \int \nabla \cdot \overleftrightarrow{T} \hs\hs d\tau 
+			& - 
+			& \displaystyle \frac{d}{dt} \int \hsvec{g}_{em} \hs\hs d\tau
+			\\[10pt]	
+		& = 
+			& \displaystyle \oint \overleftrightarrow{T} \cdot d\hsvec{a} 
+			& - 
+			& \displaystyle \int \frac{\partial \hsvec{g}_{em}}{\partial t} \hs\hs d\tau
+			& = \vec{F} 
+	\end{array}\)
+	}
+
+	\vspace{5pt}
+	% Boxed
+	\( \boxed{ \ \displaystyle
+		\oint \overleftrightarrow{T} \cdot d\hsvec{a} 
+		\ =\ \frac{d \vec{p}_{mech}}{dt} + \frac{d \vec{p}_{em}}{dt} \
+	} \)
+
 \end{minipage}
-\hspace{0.1\textwidth}
-\begin{minipage}{0.3\textwidth}
-	\begin{align*}
-		{\bf f}_i &= \epsilon_0 E_i + (\vec{J} \times \vec{B})_i \\
-		&= \left( \nabla \dotP \overleftrightarrow T \right)_i 
-			- \frac{1}{c^2} \frac{\partial \vec{S}_i}{\partial t} \\ \\
-		\frac{\partial}{\partial t} (p_{mech})_i 
-			&= \left( \nabla \dotP \overleftrightarrow T \right)_i 
-			- \frac{\partial}{\partial t} (p_{EM})_i \\
-	\end{align*}
-	\begin{gather*}
-		\frac{\partial}{\partial t} (p_{mech} + p_{EM})_i 
-			= \left( \nabla \dotP \overleftrightarrow T \right)_i \\ \\
-		l_{EM} = \vec{r} \times p_{EM}
-	\end{gather*}
+\hfill
+\begin{minipage}[t]{.48\textwidth}
+	\vspace{-23pt}
+
+	\fbox{
+	\parbox[t]{.92\textwidth}{
+		% Field Momentum Density
+		\emph{Field Momentum Density}\ : \ \ \ \( \hsvec{g}_{em} = \epsilon_0 \mu_0 \vec{S} = \epsilon_0 (\vec{E} \times \vec{B}) \)
+			\\[10pt]
+		% Maxwell Stress Tensor
+		\(\begin{gathered}
+			\text{\emph{Maxwell Stress Tensor}}\\[-5pt]
+			\text{\scriptsize(Force per Area on Surface)}
+		\end{gathered}\)\ : \ \ \ \(\overleftrightarrow{T} \ , \) \\[10pt]
+		\(\begin{aligned}
+			\hspace{15pt} T_{ij} & \ =\ \epsilon_0 \left( E_i E_j - \tfrac{1}{2} \delta_{ij} E^2 \right) 
+				+ \tfrac{1}{\mu_0} \left( B_i B_j - \tfrac{1}{2} \delta_{ij} B^2 \right)
+				\\[3pt]
+			& \ =\ \epsilon_0 E_i E_j + \tfrac{1}{\mu_0} B_i B_j - \delta_{ij} u_{em}
+				\\[10pt]
+			T_{xx} & = \epsilon_0 E^2_{x} + \tfrac{1}{\mu_0} B^2_{x} - u_{em}
+				\hspace{15pt} , \hspace{15pt}
+				T_{xy} = \epsilon_0 E_x E_y + \tfrac{1}{\mu_0} B_x B_y
+		\end{aligned}\)
+			\\[15pt]
+		% Field Angular Momentum Density
+		\(
+			\begin{gathered}
+				\text{\emph{Field Angular}}\\[-5pt]
+				\text{\emph{Momentum Density}}
+			\end{gathered}\)\ : \ \ \ \(\hsvec{l}_{em} 
+			= \hsvec{r} \times \hsvec{g}_{em} = \epsilon_0 \hsvec{r} \times \big( \vec{E} \times \vec{B} \big) 
+		\)
+	}
+	}
+
+	\vspace{15pt}
+	% Divergence of Stress Tensor
+	\fbox{
+	\( \displaystyle
+		\nabla \cdot \overleftrightarrow{T} 
+		= \hsvec{f} + \frac{\partial \vec{g}_{em}}{\partial t} 
+		= \frac{\partial}{\partial t} \left( \vec{g}_{mech} + \vec{g}_{em} \right)
+	\)
+	}
 \end{minipage}
-\end{center}
+
+% Examples
+\subsubsection{Examples (including hidden momentum)}
+
+\(\bullet\) A circuit has momentum \(\int \epsilon_0 \bigl( \vec{E} \times \vec{B} \bigr) \hs\hs d\tau\), as it provides energy
+	(center of energy) from the battery to the resistor.
+	\vspace{5pt}
+
+\(\bullet\) Hidden momentum is always relativistic.
+	\vspace{5pt}
+
+\(\bullet\) A magnetic dipole alone has no hidden momentum; in an electric field, the hidden momentum is %
+	\(- \int \epsilon_0 \bigl( \vec{E} \times \vec{B} \bigr) \hs\hs d\tau\).
+	\vspace{5pt}
+
+\(\bullet\) A spinning shell of charge / a long solenoid alone has no hidden momentum; an electric dipole in the middle %
+	will give the moving charges hidden momentum of \(- \int \epsilon_0 \bigl( \vec{E} \times \vec{B} \bigr) \hs\hs d\tau\).
+	\vspace{5pt}
+
+\(\bullet\) When one of the fields is removed/changes (discharge, etc.), the hidden momentum goes into the B-field %
+	creating charges, along with any mechanical EM response impulse; the impulsed applied on removal doesn't really %
+	depend on the initial field momentum or hidden momentum.
+	\vspace{5pt}
+
+\(\bullet\) When a field changes, any angular momentum stored in the fields is transfered to the other objects %
+	in the predictable way (as opposed to above, since it has no center of energy equivalent). If there are no %
+	other objects then there wouldn't be angular momentum anyway.
+	% \vspace{5pt} it makes spacing weird for some reason
+
+\(\bullet\) Hidden momentum can exist when center of energy is moving (no examples given). 
+
 
 %---------------------------------------------------------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------------------------------------------------------
@@ -2060,8 +2311,8 @@ See Potentials for Recap
 	
 	\begin{center}
 		\fbox{\(\begin{aligned}
-			\boldsymbol{ \Box^2 V = \dfrac{\rho}{\epsilon_0} } \\[5pt]
-			\boldsymbol{ \Box^2 \vec{A} = \mu_0 \vec{J} }
+			\boldsymbol{ - \Box^2 V = \dfrac{\rho}{\epsilon_0} } \\[5pt]
+			\boldsymbol{ - \Box^2 \vec{A} = \mu_0 \vec{J} }
 		\end{aligned}\)}		
 	\end{center}
 
@@ -2092,7 +2343,7 @@ See Potentials for Recap
 			&\ \ \ \ \begin{gathered}
 				\vec{E}( \vec{ \mathbf{r} }, t) = \frac{1}{4 \pi \epsilon_0} 
 					\int \left [ \frac{ \rho ( \vec{ \mathbf{r} }, t_r ) }{\cursr^2} \hat{\cursrr} 
-					+ \frac{ \dot{\rho} ( \vec{ \mathbf{r} }, t_r ) }{c^2} \hat{\cursrr} 
+					+ \frac{ \dot{\rho} ( \vec{ \mathbf{r} }, t_r ) }{c \cursr} \hat{\cursrr} 
 					- \frac{ \dot{\vec{J}} ( \vec{ \mathbf{r} }, t_r ) }{c^2 \cursr} \right ] d\tau'
 					\\[10pt]
 				\vec{B}( \vec{ \mathbf{r} }, t) = k_\mu

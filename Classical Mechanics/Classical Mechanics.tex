@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage[left=.75in, right=.75in, top=.75in, bottom = .75in]{geometry}
 \usepackage{amssymb, amsmath, amsfonts, mathtools}
 \usepackage{array}
 \usepackage{multirow}
@@ -250,32 +250,47 @@
 
 % Kinematics
 \section{Kinematics}
-\(
-    \begin{aligned}
-        m_0 v_0 &= m_1 v_1 + m_2 v_2\\[5pt]
-        \tfrac{1}{2} m_0 v_0^2 &= \tfrac{1}{2} m_1 v_1^2 + \tfrac{1}{2} m_2 v_2^2
-    \end{aligned}
-    \ \ \Rightarrow\ \ 
-    \boxed{ 
+% \fbox{
+\begin{minipage}[t]{.6\textwidth}
+    % Elastic Collisions
+    \underline{Elastic Collisions}: \ \ \(
+        \begin{aligned}
+            m_0 v_0 &= m_1 v_1 + m_2 v_2\\[5pt]
+            \tfrac{1}{2} m_0 v_0^2 &= \tfrac{1}{2} m_1 v_1^2 + \tfrac{1}{2} m_2 v_2^2
+        \end{aligned}  
+    \)
+
+    \vspace{7pt}
+    \(\Rightarrow\ \boxed{ 
         \tfrac{1}{2} m_2 v_2^2 (m_1 + m_2) - \tfrac{1}{2} m_0 v_0^2 (m_1 - m_0) 
         = (m_0 v_0)(m_2 v_2) 
-    }
-\)
+    }\)
 
-\vspace{15pt}\noindent
-\(
-    \bullet\ \ \begin{aligned}[t]
-        &\boxed{ 
-            m v_0 \ =\ m v_1 + M v_2 
-            \ =\ m v_0 \left( 1 - \tfrac{2M}{m+M} \right) + M v_0 \left( \tfrac{2m}{m + M} \right) 
-        }
-            \\[5pt]
-        &\rightarrow\ \boxed{
-            M \in (\infty,\ m,\ 0] 
-            \ \Rightarrow\ v_1 \in (-v_0,\ 0,\ v_0]
-        }
-    \end{aligned}
-\)
+    \vspace{10pt}\noindent
+    \(
+        \bullet\ \ \boxed{ \begin{aligned}[t]
+            & m v_0 \ =\ m v_1 + M v_2 
+                \ =\ 
+                m v_0 \left( 1 - \tfrac{2M}{m+M} \right) + M v_0 \left( \tfrac{2m}{m + M} \right) 
+                \\[5pt]
+            & \rightarrow\
+                M \in (\infty,\ m,\ 0] 
+                \ \Rightarrow\ 
+                v_1 \in (-v_0,\ 0,\ v_0]
+        \end{aligned} }
+    \)
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.35\textwidth}
+    % Inelastic Collision
+    \underline{Inelastic Collision}: \ \ \(E_0 = \tfrac{1}{2} m v_0^2\)
+
+    \vspace{7pt} 
+    \(\bullet\ \ \boxed{ \begin{aligned}[t]
+        & m v_0 = (m + M) v_1 \\[5pt]
+        & \rightarrow\ E_1 = \left( \tfrac{m}{m+M} \right) E_0
+    \end{aligned}} \)
+\end{minipage}
 
 %-----------------------------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------------------------

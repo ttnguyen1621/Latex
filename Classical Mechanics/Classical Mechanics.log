@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  23 AUG 2023 11:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  26 SEP 2023 18:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -188,14 +188,14 @@ LaTeX Font Info:    ... okay on input line 16.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(54.2025pt, 505.89pt, 54.2025pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* v-part:(T,H,B)=(54.2025pt, 686.56499pt, 54.2025pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
 * \textwidth=505.89pt
-* \textheight=650.43001pt
+* \textheight=686.56499pt
 * \oddsidemargin=-18.06749pt
 * \evensidemargin=-18.06749pt
-* \topmargin=-37.0pt
+* \topmargin=-55.06749pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
@@ -263,46 +263,46 @@ Underfull \hbox (badness 1184) in paragraph at lines 116--119
 
 [2] [3] [4]
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 324.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 339.
 
 
-Overfull \hbox (12.70195pt too wide) in paragraph at lines 317--330
+Overfull \hbox (12.70195pt too wide) in paragraph at lines 332--345
 [][]$ 
  []
 
 [5] [6]
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 461.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 476.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 461.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 476.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 463.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 478.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 469.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 484.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 469.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 484.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 469.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 484.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 469.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 484.
 
 [7] [8] (./Classical Mechanics.aux) ) 
 Here is how much of TeX's memory you used:
  3949 strings out of 478238
  61621 string characters out of 5847939
- 380142 words of memory out of 5000000
+ 380160 words of memory out of 5000000
  22142 multiletter control sequences out of 15000+600000
  481757 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,23n,71p,313b,276s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on "Classical Mechanics.pdf" (8 pages, 212651 bytes).
+Output written on "Classical Mechanics.pdf" (8 pages, 212902 bytes).
 PDF statistics:
  111 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream

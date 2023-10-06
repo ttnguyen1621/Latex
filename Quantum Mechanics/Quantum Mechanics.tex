@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
 \usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
-\usepackage{amssymb, amsmath, amsfonts, mathtools}
+\usepackage{amssymb, amsmath, amsfonts, mathtools, empheq}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{cancel,slashed}
@@ -10,6 +10,7 @@
 \newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
 \newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
 \newcommand{\mathscriptsize}[1]{\text{\scriptsize\(#1\)}}
+\newcommand{\mss}[1]{\mathscriptsize{#1}}
 
 % \title{Quantum Mechanics}
 % \author{ringoffire0 }
@@ -691,11 +692,13 @@ Given complete \(\{e_n\} : \ \langle e_m | e_n \rangle = \delta_{mn}\)
         \langle f|g \rangle &\equiv 
             \Big\langle \big( \widehat{A} - \langle a \rangle \big) \Psi 
             \Big| \big( \widehat{B} - \langle b \rangle \big) \Psi \Big\rangle\\[5pt]
-        &= \Big\langle \Psi \Big| \big( \widehat{A} - \langle a \rangle \big)
-            \big( \widehat{B} - \langle b \rangle \big) \Big| \Psi \Big\rangle\\[5pt]
-        &= \big\langle \widehat{A}\widehat{B} \big\rangle 
+        &= \Bigl\langle \Psi \Bigl| \big( \widehat{A} - \langle a \rangle \big) \Bigr|
+            \bigl( \widehat{B} - \langle b \rangle \bigr) \Psi \Bigr\rangle\\[5pt]
+        &= \big\langle \Psi | \widehat{A} (\widehat{B} \Psi) \big\rangle 
             - \langle a \rangle \langle b \rangle
-        \\[10pt]
+            = \big\langle \widehat{A}\widehat{B} \big\rangle 
+            - \langle a \rangle \langle b \rangle
+            \\[10pt]
         \sigma_A^2 \sigma_B^2 &=
             \big\langle ( \widehat{{A}} - \langle {a} \rangle ) {\Psi} 
             \big| ( \widehat{{A}} - \langle {a} \rangle ) {\Psi} \big\rangle 
@@ -717,8 +720,8 @@ Given complete \(\{e_n\} : \ \langle e_m | e_n \rangle = \delta_{mn}\)
     \setlength{\parindent}{.5cm}
     \noindent\underline{Commutator}
     \begin{itemize}
-        \item \( \big[ \widehat{A}, \widehat{B} \big] \equiv \widehat{A} \widehat{B} 
-            - \widehat{B} \widehat{A} \)
+        \item \( \big[ \widehat{A}, \widehat{B} \big] f \equiv \widehat{A} (\widehat{B} f) 
+            - \widehat{B} (\widehat{A} f) \)
         \item \( \big[ A, BC \big] = \big[ A, B \big] C + B \big[ A, C \big] \)
         \item \( \big[ AB, C \big] = A \big[ B, C \big] + \big[ A, C \big] B \)
         \item \( \big[ x, \hat{p} \big] = i \hbar \)
@@ -729,7 +732,7 @@ Given complete \(\{e_n\} : \ \langle e_m | e_n \rangle = \delta_{mn}\)
                 \(\Rightarrow \)
                 \( \boxed{ \Delta x \Delta p \ \geq \ \hbar / 2 } \)
             \end{tabular}
-        \item \( \big[ \hat{p},f \big] = (\hat{p}f) = \frac{\hbar}{i} \nabla f\)
+        \item \( \big[ \hat{p}, f\mss{(x)} \big] = \hat{p} f\mss{(x)} = \frac{\hbar}{i} \tfrac{\partial f}{\partial x} \)
     \end{itemize}
 \end{minipage}
 
@@ -787,8 +790,16 @@ Given complete \(\{e_n\} : \ \langle e_m | e_n \rangle = \delta_{mn}\)
     \item Virial Theorem: \indent \( \displaystyle 
     \begin{aligned}[t]
         \tfrac{d}{dt} \langle xp \rangle
-            &= \tfrac{i}{\hbar} \left\langle \big[ H,x \big]p + x\big[ H,p \big] \right\rangle \\[5pt]
-        &= \left\langle \tfrac{d \langle x \rangle}{dt} p + x \tfrac{d \langle p \rangle}{dt} \right\rangle \\[5pt]
+            & = \tfrac{i}{\hbar} \left\langle \big[ H,x \big] p + x \big[ H,p \big] \right\rangle 
+            = \left\langle \big[ \tfrac{p^2}{2m} , x \big] p + x \big[ V, p \big] \right\rangle 
+            \\[5pt]
+        & = \tfrac{i}{\hbar} 
+            \left\langle 
+            \tfrac{1}{2m} p \big[ p, x \big] p 
+            - \tfrac{1}{2m} \big[ p, x \big] p^2 
+            - x \big[ p, V \big] 
+            \right\rangle 
+            \\[5pt]
         \Aboxed{ \frac{d \langle xp \rangle}{dt}
             &= 2 \langle T \rangle - 
             \left\langle x \frac{\partial V}{\partial x} \right\rangle }
@@ -1089,21 +1100,33 @@ Laguerre Polynomials: \indent \( \displaystyle
     \end{aligned} \) 
 } \end{center} 
 
-\hfill \break \\
-\( E_n \geq \text{Min}(V) \ \Rightarrow{} \ a \Psi_0 = 0
-    \indent \text{\scriptsize (else let it be un-normalizable)} \)\\[5pt]
-\begin{minipage}[t]{0.45\textwidth}
+\vspace{15pt}\noindent
+\( 
+    E_n \geq \text{Min}(V) \ \Rightarrow{} \ a \Psi_0 = 0 
+    \indent \text{\scriptsize (else let it be un-normalizable)} 
+\)
+
+\vspace{5pt}\noindent
+\begin{minipage}[t]{0.48\textwidth}
     \setlength{\parindent}{.5cm}
+
     \vspace{-.5cm}
     \begin{align*}
         0 &= (ip + m \omega x) \Psi_0\\[5pt]
         - m \omega x \Psi_0 &= \hbar \tfrac{d}{dx} \Psi_0
     \end{align*}
-    \[ \boxed{ \ \Psi_0 = A e^{- \frac{m \omega}{2 \hbar}x^2}, \indent A 
-        = \left( \frac{m \omega }{\pi \hbar} \right)^{1/4} \ } \]
+    \begin{empheq}[box=\fbox]{gather*}
+        \Psi_0 = A e^{- \frac{m \omega}{\hbar} \frac{x^2}{2} }, 
+            \hspace{10pt} A = \left( \frac{m \omega }{\pi \hbar} \right)^{1/4} 
+            \\[2pt]
+        \tfrac{1}{\sigma^2} = \tfrac{m\omega}{\hbar}
+    \end{empheq}
+    
 \end{minipage}
-\begin{minipage}[t]{0.5\textwidth}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
     \setlength{\parindent}{.5cm}
+
     \vspace{-.5cm}
     \begin{align*}
         H \Psi_0 &= \hbar \omega (a^\dagger a + 1/2) \Psi_0\\[5pt]
@@ -1113,9 +1136,10 @@ Laguerre Polynomials: \indent \( \displaystyle
 \end{minipage}
 
 %-------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------
 % Raising Lowering Operator
 \noindent 
-\begin{minipage}{0.5\textwidth}
+\begin{minipage}{0.48\textwidth}
     \begin{align*}
         \hspace{1.0cm} H \Psi_n &= E_n \Psi_n \\
         \hbar \omega (a^\dagger a + 1/2) \Psi_n &= (n+1/2) \hbar \omega \Psi_n\\[10pt]
@@ -1126,21 +1150,22 @@ Laguerre Polynomials: \indent \( \displaystyle
         \Aboxed{ a \Psi_n &= \sqrt{n} \ \Psi_{n-1} }
     \end{align*}
 \end{minipage}
-\begin{minipage}{0.5\textwidth}
-\begin{align*}
-    \hspace{1.0cm} H \Psi_n &= E_n \Psi_n \\
-    \hbar \omega (a a^\dagger - 1/2) \Psi_n &= (n+1/2) \hbar \omega \Psi_n\\[10pt]
-    \Aboxed{ a a^\dagger \Psi_n &= (n+1) \Psi_n }\\[20pt]
-    \left< \Psi_n | a a^\dagger \Psi_n \right> ={} n+1
-    &= \left< a^\dagger \Psi_n | a^\dagger \Psi_n \right>\\
-    &= \left< c_n \Psi_{n+1} | c_n \Psi_{n+1} \right>\\[10pt]
-    \Aboxed{ a^\dagger \Psi_n &= \sqrt{n+1} \ \Psi_{n+1} }
-\end{align*}
+\begin{minipage}{0.48\textwidth}
+    \begin{align*}
+        \hspace{1.0cm} H \Psi_n &= E_n \Psi_n \\
+        \hbar \omega (a a^\dagger - 1/2) \Psi_n &= (n+1/2) \hbar \omega \Psi_n\\[10pt]
+        \Aboxed{ a a^\dagger \Psi_n &= (n+1) \Psi_n }\\[20pt]
+        \left< \Psi_n | a a^\dagger \Psi_n \right> ={} n+1
+        &= \left< a^\dagger \Psi_n | a^\dagger \Psi_n \right>\\
+        &= \left< c_n \Psi_{n+1} | c_n \Psi_{n+1} \right>\\[10pt]
+        \Aboxed{ a^\dagger \Psi_n &= \sqrt{n+1} \ \Psi_{n+1} }
+    \end{align*}
 \end{minipage}
 
-\hfill \break \\
+\vspace{15pt}
 \[ \boxed{ \Psi_n = \frac{1}{ \sqrt{n!} }(a^\dagger)^n \Psi_0 }\]
 
+\vspace{10pt}
 % Position/Momentum Operators
 \subsubsection{Position/Momentum Operators}
 \vspace{5pt}
@@ -1151,7 +1176,7 @@ Laguerre Polynomials: \indent \( \displaystyle
         \frac{ \sqrt{2 m} \sqrt{\hbar \omega} }{i} (a - a^\dagger) } \]
 
 % Virial Theorem
-\hfill \break
+\vfill \noindent
 \begin{minipage}[t]{.48\textwidth}
     \setlength{\parindent}{.5cm}
     \noindent \underline{Show Virial Theorem Works}\\[15pt]
@@ -1186,8 +1211,8 @@ Laguerre Polynomials: \indent \( \displaystyle
                       a^2 - a a^\dagger + a^\dagger a - (a^\dagger)^2 \\
                     - a^2 + a^\dagger a - a a^\dagger + (a^\dagger)^2
                 \end{aligned} \right) \\[5pt]
-            &= \tfrac{\hbar}{i} (a^\dagger a - a a^\dagger) \\[5pt]
-            &= i \hbar (n+1 - n)\\[5pt]
+            &= \tfrac{\hbar}{i} (a^\dagger a - a a^\dagger) = i \hbar (n+1 - n)\\[5pt]
+            % &= i \hbar (n+1 - n)\\[5pt]
             &\Rightarrow \ \sigma_x \sigma_p \geq \frac{\hbar}{2} \indent \checkedbox
         \end{aligned} \)
     \end{tabular} }\\[15pt]
@@ -1218,7 +1243,10 @@ Laguerre Polynomials: \indent \( \displaystyle
         \indent \checkedbox \]
 \end{minipage}
 
-%-------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-------------------------------------------------------------------------------------------------------------------------------
 % Coherent States
 \newpage
 \subsubsection{Coherent States}
@@ -1537,18 +1565,17 @@ Hermite Polynomials: \ \( \begin{aligned}
     = \frac{1}{4 \pi \epsilon_0} \frac{e^2}{\hbar c} \ \approx \ \frac{1}{137} } \)
 % Hydrogen Atom Energy
 \hspace{1cm}
-\( \boxed{ a_0 \equiv \frac{\hbar^2}{m (kqq)} = \frac{4 \pi \epsilon_0 \hbar^2}{m e^2} } \)\\[15pt]
-\( E_n = -\frac{\hbar^2 k^2_n}{2m} \) 
-\ \ \ \(\Rightarrow\) \ \ \ 
-\( \begin{aligned}[t]
-    \Aboxed{ &E_n = - \frac{\hbar^2}{2m a_0^2} \frac{1}{n^2}
+\( \boxed{ a_0 \equiv \frac{\hbar^2}{m (kqq)} = \frac{4 \pi \epsilon_0 \hbar^2}{m e^2} } \)
+
+\begin{align*}
+    \Aboxed{ &E_n = - \frac{\hbar^2 k_n^2}{2m} = - \frac{\hbar^2}{2m a_0^2} \frac{1}{n^2}
         = - \frac{1}{2} \alpha^2 \left( m c^2 \right) \dfrac{1}{n^2}
         \ \approx \ -13.6 \ \dfrac{1}{n^2} \ [\text{eV}] }\\[10pt]
     \Aboxed{ &\frac{1}{\lambda} = \frac{\alpha^2 \left( m c^2 \right) }{2 h c}
         \left( \dfrac{1}{n_f^2} - \dfrac{1}{n_i^2} \right)
         = R \left( \tfrac{1}{n_f^2} - \tfrac{1}{n_i^2} \right) 
         \ , \ \ R = 1.097 \ \text{E} 7 \ [\text{m}^{-1}] }
-\end{aligned} \)
+\end{align*}
 
 % Quantum Numbers
 \vspace{20pt} \noindent
@@ -3022,7 +3049,7 @@ Electric Dipole Approximation ONLY: \(\lambda_\gamma \gg\) atom length \(\righta
 
 % Klein Gordon
 \newpage
-\section{Klein-Gordon Equation (Free Particle)}
+\section{Klein-Gordon Equation (Spinless Free Particle)}
 
 \begin{gather*}
     (p^2c^2 +m^2c^4)\psi = E^2 \psi\\[5pt]
@@ -3031,40 +3058,59 @@ Electric Dipole Approximation ONLY: \(\lambda_\gamma \gg\) atom length \(\righta
     \frac{\left[ - (E/c)^2 + p^2 + (mc)^2 \right]}{\hbar^2} \psi = 0\\[5pt]
     \left[ \frac{1}{c^2} \frac{\partial}{\partial t}^2 - \nabla^2 
         + \left( \frac{mc}{\hbar} \right)^2 \right] \psi = 0\\[5pt]
-    \boxed{ (\square^2 + \mu^2) \psi = 0 }
+    \boxed{ (- \square^2 + \mu^2) \psi = 0 }
 \end{gather*}
 
 % Dirac Equation
 \section{Dirac Equation}
 
 \begin{gather*}
-    \mu^2 = - \square^2\\[5pt]
-    \mu = \sqrt{\nabla^2 - \tfrac{1}{c^2} \partial_t}^2     
-        = A \partial_x + B \partial_y + C \partial_z + \tfrac{i}{c} D \partial_t\\[20pt]
+    \mu^2 = \square^2
+        \\[5pt]
+    \mu \ =\ \sqrt{\nabla^2 - \tfrac{1}{c^2} \partial_t}^2     
+        \ =\ A \partial_x + B \partial_y + C \partial_z + \tfrac{i}{c} D \partial_t
+        \ =\ \gamma^\mu \partial_\mu
+        \\[20pt]
     \begin{aligned}
         \partial_x^2 + \partial_y^2 + \partial_z^2 - \frac{1}{c^2} \frac{\partial}{\partial t}^2 &= 
             (A \partial_x + B \partial_y + C \partial_z + \frac{i}{c} D \partial_t)^2\\[5pt]   
         &= \begin{aligned}[t]
-            &A^2 \partial_x^2 + B^2 \partial_y^2 + C^2 \partial_z^2 - D^2 \tfrac{1}{c^2} \partial_t^2\\
-            &+ [AB+BA]\partial_x\partial_y + [AC+CA]\partial_x\partial_z + [AD+AD]\tfrac{i}{c}\partial_x\partial_t\\
-            &+ [BC+CB]\partial_y\partial_z + [BD+BD]\tfrac{i}{c}\partial_y\partial_t\\
-            &+ [CD+CD]\tfrac{i}{c}\partial_z\partial_t
+            & A^2 \partial_x^2 
+                + B^2 \partial_y^2 
+                + C^2 \partial_z^2 
+                - D^2 \tfrac{1}{c^2} \partial_t^2
+                \\
+            & + [AB+BA]\partial_x\partial_y 
+                + [AC+CA]\partial_x\partial_z 
+                + [BC+CB]\partial_y\partial_z
+                \\
+            & + [AD+DA]\tfrac{i}{c}\partial_x\partial_t 
+                + [BD+DB]\tfrac{i}{c}\partial_y\partial_t 
+                + [CD+DC]\tfrac{i}{c}\partial_z\partial_t
         \end{aligned}
     \end{aligned}\\[20pt]
     D=\gamma^0, \indent A=i\gamma^1, \indent B=i\gamma^2, \indent C=i\gamma^3\\[10pt]
     \gamma^\mu = \left[ 
         \left(\begin{matrix}
             I_2 & 0\\
-            0 & I_2
-        \end{matrix}\right),  
+            0 & - I_2
+        \end{matrix}\right) 
+        \text{ or } 
+        \left(\begin{matrix}
+            0 & I_2\\
+            I_2 & 0
+        \end{matrix}\right) 
+        ,  
         \left(\begin{matrix}
             0 & \sigma_x\\
             -\sigma_x & 0
-        \end{matrix}\right),  
+        \end{matrix}\right)
+        ,  
         \left(\begin{matrix}
             0 & \sigma_y\\
             -\sigma_y & 0
-        \end{matrix}\right), 
+        \end{matrix}\right)
+        , 
         \left(\begin{matrix}
             0 & \sigma_z\\
             -\sigma_z & 0
