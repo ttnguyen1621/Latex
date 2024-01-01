@@ -5,9 +5,15 @@
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{cancel}
+
+\newcommand{\hs}{\hspace{1pt}} % hspace{1pt}
+\newcommand{\hsvec}[1]{\vec{\hs {#1}}} % hsvec
+
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 \newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
 \newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
+
+\newcommand{\mss}[1]{\text{\scriptsize\({#1}\)}}
 
 % \title{Classical Mechanics}
 % \author{ringoffire0 }
@@ -15,8 +21,297 @@
 
 \begin{document}
 
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+% Curvilinear Coordinates
+\section{Curvilinear Coordinates}
+
+% \hat{q}
+\(
+    % \hsvec{r}
+    \boxed{ 
+        \begin{aligned}
+            \hsvec{r} & = r\cos\phi\sin\theta \hs \hat{x} + r\sin\phi\sin\theta \hs \hat{y} + r\cos\theta \hs \hat{z} \\
+            & = r \hat{r} 
+        \end{aligned}    
+    }
+    \hfill
+    % \hat{q} in spherical
+    \begin{aligned}
+        & \hspace{-3pt} \arraycolsep=3pt\begin{array}{r c r c c c c}
+                \hat{r} & = 
+                    & \tfrac{\partial}{\partial r} \hsvec{r} 
+                    & = 
+                    & \boxed{ \tfrac{\hsvec{r}}{r} }
+                    & = 
+                    & \nabla r
+                    \\[5pt]
+                \hat{\theta} & = 
+                    & \tfrac{1}{r} \tfrac{\partial}{\partial \theta} \hsvec{r}
+                    & = 
+                    & \boxed{ \tfrac{\partial \hat{r}}{\partial \theta} }
+                    & =
+                    & r \nabla \theta
+                    \\[5pt]
+                \hat{\phi} & = 
+                    & \tfrac{1}{r \sin\theta} \tfrac{\partial}{\partial \phi} \hsvec{r}
+                    & = 
+                    & \boxed{ \tfrac{1}{\sin\theta} \tfrac{\partial \hat{r}}{\partial \phi} }
+                    & =
+                    & r \sin\theta \nabla \phi
+            \end{array}
+    \end{aligned}
+    \hfill\hs
+\)
+
+\vspace{15pt}\noindent
+% \hat{q} in cartesian
+\(
+    \hfill
+    \mss{ \begin{aligned}
+        \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} & = \cos{2\theta} \hs \hat{z}\\
+        \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} & = \sin\theta \hs \hat{y} + \sin\phi \cos\theta \hs \hat{z}\\
+        \hat{\phi} & = - \sin\phi \sin\theta \hs \hat{x} + \cos\phi \sin\theta \hs \hat{y}
+    \end{aligned} }
+    \hfill
+    \Rightarrow
+    \hfill
+    % Solutions
+    \begin{aligned}
+        z & = \boxed{ \tfrac{ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} }{ \cos{2\theta} } }\\
+        y & = \tfrac{ \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} }{\sin\theta}
+            - \tfrac{ \sin\phi \cos\theta }{ \sin\theta \cos{2\theta} } 
+            \left[ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} \right]
+            \\
+        & = \boxed{ - \tfrac{\sin\phi \sin\theta}{\cos{2\theta}} \hs \hat{r} 
+            + \tfrac{\sin\phi \cos\theta}{\cos{2\theta}} \hs \hat{\theta} 
+            + \tfrac{ \cos\phi }{\sin\theta} \hs \hat{\phi} 
+            }
+            \\
+        x & = \boxed{ \cot\phi \hs \hat{y} - \tfrac{ \hat{\phi} }{ \sin\phi \sin\theta } }
+    \end{aligned}   
+    \hfill\hs 
+\)  
+
+\vspace{20pt}\noindent
+\begin{minipage}{.55\textwidth}
+    % d\dt \hat{q}
+    \(\hspace{-4pt}\arraycolsep=2pt\begin{array}{r c l c l c c}
+        %r
+        \tfrac{ d \hat{r} }{dt} & = 
+            & \tfrac{d}{dt} ( \tfrac{ \hsvec{r} }{r} ) 
+            & =
+            & \tfrac{1}{r} ( \tfrac{d \vec{r}}{dt} - \tfrac{dr}{dt} \hat{r})
+            & = 
+            & \boxed{ \tfrac{v}{r} \big[ \hat{v} - \mss{(\hat{r} \cdot \hat{v})}\hs \hat{r} \big] }
+            \\[5pt]
+        & = 
+            & \tfrac{d \theta}{dt} \tfrac{\partial \hat{r}}{\partial \theta} 
+            & + 
+            & \tfrac{d \phi}{dt} \tfrac{\partial \hat{r}}{\partial \phi}
+            & = 
+            & \boxed{ \tfrac{d\theta}{dt} \hs \hat{\theta} + \sin\theta \hs \tfrac{d\phi}{dt} \hs \hat{\phi} }
+            \\[10pt]
+        % theta
+        \tfrac{ d \hat{\theta} }{dt} & = 
+            & \tfrac{d\theta}{dt} \tfrac{\partial}{\partial \theta} \left( \tfrac{\partial \hat{r}}{\partial \theta} \right)
+            & + 
+            & \tfrac{d\phi}{dt} \tfrac{\partial}{\partial\phi} \left( \tfrac{\partial \hat{r}}{\partial\theta} \right)
+            & = 
+            & \boxed{ - \tfrac{d\theta}{dt} \hs \hat{r} + \cos\theta \hs \tfrac{d\phi}{dt} \hs \hat{\phi} }
+            \\[10pt]
+        % phi
+        \tfrac{ d \hat{\phi} }{dt} & = 
+            & \tfrac{d\theta}{dt} \cancel{ \tfrac{\partial \hat{\phi}}{\partial \theta} }
+            & + 
+            & \tfrac{d\phi}{dt} \tfrac{\partial}{\partial\phi} 
+                \left( \tfrac{1}{\sin\theta} \tfrac{\partial \hat{r}}{\partial \phi} \right)
+            & = 
+            & - \tfrac{d\phi}{dt} \underbrace{
+                    \text{\scriptsize Proj}_\text{\hs xy} \hspace{-2pt} \left( \tfrac{\hat{r}}{\sin\theta} \right)
+                }_{\mss{\cos\phi\hat{x} + \sin\phi\hat{y}}}
+            \\[-12pt]
+        & = 
+            & \multicolumn{3}{l}{ 
+                - \tfrac{d\phi}{dt} \tfrac{\hat{r} - \cos\theta \hs \hat{z}}{\sin\theta}
+                = 
+                \boxed{ \tfrac{d\phi}{dt} \tfrac{\sin\theta \hs \hat{r} - \cos\theta \hs \hat{\theta}}{\cos{2\theta}} }
+                }
+    \end{array}\)
+\end{minipage}
+\hfill
+\vline
+\hfill
+\begin{minipage}{.35\textwidth}
+    % d/dt \vec{r}
+    \(\begin{aligned}
+        % r
+        \tfrac{d \hsvec{r}}{dt} & = \tfrac{dr}{dt} \hat{r} 
+            + r (
+                \tfrac{d\theta}{dt} \tfrac{\partial \hat{r}}{\partial \theta}
+                + \tfrac{d\phi}{dt} \tfrac{\partial \hat{r}}{\partial \phi}
+            )
+            \\
+        \Aboxed{ \hsvec{v} & = \tfrac{dr}{dt} \hat{r} 
+                + r \tfrac{d\theta}{dt} \hat{\theta}
+                + r \sin\theta \tfrac{d\phi}{dt} \hat{\phi} }
+            \\[5pt]
+        % theta
+        \tfrac{d \hsvec{\theta}}{dt} & = \tfrac{d\theta}{dt} \hat{\theta} 
+            + \theta ( 
+                - \tfrac{d\theta}{dt} \hs \hat{r} + \cos\theta \hs \tfrac{d\phi}{dt} \hs \hat{\phi}
+            )
+            \\
+        % phi
+        \tfrac{d \hsvec{\phi}}{dt} & = \tfrac{d\phi}{dt} \hat{\phi} 
+            + \phi \tfrac{d\phi}{dt} ( 
+                \tfrac{\sin\theta \hs \hat{r} - \cos\theta \hs \hat{\theta}}{\cos{2\theta}}
+            )
+            \\
+        & \hs \downarrow
+    \end{aligned}\)
+
+    \vspace{2pt}\noindent
+    % d/dt q
+    \(\hspace{-3pt}\arraycolsep=3pt\begin{array}{r c c c c}
+        % r
+        \tfrac{dr}{dt} & = 
+            & \tfrac{d}{dt} \mss{ ( \hsvec{r} \cdot \hsvec{r} ) }^{\frac{1}{2}} 
+            & = 
+            & \boxed{ \hat{r} \cdot \hsvec{v} = \omega \hsvec{r} \cdot \hat{v}}
+            \\[5pt]
+        % Theta
+        \tfrac{d \theta}{dt} & = 
+            & \nabla \theta \cdot \hsvec{v} 
+            & = 
+            & \boxed{ \tfrac{\hat{\theta} \hs \cdot \hsvec{v} }{r} = {\omega \hs \hat\theta \cdot \hat{v}} }
+            \\[5pt]
+        % Phi
+        \tfrac{d \phi}{dt} & = 
+            & \nabla \phi \cdot \hsvec{v}
+            & = 
+            & \boxed{ \tfrac{ \hat{\phi} \hs \cdot \hsvec{v} }{r \sin\theta} = \tfrac{\omega \hs \hat\phi \cdot \hat{v}}{\sin\theta} }
+    \end{array}\)
+\end{minipage}
+
+\vspace{20pt}\noindent
+\(
+    % Angular Momentum
+    \arraycolsep=3pt\begin{array}{r c c c l}
+        \hsvec{L} & = 
+            & \hsvec{r} \times \hsvec{p} 
+            \\[5pt]
+        (m r v) \hat{r} \times \hat{v} & = 
+            & m \hsvec{r} \times \hsvec{v}
+            & = 
+            & mr^2 \left( \tfrac{d\theta}{dt} \hat{\phi} - \sin\theta \tfrac{d\phi}{dt} \hat{\theta} \right) 
+            \\[5pt] 
+        & = 
+            & I \hsvec{\omega} 
+            & = 
+            & mr^2 \left[ 
+                \tfrac{v}{r} (\hat{\theta} \cdot \hat{v}) \hat{\phi} 
+                - \tfrac{v}{r} (\hat{\phi} \cdot \hat{v}) \hat{\theta} 
+            \right]
+            \\[5pt]
+        \boxed{ (m r v) \hat{r} \times \hat{v} } & = 
+            & \boxed{ (I \omega) \hat{\omega} }
+            & = 
+            & mr^2 \omega \left[ 
+                (\hat{\theta} \cdot \hat{v}) \hat{\phi} 
+                - (\hat{\phi} \cdot \hat{v}) \hat{\theta} 
+            \right]
+            \\[5pt]
+        \underline{m r v} \hs (\hat{\theta} \times \hat{\phi}) \times \hat{v} & =
+            & \underline{I \omega} \hs \hat{\omega}
+            & =
+            & \underline{I \omega} \left[ (\hat{\theta} \cdot \hat{v}) \hat{\phi} - (\hat{\phi} \cdot \hat{v}) \hat{\theta} \right]
+    \end{array}
+    \hfill
+    \vline
+    \hfill
+    % Acceleration
+    \begin{aligned}
+        \hsvec{a} = & \left[ \ddot{r} - r \dot{\theta}^2 + r \dot{\phi}^2 \tfrac{\sin^2\theta}{\cos{2\theta}} \right] \hat{r}\\
+        & + \left[ r \ddot{\theta} + 2 \dot{r} \dot{\theta} - r \dot{\phi}^2 \tfrac{\tan{2\theta}}{2} \right] \hat{\theta} \\
+        & + \mss{ \left[ 
+            2 \dot{r} \dot{\phi} \sin\theta + 2 r \dot{\theta} \dot{\phi} \cos\theta 
+            + r \ddot{\phi} \sin\theta 
+            \right] } \hat{\phi}
+            \\[10pt]
+        \hsvec{\tau} = & \ \hsvec{r} \times \vec{F} \\
+        = & \ (mr^2) \tfrac{ \hat{r} \times \hsvec{a} }{r} = I \hsvec{\alpha}
+    \end{aligned}
+    \hfill\hs
+\)
+
+\vfill
+% Tangent Vectors/Normal
+\(\begin{aligned}
+    T & = \hat{v} = \tfrac{\hsvec{v}}{v}\\
+    T' & = \tfrac{ (\hsvec{v} \cdot \hsvec{v}) \hsvec{a} - (\hsvec{v} \cdot \hsvec{a}) \hsvec{v} }{v^3} 
+        = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v^3}
+        \\
+    \lVert T' \rVert & = \tfrac{ \sqrt{ v^2 a^2 - (\hsvec{v} \cdot \hsvec{a})^2 } }{v^2}
+        = \tfrac{\lVert \hsvec{v} \times \hsvec{a} \rVert }{v^2}
+        \\
+    N & = \tfrac{T'}{\lVert T' \rVert} 
+        = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v \lVert \hsvec{v} \times \hsvec{a} \rVert} 
+        = \hat{v} \times ( \widehat{a \times v} )
+        \\
+    B & = \tfrac{\hsvec{v} \times \hsvec{a}}{\lVert \hsvec{v} \times \hsvec{a} \rVert}\\
+    \lVert \hsvec{q} \times \hsvec{p} \rVert^2 & = q^2 p^2 - (\hsvec{q} \cdot \hsvec{p})^2
+\end{aligned}\)
+\hfill
+\(\begin{aligned}
+    \hsvec{a} & = a_T \hsvec{T} + a_N \vec{N} \\[5pt]
+    a_T & = \hsvec{a} \cdot \hsvec{T}\\[5pt]
+    a^2 & = a_T^2 + a_N^2
+\end{aligned}\)
+\hfill\hs
+
+\(\begin{aligned}
+    \tfrac{d}{dt} \big( \hsvec{p} \times \hsvec{L} \big) &
+        = \tfrac{d \hsvec{p}}{dt} \times \hsvec{L} 
+        = f\mss{(r)} \hs \hat{r} \times (\hsvec{r} \times m \tfrac{d \hsvec{r}}{dt})
+        \\
+    & = m f\mss{(r)} \left[ 
+            \hsvec{r} \hs ( \hat{r} \cdot \tfrac{d \hsvec{r}}{dt} ) 
+            - \tfrac{d \hsvec{r}}{dt} ( \hat{r} \cdot \hsvec{r} )
+        \right]
+        \\
+    & = m f\mss{(r)} \left[ 
+            \hat{r} \hs \tfrac{1}{2} \tfrac{d}{dt} ( \hsvec{r} \cdot \hsvec{r} )
+            - \tfrac{1}{r} \tfrac{d \hsvec{r}}{dt} r^2
+        \right]
+        \\
+    & = m f\mss{(r)} \left[ 
+            \hat{r} r \tfrac{dr}{dt}
+            - r \tfrac{d \hsvec{r}}{dt}
+        \right]
+        \\
+    & = - \tfrac{m f\mss{(r)} r}{I\mss{(r)}} \left[ 
+            - \tfrac{ I\mss{(r)} }{r} \tfrac{dr}{dt} \hsvec{r} 
+            + I\mss{(r)} \tfrac{d \hsvec{r}}{dt}
+        \right]
+        \\
+    & = - \tfrac{m f\mss{(r)} r}{I\mss{(r)}} \tfrac{d}{dt} \left[ I\mss{(r)} \hsvec{r} \right]\\
+    & = - m \cancel{f\mss{(r)}\hs r^2} \tfrac{d}{dt} \hat{r}
+        = m k \tfrac{d}{dt} \hat{r}
+        \\
+    \tfrac{d}{dt} \big( \tfrac{ \hsvec{p} \times \hsvec{L} }{mk} - \hat{r} \big) & = \tfrac{d}{dt} \hsvec{e} = 0
+\end{aligned}\)
+
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
 % Lagrangian Equations
-\section{Lagrangian}
+\newpage
+\section{Lagrangian Equations}
 
 % Newton Lagrangian
 \noindent
@@ -40,49 +335,124 @@
 \vspace{20pt} \noindent
 \underline{Angular}:\\[10pt]
 \(\begin{aligned}
-    &\mathcal{L} = \tfrac{1}{2} m \dot{r}^2 + \tfrac{1}{2} mr^2 \dot{\theta}^2 - U(r,\theta) \ ,
-        \hspace{20pt} \begin{aligned}
-            p_\theta &= mr^2 \dot{\theta} \ \equiv \ L = I \omega \\
-            p_r &= m \dot{r}
-        \end{aligned}\\[10pt]
-    &\rightarrow \ \begin{aligned}
-            F_r &\equiv \boxed{ - \frac{\partial U}{\partial r} = m \ddot{r} - m r \dot{\theta}^2}
-                \indent \text{\scriptsize(centripital: \(\tfrac{mv^2}{r} = mr\omega^2\))} \\[5pt]
-            r F_\theta &\equiv \boxed{ - \frac{\partial U}{\partial \theta} = m r^2 \ddot{\theta} }
-                 = I \alpha = \tau
+    & \mathcal{L} = \tfrac{1}{2} m \dot{r}^2 + \tfrac{1}{2} mr^2 \dot{\phi}^2 - U(r,\phi) 
+        \ , \hspace{20pt} \begin{aligned}
+            p_r & = m \dot{r}\\[-17pt]
+            p_\phi & = mr^2 \dot{\phi} = I \omega \hs { \tfrac{ \begin{gathered}
+                \text{\scriptsize(\(1\) if \(\dot{r}\)=0)}\\[-7pt]
+                \mss{ \hat{\phi} \cdot \hat{v} } 
+            \end{gathered} }{ \bcancel{\sin\theta} } }
+        \end{aligned}
+        \ , \hspace{20pt} 
+        \arraycolsep=2pt\begin{array}{r c c c l}
+            - \vec{F} & = 
+                & \nabla U 
+                & = 
+                & \tfrac{\partial U}{\partial r} \hat{r} + \tfrac{1}{r} \tfrac{\partial U}{\partial \phi} \hat{\phi}
+                \\[2pt]
+            \vec{F} & = 
+                & m \mathbf{\ddot{r}} 
+                & = 
+                & \mss{(F \cdot \hat{r})} \hat{r} + \mss{(F \cdot \hat{\phi})} \hs \hat{\phi}
+        \end{array} 
+        \\[10pt]
+    & \rightarrow \ 
+        \begin{aligned}
+            & F_r = \boxed{ - \tfrac{\partial U}{\partial r} + m r \dot{\phi}^2 = m \ddot{r}  }
+                \hspace{10pt} \text{\scriptsize(centripetal: \(\tfrac{mv^2}{r} = mr\omega^2\))}
+                \\[5pt]
+            & F_\phi = \boxed{ 
+                    \underbrace{ - \tfrac{\partial U}{\partial \phi} }_{\tau} 
+                    = \underbrace{ m r^2 \ddot{\phi} }_{I \alpha}
+                    + \underbrace{ 2mr \dot{r} \dot{\phi} }_{\dot{I} \omega}
+                }
+                \hspace{10pt} \text{\scriptsize
+                    (``coriolis'': \(2m | \vec{\hs \omega} \times \vec{\hs v} | = 2m\dot{\phi}\dot{r}\))
+                }
         \end{aligned} 
-        \indent\indent\indent - \vec{F} = \nabla U = \frac{\partial U}{\partial r} \hat{r} 
-            + \frac{1}{r} \frac{\partial U}{\partial \theta} \hat{\theta} 
+        \hspace{10pt}
+        \vline
+        \hspace{10pt}
+        \text{\scriptsize\(\begin{aligned}
+            \dot{\phi}' & = \dot{\phi} - \omega 
+                \\
+            & \hs \downarrow
+                \\
+            m \mathbf{\ddot{r}'} & = m \mathbf{\ddot{r}} 
+                - ( mr\omega^2
+                - 2mr\dot{\phi}\omega ) \hat{r} 
+                - 2m\dot{r}\omega \hs \hat{\phi}
+                \\
+            & = m \mathbf{\ddot{r}} 
+                - \underbrace{ mr\omega^2 \hs \hat{r} }_\text{centrifugal force}
+                + \underbrace{ 2m\omega (r\dot{\phi}\hs \hat{r} - \dot{r}\hs\hat{\phi}) }_\text{coriolis force}
+        \end{aligned}\)}
 \end{aligned}\)
+
+\vspace{15pt}\noindent
+Note: \hspace{10pt}\(
+    \boxed{
+        \begin{aligned}
+            \dot{\hat{r}} & = \dot{\phi} \hat{\phi} \\
+            \dot{\hat{\phi}} & = - \dot{\phi} \hat{r}
+        \end{aligned}
+    }
+    \ \rightarrow\ 
+    \begin{aligned}
+        \hsvec{r} & = r \hat{r} 
+            \ =\ r \cos\phi \hat{x} + r \sin\phi \hat{y}
+            \\
+        \dot{\hsvec{r}} & = \dot{r} \hat{r} + r \dot{\phi} \hat{\phi}\\
+        \ddot{\hsvec{r}} & = \ddot{r} \hat{r} + 2 \dot{r} \dot{\hat{r}} + r \ddot{\hat{r}} 
+            \ =\ ( \ddot{r} - r \dot{\phi} ^2 )\hat{r} + ( r \ddot{\phi} + 2 \dot{r} \dot{\phi} ) \hat{\phi} 
+    \end{aligned} 
+\)
 
 % Electrodynamic Lagrangian
 \vspace{20pt} \noindent
 \underline{Electromagnetic}:\\[15pt]
 \(\begin{aligned}
-    &\mathcal{L} = \tfrac{1}{2} m \dot{ \mathbf{r} }^2 
-        - q \Big( V{\scriptstyle (t,\ \mathbf{r})} 
-        - \dot{ \mathbf{r} } \dotP \vec{A}{\scriptstyle (t,\ \mathbf{r})} \Big) \ ,
-        \hspace{20pt} p_x = m \dot{x} + q A_x\\[10pt]
-    &\rightarrow \begin{aligned}[t]
-            m \ddot{x} + q \frac{d A_x}{d t} &= - q \left( \frac{\partial V}{\partial x} 
-                - \dot{r} \dotP \frac{\partial \vec{A} }{\partial x} \right)\\[5pt]
-            m \ddot{x} + q \left( \frac{\partial A_x}{\partial t} + \dot{r} \dotP \nabla A_x\right) 
-                &= q \left( - \frac{\partial V}{\partial x} 
-                + \dot{r} \dotP \frac{\partial \vec{A} }{\partial x} \right)\\
+    & \mathcal{L} = \tfrac{1}{2} m \dot{ \mathbf{r} }^2 
+        - q \Big[ 
+            V{\scriptstyle (t,\ \mathbf{r})} 
+            - \dot{ \mathbf{r} } \dotP \vec{A}{\scriptstyle (t,\ \mathbf{r})} 
+        \Big] \ ,
+        \hspace{20pt} p_x = m \dot{x} + q A_x
+        \\[10pt]
+    & \rightarrow \begin{aligned}[t]
+            m \ddot{x} + q \tfrac{d A_x}{d t} & = - q 
+                \left[ 
+                    \tfrac{\partial V}{\partial x} 
+                    - \dot{r} \dotP \tfrac{\partial \vec{A} }{\partial x} 
+                \right]
+                \\[5pt]
+            m \ddot{x} + q \left[ \tfrac{\partial A_x}{\partial t} + \dot{r} \dotP \nabla A_x \right] & 
+                = q \left[ - \tfrac{\partial V}{\partial x} 
+                + \dot{r} \dotP \tfrac{\partial \vec{A} }{\partial x} \right]
+        \end{aligned}
+        \hspace{10pt} \rightarrow \hspace{10pt}
+        \begin{aligned}[t]
+            m \ddot{x} & = q \left( 
+                - \tfrac{\partial V}{\partial x} - \tfrac{\partial A_x}{\partial t}
+                + \dot{r} \dotP \left[ \tfrac{\partial \vec{A}}{\partial x} - \nabla A_x \right] 
+                \right)
+                \\[5pt]
+            & = q \left[ - \tfrac{\partial V}{\partial x} - \tfrac{\partial A_x}{\partial t} \right]
+                + q \dot{y} \left[ \tfrac{\partial A_y }{\partial x} - \tfrac{\partial A_x }{\partial y} \right]
+                \\
+            & \hspace{15pt} + q \dot{z} \left[ \tfrac{\partial A_z }{\partial x} - \tfrac{\partial A_x }{\partial z} \right]
+                \\[5pt]
+            & = q E_x + q \dot{y} B_z - q \dot{z} B_y\\[3pt]
+            m \ddot{x} & = q E_x + q \left[ \dot{ \mathbf{r} } \times \vec{B} \right]_x\\
             &\downarrow\\
-            m \ddot{x} &= q \left[ - \frac{\partial V}{\partial x} - \frac{\partial A_x}{\partial t}
-                + \dot{r} \dotP \left( \frac{\partial \vec{A}}{\partial x} - \nabla A_x \right) \right]\\[5pt]
-            &= q \left( - \frac{\partial V}{\partial x} - \frac{\partial A_x}{\partial t} \right)
-                + q \dot{y} \left( \frac{\partial A_y }{\partial x} - \frac{\partial A_x }{\partial y} \right)
-                + q \dot{z} \left( \frac{\partial A_z }{\partial x} - \frac{\partial A_x }{\partial z} \right)\\[5pt]
-            &= q E_x + q \dot{y} B_z - q \dot{z} B_y\\[5pt]
-            m \ddot{x}&= q E_x + q \left( \dot{ \mathbf{r} } \times \vec{B} \right)_x\\
-            &\downarrow\\
-            \Aboxed{ m \ddot{ \mathbf{r} } &= q \left( \vec{E} + \dot{ \mathbf{r} } \times \vec{B} \right) }
-    \end{aligned}
+            \Aboxed{ m \ddot{ \mathbf{r} } & = q \left( \vec{E} + \dot{ \mathbf{r} } \times \vec{B} \right) }
+        \end{aligned}
 \end{aligned}\)
 
 %-----------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
 % Special Relativity
 \newpage\noindent
 \underline{Special Relativity}:\\[15pt]
@@ -159,6 +529,9 @@
 \end{aligned}\)
 
 %--------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
 \newpage
 % Five Examples
 \subsection{Examples}
@@ -182,8 +555,8 @@
 %--------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------
-\newpage
 % Hamiltonian Equations
+\newpage
 \section{Hamiltonian}
 \fbox{ \(\begin{aligned}[t]
     &\mathcal{H} = \sum_i \dot{q_i} p_i - \mathcal{L} \ , 
@@ -206,13 +579,13 @@
 
 % Angular Hamiltonian
 \vspace{25pt} \noindent
-\underline{Angular}:\\[15pt]
+\underline{Angular}:\\[10pt]
 \(\begin{aligned}
     \mathcal{H} &= m \dot{r}^2 + m r^2 \dot{\theta}^2 - \left( \tfrac{1}{2} m \dot{r}^2 
         + \tfrac{1}{2} mr^2 \dot{\theta}^2 - U(r,\theta) \right) \ ,
         \hspace{20pt} \begin{aligned}
-            p_\theta &= mr^2 \dot{\theta} \ \equiv \ L = I \omega\\
-            p_r &= m \dot{r}
+            p_r &= m \dot{r}\\
+            p_\theta &= mr^2 \dot{\theta} \ \equiv \ L = I \omega
         \end{aligned}\\[5pt]
     &= \tfrac{1}{2} m \dot{r}^2 + \tfrac{1}{2} mr^2 \dot{\theta}^2 + U(r,\theta)
 \end{aligned}\)
@@ -242,13 +615,107 @@
     &\approx \tfrac{1}{2} m v^2 + \left( U + mc^2 \right) \indent\indent \text{\scriptsize(when \(v \ll c\))}
 \end{aligned}\)
 
-%-----------------------------------------------------------------------------------------------------------------------------------
-%
-%
-%-----------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------
+% Hamilton-Jacobi Equations
 \newpage
+\section{Hamilton-Jacobi Equations}
 
+\noindent
+\(
+    \begin{aligned}
+        & \boxed{ K(Q, P, t) \hs \equiv \hs H(q, p, t) + \frac{\partial S \mss{(q, Q, t)}}{\partial t} = 0 }\\[10pt]
+        & \arraycolsep=2pt \begin{array}{r l l}
+                \dot{Q} & = \frac{\partial K}{\partial P} = 0
+                    & \ \hs \Rightarrow\ \hs \boxed{ Q = \alpha_Q = \tfrac{\partial S}{\partial P} }
+                    \hspace{10pt} \text{\scriptsize(constant)}
+                    \\[10pt]
+                \dot{P} & = - \frac{\partial K}{\partial Q} = 0
+                    & \ \hs \Rightarrow\ \hs \boxed{ P = \alpha_P = -\tfrac{\partial S}{\partial Q} }
+                    \hspace{10pt} \text{\scriptsize(constant)}
+            \end{array}        
+            \\[10pt]
+        & \dot{q} = \tfrac{\partial H}{\partial p}
+            \ \Rightarrow\ \boxed{ q = -\tfrac{\partial S}{\partial p} }
+            \hspace{5pt}, \hspace{5pt} 
+            \dot{p} = - \tfrac{\partial H}{\partial q}
+            \ \Rightarrow\ \boxed{ p = \tfrac{\partial S}{\partial q} }
+    \end{aligned}
+    \hfill\vline\hfill
+    \begin{aligned}
+        & \underline{ \text{Solve for } S \mss{(q, \alpha_Q, t)} }
+            \hspace{10pt} \text{\scriptsize(\(n+1\) variables, nonlinear PDE)}
+            \\[5pt]
+        & H \left( q, \tfrac{\partial S (q, \hs \alpha_Q, \hs t)}{\partial q}, t \right) 
+            + \frac{\partial S \mss{(q, \alpha_Q, t)}}{\partial t} 
+            = 0 
+    \end{aligned}
+    \hfill\hs
+\)
+
+\vspace{20pt}\noindent
+% If H is independant of time
+\(
+    \begin{aligned}
+        & 
+            \underline{ \tfrac{\partial H}{\partial t} = 0 }
+            \ \Rightarrow\ \boxed{ S(q, Q, t) = W(q,Q) - Et }
+            \\[10pt]
+        & \tfrac{dS}{dt} = \tfrac{\partial S}{\partial t} + \mss{\sum}\hs\hs p_i \dot{q}_i
+            = \cancel{ \tfrac{\partial S}{\partial t} + H } + \mathcal{L}
+            \\[5pt]
+        & \Rightarrow\ \boxed{ S = \mss{\int} \mathcal{L} \ dt + \text{const.} }
+    \end{aligned}
+    \hfill\vline\hfill
+    \begin{aligned}
+        & \underline{ \text{Solve for } W \mss{(q, \alpha_Q)} }
+            \hspace{10pt} \text{\scriptsize(\(n\) variables, nonlinear PDE)}
+            \\[5pt]
+        & H(q, \tfrac{\partial W}{\partial q}) = E \equiv \alpha_Q\\[5pt]
+    \end{aligned}
+    \hfill\hs
+\)
+
+%--------------------------------------------------------------
+\vspace{30pt}\noindent
+\underline{Harmonic Oscillator}\\[10pt]
+\(
+    \begin{aligned}
+        - \tfrac{\partial S}{\partial t} & = \tfrac{1}{2} p^2 - \tfrac{1}{2} \omega^2 q^2 \\[5pt]
+        & = \tfrac{1}{2} \left( \tfrac{\partial S}{\partial q} \right)^2 - \tfrac{1}{2} \omega^2 q^2
+            \hspace{15pt} \big( \mss{S = s_1(q) + s_2(t)} \big)
+            \\[5pt]
+        - \tfrac{\partial s_2(t)}{\partial t} & 
+            = \tfrac{1}{2} \left( \tfrac{\partial s_1(q)}{\partial q} \right)^2 - \tfrac{1}{2} \omega^2 q^2
+            \equiv \alpha_Q
+    \end{aligned}
+    \hfill\vline\hfill
+    \begin{gathered}
+        s_2(t) = - \alpha_Q t + \cancel{ \text{const.} } 
+            \hspace{10pt}, \hspace{10pt} 
+            s_1(q) = \mss{\int} \sqrt{2a_Q + \omega^2 q^2} \ dq
+            \\[10pt]
+        Q \equiv \alpha_Q
+            \hspace{10pt}, \hspace{10pt} 
+            \begin{aligned}[t]
+                P & = - \mss{\int} \tfrac{dq}{ \sqrt{2a_Q + \omega^2 q^2} } + t\\[5pt]
+                \alpha_P & = - \tfrac{1}{\omega} \sin^{-1} \mss{ \left[ q \tfrac{\omega}{ \sqrt{2 \alpha_Q} } \right] } + t
+            \end{aligned}
+            \\[10pt]
+        \boxed{ q(t) = \tfrac{ \sqrt{2 \alpha_Q} }{\omega} \sin \left[ \omega(t - \alpha_P) \right] }
+    \end{gathered}
+\)
+
+
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
 % Kinematics
+\newpage
 \section{Kinematics}
 % \fbox{
 \begin{minipage}[t]{.6\textwidth}

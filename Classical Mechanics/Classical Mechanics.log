@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  26 SEP 2023 18:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  15 DEC 2023 23:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -164,20 +164,20 @@ File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 ) (./Classical Mechanics.aux)
 \openout1 = `"Classical Mechanics.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -247,65 +247,70 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 \Gin@req@height=\dimen171
 \Gin@req@width=\dimen172
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Overfull \hbox (3.68237pt too wide) in paragraph at lines 101--143
+[]$ []$ 
+ []
 
-{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 1184) in paragraph at lines 116--119
+[1
+
+{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+Underfull \hbox (badness 1184) in paragraph at lines 486--489
 \OT1/cmr/m/n/8 (im-plies co-or-di-nates are "nat-u-ral"),
  []
 
-[2] [3] [4]
+[4] [5] [6] [7]
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 339.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 806.
 
 
-Overfull \hbox (12.70195pt too wide) in paragraph at lines 332--345
+Overfull \hbox (12.70195pt too wide) in paragraph at lines 799--812
 [][]$ 
  []
 
-[5] [6]
+[8] [9]
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 476.
-
-
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 476.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 943.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 478.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 943.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 484.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 945.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 484.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 951.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 484.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 951.
 
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 484.
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 951.
 
-[7] [8] (./Classical Mechanics.aux) ) 
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 951.
+
+[10] [11] (./Classical Mechanics.aux) ) 
 Here is how much of TeX's memory you used:
- 3949 strings out of 478238
- 61621 string characters out of 5847939
- 380160 words of memory out of 5000000
- 22142 multiletter control sequences out of 15000+600000
+ 3952 strings out of 478238
+ 61631 string characters out of 5847939
+ 427192 words of memory out of 5000000
+ 22145 multiletter control sequences out of 15000+600000
  481757 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,23n,71p,313b,276s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on "Classical Mechanics.pdf" (8 pages, 212902 bytes).
+ 63i,28n,71p,314b,276s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "Classical Mechanics.pdf" (11 pages, 254051 bytes).
 PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 135 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
