@@ -1,19 +1,18 @@
 \documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
 \usepackage[left=.75in, right=.75in, top=.75in, bottom = .75in]{geometry}
 \usepackage{amssymb, amsmath, amsfonts, mathtools}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{cancel}
 
-\newcommand{\hs}{\hspace{1pt}} % hspace{1pt}
-\newcommand{\hsvec}[1]{\vec{\hs {#1}}} % hsvec
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
 
-\newcommand{\tabitem}{~~\llap{\textbullet}~~}
 \newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
-\newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
-
-\newcommand{\mss}[1]{\text{\scriptsize\({#1}\)}}
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+\newcommand{\dotP}{\boldsymbol \cdot}		% Dot Product
 
 % \title{Classical Mechanics}
 % \author{ringoffire0 }

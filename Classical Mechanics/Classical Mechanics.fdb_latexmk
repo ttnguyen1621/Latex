@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1702703292 "c:/Users/ringo/CS/LaTeX/Classical Mechanics/Classical Mechanics.tex" "Classical Mechanics.pdf" "Classical Mechanics" 1702703294
-  "Classical Mechanics.aux" 1702703293 1762 e5ceb99e041853b111984d7d5cdbb2f1 "pdflatex"
-  "Classical Mechanics.tex" 1702703290 46352 4447cad8060dd869c70790693507ee43 ""
-  "c:/Users/ringo/CS/LaTeX/Classical Mechanics/Classical Mechanics.tex" 1702703290 46352 4447cad8060dd869c70790693507ee43 ""
+["pdflatex"] 1705944126 "c:/Users/ringo/CS/LaTeX/Classical Mechanics/Classical Mechanics.tex" "Classical Mechanics.pdf" "Classical Mechanics" 1705944130
+  "Classical Mechanics.aux" 1705944129 1762 e5ceb99e041853b111984d7d5cdbb2f1 "pdflatex"
+  "Classical Mechanics.tex" 1705944124 46470 68467905bb6d75399686c9df6254bb01 ""
+  "c:/Users/ringo/CS/LaTeX/Classical Mechanics/Classical Mechanics.tex" 1705944124 46470 68467905bb6d75399686c9df6254bb01 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1650318317 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1650313675 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1650313675 1120 200be8b775682cdf80acad4be5ef57e4 ""
@@ -67,7 +67,6 @@
   "c:/texlive/2022/texmf-dist/tex/latex/amsmath/amsopn.sty" 1650313688 4128 8eea906621b6639f7ba476a472036bbe ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsmath/amstext.sty" 1650313688 2444 926f379cc60fcf0c6e3fee2223b4370d ""
   "c:/texlive/2022/texmf-dist/tex/latex/base/article.cls" 1650320540 20144 8a7de377ae7a11ee924a7499611f5a9d ""
-  "c:/texlive/2022/texmf-dist/tex/latex/base/inputenc.sty" 1650320540 5049 969aec05d5f39c43f8005910498fcf90 ""
   "c:/texlive/2022/texmf-dist/tex/latex/base/size12.clo" 1650320540 8449 bc7344e882df4d7e51c046514dee83e4 ""
   "c:/texlive/2022/texmf-dist/tex/latex/cancel/cancel.sty" 1650315187 7592 dd751af313a16a0308545d5bfd7aaaa2 ""
   "c:/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1650317540 13886 d1306dcf79a944f6988e688c1785f9ce ""

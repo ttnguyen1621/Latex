@@ -388,6 +388,17 @@ INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm7.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm5.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm7.tfm
 INPUT Quantum Mechanics.aux
 INPUT c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
@@ -414,6 +425,7 @@ INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
+INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1703810193 "c:/Users/ringo/CS/LaTeX/Quantum Mechanics/Quantum Mechanics.tex" "Quantum Mechanics.pdf" "Quantum Mechanics" 1703810195
-  "Quantum Mechanics.aux" 1703810194 7296 5aa84042f7c9336e3fdd288530b52b6b "pdflatex"
-  "Quantum Mechanics.tex" 1703810192 249907 a3572e670f7e69eeec50467390a660de ""
-  "c:/Users/ringo/CS/LaTeX/Quantum Mechanics/Quantum Mechanics.tex" 1703810192 249907 a3572e670f7e69eeec50467390a660de ""
+["pdflatex"] 1707949219 "c:/Users/ringo/CS/LaTeX/Quantum Mechanics/Quantum Mechanics.tex" "Quantum Mechanics.pdf" "Quantum Mechanics" 1707949222
+  "Quantum Mechanics.aux" 1707949222 7378 a954c3f64014e0f67bcc756d020e4e6b "pdflatex"
+  "Quantum Mechanics.tex" 1707949217 256448 125690e697bf234568da6ea15bec942f ""
+  "c:/Users/ringo/CS/LaTeX/Quantum Mechanics/Quantum Mechanics.tex" 1707949217 256448 125690e697bf234568da6ea15bec942f ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1650315815 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1650318317 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1650317257 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -16,6 +16,9 @@
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib6.tfm" 1650313675 1516 a3bf6a5e7ec4401b1f52092dfaaed242 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib7.tfm" 1650313675 1508 6e807ff901c35a5f1fde0ca275533df8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib8.tfm" 1650313675 1528 dab402b9d3774ca98baa037071cee7ae ""
+  "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm" 1650313675 1040 b84415f97d114011685943ade933dc71 ""
+  "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm5.tfm" 1650313675 1040 a9d2074f3fa062d4d9046b92e2334d8c ""
+  "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm7.tfm" 1650313675 1040 82eb6630b094bff824fccca83ff507f9 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1650313675 916 f87d7c45f9c908e672703b83b72241a3 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm" 1650313675 924 9904cf1d39e9767e7a3622f2a125a565 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm" 1650313675 928 2dc8d444221b7a635bb58038579b861a ""
@@ -68,6 +71,7 @@
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb" 1650313675 29407 8c6dfc0f2d83bfc4807c3b1dc90ef23e ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb" 1650313675 30273 87a352d78b6810ae5cfdc68d2fb827b2 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb" 1650313675 35479 2cca68718f15872e7cce1a8f6033b99b ""
+  "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb" 1650313675 21098 d4aee7c0aac232caac5688b586b9363c ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb" 1650313675 11493 4f5ed183a47d3197cf8cd322325db6de ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1650313675 31764 459c573c03a4949a528c2cc7f557e217 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1650313675 34694 870c211f62cb72718a00e353f14f254d ""
@@ -78,6 +82,7 @@
   "c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty" 1650319657 1057 525c2192b5febbd8c1f662c9468335bb ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1650313675 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsfonts/amssymb.sty" 1650313675 13829 94730e64147574077f8ecfea9bb69af4 ""
+  "c:/texlive/2022/texmf-dist/tex/latex/amsfonts/ueuf.fd" 1650313675 1047 4252767c0fde12e3ce9f914ef4bb1ea1 ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd" 1650313675 961 6518c6525a34feb5e8250ffa91731cff ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd" 1650313675 961 d02606146ba5601b5645f987c92e6193 ""
   "c:/texlive/2022/texmf-dist/tex/latex/amsmath/amsbsy.sty" 1650313688 2222 da905dc1db75412efd2d8f67739f0596 ""

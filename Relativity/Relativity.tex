@@ -1,10 +1,9 @@
 \documentclass[12pt]{article}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 \usepackage{enumitem}
-\usepackage{amssymb}
-\usepackage{amsmath}
+\usepackage{amssymb, amsmath}
 \usepackage{esint}
 \usepackage{cancel}
-\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 
 \newcommand\italicmath{\mathversion{italic}}
 \DeclareMathVersion{italic}
@@ -22,11 +21,16 @@
 \SetMathAlphabet\mathsf{bitalic}{OT1}{cmss}{bx}{sl}
 \SetMathAlphabet\mathit{bitalic}{OT1}{cmr}{bx}{it}
 
-\newcommand*{\dotP}{\boldsymbol \cdot}				% Dot Product
-\newcommand*{\contra}[1]{\boldsymbol {#1}^{\mu}}	% Contravariant vector
-\newcommand*{\covar}[1]{\boldsymbol {#1}_{\mu}}		% Covariant vector
-% \newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+
 \newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+\newcommand{\dotP}{\boldsymbol \cdot}		% Dot Product
+\newcommand{\contra}[1]{\boldsymbol {#1}^{\mu}}	% Contravariant vector
+\newcommand{\covar}[1]{\boldsymbol {#1}_{\mu}}		% Covariant vector
 
 \begin{document}
 
@@ -78,22 +82,36 @@
 % Lorentz Transform Matrix
 \hfill
 \begin{minipage}[t]{.49\textwidth}
-	\setlength{\parindent}{.5cm}
-	\noindent
-	\underline{Transform Matrix}\\[10pt]
-	\indent\({x^\mu}' = 
-		\left( \begin{matrix}
-			{x^0}' = ct'\\
-			{x^1}'\\
-			{x^2}'\\
-			{x^3}'
-		\end{matrix} \right) =
-		\left(\begin{matrix} 
-			\gamma & -\gamma\beta 	& 0 & 0\\
-			\gamma\beta & \gamma 	& 0 & 0\\
-			0 & 0 & 1 & 0\\
-			0 & 0 & 0 & 1
-		\end{matrix}\right) x^\mu\)
+	\underline{Transform Matrix (Hermitian for boosts)}
+
+	\vspace{10pt}
+	\hspace{.5cm}\(\gamma = \cosh\phi , \ \gamma\beta = \sinh\phi\)
+	
+	\vspace{10pt}
+	\hspace{.5cm}\(
+		{x^\mu}' = 
+		\mss{
+			\left( \begin{matrix}
+				{x^0}' = ct'\\
+				{x^1}'\\
+				{x^2}'\\
+				{x^3}'
+			\end{matrix} \right)
+		} = \mss{
+			\left(\begin{matrix} 
+				\gamma & -\gamma\beta 	& 0 & 0\\
+				-\gamma\beta & \gamma 	& 0 & 0\\
+				0 & 0 & 1 & 0\\
+				0 & 0 & 0 & 1
+			\end{matrix}\right)
+		}
+		x^\mu
+	\)
+
+	\vspace{5pt}
+	\hspace{.4cm}
+	\text{\scriptsize Weyl Matrices}:\ \(\mss{\cosh\tfrac{\phi}{2} I - \sinh\tfrac{\phi}{2} \cancel{\sigma_t} \sigma_x }\)
+		\hspace{10pt} \text{\scriptsize(Hermitian)}
 \end{minipage}
 
 % Time slows down

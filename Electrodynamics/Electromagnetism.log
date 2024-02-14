@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  14 DEC 2023 22:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  1 JAN 2024 01:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -203,20 +203,20 @@ File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 ) (./Electromagnetism.aux)
 \openout1 = `Electromagnetism.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -275,24 +275,24 @@ Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 \Gin@req@height=\dimen172
 \Gin@req@width=\dimen173
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 49.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+esint on input line 49.
+LaTeX Font Info:    Trying to load font information for U+esint on input line 50.
  (c:/texlive/2022/texmf-dist/tex/latex/esint/uesint.fd
 File: uesint.fd 
 )
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 26.39996pt on input line 114.
+(Font)              scaled to size 26.39996pt on input line 115.
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 17.59998pt on input line 114.
+(Font)              scaled to size 17.59998pt on input line 115.
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 13.19998pt on input line 114.
+(Font)              scaled to size 13.19998pt on input line 115.
  [1
 
 {c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3
@@ -304,293 +304,293 @@ LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
 ] [16
 
 ] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 1669--1670
+Underfull \hbox (badness 10000) in paragraph at lines 1670--1671
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1669--1670
+Underfull \hbox (badness 10000) in paragraph at lines 1670--1671
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1671--1673
+Underfull \hbox (badness 10000) in paragraph at lines 1672--1674
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1671--1673
+Underfull \hbox (badness 10000) in paragraph at lines 1672--1674
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1674--1676
+Underfull \hbox (badness 10000) in paragraph at lines 1675--1677
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1674--1676
+Underfull \hbox (badness 10000) in paragraph at lines 1675--1677
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1681--1682
+Underfull \hbox (badness 10000) in paragraph at lines 1682--1683
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1681--1682
+Underfull \hbox (badness 10000) in paragraph at lines 1682--1683
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1683--1685
+Underfull \hbox (badness 10000) in paragraph at lines 1684--1686
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1683--1685
+Underfull \hbox (badness 10000) in paragraph at lines 1684--1686
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1686--1688
+Underfull \hbox (badness 10000) in paragraph at lines 1687--1689
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1686--1688
+Underfull \hbox (badness 10000) in paragraph at lines 1687--1689
 
  []
 
 [18] [19] [20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 1892--1894
+Underfull \hbox (badness 10000) in paragraph at lines 1893--1895
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1895--1904
+Underfull \hbox (badness 10000) in paragraph at lines 1896--1905
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1905--1912
+Underfull \hbox (badness 10000) in paragraph at lines 1906--1913
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1905--1912
+Underfull \hbox (badness 10000) in paragraph at lines 1906--1913
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1905--1912
+Underfull \hbox (badness 10000) in paragraph at lines 1906--1913
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1919--1921
+Underfull \hbox (badness 10000) in paragraph at lines 1920--1922
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1922--1931
+Underfull \hbox (badness 10000) in paragraph at lines 1923--1932
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1932--1938
+Underfull \hbox (badness 10000) in paragraph at lines 1933--1939
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1932--1938
+Underfull \hbox (badness 10000) in paragraph at lines 1933--1939
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1939--1946
+Underfull \hbox (badness 10000) in paragraph at lines 1940--1947
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1939--1946
+Underfull \hbox (badness 10000) in paragraph at lines 1940--1947
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1939--1946
+Underfull \hbox (badness 10000) in paragraph at lines 1940--1947
 
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 1961--1968
+Underfull \hbox (badness 10000) in paragraph at lines 1962--1969
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1961--1968
+Underfull \hbox (badness 10000) in paragraph at lines 1962--1969
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1982--1984
+Underfull \hbox (badness 10000) in paragraph at lines 1983--1985
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1982--1984
+Underfull \hbox (badness 10000) in paragraph at lines 1983--1985
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1992--1999
+Underfull \hbox (badness 10000) in paragraph at lines 1993--2000
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2000--2007
+Underfull \hbox (badness 10000) in paragraph at lines 2001--2008
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2013--2016
+Underfull \hbox (badness 10000) in paragraph at lines 2014--2017
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2017--2023
+Underfull \hbox (badness 10000) in paragraph at lines 2018--2024
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2017--2023
+Underfull \hbox (badness 10000) in paragraph at lines 2018--2024
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2039--2044
+Underfull \hbox (badness 10000) in paragraph at lines 2040--2045
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2045--2051
+Underfull \hbox (badness 10000) in paragraph at lines 2046--2052
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2045--2051
+Underfull \hbox (badness 10000) in paragraph at lines 2046--2052
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2052--2062
+Underfull \hbox (badness 10000) in paragraph at lines 2053--2063
 
  []
 
 
-Overfull \hbox (1.72762pt too wide) in paragraph at lines 2052--2062
+Overfull \hbox (1.72762pt too wide) in paragraph at lines 2053--2063
 []$    [] 
  []
 
 
-Overfull \hbox (24.67854pt too wide) in paragraph at lines 1956--2063
+Overfull \hbox (24.67854pt too wide) in paragraph at lines 1957--2064
 []  []   [] 
  []
 
 [23] [24] [25]
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 38.01593pt on input line 2316.
+(Font)              scaled to size 38.01593pt on input line 2317.
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 21.99997pt on input line 2316.
+(Font)              scaled to size 21.99997pt on input line 2317.
  [26]
-Underfull \hbox (badness 10000) in paragraph at lines 2382--2386
+Underfull \hbox (badness 10000) in paragraph at lines 2383--2387
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2382--2386
+Underfull \hbox (badness 10000) in paragraph at lines 2383--2387
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2382--2386
+Underfull \hbox (badness 10000) in paragraph at lines 2383--2387
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2382--2386
+Underfull \hbox (badness 10000) in paragraph at lines 2383--2387
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2387--2388
+Underfull \hbox (badness 10000) in paragraph at lines 2388--2389
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2389--2391
+Underfull \hbox (badness 10000) in paragraph at lines 2390--2392
 
  []
 
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 31.67993pt on input line 2394.
+(Font)              scaled to size 31.67993pt on input line 2395.
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 15.39998pt on input line 2394.
+(Font)              scaled to size 15.39998pt on input line 2395.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2395--2396
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
 
  []
 
 [27] [28] [29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 2678--2683
+Underfull \hbox (badness 10000) in paragraph at lines 2679--2684
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2678--2683
+Underfull \hbox (badness 10000) in paragraph at lines 2679--2684
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2678--2683
+Underfull \hbox (badness 10000) in paragraph at lines 2679--2684
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2684--2685
+Underfull \hbox (badness 10000) in paragraph at lines 2685--2686
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2686--2691
+Underfull \hbox (badness 10000) in paragraph at lines 2687--2692
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2686--2691
+Underfull \hbox (badness 10000) in paragraph at lines 2687--2692
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2686--2691
+Underfull \hbox (badness 10000) in paragraph at lines 2687--2692
 
  []
 
 [31]
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
-(Font)              scaled to size 45.62794pt on input line 2814.
+(Font)              scaled to size 45.62794pt on input line 2815.
  [32] (./Electromagnetism.aux) ) 
 Here is how much of TeX's memory you used:
- 4630 strings out of 478238
- 73807 string characters out of 5847939
- 407368 words of memory out of 5000000
- 22779 multiletter control sequences out of 15000+600000
+ 4631 strings out of 478238
+ 73810 string characters out of 5847939
+ 407377 words of memory out of 5000000
+ 22780 multiletter control sequences out of 15000+600000
  491441 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,27n,76p,270b,335s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/calligra-type1/callig15.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/esint-type1/esint10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on Electromagnetism.pdf (32 pages, 395269 bytes).
+Output written on Electromagnetism.pdf (32 pages, 395270 bytes).
 PDF statistics:
  244 PDF objects out of 1000 (max. 8388607)
  154 compressed objects within 2 object streams

@@ -1,273 +1,465 @@
 \documentclass[12pt]{article}
-\usepackage{enumitem}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage[left=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage{amssymb, amsmath, amsfonts, mathtools}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{cancel}
 
-\newcommand\italicmath{\mathversion{italic}}
-\DeclareMathVersion{italic}
-\SetSymbolFont{operators}{italic}{OT1}{cmr} {m}{it}
-\SetSymbolFont{letters}  {italic}{OML}{cmm} {m}{it}
-\SetSymbolFont{symbols}  {italic}{OMS}{cmsy}{m}{n}
-\SetMathAlphabet\mathsf{italic}{OT1}{cmss}{m}{sl}
-\SetMathAlphabet\mathit{italic}{OT1}{cmr}{m}{it}
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
 
-\newcommand\bitalicmath{\mathversion{bitalic}}
-\DeclareMathVersion{bitalic}
-\SetSymbolFont{operators}{bitalic}{OT1}{cmr} {bx}{it}
-\SetSymbolFont{letters}  {bitalic}{OML}{cmm} {b}{it}
-\SetSymbolFont{symbols}  {bitalic}{OMS}{cmsy}{b}{n}
-\SetMathAlphabet\mathsf{bitalic}{OT1}{cmss}{bx}{sl}
-\SetMathAlphabet\mathit{bitalic}{OT1}{cmr}{bx}{it}
-
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
 
 \begin{document}
-% An Easy First Order Differential (& Transport Equation)
-\section{An Easy First Order Differential (\& Transport Equation)}
-\boldmath $$A(x) \ u_x + B(x,y) \ u_y = f(u)$$ \unboldmath
-\\ \\
-$\displaystyle \frac{dy}{dx} = \frac{ \frac{dy}{dt} }{ \frac{dx}{dt} } = \frac{B(x,y)}{A(x)}\ \ \Rightarrow\ \ \int \frac{dy}{\beta(y)} = \int \frac{dx}{\alpha(x)} \ \ \Rightarrow\ \ Y(y) = X(x) + C $ \\ \\
-\begin{eqnarray*}
-C &=& Y(y)-X(x) \\
-\epsilon &=& x \\
-\end{eqnarray*}
-$u_x\ =\ u_C\displaystyle \frac{dC}{dx} +u_{\epsilon}\frac{d\epsilon}{dx}\ =\ \frac{-1}{\alpha(x)} u_C + u_{\epsilon}$ \\ \\ \\
-$u_y\ =\ u_C\displaystyle \frac{dC}{dy} +u_{\epsilon}\frac{d\epsilon}{dy}\ =\ \frac{1}{\beta(y)} u_C$ \\ \\
-\begin{eqnarray*}
-f(u) &=& A(x)u_x + B(x,y)u_y \\ \\
-&=& A(x)\left[ \frac{-1}{\alpha(x)}u_C + u_{\epsilon} \right] + \frac{B(x,y)}{\beta(y)}u_C \\ \\
-&=& A(x)u_{\epsilon} + \left[ \frac{B(x,y)}{\beta(y)} - \frac{A(x)}{\alpha(x)} \right]u_C \\ \\
-&=& A(\epsilon) \frac{\partial u}{\partial \epsilon} + [0 \text{, hopefully}] \\ \\
-\end{eqnarray*}
-\begin{minipage}{0.60\textwidth}
-	{\bitalicmath $f(u) \neq 0:$} $\ \ \displaystyle \int \frac{du}{f(u)} = \int \frac{d\epsilon}{A(\epsilon)}$ \\ \\ \\
-	$\gamma(u) = h(\epsilon) + g(C)$ \\ \\
-	$u(x,y) = \gamma^{-1} \{\ h(x) + g[\ Y(y)-X(x)\ ] \ \}$ \\
-\end{minipage}
-\hfill
-\begin{minipage}{0.49\textwidth}
-	{\bitalicmath $f(u) = 0:$} $\ \ \ \ \displaystyle\frac{\partial u}{\partial \epsilon} = 0$ \\ \\ \\
-	$u(x,y) = g(C) = g[\ Y(y)-X(x)\ ]$ \\ \\ \\
-\end{minipage}
-\\ \\
-% Quadratic-esque Equations (pre-Wave Equation)
-\section{Quadratic-esque Equations (pre-Wave Equation)}
-\boldmath \begin{eqnarray*}
- 0 &=& \alpha u_{xx}  + \beta u_{xt} + \gamma u_{tt} \\ \\
-	&=& [a\partial_x + b\partial_t][c\partial_x + d\partial_t]u \\
-\end{eqnarray*} \unboldmath
-$0 \ =\ [a\partial_x + b\partial_t] v\ =\ [c\partial_x + d\partial_t] w$ \\ \\
-$u = v \left( t - \frac{b}{a}x \right) + w \left( t - \frac{d}{c}x \right)$ \\
+\setlength{\parindent}{0pt}
 
-% Diffusion Equation
-\section{Diffusion Equation}
-\boldmath $$u_t - ku_{xx} = f(x,t)$$ \unboldmath
-	% (-Infinity, Infinity)
-\subsection{\boldmath $x \in (-\infty, \infty)$ \unboldmath \\}
-	\begin{enumerate}
-	\item {\bitalicmath $ u(x,0) = \phi(x)$}
-	$$u = \displaystyle\int_{-\infty}^{\infty}S(x-y)\phi(y)dy \ +\  \int_{0}^{t}\int_{-\infty}^{\infty}S(x-y,t-s)f(y,s)dyds$$
-		\begin{enumerate}
-		\item {\boldmath $f(x,t) = 0:$}\  \ $u = \displaystyle\int_{-\infty}^{\infty}S(x-y)\phi(y)dy$ \\
-		\end{enumerate}
-	\end{enumerate}
-	% (0,Infinity)
-\subsection{\boldmath$x \in (0, \infty)$\unboldmath \\}
-	\begin{enumerate}
-	\item {\bitalicmath $u(x,0) = \phi_u (x)$}
-		\begin{enumerate}
-		% Dirichlet
-		\item {\bf Dirichlet: }{\bitalicmath $u(0,t) = h(t)$} \\ \\
-		$\phi(x) = 
-			\begin{cases}
-			\text{$\phi_u(x)$} & \text{$x > 0$} \\
-			\text{$-\phi_u(-x)$} & \text{$x < 0$} \\
-			\end{cases}$ \\ \\ \\
-		$v(x,t) = u - h(t)$
-			\begin{itemize}
-			\item $ v(x,0) = \phi_v = \phi_u(x) - h(0)$
-			\item $ v(0,t) = 0$
-			\item $ v_t - kv_{xx} = f(x,t) - h'(t)$ \\
-			\end{itemize}
-		$u = h(t) + v(x,t)$ \\
-			\begin{enumerate}
-			\item {\boldmath $u(0,t) = h(t) = 0:$}
-				\begin{eqnarray*}
-				u &=& \displaystyle\int_{-\infty}^{\infty}S(x-y)\phi(y)dy \ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
-				&=& \displaystyle\int_{0}^{\infty}S(x-y)\phi_u(y)dy\ -\ \int_{-\infty}^{0}S(x-y)\phi_u(-y)dy \\
-				&&\ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
-				&=& \int_{0}^{\infty}[S(x-y) - S(x+y)]\phi_u(y)dy \ +\  \int_{0}^{t}\int_{-\infty}^{\infty}S(x-y,t-s)f(y,s)dyds \\
-				\end{eqnarray*}
-			\end{enumerate}
-		% Neumann
-		\item {\bf Neumann: }{\bitalicmath$u_x(0,t) = h(t)$} \\ \\
-		$\phi(x) = 
-			\begin{cases}
-			\text{$\phi_u(x)$} & \text{$x > 0$} \\
-			\text{$\phi_u(-x)$} & \text{$x < 0$} \\
-			\end{cases}$ \\ \\ \\
-		$v(x,t) = u - xh(t)$
-			\begin{itemize}
-			\item $v(x,0) = \phi_v = \phi_u - xh(0)$
-			\item $v(0,t) = 0$
-			\item $v_t - kv_{xx} = f(x,t) - xh'(t)$ \\
-			\end{itemize}
-		$u = xh(t) + v(x,t)$ \\
-			\begin{enumerate}
-			\item {\boldmath $u_x(0,t) = h(t) = 0:$}
-				\begin{eqnarray*}
-				u &=& \displaystyle\int_{-\infty}^{\infty}S(x-y)\phi(y)dy \ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
-				&=& \displaystyle\int_{0}^{\infty}S(x-y)\phi_u(y)dy + \int_{-\infty}^{0}S(x-y)\phi_u(-y)dy \\
-				&& \ \ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
-				&=& \int_{0}^{\infty}[S(x-y) + S(x-y)]\phi_u(y)dy \ +\  \int_{\Delta}S(x-y,t-s)f(y,s)d\Delta \\
-				\end{eqnarray*}
-			\end{enumerate}
-		\end{enumerate}
-	\end{enumerate}
-	% (0,L)
-\subsection{\boldmath$x \in (0, L)$\unboldmath \\}
-	\begin{enumerate}
-	% Intro
-	\item {\bitalicmath $u(x,0) = \phi(x),\quad f(x,t) = 0$} \\ \\
-	 $u = \displaystyle\sum X(x)\ T(t)$
-		\begin{itemize}
-		\item $\displaystyle \frac{T'(t)}{kT(t)} = \frac{X''(x)}{X(x)} = -\lambda$ \\
-			\begin{enumerate}
-			\item {\boldmath $\lambda > 0: $}
-				\begin{itemize}
-				\item $X = A_x \cos(\sqrt{\lambda}x) + B_x \sin(\sqrt{\lambda}x)$
-				\item $T = A_t e^{-\lambda kt}$
-				\end{itemize}
-			\item {\boldmath $\lambda = 0: $}
-				\begin{itemize}
-				\item $X = A_x x + B_x$
-				\item $T = A_t$
-				\end{itemize}
-			\item {\boldmath $\lambda < 0: $}
-				\begin{itemize}
-				\item $X = A_x \cosh(\sqrt{\lambda}x) + B_x \sinh(\sqrt{\lambda}x)$
-				\item $T = A_t e^{\lambda kt}$ \\
-				\end{itemize}
-			\end{enumerate}
-		\end{itemize}
-		\begin{enumerate}
-		% Dirichlet
-		\item {\bf Dirichlet: }{\bitalicmath $u(0,t) = u(L,t) = 0$} \\ \\
-		$ \sqrt{\lambda} = \displaystyle \frac{n\pi}{L},\ n \in \mathbb{N}$ \\ \\
-		$\phi(x) = \displaystyle\sum\limits_{n = 1}^{\infty} A_n \sin(\frac{n\pi}{L}x)$ \\ \\
-		$u = \displaystyle\sum\limits_{n = 1}^{\infty} A_ne^{-(\frac{n\pi}{L})^2kt}\sin(\frac{n\pi}{L}x)$ \\
-		% Neumann
-		\item {\bf Neumann: }{\bitalicmath $ u_x(0,t) = u_x(L,t) = 0$} \\ \\
-		$ \sqrt{\lambda} = \displaystyle \frac{n\pi}{L},\ n \in \mathbb{N}_0$ \\ \\
-		$\phi(x) = \displaystyle \frac{1}{2}A_0 + \sum\limits_{n = 1}^{\infty} A_n\cos(\frac{n\pi}{L}x)$ \\ \\
-		$u = \displaystyle\frac{1}{2}A_0 \ +\  \sum\limits_{n = 1}^{\infty} A_n\ e^{-(\frac{n\pi}{L})^2kt}\cos(\frac{n\pi}{L}x)$ \\
-		% Robin
-		\item {\bf Robin: }{\bitalicmath $u_x(0,t) -a_0 u(0,t) =  u_x(L,t)+a_L u(L,t) = 0$} \\
-		\end{enumerate}
-	\end{enumerate}
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+% Cauchy-Riemann Eq
+\section{Analytic/Holomorphic Functions}
+
+\vspace{-10pt}
+% Derivative
+\(\begin{aligned}
+	& \underline{\text{Differentiable}}:\ \exists f'\mss{(z)} = \lim_{h \rightarrow 0} \tfrac{f\mss{(z + h)} - f\mss{(z)}}{z} 
+		\hspace{20pt} \mss{ \begin{aligned}
+			& f = u + iv\\
+			& h = \sigma + i \tau
+		\end{aligned} }
+		\hspace{5pt} \ \Rightarrow\ \mss{ 
+			\begin{gathered}
+				\underline{\text{Cauchy-Riemann}}\\
+				\underline{\text{Equations}}
+			\end{gathered}:\
+			\boxed{ \begin{aligned}
+				\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \ & 
+					,\ \ \frac{\partial v}{\partial x} = - \frac{\partial u}{\partial y}
+					\\[5pt]
+				r \frac{\partial u}{\partial r} = \frac{\partial v}{\partial \theta} \ & 
+					,\ \ r \frac{\partial v}{\partial r} = - \frac{\partial u}{\partial \theta}
+			\end{aligned} }
+		}
+		\\[-5pt]
+	& \bullet\ \Big( \text{C-R Eq.}\big|_z \Big) , \Big( f\mss{(z)} \in C^1 \Big) \ \Rightarrow\ \exists f'\mss{(z)}\\[5pt]
+	& \bullet\ f'\mss{(z)} = \tfrac{\partial u}{\partial x} + i \tfrac{\partial v}{\partial x}
+		\hspace{20pt} \bullet\ \Delta u = \tfrac{\partial^2 u}{\partial^2 x} + \tfrac{\partial^2 u}{\partial^2 y} = 0
+		\hspace{20pt} \bullet\ u\mss{(z)} = c \text{ \ OR \ } u^2 + v^2 = c \ \Rightarrow\ f\mss{(z)} = c
+\end{aligned}\)
+
+\vspace{10pt}
+% Definitions
+\(\begin{aligned}
+	& \underline{\text{Holomorphic}}:\ \forall z \in D ,\ \exists f'\mss{(z)}
+		\hspace{20pt} \underline{\text{Smooth}}:\ f\mss{(z)} \in C^\infty
+		\hspace{20pt} \underline{\text{Entire}}:\ \text{Analytic everywhere}
+		\\[10pt]
+	& \underline{\text{Analytic}}:\ f\mss{(z_0)} \in C^\omega \subset C^\infty:\ 
+		\exists \delta>0,\ \forall |z| < \delta,\ f\mss{(z_0+z)} = \mss{\sum} a_n z^n
+		\ \rightarrow\ \boxed{ f\mss{(z)} = \mss{\sum}\hs a_n \mss{(z-z_0)}^n }
+		\\[5pt]
+	& \bullet\ \mss{\sum}\hs a_n \mss{(z_1-z_0)}^n 
+		\ \Rightarrow\ \mss{\sum}\hs \big| a_n \mss{(z-z_0)}^n \big| :\ \boxed{ |z-z_0| < |z_1-z_0| }
+		\hspace{20pt} \bullet\ \boxed{ a_n = \tfrac{f^{n} (z_0)}{n!} }
+		\\[5pt]
+	% Convergence Tests
+	& \bullet\ \underline{\text{Root Test}}:\ \lim \tfrac{|a_{n+1}|}{|a_n|} = \tfrac{1}{R}
+		\hspace{20pt} \bullet\ \underline{\text{Ratio Test}}:\ \lim \sqrt[n]{a_n} = \tfrac{1}{R}
+		\hspace{20pt} \bullet\ \tfrac{1}{R} = \limsup \sqrt[n]{a_n}
+\end{aligned}\)
+
+\vspace{10pt}
+% Horizontal Line --------------------
+\hrule
+\vspace{10pt}
+\(
+	\begin{aligned}
+		% Sum
+		& \underline{\text{Sum}}:\hs
+			\mss{ \int_{\gamma_1 + \gamma_2} } \hspace{-15pt} f\mss{(z)} \hs dz 
+			= \mss{ \int_{\gamma_1} } f\mss{(z)} \hs dz + \mss{ \int_{\gamma_2} } f\mss{(z)} \hs dz 
+			\\[5pt]
+		% Green's Theorem
+		& \begin{gathered}
+				\underline{\text{Green's}}\\[-3pt]
+				\underline{\text{Theorem}}
+			\end{gathered}:\hs 
+			\mss{\oint}\hs u\hs dx + v\hs dy 
+			= \mss{\iint} \big[ \tfrac{\partial v}{\partial x} - \tfrac{\partial u}{\partial y} \big] dx\hs dy
+	\end{aligned}
+	\hfill
+	\vrule
+	\hfill
+	% Flux/Curl
+	\arraycolsep=2pt\begin{array}{c c l c l}
+		\displaystyle \mss{\oint}\hs\hs \overline{f\mss{(z)}} \hs\hs dz & =
+			& \displaystyle \mss{\int} \big[ u \hs dx + v \hs dy \big]
+			& + 
+			& \displaystyle i \mss{\int} \big[ u \hs dy - v \hs dx \big]
+			\\[8pt]
+		\underline{ \tss{CR for \(\bar{f} \ \rightarrow\)} } & =
+			& \displaystyle \mss{\iint} \big[ \tfrac{\partial v}{\partial x} - \tfrac{\partial u}{\partial y} \big] dy \hs dx
+			& + 
+			& \displaystyle i \mss{\iint} \big[ \tfrac{\partial u}{\partial x} + \tfrac{\partial v}{\partial y} \big] dy \hs dx
+			\\[8pt]
+		\begin{gathered}
+				\underline{\tss{sourceless}}\\[-7pt]
+				\underline{\tss{irrotational}}
+			\end{gathered} & = 
+			& \displaystyle \mss{\oint}\hs\hs \hsvec{f} \cdot d\hsvec{l} \hspace{8pt} \text{\scriptsize(curl)}
+			& + 
+			& \displaystyle i \mss{\oint}\hs\hs \big( \hsvec{f} \cdot \hat{n} \big) \hs dl \hspace{8pt} \text{\scriptsize(flux)}
+	\end{array}
+\)
+
+\vspace{10pt}
+% Horizontal Line --------------------
+\hrule
+\vspace{10pt}
+% Cauchy's Theorem
+\(\begin{aligned}
+	& \underline{\text{Cauchy's Theorem}}:\ \boxed{ \oint_\gamma f\mss{(z)} \hs dz = 0 }
+		= i \iint \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y} \ dx\hs dy
+		\hspace{20pt} \Big( \hs \begin{gathered}
+			\text{\scriptsize \(f'\) must be cont. to use Green's Theorem}\\[-5pt]
+			\text{\scriptsize Goursat proves w/o cont. w/ triangles}
+		\end{gathered} \hs \Big)
+		\\
+	% Proof
+	& 1.\ \text{\scriptsize simple closed} 
+		\hspace{15pt} 2.\ \text{\scriptsize closed squares/triangles+\(\Box\)}
+		\hspace{15pt} 3.\ \exists F \ (F' = f, \text{\scriptsize well-defined, path ind.})
+		\hspace{15pt} 4.\ \Box\ \big( \mss{\oint f dz = \oint F' dz = 0} \big)
+		\\[3pt]
+	% Antiderivative
+	& \bullet\ D \text{ is simp.-con.} \ \Rightarrow\ \exists F \ (\text{\scriptsize cont.}\ F' = f, \ \text{holo.})
+		% Logarithms
+		\hspace{20pt} \bullet\ \text{\scriptsize no zero} 
+		\hs \Rightarrow\hs \boxed{f\mss{(z)} = e^{g(z)}} 
+		\ , \hs \underline{ \mss{g(z) = \text{Log}\ f(z_0) + \int_{z_0}^z \frac{f'}{f} \hs dw} }
+	% Morera's Theorem
+		\\
+	& \bullet\ \text{Morera's Theorem}:\ 
+		f \text{ is cont.},\ \forall \gamma_{\in C^1} \in D ,\ \oint_\gamma f\mss{(z)}\hs dz = 0 
+		\ \Rightarrow\ f \text{ is holo. in } D
+\end{aligned}\)
+
+\vspace{10pt}
+% Cauchy's Formula
+\(\begin{aligned}
+	& \underline{\text{Cauchy's Formula}}:\ \boxed{ f\mss{(z_0)} = \frac{1}{2\pi i} \oint \frac{f\mss{(z)}}{z-z_0} \hs dz }
+		\ \Rightarrow\ f\mss{(z)} = \mss{\sum}\hs a_n (z-z_0)^n \hspace{15pt} \text{\scriptsize(Power series/analytic)}
+		\\[5pt]
+	& 1.\ f\mss{(z_0)} = \lim_{r \rightarrow 0}\ \tfrac{1}{2\pi i} 
+		\mss{ \int_0^{2\pi} } \tfrac{f (z_0 + r e^{i\theta})}{r e^{i\theta}} \hs i r e^{i\theta} \hs d\theta
+		= \begin{gathered}[t]
+			\boxed{ \tfrac{1}{2\pi} \mss{ \int_0^{2\pi} } f \mss{(z_0 + r e^{i\theta})} \hs d\theta }\\[-2pt]
+			\text{\scriptsize(Mean Value Theorem)}
+		\end{gathered}
+		\leq \max \big| f \mss{(z_0 + r e^{i\theta})} \big|
+		\ \rightarrow\ 0 \hspace{10pt} \text{\scriptsize(if \(f\) is cont.)}
+		\\[5pt]
+	% Louisville's Theorem
+	& \bullet\ \text{Louisville's Theorem}:\ 
+		f \text{ is entire},\ \exists M>0,\ f\mss{(z)} \leq M \ \Rightarrow\ f\mss{(z)} = c
+		\\[5pt]
+	& \bullet\ \text{Analytic}:\ \exists F (\text{\scriptsize holo.},\ \text{\scriptsize cont.}\ F') 
+		\ \Rightarrow\ F = \mss{\sum} b_n\mss{(z-z_0)}^n 
+		\ \Rightarrow\ \text{\scriptsize cont.}\ f = \mss{\sum} a_n\mss{(z-z_0)}^n 
+		\ \Rightarrow\ \underline{ \text{\scriptsize cont.}\ f' }
+		\\
+	& \bullet\ \boxed{ a_n = \tfrac{1}{2\pi i} \mss{\oint} \tfrac{ f\mss{(z)} }{ (z - z_0)^{k+1} } \hs dz }
+		= \tfrac{f^{n}(z_0)}{n!}
+		\hspace{15pt} \bullet\ \exists z_0, \ \forall k,\ f^{(k)}\mss{(z_0)} = 0 \ \Rightarrow\ f\mss{(z)} = 0
+\end{aligned}\)
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+\(
+	% Zero/Singularity/Pole of Order m
+	\begin{aligned}[t]
+		& \underline{\text{Zero/Singularity/Pole of Order \(m\), \(z_0\)}}:\ \\[5pt]
+		& \begin{aligned}
+				\text{Zero}:\ \ & f\mss{(z)} = \mss{\sum_m}\hs a_n \mss{(z-z_0)}^n 
+					\hspace{10pt} \mss{(m \geq 1)}
+					\ =\ g\mss{(z)} \mss{(z-z_0)}^m
+					\\
+				\mss{ \begin{gathered}
+						\text{Removable}\\[-5pt]
+						\text{Singularity}
+					\end{gathered} }:\ \ & f\mss{(z)} = \mss{\sum_0}\hs a_n \mss{(z-z_0)}^n 
+					\hspace{10pt} \mss{(m = 0)}
+					\ =\ a_0 + \dots
+					\\
+				\text{Pole}:\ \ & f\mss{(z)} = \mss{\sum_{-m}}\hs a_n \mss{(z-z_0)}^n 
+					\hspace{10pt} \mss{(m \geq 1)}
+					\ =\ \tfrac{1}{g(z)} = \tfrac{H(z) = \frac{1}{h(z)}}{(z-z_0)^m}
+					\\
+				\mss{ \begin{gathered}
+					\text{Essential}\\[-5pt]
+					\text{Singularity}
+				\end{gathered} }:\ \ & f\mss{(z)} = \mss{\sum_{-\infty}}\hs a_n \mss{(z-z_0)}^n 
+					\hspace{10pt} \mss{(m = \infty)}
+			\end{aligned}
+	\end{aligned}
+	\hfill
+	% Residue
+	\begin{aligned}[t]
+		& \underline{\text{Residue}}:\ \text{Res}\hs \mss{(f;z_0)} 
+			= \tfrac{1}{2\pi i} \hs \mss{\oint} \hs f\mss{(\zeta)} \hs\hs d\zeta
+			\\[5pt]
+		& \bullet\ \boxed{ \mss{\oint_\gamma} \hs f\mss{(\zeta)} \hs\hs d\zeta 
+			= 2\pi i\ \mss{\sum_{\text{sing.}}}\ \text{Res}\hs \mss{(f;z_0)} }
+			\\
+		& \bullet\ g\mss{(z)} = \mss{(z-z_0)}^j 
+			\ \Rightarrow\ \mss{
+				\text{Res}\hs (g;z_0) = \left\{ \begin{aligned}
+					0 & \hspace{10pt} j \neq -1\\
+					1 & \hspace{10pt} j = -1\\
+				\end{aligned} \right.
+			}
+			\\[3pt]
+		& \bullet\ \text{Pole} \rightarrow \boxed{ \text{Res}\hs \mss{(f;z_0)} = a_{-1} = \tfrac{H^{(m-1)}(z_0)}{(m-1)!} }\\[3pt]
+		& \ast\ f\mss{(z)} = \tfrac{H(z)}{z-z_0} \rightarrow \text{Res}\hs \mss{(f;z_0)} = H\mss{(z_0)}\\[3pt]
+		& \bullet\ G'\mss{(z_0)} \neq 0 \rightarrow \text{Res}\hs \big( \mss{\frac{H}{G};z_0} \big) = \tfrac{H(z_0)}{G'(z_0)}
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% Laurent Series
+\(\begin{aligned}
+	& \underline{\text{Laurent Series}}:\ 
+		f\mss{(z)} = \mss{\sum_{-\infty}^\infty} \hs a_n \mss{(z-z_0)}^n
+		= \mss{\sum_{0}^\infty} \hs a_n \mss{(z-z_0)}^n 
+		+ \underline{ \mss{\sum_1^\infty} \hs b_n \mss{(z-z_0)}^{-n} } \ \leftarrow\ \text{\scriptsize principal part}
+		\\[10pt]
+	& \bullet\ f\mss{(z)} = P\mss{(z)} + \tfrac{Q(z)}{R(z)} 
+		= P\mss{(z)} + \tfrac{a}{z-3} + \tfrac{b}{z-5} 
+		= P\mss{(z)} + \sum \left\{\ \begin{aligned}
+			& \tfrac{-a}{3} \left( \tfrac{z}{3} \right)^n 
+				-\tfrac{b}{5} \left( \tfrac{z}{5} \right)^n & &
+				\hspace{10pt} \mss{|z| < 1}
+				\\[5pt]
+			& \tfrac{a}{z} \left( \tfrac{3}{z} \right)^n 
+				-\tfrac{b}{5} \left( \tfrac{z}{5} \right)^n & &
+				\hspace{10pt} \mss{1 < |z| < 5}
+				\\[5pt]
+			& \tfrac{a}{z} \left( \tfrac{3}{z} \right)^n 
+				+ \tfrac{b}{z} \left( \tfrac{5}{z} \right)^n & &
+				\hspace{10pt} \mss{5 < |z|}
+		\end{aligned} \right.
+\end{aligned}\)
+
+\vspace{10pt}
+\hrule
+\vspace{10pt}
+\(\begin{aligned}
+	% Green's\Stokes' Theorem
+	\begin{gathered}
+		\text{\underline{Green's/Stokes'}}\\[-3pt]
+		\text{\underline{Theorem}}
+	\end{gathered}: & &
+		{\oint} 
+		\left[ \begin{matrix}
+			u \\ v
+		\end{matrix} \right]
+		\cdot 
+		\left[ \begin{matrix}
+			dx \\ dy
+		\end{matrix} \right]
+		& \ =\hs {\iint} \left| \arraycolsep=1pt \begin{matrix}
+			\nabla_x & \nabla_y\\[2pt]
+			\mss{-} ( \mss{-} u ) & v
+		\end{matrix} \right| 
+		\hs dx \hs dy
+		\\[3pt]
+	& &
+		{\oint} \left[ \begin{matrix}
+			v \\ -u
+		\end{matrix} \right]
+		\cdot 
+		\left[ \begin{matrix}
+			dy \\ -dx
+		\end{matrix} \right]
+		& \ =\hs {\iint} \hsvec{\nabla}
+		\cdot 
+		\left[ \begin{matrix}
+			v \\ -u
+		\end{matrix} \right]
+		\hs dx \hs dy
+		\\[5pt]
+	% 2D Divergence
+	\text{\underline{2D Div. Theorem}}: & &
+		{\oint} \left[ \begin{matrix}
+			v \\ -u
+		\end{matrix} \right]
+		\cdot 
+		\hat{n} \ dl
+		& \ =\hs {\iint} \hsvec{\nabla}
+		\cdot 
+		\left[ \begin{matrix}
+			v \\ -u
+		\end{matrix} \right]
+		\hs dA
+\end{aligned}\)
 	
-% Wave Equation
-\section{Wave Equation}
-\boldmath $$u_{tt} - c^2 u_{xx} = f(x,t)$$ \unboldmath
-	% (-Infinity, Infinity)
-\subsection{\boldmath $x \in (-\infty, \infty)$ \unboldmath \\}
-	\begin{enumerate}
-	\item {\bitalicmath $u(x,0) = \phi(x),\quad u_t(x,0) = \psi(x)$} \\ \\
-	$u = \displaystyle\frac{1}{2} [\phi(x-ct)+\phi(x+ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy + \frac{1}{2c}\int_{0}^{t}\int_{x-c(t-s)}^{x+c(t-s)}f(y,s)dyds$
-		\begin{itemize}
-		\item {\boldmath $f(x,t) = 0:$} \ \  $u = \displaystyle\frac{1}{2} [\phi(x-ct)+\phi(x+ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy$
-		\end{itemize}
-	\end{enumerate}
-	% (0, Infinity)
-\subsection{\boldmath $x \in (0, \infty)$ \unboldmath \\}
-	\begin{enumerate}
-	\item {\bitalicmath $u(x,0) = \phi(x),\quad u_t(x,0) = \psi(x)$}
+\vspace{20pt}
+% Green's 1st Identity
+\(
+	\begin{aligned}
+		\begin{gathered}
+			\text{\underline{Green's 2D}}\\[-3pt]
+			\text{\underline{1st Identity}}
+		\end{gathered}: & & 
+			{\oint} \ \mss{
+				\left[ \begin{matrix}
+					f \nabla_x g \\[3pt]
+					f \nabla_y g 
+				\end{matrix} \right]
+			} 
+			\cdot 
+			\hat{n} \ dl
+			& \hs\hs =\hs {\iint} \hsvec{\nabla} \cdot \big[ f \hsvec{\nabla} g \big] \hs dA
+			\\
+		& & \Aboxed{
+				{\oint} \ \big[ f \hsvec{\nabla} g \big] 
+				\cdot 
+				\hat{n} \ dl 
+				& \hs\hs = \hs {\iint} \left[ f \hsvec{\nabla}^2 g + \hsvec{\nabla} g \cdot \hsvec{\nabla} f \right] dA 
+			}
+	\end{aligned}
+	\hspace{-6pt} \Rightarrow \hs \mss{ \displaystyle \underline{ 
+		\oint \big[ f \hsvec{\nabla} f \big] \cdot \hat{n} \ dl 
+		= \hs \iint \left[ f \hsvec{\nabla}^2 f + \Vert \hsvec{\nabla} f \Vert^2 \right] dA 
+	} } 
+\)
 
-		\begin{enumerate}
-		% Dirichlet
-		\item {\bf Direchlet: }{\bitalicmath $u(0,t) = h(t)$} \\ \\
-		{\boldmath $x \in (ct,\infty): $} 
-		$$u = \displaystyle\frac{1}{2} [\phi(x+ct)+\phi(x-ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy + \frac{1}{2c}\int_{0}^{t}\int_{x-c(t-s)}^{x+c(t-s)}f(y,s)dyds$$
-		{\boldmath $x \in (0,ct): $}
-		$$^\textbf*u =\displaystyle\frac{1}{2} [\phi(ct+x)-\phi(ct-x)] + \frac{1}{2c}\int_{ct-x}^{ct+x}\psi(y)dy + \frac{1}{2c}\int_{0}^{t}\int_{c(t-s)-x}^{c(t-s)+x}f(y,s)dyds + h(t-\frac{x}{c})$$
-			\begin{itemize}
-			\item {\boldmath $f(x,t) = h(t) = 0:$} \ \  $u = \displaystyle\frac{1}{2} [\phi(x-ct)+\phi(x+ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy$
-			\end{itemize}
-		\end{enumerate}
-	\end{enumerate}
-	% (0, L)	
-\subsection{\boldmath $x \in (0, L)$ \unboldmath \\}
-	\begin{enumerate}
+\vspace{15pt}
+% Green's 2nd Identity
+\(\begin{aligned}
+	\begin{gathered}
+		\text{\underline{Green's 2D}}\\[-3pt]
+		\text{\underline{2nd Identity}}
+	\end{gathered}: & & \Aboxed{ 
+			{\oint} \ \big[ f \hsvec{\nabla} g - g \hsvec{\nabla} f \big] 
+			\cdot 
+			\hat{n} \ dl 
+			& \ =\hs {\iint} \left[ f \hsvec{\nabla}^2 g - g \hsvec{\nabla}^2 f \right] dA 
+		}
+\end{aligned}\)
 
-	\item {\bitalicmath $u(x,0) = \phi(x),\quad u_t(x,0) = \psi(x),\quad f(x,t) = 0$} \\ \\
-	 $u = \displaystyle\sum X(x)\ T(t)$
-		\begin{itemize}
-		\item $\displaystyle \frac{T''(t)}{c^2 T(t)} = \frac{X''(x)}{X(x)} = -\lambda$ \\
-			\begin{enumerate}
-			\item {\boldmath $\lambda > 0: $}
-				\begin{itemize}
-				\item $X = A_x \cos(\sqrt{\lambda}x) + B_x \sin(\sqrt{\lambda}x)$
-				\item $T = A_t \cos(\sqrt{\lambda}ct) + B_t \sin(\sqrt{\lambda}ct)$
-				\end{itemize}
-			\item {\boldmath $\lambda = 0: $}
-				\begin{itemize}
-				\item $X = A_x x + B_x$
-				\item $T = A_t t + B_t$
-				\end{itemize}
-			\item {\boldmath $\lambda < 0: $}
-				\begin{itemize}
-				\item $X = A_x \cosh(\sqrt{\lambda}x) + B_x \sinh(\sqrt{\lambda}x)$
-				\item $T = A_t \cosh(\sqrt{\lambda}ct) + B_t \sinh(\sqrt{\lambda}ct)$
-				\end{itemize}
-			\end{enumerate}
-		\end{itemize}
-		\begin{enumerate}
-		% Dirichlet
-		 \item {\bf Direchlet: }{\bitalicmath $ u(0,t) = u(L,t) = 0$} \\ \\
-		$\sqrt{\lambda} = \displaystyle \frac{n\pi}{L},\ n \in \mathbb{N}_0$ \\ \\
-		$\phi(x) =  \displaystyle\sum\limits_{n = 0}^{\infty} A_n \sin(\frac{n\pi x}{L}),\quad \psi(x) =  \displaystyle\sum\limits_{n = 0}^{\infty} \frac{n\pi c}{L}B_n \sin(\frac{n\pi x}{L})$ \\ \\
-		$u =  \displaystyle\sum\limits_{n = 0}^{\infty} \left(A_n \cos(\frac{n\pi}{L}ct) + B_n\sin(\frac{n\pi}{L}ct)\right)\sin(\frac{n\pi}{L}x)$ \\
-		% Neumann
-		\item {\bf Neumann: }{\bitalicmath $ u_x(0,t) = u_x(L,t) = 0$} \\ \\
-		$\sqrt{\lambda} = \displaystyle \frac{n\pi}{L},\ n \in \mathbb{N}_0$ \\ \\
-		$\phi(x) = \frac{1}{2}A_0 + \sum\limits_{n = 1}^{\infty} A_n\cos(\frac{n\pi}{L}x),\quad \psi(x) = \frac{1}{2}B_0 + \sum\limits_{n = 1}^{\infty} \frac{n\pi c}{L} B_n\cos(\frac{n\pi}{L}x)$
-	
-		$u =  \displaystyle\frac{1}{2}A_0\  +\  \frac{1}{2}B_0 t\  +\  \sum\limits_{n = 1}^{\infty} \left(A_n \cos(\frac{n\pi ct}{L}) + B_n\sin(\frac{n\pi ct}{L})\right)\cos(\frac{n\pi}{L}x)$ \\	
-		\end{enumerate}
-	\end{enumerate}
+\vspace{15pt}
+% Green's 3rd Identity
+\(\begin{aligned}
+	\begin{gathered}
+		\text{\underline{Green's 2D}}\\[-3pt]
+		\text{\underline{3rd Identity}}
+	\end{gathered}: & & 
+		\boxed{ \mss{ \hsvec{\nabla}^2 G = \delta^2 {(z-z_0)} } }
+		\ \Rightarrow\ \Aboxed{ 
+			f \mss{(z_0)} 
+			& \ = \ {\oint} \ \big[ f \hsvec{\nabla} G - {G} \hsvec{\nabla} f \big] \cdot \hat{n} \ dl 
+			+ {\iint} \left[ G { \hsvec{\nabla}^2 f } \right] dA 
+		}
+		\\
+	& & \Aboxed{ 
+			f \mss{(z_0)} & \ = \ {\oint} \ f\mss{(z)} \big[ \hsvec{\nabla} G \cdot \hat{n} \big] dz 
+			\hspace{15pt}
+			\mss{ \begin{aligned}
+				& \bullet\ f \text{ is harmonic}\\[-1pt]
+				& \bullet\ G \text{ is } 0 \text{ on the boundary}
+			\end{aligned} }
+		}
+\end{aligned}\)
 
-% Error Function
-\section{Error function}
-$S(x-y,t) = \frac{1}{\sqrt{4kt\pi}}e^{-\frac{(x-y)^2}{4kt}}$ \\ \\
-$\int_{a}^{b} e^{-p^2}dp = \displaystyle\frac{\sqrt{\pi}}{2}[erf(b) - erf(a)]$
-	\begin{itemize}
-	\item $erf(\infty) = 1 \quad|\quad erf(-\infty) = -1 \quad|\quad erf(0) = 0$
-	\item $\int_{-\infty}^{\infty} e^{-p^2}dp = \sqrt{\pi} \quad|\quad \int_{-\infty}^{0} e^{-p^2}dp = \displaystyle\frac{\sqrt{\pi}}{2}$ \\
-	\end{itemize}
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Conformal Mapping
+\section{Conformal Mapping}
 
-% Fourier Series
-\section{Fourier Series}
-	% Sine
-\subsection{Sine}
-	\begin{eqnarray*}
-	 f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} S_n \sin\left(\frac{g(n)}{L}\pi x \right) \\
-	 \displaystyle \int_{0}^{L} f(x)\sin\left(\frac{h(m)}{L}\pi x\right) dx &=& \sum\limits_{n = 0}^{\infty} \int_{0}^{L} S_n \sin\left(\frac{g(n)}{L}\pi x \right) \sin\left(\frac{h(m)}{L}\pi x\right) dx \\
-	&=& S_{h(m)} \frac{L}{2} \\
-	S_n &=&  \displaystyle \frac{2}{L} \int_{0}^{L} f(x)\sin\left(\frac{g(n)}{L}\pi x\right) dx
-	\end{eqnarray*}
-	% Cosine
-\subsection{Cosine}
-	\begin{eqnarray*}
-	 f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} S_n \cos\left(\frac{g(n)}{L}\pi x \right) \\
-	 \displaystyle \int_{0}^{L} f(x)\cos\left(\frac{h(m)}{L}\pi x\right) dx &=& \sum\limits_{n = 0}^{\infty} \int_{0}^{L} S_n \cos\left(\frac{g(n)}{L}\pi x \right) \cos\left(\frac{h(m)}{L}\pi x\right) dx \\
-	&=& S_{h(m)} \frac{L}{2} \\
-	S_n &=&  \displaystyle \frac{2}{L} \int_{0}^{L} f(x)\cos\left(\frac{g(n)}{L}\pi x\right) dx
-	\end{eqnarray*}
-	% Full
-\subsection{Full}
-	\begin{eqnarray*}
-	 f(x) &=& \displaystyle\sum\limits_{n = 0}^{\infty} A_n \cos\left(\frac{g(n)}{L}\pi x \right) + B_n \sin \left( \frac{g(n)}{L} \pi x \right) \\ \\
-	A_n &=&  \displaystyle \frac{1}{L} \int_{-L}^{L} f(x)\cos\left(\frac{g(n)}{L}\pi x\right) dx \\ \\
-	B_n &=&  \displaystyle \frac{1}{L} \int_{-L}^{L} f(x)\sin\left(\frac{g(n)}{L}\pi x\right) dx \\ \\
-	\end{eqnarray*}
+\(\begin{aligned}
+	% e^z
+	& \bullet\ e^z = e^x e^{iy} = e^x (\cos y + i \sin y) :\ 
+		\left\{ \mss{ \begin{aligned}
+			& x \in (-\infty, 0], [0, \infty)\\[-1pt]
+			& y \in [0, \pi], [\pi, 2\pi] + \theta_0
+		\end{aligned} } \right. 
+		\ \rightarrow\
+		\mss{ \begin{aligned}
+			R & \in (0, 1], [1, \infty)\\
+			\theta & \in [0, \pi], [\pi, 2\pi]
+		\end{aligned} }
+		\\[5pt]
+	% log
+	& \bullet\ \text{log}\ z = \ln R_0 + i \hs \text{arg}(z):\ 
+		\left\{ \mss{ \begin{aligned}
+			R_0 & \in (0, 1], [1,\infty)\\[-1pt]
+			\theta_0 & \in [-\pi, 0], [0, \pi]
+		\end{aligned} } \right.
+		\ \rightarrow\ 
+		\mss{ \begin{aligned}
+			u & \in (-\infty, 0], [0, \infty)\\[-1pt]
+			v & \in [-\pi, 0], [0, \pi] + 2\pi k
+		\end{aligned} }
+		\\[5pt]
+	% cosine
+	& \bullet\ \cos z = \cos x \cosh y - i \sin x \sinh y:\
+		\left\{ \mss{ \begin{aligned}
+			x & \in [0, \pm\hs \pi/2) \\[-1pt]
+			y & \in [0, \pm\hs \infty)
+		\end{aligned} } \right.
+		\ \rightarrow\ 
+		\mss{ \begin{aligned}
+			u & \in [0, \infty)\\[-1pt]
+			v & \in [0, \pm_x\pm_y\infty)
+		\end{aligned} }
+		\\[5pt]
+	% sine
+	& \bullet\ \sin z = \sin x \cosh y + i \cos x \sinh y:\
+		\left\{ \mss{ \begin{aligned}
+			x & \in [0, \pm\hs\pi/2)\\[-1pt]
+			y & \in [0, \pm\hs\infty)
+		\end{aligned} } \right.
+		\ \rightarrow\ 
+		\mss{ \begin{aligned}
+			u & \in [0, \pm_x\infty)\\[-1pt]
+			v & \in [0, \pm_y\infty)
+		\end{aligned} }
+		\\[5pt]
+\end{aligned}\)
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Harmonic Functions
+\section{Harmonic Functions}
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Transforms
+\section{Transforms}
+
+% Convolution - Multiplying Power Series'
+\(\begin{aligned}
+	f\mss{(z)} g\mss{(z)} & = \left(a_0 + a_1 z + a_2 z^2 + \dots\right) \left(b_0 + b_1 z + b_2 z^2 + \dots\right)\\[5pt]
+	& = a_0 b_0 + \left( a_0 b_1 + a_1 b_0 \right) z + \left( a_0 b_2 + a_1 b_1 + a_2 b_0 \right) z^2 + \dots\\[5pt]
+	& = \sum_n c_n z^n \ \Rightarrow\ \boxed{ c_n = \sum_k^n a_n b_{n-k} }
+\end{aligned}\)
+
 \end{document}

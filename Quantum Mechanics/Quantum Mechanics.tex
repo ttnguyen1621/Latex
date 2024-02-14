@@ -4,12 +4,15 @@
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{cancel,slashed}
-\newcommand{\tabitem}{~~\llap{\textbullet}~~}
-\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
-\newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
+
 \newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
-\newcommand{\mathscriptsize}[1]{\text{\scriptsize\(#1\)}}
-\newcommand{\mss}[1]{\mathscriptsize{#1}}
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+\newcommand{\dotP}{\boldsymbol \cdot}		% Dot Product
 
 % \title{Quantum Mechanics}
 % \author{ringoffire0 }
@@ -301,7 +304,7 @@
             = \int_{-\infty}^{\infty} \delta{\scriptstyle(x-y)} \hs \Psi{\scriptstyle(y,t)} \ dy
         \end{gathered} \)
     & \( \begin{gathered}
-            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} \Psi_p \hs \phi\mathscriptsize{(E_p, t)} \hs c_p \ dp 
+            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} \Psi_p \hs \phi\mss{(E_p, t)} \hs c_p \ dp 
                 \\[10pt]
             = \int_{-\infty}^{\infty} 
                 \frac{e^{\frac{i}{\hbar} px}}{\sqrt{2 \pi \hbar}} 
@@ -310,7 +313,7 @@
                 \ dp
         \end{gathered} \)
     & \( \begin{gathered}
-            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} \Psi_n \hs \phi\mathscriptsize{(E_n, t)} \hs c_n \ dn 
+            \Psi{\scriptstyle(x,t)} = \int_{-\infty}^{\infty} \Psi_n \hs \phi\mss{(E_n, t)} \hs c_n \ dn 
                 \\[10pt]
             = \int_{-\infty}^{\infty} 
                 \Psi_n 
@@ -326,13 +329,13 @@
             \Psi{\scriptstyle(x,t)} &= \int_{-\infty}^{\infty} \delta{\scriptstyle(x-y)} \Psi{\scriptstyle(y,t)}\ dy
         \end{aligned} \)
     & \( \begin{aligned}
-            c_p(t) &= \langle \Psi_p | \Psi\mathscriptsize{(x,t)} \rangle = \langle p | \Psi \rangle \\[5pt]
+            c_p(t) &= \langle \Psi_p | \Psi\mss{(x,t)} \rangle = \langle p | \Psi \rangle \\[5pt]
             \Aboxed{ \Phi{\scriptstyle(p,t)} &= \int_{-\infty}^{\infty} 
                 \frac{e^{\frac{-i}{\hbar} px}}{\sqrt{2 \pi \hbar}}
                 \Psi{\scriptstyle(x,t)} \ dx }
         \end{aligned} \)
     & \( \begin{aligned}
-            c_n(t) &= \langle \Psi_n | \Psi\mathscriptsize{(x,t)} \rangle = \langle n | \Psi \rangle\\[5pt]
+            c_n(t) &= \langle \Psi_n | \Psi\mss{(x,t)} \rangle = \langle n | \Psi \rangle\\[5pt]
             \Psi\mss{(n,t)} &= \int_{-\infty}^{\infty} \Psi_n^* \Psi{\scriptstyle(x,t)} \ dx
         \end{aligned} \) \\ 
     && \\ 
@@ -3576,13 +3579,13 @@ General: \ \fbox{
     \end{matrix}\right) }
     =
     \mss{ e^{i\gamma} \left(\begin{matrix}
-        \cos\tfrac{\theta}{2} \hs e^{-i\phi} \\[3pt]
-        \sin\tfrac{\theta}{2} \hs e^{i\phi}
+        \cos\tfrac{\theta}{2} \hs e^{-i \frac{\phi}{2}} \\[3pt]
+        \sin\tfrac{\theta}{2} \hs e^{i \frac{\phi}{2}}
     \end{matrix}\right) }
     \hfill
     \mss{ \begin{aligned}
         & \gamma = \tfrac{\phi_1 + \phi_2}{2}\\
-        & \phi = \tfrac{\phi_2 - \phi_1}{2}
+        & \phi = \phi_2 - \phi_1
     \end{aligned} }
 \)
 
@@ -3613,17 +3616,17 @@ General: \ \fbox{
 \(\begin{array}{c c l}
     % S^2
     \left. \begin{aligned}
-            S^2 | \uparrow \ \rangle = \dfrac{3\hbar^2}{4} | \uparrow \ \rangle \\[10pt]
-            S^2 | \downarrow \ \rangle = \dfrac{3\hbar^2}{4} | \downarrow \ \rangle
+            S^2 | \uparrow \ \rangle = \tfrac{3\hbar^2}{4} | \uparrow \ \rangle \\[10pt]
+            S^2 | \downarrow \ \rangle = \tfrac{3\hbar^2}{4} | \downarrow \ \rangle
         \end{aligned} \hspace{18pt} \right\}
         & \Rightarrow
         & \begin{aligned}
-                S^2 & = \dfrac{3\hbar^2}{4}
+                S^2 & = \frac{3\hbar^2}{4}
                     \left( \begin{matrix} 
                         1 & 0 \\
                         0 & 1
                     \end{matrix} \right) 
-                    = \dfrac{3\hbar^2}{4} \sigma_0
+                    = \frac{3\hbar^2}{4} \sigma_0
                     = * \left( \begin{matrix} 
                         1 & 0 \\
                         0 & 1
@@ -3640,7 +3643,7 @@ General: \ \fbox{
                 & = \tfrac{3 \hbar^2}{4} \mathbb{I} 
                     \hspace{20pt} (\text{\scriptsize only for \(s=1/2\) systems})
             \end{aligned}
-        \\[45pt]
+        \\[35pt]
     % S_+-
     \left. \begin{gathered}
             S_- | \uparrow \ \rangle = \hbar | \downarrow \ \rangle \\[10pt]
@@ -3668,11 +3671,11 @@ General: \ \fbox{
                 & = \hbar | \downarrow \ \rangle \langle \ \uparrow |
             \end{aligned}
             \ \ \ \ \text{\scriptsize (can't measure)}
-        \\[45pt]
+        \\[35pt]
     % S_z
     \left. \begin{aligned}
-            S_z | \uparrow \ \rangle = \frac{\hbar}{2} | \uparrow \ \rangle \\[10pt]
-            S_z | \downarrow \ \rangle = - \frac{\hbar}{2} | \downarrow \ \rangle \\
+            S_z | \uparrow \ \rangle = \tfrac{\hbar}{2} | \uparrow \ \rangle \\[10pt]
+            S_z | \downarrow \ \rangle = - \tfrac{\hbar}{2} | \downarrow \ \rangle \\
         \end{aligned} \hspace{18pt} \right\} 
         & \Rightarrow
         & \begin{aligned}
@@ -3698,21 +3701,21 @@ General: \ \fbox{
                 & = \tfrac{\hbar}{2} | \uparrow\ \rangle \langle \ \uparrow | 
                     - \tfrac{\hbar}{2} | \downarrow\ \rangle \langle \ \downarrow |
             \end{aligned}
-        \\[45pt]
+        \\[35pt]
     % S_x, S_y
     \left. \begin{gathered}
-            S_x = \frac{1}{2} (S_+ + S_-) \\[10pt]
-            S_y = \frac{1}{2i} (S_+ - S_-)
+            S_x = \tfrac{1}{2} (S_+ + S_-) \\[10pt]
+            S_y = \tfrac{1}{2i} (S_+ - S_-)
         \end{gathered} \hspace{18pt} \right\} 
         & \Rightarrow
         & \begin{gathered}
-            S_x = \dfrac{\hbar}{2}
+            S_x = \frac{\hbar}{2}
                 \left( \begin{matrix} 
                     0 & 1 \\
                     1 & 0
                 \end{matrix} \right) = \dfrac{\hbar}{2} \sigma_x
                 \hspace{18pt}
-                S_y = \dfrac{\hbar}{2}
+                S_y = \frac{\hbar}{2}
                 \left( \begin{matrix} 
                     0 & -i \\
                     i & 0
@@ -3724,45 +3727,63 @@ General: \ \fbox{
             \end{gathered}
 \end{array}\)
 
-% General Direction
-\vspace{30pt}\noindent
-\underline{General Direction, \(\hat{n}\)}\\[5pt]
+% Pauli Matricies Properties
+\vspace{25pt}
+\noindent
 \(
-    \begin{aligned}
-        \hat{n} \cdot \vec{S} & = (\cos\phi \sin\theta) S_x + (\sin\phi \sin\theta) S_y + (\cos\theta) S_z 
+    \begin{aligned}[t]
+        & \text{\underline{Properties of Pauli Matrices, \(\sigma_i\)}} \\[10pt]
+        & \bullet\ \sigma_i = \sigma_i^{\dagger} = \sigma_i^{-1}\\
+        & \ast\ \sigma_i^2 = I
+            = (\hat{n} \cdot \sigma)^2 
+            \Leftarrow \mss{ \begin{aligned}
+                ( \hat{n} & \cdot \sigma )^2 - I^2 = ( \hat{n} \cdot \sigma + I ) ( \hat{n} \cdot \sigma - I ) = \\
+                0 & = ( \hat{n} \cdot S + \tfrac{\hbar}{2} ) ( \hat{n} \cdot S - \tfrac{\hbar}{2} ) 
+                    = ( S_z + \tfrac{\hbar}{2} ) ( S_z - \tfrac{\hbar}{2} )
+            \end{aligned} }
             \\[5pt]
-        & = \tfrac{\hbar}{2} \mss{ \left[\begin{matrix}
-                n_z & n_x - i n_y \\
-                n_x + i n_y & - n_z
-            \end{matrix}\right] }
-            = 
-            \tfrac{\hbar}{2} \mss{ \left[\begin{matrix}
-                \cos\theta & \sin\theta e^{-i\phi} \\
-                \sin\theta e^{i\phi} & - \cos\theta
-            \end{matrix}\right] }
+        & \bullet\ \sigma_i \sigma_j = - \sigma_j \sigma_i = i \sigma_k = (\sigma_j \sigma_i)^\dagger
+            \ \Rightarrow\ 
+            \left[ \tfrac{\sigma_i}{2}, \tfrac{\sigma_j}{2} \right] = i \tfrac{\sigma_k}{2}
+            \hspace{10pt} \mss{(i \neq j)}
+            \\
+        & \ast\ \mss{ (A \cdot \sigma)(B \cdot \sigma) = A \cdot B + i (A \times B) \cdot \sigma }
+            \hspace{20pt} ( \mss{ \text{\scriptsize if } \left[A_i, \sigma_i\right] = 0 = \left[B_i, \sigma_i\right] } )
+            \\
+        & \ast\ (\sigma_i \sigma_j)^2 = -1 
+            \hspace{15pt} \text{\scriptsize(even if \(\sigma_i^2 = \pm 1\), but \((\gamma_t\gamma_i)^2=1\) [see right])}
+            \\[5pt]
+        & \bullet\ \text{Tr } \sigma_i = 0
+            \ \Rightarrow\ 
+            \text{Tr} (\sigma_\alpha \sigma_\beta) = 2 \delta_{\alpha\beta} 
+            \hspace{15pt} \mss{\alpha \in (0, x, y, z)}
+            \\
+        & \ast\ \mss{ \sum } c_\alpha \sigma_\alpha = 0 
+            \rightarrow
+            c_\alpha = 0
+            \ \Rightarrow\ 
+            M_{2\times 2} = \mss{ \sum \tfrac{1}{2} \text{\scriptsize Tr}(M \sigma_\alpha) } \hs \sigma_\alpha
+            \\[5pt]
+        & \bullet\ \det(\sigma_i) = -1
     \end{aligned}
-    \hfill\vline\hfill
-    \begin{aligned}
-        & \hat{n} \cdot \vec{S} \hs\hs | \chi_\pm \rangle = \mss{\pm} \tfrac{\hbar}{2} \hs | \chi_\pm \rangle
-            % \ \ \Rightarrow\ \
+    \hfill
+    \begin{aligned}[t]
+        & \text{\underline{Misc.}}\\[10pt]
+        & \bullet\ U[\mss{R(\theta)}] = e^{\theta g_i} \ \Leftarrow\ \mss{\begin{aligned}
+                & \ast U_{\theta=0}=I\\[-3pt]
+                & \ast g_i = \tfrac{dU}{d\theta} \big|_{\theta=0}
+            \end{aligned}}
+            \\
+        & \bullet\ \det{U} = 1 = \det(e^{\theta g_i}) = e^{\theta \underline{tr(g_i)=0}} \\
+        & \bullet\ [\tfrac{-i\sigma_x}{2}, \tfrac{-i\sigma_y}{2}] = \tfrac{-i\sigma_z}{2} = \underline{ g_z = - g_z^\dagger }
+            \hspace{10pt} \text{\scriptsize(\(\mathfrak{su}(2)\))}
+            \\
+        & \bullet\ \text{\scriptsize Rotation = Unitary,\ Boost = Hermitian}\\
+        & \bullet\ g_z^\dagger = g_i \hspace{10pt} \text{\scriptsize(for boosts \(\in \mathfrak{sl}(2, \mathbb{C})\))}\\
+        & \bullet\ g_i^T = -g \hspace{10pt} \text{\scriptsize(for \(\mathfrak{so}(3)\))}\\
+        & \bullet\ g_i^T = -\eta g \eta \hspace{10pt} \text{\scriptsize(for \(\mathfrak{so}^+(1,3)\))}
             \\[5pt]
-        & \boxed{
-            | \chi_+ \rangle = \mss{
-                e^{i\gamma}
-                \left[\begin{matrix}
-                    \cos\tfrac{\theta}{2} \hs e^{- i \phi/2}\\[5pt]
-                    \sin\tfrac{\theta}{2} \hs e^{i \phi/2}
-                \end{matrix}\right]
-            }
-            \ , \
-            | \chi_- \rangle = \mss{
-                e^{i\gamma}
-                \left[\begin{matrix}
-                    - \sin\tfrac{\theta}{2} \hs e^{- i \phi/2}\\[5pt]
-                    \cos\tfrac{\theta}{2} \hs e^{i \phi/2}
-                \end{matrix}\right]
-            }
-            }
+        & \bullet\ j^2 = 1 :\ e^{j\phi} = \cosh\phi + j\sinh\phi
     \end{aligned}
 \)
 
@@ -3771,67 +3792,154 @@ General: \ \fbox{
 %
 %
 \newpage
-% Pauli Matricies Properties
+% General Direction; Bloch Sphere
+% \vspace{25pt}
+\noindent
+\underline{General Direction, \(\hat{n}\), on Bloch Sphere (\(1, \theta, \phi\)) 
+    \(\Leftrightarrow\) Pauli Vector, \(V\) (see Properties of \(\sigma_i\))}
+    \\[5pt]
+\(
+    \begin{aligned}
+        \hat{n} \cdot \vec{S} & = \cos\phi \sin\theta \hs S_x + \sin\phi \sin\theta \hs S_y + \cos\theta \hs S_z 
+            \\[5pt]
+        V_{\hat{n}} & = \boxed{ 
+                \tfrac{\hbar}{2} \mss{ \left[\arraycolsep=2pt\begin{matrix}
+                    n_z & n_x - i n_y \\
+                    n_x + i n_y & - n_z
+                \end{matrix}\right] } 
+                = \tfrac{\hbar}{2} \mss{ \left[\arraycolsep=3pt\begin{matrix}
+                        \cos\theta & \sin\theta e^{-i\phi} \\
+                        \sin\theta e^{i\phi} & - \cos\theta
+                    \end{matrix}\right] }
+            }
+    \end{aligned}
+    \hfill\vline\hfill
+    \begin{aligned}
+        & \bullet\ V_{\vec{n}}^2 = \lVert \hsvec{n} \rVert^2 I
+            \hspace{12pt} 
+            \bullet\ \det(V_{\vec{n}}) = - \lVert \hsvec{n}\hs \rVert^2
+            \\[2pt]
+        & \bullet\ V = V^\dagger
+            \hspace{8pt} \bullet\ \text{Tr} (V) = 0
+            \hspace{8pt} \bullet\ \begin{gathered}
+                \text{\scriptsize Reflect \(V\)}\\[-9pt]
+                \text{\scriptsize over \(R_{\hat{n}} \perp\)}
+            \end{gathered} : -RVR^{\bcancel{-1}}
+            \\[2pt]
+        & \bullet\ \begin{gathered}
+                \text{\scriptsize Rotate \(V\) in}\\[-9pt]
+                \text{\scriptsize \(xy\)-plane by \(\psi\)}
+            \end{gathered} : \begin{aligned}
+                & -[\mss{ \cos\tfrac{\psi}{2} \sigma_x + \sin\tfrac{\psi}{2} \sigma_y }][-\sigma_x V \sigma_x][..]\\
+                & = \underline{ [\mss{ \cos\tfrac{\psi}{2} I - \sin\tfrac{\psi}{2} \sigma_x \sigma_y }] V [..]^{\underline{-1}} }
+                    = \boxed{U V U^\dagger}
+            \end{aligned}
+    \end{aligned}
+\)
+
+% Pauli Vector Properties
 \vspace{10pt}\noindent
-\underline{Properties of Pauli Matrices, \(\sigma_i\)}\\[10pt]
+\(
+    \hat{n} \cdot \vec{S} \hs\hs | \chi_\pm \rangle = \mss{\pm} \tfrac{\hbar}{2} \hs | \chi_\pm \rangle
+    \ \Rightarrow\ 
+    \boxed{
+        | \chi_+ \rangle = \mss{
+            e^{i\gamma}
+            \left[\begin{matrix}
+                \cos\tfrac{\theta}{2} \hs e^{- i \phi/2}\\[5pt]
+                \sin\tfrac{\theta}{2} \hs e^{i \phi/2}
+            \end{matrix}\right]
+        }
+        = \mss{
+            \left[\begin{matrix}
+                1\\[5pt]
+                \tan\tfrac{\theta}{2} \hs e^{i \phi}
+            \end{matrix}\right]
+        }
+        \ , \
+        | \chi_- \rangle = \mss{
+            e^{i\gamma}
+            \left[\begin{matrix}
+                - \sin\tfrac{\theta}{2} \hs e^{- i \phi/2}\\[5pt]
+                \cos\tfrac{\theta}{2} \hs e^{i \phi/2}
+            \end{matrix}\right]
+        }
+        = \mss{
+            \left[\begin{matrix}
+                1\\[5pt]
+                -\cot\tfrac{\theta}{2} \hs e^{i \phi}
+            \end{matrix}\right]
+        }
+    }
+\)
+
+% Riemann Sphere to Complex Projected Line
+\vspace{10pt}\noindent
+\underline{Riemann Sphere \(\rightarrow \mathbb{C}P^1\)}: \ \(
+    |\chi\rangle 
+    = \mss{ \left[ \begin{matrix}
+        1\\ 
+        f (\theta,\phi)
+    \end{matrix} \right] } 
+    \rightarrow 
+    \left. \begin{aligned}
+        f \mss{(\theta,\phi)} \in \mss{(-\infty, \infty)}:
+            && 0 & \leq \theta < \pi
+            \\
+        f \mss{(\theta,\phi)} \in \mss{(-\infty, \infty)}:
+            && \pi & \leq \theta < 2\pi
+    \end{aligned} \right\}
+    \ \ (\text{\scriptsize double cover})
+\)
+
+% SU(2) matrices
+\vspace{10pt}\noindent
+\underline{\(SU(2)\) Matrices}:\ \(
+        \boxed{ \mss{ 
+            \begin{aligned}
+                & \cos\tfrac{\psi}{2} I - \sin\tfrac{\psi}{2} i (n^x \sigma_x + n^y \sigma_y + n^z \sigma_z) = \\
+                & .. - \sin\tfrac{\psi}{2} (n^x \sigma_y\sigma_z + n^y \sigma_z \sigma_x + n^z \sigma_x \sigma_y)
+            \end{aligned}
+            = \left[ \arraycolsep=2pt \begin{matrix}
+                \alpha & - \beta^*\\
+                \beta & \alpha^*
+            \end{matrix} \right] 
+        } }
+        \ \Leftarrow\ U^\dagger = U^{-1} ,\ \det(U) = \alpha^*\alpha + \beta^*\beta = 1
+    \)\\[5pt]
 \(\begin{aligned}
-    & \bullet\ \sigma_i^2 = I
-        = (\hat{n} \cdot \sigma)^2 
-        \ \Leftarrow\ ( \hat{n} \cdot \sigma )^2 - I^2
-        = ( \hat{n} \cdot \sigma + I ) ( \hat{n} \cdot \sigma - I ) = 0 
-        = ( \hat{n} \cdot S + \tfrac{\hbar}{2} ) ( \hat{n} \cdot S - \tfrac{\hbar}{2} )
-        \\[5pt]
-    & \bullet\ \sigma_i \sigma_j = i \sigma_k = - \sigma_j \sigma_i
-        \ \Rightarrow\ 
-        \left[ \tfrac{\sigma_i}{2}, \tfrac{\sigma_j}{2} \right] = i \tfrac{\sigma_k}{2}
-        \hspace{20pt} \mss{(i \neq j)}
-        \\[5pt]
-    & \bullet\ (A \cdot \sigma)(B \cdot \sigma) = A \cdot B + i (A \times B) \cdot \sigma
-        \hspace{20pt} ( \mss{ \text{\scriptsize if } \left[A_i, \sigma_i\right] = 0 = \left[B_i, \sigma_i\right] } )
-        \\[5pt]
-    & \bullet\ \text{Tr } \sigma_i = 0
-        \ \Rightarrow\ 
-        \text{Tr} (\sigma_\alpha \sigma_\beta) = 2 \delta_{\alpha\beta} 
-        \hspace{20pt} \mss{\alpha \in (0, x, y, z)}
-        \\[5pt]
-    & \bullet\ \mss{ \sum } c_\alpha \sigma_\alpha = 0 
-        \rightarrow
-        c_\alpha = 0
-        \ \Rightarrow\ 
-        M_{2\times 2} = \mss{ \sum \tfrac{1}{2} \text{\scriptsize Tr}(M \sigma_\alpha) } \hs \sigma_\alpha
-        \\[5pt]
     & \bullet\ \mss{ \begin{gathered}
-            \text{Rotate \(\hat{k}\) to \(\hat{n}\) by angle \(\theta\)}\\[-3pt]
-            \hat{\theta} = (-\sin\phi, \cos\phi, 0) = \hat{k} \times \hat{n} 
+            \text{Rotate \(\hat{k}\) to \(\hat{k}'\) by angle \(\theta\)}\\[-3pt]
+            \hat{\theta} = (-\sin\phi, \cos\phi, 0) = \hat{k} \times \hat{k}' 
         \end{gathered} }
         \hspace{20pt} 
-        U[R(\theta)] = e^{ - i \tfrac{\theta}{2} \hat{\theta} \cdot \sigma } 
-        = I \cos \tfrac{\theta}{2} - i \big( \hat{\theta} \cdot \sigma \big) \sin \tfrac{\theta}{2}
+        \underline{ 
+            U[R(\theta)] = e^{ - i \tfrac{\theta}{2} \hat{\theta} \cdot \sigma } 
+            = \cos \tfrac{\theta}{2} I - \sin \tfrac{\theta}{2} i \big( \hat{\theta} \cdot \sigma \big) 
+        }
         = \mss{ \left[\begin{matrix}
             \cos \tfrac{\theta}{2} & - \sin \tfrac{\theta}{2} \hs e^{- i \phi}\\[3pt]
             \sin \tfrac{\theta}{2} \hs e^{i \phi} & \cos \tfrac{\theta}{2}
         \end{matrix}\right] }
         \\[5pt]
     & \bullet\ \mss{ \begin{gathered}
-            \text{Rotate about \(\hat{n}\) by angle \(\epsilon\)}\\[-3pt]
-            \hat{n} = (n_x, n_y, n_z) 
+            \text{Rotate about \(\hat{\psi}\) by angle \(\psi\)}\\[-3pt]
+            \hat{\psi} = \hat{n} = (n^x, n^y, n^z) 
         \end{gathered} }
         \hspace{20pt} 
-        U[R(\psi)] = I \cos \tfrac{\psi}{2} - i \big( \hat{n} \cdot \sigma \big) \sin \tfrac{\psi}{2}
+        \underline{ U[R(\psi)] = \cos \tfrac{\psi}{2} I - \sin \tfrac{\psi}{2} i \big( \hat{\psi} \cdot \sigma \big) }
         = \mss{ \left[\begin{matrix}
-            \cos \tfrac{\psi}{2} - i n_z \sin \tfrac{\psi}{2}  & (- i n_x - n_y) \sin \tfrac{\psi}{2} \\[3pt]
-            (- i n_x + n_y) \sin \tfrac{\psi}{2} & \cos \tfrac{\psi}{2} + i n_z \sin \tfrac{\psi}{2}
+            \cos \tfrac{\psi}{2} - i n^z \sin \tfrac{\psi}{2}  & (- i n^x - n^y) \sin \tfrac{\psi}{2} \\[3pt]
+            (- i n^x + n^y) \sin \tfrac{\psi}{2} & \cos \tfrac{\psi}{2} + i n^z \sin \tfrac{\psi}{2}
         \end{matrix}\right] }
 \end{aligned}\)
 
-\vspace{10pt}
+\vfill
 %-----------------------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------------------
 % 2 Particles w/ Spin 1/2
-\subsection{2 Objects w/ Spin}
-{\scriptsize Objects could be orbital momentum, another particle spin, etc.}
+\subsection{2 Objects w/ Spin \ \ {\scriptsize Objects could be orbital momentum, another particle spin, etc.}}
 
-\vspace{5pt}
 \subsubsection{2 Objects w/ Spin \(\frac{1}{2}\):\ \ \
     \(
         \tfrac{1}{2} \otimes \tfrac{1}{2} = 1 \oplus 0 
@@ -3839,23 +3947,23 @@ General: \ \fbox{
     \) 
 }
 
-\vspace{10pt}
+\vspace{5pt}
 *Find Eigenvectors, \(e_i\) , of \( ( S^{ (1,2) } )_z \) and 
     \( ( S^{ (1,2) } )^2 \) in the form of \( | \chi_i \chi_j \rangle \) ( using \( ( S^{ (1,2) } )_\pm \) )
 
-\vspace{15pt}\noindent
+\vspace{10pt}\noindent
 % Tensor Product for 2 particles
 \[ \boxed{  \chi_i \chi_j \rightarrow | \chi_i \chi_j \rangle \equiv | \chi_i \rangle | \chi_j \rangle 
     \equiv | \chi_i \rangle \otimes | \chi_j \rangle } \]
 
 % Chi for 1 particle
-\vspace{20pt} \noindent
+\vspace{10pt} \noindent
 Choose \( | \chi_i \rangle \equiv S_z\)-Eigenvector w/ 
     Spin \(\frac{1}{2}\) (e.g, \( | \frac{1}{2} \frac{-1}{2} \rangle 
         = \left( \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right) \), 
         as opposed to \( \left( \begin{smallmatrix} .6 \\ .8 \end{smallmatrix} \right) \))
 
-\vspace{1cm} \noindent
+\vspace{10pt} \noindent
 \begin{minipage}[t]{.5\textwidth}
     % "Vector" of Matrices
     \begin{center} \( 
@@ -3867,7 +3975,7 @@ Choose \( | \chi_i \rangle \equiv S_z\)-Eigenvector w/
         \end{matrix}\right) 
     \) \end{center}
         
-    \vspace{5pt}
+    % \vspace{5pt}
     % Matrices only work on respective particles
     \( 
         \bullet \ S^{(2)}_z S^{(1)}_x \Big( | \chi_1 \rangle \otimes | \chi_2 \rangle \Big)
@@ -3877,7 +3985,7 @@ Choose \( | \chi_i \rangle \equiv S_z\)-Eigenvector w/
     \( \begin{aligned}
         \bullet \ S^{(i)} \dotP S^{(j)} & \equiv \underline{ S^{(i)}_x S^{(j)}_x + S^{(i)}_y S^{(j)}_y } + S^{(i)}_z S^{(j)}_z \\[5pt]
         & = S^{(i)}_z S^{(j)}_z + \underline{ \tfrac{1}{2} S^{(i)}_+ S^{(j)}_- + \tfrac{1}{2} S^{(i)}_- S^{(j)}_+ }
-            \\[10pt]
+            \\[5pt]
         ( S^{(i)} )^2 & \equiv S^{(i)} \dotP S^{(i)} 
     \end{aligned}\)
 \end{minipage}
@@ -3892,7 +4000,7 @@ Choose \( | \chi_i \rangle \equiv S_z\)-Eigenvector w/
         \end{matrix} \right) 
     \) \end{center}
 
-    \vspace{5pt}
+    % \vspace{5pt}
     \( \bullet \ \left( S^{(1,2)} \right)^2 =
         \left( S^{(1)} + S^{(2)} \right) \dotP \left( S^{(1)} + S^{(2)} \right) \)
 \end{minipage}
@@ -5567,7 +5675,7 @@ Electric Dipole Approximation ONLY: \(\lambda_\gamma \gg\) atom length \(\righta
 \vspace{20pt}
 \section{Klein-Gordon Equation (Spinless Free Particle)}
 
-\begin{gather*}
+\(\begin{gathered}
     (p^2c^2 +m^2c^4)\psi = E^2 \psi\\[5pt]
     (-E^2 + p^2c^2 + m^2c^4)\psi = 0\\[5pt]
     \left[ - (E/c)^2 + p^2 + (mc)^2 \right] \psi = 0\\[5pt]
@@ -5575,7 +5683,52 @@ Electric Dipole Approximation ONLY: \(\lambda_\gamma \gg\) atom length \(\righta
     \left[ \frac{1}{c^2} \frac{\partial}{\partial t}^2 - \nabla^2 
         + \left( \frac{mc}{\hbar} \right)^2 \right] \psi = 0\\[5pt]
     \boxed{ (- \square^2 + \mu^2) \psi = 0 }
-\end{gather*}
+\end{gathered}\)
+\hfill
+\vline
+\hfill
+\(\begin{aligned}
+    % Lagrangian
+    \mathcal{L} & = \mathcal{T} - \mathcal{U}
+        \begin{aligned}[t]
+            & = \frac{1}{2c^2} \left( \frac{\partial \phi}{\partial t} \right)^2
+                - \frac{1}{2} \left( \frac{\partial \phi}{\partial x} \right)^2
+                - \frac{1}{2} \kappa^2 \phi^2
+                \\[5pt]
+            & = \boxed{ - \tfrac{1}{2} (\partial \phi)^2 - \tfrac{1}{2} \kappa^2 \phi^2 }
+        \end{aligned}
+        \\[10pt]
+    % Change in Lagrangian
+    d \mathcal{L} & = 
+        \tfrac{1}{c^2} \tfrac{\partial \phi}{\partial t} \tfrac{\partial \epsilon}{\partial t} 
+        - \tfrac{\partial \phi}{\partial x} \tfrac{\partial \epsilon}{\partial x}
+        - \kappa^2 \phi \hs\epsilon
+        \hspace{20pt} {( \epsilon = d\phi )}
+        \\[10pt]
+    % Action
+    S\mss{[\phi]} & = \int dt \int dx \hs 
+        \mathcal{L} \left( \phi, \tfrac{\partial \phi}{\partial x}, \tfrac{\partial \phi}{\partial t} \right)
+        \\[5pt]
+    % Change in Action = 0
+    dS\mss{[\phi]} & = 0 = \int dt \int dx \hs d \mathcal{L} \\
+    & = \int dt \int dx \left[ 
+            \tfrac{1}{c^2} \tfrac{\partial \phi}{\partial t} \tfrac{\partial \epsilon}{\partial t} 
+            - \tfrac{\partial \phi}{\partial x} \tfrac{\partial \epsilon}{\partial x}
+            - \kappa^2 \phi \epsilon
+        \right]
+        \\[5pt]
+    & = \int dt \int dx \left[ \underline{ 
+            - \tfrac{1}{c^2} \tfrac{\partial^2 \phi}{\partial t^2} 
+            + \tfrac{\partial^2 \phi}{\partial x^2} 
+            - \kappa^2 \phi 
+        } \right] \epsilon 
+        + 0 + \dots
+\end{aligned}\)
+\hfill\hs
+
+\vspace{15pt}
+
+\[ \boxed{ \square^2 \phi = \kappa^2 \phi } \]
 
 %---------------------------------------------------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------------------------------------------------

@@ -11,26 +11,25 @@
 \usepackage{array}
 \usepackage{multirow}
 
-% \usepackage{wasysym}
 \usepackage{pifont}
 
-\newcommand*{\bfr}{\mathbf{r}}
+\newcommand{\bfr}{\mathbf{r}}
 
 \usepackage{calligra}
 \DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
 \DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
 \newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
-\newcommand*{\cursr}{\scripty{r}}		% Cursive r
-\newcommand*{\cursrr}{\scripty{r}\ }
+\newcommand{\cursr}{\scripty{r}}		% Cursive r
+\newcommand{\cursrr}{\scripty{r}\ }
 
-\newcommand{\hs}{\hspace{1pt}}
-\newcommand{\hsvec}[1]{\vec{\hs #1}}
-\newcommand{\mathscriptsize}[1]{\text{\scriptsize\(#1\)}}
-\newcommand{\mss}{\mathscriptsize}
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
 
 \newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
 \newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
-\newcommand*{\dotP}{\boldsymbol \cdot}		% Dot Product
+\newcommand{\dotP}{\boldsymbol \cdot}		% Dot Product
 
 \begin{document}
 \setlength{\parindent}{0pt}
@@ -705,14 +704,14 @@
 	and \(\phi\) be \(\angle OzR\).
 
 	\vspace{5pt}
-	\[ \displaystyle E(0,0,z) \hat{z} = \frac{1}{4 \pi \epsilon_0} \int \frac{dq}{\cursrr^2} \vec{\cursrr}\]
+	\[ \displaystyle E(0,0,z) \hat{z} = \frac{1}{4 \pi \epsilon_0} \int \frac{dq}{\cursr^{\hs\hs 2}} \hat{\cursrr}\]
 
 	\vspace{10pt}
 	\(\begin{aligned}
-		\vec{E}(0,0,z) &= \frac{1}{4 \pi \epsilon_0} \int \frac{\lambda (R d\theta)}{\cursrr^2} \vec{\cursrr}\\[10pt]
+		\vec{E}(0,0,z) &= \frac{1}{4 \pi \epsilon_0} \int \frac{\lambda (R d\theta)}{\cursr^{\hs\hs 2}} \hat{\cursrr}_{\nhs\nhs z}\\[10pt]
 		&= \frac{k \lambda}{z^2 + R^2} \int_0^{2\pi} Rd\theta\ \cos{\phi}\ \hat{z} \\[15pt]
 		&= \boxed{ \frac{k \lambda (2\pi R) z}{(z^2 + R^2)^{3/2}}\ \hat{z} }\\[10pt]
-		&= \boxed{ \frac{k \lambda}{D}\ \frac{2\pi R}{D} \cos{\phi}\ \hat{z}}
+		&= \boxed{ \frac{2\pi R}{D}\ \frac{k \lambda}{D} \cos{\phi}\ \hat{z}}
 	\end{aligned}\)
 \end{minipage}
 \hfill\vline\hfill
@@ -728,7 +727,7 @@
 
 	\vspace{5pt}
 	\(\begin{aligned} 
-		&\vec{B}(0,0,z) = \frac{\mu_0 I}{4 \pi} \int \frac{R d\vec{\theta} \times \hat{\cursrr}}{\cursrr^2}\\[10pt]
+		&\vec{B}(0,0,z) = \frac{\mu_0 I}{4 \pi} \int \frac{R d\vec{\theta} \times \hat{\cursrr}}{\cursr^{\hs\hs 2}}\\[10pt]
 		&\ \ \ \begin{aligned}
 			&= \frac{k_\mu I}{z^2 + R^2} \int R d\theta \ \hat{\theta} \times \frac{z\hat{z}-R\hat{r}}{\sqrt{z^2 + R^2}} 
 				&&\text{or}\quad 
@@ -738,7 +737,7 @@
 				&&\text{or}\quad 
 				\frac{k_\mu I}{z^2 + R^2} \int_0^{2\pi} R d\theta \ \tfrac{R}{\sqrt{z^2 + R^2}}\ \hat{z}\\[15pt]
 			&= \boxed{ \frac{k_\mu I(2\pi R)R}{ (z^2 + R^2)^{3/2} } \ \hat{z} }\\[10pt]
-			&= \boxed{ \frac{k_\mu I}{D}\ \frac{2\pi R}{D} \sin{\phi}\ \hat{z} }
+			&= \boxed{ \frac{2\pi R}{D}\ \frac{k_\mu I}{D} \sin{\phi}\ \hat{z} }
 		\end{aligned}
 	\end{aligned}\)
 \end{minipage}
@@ -760,11 +759,11 @@
 	and \(\theta_0\) be \(\angle OyL\).
 
 	\vspace{5pt}
-	\[ \displaystyle E_y(0,0,y) \hat{y} = \frac{1}{4 \pi \epsilon_0} \int \frac{dq}{\cursrr^2} \vec{\cursrr}_y\]
+	\[ \displaystyle E_y(0,0,y) \hat{y} = \frac{1}{4 \pi \epsilon_0} \int \frac{dq}{\cursr^{\hs\hs 2}} \hat{\cursrr}_{\nhs\nhs y}\]
 
 	\vspace{10pt}
 	\(\begin{aligned}
-		E_y(0,0,y) &= k \int \frac{\lambda dx}{\cursrr^2} \vec{\cursrr}_y\\[10pt]
+		E_y(0,0,y) &= k \int \frac{\lambda dx}{\cursr^{\hs\hs 2}} \hat{\cursrr}_{\nhs\nhs y}\\[10pt]
 		&= k \lambda \int \frac{ dx}{y^2 + x^2} \cos{\theta}
 			\ \ , \hspace{20pt} x = y \tan{\theta}\\[10pt]
 		&= \frac{k \lambda}{y^2} \int_0^{\theta_0} \frac{y \sec^2{\theta} \hs\hs d\theta}{1 + \tan^2{\theta}} \cos{\theta}\\[10pt]
@@ -786,7 +785,7 @@
 	Let \(L\) be the wire length and \(\theta_0\) be \(\angle OyL\).
 
 	\vspace{5pt}
-	\[ \displaystyle B_z(0,0,y) \hat{z} = k_\mu I \int \frac{ d\vec{l} \times \hat{\cursrr} }{| \vec{\cursrr} |^2}\]
+	\[ \displaystyle B_z(0,0,y) \hat{z} = k_\mu I \int \frac{ d\hsvec{l} \times \hat{\cursrr} }{| \vec{\cursrr} |^2}\]
 
 	\vspace{10pt}
 	\(\begin{aligned}

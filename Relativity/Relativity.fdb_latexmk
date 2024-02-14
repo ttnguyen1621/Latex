@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1680959711 "c:/Users/ringo/CS/LaTeX/Relativity/Relativity.tex" "Relativity.pdf" "Relativity" 1680959713
-  "Relativity.aux" 1680959712 685 0517cbbe3a246ad5fbe3eef04da2df0a "pdflatex"
-  "Relativity.tex" 1680959709 13638 79adde8aa7b85a820805e56727e376cf ""
-  "c:/Users/ringo/CS/LaTeX/Relativity/Relativity.tex" 1680959709 13638 79adde8aa7b85a820805e56727e376cf ""
+["pdflatex"] 1705943807 "c:/Users/ringo/CS/LaTeX/Relativity/Relativity.tex" "Relativity.pdf" "Relativity" 1705943808
+  "Relativity.aux" 1705943808 685 0517cbbe3a246ad5fbe3eef04da2df0a "pdflatex"
+  "Relativity.tex" 1705943805 14256 55dee79e8577a078ca79d1d469894830 ""
+  "c:/Users/ringo/CS/LaTeX/Relativity/Relativity.tex" 1705943805 14256 55dee79e8577a078ca79d1d469894830 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1650318317 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1650313675 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1650313675 1120 200be8b775682cdf80acad4be5ef57e4 ""
@@ -37,6 +37,7 @@
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1650313675 32080 340ef9bf63678554ee606688e7b5339d ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1650313675 30251 6afa5cb1d0204815a708a080681d4674 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1650313675 36741 0ee9e374ec3e30da87cdfb0ea3575226 ""
+  "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1650313675 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1650313675 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb" 1650313675 36912 b448ef9ad9d7228ec3c6e71005136d55 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1650313675 32722 d7379af29a190c3f453aba36302ff5a9 ""
@@ -46,6 +47,7 @@
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1650313675 32587 65067f817f408bc71a7312f3d9828a9b ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1650313675 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb" 1650313675 29407 8c6dfc0f2d83bfc4807c3b1dc90ef23e ""
+  "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb" 1650313675 30273 87a352d78b6810ae5cfdc68d2fb827b2 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb" 1650313675 11493 4f5ed183a47d3197cf8cd322325db6de ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1650313675 31764 459c573c03a4949a528c2cc7f557e217 ""
   "c:/texlive/2022/texmf-dist/fonts/type1/public/esint-type1/esint10.pfb" 1650317619 34421 79309417cbb00a4641f92d2efa583bbd ""
