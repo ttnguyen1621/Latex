@@ -39,27 +39,30 @@
     \hfill
     % \hat{q} in spherical
     \begin{aligned}
-        & \hspace{-3pt} \arraycolsep=3pt\begin{array}{r c r c c c r}
+        & \hspace{-3pt} \arraycolsep=3pt\begin{array}{r c r c c c r r}
                 \hat{r} & = 
                     & \tfrac{\partial}{\partial r} \hsvec{r} 
                     & = 
                     & \boxed{ \tfrac{\hsvec{r}}{r} }
                     & = 
-                    & \nabla r\mss{(x,y,z)}
+                    & \nabla r
+                    & = \tfrac{\nabla r}{\Vert \nabla r \Vert}
                     \\[5pt]
                 \hat{\theta} & = 
                     & \tfrac{1}{r} \tfrac{\partial}{\partial \theta} \hsvec{r}
                     & = 
                     & \boxed{ \tfrac{\partial \hat{r}}{\partial \theta} }
                     & =
-                    & r \nabla \theta\mss{(x,y,z)}
+                    & r \nabla \theta
+                    & = \tfrac{\nabla \theta}{\Vert \nabla \theta \Vert} 
                     \\[5pt]
                 \hat{\phi} & = 
                     & \tfrac{1}{r \sin\theta} \tfrac{\partial}{\partial \phi} \hsvec{r}
                     & = 
                     & \boxed{ \tfrac{1}{\sin\theta} \tfrac{\partial \hat{r}}{\partial \phi} }
                     & =
-                    & r \sin\theta \nabla \phi\mss{(x,y,z)}
+                    & \mss{r \sin\theta} \nabla \phi
+                    & = \tfrac{\nabla \phi}{\Vert \nabla \phi \Vert}
             \end{array}
     \end{aligned}
     \hfill\hs
@@ -72,7 +75,7 @@
     \mss{ \begin{aligned}
         \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} & = \cos{2\theta} \hs \hat{z}\\
         \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} & = \sin\theta \hs \hat{y} + \sin\phi \cos\theta \hs \hat{z}\\
-        \hat{\phi} & = - \sin\phi \sin\theta \hs \hat{x} + \cos\phi \sin\theta \hs \hat{y}
+        \hat{\phi} & = - \sin\phi \hs \hat{x} + \cos\phi \hs \hat{y}
     \end{aligned} }
     \hfill
     \Rightarrow
@@ -89,7 +92,7 @@
             + \tfrac{ \cos\phi }{\sin\theta} \hs \hat{\phi} 
             }
             \\
-        \hat{x} & = \boxed{ \cot\phi \hs \hat{y} - \tfrac{ \hat{\phi} }{ \sin\phi \sin\theta } }
+        \hat{x} & = \boxed{ \cot\phi \hs \hat{y} - \tfrac{ \hat{\phi} }{ \sin\phi } }
     \end{aligned}   
     \hfill\hs 
 \)  

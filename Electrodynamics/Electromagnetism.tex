@@ -3144,231 +3144,231 @@ $\omega < \omega_{mn} = c\pi \sqrt{ (m/a)^2 + (n/b)^2 }$ \\ \\ \\
 TM: \( \displaystyle \left[ \frac{\partial^2}{\partial x^2} 
 	+ \frac{\partial^2}{\partial y^2} + (\omega / c)^2 -k^2 \right] E_z = 0 \)
 
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------------------------------------
-% Del
-\newpage
-\section{Del}
-\vspace{5pt}
-\parbox[t]{.67\textwidth}{
-	% Nabla
-	\(\begin{aligned}[t]
-		\nabla F \ & 
-			\begin{aligned}[t]
-				& = \ \hs \left \langle 
-						\dfrac{\partial}{\partial r} , \
-						\frac{1}{r} \dfrac{\partial}{\partial \theta} , \
-						\frac{1}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
-					\right \rangle_{r,\theta,\phi} 
-					F 
-					\ = \
-					\left( \hat{r}, \ \hat{\theta} , \ \hat{\phi} \right)
-					\cdot 
-					\left( \mss{
-						\frac{\partial}{\partial r} , \
-						\frac{1}{r} \frac{\partial}{\partial \theta} , \
-						\frac{1}{ r \sin{\theta} } \frac{\partial}{\partial \phi} 
-					} \right)
-					% \nabla_s 
-					F 
-					\\[10pt]
-				& = \ 
-					\left( \ \begin{matrix}
-						\cos{\phi}\sin{\theta} \hs \hat{x} + \sin{\phi}\sin{\theta} \hs \hat{y} + \cos{\theta} \hs \hat{z} \\[5pt]
-						\cos{\phi}\cos{\theta} \hs \hat{x} + \sin{\phi}\cos{\theta} \hs \hat{y} - \sin{\theta} \hs \hat{z} \\[5pt]
-						- \sin{\phi} \hs \hat{x} + \cos{\phi} \hs \hat{y}
-					\end{matrix} \ \right)
-					\cdot
-					\left[ \hs \begin{matrix}
-						\\[-12pt]
-						\tfrac{\partial}{\partial r}\\[5pt]
-						\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[5pt]
-						\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
-					\end{matrix} \hs \right] 
-					% \left( 
-					% 	\dfrac{\partial}{\partial r} , \
-					% 	\frac{1}{r} \dfrac{\partial}{\partial \theta} , \
-					% 	\frac{1}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
-					% \right)
-					F 
-					\\[5pt]
-				& = \ \text{\LARGE \(\Bigg\langle\)}
-					\mss{ \begin{array}{c}
-						\displaystyle
-						\cos{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
-						+ \frac{\cos{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
-						- \frac{\sin{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
-						\\[10pt]
-						\displaystyle
-						\sin{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
-						+ \frac{\sin{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
-						+ \frac{\cos{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi}
-						\\[10pt]
-						\displaystyle
-						\cos{\theta} \dfrac{\partial}{\partial r} 
-						- \frac{\sin{\theta}}{ r } \dfrac{\partial}{\partial \theta} 
-						\\[10pt]
-					\end{array} }
-					\text{\LARGE\(\Bigg\rangle\)}_\mss{\hspace{-7pt} \hat{x},\hat{y},\hat{z}}
-					F 		
-					\ = \ 
-					\left[\begin{matrix}
-						\hat{x}\\
-						\hat{y}\\
-						\hat{z}
-					\end{matrix}\right]
-					\cdot
-					\left[\begin{matrix}
-						\\[-12pt]
-						\tfrac{\partial}{\partial x}\\[5pt]
-						\tfrac{\partial}{\partial y}\\[5pt]
-						\tfrac{\partial}{\partial z}
-					\end{matrix}\right] 
-					% \left \langle 
-					% 	\frac{\partial}{\partial x} , \frac{\partial}{\partial y} , \frac{\partial}{\partial z}
-					% \right \rangle_{x,y,z}
-					F
-			\end{aligned}
-			\\[15pt]
-		% Divergence
-		\nabla \dotP \vec{A} \ & 
-			= \ \frac{1}{r} \frac{1}{r \sin{\theta}} 
-			\left\langle 
-				\dfrac{\partial}{\partial r} , \ 
-				\dfrac{\partial}{\partial \theta} , \ 
-				\dfrac{\partial}{\partial \phi} 
-			\right\rangle 
-			\ \dotP \ [ r \cdot r \sin{\theta} ]
-			\left\langle A_r , \ \frac{1}{r} A_\theta , \ \frac{1}{ r \sin{\theta} } A_\phi \right\rangle
-			\\[15pt]
-		% Curl
-		\nabla \times \vec{A} \ & 
-			= \ \dfrac{1}{r} \dfrac{1}{ r \sin{\theta} } 
-			\begin{Vmatrix}
-				\hat{r} 					 & r \hat{\theta} 			    & r \sin{\theta} \hat{\phi}\\[10pt]
-				\dfrac{\partial}{\partial r} & \dfrac{\partial}{\partial \theta} & \dfrac{\partial}{\partial \phi}\\[10pt]
-				A_r							 & r A_\theta				    & r \sin{\theta} A_\phi
-			\end{Vmatrix}
-	\end{aligned}\)
+% %---------------------------------------------------------------------------------------------------------------------------------
+% %---------------------------------------------------------------------------------------------------------------------------------
+% %---------------------------------------------------------------------------------------------------------------------------------
+% %---------------------------------------------------------------------------------------------------------------------------------
+% % Del
+% \newpage
+% \section{Del}
+% \vspace{5pt}
+% \parbox[t]{.67\textwidth}{
+% 	% Nabla
+% 	\(\begin{aligned}[t]
+% 		\nabla F \ & 
+% 			\begin{aligned}[t]
+% 				& = \ \hs \left \langle 
+% 						\dfrac{\partial}{\partial r} , \
+% 						\frac{1}{r} \dfrac{\partial}{\partial \theta} , \
+% 						\frac{1}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
+% 					\right \rangle_{r,\theta,\phi} 
+% 					F 
+% 					\ = \
+% 					\left( \hat{r}, \ \hat{\theta} , \ \hat{\phi} \right)
+% 					\cdot 
+% 					\left( \mss{
+% 						\frac{\partial}{\partial r} , \
+% 						\frac{1}{r} \frac{\partial}{\partial \theta} , \
+% 						\frac{1}{ r \sin{\theta} } \frac{\partial}{\partial \phi} 
+% 					} \right)
+% 					% \nabla_s 
+% 					F 
+% 					\\[10pt]
+% 				& = \ 
+% 					\left( \ \begin{matrix}
+% 						\cos{\phi}\sin{\theta} \hs \hat{x} + \sin{\phi}\sin{\theta} \hs \hat{y} + \cos{\theta} \hs \hat{z} \\[5pt]
+% 						\cos{\phi}\cos{\theta} \hs \hat{x} + \sin{\phi}\cos{\theta} \hs \hat{y} - \sin{\theta} \hs \hat{z} \\[5pt]
+% 						- \sin{\phi} \hs \hat{x} + \cos{\phi} \hs \hat{y}
+% 					\end{matrix} \ \right)
+% 					\cdot
+% 					\left[ \hs \begin{matrix}
+% 						\\[-12pt]
+% 						\tfrac{\partial}{\partial r}\\[5pt]
+% 						\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[5pt]
+% 						\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
+% 					\end{matrix} \hs \right] 
+% 					% \left( 
+% 					% 	\dfrac{\partial}{\partial r} , \
+% 					% 	\frac{1}{r} \dfrac{\partial}{\partial \theta} , \
+% 					% 	\frac{1}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
+% 					% \right)
+% 					F 
+% 					\\[5pt]
+% 				& = \ \text{\LARGE \(\Bigg\langle\)}
+% 					\mss{ \begin{array}{c}
+% 						\displaystyle
+% 						\cos{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
+% 						+ \frac{\cos{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
+% 						- \frac{\sin{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
+% 						\\[10pt]
+% 						\displaystyle
+% 						\sin{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
+% 						+ \frac{\sin{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
+% 						+ \frac{\cos{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi}
+% 						\\[10pt]
+% 						\displaystyle
+% 						\cos{\theta} \dfrac{\partial}{\partial r} 
+% 						- \frac{\sin{\theta}}{ r } \dfrac{\partial}{\partial \theta} 
+% 						\\[10pt]
+% 					\end{array} }
+% 					\text{\LARGE\(\Bigg\rangle\)}_\mss{\hspace{-7pt} \hat{x},\hat{y},\hat{z}}
+% 					F 		
+% 					\ = \ 
+% 					\left[\begin{matrix}
+% 						\hat{x}\\
+% 						\hat{y}\\
+% 						\hat{z}
+% 					\end{matrix}\right]
+% 					\cdot
+% 					\left[\begin{matrix}
+% 						\\[-12pt]
+% 						\tfrac{\partial}{\partial x}\\[5pt]
+% 						\tfrac{\partial}{\partial y}\\[5pt]
+% 						\tfrac{\partial}{\partial z}
+% 					\end{matrix}\right] 
+% 					% \left \langle 
+% 					% 	\frac{\partial}{\partial x} , \frac{\partial}{\partial y} , \frac{\partial}{\partial z}
+% 					% \right \rangle_{x,y,z}
+% 					F
+% 			\end{aligned}
+% 			\\[15pt]
+% 		% Divergence
+% 		\nabla \dotP \vec{A} \ & 
+% 			= \ \frac{1}{r} \frac{1}{r \sin{\theta}} 
+% 			\left\langle 
+% 				\dfrac{\partial}{\partial r} , \ 
+% 				\dfrac{\partial}{\partial \theta} , \ 
+% 				\dfrac{\partial}{\partial \phi} 
+% 			\right\rangle 
+% 			\ \dotP \ [ r \cdot r \sin{\theta} ]
+% 			\left\langle A_r , \ \frac{1}{r} A_\theta , \ \frac{1}{ r \sin{\theta} } A_\phi \right\rangle
+% 			\\[15pt]
+% 		% Curl
+% 		\nabla \times \vec{A} \ & 
+% 			= \ \dfrac{1}{r} \dfrac{1}{ r \sin{\theta} } 
+% 			\begin{Vmatrix}
+% 				\hat{r} 					 & r \hat{\theta} 			    & r \sin{\theta} \hat{\phi}\\[10pt]
+% 				\dfrac{\partial}{\partial r} & \dfrac{\partial}{\partial \theta} & \dfrac{\partial}{\partial \phi}\\[10pt]
+% 				A_r							 & r A_\theta				    & r \sin{\theta} A_\phi
+% 			\end{Vmatrix}
+% 	\end{aligned}\)
 
-	\vspace{20pt}
-	% Double Cross Product
-	\(\begin{array}{r c l c l}
-		\relax[ \vec{A} \times (\vec{B} \times \vec{C}) ]_i 
-			&=& \vec{A} \dotP ( B_i \vec{C} ) - \vec{A} \dotP ( \vec{B} C_i ) 
-			\\[10pt]
-		\vec{A} \times (\vec{B} \times \vec{C}) 
-			&=& \boxed{ ( \vec{A} \dotP ( \vec{B} \otimes \vec{C} )^T )^T - ( \vec{A} \dotP \vec{B} \otimes \vec{C} )^T }
-			&=& ( \vec{A} \otimes \vec{B} ) \cdot \vec{C} - ( \vec{A} \dotP \vec{B} \otimes \vec{C} )^T 
-			\\[5pt]
-		&=& ( A^T ( BC^T )^T )^T - ( A^T BC^T )^T
-			&=& (AB^T)^T C - ( A^T BC^T )^T
-	\end{array}\)
-}
-\hfill
-\vline
-\hfill
-\(
-	\begin{gathered}[t]
-		% Line Element
-		\begin{aligned}
-			d\hsvec{r} & = d\hat{x} + d\hat{y} + d\hat{z}\\
-				& = \partial \hat{r} + r \hs \partial \hat{\theta} + r \sin\theta\hs \partial \hat{\phi}
-		\end{aligned}
-			\\[15pt]
-		% Unit Vectors
-		\begin{aligned}
-			\left[ \hat{r} , \ \hat{\theta} , \ \hat{\phi} \right] & = \left[ 
-					\tfrac{\partial}{\partial r} , \
-					\tfrac{1}{r} \tfrac{\partial}{\partial \theta} , \
-					\tfrac{1}{r \sin{\theta}} \tfrac{\partial}{\partial \phi} 
-				\right]
-				\hsvec{r}
-				\\
-			& = \left[ \hs \nabla_{sp} \otimes \hsvec{r} \hs\hs \right]^T
-		\end{aligned}
-			\\[15pt]
-		% \theta Example
-		\begin{aligned}
-			\theta & = \theta \mss{(x,y,z)} 
-				\hspace{10pt} ( \mss{ x^2 + y^2 = z^2 \tan^2{\theta} } )
-				\\
-			\phi & = \phi \mss{(x,y,z)} 
-				\hspace{10pt} ( \mss{ y = x \tan{\phi} } )
-				\\[10pt]
-			d\theta & = \tfrac{\partial \theta}{\partial x} dx 
-				+ \tfrac{\partial \theta}{\partial y} dy
-				+ \tfrac{\partial \theta}{\partial z} dz
-				\\[10pt]
-			\tfrac{\partial}{\partial x} & = \tfrac{\partial r}{\partial x} \tfrac{\partial}{\partial r}
-				+ \tfrac{\partial \theta}{\partial x} \tfrac{\partial}{\partial \theta}
-				+ \tfrac{\partial \phi}{\partial x} \tfrac{\partial}{\partial \phi} 
-			\end{aligned}
-			\\[20pt]
-		% General Matrix
-		\begin{aligned}
-			% Partial r \theta \phi
-			\left[\begin{matrix}
-				dr\\
-				d\theta\\
-				d\phi
-			\end{matrix}\right] 
-			& = 
-				\left[\begin{matrix}
-					- \nabla r - \\
-					- \nabla \theta - \\
-					- \nabla \phi - \\
-				\end{matrix}\right]
-				\left[\begin{matrix}
-					dx\\
-					dy\\
-					dz
-				\end{matrix}\right]
-				\\[10pt]
-			% Partial / Partial xyz
-			\left[\begin{matrix}
-				\\[-12pt]
-				\tfrac{\partial}{\partial x}\\[5pt]
-				\tfrac{\partial}{\partial y}\\[5pt]
-				\tfrac{\partial}{\partial z}
-			\end{matrix}\right] 
-			& = 
-				\left[\arraycolsep=2pt\begin{matrix}
-					| & | & | \\
-					\nabla r & \nabla \theta & \nabla \phi \\
-					| & | & |
-				\end{matrix}\right]
-				\left[\begin{matrix}
-					\\[-12pt]
-					\tfrac{\partial}{\partial r}\\[5pt]
-					\tfrac{\partial}{\partial \theta}\\[5pt]
-					\tfrac{\partial}{\partial \phi}
-				\end{matrix}\right]
-				\\[10pt]
-			% d x y z
-			\left[\begin{matrix}
-				dx\\
-				dy\\
-				dz
-			\end{matrix}\right] 
-			& = 
-				\left[\begin{matrix}
-					- \nabla_{sp} x - \\
-					- \nabla_{sp} y - \\
-					- \nabla_{sp} z - \\
-				\end{matrix}\right]
-				\left[ \mss{ \begin{matrix}
-					\partial r\\[5pt]
-					r \hs \partial \theta\\[5pt]
-					r \sin\theta \hs \partial \phi
-				\end{matrix} } \right]
-				\\[10pt]
-		\end{aligned}
-	\end{gathered}	
-\)
-\hfill\hs
+% 	\vspace{20pt}
+% 	% Double Cross Product
+% 	\(\begin{array}{r c l c l}
+% 		\relax[ \vec{A} \times (\vec{B} \times \vec{C}) ]_i 
+% 			&=& \vec{A} \dotP ( B_i \vec{C} ) - \vec{A} \dotP ( \vec{B} C_i ) 
+% 			\\[10pt]
+% 		\vec{A} \times (\vec{B} \times \vec{C}) 
+% 			&=& \boxed{ ( \vec{A} \dotP ( \vec{B} \otimes \vec{C} )^T )^T - ( \vec{A} \dotP \vec{B} \otimes \vec{C} )^T }
+% 			&=& ( \vec{A} \otimes \vec{B} ) \cdot \vec{C} - ( \vec{A} \dotP \vec{B} \otimes \vec{C} )^T 
+% 			\\[5pt]
+% 		&=& ( A^T ( BC^T )^T )^T - ( A^T BC^T )^T
+% 			&=& (AB^T)^T C - ( A^T BC^T )^T
+% 	\end{array}\)
+% }
+% \hfill
+% \vline
+% \hfill
+% \(
+% 	\begin{gathered}[t]
+% 		% Line Element
+% 		\begin{aligned}
+% 			d\hsvec{r} & = d\hat{x} + d\hat{y} + d\hat{z}\\
+% 				& = \partial \hat{r} + r \hs \partial \hat{\theta} + r \sin\theta\hs \partial \hat{\phi}
+% 		\end{aligned}
+% 			\\[15pt]
+% 		% Unit Vectors
+% 		\begin{aligned}
+% 			\left[ \hat{r} , \ \hat{\theta} , \ \hat{\phi} \right] & = \left[ 
+% 					\tfrac{\partial}{\partial r} , \
+% 					\tfrac{1}{r} \tfrac{\partial}{\partial \theta} , \
+% 					\tfrac{1}{r \sin{\theta}} \tfrac{\partial}{\partial \phi} 
+% 				\right]
+% 				\hsvec{r}
+% 				\\
+% 			& = \left[ \hs \nabla_{sp} \otimes \hsvec{r} \hs\hs \right]^T
+% 		\end{aligned}
+% 			\\[15pt]
+% 		% \theta Example
+% 		\begin{aligned}
+% 			\theta & = \theta \mss{(x,y,z)} 
+% 				\hspace{10pt} ( \mss{ x^2 + y^2 = z^2 \tan^2{\theta} } )
+% 				\\
+% 			\phi & = \phi \mss{(x,y,z)} 
+% 				\hspace{10pt} ( \mss{ y = x \tan{\phi} } )
+% 				\\[10pt]
+% 			d\theta & = \tfrac{\partial \theta}{\partial x} dx 
+% 				+ \tfrac{\partial \theta}{\partial y} dy
+% 				+ \tfrac{\partial \theta}{\partial z} dz
+% 				\\[10pt]
+% 			\tfrac{\partial}{\partial x} & = \tfrac{\partial r}{\partial x} \tfrac{\partial}{\partial r}
+% 				+ \tfrac{\partial \theta}{\partial x} \tfrac{\partial}{\partial \theta}
+% 				+ \tfrac{\partial \phi}{\partial x} \tfrac{\partial}{\partial \phi} 
+% 			\end{aligned}
+% 			\\[20pt]
+% 		% General Matrix
+% 		\begin{aligned}
+% 			% Partial r \theta \phi
+% 			\left[\begin{matrix}
+% 				dr\\
+% 				d\theta\\
+% 				d\phi
+% 			\end{matrix}\right] 
+% 			& = 
+% 				\left[\begin{matrix}
+% 					- \nabla r - \\
+% 					- \nabla \theta - \\
+% 					- \nabla \phi - \\
+% 				\end{matrix}\right]
+% 				\left[\begin{matrix}
+% 					dx\\
+% 					dy\\
+% 					dz
+% 				\end{matrix}\right]
+% 				\\[10pt]
+% 			% Partial / Partial xyz
+% 			\left[\begin{matrix}
+% 				\\[-12pt]
+% 				\tfrac{\partial}{\partial x}\\[5pt]
+% 				\tfrac{\partial}{\partial y}\\[5pt]
+% 				\tfrac{\partial}{\partial z}
+% 			\end{matrix}\right] 
+% 			& = 
+% 				\left[\arraycolsep=2pt\begin{matrix}
+% 					| & | & | \\
+% 					\nabla r & \nabla \theta & \nabla \phi \\
+% 					| & | & |
+% 				\end{matrix}\right]
+% 				\left[\begin{matrix}
+% 					\\[-12pt]
+% 					\tfrac{\partial}{\partial r}\\[5pt]
+% 					\tfrac{\partial}{\partial \theta}\\[5pt]
+% 					\tfrac{\partial}{\partial \phi}
+% 				\end{matrix}\right]
+% 				\\[10pt]
+% 			% d x y z
+% 			\left[\begin{matrix}
+% 				dx\\
+% 				dy\\
+% 				dz
+% 			\end{matrix}\right] 
+% 			& = 
+% 				\left[\begin{matrix}
+% 					- \nabla_{sp} x - \\
+% 					- \nabla_{sp} y - \\
+% 					- \nabla_{sp} z - \\
+% 				\end{matrix}\right]
+% 				\left[ \mss{ \begin{matrix}
+% 					\partial r\\[5pt]
+% 					r \hs \partial \theta\\[5pt]
+% 					r \sin\theta \hs \partial \phi
+% 				\end{matrix} } \right]
+% 				\\[10pt]
+% 		\end{aligned}
+% 	\end{gathered}	
+% \)
+% \hfill\hs
 
 \end{document}
 
