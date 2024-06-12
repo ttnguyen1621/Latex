@@ -36,35 +36,56 @@
 
 \section{Lorentz Transformation}
 
-\vspace*{10pt}
+\vspace{10pt}
 % Galilean Transform
-\(\begin{aligned}[t]
-	&\text{\underline{Galilean Transform}}\\[10pt]
-	&\indent\begin{aligned}
-		t_0' &= t_0\\[5pt]
-		x_0' &= x_0 - vt_0
-	\end{aligned} \ \ \ , \ \ \
-	\begin{aligned}
-		t_0 &= t'_0\\[5pt]
-		x_0 &= x'_0 + vt'_0
+\(
+	\begin{aligned}[t]
+		& \text{\underline{Galilean Transform}}\\[10pt]
+		& \indent \mss{
+				\begin{aligned}
+					t' & = t\\
+					x' & = x - vt
+				\end{aligned} 
+				\ \ \ , \ \ \
+				\begin{aligned}
+					t & = t'\\
+					x & = x' + vt'
+				\end{aligned}
+				\hspace{7pt} , \hspace{7pt} 
+				\left[ \begin{matrix}
+					t'\\
+					x'
+				\end{matrix} \right]
+				= 
+				\left[ \begin{matrix}
+					1 & 0\\
+					v & 0
+				\end{matrix} \right]
+				\left[ \begin{matrix}
+					t\\
+					x
+				\end{matrix} \right]
+			}
 	\end{aligned}
-\end{aligned}
-\hspace{1cm}
-\rightarrow
-\hspace{1cm}
-% Lorentz Transform
-\begin{aligned}[t]
-	&\text{\underline{Lorentz Transform}} \hspace{20pt} 
-		\gamma \equiv \tfrac{1}{\sqrt{1 - v^2/c^2}} = \tfrac{1}{\sqrt{1 - \beta^2}}\\[5pt]
-	&\indent\boxed{\begin{aligned}
-		x' &= \gamma (x - \beta ct)\\[5pt]
-		ct' &= \gamma (ct - \beta x)
-	\end{aligned}\ \ \ , \ \ \
-	\begin{aligned}
-		x &= \gamma (x' + \beta ct')\\[5pt]
-		ct &= \gamma (ct' + \beta x')
-	\end{aligned}}
-\end{aligned}\)
+	\hspace{.5cm}
+	\rightarrow
+	\hspace{.5cm}
+	% Lorentz Transform
+	\begin{aligned}[t]
+		& \text{\underline{Lorentz Transform}} \hspace{20pt} 
+			\gamma \equiv \tfrac{1}{\sqrt{1 - v^2/c^2}} = \tfrac{1}{\sqrt{1 - \beta^2}}\\[5pt]
+		& \indent\boxed{
+			\begin{aligned}
+				x' & = \gamma (x - \beta ct)\\[5pt]
+				ct' & = \gamma (ct - \beta x)
+			\end{aligned}\ \ \ , \ \ \
+			\begin{aligned}
+				x & = \gamma (x' + \beta ct')\\[5pt]
+				ct & = \gamma (ct' + \beta x')
+			\end{aligned}
+			}
+	\end{aligned}
+\)
 
 \vspace{15pt}\noindent
 % Define variables

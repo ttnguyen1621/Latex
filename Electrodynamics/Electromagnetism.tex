@@ -860,10 +860,27 @@ the potential from each other charge comes out to be
 	\end{gathered}\) 
 \end{minipage}
 
-%-----------------------------------------------------------------
+\vspace{40pt}
+% Multipole Expansion
+\(\begin{aligned}
+	V\mss{(\hsvec{x})} & \ =\ V\big|_0 + \hsvec{x} \cdot \hsvec{\nabla} V\big|_0 
+		+ \tfrac{1}{2} \sum_{i,j} x_i x_j \tfrac{\partial}{\partial x_i} \tfrac{\partial}{\partial x_j} V\big|_0 
+		+ \dots
+		\ =\ V\big|_0 - \hsvec{x} \cdot \vec{E}\big|_0 
+		- \tfrac{3}{6} \sum_{i,j} x_i x_j \tfrac{\partial}{\partial x_i} E_j\big|_0 
+		+ \underbrace{ \left[ \tfrac{1}{6} r^2 \hsvec{\nabla} \cdot \hsvec{E}\big|_0 \right] }_0 + \dots
+		\\
+	W_{\text{ext.}} & \ =\ \int \rho\mss{(x')} \hs V_{\text{ext.}}\mss{(x')} \hs d\tau'
+		\ =\ \boxed{
+			qV\big|_0 - \hsvec{p} \cdot \vec{E}\big|_0 
+			- \tfrac{1}{6} \sum_{i,j} Q_{ij} \tfrac{\partial}{\partial x_i} E_j\big|_0 + \dots
+		}
+\end{aligned}\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
 %
 %
-%-----------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
 % Circuits/Ohm's Law
 \newpage
 \subsection{Circuits/Ohm's Law}
@@ -1010,11 +1027,11 @@ the potential from each other charge comes out to be
 \hspace{1.5cm}
 % Mutual Induction
 \begin{tabular}{l}
-	\underline{Mutual Inductance}:\\[10pt]
+	\underline{Mutual Inductance (See Inductor)}:\\[10pt]
 	\ \ \fbox{ \setlength{\tabcolsep}{0pt}
 		\begin{tabular}{l}
-			Flux Through \(B\): \ \ \(\Phi_B = M \cdot I_A\)\\[5pt]
-			Flux Through \(A\): \ \ \(\Phi_A = M \cdot I_B\)
+			Flux Through \(B\): \ \ \(\Phi_B = M I_A;\ V_A = -M \frac{dI_A}{dt}\)\\[5pt]
+			Flux Through \(A\): \ \ \(\Phi_A = M I_B;\ V_B = -M \frac{dI_B}{dt}\)
 		\end{tabular} }
 \end{tabular}
 
@@ -1469,9 +1486,10 @@ In general,
 	\vspace{20pt}
 	\textbf{7. \ \ \ \( 
 		\left[ \begin{aligned}
-			&\bullet\ \delta_q \text{ at } x_0 \\
-			&\bullet\ \parbox[t]{9.47cm}{
-					Conductive sphere at origin \(\mathbf{O}\), of radius \(R < x_0\) and charge \(Q\)
+			& \bullet\ \delta_q \text{ at } x_0 \\
+			& \bullet\ \parbox[t]{9.47cm}{
+					Conductive sphere at origin \(\mathbf{O}\), radius \(R < x_0\) and 
+					charge \(Q\) \(\Leftrightarrow\) potential \(V=\tfrac{k(Q+q\lambda)}{R^2}\).
 				}
 		\end{aligned} \right]
 	\) }
@@ -1480,10 +1498,10 @@ In general,
 	\(
 		\ ==\ 
 		\left[ \begin{aligned}
-			&\bullet\ \delta_q \text{ at } x_0 \\
-			&\bullet\ \delta_{-q\lambda} \text{ at } \big\{ x_1 \hs\big|\hs \tfrac{R}{x_0} = \tfrac{x_1}{R} = \lambda \big\} \\
-			&\bullet\ \delta_{q\lambda + Q} \text{ at } \mathbf{O} 
-				\hspace{10pt} \text{\scriptsize(\(V=0\) grounded sphere \(\rightarrow\ Q=-q\lambda \))}\\
+			& \bullet\ \delta_q \text{ at } x_0 \\
+			& \bullet\ \delta_{-q\lambda} \text{ at } \big\{ x_1 \hs\big|\hs \tfrac{R}{x_0} = \tfrac{x_1}{R} = \lambda \big\} \\
+			& \bullet\ \delta_{q\lambda + Q} \text{ at } \mathbf{O} 
+				\hspace{10pt} \text{\scriptsize(\(V=0\) grounded sphere \(\rightarrow\ Q=-q\lambda \))}
 		\end{aligned} \right]		
 	\)
 
@@ -1491,9 +1509,10 @@ In general,
 	\vspace{20pt}
 	\textbf{8. \ \ \ \( 
 		\left[ \begin{aligned}
-			&\bullet\ \delta_q \text{ at } x_0 \\
-			&\bullet\ \parbox[t]{9.47cm}{
-					Conductive sphere at origin \(\mathbf{O}\), of radius \(R > x_0\) and charge \(Q\).
+			& \bullet\ \delta_q \text{ at } x_0 \\
+			& \bullet\ \parbox[t]{9.47cm}{
+					Conductive sphere at origin \(\mathbf{O}\), radius \(R > x_0\) and 
+					charge \(Q\) \(\Leftrightarrow\) potential \(V=\tfrac{k(Q+q)}{R^2}\).
 				}
 		\end{aligned} \right]
 	\) }
@@ -1502,19 +1521,239 @@ In general,
 	\(
 		\ ==\ 
 		\left[ \begin{aligned}
-			&\bullet\ \delta_q \text{ at } x_0 \\
-			&\bullet\ \delta_{-q/\lambda} \text{ at } \big\{ x_1 \hs\big|\hs \tfrac{R}{x_0} = \tfrac{x_1}{R} = \lambda \big\} \\
-			&\bullet\ \delta_{q + Q} \text{ at } \mathbf{O} 
-				\hspace{10pt} \text{\scriptsize(\(V=0\) grounded sphere \(\rightarrow\ Q=-q \))}\\
+			& \bullet\ \delta_q \text{ at } x_0 \\
+			& \bullet\ \delta_{-q/\lambda} \text{ at } \big\{ x_1 \hs\big|\hs \tfrac{R}{x_0} = \tfrac{x_1}{R} = \lambda \big\} \\
+			& \bullet\ \delta_{q + Q} \text{ at } \mathbf{O} 
+				\hspace{10pt} \text{\scriptsize(\(V=0\) grounded sphere \(\rightarrow\ Q=-q \))}
+		\end{aligned} \right]		
+	\)
+
+	% Constant Electric Field
+	\vspace{20pt}
+	\textbf{9. \ \ \ \(
+		\left[ \begin{aligned}
+			& \bullet\ \delta_{\pm q} \text{ at } \big\{ \mp z_0 \hs\big|\hs z_0 \gg 0 \big\}\\
+			& \bullet\ \vec{E}_{\pm q}(r \ll z_0) \approx \tfrac{2kqq}{r} \hat{z} = E_0 \hat{z}
+				\hspace{10pt} (\text{\scriptsize Const. E-field})
+				\\
+			& \bullet\ \parbox[t]{9.47cm}{
+					Conductive sphere at origin \(\mathbf{O}\), radius \(R \ll z_0\)
+				}
+		\end{aligned} \right]
+	\) }
+
+	\vspace{5pt}\hspace{25pt}
+	\(
+		\ ==\ 
+		\left[ \begin{aligned}
+			& \bullet\ \delta_{\pm q} \text{ at } \big\{ \mp z_0 \hs\big|\hs z_0 \gg 0 \big\}\\
+			& \bullet\ \delta_{\mp q\lambda} \text{ at } 
+				\big\{ \mp z_1 \hs\big|\hs \tfrac{R}{z_0} = \tfrac{z_1}{R} = \lambda \big\} 
+				\hspace{10pt} (\text{\scriptsize Dipole})
+				\\
+			& \Rightarrow\ V({\scriptstyle r\geq R}, \theta) \hs \approx\hs 
+				- E_0 (\underbrace{ r - \tfrac{R^3}{r^2} }_{\mp q, \ \ \pm q\lambda}) \cos\theta 
 		\end{aligned} \right]		
 	\)
 
 \end{minipage}
 
-%-------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
 %
 %
-%-------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Greens Functions
+\subsection{Green's Functions}
+
+\vspace{10pt}
+\(\begin{aligned}
+	\begin{gathered}
+			\text{Green's 1st}\\[-3pt]
+			\text{Identity}
+		\end{gathered}:\ \ & \oiint\ [f \vec{\nabla} g] \cdot \hat{n} \hs dS 
+		= \iiint \vec{\nabla} \cdot [f \vec{\nabla} g] d \tau
+		= \iiint f \nabla^2 g + \vec{\nabla} f \cdot \vec{\nabla} g \hs d \tau
+		\\[10pt]
+	\begin{gathered}
+			\text{Green's 2nd}\\[-3pt]
+			\text{Identity}
+		\end{gathered}:\ \ & \oiint\ \left[ f \vec{\nabla} g - g \vec{\nabla} f \right] \cdot \hat{n} \hs dS
+		= \iiint \left[ f \nabla^2 g - g \nabla^2 f \right] d \tau
+		\\[10pt]
+	\begin{gathered}
+			\text{Green's 3rd}\\[-3pt]
+			\text{Identity}
+		\end{gathered}:\ \ & \begin{aligned}[t]
+			\iiint \left[ - f \nabla^2 g \right] d \tau & = 
+				\iiint \left[ - g \nabla^2 f \right] d \tau 
+				+ \oiint\ \left[ g \vec{\nabla} f - f \vec{\nabla} g \right] \cdot \hat{n} \hs dS
+				\\[5pt]
+			\iiint \left[ - V \nabla^2 G \right] d \tau & = 
+			\iiint \left[ - G \nabla^2 V \right] d \tau 
+			+ \oiint\ \left[ G \vec{\nabla} V \right] \cdot \hat{n} \hs dS 
+			- \oiint\ \left[ V \vec{\nabla} G \right] \cdot \hat{n} \hs dS  
+				\\[10pt]
+			\Aboxed{ 
+				V\mss{(\hsvec{x})} = \tfrac{1}{4\pi \epsilon_0} \iiint G&\mss{(\hsvec{x},\hsvec{x}')} \hs \rho\mss{(\hsvec{x})} \ d\tau' 
+				- \tfrac{1}{4\pi} \oiint\ G\mss{(\hsvec{x},\hsvec{x}')} \hs \vec{E}\mss{(\hsvec{x})} \cdot \hat{n} \ dS' 
+				- \tfrac{1}{4\pi} \oiint\ V\mss{(\hsvec{x})} \hs \tfrac{\partial G}{\partial n'} \ dS'
+				}
+		\end{aligned}
+		\hspace{1.2cm}
+		\begin{aligned}[t]
+			G\mss{(\hsvec{x},\hsvec{x}')} & = \tfrac{1}{|\hsvec{x}-\hsvec{x}'|} + F\mss{(\hsvec{x},\hsvec{x}')}\\[5pt]
+			\nabla^2 \tfrac{1}{|\hsvec{x}-\hsvec{x}'|} & = -4\pi \delta\mss{(\hsvec{x}-\hsvec{x}')}\\[5pt]
+			\nabla^2 F & = 0\\[5pt]
+			\int \nabla^2 G \ d\tau & = \oint \tfrac{\partial G}{\partial n} dS = -4\pi
+		\end{aligned}
+		\\
+\end{aligned}\)
+
+\vspace{20pt}
+% Boundary Conditions
+\(\begin{aligned}
+	% Dirichlet 
+	\begin{gathered}
+			\underline{\text{Dirichlet Boundary}} \\[-3pt]
+			\underline{\text{Conditions}} 
+		\end{gathered}:\ \ \ & V\mss{(\hsvec{x})} = 
+		\tfrac{1}{4\pi \epsilon_0} \iiint G\mss{(\hsvec{x},\hsvec{x}')} \hs \rho\mss{(\hsvec{x})} \ d\tau' 
+		- \tfrac{1}{4\pi} \oiint\ V\mss{(\hsvec{x})} \hs \tfrac{\partial G}{\partial n'} \ dS'
+		&\hspace{20pt}& \Big( G = 0 \text{ on } S \rightarrow \text{find } \tfrac{\partial G}{\partial n'} \Big)
+		\\[10pt]
+	% Neumann
+	\begin{gathered}
+			\underline{\text{Neumann Boundary}} \\[-3pt]
+			\underline{\text{Conditions}} 
+		\end{gathered}:\ \ \ & V\mss{(\hsvec{x})} = 
+		\tfrac{1}{4\pi \epsilon_0} \iiint G\mss{(\hsvec{x},\hsvec{x}')} \hs \rho\mss{(\hsvec{x})} \ d\tau' 
+		+ \tfrac{1}{4\pi} \oiint\ G\mss{(\hsvec{x},\hsvec{x}')} \hs \tfrac{\partial V}{\partial n'} \ dS' 
+		+ \langle V \rangle
+		&& \Big( \tfrac{dG}{dn} = - \tfrac{4\pi}{S} \text{ on } S \rightarrow \text{find } G \Big)
+\end{aligned}\)
+
+\vspace{20pt} 
+% Dirichlet Laplace Equation Solution for Sphere
+\(
+	\underline{ \begin{gathered}
+		\text{Dirichlet Laplace Eq.}\\[-3pt]
+		\text{Solution on Sphere}%\\[-3pt]
+		% \text{w/ Poisson Kernel}
+	\end{gathered} }: \ \ \
+	\arraycolsep=2pt\begin{array}{r c r l l}
+		G\mss{(\hsvec{x},\hsvec{x}')} & = 
+			& \multicolumn{3}{l}{
+				\frac{1}{|\hsvec{x}-\hsvec{x}'|} 
+				+ \frac{-R/x'}{\left| \hsvec{x} - \frac{R^2}{x'}\frac{\hsvec{x}'}{x'} \right|}
+				= \frac{1}{\sqrt{x^2 + x'^2 - 2xx'\cos\theta_{xx'}}} - \frac{1}{\sqrt{x^2 x'^2/R^2 + R^2 - 2xx' \cos\theta_{xx'} }}
+				}
+			\\[20pt]
+		\left. \tfrac{\partial G}{\partial x'} \right|_{x'=R} & = 
+			& \multicolumn{3}{l}{ \displaystyle
+				- \tfrac{2x' - \cancel{ 2x \cos\theta }}{2} \left[ x^2 + x'^2 - 2xx'\cos\theta \right]^{-3/2} 
+				+ \tfrac{2x^2x'/R^2 - \cancel{ 2x \cos\theta } }{2} 
+				\left[ x^2 \cancel{x'^2/R^2} + R^2 - 2xx' \cos\theta \right]^{-3/2}
+				}
+			\\[10pt]
+		& =
+			& \multicolumn{3}{l}{ \boxed{ (x^2/x'-x')\left[ x^2 + x'^2 - 2xx'\cos\theta \right]^{-3/2} } }
+			\\[10pt]
+		\left. \tfrac{\partial G}{\partial n'} \right|_{x'=R} & = 
+			& - \left. \tfrac{\partial G}{\partial x'} \right|_{x'=R} 
+			& \hspace{20pt} \mss{(|\hsvec{x}\hs| > R)}
+			& \multirow{2}{*}{\( \displaystyle 
+				\hspace{10pt} \Rightarrow \hspace{10pt} 
+				\boxed{ 
+					V\mss{(\hsvec{x})} = - \mss{\oiint}\ V\mss{(R,\hsvec{x}')} \hs \tfrac{\partial G}{\partial n} \ dS 
+				}
+				\)}
+			\\[5pt]
+		& = 
+			& \left. \tfrac{\partial G}{\partial x'} \right|_{x'=R} 
+			& \hspace{20pt} \mss{(|\hsvec{x}\hs| < R)}
+	\end{array}
+\)
+
+%-------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+\(\arraycolsep=2pt\begin{array}{r c l c l}
+	\nabla^2_x G\mss{(\hsvec{x}, \hsvec{x}')} = - 4\pi \delta\mss{(\hsvec{x}-\hsvec{x}')} & = 
+		& - \tfrac{4\pi}{r^2} \delta\mss{(r - r')} \hs 
+			\delta\mss{(\phi - \phi')} \hs \delta\mss{( \cos\theta - \cos\theta' )} 
+		& =
+		& - \tfrac{4\pi}{r} \delta\mss{(\rho - \rho')} \hs \delta\mss{(\phi - \phi')} \hs \delta\mss{(z-z')}
+		\\[5pt]
+	& = 
+		& \displaystyle - \tfrac{4\pi}{r^2} \delta\mss{(r - r')} \hs \sum_{l,m} Y_{lm}^* Y_{lm}
+		& =
+		& \displaystyle - \tfrac{4\pi}{r} \delta\mss{(\rho - \rho')} \hs 
+			\sum_m \tfrac{1}{2\pi} e^{im(\phi-\phi')} \mss{ \int_{-\infty}^{\infty} }\hs \tfrac{1}{2\pi} e^{ik(z-z')} \hs dk
+\end{array}\)
+
+\vspace{10pt}
+\(\begin{aligned}
+	G\mss{(\hsvec{x}, \hsvec{x}')} & = \sum_{l=0}^\infty \sum_{m\hs =\hs -l}^l 
+		\big[ g_l \mss{(r, r')} \hs Y_{lm}^*\mss{(\theta,\phi)} \big] Y_{lm}\mss{(\theta,\phi)}
+		\hspace{15pt} \Leftarrow \hspace{15pt} 
+		\left[ \tfrac{1}{r} \tfrac{\partial^2}{\partial r^2} r + \tfrac{l(l+1)}{r^2} \right] g_l 
+		= -\tfrac{4\pi}{r^2} \delta\mss{(r-r')}
+		\\[5pt]
+	& = \int_0^\infty \sum_{m\hs =\hs -\infty}^\infty 
+		g_m \mss{(k, \rho, \rho')} \left[ \tfrac{1}{2\pi} e^{im(\phi-\phi')} \right] \tfrac{1}{\pi} \cos [k(z-z')] \hs dk 
+		\hspace{15pt} \Leftarrow \hspace{15pt} 
+		\left[ \tfrac{1}{\rho} \tfrac{\partial}{\partial \rho} \big( \rho \tfrac{\partial}{\partial \rho} \big)
+		- \big( k^2 + \tfrac{m^2}{\rho^2} \big) \right] g_m 
+		= -\tfrac{4\pi}{\rho} \delta\mss{(\rho-\rho')}
+\end{aligned}\)
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+\(\begin{aligned}
+	& -\lambda_n \Psi_n = \left[ \nabla^2_x + f\mss{(\hsvec{x})} \right] \Psi_n
+		\ \Rightarrow\ \begin{aligned}
+			& \left[ \nabla^2_x + f\mss{(\hsvec{x})} + \lambda_n \right] \Psi_n && =\ 0\\[5pt]
+			& \left[ \nabla^2_x + f\mss{(\hsvec{x})} + \lambda \right] G\mss{(\hsvec{x} - \hsvec{x}')} && = \
+				- 4\pi \delta\mss{(\hsvec{x} - \hsvec{x}')}
+		\end{aligned}
+		\\[10pt]
+	& G_\lambda\mss{(\hsvec{x} - \hsvec{x}')} 
+		= \sum_n a_n\mss{(\hsvec{x}')} \Psi_n\mss{(\hsvec{x}')}
+		= \sum_n \tfrac{4\pi}{\lambda-\lambda_n} \Psi_n^*\mss{(\hsvec{x}')} \Psi_n\mss{(\hsvec{x}')}
+		\ \ \Rightarrow\ \
+		\mss{ \begin{gathered}
+			f\mss{(\hsvec{x})} = 0\\[-1pt]
+			\lambda_n = k^2
+		\end{gathered} }
+		:\ G_0 = \boxed{
+			 \tfrac{1}{|\hsvec{x}-\hsvec{x}'|} 
+			= \tfrac{1}{2\pi^2} \mss{\iiint} \tfrac{1}{k^2} e^{i\hsvec{k}\cdot(\hsvec{x}-\hsvec{x}')} \hs d^3 k
+		}
+\end{aligned}\)
+
+\vspace{5pt}
+\(\begin{aligned}
+	P_l\mss{(\cos\gamma)} & = \sum_{m=-l}^{l} | Y_{lm}\mss{(\theta, \phi)} \rangle 
+		\langle Y_{lm}\mss{(\theta, \phi)}  | P_l \mss{(\cos\gamma)}
+		= \sum_{m=-l}^{l} \tfrac{4\pi}{2l+1} Y_{lm}^*\mss{(\theta', \phi')} Y_{lm}\mss{(\theta, \phi)} 
+		\\[15pt]
+	\tfrac{1}{|\hsvec{x}-\hsvec{x'}|} & = \tfrac{1}{r} \sum_{l=0} 
+		\underbrace{ \left( \tfrac{r'}{r} \right)^l }_{< 1} P_l\mss{(\cos\gamma) }
+		\ \ \ \text{or} \ \ \ \tfrac{1}{r'} \sum_{l=0} \underbrace{ \left( \tfrac{r}{r'} \right)^l }_{< 1} P_l\mss{(\cos\gamma)}
+		\ =\ \tfrac{1}{r_<} \sum_{l=0} \left( \tfrac{r_<}{r_>} \right)^l 
+		\sum_{m=-l}^{l} \tfrac{4\pi}{2l+1} Y_{lm}^*\mss{(\theta', \phi')} Y_{lm}\mss{(\theta, \phi)} 
+\end{aligned}\)
+
+%-------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-------------------------------------------------------------------------------------------------------------------------------
 % Multipole Expansion
 \newpage
 \subsection{Multipole Expansion}
@@ -1522,9 +1761,9 @@ In general,
 \vspace{5pt}
 \begin{center}\(
 	\begin{aligned}
-		\cursr^{\hs\hs2} &= r^2 + (r')^2 - 2( \vec{\bfr} \dotP \vec{r'} ) \\
-		&= r^2 \left [ 1 + \frac{r'}{r} \left ( \frac{ r' }{r} - 2\frac{ \vec{\bfr} \dotP \vec{r'} }{r'r} \right ) \right ] \\
-		&= r^2 \left ( 1 + \epsilon \right )
+		\cursr^{\hs\hs2} & = r^2 + (r')^2 - 2( \vec{\bfr} \dotP \vec{r'} ) \\
+		& = r^2 \left [ 1 + \frac{r'}{r} \left ( \frac{ r' }{r} - 2\frac{ \vec{\bfr} \dotP \vec{r'} }{r'r} \right ) \right ] \\
+		& = r^2 \left ( 1 + \epsilon \right ) \ \ \text{or} \ \ (r')^2 \left ( 1 + \epsilon' \right ) 
 	\end{aligned}
 	\hspace{10pt}\Rightarrow\hspace{10pt}
 	\begin{aligned}
@@ -1556,18 +1795,20 @@ In general,
 		\right ]
 	\end{gather*}
 	\begin{center}
-		\fbox{
-			\begin{tabular}{c}
-				\( \displaystyle V_{\text{mon}} = \frac{1}{4 \pi \epsilon_0 r} \int \rho( \vec{r'} ) d\tau' \) \\ \\
-				\( \displaystyle V_{\text{dip}} =  \frac{1}{4 \pi \epsilon_0 r^2} 
-					\left ( \int \vec{r'} \ \rho( \vec{r'} ) d\tau' \right ) \dotP \hat{\bfr} 
-					= \frac{ \vec{ \mathbf{p} } \dotP \hat{\bfr} }{4 \pi \epsilon_0 r^2} \)
-			\end{tabular}
-		}		
+		\fbox{ \(\begin{gathered}
+			V_{\text{mon}} = \frac{1}{4 \pi \epsilon_0 r} \int \rho( \vec{r'} ) d\tau' \\
+			V_{\text{dip}} =  \frac{1}{4 \pi \epsilon_0 r^2} \left( \int \vec{r'} \ \rho( \vec{r'} ) d\tau' \right) \dotP \hat{\bfr} 
+				= \frac{ \vec{ \mathbf{p} } \dotP \hat{\bfr} }{4 \pi \epsilon_0 r^2}
+		\end{gathered}\) }
 	\end{center}
 	
 	\vspace{20pt}
 	\(V\) is the dipole term. \( \mathbf{p} \) is the dipole moment.
+
+	\vspace{10pt}
+	\(
+		Q_{\text{quad. tens.}}\ :\ \ \boxed{ Q_{ij} = \int (3x'_i x'_j - r'^2 \delta_{ij}) \rho\mss{(x')} \hs d\tau' }
+	\)
 \end{minipage}
 % Divider
 \hfill\vline\hfill
@@ -1606,9 +1847,13 @@ In general,
 	\(A\) is the dipole term. \( \mathbf{m} \) is the dipole moment.
 \end{minipage}
 
-%--------------------------------------------------------
-% Ideal Dipoles
+%-----------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
 \newpage
+
+% Ideal Dipoles
 \noindent \textbf{Ideal Dipoles}
 
 \vspace{15pt}
@@ -1626,7 +1871,7 @@ In general,
 	\end{align*}
 	\hfill \break
 	\( \boxed{ \text{Ideal Dip:} \ \ \ \ \  V_{ \text{dip} }( \vec{ \mathbf{r} } ) 
-		= \frac{1}{4 \pi \epsilon_0} \frac{ \vec{ \mathbf{p} } \dotP \hat{\cursrr} }{\cursrr^{2}} } \)
+		= k_\epsilon \frac{ \vec{ \mathbf{p} } \dotP \hat{\cursrr} }{\cursrr^{2}} } \)
 \end{minipage}
 % Divider
 \hfill\vline\hfill
@@ -1660,32 +1905,131 @@ In general,
 		= k_\mu \frac{ \vec{ \mathbf{m} } \times \hat{\cursrr} }{\cursrr^{2}} } \)
 \end{minipage}
 
-%--------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-----------------------------------------------------------------------------------------------------------------------------
+\newpage
 % Multipole Examples
 \subsubsection{Multipole Examples}
-\hfill \break
-\begin{minipage}[t]{0.48\textwidth}
-	\textbf{3. \ \ \ }\\ \\
+
+% Electric Field of Dipole
+\(\begin{gathered}
+	\underline{\text{Vertical Origin}}\\[-5pt]
+	\underline{\text{Dipole \(E\)-Field}}
+\end{gathered}\)\ :\ \ \(\begin{aligned}
+	\vec{E}\mss{(\hsvec{x})} = - \hsvec{\nabla} V = -k \hsvec{\nabla} \left( \tfrac{\hsvec{p} \cdot \hsvec{r}}{r^3} \right)
+		= -k \left[ 
+			\tfrac{-3 \hat{r} (\hsvec{p} \cdot \hsvec{r})}{r^4} 
+			+ \tfrac{1}{r^3} \hsvec{\nabla} \left( \hsvec{p} \cdot \hsvec{r} \right) 
+		\right]
+		= k \tfrac{ 3 \hat{r} (\hsvec{p} \cdot \hat{r}) - p\hat{z} }{r^3} 
+		= \boxed{ k \tfrac{ 3 \hat{r} (\hsvec{p} \cdot \hat{r}) - \hsvec{p} }{r^3} }
+\end{aligned}\)
+
+\vspace{20pt}
+\(
+	\hat{n} = \langle n_x, n_y, n_z \rangle 
+	= \langle \mss{ \cos\phi \sin\theta, \sin\phi \sin\theta, \cos\theta } \rangle 
+	= \sqrt{\tfrac{4\pi}{3}} \left\langle 
+		-\tfrac{Y_{11} - Y_{1-1}}{\sqrt{2}}, \tfrac{iY_{11} + iY_{1-1}}{\sqrt{2}} , Y_{10} 
+	\right\rangle \mss{(\theta, \phi)}
+	\ \Leftrightarrow \
+	A_1Y_1\mss{(\theta, \phi)} = \left\langle - \tfrac{n_x + in_y}{\sqrt{2}}, \tfrac{n_x - in_y}{\sqrt{2}}, n_z \right\rangle
+\)
+
+\vspace{10pt}
+\(\begin{aligned}
+	\mss{\iiint_{r<R}} \vec{E} \hs d\tau & = - k_\epsilon 
+		\oiint 
+		\mss{\iiint} \tfrac{\rho(\hsvec{x}')}{|\hsvec{x}-\hsvec{x}'|} \hs d\tau' \hs \hat{n}\mss{(\hsvec{x})}
+		\hs dS
+		= - k_\epsilon R^2 
+		\mss{\iiint} \rho\mss{(\hsvec{x}')} 
+		\underline{ \oiint \tfrac{ \hat{n}(\hsvec{x}) }{|\hsvec{x} - \hsvec{x}'|} \hs d\Omega }
+		\ d\tau'
+		&& = - k_\epsilon R^2 
+		\mss{\iiint} \rho\mss{(\hsvec{x}')} 
+		\mss{\sum_{m=-1}^1} A_{1m} Y^*_{1m}\mss{(\theta', \phi')}
+		\oiint \hat{n}\mss{(\hsvec{x})} Y_{1m}\mss{(\theta,\phi)} \hs d\Omega 
+		\ d\tau'
+		\\
+	\text{\scriptsize(sphere)} \hspace{5pt} & = - k_\epsilon R^2 
+		\mss{\iiint} \rho\mss{(\hsvec{x}')} 
+		\underline{ 
+			\oiint \tfrac{ \hat{n}(\hsvec{x}') \cos\gamma \sin\gamma }{|\hsvec{x} - \hsvec{x}'|} \hs\hs d\gamma \hs d\beta 
+		}
+		\ d\tau'
+		&& = - k_\epsilon R^2 
+		\mss{\iiint} \rho\mss{(\hsvec{x}')} 
+		\underline{ \oiint \hat{n}\mss{(\hsvec{x})} \hs \frac{r_<}{r_>^2} \hs P_1\mss{(\cos\gamma)} \hs d\Omega }
+		\ d\tau'
+		\\
+	& = - k_\epsilon R^2 
+		\mss{\iiint} \rho\mss{(\hsvec{x}')} 
+		\int_{-1}^1 \tfrac{ 2\pi x \hat{n}(\hsvec{x}')  }{\sqrt{r^2 + r'^2 - 2rr'x}} \hs\hs dx 
+		\ d\tau'
+		&& = - k_\epsilon R^2 
+		\mss{\iiint} \frac{r_<}{r_>^2} \rho\mss{(\hsvec{x}')} 
+		\underline{ \oiint \hat{n}\mss{(\hsvec{x'})} \cos\theta \hs d\Omega }
+		\ d\tau'
+		\\
+	& = - \frac{4\pi k_\epsilon}{3} R^2 
+		\mss{\iiint\ } \frac{r_<}{r_>^2} \hs \rho\mss{(\hsvec{x}')} \hs \hat{n}(\hsvec{x}')\ d\tau'
+		= \boxed{ - \frac{4\pi k_\epsilon \hsvec{p}}{3} \hs \text{\scriptsize\ or } \hs \frac{4\pi R^3}{3} E_{\rho, r>R}(0) }
+		&& = - \frac{4\pi k_\epsilon}{3} R^2 
+		\mss{\iiint\ } \frac{r_<}{r_>^2} \hs \rho\mss{(\hsvec{x}')} \hs \hat{n}(\hsvec{x}')\ d\tau'
+		\\[10pt]
+	\Aboxed{ E_{\text{id. dip.}}\mss{(x)} & =  
+			\underbrace{
+				k_\epsilon \tfrac{3\hat{n}(\hsvec{p}\cdot \hat{n}) - \hsvec{p}}{| \hsvec{x}-\hsvec{x}' |^3} 
+			}_{\int\hs \equiv\hs\hs 0 \text{ by conv.}}
+			\underbrace{
+				- \tfrac{4\pi k_\epsilon \hsvec{p}}{3} \delta\mss{(\hsvec{x}-\hsvec{x})}
+			}_{\text{for real dip.}}
+		}
+\end{aligned}\)
+% \begin{minipage}[t]{0.48\textwidth}
+% 	\textbf{3. \ \ \ }\\ \\
 	
-	\hfill \break
-	\textbf{4. \ \ \ }\\ \\
+% 	\hfill \break
+% 	\textbf{4. \ \ \ }\\ \\
 
-	\hfill \break
-	\textbf{5. \ \ \ }\\ \\
+% 	\hfill \break
+% 	\textbf{5. \ \ \ }\\ \\
 
-\end{minipage}
-% Divider
-\hfill\vline\hfill
-\begin{minipage}[t]{0.48\textwidth}
-	\textbf{3. \ \ \ }\\ \\
+% \end{minipage}
+% % Divider
+% \hfill\vline\hfill
+% \begin{minipage}[t]{0.48\textwidth}
+% 	\textbf{3. \ \ \ }\\ \\
 	
-	\hfill \break
-	\textbf{4. \ \ \ }\\ \\
+% 	\hfill \break
+% 	\textbf{4. \ \ \ }\\ \\
 
-	\hfill \break
-	\textbf{5. \ \ \ }\\ \\
+% 	\hfill \break
+% 	\textbf{5. \ \ \ }\\ \\
 
-\end{minipage}
+% \end{minipage}
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+\subsection{Multipole Moments}
+
+\(\begin{aligned}
+	V_{\text{ext.}}\mss{(\hsvec{x})} & = k \int \tfrac{\rho\mss{(\hsvec{x}')}}{| \hsvec{x} - \hsvec{x}' |} \hs d\tau'
+		= k \int \rho\mss{(\hsvec{x}')} 
+		\sum_{l,m} \tfrac{r_<^l}{r_>^{l+1}} \tfrac{4\pi}{2l+1} Y^*_{lm}\mss{(\theta', \phi')} Y_{lm}\mss{(\theta,\phi)} 
+		\hs d\tau'
+		\\
+	& = 4\pi k \sum_{l,m} \tfrac{1}{2l+1} \tfrac{ Y_{lm}\mss{(\theta,\phi)} }{ r^{l+1} }
+		\underline{ \int \rho\mss{(\hsvec{x}')} r'^l  Y^*_{lm}\mss{(\theta', \phi')} \hs d\tau' }
+		\equiv \boxed{ 4\pi k \sum_{l,m} \tfrac{1}{2l+1} \tfrac{ Y_{lm}\mss{(\theta,\phi)} }{ r^{l+1} } \underline{ q_{lm} } }
+\end{aligned}\)
+
 
 %-----------------------------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------------------------
@@ -1880,20 +2224,25 @@ In general,
 \end{minipage} 
 \end{center}
 
-%-----------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------
 % Linear Matter
 \newpage
 \subsection{Linear Matter}
 \hfill \break
 \begin{minipage}[t]{0.48\textwidth}
-	\setlength{\parindent}{.5cm}
-	
-	\noindent \underline{Electric Susceptibility}: \( \chi_e \) \\ \\
-	\indent \indent \( \vec{ P } = \chi_e \epsilon_0 \vec{E} \)
 
-	\hfill \break
-	Susceptibility Tensor: \\ \\
-	\indent \indent \( \vec{ P } = 
+	% Electric Susceptibility
+	\underline{Electric Susceptibility}: \( \chi_e \)
+
+	\vspace{10pt}
+	\hspace{10pt} \hspace{10pt} \( \vec{ P } = \chi_e \epsilon_0 \vec{E} \)
+
+	\vspace{20pt}
+	% Susceptibility Tensor
+	Susceptibility Tensor: 
+	
+	\vspace{10pt}
+	\hspace{10pt} \hspace{10pt} \( \vec{ P } = 
 		\begin{pmatrix}
 			\chi_{e_{xx}} & \chi_{e_{xy}} & \chi_{e_{xz}} \\
 			\chi_{e_{yx}} & \chi_{e_{yy}} & \chi_{e_{yz}} \\
@@ -1901,13 +2250,49 @@ In general,
 		\end{pmatrix}
 		\epsilon_0 \vec{E} \)
 
-	\hfill \break \\ \\
-	\underline{Relative Permittivity}: \( \epsilon_r = 1 + \chi_e \)\\ \\
-	\indent \indent \( \begin{aligned}[t]
+	\vspace{20pt}
+	% Relative Permittivity
+	\underline{Relative Permittivity}: \( \epsilon_r = 1 + \chi_e \)
+
+	\vspace{10pt}
+	\hspace{10pt} \( \begin{aligned}[t]
 			\vec{D} &= ( 1 + \chi_e ) \epsilon_0 \vec{E} \\ 
 			&= \epsilon_r \epsilon_0 \vec{E}\\
 			&= \epsilon \vec{E}
 	\end{aligned} \)
+
+	\vspace{20pt}
+	% Energy
+	\(
+		\begin{gathered}[t]
+			\underline{\text{Energy Density}}:\\
+			\text{\scriptsize(to make polarization)}
+		\end{gathered} 
+		\
+		\begin{aligned}[t]
+			u_p & = \frac{1}{2} \vec{E} \cdot \vec{P}
+				= \frac{1}{2} \sum_{ij} \chi_{ij} \hs E_i \hs E_j
+				\\
+			& = \tfrac{1}{2} \mss{
+				\left[ \begin{matrix}
+					\hs\\
+					\hs & \chi & \hs\\
+					\hs
+				\end{matrix} \right]
+				\left[\begin{matrix}
+					|\\
+					E\\
+					|
+				\end{matrix}\right]
+				\cdot
+				\left[\begin{matrix}
+					|\\
+					E\\
+					|
+				\end{matrix}\right]
+				}
+		\end{aligned}
+	\)
 
 \end{minipage}
 % Divider
@@ -1944,84 +2329,92 @@ In general,
 	\end{aligned} \)
 \end{minipage}
 
-%-----------------------------------------------------------------------------------------
-%-----------------------------------------------------------------------------------------
-%-----------------------------------------------------------------------------------------
-%-----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------------
 % Boundary Conditions
 \newpage
 \section{Boundary Conditions}
 % E field Boundaries
-\begin{minipage}[t]{.45\textwidth}
+\begin{minipage}[t]{.39\textwidth}
 	\hfill \break
+	% General Conditions
 	\( \boxed{ \Delta \vec{E} = \dfrac{\sigma}{\epsilon_0} \hat{n} } \)
-	\begin{enumerate}
-		\item {
-			\( \boxed{ \displaystyle \Delta E_{\parallel} = 0 } \)  \ \ \ 
+
+	\vspace{10pt}
+	\(\begin{aligned}
+		& 1.)\
+			\boxed{ \displaystyle \Delta E_{\parallel} = 0 }  
+			\ \ \ 
 			\begin{tabular}{|c}
 				\( \displaystyle \oint \vec{E} \dotP d\vec{L} \ = 
-					- \oiint_{0-}^{0+} \frac{\partial \vec{B}}{\partial t} \dotP d\vec{a} \) \\ \\
+					- \oiint_{0-}^{0+} \frac{\partial \vec{B}}{\partial t} \dotP d\vec{a} \) \\[20pt]
 				\( \displaystyle (E_{\parallel}^{+} - E_{\parallel}^{-}) L = 0 \)
 			\end{tabular}
-		} \\ \\
-		\item {
-			% \hfill \break \\ \\
+			\\[10pt]
+		& 2.)\ 
 			\begin{tabular}{c}
-				\( \boxed{ \displaystyle \Delta E_{\perp} = \frac{\sigma}{\epsilon_0} } \) \\ \\
+				\( \boxed{ \displaystyle \Delta E_{\perp} = \frac{\sigma}{\epsilon_0} } \) \\[20pt]
 				\( \boxed{ \displaystyle \Delta D_{\perp} = \sigma_f } \)
 			\end{tabular}
 			\ \ \
 			\begin{tabular}{|c}
-				\( \displaystyle \oiint \vec{E} \dotP d\vec{a} = Q/\epsilon_0 \) \\ \\
+				\( \displaystyle \oiint \vec{E} \dotP d\vec{a} = Q/\epsilon_0 \) \\[20pt]
 				\( \displaystyle ( E_{\perp}^{+} - E_{\perp}^{-} ) a = \frac{\sigma a}{\epsilon_0} \) 
 			\end{tabular}
-		}
-	\end{enumerate}
+	\end{aligned}\)
 
-	\hfill \break \\
-	\underline{Electrostatics: \( \nabla \times \vec{E} = 0 \) } \\
+	\vspace{60pt}
+	% Electrostatic Boundary Condition
+	\underline{Electrostatics: \( \nabla \times \vec{E} = 0 \) }
 	
-	\( \boxed{ \Delta V = 0 } \) \ \ \ 
-	\begin{tabular}{|c}
-		\\
-		\( \displaystyle V \ \bigg|_{0-}^{0+}= - \int_{0-}^{0+} \vec{E} \dotP dL \)\\
-		\\
-	\end{tabular}
+	\vspace{10pt}
+	\( 
+		\boxed{ \Delta V = 0 } 
+		\ \ \ \ \rule[-15pt]{.5pt}{40pt} \ \
+		\displaystyle V \ \bigg|_{0-}^{0+}= - \int_{0-}^{0+} \vec{E} \dotP dL 
+	\)
 
-	\hfill \break \\
-	\( \boxed{ \Delta \dfrac{\partial V}{ \partial n } = -\dfrac{\sigma}{\epsilon_0} } \) \ \ \ 
-	\begin{tabular}{|c}
-		\\
-		\( \Delta (\nabla V) \dotP \hat{n} \) \\
-		\\
-	\end{tabular}
+	\vspace{15pt}
+	\( 
+		\boxed{ \Delta \dfrac{\partial V}{ \partial n } = -\dfrac{\sigma}{\epsilon_0} } 
+		\ \ \ \ \rule[-20pt]{.5pt}{50pt} \ \
+		\Delta (\nabla V) \dotP \hat{n} 
+	\)
 	
-	\hfill \break \\
-	\( \boxed{ \Delta \vec{D}_{\parallel} = \Delta \vec{P}_{\parallel} } \) \ \ \ 
-	\begin{tabular}{|c}
-		\\
-		\( \nabla \times \vec{D} = \nabla \times \vec{P} \)\\
-		\\
-	\end{tabular}
+	\vspace{15pt}
+	\( 
+		\boxed{ \Delta \vec{D}_{\parallel} = \Delta \vec{P}_{\parallel} } 
+		\ \ \ \ \rule[-15pt]{.5pt}{40pt} \ \
+		\nabla \times \vec{D} = \nabla \times \vec{P} 
+	\)
+
 \end{minipage}
-\hspace{0\textwidth}
-\rule[-445pt]{.5pt}{445pt}
-\hspace{0.02\textwidth}
+\vline
+\hspace{10pt}
 % B field Boundaries
-\begin{minipage}[t]{.55\textwidth}
-	\hfill \break
-	\( \boxed{ \Delta \vec{B} = \mu_0 \vec{K} \times  \hat{n} } \) \\
-	\begin{enumerate}
-		\item {
-			\( \boxed{ \displaystyle \Delta B_{\perp} = 0 } \) \ \ \ 
+\begin{minipage}[t]{.56\textwidth}
+	\vspace{0pt}
+	\( \displaystyle
+		\boxed{ \Delta \vec{B} = \mu_0 \vec{K} \times  \hat{n} } \ ; \ \ \
+		\boxed{ \Delta A_{\parallel} = 0 } 
+		\ \ \ \vline \ \ \ 
+		\oint \vec{A} \dotP d\vec{l} = \Phi_B = 0 
+	\) 
+
+	\vspace{12pt}
+	\(\begin{aligned}
+		& 1.)\
+			\boxed{ \displaystyle \Delta B_{\perp} = 0 } \ \ \ 
 			\begin{tabular}{|c}
-				\( \displaystyle \oiint \vec{B} \dotP d\vec{a} = 0 \) \\ \\
+				\( \displaystyle \oiint \vec{B} \dotP d\vec{a} = 0 \) \\[20pt]
 				\( \displaystyle (B_{\perp}^{+} - B_{\perp}^{-}) a = 0 \) 
 			\end{tabular}
-		} \\ \\
-		\item {
+			\\[10pt]
+		& 2.)\ 
 			\begin{tabular}{c}
-				\( \boxed{ \displaystyle \Delta \vec{B}_{\parallel} = \mu_0 \vec{K} \times \hat{n}  } \) \\ \\
+				\( \boxed{ \displaystyle \Delta \vec{B}_{\parallel} = \mu_0 \vec{K} \times \hat{n}  } \) \\[20pt]
 				\( \boxed{ \displaystyle \Delta \vec{H}_{\parallel} = \vec{K}_f \times \hat{n}  } \)
 			\end{tabular}
 			\ \ \ 
@@ -2029,44 +2422,41 @@ In general,
 				\( \displaystyle \oint \frac{\vec{B}}{\mu_0} \dotP dL = \oiint_{0-}^{0+} 
 					\left ( \vec{J} + \frac{\epsilon_0 \partial \vec{E}}{\partial t} \right ) 
 					\dotP d\vec{a} \)\\ \\
-				\( \displaystyle (B_{\parallel}^{+} - B_{\parallel}^{-}) L = \mu_0 I_{enc} \) \\ \\
+				\( \displaystyle (B_{\parallel}^{+} - B_{\parallel}^{-}) L = \mu_0 I_{enc} \) \\[20pt]
 				\( \displaystyle \Delta B_{\parallel}L = \mu_0 K L = (\mu_0 \vec{K} \times \hat{n}) \dotP \vec{L} \)
 			\end{tabular}
-		}
-	\end{enumerate}
+	\end{aligned}\)
 
-	\hfill \break \\
-	\( \boxed{ \Delta A_{\parallel} = 0 } \) \ \ \
-	\begin{tabular}{|c}
-		\( \displaystyle \oint \vec{A} \dotP d\vec{l} = \Phi_B = 0 \)
-	\end{tabular}
+	\vspace{30pt}
+	% Magnetostatic Boundary Conditions
+	\underline{Magnetostatic: \( \nabla \dotP \vec{A} = 0 \) } \\[10pt]
+	\( \displaystyle
+		\boxed{ \Delta A_{\perp} = 0 } 
+		\ \ \ \ \rule[-15pt]{.5pt}{40pt} \ \
+		\oiint_{0-}^{0+} \vec{A} \dotP d\vec{a} = 0 
+	\)
 
-	\hfill \break \\
-	\underline{Magnetostatic: \( \nabla \dotP \vec{A} = 0 \) } \\ \\
-	\( \boxed{ \Delta A_{\perp} = 0 } \) \ \ \
-	\begin{tabular}{|c}
-		\( \displaystyle \oiint_{0-}^{0+} \vec{A} \dotP d\vec{a} = 0 \)
-	\end{tabular}	
-
-	\hfill \break \\ 
-	\( \boxed{ \Delta \frac{\partial \vec{A}}{\partial n} = -\mu_0 \vec{K} } \) \ \ \ 
-	\begin{tabular}{|m{1.5cm} c c}
-		\multicolumn{3}{|c}{
-			\( \displaystyle \Delta ( \nabla \times \vec{A} )
-			= \left( - \frac{\partial A_y^+}{\partial z} + \frac{\partial A_y^-}{\partial z} \right) \hat{x}
-			+ \left( \frac{\partial A_x^+}{\partial z} - \frac{\partial A_x^-}{\partial z} \right) \hat{y} \)
-		} \\ \\
-		 & \( = -\mu_0 K \hat{y} \) & 
-	\end{tabular}
+	\vspace{15pt} 
+	\( \displaystyle
+		\boxed{ \Delta \frac{\partial \vec{A}}{\partial n} = -\mu_0 \vec{K} } 
+		\ \ \ \ \rule[-25pt]{.5pt}{60pt} \ \
+		\begin{aligned}
+			\Delta ( \nabla \times \vec{A} ) & = 
+				\left( - \frac{\partial A_y^+}{\partial z} + \frac{\partial A_y^-}{\partial z} \right) \hat{x}
+				+ \left( \frac{\partial A_x^+}{\partial z} - \frac{\partial A_x^-}{\partial z} \right) \hat{y}
+				\\[10pt]
+		 	& = -\mu_0 K \hat{y}
+		\end{aligned}
+	\)
 \end{minipage}
 
-%----------------------------------------------------------------------------------------
-%----------------------------------------------------------------------------------------
-%----------------------------------------------------------------------------------------
-%----------------------------------------------------------------------------------------
-% Work-Energy, Radiation, and Momentum
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+% Work-Energy, Radiation, Momentum, and Angular Momentum
 \newpage
-\section{Energy, Radiation, and Momentum}
+\section{Energy, Radiation, Momentum, and Angular Momentum}
 
 % Energy Conservation
 \subsection{Energy Conservation}
@@ -2142,11 +2532,11 @@ In general,
 	\[ \boxed{ I = \langle P_\text{ow}/A \rangle = \langle S \rangle = \frac{1}{2} c \epsilon_0 E^2 } \]
 
 \end{minipage}
-\hfill
+\hfill\hs
 
-% Radiation
 \vspace{15pt}
-\begin{minipage}[t]{.46\textwidth}
+% Radiation
+\begin{minipage}[t]{.43\textwidth}
 	\subsubsection{Radiation}
 
 	% Accelerating Charge
@@ -2170,6 +2560,71 @@ In general,
 	\underline{Magnetic Dipole Radiation}:\ \ \(\langle P \rangle_B 
 		= \left(\dfrac{k_\mu}{3c^3}\right) m^2_0 \omega^4\)
 \end{minipage}
+\hfill
+% cont.
+\begin{minipage}[t]{.5\textwidth}
+	\vspace{15pt}
+	
+	\[
+		\arraycolsep=2pt\begin{array}{r c c c c c c}
+			(E_1 + E_2) \times (B_1 + B_2) & = 
+				& E_1 \times B_1 
+				& + 
+				& ( {\scriptstyle E_1 \times B_2 + E_2 \times B_1} )
+				& + 
+				& E_2 \times B_2
+				\\[5pt]
+			(E_1 + E_2) \cdot (E_1 + E_2) & = 
+				& | E_1 |^2
+				& + 
+				& ( {\scriptstyle 2 E_1 \cdot E_2} )
+				& + 
+				& | E_2 |^2
+				\\
+			(B_1 + B_2) \cdot (B_1 + B_2) & = 
+				& | B_1 |^2
+				& + 
+				& ( {\scriptstyle 2 B_1 \cdot B_2} )
+				& + 
+				& | B_2 |^2
+				\\
+			& \hs \downarrow
+				\\[-3pt]
+			\text{E\&M Energy} & = 
+				& \tfrac{1}{2} m_1 v_{I1}^2 
+				& + 
+				& \Big( \begin{gathered}
+						\text{\scriptsize Crossterms;}\\[-7pt]
+						\text{\scriptsize radiation,\hs ...}
+					\end{gathered} \Big)
+				& + 
+				& \tfrac{1}{2} m_2 v_{I2}^2 
+				\\[10pt]
+			& = 
+				& \tfrac{1}{2} L_1 I_1^2 
+				& + 
+				& M I_1 I_2
+				& + 
+				& \tfrac{1}{2} L_2 I_2^2
+				\\[5pt]
+			\text{\scriptsize(heat dissipation)} & 
+				& + R_1 I_1^2 
+				&  
+				& 
+				&  
+				& + R_2 I_2^2
+				\\[15pt]
+			\text{Grav. Energy} & =
+				& \tfrac{1}{2} m_1 v_1^2 
+				& + 
+				& - m \tfrac{GM}{r}
+				& + 
+				& \tfrac{1}{2} m_2 v_2^2 
+		\end{array}
+	\]
+
+\end{minipage}
+\hfill\hs
 
 
 %---------------------------------------------------------------------------------------------------------------------------------
@@ -2178,8 +2633,8 @@ In general,
 %---------------------------------------------------------------------------------------------------------------------------------
 \newpage
 
-% Momentum Conservation
-\subsection{Momentum Conservation}
+% Momentum/Angular Momentum Conservation
+\subsection{Momentum/Angular Momentum Conservation}
 \vspace{5pt}
 \begin{minipage}[t]{.48\textwidth}
 	% Change in Force / Change in Volume
@@ -2230,11 +2685,10 @@ In general,
 \end{minipage}
 \hfill
 \begin{minipage}[t]{.48\textwidth}
-	\vspace{-23pt}
+	\vspace{-15pt}
 
-	\fbox{
-	\parbox[t]{.92\textwidth}{
-		% Field Momentum Density
+	% Field Momentum Density
+	\fbox{ \parbox[t]{.92\textwidth}{
 		\emph{Field Momentum Density}\ : \ \ \ \( \hsvec{g}_{em} = \epsilon_0 \mu_0 \vec{S} = \epsilon_0 (\vec{E} \times \vec{B}) \)
 			\\[10pt]
 		% Maxwell Stress Tensor
@@ -2252,8 +2706,21 @@ In general,
 				\hspace{15pt} , \hspace{15pt}
 				T_{xy} = \epsilon_0 E_x E_y + \tfrac{1}{\mu_0} B_x B_y
 		\end{aligned}\)
-			\\[15pt]
-		% Field Angular Momentum Density
+	} }
+
+	\vspace{5pt}
+	% Divergence of Stress Tensor
+	\fbox{
+		\( \displaystyle
+			\nabla \cdot \overleftrightarrow{T} 
+			= \hsvec{f} + \frac{\partial \vec{g}_{em}}{\partial t} 
+			= \frac{\partial}{\partial t} \left( \vec{g}_{mech} + \vec{g}_{em} \right)
+		\)
+	}
+
+	\vspace{15pt}
+	% Field Angular Momentum Density
+	\fbox{ \parbox[t]{.92\textwidth}{
 		\(
 			\begin{gathered}
 				\text{\emph{Field Angular}}\\[-5pt]
@@ -2261,18 +2728,8 @@ In general,
 			\end{gathered}\)\ : \ \ \ \(\hsvec{l}_{em} 
 			= \hsvec{r} \times \hsvec{g}_{em} = \epsilon_0 \hsvec{r} \times \big( \vec{E} \times \vec{B} \big) 
 		\)
-	}
-	}
+	} }
 
-	\vspace{15pt}
-	% Divergence of Stress Tensor
-	\fbox{
-	\( \displaystyle
-		\nabla \cdot \overleftrightarrow{T} 
-		= \hsvec{f} + \frac{\partial \vec{g}_{em}}{\partial t} 
-		= \frac{\partial}{\partial t} \left( \vec{g}_{mech} + \vec{g}_{em} \right)
-	\)
-	}
 \end{minipage}
 
 % Examples
@@ -2304,7 +2761,6 @@ In general,
 	% \vspace{5pt} it makes spacing weird for some reason
 
 \(\bullet\) Hidden momentum can exist when center of energy is moving (no examples given). 
-
 
 %---------------------------------------------------------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------------------------------------------------------
@@ -2755,7 +3211,7 @@ TM: \( \displaystyle \left[ \frac{\partial^2}{\partial x^2}
 						- \frac{\sin{\theta}}{ r } \dfrac{\partial}{\partial \theta} 
 						\\[10pt]
 					\end{array} }
-					\text{\LARGE\(\Bigg\rangle\)}_\mss{\hspace{-5pt} x,y,z}
+					\text{\LARGE\(\Bigg\rangle\)}_\mss{\hspace{-7pt} \hat{x},\hat{y},\hat{z}}
 					F 		
 					\ = \ 
 					\left[\begin{matrix}
@@ -2831,7 +3287,7 @@ TM: \( \displaystyle \left[ \frac{\partial^2}{\partial x^2}
 				\right]
 				\hsvec{r}
 				\\
-			& = \left[ \hs \nabla_s \otimes \hsvec{r} \hs\hs \right]^T
+			& = \left[ \hs \nabla_{sp} \otimes \hsvec{r} \hs\hs \right]^T
 		\end{aligned}
 			\\[15pt]
 		% \theta Example
@@ -2899,9 +3355,9 @@ TM: \( \displaystyle \left[ \frac{\partial^2}{\partial x^2}
 			\end{matrix}\right] 
 			& = 
 				\left[\begin{matrix}
-					- \nabla_s x - \\
-					- \nabla_s y - \\
-					- \nabla_s z - \\
+					- \nabla_{sp} x - \\
+					- \nabla_{sp} y - \\
+					- \nabla_{sp} z - \\
 				\end{matrix}\right]
 				\left[ \mss{ \begin{matrix}
 					\partial r\\[5pt]

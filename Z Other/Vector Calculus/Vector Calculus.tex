@@ -1,0 +1,442 @@
+\documentclass[12pt]{article}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage{amssymb, amsmath, amsfonts, mathtools, bbm}
+\usepackage{array,multirow}
+\usepackage{cancel}
+
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
+
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+
+\begin{document}
+\setlength{\parindent}{0pt}
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+\(
+	\begin{gathered}
+		\boxed{ \hsvec{\nabla} = \left[ \hsvec{\nabla} \left( r, \theta, \phi \right) \right] \bar{\partial}_\circ }
+			\\[5pt]
+		d = \left[ dx \ dy \ dz \right] \hsvec{\nabla} = d\hsvec{l}\hs\hs^T \hsvec{\nabla} 
+			\\[5pt]
+		\begin{aligned}
+				d ( r, \theta, \phi ) 
+					& = \left[ dx \ dy \ dz \right]
+					\hsvec{\nabla} 
+					( r, \theta, \phi )
+					\\
+				\Aboxed{ \partial \bar{l}_\circ\nhs^T & = d\hsvec{l}\hs\hs^T \hsvec{\nabla} (r, \theta, \phi) }
+			\end{aligned}
+			\\[5pt]
+		\begin{aligned}
+			\partial \bar{l}_\circ\nhs^T \bar{\partial}_\circ & 
+				= d\hsvec{l}\hs\hs^T \left[ \hsvec{\nabla} ( r, \theta, \phi ) \right] \bar{\partial}_\circ
+				\\
+			\Aboxed{ d = \partial \bar{l}_\circ\nhs^T \bar{\partial}_\circ & = d\hsvec{l}\hs\hs^T \hsvec{\nabla} }
+		\end{aligned}
+	\end{gathered}
+	\hfill \vline \hfill
+	% Matrix Form for cartesian gradient and d(spherical)
+	\begin{aligned}
+		% Partial / Partial xyz
+		\underline{ \nhs \hsvec{\nabla} } &  
+			= 
+			\left[\begin{matrix}
+				\\[-12pt]
+				\tfrac{\partial}{\partial x}\\[5pt]
+				\tfrac{\partial}{\partial y}\\[5pt]
+				\tfrac{\partial}{\partial z}
+			\end{matrix}\right] 
+			= 
+			\left[ \mss{ \arraycolsep=2pt\begin{matrix}
+				| & | & | \\
+				\nabla r & \nabla \theta & \nabla \phi \\
+				| & | & |
+			\end{matrix} } \right]
+			\left[\begin{matrix}
+				\\[-12pt]
+				\tfrac{\partial}{\partial r}\\[5pt]
+				\tfrac{\partial}{\partial \theta}\\[5pt]
+				\tfrac{\partial}{\partial \phi}
+			\end{matrix}\right]
+			\\[10pt]
+		\underline{ \partial \bar{l}_\circ } & = \nhs
+			\left[\begin{matrix}
+				dr\\
+				d\theta\\
+				d\phi
+			\end{matrix}\right] 
+			\begin{aligned}
+				& = \hs\hs [\hsvec{\nabla} (r, \theta, \phi)]^T d\hsvec{l}\\[5pt]
+				& = \left[\begin{matrix}
+						- \nabla r - \\
+						- \nabla \theta - \\
+						- \nabla \phi - \\
+					\end{matrix}\right]
+					\left[\begin{matrix}
+						dx\\
+						dy\\
+						dz
+				\end{matrix}\right]
+			\end{aligned}
+	\end{aligned}
+	\hfill\vline\hfill
+	% \theta Example
+	\begin{aligned}
+		\theta & = \theta \mss{(x,y,z)} 
+			\hspace{10pt} ( \mss{ x^2 + y^2 = z^2 \tan^2{\theta} } )
+			\\
+		\phi & = \phi \mss{(x,y,z)} 
+			\hspace{10pt} ( \mss{ y = x \tan{\phi} } )
+			\\[10pt]
+		d\theta & = dx \tfrac{\partial \theta}{\partial x} 
+			+ dy \tfrac{\partial \theta}{\partial y} 
+			+ dz \tfrac{\partial \theta}{\partial z} 
+			\\[10pt]
+		\tfrac{\partial}{\partial x} & = \tfrac{\partial r}{\partial x} \tfrac{\partial}{\partial r}
+			+ \tfrac{\partial \theta}{\partial x} \tfrac{\partial}{\partial \theta}
+			+ \tfrac{\partial \phi}{\partial x} \tfrac{\partial}{\partial \phi} 
+	\end{aligned}
+\)
+
+\vspace{20pt}
+% d operator
+\(
+	\begin{aligned}
+		d & = dx \tfrac{\partial }{\partial x}
+			+ dy \tfrac{\partial }{\partial y} 
+			+ dz \tfrac{\partial }{\partial z} 
+			= d\hsvec{l} \cdot \hsvec{\nabla} 
+			&& = \left[ 
+				\tfrac{dr}{\lVert \nabla r \rVert} , 
+				\tfrac{d\theta}{\lVert \nabla \theta \rVert} ,
+				\tfrac{d\phi}{\lVert \nabla \phi \rVert} 
+			\right] 
+			\left[ 
+				\mss{ \lVert \nabla r \rVert } \tfrac{\partial }{\partial r} ,\hs
+				\mss{ \lVert \nabla \theta \rVert } \tfrac{\partial }{\partial \theta} ,\hs
+				\mss{ \lVert \nabla \phi \rVert } \tfrac{\partial }{\partial \phi} 
+			\right]^T
+			\\
+		& = dr \tfrac{\partial }{\partial r} 
+			+ d\theta \tfrac{\partial }{\partial \theta} 
+			+ d\phi \tfrac{\partial }{\partial \phi} 
+			= \partial \bar{l}_\circ\nhs^T \bar{\partial}_\circ 
+			&& = \left[ dr, rd\theta, r\sin\theta d\phi \right]
+			\left[ 
+				\tfrac{\partial }{\partial r} 
+				, \tfrac{1}{r} \tfrac{\partial }{\partial \theta} 
+				,\tfrac{1}{r\sin\theta} \tfrac{\partial }{\partial \phi} 
+			\right]^T
+			\\[3pt]
+		& = \tfrac{dr}{\lVert \nabla r \rVert} \mss{ \lVert \nabla r \rVert } \tfrac{\partial }{\partial r} 
+			+ \tfrac{d\theta}{\lVert \nabla \theta \rVert} \mss{ \lVert \nabla \theta \rVert } \tfrac{\partial }{\partial \theta} 
+			+ \tfrac{d\phi}{\lVert \nabla \phi \rVert} \mss{ \lVert \nabla \phi \rVert } \tfrac{\partial }{\partial \phi}
+			&& \dots = d\bar{l}_\circ\nhs^T \bar{\nabla}_\circ = d\hsvec{l}_\circ\nhs^T \hsvec{\nabla}_\circ 
+	\end{aligned}
+\)
+
+\vspace{20pt}
+% Work to Find Line Element and Unit Spherical Vectors
+\(
+	% Line Element
+	\begin{aligned}
+		d\hsvec{l} = d\hsvec{r} & 
+			= [ dr \tfrac{\partial}{\partial r} 
+			+ d\theta \tfrac{\partial}{\partial \theta} 
+			+ d\phi \tfrac{\partial}{\partial \phi} ]
+			(x,y,z)^T
+			\\
+		d{(x, y, z)} & 
+			= \left[ \mss{ \tfrac{dr}{\lVert \nabla r \rVert} { \lVert \nabla r \rVert } \tfrac{\partial }{\partial r} 
+			+ \tfrac{d\theta}{\lVert \nabla \theta \rVert} { \lVert \nabla \theta \rVert } \tfrac{\partial }{\partial \theta} 
+			+ \tfrac{d\phi}{\lVert \nabla \phi \rVert} { \lVert \nabla \phi \rVert } \tfrac{\partial }{\partial \phi} 
+			} \right] (x,y,z)
+			\\[5pt]
+		(dx,dy,dz) &
+			= dr \hs \hat{r}^T + r \hs d\theta \hs \hat{\theta}^T + r \sin\theta \hs d\phi \hs \hat{\phi}^T
+	\end{aligned}
+	\hfill\vline\hfill
+	% Unit Spherical Vectors
+	\begin{aligned}
+		\big( \hat{r} , & \hat{\theta} , \hat{\phi} \big) 
+			= \underline{ \left( 
+				\mss{ \lVert \nabla r \rVert } \tfrac{\partial \hsvec{r}}{\partial r} ,\hs
+				\mss{ \lVert \nabla \theta \rVert } \tfrac{\partial \hsvec{r}}{\partial \theta} ,\hs
+				\mss{ \lVert \nabla \phi \rVert } \tfrac{\partial \hsvec{r}}{\partial \phi} 
+			\right) }
+			\\
+		& = \left(
+				\tfrac{\partial}{\partial r} ,\
+				\tfrac{1}{r} \tfrac{\partial}{\partial \theta} ,\
+				\tfrac{1}{r \sin{\theta}} \tfrac{\partial}{\partial \phi} 
+			\right)
+			\otimes (x,y,z)^T
+			\\
+		& = \bar{\nabla}_\circ^T \otimes \hsvec{r}
+	\end{aligned}
+\)
+
+\vspace{20pt}
+% Line Element and Gradient
+\(\begin{aligned}
+	% Line Element
+	& \boxed{ d\hsvec{l} = (dx, dy, dz) \cdot \big( \hat{x} , \hat{y} , \hat{z} \big) }
+		= \boxed{ (dr, rd\theta, r\sin\theta d\theta) \cdot \big( \hat{r} , \hat{\theta} , \hat{\phi} \big) = d\hsvec{l}_\circ }
+		= d\bar{l}_\circ\nhs^T \cdot \big( \hat{r} , \hat{\theta} , \hat{\phi} \big)
+		\\
+	% Gradient
+	& \boxed{ 
+			\hsvec{\nabla} = (\hat{x}, \hat{y}, \hat{z}) 
+			\cdot \left( \tfrac{\partial}{\partial x}, \tfrac{\partial}{\partial y}, \tfrac{\partial}{\partial z} \right) 
+		}
+		= \boxed{
+			(\hat{r}, \hat{\theta}, \hat{\phi}) 
+			\cdot \left( 
+				\tfrac{\partial}{\partial r}, 
+				\tfrac{1}{r} \tfrac{\partial}{\partial \theta}, 
+				\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
+			\right) 
+			= \hsvec{\nabla}_\circ
+		}
+		= \left(
+			\tfrac{\partial \hsvec{r}}{\partial r} ,
+			\tfrac{1}{r} \tfrac{\partial \hsvec{r}}{\partial \theta} ,
+			\tfrac{1}{r \sin{\theta}} \tfrac{\partial \hsvec{r}}{\partial \phi} 
+		\right) \bar{\nabla}_\circ^T
+\end{aligned}\)
+
+\vspace{10pt}
+% Two ways to write cartesian partial derivatives 
+\(\begin{aligned}
+	\hsvec{\nabla} & = [ \bar{\nabla}_\circ^T \otimes \hsvec{r} \hs ]  \bar{\nabla}_\circ
+		= \left[ \bar{\nabla}_\circ^T \otimes (x,y,z)^T \right]
+		\left[ \mss{ \begin{matrix}
+			\tfrac{\partial}{\partial r}\\[4pt]
+			\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[4pt]
+			\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi} 
+		\end{matrix} } \right]
+		&& \Rightarrow\ 
+		\tfrac{\partial}{\partial x} 
+		= \underline{ \tfrac{\partial x}{\partial r} } \tfrac{\partial}{\partial r}
+		+ \underline{ \mss{ \Vert \nabla \theta \Vert }^2 \tfrac{\partial x}{\partial \theta} } \tfrac{\partial}{\partial \theta}
+		+ \underline{ \mss{ \Vert \nabla \phi \Vert }^2 \tfrac{\partial x}{\partial \phi} } \tfrac{\partial}{\partial \phi}
+		\\
+	& = [ \hsvec{\nabla}(r,\theta,\phi) ] \bar{\partial}_\circ
+		= [ \hsvec{\nabla}(r,\theta,\phi) ] 
+		\left[ \mss{ \begin{matrix}
+			\tfrac{\partial}{\partial r}\\[4pt]
+			\tfrac{\partial}{\partial \theta}\\[4pt]
+			\tfrac{\partial}{\partial \phi} 
+		\end{matrix} } \right]
+		&&\Rightarrow\
+		\tfrac{\partial}{\partial x} 
+		= \underline{ \tfrac{\partial r}{\partial x} } \tfrac{\partial}{\partial r}
+		+ \underline{ \tfrac{\partial \theta}{\partial x} } \tfrac{\partial}{\partial \theta}
+		+ \underline{ \tfrac{\partial \phi}{\partial x} } \tfrac{\partial}{\partial \phi}
+\end{aligned}\)
+
+\vspace{15pt}
+% Unit Vectors Summary
+\(\boxed{
+	\arraycolsep=3pt
+	\begin{array}{r c c c r c c c r r c r}
+		\hat{r} & = 
+			& (\hat{r}_x, \hat{r}_y, \hat{r}_z) & = 
+			& \tfrac{\partial}{\partial r} \hsvec{r} 
+			& = 
+			& \boxed{ \tfrac{\hsvec{r}}{r} }
+			& = 
+			& \mss{ \Vert \nabla r \Vert } \tfrac{\partial \hsvec{r}}{\partial r} 
+			& = \tfrac{\nabla r}{\Vert \nabla r \Vert}
+			& = 
+			& \nabla r
+			\\[5pt]
+		\hat{\theta} & = 
+			& (\hat{\theta}_x, \hat{\theta}_y, \hat{\theta}_z) & = 
+			& \tfrac{1}{r} \tfrac{\partial}{\partial \theta} \hsvec{r}
+			& = 
+			& \boxed{ \tfrac{\partial \hat{r}}{\partial \theta} }
+			& =
+			& \mss{ \Vert \nabla \theta \Vert } \tfrac{\partial \hsvec{r}}{\partial\theta} 
+			& = \tfrac{\nabla \theta}{\Vert \nabla \theta \Vert} 
+			& = 
+			& r \nabla \theta
+			\\[5pt]
+		\hat{\phi} & = 
+			& (\hat{\phi}_x, \hat{\phi}_y, \hat{\phi}_z) 
+			& = 
+			& \tfrac{1}{r \sin\theta} \tfrac{\partial}{\partial \phi} \hsvec{r}
+			& = 
+			& \boxed{ \tfrac{1}{\sin\theta} \tfrac{\partial \hat{r}}{\partial \phi} }
+			& =
+			& \mss{ \Vert \nabla \phi \Vert } \tfrac{\partial \hsvec{r}}{\partial\phi} 
+			& = \tfrac{\nabla \phi}{\Vert \nabla \phi \Vert}
+			& = 
+			& \mss{r \sin\theta} \nabla \phi
+	\end{array}
+}\)
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+% Del
+\section{Del}
+
+\parbox[t]{.67\textwidth}{
+	% Nabla
+	\(\begin{aligned}[t]
+		\nabla F & = \hs \left( 
+				\hat{r} \dfrac{\partial}{\partial r} 
+				+ \hat{\theta} \frac{1}{r} \dfrac{\partial}{\partial \theta} 
+				+ \hat{\phi} \frac{1}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
+			\right)
+			F 
+			\\[5pt]
+		& = 
+			\left[ \begin{matrix}
+				\hat{r}\\ 
+				\hat{\theta}\\
+				\hat{\phi} 
+			\end{matrix} \right]
+			\cdot
+			\left[ \mss{ \begin{matrix}
+				\\[-12pt]
+				\tfrac{\partial}{\partial r}\\[5pt]
+				\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[5pt]
+				\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
+			\end{matrix} } \right] 
+			F
+			=
+			\left[ \ \begin{matrix}
+				\cos{\phi}\sin{\theta} \hs \hat{x} + \sin{\phi}\sin{\theta} \hs \hat{y} + \cos{\theta} \hs \hat{z} \\[5pt]
+				\cos{\phi}\cos{\theta} \hs \hat{x} + \sin{\phi}\cos{\theta} \hs \hat{y} - \sin{\theta} \hs \hat{z} \\[5pt]
+				- \sin{\phi} \hs \hat{x} + \cos{\phi} \hs \hat{y}
+			\end{matrix} \ \right]
+			\cdot
+			\left[ \mss{ \begin{matrix}
+				\\[-12pt]
+				\tfrac{\partial}{\partial r}\\[5pt]
+				\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[5pt]
+				\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
+			\end{matrix} } \right] 
+			F 
+			\\[5pt]
+		\left[\begin{matrix}
+				\\[-12pt]
+				\tfrac{\partial}{\partial x}\\[5pt]
+				\tfrac{\partial}{\partial y}\\[5pt]
+				\tfrac{\partial}{\partial z}
+			\end{matrix}\right] 
+			F
+			& = \left[
+				\mss{ \begin{array}{c}
+					\displaystyle
+					\cos{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
+					+ \frac{\cos{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
+					- \frac{\sin{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
+					\\[10pt]
+					\displaystyle
+					\sin{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
+					+ \frac{\sin{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
+					+ \frac{\cos{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi}
+					\\[10pt]
+					\displaystyle
+					\cos{\theta} \dfrac{\partial}{\partial r} 
+					- \frac{\sin{\theta}}{ r } \dfrac{\partial}{\partial \theta} 
+					\\[10pt]
+				\end{array} }
+			\right]
+			F 		
+			\ = 
+			\left[\mss{ \begin{array}{c}
+				\displaystyle
+				\dfrac{\partial r}{\partial x} \dfrac{\partial}{\partial r} 
+				+ \dfrac{\partial \theta}{\partial x} \dfrac{\partial}{\partial \theta} 
+				+ \dfrac{\partial \phi}{\partial x} \dfrac{\partial}{\partial \phi} 
+				\\[10pt]
+				\displaystyle
+				\dfrac{\partial r}{\partial y} \dfrac{\partial}{\partial r} 
+				+ \dfrac{\partial \theta}{\partial y} \dfrac{\partial}{\partial \theta} 
+				+ \dfrac{\partial \phi}{\partial y} \dfrac{\partial}{\partial \phi} 
+				\\[10pt]
+				\displaystyle
+				\dfrac{\partial r}{\partial z} \dfrac{\partial}{\partial r} 
+				+ \dfrac{\partial \theta}{\partial z} \dfrac{\partial}{\partial \theta} 
+				+ \dfrac{\partial \phi}{\partial z} \dfrac{\partial}{\partial \phi} 
+				\\[10pt]
+			\end{array} }\right] 
+			F
+			\ =
+			\left[\begin{matrix}
+				\hat{x}\\
+				\hat{y}\\
+				\hat{z}
+			\end{matrix}\right]
+			\cdot
+			\left[\begin{matrix}
+				\\[-12pt]
+				\tfrac{\partial}{\partial x}\\[5pt]
+				\tfrac{\partial}{\partial y}\\[5pt]
+				\tfrac{\partial}{\partial z}
+			\end{matrix}\right] 
+			F
+	\end{aligned}\)
+
+	\vspace{15pt}
+	\(\begin{aligned}[t]
+		% Divergence
+		\nabla \cdot \vec{A} \ & 
+			= \ \frac{1}{r} \frac{1}{r \sin{\theta}} 
+			\left\langle 
+				\dfrac{\partial}{\partial r} , \ 
+				\dfrac{\partial}{\partial \theta} , \ 
+				\dfrac{\partial}{\partial \phi} 
+			\right\rangle 
+			\ \cdot \ [ r \cdot r \sin{\theta} ]
+			\left\langle A_r , \ \frac{1}{r} A_\theta , \ \frac{1}{ r \sin{\theta} } A_\phi \right\rangle
+			\\[15pt]
+		% Curl
+		\nabla \times \vec{A} \ & 
+			= \ \dfrac{1}{r} \dfrac{1}{ r \sin{\theta} } 
+			\begin{Vmatrix}
+				\hat{r} 					 & r \hat{\theta} 			    & r \sin{\theta} \hat{\phi}\\[10pt]
+				\dfrac{\partial}{\partial r} & \dfrac{\partial}{\partial \theta} & \dfrac{\partial}{\partial \phi}\\[10pt]
+				A_r							 & r A_\theta				    & r \sin{\theta} A_\phi
+			\end{Vmatrix}
+			= 
+			\begin{Vmatrix}
+				\tfrac{\partial \hsvec{r}}{\partial r}  
+					& \tfrac{\partial \hsvec{r}}{\partial \theta} 
+					& \tfrac{\partial \hsvec{r}}{\partial \phi} 
+					\\[10pt]
+				\dfrac{\partial}{\partial r} & \dfrac{\partial}{\partial \theta} & \dfrac{\partial}{\partial \phi}\\[10pt]
+				A_r							 & r A_\theta				    & r \sin{\theta} A_\phi
+			\end{Vmatrix}
+	\end{aligned}\)
+
+	\vspace{20pt}
+	% Double Cross Product
+	\(\begin{array}{r c l c l}
+		\relax[ \vec{A} \times (\vec{B} \times \vec{C}) ]_i 
+			&=& \vec{A} \cdot ( B_i \vec{C} ) - \vec{A} \cdot ( \vec{B} C_i ) 
+			\\[10pt]
+		\vec{A} \times (\vec{B} \times \vec{C}) 
+			&=& \boxed{ ( \vec{A} \cdot ( \vec{B} \otimes \vec{C} )^T )^T - ( \vec{A} \cdot \vec{B} \otimes \vec{C} )^T }
+			&=& ( \vec{A} \otimes \vec{B} ) \cdot \vec{C} - ( \vec{A} \cdot \vec{B} \otimes \vec{C} )^T 
+			\\[5pt]
+		&=& ( A^T ( BC^T )^T )^T - ( A^T BC^T )^T
+			&=& (AB^T)^T C - ( A^T BC^T )^T
+	\end{array}\)
+}
+
+\end{document}

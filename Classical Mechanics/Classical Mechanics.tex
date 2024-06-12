@@ -6,8 +6,8 @@
 \usepackage{cancel}
 
 \newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
-\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
 \newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\hsvec}[1]{\nhs\vec{\hs #1}} % 1pt space with a \vec
 \newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
 
 \newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
@@ -33,33 +33,33 @@
     \boxed{ 
         \begin{aligned}
             \hsvec{r} & = r\cos\phi\sin\theta \hs \hat{x} + r\sin\phi\sin\theta \hs \hat{y} + r\cos\theta \hs \hat{z} \\
-            & = r \hat{r} 
+            r \hat{r} & = x\hat{x} + y\hat{y} + z\hat{z}
         \end{aligned}    
     }
     \hfill
     % \hat{q} in spherical
     \begin{aligned}
-        & \hspace{-3pt} \arraycolsep=3pt\begin{array}{r c r c c c c}
+        & \hspace{-3pt} \arraycolsep=3pt\begin{array}{r c r c c c r}
                 \hat{r} & = 
                     & \tfrac{\partial}{\partial r} \hsvec{r} 
                     & = 
                     & \boxed{ \tfrac{\hsvec{r}}{r} }
                     & = 
-                    & \nabla r
+                    & \nabla r\mss{(x,y,z)}
                     \\[5pt]
                 \hat{\theta} & = 
                     & \tfrac{1}{r} \tfrac{\partial}{\partial \theta} \hsvec{r}
                     & = 
                     & \boxed{ \tfrac{\partial \hat{r}}{\partial \theta} }
                     & =
-                    & r \nabla \theta
+                    & r \nabla \theta\mss{(x,y,z)}
                     \\[5pt]
                 \hat{\phi} & = 
                     & \tfrac{1}{r \sin\theta} \tfrac{\partial}{\partial \phi} \hsvec{r}
                     & = 
                     & \boxed{ \tfrac{1}{\sin\theta} \tfrac{\partial \hat{r}}{\partial \phi} }
                     & =
-                    & r \sin\theta \nabla \phi
+                    & r \sin\theta \nabla \phi\mss{(x,y,z)}
             \end{array}
     \end{aligned}
     \hfill\hs
@@ -79,8 +79,8 @@
     \hfill
     % Solutions
     \begin{aligned}
-        z & = \boxed{ \tfrac{ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} }{ \cos{2\theta} } }\\
-        y & = \tfrac{ \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} }{\sin\theta}
+        \hat{z} & = \boxed{ \tfrac{ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} }{ \cos{2\theta} } }\\
+        \hat{y} & = \tfrac{ \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} }{\sin\theta}
             - \tfrac{ \sin\phi \cos\theta }{ \sin\theta \cos{2\theta} } 
             \left[ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} \right]
             \\
@@ -89,7 +89,7 @@
             + \tfrac{ \cos\phi }{\sin\theta} \hs \hat{\phi} 
             }
             \\
-        x & = \boxed{ \cot\phi \hs \hat{y} - \tfrac{ \hat{\phi} }{ \sin\phi \sin\theta } }
+        \hat{x} & = \boxed{ \cot\phi \hs \hat{y} - \tfrac{ \hat{\phi} }{ \sin\phi \sin\theta } }
     \end{aligned}   
     \hfill\hs 
 \)  
@@ -174,24 +174,24 @@
 
     \vspace{2pt}\noindent
     % d/dt q
-    \(\hspace{-3pt}\arraycolsep=3pt\begin{array}{r c c c c}
+    \(\hspace{-3pt}\arraycolsep=3pt\begin{array}{r c c c l}
         % r
         \tfrac{dr}{dt} & = 
             & \tfrac{d}{dt} \mss{ ( \hsvec{r} \cdot \hsvec{r} ) }^{\frac{1}{2}} 
             & = 
-            & \boxed{ \hat{r} \cdot \hsvec{v} = \omega \hsvec{r} \cdot \hat{v}}
+            & \boxed{ \hat{r} \cdot \hsvec{v} = v_{\parallel r} }
             \\[5pt]
         % Theta
         \tfrac{d \theta}{dt} & = 
             & \nabla \theta \cdot \hsvec{v} 
             & = 
-            & \boxed{ \tfrac{\hat{\theta} \hs \cdot \hsvec{v} }{r} = {\omega \hs \hat\theta \cdot \hat{v}} }
+            & \boxed{ \tfrac{\hat{\theta} \hs \cdot \hsvec{v} }{r} = \tfrac{v_{\perp\theta}}{r} = \omega_\theta }
             \\[5pt]
         % Phi
         \tfrac{d \phi}{dt} & = 
             & \nabla \phi \cdot \hsvec{v}
             & = 
-            & \boxed{ \tfrac{ \hat{\phi} \hs \cdot \hsvec{v} }{r \sin\theta} = \tfrac{\omega \hs \hat\phi \cdot \hat{v}}{\sin\theta} }
+            & \boxed{ \tfrac{ \hat{\phi} \hs \cdot \hsvec{v} }{r \sin\theta} = \tfrac{v_{\perp\phi}}{r \sin\theta} = \omega_\phi}
     \end{array}\)
 \end{minipage}
 
@@ -202,75 +202,98 @@
         \hsvec{L} & = 
             & \hsvec{r} \times \hsvec{p} 
             \\[5pt]
-        (m r v) \hat{r} \times \hat{v} & = 
-            & m \hsvec{r} \times \hsvec{v}
+        \boxed{ m \hsvec{r} \times \hsvec{v}_\perp } & = 
+            & \boxed{ m \hsvec{r} \times \hsvec{v} }
             & = 
             & mr^2 \left( \tfrac{d\theta}{dt} \hat{\phi} - \sin\theta \tfrac{d\phi}{dt} \hat{\theta} \right) 
             \\[5pt] 
-        & = 
-            & I \hsvec{\omega} 
+        \underline{m r^2} \hs \tfrac{1}{r} \hs \hat{r} \times \hsvec{v} & = 
+            & \boxed{ \underline{I} \hsvec{\omega} }
             & = 
-            & mr^2 \left[ 
+            & \underline{mr^2} \left[ 
                 \tfrac{v}{r} (\hat{\theta} \cdot \hat{v}) \hat{\phi} 
                 - \tfrac{v}{r} (\hat{\phi} \cdot \hat{v}) \hat{\theta} 
             \right]
             \\[5pt]
-        \boxed{ (m r v) \hat{r} \times \hat{v} } & = 
-            & \boxed{ (I \omega) \hat{\omega} }
-            & = 
-            & mr^2 \omega \left[ 
-                (\hat{\theta} \cdot \hat{v}) \hat{\phi} 
-                - (\hat{\phi} \cdot \hat{v}) \hat{\theta} 
-            \right]
-            \\[5pt]
-        \underline{m r v} \hs (\hat{\theta} \times \hat{\phi}) \times \hat{v} & =
-            & \underline{I \omega} \hs \hat{\omega}
+        I \hs \underline{ \tfrac{1}{r} \hs \hat{r} \times \hsvec{v}_\perp } & =
+            & {I} \hs \underline{ \hsvec{\omega} }
             & =
-            & \underline{I \omega} \left[ (\hat{\theta} \cdot \hat{v}) \hat{\phi} - (\hat{\phi} \cdot \hat{v}) \hat{\theta} \right]
+            & {I} \hs \tfrac{v}{r} 
+                \left[ (\hat{\theta} \cdot \hat{v}) \hat{\phi} - (\hat{\phi} \cdot \hat{v}) \hat{\theta} \right]
+            \\[5pt]
+        {I} \hs \underline{ \tfrac{v_\perp}{r} } \hs \hat{r} \times \widehat{v_\perp} & = 
+            & I \underline{ \omega } \hs \hat{\omega}
+            & = 
+            & I \hs \tfrac{v}{r} \hs ( \hat{\theta} \times \hat{\phi} = \hat{r} ) \times \hat{v} 
     \end{array}
     \hfill
     \vline
     \hfill
-    % Acceleration
+    % Cross products of r, v, and w
     \begin{aligned}
-        \hsvec{a} = & \left[ \ddot{r} - r \dot{\theta}^2 + r \dot{\phi}^2 \tfrac{\sin^2\theta}{\cos{2\theta}} \right] \hat{r}\\
-        & + \left[ r \ddot{\theta} + 2 \dot{r} \dot{\theta} - r \dot{\phi}^2 \tfrac{\tan{2\theta}}{2} \right] \hat{\theta} \\
-        & + \mss{ \left[ 
-            2 \dot{r} \dot{\phi} \sin\theta + 2 r \dot{\theta} \dot{\phi} \cos\theta 
-            + r \ddot{\phi} \sin\theta 
-            \right] } \hat{\phi}
+        \bullet\ \hsvec{\omega} \times \hsvec{r} & = \tfrac{1}{r} (\hat{r} \times \hsvec{v}_\perp) \times \hsvec{r} \\
+        & = (\hat{r} \cdot \hat{r}) \hsvec{v}_\perp - (\hsvec{v}_\perp \cdot \hat{r}) \hat{r}\\
+        & = \hsvec{v}_\perp
             \\[10pt]
-        \hsvec{\tau} = & \ \hsvec{r} \times \vec{F} \\
-        = & \ (mr^2) \tfrac{ \hat{r} \times \hsvec{a} }{r} = I \hsvec{\alpha}
+        \bullet\ \hsvec{v} \times \hsvec{\omega} & = 
+            \tfrac{v_\perp}{r}\hs (v_\perp \hat{v}_\perp + v_\parallel \hat{r}) \times \hat{\omega}
+            \\
+        & = \tfrac{v_\perp}{r}\hs ( v_\perp \hat{r} - v_\parallel \widehat{v_\perp} )
+            \\
+        \Vert \hsvec{v} \times \hsvec{\omega} \Vert^2 & = v^2 \tfrac{v^2_\perp}{r^2}
     \end{aligned}
     \hfill\hs
 \)
 
-\vfill
-% Tangent Vectors/Normal
-\(\begin{aligned}
-    T & = \hat{v} = \tfrac{\hsvec{v}}{v}\\
-    T' & = \tfrac{ (\hsvec{v} \cdot \hsvec{v}) \hsvec{a} - (\hsvec{v} \cdot \hsvec{a}) \hsvec{v} }{v^3} 
-        = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v^3}
-        \\
-    \lVert T' \rVert & = \tfrac{ \sqrt{ v^2 a^2 - (\hsvec{v} \cdot \hsvec{a})^2 } }{v^2}
-        = \tfrac{\lVert \hsvec{v} \times \hsvec{a} \rVert }{v^2}
-        \\
-    N & = \tfrac{T'}{\lVert T' \rVert} 
-        = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v \lVert \hsvec{v} \times \hsvec{a} \rVert} 
-        = \hat{v} \times ( \widehat{a \times v} )
-        \\
-    B & = \tfrac{\hsvec{v} \times \hsvec{a}}{\lVert \hsvec{v} \times \hsvec{a} \rVert}\\
-    \lVert \hsvec{q} \times \hsvec{p} \rVert^2 & = q^2 p^2 - (\hsvec{q} \cdot \hsvec{p})^2
-\end{aligned}\)
-\hfill
-\(\begin{aligned}
-    \hsvec{a} & = a_T \hsvec{T} + a_N \vec{N} \\[5pt]
-    a_T & = \hsvec{a} \cdot \hsvec{T}\\[5pt]
-    a^2 & = a_T^2 + a_N^2
-\end{aligned}\)
-\hfill\hs
+\vspace{20pt}\noindent
+\(
+    % Inertia Tensor
+    \begin{gathered}
+        L_i = \sum_j I_{ij} \hs \omega_j
+        \\[10pt]
+        \overleftrightarrow{I} = \left[ \hs \mss{ \arraycolsep=2pt\begin{matrix}
+                \sum m(y^2 + z^2) & - \sum m xy & - \sum m xz\\[4pt]
+                - \sum m yx & \sum m(x^2 + z^2) & - \sum m yz\\[4pt]
+                - \sum m zx  & - \sum m zy & \sum m(x^2 + y^2)
+            \end{matrix} } \hs \right]
+    \end{gathered}
+    \hfill
+    % Rotational Energy
+    \begin{aligned}
+        E = \frac{\Vert \hsvec{L} \Vert^2}{2I} & = \frac{1}{2} \hsvec{L} \cdot \hsvec{\omega}
+            \\[7pt]
+        \sum_m \tfrac{1}{2} m \Vert \hsvec{\omega} \times \hsvec{r} \Vert^2 & 
+            = \tfrac{1}{2} \sum_{ij} I_{ij} \hs \omega_j \hs \omega_i
+            \\
+        & = \tfrac{1}{2} \mss{
+            \left[ \begin{matrix}
+                \hs\\
+                \hs & I & \hs\\
+                \hs
+            \end{matrix} \right]
+            \left[\begin{matrix}
+                |\\
+                \omega\\
+                |
+            \end{matrix}\right]
+            \cdot
+            \left[\begin{matrix}
+                |\\
+                \omega\\
+                |
+            \end{matrix}\right]
+            }
+    \end{aligned}
+    \hfill\hs
+\)
 
+%----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+\noindent
+% Eccentricity(?)
 \(\begin{aligned}
     \tfrac{d}{dt} \big( \hsvec{p} \times \hsvec{L} \big) &
         = \tfrac{d \hsvec{p}}{dt} \times \hsvec{L} 
@@ -300,9 +323,95 @@
     & = - m \cancel{f\mss{(r)}\hs r^2} \tfrac{d}{dt} \hat{r}
         = m k \tfrac{d}{dt} \hat{r}
         \\
-    \tfrac{d}{dt} \big( \tfrac{ \hsvec{p} \times \hsvec{L} }{mk} - \hat{r} \big) & = \tfrac{d}{dt} \hsvec{e} = 0
+    \tfrac{d}{dt} \big( \tfrac{ \hsvec{p} \times \hsvec{L} }{mk} - \hat{r} \big) & = \tfrac{d}{dt} \hsvec{e}_{\text{ccen}} = 0
 \end{aligned}\)
+\hfill\vline\hfill
+\parbox{8.7cm}{
+    \(
+        % Acceleration
+        \begin{aligned}
+            \hsvec{a} = & \left[ \ddot{r} - r \dot{\theta}^2 + r \dot{\phi}^2 \tfrac{\sin^2\theta}{\cos{2\theta}} \right] \hat{r}\\
+            & + \left[ r \ddot{\theta} + 2 \dot{r} \dot{\theta} - r \dot{\phi}^2 \tfrac{\tan{2\theta}}{2} \right] \hat{\theta} \\
+            & + \mss{ \left[ 
+                2 \dot{r} \dot{\phi} \sin\theta + 2 r \dot{\theta} \dot{\phi} \cos\theta 
+                + r \ddot{\phi} \sin\theta 
+                \right] } \hat{\phi}
+        \end{aligned}
+    \)
 
+    \vspace{15pt}
+    \(
+        % Torque
+        \begin{aligned}[t]
+            \hsvec{\tau} & = \ \hsvec{r} \times \vec{F} \\
+            & = \ (mr^2) \tfrac{ \hat{r} \times \hsvec{a} }{r} = I \hsvec{\alpha}
+                \\[10pt]
+            \Aboxed{ \tfrac{dv}{dt} & = a (\hat{v} \cdot \hat{a}) = \hat{v} \cdot \hsvec{a} }
+        \end{aligned}
+        \hfill
+        \begin{aligned}[t]
+            \\[-20pt]
+            \tau & = \left[ \mss{ \begin{matrix}
+                \tau_x \\
+                \tau_y \\ 
+                \tau_z 
+            \end{matrix} } \right]
+                \\[5pt]
+            & =^* 
+                \left[ \mss{ \begin{matrix}
+                    0 & \tau_z & -\tau_y \\
+                    -\tau_z & 0 & \tau_x \\
+                    \tau_y & -\tau_z & 0
+                \end{matrix} } \right]
+        \end{aligned}
+    \)
+}
+
+\vspace{20pt}\noindent
+% Tangent Vectors/Normal
+\(
+    \begin{aligned}
+        \lVert \hsvec{q} \times \hsvec{p} \rVert^2 & = 
+            \left| \ \begin{matrix}
+                \\[-11pt]
+                \Vert \hsvec{q} \Vert^2 & \hsvec{q} \cdot \hsvec{p} \\[5pt]
+                \hsvec{p} \cdot \hsvec{q} & \Vert \hsvec{p} \Vert^2 
+                \\[-12pt]
+                \hs
+            \end{matrix} \ \right|
+            \\[5pt]
+        % & = (\hsvec{q} \times \hsvec{p}) \cdot (\hsvec{q} \times \hsvec{p})
+        & = \hsvec{q} \cdot \hsvec{p} \times (\hsvec{q} \times \hsvec{p})
+    \end{aligned}
+    \hspace{20pt}
+    \vline
+    \hspace{20pt}
+    \begin{aligned}
+        T & = \hat{v} = \tfrac{\hsvec{v}}{v}\\
+        T' & = \tfrac{ (\hsvec{v} \cdot \hsvec{v}) \hsvec{a} - (\hsvec{v} \cdot \hsvec{a}) \hsvec{v} }{v^3} 
+            = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v^3}
+            \\
+        \lVert T' \rVert & = \tfrac{ \sqrt{ v^2 a^2 - (\hsvec{v} \cdot \hsvec{a})^2 } }{v^2}
+            = \tfrac{\lVert \hsvec{a} \times \hsvec{v} \rVert }{v^2}
+            \\
+        \hat{B} & = \tfrac{\hsvec{a} \times \hsvec{v}}{\lVert \hsvec{a} \times \hsvec{v} \rVert}
+            = \widehat{a \times v}
+            \hspace{15pt} \underline{ \mss{(\hat{B} \cdot \vec{v} = 0)} }
+            \\
+        \hat{N} & = \tfrac{T'}{\lVert T' \rVert} 
+            = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v \lVert \hsvec{a} \times \hsvec{v} \rVert} 
+            = \hat{v} \times \hat{B} 
+    \end{aligned}
+    \hfill
+    \boxed{
+        \begin{aligned}
+            \hsvec{a} & = a_T \hat{T} + a_N \hat{N} \\[5pt]
+            a_T & = \hsvec{a} \cdot \hat{v} = \tfrac{dv}{dt} \\[5pt]
+            a_N & = \tfrac{\Vert \hsvec{a} \times \hsvec{v} \Vert}{v} = \Vert \hsvec{a} \times \hat{v} \Vert \\[5pt]
+            a^2 & = a_T^2 + a_N^2 = \Vert \tfrac{d\hsvec{v}}{dt} \Vert^2
+        \end{aligned}
+    }
+\)
 
 %----------------------------------------------------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------------
@@ -336,11 +445,8 @@
 \(\begin{aligned}
     & \mathcal{L} = \tfrac{1}{2} m \dot{r}^2 + \tfrac{1}{2} mr^2 \dot{\phi}^2 - U(r,\phi) 
         \ , \hspace{20pt} \begin{aligned}
-            p_r & = m \dot{r}\\[-17pt]
-            p_\phi & = mr^2 \dot{\phi} = I \omega \hs { \tfrac{ \begin{gathered}
-                \text{\scriptsize(\(1\) if \(\dot{r}\)=0)}\\[-7pt]
-                \mss{ \hat{\phi} \cdot \hat{v} } 
-            \end{gathered} }{ \bcancel{\sin\theta} } }
+            p_r & = m \dot{r}\\
+            p_\phi & = mr^2 \dot{\phi} = I \omega = I \tfrac{v_\perp}{r}
         \end{aligned}
         \ , \hspace{20pt} 
         \arraycolsep=2pt\begin{array}{r c c c l}

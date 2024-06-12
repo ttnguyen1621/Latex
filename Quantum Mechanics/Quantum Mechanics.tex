@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 \usepackage{amssymb, amsmath, amsfonts, mathtools, empheq}
+\usepackage{bbm}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{cancel,slashed}
@@ -1969,6 +1970,7 @@ Given complete \(\{e_n\} : \ \langle e_m | e_n \rangle = \delta_{mn}\)
 \end{itemize}
 
 \hfill \break
+% Schwarz Inequality
 Schwarz Inequality: \hspace{18pt} 
 \( \begin{aligned}
     \left\Vert \int_a^b f^*g \ dx \right\Vert^2 &\leq 
@@ -2144,6 +2146,14 @@ Discontinuity in \( \Psi \) means the possiblity of \( \sigma_p \rightarrow \inf
                         & = 
                         & \mss{ \displaystyle \sum_{q'} \sum_{m'} }\ D^k_{q'q} D^j_{m'm} | k q' \rangle | j m' \rangle
                 \end{array}
+                \\
+            & \bullet\ \arraycolsep=2pt \begin{array}[t]{l c l}
+                    T_1^{\pm1} & = 
+                        & \mp \tfrac{V_x \pm i V_y}{\sqrt{2}}
+                        \\[5pt]
+                    T_1^0 & = 
+                        & V_z
+                \end{array}
         \end{aligned}
         \\[5pt]
     & \textit{Wigner-Eckhart}:\ \ \langle \alpha_2 j_2 m_2 | \hs T_k^q \hs | \alpha_1 j_1 m_1 \rangle
@@ -2154,19 +2164,219 @@ Discontinuity in \( \Psi \) means the possiblity of \( \sigma_p \rightarrow \inf
         \end{gathered}
 \end{aligned}\)
 
-\vspace{20pt}\noindent
-% Functions and Polynomials
-\underline{Functions}
+%------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
 
-\vspace{5pt}\noindent
-Associated Legendre Functions: \hspace{18pt} \( \displaystyle
-    P^m_l \equiv \sqrt{1-x^2}^{\ |m|} \left( \frac{d}{dx} \right)^{|m|} P_l(x) 
-\) \hspace{18pt} {\scriptsize (not a polynomial if odd)}\\
-Legendre Polynomials: \hspace{18pt} \( \displaystyle
-    P_l(x) \equiv \frac{1}{2^l l!} \left( \frac{d}{dx} \right)^l (x^2-l)^l
+\noindent
+% Legendre Polynomials Equation
+\(\begin{aligned}[t]
+    0 = \left[ \tfrac{1}{\sin\theta} \tfrac{d}{d\theta} \left( \sin\theta \tfrac{d}{d\theta} \right) 
+        + l(l+1) - \tfrac{m^2}{\sin^2\theta} \right] P^m_l
+        & = \left[ \tfrac{d}{dx} \Big( [1-x^2] \tfrac{d}{dx} \Big) 
+        + l(l+1) - \tfrac{m^2}{1-x^2} \right] P^m_l\mss{(x=\cos\theta)}
+        \\
+    & = \left[ \tfrac{d}{d\xi} \left( \xi [1-\xi] \tfrac{d}{d\xi} \right) 
+        + l(l+1) - \tfrac{m^2}{1-x^2} \right] P^m_l(\mss{\xi = \tfrac{1}{2}[1-x]})
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+\(
+    % LEgendre Polynomial
+    \begin{aligned}[t]
+        & \begin{gathered}[t]
+            \underline{\text{Legendre Polynomial}}\\[-5pt]
+            \mss{(m = 0 \ \leftrightarrow \ \text{Azimuthal Symmetry})}
+            \end{gathered}
+            \\[5pt]
+        & P_l\mss{(x)} = \tfrac{1}{2^l l!} \left( \tfrac{d}{dx} \right)^l (x^2-l)^l\\[5pt]
+        & \delta_{l'l} = \tfrac{2l+1}{2} \mss{\int_{-1}^1} P_l\mss{(x)} P_{l'}\mss{(x)} \hs dx
+    \end{aligned}
+    \hfill
+    % Associated Legendre Function
+    \begin{aligned}[t]
+        & \begin{gathered}[t]
+            \underline{\text{Associated Legendre Function}}\\[-5pt]
+            \text{\scriptsize(not a polynomial if \(m\) is odd)}
+            \end{gathered}
+            \\[5pt]
+        & P^m_l\mss{(x)} = \sqrt{1-x^2}^{\ |m|} \left( \tfrac{d}{dx} \right)^{|m|} P_l\mss{(x)} \\[5pt]
+        & \delta_{l'l} = \tfrac{(l-m)!}{(l+m)!} \tfrac{2l+1}{2} \mss{\int_{-1}^1} P^m_l\mss{(x)} P^m_{l'}\mss{(x)} \hs dx
+    \end{aligned}
+    \hfill
+    % SPherical Harmonics
+    \begin{aligned}[t]
+        & \underline{\text{Spherical Harmonics}}\\[5pt]
+        & \begin{aligned}[t]
+                Y_{lm} \mss{(\theta, \phi)}\\[5pt]
+                \mss{(-1)}^m Y^*_{l,-m} \\
+            \end{aligned}
+            = 
+            \begin{aligned}[t]
+                & \tfrac{1}{\sqrt{2\pi}} e^{im\phi} \ \times \\
+                & \mss{ \sqrt{ \tfrac{(l-m)!}{(l+m)!} \tfrac{2l+1}{2} } } P^m_l \mss{(\cos\theta)}
+            \end{aligned}
+            \\[5pt]
+        & \delta_{l'l} \hs \delta_{m'm} = \mss{\iint} \hs Y_{m'l'}^* Y_{ml}\hs d\Omega
+    \end{aligned}
 \)
 
 \vspace{10pt}\noindent
+% Addition THeorem
+\(\begin{aligned}
+    & \bullet\ \boxed{ \mss{
+            P_l \mss{(\cos\theta)} = P_l^0 \mss{(\cos\theta)} = \mss{ \sqrt{ \tfrac{4\pi}{2l+1} } } Y_{l0} \mss{(\theta,\phi)}
+        } }
+        \hspace{6pt} \bullet\hs 
+            f\mss{(0,\phi)} = \mss{ \sum_l \cancel{\sum_m} \ \langle x | Y_{l0} \rangle \langle Y^*_{l0} | f \rangle }
+            = \mss{ \sum_{l=0}^\infty } \hs \mss{ \sqrt{\tfrac{2l+1}{4\pi}} } \cancel{ P_l\mss{(1)} }
+            \underline{ \mss{
+                \int \nhs\nhs \sqrt{\tfrac{2l+1}{4\pi}} P_l\mss{(\cos\theta)} f\mss{(\theta,\phi)} \hs d\Omega 
+            } }
+        \\
+    & \bullet\ \begin{aligned}[t]
+            \Aboxed{ 0 & = \mss{ \left[ \nabla^2 + \tfrac{l(l+1)}{r^2} - \tfrac{m^2}{r^2\sin^2\theta} \right] } P_l^m\mss{(\cos\theta)} }
+            = \mss{ \left[ 
+                \tfrac{1}{r^2\sin\theta} \tfrac{d}{d\theta} \left( \sin\theta \tfrac{d}{d\theta} \right) 
+                + \tfrac{l(l+1)}{r^2} - \tfrac{m^2}{r^2\sin^2\theta} 
+            \right] }
+            P_l^m \mss{(\cos\theta)}
+                \\
+            & = \mss{ \left[ \nabla^2 + \tfrac{l(l+1)}{r^2} + \tfrac{\nabla^2 e^{im\phi}}{e^{im\phi}} \right] } P_l^m\mss{(\cos\theta)}
+            = \tfrac{1}{e^{im\phi}} \mss{ \left[ \nabla^2 + \tfrac{l(l+1)}{r^2} \right] } 
+            \left[ e^{im\phi} P_l^m \mss{(\cos\theta)} \right]
+            = \boxed{ 
+                \mss{
+                    \left[ 
+                        { \begin{gathered}
+                            \nabla^2 + \tfrac{l(l+1)}{r^2} \\[-2pt]
+                            (\nabla^2 = \nabla'^2)
+                        \end{gathered} } 
+                    \right]
+                    \begin{gathered}
+                        Y_{lm}\mss{(\theta,\phi)}, P_l\mss{(\cos\theta)}\\[-2pt]
+                        Y_{lm'}\mss{(\gamma,\beta)}, P_l\mss{(\cos\gamma)}
+                    \end{gathered}
+                }
+            }
+        \end{aligned}
+        \\
+    & \begin{aligned}
+            \rightarrow\ g\mss{(0, \beta)} = Y^*_{lm}{\scriptstyle[\theta'+0,\hs \phi(0,\hs \beta)]} & 
+                = \mss{ \sum_{l'=0}^\infty \bcancel{ \sum_{m'=-l'}^{l'} } } 
+                \hs Y_{l'0}\mss{(\gamma,\beta)} A_{l'0}\mss{[m]}
+                \hspace{10pt} \mss{(m'=0)} \big|_{\gamma=0}
+                \\
+            Y^*_{lm} \mss{(\theta', \phi')} = \Big[ Y^*_{lm}\mss{(\theta, \phi)} & 
+                = \mss{ \bcancel{ \sum_{l'=0}^\infty } \sum_{m'=-l'}^{l'} } 
+                Y_{l'm'}\mss{(\gamma,\beta)} A_{lm'}\mss{[m]} \hspace{10pt} \mss{(l'=l)} \Big]_{\gamma=0}
+        \end{aligned}
+        =\
+        \begin{aligned}
+            & \mss{ \cancel{\sum_{l}} \sqrt{\tfrac{2l+1}{4\pi}}} \mss{\int} Y^*_{l0}\mss{(\gamma, \beta)} 
+                Y^*_{lm}{\scriptstyle(\theta'+\gamma,\hs \phi)} \hs d\Omega 
+                \\[4pt]
+            & \underline{ 
+                    \mss{ \tfrac{2l+1}{4\pi} \int} P_{l}\mss{(\cos\gamma)} 
+                    Y^*_{lm}{\scriptstyle(\theta,\hs \phi)} \hs d\Omega
+                }
+        \end{aligned}
+        \\
+    & \Rightarrow\hs P_l \mss{(\cos\gamma)} = \mss{ \sum_{m=-l}^l } Y_{lm} \mss{(\theta, \phi)} 
+        \big[
+            A_{lm}\mss{(\theta',\phi')} = 
+            \underline{ \mss{\int} \hs P_{l} \mss{(\cos\gamma)} Y^*_{lm}\mss{(\theta, \phi)} \hs d\Omega }
+        \big]
+        = \boxed{ \mss{ \tfrac{4\pi}{2l+1} } \mss{\sum_{m=-l}^l} Y_{lm}\mss{(\theta,\phi)} Y^*_{lm} \mss{(\theta', \phi')} }
+\end{aligned}\)
+
+\vspace{10pt}
+\noindent\hrule
+\vspace{10pt}\noindent
+% Bessel Functions
+\(
+    \begin{aligned}
+        0 = \left[ \tfrac{1}{\rho^{2-1}} \tfrac{d}{d\rho} \left( \rho^{2-1} \tfrac{d}{d\rho} \right) 
+            + k^2 - \tfrac{m^2}{\rho^2} \right] R\mss{(\rho)}
+            & = \left[ \tfrac{d^2}{d\rho^2} + \tfrac{2-1}{\rho} \tfrac{d}{d\rho} 
+            + k^2 - \tfrac{m^2}{\rho^2} \right] R\mss{(\rho)}
+            \\
+        & = \left[ \tfrac{d^2}{dx^2} + \tfrac{2-1}{x} \tfrac{d}{dx} 
+            + 1 - \tfrac{m^2}{x^2} \right] R\mss{(x = k\rho)}
+    \end{aligned}
+    \hfill
+    \begin{aligned}
+        \mss{(a = \text{radius of cylinder})}
+    \end{aligned}
+\)
+
+\vspace{15pt}\noindent
+\(
+    % Bessel/Neumann FUnction
+    \begin{aligned}[t]
+        & \underline{\text{Bessel/Neumann Function}} \ \ \ \mss{(m \in \mathbb{R})}\\[5pt]
+        & J_m\mss{(x)} = \left( \tfrac{x}{2} \right)^m \mss{\sum_{j-0}^\infty} 
+            \left( \tfrac{x}{2} \right)^{2j} \tfrac{(-1)^j}{j!} \tfrac{1}{\Gamma(j+m+1)}
+            \\
+        & N_m\mss{(x)} = \tfrac{\cos m\pi \cdot J_m(x) - J_{-m}}{\sin m\pi}
+            \hspace{15pt} \big( \mss{N(0) \rightarrow \infty} \big)
+            \\[10pt]
+        % Bessel Series
+        & \begin{aligned}
+            R_{m}\mss{(\rho)} & = \mss{ \sum_{n=1}^\infty }\hs A_n J_m \mss{(\tfrac{x_{mn}}{a} \rho = k_{mn} \rho)}
+                \hspace{15pt} \big( \mss{J_m(x_{mn}) = 0} )
+                \\
+            & = \mss{ \sum_{n=1}^\infty }\hs B_n J_m \mss{(\tfrac{y_{mn}}{a} \rho = k_{mn} \rho)}
+                \hspace{15pt} \big( \mss{J'_m(y_{mn}) = 0} )
+            \end{aligned}
+            \\[5pt]
+        % Orthogonality
+        & \delta_{n'n} = \tfrac{2}{a^2} \tfrac{1}{ J^2_{m+1} \mss{ (x_{mn} \tfrac{\rho}{a}) } }
+            \mss{\int_0^a} \rho \hs J_{m}\mss{(x_{mn'} \tfrac{\rho}{a})} J_{m}\mss{(x_{mn} \tfrac{\rho}{a})} \hs d\rho
+    \end{aligned}
+    \hfill
+    \begin{aligned}[t]
+        % Hankel FUnction
+        & \begin{aligned}[t]
+                & \underline{\text{3rd Kind (Hankel)}} \\[5pt]
+                & H_m^{(1)}\mss{(x)} = J_m + i N_m \\[5pt]
+                & H_m^{(2)}\mss{(x)} = J_m - i N_m 
+            \end{aligned}
+            \hspace{25pt}
+            % Modified Bessel FUnction
+            \begin{aligned}[t]
+                & \begin{gathered}[t]
+                    \underline{\text{Modified Bessel}} \ \ \mss{(k^2 \rightarrow -k^2)}
+                    \end{gathered} 
+                    \\[5pt]
+                & I_m \mss{(x)} = i^{-m} J_m(ix)\\[5pt]
+                & K_m \mss{(x)} = \tfrac{\pi}{2} i^{m+1} H^{(1)}_m(ix)
+            \end{aligned}
+            \\[10pt]
+        % SPherical Bessel
+        & \underline{\text{Spherical Bessel}}:\ \begin{aligned}[t]
+                & j_l = \sqrt{\tfrac{2\pi}{z}} J_{l+1/2}\\[5pt]
+                & \delta\mss{(k-k')} = \tfrac{2k^2}{\pi} \mss{\int_0^\infty} \hs r^2 j_l \mss{(k'r)} \hs j_l \mss{(kr)} \hs dr
+            \end{aligned}
+            \\[10pt]
+        % Cylinderical Series (Full series)
+        & \begin{aligned}
+                & \underline{\text{``Cylindrical Series''(?)}} 
+                    \ \ \ \mss{0 \leq \rho \leq a} 
+                    \ \ \ \ \ \mss{a \rightarrow \infty, \int dk}
+                    \\[5pt]
+                & \Psi\mss{(\nhs\hsvec{r})} = \mss{\sum_{m,\hs n}} \tfrac{1}{\sqrt{2\pi}} e^{im\phi} 
+                    \begin{aligned}
+                    & \times \left[ A_{mn} e^{k_{mn}z} + B_{mn} e^{-k_{mn}z} \right] \\
+                    & \times \left[ C_{mn} J_m\mss{(k_{mn}\rho)} + D_{mn} N_m\mss{(k_{mn}\rho)} \right]
+                    \end{aligned}
+            \end{aligned}
+    \end{aligned}
+\)
+
+\vspace{30pt}\noindent
 Associated Laguerre Polynomials: \hspace{18pt} \( \displaystyle
     L \equiv 
 \) \\[10pt]
@@ -2175,10 +2385,11 @@ Laguerre Polynomials: \hspace{18pt} \( \displaystyle
 \)
 % P.23 - Prob. 1.18 
 
-%--------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
 % Simple 1-D Potentials
 \newpage
 \section{Simple 1D Potentials}
@@ -3059,14 +3270,17 @@ Hermite Polynomials: \ \( \begin{aligned}
 \subsubsection{3D Free Particle, \ \(V = 0\)}
 
 \vspace{5pt}\noindent
-\(
+\( \displaystyle
     \hfill
-    \begin{aligned}[t]
-        - \frac{\hbar^2}{2M} \left[ \frac{\partial^2}{\partial r^2} + \frac{l(l+1)}{r^2} \right] u &
-            = \frac{\hbar^2 k^2}{2M} u
-        \hspace{10pt} \Rightarrow \hspace{10pt}
-        \left[ \frac{\partial^2}{\partial \rho^2} + \frac{l(l+1)}{\rho^2} \right] | l \rangle = | l \rangle
-    \end{aligned}
+    \frac{\hbar^2}{2M} \left[ - \frac{\partial^2}{\partial r^2} + \frac{l(l+1)}{r^2} \right] u 
+        = \frac{\hbar^2 k^2}{2M} u
+    \hspace{10pt} \Rightarrow \hspace{10pt}
+    \left[ - \frac{\partial^2}{\partial \rho^2} + \frac{l(l+1)}{\rho^2} \right] | l \rangle = | l \rangle
+    = \left\{ \begin{aligned}
+        & A \rho^{l+1}\\
+        & B \rho^{-l}
+    \end{aligned} \right.
+    \text{\scriptsize\ or(?)\ ...}
     \hfill\hs
 \)
 
@@ -3112,14 +3326,20 @@ Hermite Polynomials: \ \( \begin{aligned}
     \(
         \boxed{
         \begin{aligned}[t]
-            \text{Bessel}: & \ \ r \underline{R_0^B} = u_0^B \sim \sin{(\rho)} = \sin{(kr)}
-                \\[5pt]
-            \cancel{ \text{Neumann} }: & \ \ r \underline{R_0^N} = u_0^N \sim - \cos{(\rho)}
+            \begin{gathered}
+                \text{\scriptsize Spherical} \\[-7pt]
+                \text{\scriptsize Bessel}
+            \end{gathered}: & \ \ r \underline{R_0^B} = u_0^B \sim \sin{(\rho)} = \sin{(kr)}
+                \\[-3pt]
+            \begin{gathered}
+                \text{\scriptsize Spherical} \\[-7pt]
+                \cancel{ \text{\scriptsize Neumann} }
+            \end{gathered}: & \ \ r \underline{R_0^N} = u_0^N \sim - \cos{(\rho)}
         \end{aligned}
         }
     \)
     
-    \vspace{15pt}
+    \vspace{10pt}
     % Higher Levels
     \(
         \begin{aligned}
@@ -3138,7 +3358,7 @@ Hermite Polynomials: \ \( \begin{aligned}
 \end{minipage}
 
 % Infinite Spherical Well
-\vspace{20pt}\noindent
+\vspace{15pt}\noindent
 \underline{Infinite Spherical Well}: \ \ \(
     V(r) = \begin{cases}
         0 & r \leq a\\
@@ -3463,8 +3683,8 @@ General: \ \fbox{
 \text{\underline{Generator of Rotations}:}\\[10pt]
 \(\displaystyle
     U [R \mss{(\theta)}] = e^{- \tfrac{i}{\hbar} \theta \hs \hat{\theta} \cdot L} 
-    = \lim_{N \rightarrow \infty} \left[ I - \tfrac{i}{\hbar} \tfrac{\theta}{N} \hs \hat{\theta} \cdot L \right]^N
-    \ \Leftrightarrow\ \boxed{ U[R\mss{(\epsilon_z \hs \hat{z})}] = I - \tfrac{i}{\hbar} \epsilon_z L_z }
+    = \lim_{N \rightarrow \infty} \left[ \mathbbm{1} - \tfrac{i}{\hbar} \tfrac{\theta}{N} \hs \hat{\theta} \cdot L \right]^N
+    \ \Leftrightarrow\ \boxed{ U[R\mss{(\epsilon_z \hs \hat{z})}] = \mathbbm{1} - \tfrac{i}{\hbar} \epsilon_z L_z }
 \)
 
 \vspace{15pt}\noindent
@@ -3501,7 +3721,7 @@ General: \ \fbox{
         & ? U[\mss{ R(- \epsilon_y \hat{y}) }] U[\mss{ R(- \epsilon_x \hat{x}) }] 
             U[\mss{ R(\epsilon_y \hat{y}) }] U[\mss{ R(\epsilon_x \hat{x}) }] 
             = \begin{gathered}[t]
-                I + \tfrac{i}{\hbar} \epsilon_x \epsilon_y L_z \\
+                \mathbbm{1} + \tfrac{i}{\hbar} \epsilon_x \epsilon_y L_z \\
                 \mss{(L_z = x p_y - y p_x)}
             \end{gathered}
             = U [\mss{ R(-\epsilon_x \epsilon_y \hat{z}) }] 
@@ -3600,6 +3820,7 @@ General: \ \fbox{
                     1 \\
                     0
                 \end{matrix} \right)
+                = \tfrac{1}{2} (1 + \sigma_z)
                 \hspace{.5cm} , \hspace{.5cm}
                 | \tfrac{1}{2} \ \tfrac{-1}{2}  \rangle 
                 \equiv | \downarrow \ \rangle \equiv 
@@ -3607,7 +3828,8 @@ General: \ \fbox{
                     0 \\
                     1
                 \end{matrix} \right)
-            \ \ \right\} 
+                = \tfrac{\sigma_x}{2} (1 + \sigma_z)
+                \ \ \right\} 
         \) 
     }
 \end{center}
@@ -3621,7 +3843,7 @@ General: \ \fbox{
         \end{aligned} \hspace{18pt} \right\}
         & \Rightarrow
         & \begin{aligned}
-                S^2 & = \frac{3\hbar^2}{4}
+                & S^2 = \frac{3\hbar^2}{4}
                     \left( \begin{matrix} 
                         1 & 0 \\
                         0 & 1
@@ -3640,7 +3862,8 @@ General: \ \fbox{
                         0 & 1
                     \end{matrix} \right)^{T*}
                     \\
-                & = \tfrac{3 \hbar^2}{4} \mathbb{I} 
+                & = \text{\scriptsize \underline{Casimir Op}: \( - (g_{yz})^2 - (g_{zx})^2 - (g_{xy})^2 \)}
+                    = \tfrac{3 \hbar^2}{4} \mathbbm{1}
                     \hspace{20pt} (\text{\scriptsize only for \(s=1/2\) systems})
             \end{aligned}
         \\[35pt]
@@ -3670,7 +3893,19 @@ General: \ \fbox{
                     \\[5pt]
                 & = \hbar | \downarrow \ \rangle \langle \ \uparrow |
             \end{aligned}
-            \ \ \ \ \text{\scriptsize (can't measure)}
+            \hspace{10pt} 
+            \big(\hs \begin{gathered}
+                \text{\scriptsize can't}\\[-10pt]
+                \text{\scriptsize measure}
+            \end{gathered} \hs\big)
+            \hspace{10pt}
+            \mss{ \begin{gathered}
+                \text{Lad. Op. (see harm.)}\\[2pt]
+                \begin{aligned}
+                        [S_+, S_-] & = (2\hbar) S_z\\
+                        [S_z, S_\pm] & = (\pm \hbar) S_+\\
+                    \end{aligned} 
+            \end{gathered} }
         \\[35pt]
     % S_z
     \left. \begin{aligned}
@@ -3734,24 +3969,23 @@ General: \ \fbox{
     \begin{aligned}[t]
         & \text{\underline{Properties of Pauli Matrices, \(\sigma_i\)}} \\[10pt]
         & \bullet\ \sigma_i = \sigma_i^{\dagger} = \sigma_i^{-1}\\
-        & \ast\ \sigma_i^2 = I
+        & \ast\ \sigma_i^2 = {1}
             = (\hat{n} \cdot \sigma)^2 
-            \Leftarrow \mss{ \begin{aligned}
-                ( \hat{n} & \cdot \sigma )^2 - I^2 = ( \hat{n} \cdot \sigma + I ) ( \hat{n} \cdot \sigma - I ) = \\
-                0 & = ( \hat{n} \cdot S + \tfrac{\hbar}{2} ) ( \hat{n} \cdot S - \tfrac{\hbar}{2} ) 
+            \leftrightarrow \mss{ \begin{aligned}
+                & ( \hat{n} \cdot \sigma + \mathbbm{1} ) ( \hat{n} \cdot \sigma - \mathbbm{1} ) = 0 \\
+                & ( \hat{n} \cdot S + \tfrac{\hbar}{2} ) ( \hat{n} \cdot S - \tfrac{\hbar}{2} ) 
                     = ( S_z + \tfrac{\hbar}{2} ) ( S_z - \tfrac{\hbar}{2} )
             \end{aligned} }
             \\[5pt]
         & \bullet\ \sigma_i \sigma_j = - \sigma_j \sigma_i = i \sigma_k = (\sigma_j \sigma_i)^\dagger
             \ \Rightarrow\ 
-            \left[ \tfrac{\sigma_i}{2}, \tfrac{\sigma_j}{2} \right] = i \tfrac{\sigma_k}{2}
-            \hspace{10pt} \mss{(i \neq j)}
+            \left[ \tfrac{\sigma_i}{2i}, \tfrac{\sigma_j}{2i} \right] = \tfrac{\sigma_k}{2i}
             \\
         & \ast\ \mss{ (A \cdot \sigma)(B \cdot \sigma) = A \cdot B + i (A \times B) \cdot \sigma }
             \hspace{20pt} ( \mss{ \text{\scriptsize if } \left[A_i, \sigma_i\right] = 0 = \left[B_i, \sigma_i\right] } )
             \\
-        & \ast\ (\sigma_i \sigma_j)^2 = -1 
-            \hspace{15pt} \text{\scriptsize(even if \(\sigma_i^2 = \pm 1\), but \((\gamma_t\gamma_i)^2=1\) [see right])}
+        & \ast\ (\sigma_i \sigma_j)^2 = -1 \\
+        & \ast\ (\sigma_i \sigma_j \sigma_k)^2 = -1 = \mathbbm{i}^2
             \\[5pt]
         & \bullet\ \text{Tr } \sigma_i = 0
             \ \Rightarrow\ 
@@ -3768,22 +4002,30 @@ General: \ \fbox{
     \end{aligned}
     \hfill
     \begin{aligned}[t]
-        & \text{\underline{Misc.}}\\[10pt]
-        & \bullet\ U[\mss{R(\theta)}] = e^{\theta g_i} \ \Leftarrow\ \mss{\begin{aligned}
-                & \ast U_{\theta=0}=I\\[-3pt]
-                & \ast g_i = \tfrac{dU}{d\theta} \big|_{\theta=0}
-            \end{aligned}}
-            \\
-        & \bullet\ \det{U} = 1 = \det(e^{\theta g_i}) = e^{\theta \underline{tr(g_i)=0}} \\
-        & \bullet\ [\tfrac{-i\sigma_x}{2}, \tfrac{-i\sigma_y}{2}] = \tfrac{-i\sigma_z}{2} = \underline{ g_z = - g_z^\dagger }
-            \hspace{10pt} \text{\scriptsize(\(\mathfrak{su}(2)\))}
-            \\
-        & \bullet\ \text{\scriptsize Rotation = Unitary,\ Boost = Hermitian}\\
-        & \bullet\ g_z^\dagger = g_i \hspace{10pt} \text{\scriptsize(for boosts \(\in \mathfrak{sl}(2, \mathbb{C})\))}\\
-        & \bullet\ g_i^T = -g \hspace{10pt} \text{\scriptsize(for \(\mathfrak{so}(3)\))}\\
-        & \bullet\ g_i^T = -\eta g \eta \hspace{10pt} \text{\scriptsize(for \(\mathfrak{so}^+(1,3)\))}
+        & \text{\underline{Gamma Matrices, \(\gamma_\alpha\)}}\\[10pt]
+        & \bullet\ \gamma_i = \mss{\left[\arraycolsep=2pt\begin{matrix}
+                0 & \sigma_i \\
+                -\sigma_i & 0
+            \end{matrix}\right]}
+            , \ 
+            \gamma_t = \mss{\left[\arraycolsep=2pt\begin{matrix}
+                0 & \mathbbm{1} \\
+                \mathbbm{1} & 0
+            \end{matrix}\right]}
+            \text{\scriptsize\ or }
+            \mss{\left[\arraycolsep=2pt\begin{matrix}
+                \mathbbm{1} & 0\\
+                0 & - \mathbbm{1}
+            \end{matrix}\right]}
             \\[5pt]
-        & \bullet\ j^2 = 1 :\ e^{j\phi} = \cosh\phi + j\sinh\phi
+        & \ast\ \gamma_t^2 = {1} :\ e^{j\phi} = \cosh\phi + \gamma_t\sinh\phi\\[5pt]
+        & \ast\ \gamma_x^2 = \gamma_y^2 = \gamma_z^2 = -1\\[5pt]
+        & \bullet\ - \gamma_i = \gamma_i^\dagger = \gamma_i^{-1} \ , \ \gamma_t = \gamma_t^\dagger = \gamma_t^{-1}\\[5pt]
+        & \bullet\ \gamma_\alpha \gamma_\beta = - \gamma_\beta \gamma_\alpha \\[5pt]
+        & \ast\ (\gamma_i\gamma_j)^\dagger = \gamma_j \gamma_i\ , \ (\gamma_t\gamma_i)^\dagger = - \gamma_i \gamma_t \\[5pt]
+        & \ast\ (\gamma_i\gamma_j)^2 = -1\ ,\ (\gamma_t\gamma_i)^2 = 1\\
+        & \ast\ (\gamma_i\gamma_j\gamma_k)^2 = 1\ ,\ (\gamma_t\gamma_i\gamma_k)^2 = -1\\
+        & \ast\ (\gamma_t \gamma_x \gamma_y \gamma_z)^2 = -1 = \mathbbm{i}^2
     \end{aligned}
 \)
 
@@ -3793,16 +4035,14 @@ General: \ \fbox{
 %
 \newpage
 % General Direction; Bloch Sphere
-% \vspace{25pt}
 \noindent
 \underline{General Direction, \(\hat{n}\), on Bloch Sphere (\(1, \theta, \phi\)) 
     \(\Leftrightarrow\) Pauli Vector, \(V\) (see Properties of \(\sigma_i\))}
-    \\[5pt]
+    \\[10pt]
 \(
     \begin{aligned}
         \hat{n} \cdot \vec{S} & = \cos\phi \sin\theta \hs S_x + \sin\phi \sin\theta \hs S_y + \cos\theta \hs S_z 
-            \\[5pt]
-        V_{\hat{n}} & = \boxed{ 
+            = \boxed{ 
                 \tfrac{\hbar}{2} \mss{ \left[\arraycolsep=2pt\begin{matrix}
                     n_z & n_x - i n_y \\
                     n_x + i n_y & - n_z
@@ -3812,34 +4052,40 @@ General: \ \fbox{
                         \sin\theta e^{i\phi} & - \cos\theta
                     \end{matrix}\right] }
             }
-    \end{aligned}
-    \hfill\vline\hfill
-    \begin{aligned}
-        & \bullet\ V_{\vec{n}}^2 = \lVert \hsvec{n} \rVert^2 I
-            \hspace{12pt} 
-            \bullet\ \det(V_{\vec{n}}) = - \lVert \hsvec{n}\hs \rVert^2
-            \\[2pt]
-        & \bullet\ V = V^\dagger
-            \hspace{8pt} \bullet\ \text{Tr} (V) = 0
-            \hspace{8pt} \bullet\ \begin{gathered}
-                \text{\scriptsize Reflect \(V\)}\\[-9pt]
-                \text{\scriptsize over \(R_{\hat{n}} \perp\)}
-            \end{gathered} : -RVR^{\bcancel{-1}}
-            \\[2pt]
-        & \bullet\ \begin{gathered}
-                \text{\scriptsize Rotate \(V\) in}\\[-9pt]
-                \text{\scriptsize \(xy\)-plane by \(\psi\)}
-            \end{gathered} : \begin{aligned}
-                & -[\mss{ \cos\tfrac{\psi}{2} \sigma_x + \sin\tfrac{\psi}{2} \sigma_y }][-\sigma_x V \sigma_x][..]\\
-                & = \underline{ [\mss{ \cos\tfrac{\psi}{2} I - \sin\tfrac{\psi}{2} \sigma_x \sigma_y }] V [..]^{\underline{-1}} }
-                    = \boxed{U V U^\dagger}
-            \end{aligned}
+            = V_{\hat{n}}
     \end{aligned}
 \)
 
 % Pauli Vector Properties
 \vspace{10pt}\noindent
+\(\begin{aligned}
+    & \bullet\ V_{\vec{n}}^2 = \lVert \hsvec{n} \rVert^2 I
+        \hspace{12pt} \bullet\ \det(V_{\vec{n}}) = - \lVert \hsvec{n}\hs \rVert^2
+        \hspace{8pt} \bullet\ V = V^\dagger
+        \hspace{8pt} \bullet\ \text{Tr} (V) = 0
+        \hspace{8pt} \bullet\ \begin{gathered}
+            \text{\scriptsize Reflect \(V\)}\\[-9pt]
+            \text{\scriptsize over \(R_{\hat{n}} \perp\)}
+        \end{gathered} : -RVR^{\bcancel{-1}}
+        \\[2pt]
+    & \bullet\ \begin{gathered}
+            \text{\scriptsize Rotate \(V\) in}\\[-9pt]
+            \text{\scriptsize \(xy\)-plane by \(\psi\)}
+        \end{gathered} : 
+        -[\mss{ \cos\tfrac{\psi}{2} \sigma_x + \sin\tfrac{\psi}{2} \sigma_y }][-\sigma_x V \sigma_x][..]
+        = \underline{ [\mss{ \cos\tfrac{\psi}{2} \mathbbm{1} - \sin\tfrac{\psi}{2} \sigma_x \sigma_y }] V [..]^{\underline{-1}} }
+        = \boxed{ \mss{(\pm)} U V \mss{(\pm)} U^\dagger}
+        \hspace{15pt}
+        ( \mss{ U \in SU(2) } )
+        \\[8pt]
+    & \bullet\ i \hsvec{n} \cdot \sigma \ =\ i n_x \sigma_x + i n_y \sigma_y + i n_z \sigma_z 
+        \ =\ n_x \sigma_y \sigma_z + n_y \sigma_z \sigma_x + n_z \sigma_x \sigma_y 
+\end{aligned}\)
+
+% Eigenvector of Pauli Matrix/Vector
+\vspace{10pt}\noindent
 \(
+    \ast\ \
     \hat{n} \cdot \vec{S} \hs\hs | \chi_\pm \rangle = \mss{\pm} \tfrac{\hbar}{2} \hs | \chi_\pm \rangle
     \ \Rightarrow\ 
     \boxed{
@@ -3875,7 +4121,7 @@ General: \ \fbox{
 
 % Riemann Sphere to Complex Projected Line
 \vspace{10pt}\noindent
-\underline{Riemann Sphere \(\rightarrow \mathbb{C}P^1\)}: \ \(
+\(\ast\ \ \)\underline{Riemann Sphere \(\rightarrow \mathbb{C}P^1\)}: \ \(
     |\chi\rangle 
     = \mss{ \left[ \begin{matrix}
         1\\ 
@@ -3892,57 +4138,449 @@ General: \ \fbox{
     \ \ (\text{\scriptsize double cover})
 \)
 
-% SU(2) matrices
-\vspace{10pt}\noindent
-\underline{\(SU(2)\) Matrices}:\ \(
-        \boxed{ \mss{ 
+% Projectors and Nilpotents
+\vspace{15pt}\noindent
+\underline{Projectors and Nilpotents}:\\[10pt]
+% Projectors
+\(
+    \begin{aligned}
+        P^\pm_U & = \tfrac{1}{2}(1 \pm U)\\
+        & \mss{(U^2 = 1)} 
+            \\[5pt]
+        P_z^\pm & = \tfrac{\bcancel{\sigma_z}}{2}(1 \pm \sigma_z)^{\bcancel{\dagger}} \bcancel{\sigma_z}\\
+        & = | \pm \rangle = | z^\pm \rangle 
+            \\[5pt]
+        P_{tz}^\pm & = \tfrac{\bcancel{\gamma_t\gamma_z}}{2}(1 \pm \gamma_t\gamma_z) \bcancel{\gamma_t\gamma_z}
+    \end{aligned}
+    \hfill\vline\hfill
+    \begin{aligned}
+        | \xi \rangle & =
+            \left[ \begin{matrix}
+                a + bi & 0 \\
+                c + di & 0
+            \end{matrix} \right] 
+            = \boxed{ (a P_z^+ + b \sigma_x \sigma_y P_z^+) + (c \sigma_x P_z^+ + d \sigma_y P_z^+ ) }
+            \\[5pt]
+        | \xi \rangle \langle \chi | & =
+            \mss{ \arraycolsep=2pt \left[ \begin{matrix}
+                z & x - iy\\
+                x + iy & -z
+            \end{matrix} \right] }
+            = \xi \xi^T \epsilon
+            = \mss{
+            \left[ \begin{matrix}
+                \xi^1 & 0 \\
+                \xi^2 & 0
+            \end{matrix} \right] 
+            \left[ \begin{matrix}
+                - \xi^2 & \xi^1 \\
+                0 & 0
+            \end{matrix} \right] 
+            }
+            \hspace{20pt}
+            \mss{ %\begin{gathered}
+                \det \left( | \xi \rangle \langle \chi | \right) = 0 
+                \ , \ 
+                \epsilon = \left[ \arraycolsep=2pt \begin{matrix}
+                        0 & 1 \\
+                        -1 & 0
+                    \end{matrix}\right]
+            %\end{gathered} 
+            }
+            \\[5pt]
+        & = x \sigma_x + y \sigma_y + z \sigma_z 
+            = \Big( \xi^1 | z^+ \rangle + \xi^2 \sigma_x| z^+ \rangle \Big)
+            \Big( \nhs\nhs -\xi^2 \langle z^+ |^* + \xi^1 \sigma_x \langle z^+ |^* \Big)
+    \end{aligned}
+\)
+
+\vspace{15pt}\noindent
+% Nilpotents
+\(
+    \begin{aligned}
+        \{ \alpha_\pm, \alpha_\pm \} & = 0
+            \\[8pt]
+        \{ \alpha_{-}, \alpha_{+} \} & = 1 \\
+        \alpha_{-} \alpha_+ + \alpha_+ \alpha_{-} & = P_+ + P_{-}
+            \\[8pt]
+        P_\pm P_\mp = 0 & = P_\mp P_\pm
+    \end{aligned}\
+    \hspace{10pt}\vline\hspace{10pt}
+    \begin{gathered}
+        \alpha_{UV}^\pm = \tfrac{1}{2}( U + V ) \hspace{20pt} \mss{(U^2 = 1 \ ,\ V^2 = -1)}\\[10pt]
+        Cl(1,3,\mathbb{C}) :\
             \begin{aligned}
-                & \cos\tfrac{\psi}{2} I - \sin\tfrac{\psi}{2} i (n^x \sigma_x + n^y \sigma_y + n^z \sigma_z) = \\
-                & .. - \sin\tfrac{\psi}{2} (n^x \sigma_y\sigma_z + n^y \sigma_z \sigma_x + n^z \sigma_x \sigma_y)
+                a_{tz}^\pm & = \tfrac{1}{2}( \gamma_t + \gamma_z ) \hspace{-5pt}
+                    && \Rightarrow\ P_{tz}^\pm = a_{tz}^\mp a_{tz}^\pm = \tfrac{1}{2}(1 \pm \gamma_t \gamma_z)
+                    \\[5pt]
+                b_{ixy}^\pm & = \tfrac{1}{2}( i\gamma_x + \gamma_y ) \hspace{-5pt}
+                    && \Rightarrow\ P_{ixy}^\pm = b_{ixy}^\mp b_{ixy}^\pm = \tfrac{1}{2}(1 \pm i\gamma_x \gamma_y)
             \end{aligned}
-            = \left[ \arraycolsep=2pt \begin{matrix}
+            \\[10pt]
+        \begin{aligned}
+            \{ a_\pm, b_\pm \} & = 0 = \{ a_\pm, b_\mp \} \\
+            \left[ P_{tz}^\pm , P_{ixy}^\pm \right] & = 0 = \left[ P_{tz}^\pm , P_{ixy}^\mp \right]
+            \end{aligned}
+            \ \rightarrow \ \boxed{ 
+                | \epsilon \rangle = \epsilon^1 P_{tz}^+ P_{ixy}^+ + \epsilon^2 \alpha_{tzixy}^+ P_{tz}^+ P_{ixy}^+
+            }
+    \end{gathered}
+\)
+
+% Lie Groups and Algebras
+\vspace{20pt}\noindent
+% Line
+\hrulefill
+
+\vspace{20pt}\noindent
+% SO(3)
+\(
+    \begin{aligned}
+        & \underline{R \in SO(3) \sim \mathbb{R}P^3} :\ \begin{aligned}
+                & R\mss{(\theta)} = e^{\theta g} \\[-2pt]
+                & R\mss{(0)} = \mathbbm{1}
+            \end{aligned}
+            % Algebra g
+            \ \Rightarrow\ \left. \tfrac{dR}{d\theta} \right|_{\theta = 0} 
+            = \boxed{ 
+                g[R] \in 
+                \begin{aligned}
+                    & \mathfrak{so}\mss{(3)} \\[-2pt]
+                    & \mathfrak{su}\mss{(2)} 
+                \end{aligned}
+            }
+            \\[5pt]
+        % Properties
+        & \bullet\ \det{( R=e^{\theta g} )} = 1 = e^{\theta\hs \text{Tr}(g)}\ \Rightarrow\ \boxed{ \text{Tr}(g) = 0 }\\
+        & \bullet\ \boxed{ \mss{ \begin{gathered}
+                v^T [R^T R] v = v^T \mathbbm{1} v \\
+                R^T = R^{-1}
+            \end{gathered} } } \ \Rightarrow\ g^T + g = 0 \ \leftrightarrow\ \boxed{ g^T = - g}
+            \\
+    \end{aligned}
+    \hspace{15pt}\vline\hspace{15pt}
+    % Commutation
+    \begin{aligned}
+        [g_{yz}, g_{zx}] & = g_{xy} \equiv g_z = [g_{x}, g_{y}] \\
+        [g_{zx}, g_{xy}] & = g_{yz} \equiv g_x = [g_{y}, g_{z}] \\
+        [g_{xy}, g_{yz}] & = g_{zx} \equiv g_y = [g_{z}, g_{x}] 
+    \end{aligned}
+\)
+
+%-----------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+\noindent
+% SU(2) matrices
+\(\begin{aligned}
+    & \underline{ 
+        \begin{aligned}
+            & U \in SU(2) = 2 \times SO(3) = Spin(3)\\
+            & = \mss{ \begin{gathered}
+                    2n \text{ grade},\\[-2pt]
+                    \lVert \pm U_i \rVert^2 = \mathbbm{1}
+                \end{gathered} 
+                }
+                \in Cl(3,0)
+                \sim S^3_{phere}
+        \end{aligned} 
+        } :\ 
+        \boxed{ 
+            \mss{ 
+            \left[ \arraycolsep=2pt \begin{matrix}
                 \alpha & - \beta^*\\
                 \beta & \alpha^*
             \end{matrix} \right] 
-        } }
-        \ \Leftarrow\ U^\dagger = U^{-1} ,\ \det(U) = \alpha^*\alpha + \beta^*\beta = 1
-    \)\\[5pt]
-\(\begin{aligned}
-    & \bullet\ \mss{ \begin{gathered}
-            \text{Rotate \(\hat{k}\) to \(\hat{k}'\) by angle \(\theta\)}\\[-3pt]
-            \hat{\theta} = (-\sin\phi, \cos\phi, 0) = \hat{k} \times \hat{k}' 
-        \end{gathered} }
-        \hspace{20pt} 
-        \underline{ 
-            U[R(\theta)] = e^{ - i \tfrac{\theta}{2} \hat{\theta} \cdot \sigma } 
-            = \cos \tfrac{\theta}{2} I - \sin \tfrac{\theta}{2} i \big( \hat{\theta} \cdot \sigma \big) 
+            }
+            % Exponential Map
+            \mss{ \begin{aligned}
+                & = e^{ - i \tfrac{\psi}{2} \hat{n} \cdot \sigma } 
+                    = \cos\tfrac{\psi}{2} \mathbbm{1} - \sin\tfrac{\psi}{2} \hs \mathbbm{i}\hs \hsvec{n} \cdot \sigma
+                    \\
+                & \sim\ e^{ - \tfrac{\psi}{2} \sigma_i \sigma_j } 
+                    = \cos\tfrac{\psi}{2} \mathbbm{1} - \sin\tfrac{\psi}{2} \hs \sigma_i \sigma_j
+            \end{aligned} }
         }
-        = \mss{ \left[\begin{matrix}
-            \cos \tfrac{\theta}{2} & - \sin \tfrac{\theta}{2} \hs e^{- i \phi}\\[3pt]
-            \sin \tfrac{\theta}{2} \hs e^{i \phi} & \cos \tfrac{\theta}{2}
-        \end{matrix}\right] }
+        % Algebra g
+        \ \Rightarrow\ \boxed{ 
+            g[U] \in 
+            \begin{aligned}
+                & \mathfrak{su}\mss{(2)} \\[-2pt]
+                & \mathfrak{so}\mss{(3)}
+            \end{aligned}
+        }
         \\[5pt]
-    & \bullet\ \mss{ \begin{gathered}
-            \text{Rotate about \(\hat{\psi}\) by angle \(\psi\)}\\[-3pt]
-            \hat{\psi} = \hat{n} = (n^x, n^y, n^z) 
-        \end{gathered} }
-        \hspace{20pt} 
-        \underline{ U[R(\psi)] = \cos \tfrac{\psi}{2} I - \sin \tfrac{\psi}{2} i \big( \hat{\psi} \cdot \sigma \big) }
-        = \mss{ \left[\begin{matrix}
-            \cos \tfrac{\psi}{2} - i n^z \sin \tfrac{\psi}{2}  & (- i n^x - n^y) \sin \tfrac{\psi}{2} \\[3pt]
-            (- i n^x + n^y) \sin \tfrac{\psi}{2} & \cos \tfrac{\psi}{2} + i n^z \sin \tfrac{\psi}{2}
-        \end{matrix}\right] }
+    % Examples of U
+    & \begin{aligned}
+            & \bullet\ \mss{ \begin{gathered}
+                    \text{Rotate \(\hat{k}\) to \(\hat{k}'\) by angle \(\theta\)}\\[-3pt]
+                    \hat{\theta} = (-\sin\phi, \cos\phi, 0) = \hat{k} \times \hat{k}' 
+                \end{gathered} }
+                && \hspace{10pt}
+                \underline{ 
+                    U[R(\theta)] = \cos \tfrac{\theta}{2} \mathbbm{1} - \sin \tfrac{\theta}{2} i \big( \hat{\theta} \cdot \sigma \big) 
+                }
+                = \mss{ \left[\begin{matrix}
+                    \cos \tfrac{\theta}{2} & - \sin \tfrac{\theta}{2} \hs e^{- i \phi}\\[3pt]
+                    \sin \tfrac{\theta}{2} \hs e^{i \phi} & \cos \tfrac{\theta}{2}
+                \end{matrix}\right] }
+                \\[5pt]
+            & \bullet\ \mss{ \begin{gathered}
+                    \text{Rotate about \(\hat{\psi}\) by angle \(\psi\)}\\[-3pt]
+                    \hat{\psi} = \hat{n} = (n^x, n^y, n^z) 
+                \end{gathered} }
+                && \hspace{10pt}
+                \underline{ U[R(\psi)] = \cos \tfrac{\psi}{2} \mathbbm{1} - \sin \tfrac{\psi}{2} i \big( \hat{\psi} \cdot \sigma \big) }
+                = \mss{ \left[\begin{matrix}
+                    \cos \tfrac{\psi}{2} - i n^z \sin \tfrac{\psi}{2}  & (- i n^x - n^y) \sin \tfrac{\psi}{2} \\[3pt]
+                    (- i n^x + n^y) \sin \tfrac{\psi}{2} & \cos \tfrac{\psi}{2} + i n^z \sin \tfrac{\psi}{2}
+                \end{matrix}\right] }
+        \end{aligned}
+        \\[5pt]
+    % Properties
+    & \begin{aligned}
+            & \bullet\ \det(U) = \alpha^*\alpha + \beta^*\beta = 1 \ \Rightarrow\ \boxed{ \text{Tr}(g) = 0 }\\
+            & \bullet\ 
+                \boxed{ \mss{ \begin{gathered}
+                    \xi^\dagger [U^\dagger U] \chi = \xi^\dagger \mathbbm{1} \chi \\
+                    U^\dagger = U^{-1} 
+                \end{gathered} } }
+                \ \Rightarrow\ g^\dagger  + g = 0 \ \leftrightarrow\ \boxed{ g^\dagger = -g }
+                \\
+            & \bullet\ \boxed{ V' = \mss{(\pm)} U V \mss{(\pm)} U^\dagger = U [ v v^T \epsilon ] U^{-1}}
+                \ , \ \begin{gathered}
+                    \epsilon = \mss{ \arraycolsep=2pt \left[ \begin{matrix}
+                            0 & 1\\
+                            -1 & 0
+                        \end{matrix} \right] }\\
+                    \mss{(\det vv^T = 0)}
+                \end{gathered}
+        \end{aligned}
+        \hspace{15pt}\vline\hspace{15pt}
+        % Commutation
+        \begin{aligned}
+            - \tfrac{1}{2} \sigma_x \sigma_y & = g_{xy} = [g_{yz}, g_{zx}] 
+                = - \tfrac{\mathbbm{i}}{2} \sigma_z = \tfrac{1}{2}\hs \hs \hat{\nhs i}
+                \\
+            - \tfrac{1}{2} \sigma_y \sigma_z & = g_{yz} = [g_{zx}, g_{xy}] 
+                = - \tfrac{\mathbbm{i}}{2} \sigma_x = \tfrac{1}{2}\hs \hs \hs \hat{\nhs \nhs j}
+                \\
+            - \tfrac{1}{2} \sigma_z \sigma_x & = g_{zx} = [g_{xy}, g_{yz}] 
+                = - \tfrac{\mathbbm{i}}{2} \sigma_y = \tfrac{1}{2}\hs \hat{k}
+        \end{aligned}
 \end{aligned}\)
 
-\vfill
+\vspace{15pt}\noindent
+% SO+(3)
+\(
+    \begin{aligned}
+        & \underline{\Lambda \in SO^+(1,3)} :\ \begin{aligned}
+                & \Lambda\mss{(\theta)} = e^{\theta g} \\[-2pt]
+                & \Lambda\mss{(0)} = \mathbbm{1}
+            \end{aligned}
+            % Algebra g
+            \ \Rightarrow\ \left. \tfrac{d\Lambda}{d\theta} \right|_{\theta = 0} 
+            = \boxed{ 
+                g[\Lambda] \in 
+                \begin{aligned}
+                    & \mathfrak{so^+}\mss{(1,3)}\\[-2pt]
+                    & \mathfrak{sl}\mss{(2,\mathbb{C})}
+                \end{aligned}
+            }
+            \\[5pt]
+        % Properties
+        & \begin{aligned}
+                & \bullet\ \boxed{ \mss{ 
+                        v^T [\eta] v = v^T [\Lambda^T \eta \Lambda] v = v^T \eta \Lambda^{-1} \nhs\cdot\nhs \Lambda v
+                    } }
+                    \ \Rightarrow\ \boxed{ g^T = -\eta g \eta }
+                    \ , \ \mss{\eta = (+,-,-,-)}
+                    \\[5pt]
+                & \hs\hs\hs \begin{aligned}
+                        & \bullet &\text{\scriptsize Rotation},\ J_{ij} & :\ \boxed{ \Lambda_{ij}^T = \Lambda_{ij}^{-1} }
+                            \ \Rightarrow\ \boxed{ \text{Tr}(J) = 0 ,\ J^T = -J}
+                            \\
+                        & \bullet &\text{\scriptsize Boost},\ K_{ti} & :\ \boxed{ \Lambda_{ti}^T = \Lambda_{ti} }
+                            \ \Rightarrow\ \boxed{ \text{Tr}(K) = 0 ,\ K^T = K}
+                    \end{aligned}
+            \end{aligned}
+            \\
+    \end{aligned}
+    \hspace{15pt}\vline\hspace{15pt}
+    % Commutation
+    \left.
+    \begin{aligned}
+        [J_{yz}, J_{zx}] & = J_{xy}\\
+        [K_{tx}, K_{ty}] & = -J_{xy}
+            \\[5pt]
+        [J_{yz}, K_{ty}] & = K_{tz}\\
+        [J_{yz}, K_{tz}] & = -K_{ty}
+    \end{aligned}
+    \hspace{5pt}\right\}
+    \times 3
+\)
+
+% SL(2,C) matrices
+\vspace{15pt}\noindent
+\(\begin{aligned}
+    & \underline{ 
+        \begin{aligned}
+            & L \in SL(2, \mathbb{C}) = 2 \times SO^+(1,3) = \\
+            & Spin \mss{(1,3)} = \ \subset Cl \mss{(3,0)} = \ \subset Cl \mss{(1,3)}
+        \end{aligned} 
+        } :\ 
+        \boxed{ 
+            \mss{ 
+            \left[ \arraycolsep=2pt \begin{matrix}
+                \alpha & \beta\\
+                \gamma & \alpha^*
+            \end{matrix} \right] 
+            }
+            \sim
+            % Exponential Map
+            \begin{aligned}
+                e^{ \theta J_{ij} } & = 
+                    \mss{ \begin{aligned}
+                        & \cos\tfrac{\psi}{2} \mathbbm{1} - \sin\tfrac{\psi}{2} \hs \sigma_i \sigma_j\\
+                        & \cos\tfrac{\psi}{2} \mathbbm{1} + \sin\tfrac{\psi}{2} \hs \gamma_i \gamma_j
+                    \end{aligned} }
+                    \\
+                e^{ \theta K_{ti} } & = 
+                    \mss{ \begin{aligned}
+                        & \cosh \tfrac{\psi}{2} \mathbbm{1} - \sinh\tfrac{\psi}{2} \hs \sigma_i\\
+                        & \cosh \tfrac{\psi}{2} \mathbbm{1} + \sinh\tfrac{\psi}{2} \hs \gamma_i
+                    \end{aligned} }
+            \end{aligned}
+        }
+        % Algebra g
+        \ \Rightarrow\ \boxed{ 
+            g[L] \in 
+            \begin{aligned}
+                & \mathfrak{sl}\mss{(2,\mathbb{C})} = \mathfrak{so^+}\mss{(1,3)} \\[-2pt]
+                & \mathfrak{su}\mss{(2)} \oplus \mss{(\mp^l_r i)} \hs \mathfrak{su}\mss{(2)} \\[-2pt]
+                & \mathfrak{su}\mss{(2)}_\mathbb{C}
+            \end{aligned} 
+        }
+        \\[5pt]
+    % Properties
+    & \begin{aligned}
+            & \begin{aligned}
+                    & \bullet\ \boxed{ \mss{
+                        \begin{gathered}
+                            \psi^T [\epsilon] \phi = \psi^T [L^T \epsilon L] \phi = \psi^T \epsilon L^{-1} \nhs \cdot \nhs L \phi\\
+                            = - \phi^T \epsilon \psi = 0 \ \ \text{\scriptsize if \ \(\psi = \phi\)} 
+                        \end{gathered}
+                        } }
+                        \ \Rightarrow\ \boxed{ g^T \epsilon = - \epsilon g }
+                        \ , \ \mss{ \arraycolsep=2pt \epsilon = \left[ \begin{matrix}
+                            0 & 1\\
+                            -1 & 0
+                        \end{matrix} \right] }
+                        \\[5pt]
+                    & \hs\hs\hs \begin{aligned}
+                            &\bullet &\text{\scriptsize Rotation},\ J_{ij} & :\ \boxed{ L_{ij}^\dagger = L_{ij}^{-1} }
+                                \ \Rightarrow\ \boxed{ \text{Tr}(J) = 0 ,\ J^T = -J}
+                                \\
+                            &\bullet &\text{\scriptsize Boost},\ K_{ti} & :\ \boxed{ L_{ti}^\dagger = L_{ti} }
+                                \ \Rightarrow\ \boxed{ \text{Tr}(K) = 0 ,\ K^T = K}
+                        \end{aligned}
+                        \\[5pt]
+                \end{aligned}
+                \hspace{5pt}\vline\hspace{5pt}
+                % Commutation
+                \begin{aligned}
+                    [J_{yz}, J_{zx}] & = J_{xy} 
+                        = - \tfrac{1}{2} \sigma_x \sigma_y \rightarrow \tfrac{1}{2} \gamma_x \gamma_y
+                        \\
+                    [K_{tx}, K_{ty}] & = -J_{xy}
+                        \\[5pt]
+                    [J_{yz}, K_{ty}] & = K_{tz} 
+                        = \mp^l_r \tfrac{1}{2} \sigma_z \rightarrow \pm^l_r \tfrac{1}{2} \gamma_t \gamma_z
+                        \\
+                    [J_{yz}, K_{tz}] & = -K_{ty}
+                \end{aligned}
+                \\[5pt]
+            % Left and Right Chiral
+            & \bullet\ \text{\scriptsize Left/Left Dual}:\
+                \mss{ \arraycolsep=1pt \begin{array}{r c c c}
+                    w_{ld} \cdot w_l: & \psi^T \epsilon \cdot \phi & = & \psi^T \epsilon L^{-1} \nhs \cdot \nhs L \phi \\[3pt]
+                    w_{ld}^T: & - \epsilon \psi & \rightarrow & [L^T]^{-1} [- \epsilon \psi] \\
+                \end{array} }
+                \hspace{15pt}
+                \bullet\ \text{\scriptsize Right Dual/Right}:\
+                \mss{ \arraycolsep=1pt \begin{array}{r c c c}
+                    w_r \cdot w_{rd}:& \psi^\dagger \epsilon \cdot \phi^* & =
+                        & \psi^\dagger \epsilon [L^*]^{-1} \nhs\cdot\nhs L^* \phi^*\\[3pt] 
+                    w_r^T: & - \epsilon \psi^* & \rightarrow & [L^\dagger]^{-1} [- \epsilon \psi^*] \\
+                \end{array} }
+                \\[5pt]
+            % Weyl Vector Rotation
+            & \bullet\ \boxed{ \mss{
+                    W' = \mss{(\pm)} L W \mss{(\pm)} L^\dagger = L [ w_l w_l^\dagger ] [(L^\dagger)^{-1}]^{-1} 
+                    \ =\ L_{ij} [ w_l w_{rd} ] L_{ij}^{-1} \ \ \text{\scriptsize or}\ \ L_{ti} [ w_l w_{rd} ] [L_{ti}^{-1}]^{-1}
+                } }
+                \hspace{20pt} \mss{(\det w_l w_l^\dagger = 0)}
+                \\[5pt]
+            & \begin{aligned}[t]
+                    % Direct Sum
+                    & \bullet\ \underline{ (\tfrac{1}{2},0) \oplus (0,\tfrac{1}{2}) }:\ 
+                        \mss{ \arraycolsep=2pt \left[ \begin{matrix}
+                            L & 0\\
+                            0 & [L^\dagger]^{-1}
+                        \end{matrix} \right] 
+                        \left[ \begin{matrix}
+                            w_l\\
+                            w_r^T
+                        \end{matrix} \right]} 
+                        \\[10pt]
+                    % Direct Product
+                    & \bullet\ \underline{ \mss{ (\tfrac{1}{2},0) \otimes (0,\tfrac{1}{2}) = (\tfrac{1}{2},\tfrac{1}{2}) } } :\ 
+                        \mss{ \arraycolsep=2pt 
+                        \left[ \begin{matrix}
+                            c \hs\tilde{\nhs t}\\
+                            \tilde{r}
+                        \end{matrix} \hs\hs \right] 
+                        }
+                        =
+                        \mss{ \arraycolsep=2pt 
+                            [ A^{-1} L \otimes [L^\dagger]^{-1} A ]
+                            \left[ \begin{matrix}
+                                ct\\
+                                \hsvec{r}
+                            \end{matrix} \right]
+                            = [SO(3)]
+                            \left[ \begin{matrix}
+                                ct\\
+                                \hsvec{r}
+                            \end{matrix} \right]
+                            } 
+                \end{aligned}
+                \hspace{20pt}
+                % Complexified
+                \bullet\ \begin{gathered}[t]
+                    \mathfrak{sl}(2,\mathbb{C})_\mathbb{C} = \mathfrak{su}(2)_\mathbb{C} \oplus \mathfrak{su}(2)_\mathbb{C}:\\[5pt]
+                    A_i^\pm = \tfrac{1}{2} (J_{jk} \pm K_{ti})\\
+                    [A_i^\pm, A_j^\pm] = A_k^\pm \ \ , \ \ [A^+, A^-] = 0
+                \end{gathered}
+        \end{aligned}
+\end{aligned}\)
+
 %-----------------------------------------------------------------------------------------------------------------------------
+%
+%
 %-----------------------------------------------------------------------------------------------------------------------------
+\newpage
 % 2 Particles w/ Spin 1/2
 \subsection{2 Objects w/ Spin \ \ {\scriptsize Objects could be orbital momentum, another particle spin, etc.}}
 
 \subsubsection{2 Objects w/ Spin \(\frac{1}{2}\):\ \ \
     \(
-        \tfrac{1}{2} \otimes \tfrac{1}{2} = 1 \oplus 0 
+        \mss{\arraycolsep=1pt \begin{array}{r r c l c l}
+            \text{Dim}:\ & 2 &\otimes& 2 &=& 3 \oplus 1\\
+            \text{Spin}:\ & \tfrac{1}{2} &\otimes& \tfrac{1}{2} &=& 1 \oplus 0 
+        \end{array} }
         \ \Rightarrow\ \mss{ \displaystyle (2s_1+1)(2s_2+1) = \sum_{s=|s_1-s_2|}^{s_1+s_2} 2s+1 } 
     \) 
 }
@@ -3975,7 +4613,6 @@ Choose \( | \chi_i \rangle \equiv S_z\)-Eigenvector w/
         \end{matrix}\right) 
     \) \end{center}
         
-    % \vspace{5pt}
     % Matrices only work on respective particles
     \( 
         \bullet \ S^{(2)}_z S^{(1)}_x \Big( | \chi_1 \rangle \otimes | \chi_2 \rangle \Big)
