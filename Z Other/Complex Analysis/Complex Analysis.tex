@@ -29,24 +29,31 @@
 \(\begin{aligned}
 	& \underline{\text{Differentiable}}:\ \exists f'\mss{(z)} = \lim_{h \rightarrow 0} \tfrac{f\mss{(z + h)} - f\mss{(z)}}{z} 
 		\hspace{20pt} \mss{ \begin{aligned}
-			& f = u + iv\\
+			& f = u + iv\\[-1pt]
 			& h = \sigma + i \tau
 		\end{aligned} }
 		\hspace{5pt} \ \Rightarrow\ \mss{ 
 			\begin{gathered}
-				\underline{\text{Cauchy-Riemann}}\\
-				\underline{\text{Equations}}
+				\underline{\text{Cauchy-Riemann Eq.}}\\
+				\boxed{ \partial f / \partial \bar{z} = 0 }
 			\end{gathered}:\
 			\boxed{ \begin{aligned}
 				\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \ & 
 					,\ \ \frac{\partial v}{\partial x} = - \frac{\partial u}{\partial y}
-					\\[5pt]
+					\\[2pt]
 				r \frac{\partial u}{\partial r} = \frac{\partial v}{\partial \theta} \ & 
 					,\ \ r \frac{\partial v}{\partial r} = - \frac{\partial u}{\partial \theta}
 			\end{aligned} }
 		}
-		\\[-5pt]
-	& \bullet\ \Big( \text{C-R Eq.}\big|_z \Big) , \Big( f\mss{(z)} \in C^1 \Big) \ \Rightarrow\ \exists f'\mss{(z)}\\[5pt]
+		\\[5pt]
+	& \bullet\ \Big( \text{C-R Eq.}\big|_z \Big) , \Big( f\mss{(z)} \in C^1 \Big) \ \Rightarrow\ \exists f'\mss{(z)}
+		\hspace{20pt} \bullet\ \tfrac{\partial}{\partial z} 
+		= \tfrac{\partial x}{\partial z} \tfrac{\partial}{\partial x} + \tfrac{\partial y}{\partial z} \tfrac{\partial}{\partial y}
+		\hspace{5pt} , \ \mss{ \begin{aligned}
+			& x = \tfrac{1}{2}(z + \bar{z})\\[-1pt]
+			& y = \tfrac{1}{2i}(z - \bar{z})
+		\end{aligned} }
+		\\[5pt]
 	& \bullet\ f'\mss{(z)} = \tfrac{\partial u}{\partial x} + i \tfrac{\partial v}{\partial x}
 		\hspace{20pt} \bullet\ \Delta u = \tfrac{\partial^2 u}{\partial^2 x} + \tfrac{\partial^2 u}{\partial^2 y} = 0
 		\hspace{20pt} \bullet\ u\mss{(z)} = c \text{ \ OR \ } u^2 + v^2 = c \ \Rightarrow\ f\mss{(z)} = c

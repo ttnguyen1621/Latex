@@ -23,7 +23,7 @@
 \newpage
 
 \(
-	\begin{gathered}
+	\mss{ \begin{gathered}
 		\boxed{ \hsvec{\nabla} = \left[ \hsvec{\nabla} \left( r, \theta, \phi \right) \right] \bar{\partial}_\circ }
 			\\[5pt]
 		d = \left[ dx \ dy \ dz \right] \hsvec{\nabla} = d\hsvec{l}\hs\hs^T \hsvec{\nabla} 
@@ -43,7 +43,7 @@
 				\\
 			\Aboxed{ d = \partial \bar{l}_\circ\nhs^T \bar{\partial}_\circ & = d\hsvec{l}\hs\hs^T \hsvec{\nabla} }
 		\end{aligned}
-	\end{gathered}
+	\end{gathered} } 
 	\hfill \vline \hfill
 	% Matrix Form for cartesian gradient and d(spherical)
 	\begin{aligned}
@@ -70,23 +70,23 @@
 			\end{matrix}\right]
 			\\[10pt]
 		\underline{ \partial \bar{l}_\circ } & = \nhs
-			\left[\begin{matrix}
+			\left[ { \begin{matrix}
 				dr\\
 				d\theta\\
 				d\phi
-			\end{matrix}\right] 
+			\end{matrix} } \right] 
 			\begin{aligned}
 				& = \hs\hs [\hsvec{\nabla} (r, \theta, \phi)]^T d\hsvec{l}\\[5pt]
-				& = \left[\begin{matrix}
+				& = \left[ \mss{ \begin{matrix}
 						- \nabla r - \\
 						- \nabla \theta - \\
 						- \nabla \phi - \\
-					\end{matrix}\right]
-					\left[\begin{matrix}
+					\end{matrix} } \right]
+					\left[ \mss{ \begin{matrix}
 						dx\\
 						dy\\
 						dz
-				\end{matrix}\right]
+				\end{matrix} } \right]
 			\end{aligned}
 	\end{aligned}
 	\hfill\vline\hfill
@@ -98,17 +98,62 @@
 		\phi & = \phi \mss{(x,y,z)} 
 			\hspace{10pt} ( \mss{ y = x \tan{\phi} } )
 			\\[10pt]
-		d\theta & = dx \tfrac{\partial \theta}{\partial x} 
-			+ dy \tfrac{\partial \theta}{\partial y} 
-			+ dz \tfrac{\partial \theta}{\partial z} 
-			\\[10pt]
 		\tfrac{\partial}{\partial x} & = \tfrac{\partial r}{\partial x} \tfrac{\partial}{\partial r}
 			+ \tfrac{\partial \theta}{\partial x} \tfrac{\partial}{\partial \theta}
 			+ \tfrac{\partial \phi}{\partial x} \tfrac{\partial}{\partial \phi} 
+			\\[5pt]
+		\tfrac{\partial}{\partial \theta} & = \tfrac{\partial x}{\partial \theta} \tfrac{\partial}{\partial x}
+			+ \tfrac{\partial y}{\partial \theta} \tfrac{\partial}{\partial y}
+			+ \tfrac{\partial z}{\partial \theta} \tfrac{\partial}{\partial z}
+			\\[10pt]
+		\mss{ d\theta} & = \mss{ dx \tfrac{\partial \theta}{\partial x} 
+			+ dy \tfrac{\partial \theta}{\partial y} 
+			+ dz \tfrac{\partial \theta}{\partial z} }
+			\\
+		\mss{dy_{\vec{r}_\circ}(\vec{r}_\circ \hs\nhs\nhs\nhs\nhs')}|_{t=0} & = \mss{ ( \tfrac{\partial y}{\partial r} dr
+			+ \tfrac{\partial y}{\partial \theta} d\theta
+			+ \tfrac{\partial y}{\partial \phi} d\phi ) \tfrac{1}{dt}|_{t=0} }
 	\end{aligned}
 \)
 
-\vspace{20pt}
+\vspace{15pt}
+% Contravector Dot Covector
+\(
+	\boxed{ \hsvec{b}^{\hs i} \cdot \hsvec{b}_{i} = \delta_{ij} }:\ 
+	\begin{aligned}
+		& \hsvec{\nabla}{\phi} \cdot \tfrac{\partial \hsvec{r}}{\partial \phi} = 1\\[5pt]
+		& \hsvec{\nabla}{\phi} \cdot \tfrac{\partial \hsvec{r}}{\partial \theta} = 0
+	\end{aligned}
+	\ \Rightarrow\ 
+	\left[ \mss{ \begin{matrix}
+		- \hsvec{\nabla} r - \\
+		- \hsvec{\nabla} \theta - \\
+		- \hsvec{\nabla} \phi - 
+	\end{matrix} } \right]
+	\left[ 
+		\tfrac{\partial}{\partial r} \ \tfrac{\partial}{\partial \theta} \ \tfrac{\partial}{\partial \phi}
+	\right]
+	\hsvec{r}
+	= \mathbbm{1}_3
+	\ \ \Rightarrow\ \
+	\boxed{
+		\tfrac{\partial y}{\partial \phi} = 
+		\left[ \mss{ 
+			0 \ 1 \ 0
+		} \right]
+		\left[ \mss{ \begin{matrix}
+			- \hsvec{\nabla} r - \\
+			- \hsvec{\nabla} \theta - \\
+			- \hsvec{\nabla} \phi - 
+		\end{matrix} } \right]^{-1}
+		\left[ \mss{ \begin{matrix}
+			0 \\ 0 \\ 1
+		\end{matrix} } \right]
+		= \tfrac{\partial y}{\partial \phi}^T
+	}
+\)
+
+\vspace{15pt}
 % d operator
 \(
 	\begin{aligned}
@@ -169,7 +214,7 @@
 	% Unit Spherical Vectors
 	\begin{aligned}
 		\big( \hat{r} , & \hat{\theta} , \hat{\phi} \big) 
-			= \underline{ \left( 
+			\equiv \underline{ \left( 
 				\mss{ \lVert \nabla r \rVert } \tfrac{\partial \hsvec{r}}{\partial r} ,\hs
 				\mss{ \lVert \nabla \theta \rVert } \tfrac{\partial \hsvec{r}}{\partial \theta} ,\hs
 				\mss{ \lVert \nabla \phi \rVert } \tfrac{\partial \hsvec{r}}{\partial \phi} 
@@ -243,52 +288,282 @@
 		= \underline{ \tfrac{\partial r}{\partial x} } \tfrac{\partial}{\partial r}
 		+ \underline{ \tfrac{\partial \theta}{\partial x} } \tfrac{\partial}{\partial \theta}
 		+ \underline{ \tfrac{\partial \phi}{\partial x} } \tfrac{\partial}{\partial \phi}
+		\ \Rightarrow\ 
+		\boxed{ \tfrac{\partial \phi}{\partial y} = \tfrac{\partial y}{\partial \phi} \mss{\Vert \nabla \phi \Vert}^2 }
 \end{aligned}\)
 
-\vspace{15pt}
+\vspace{10pt}
 % Unit Vectors Summary
 \(\boxed{
 	\arraycolsep=3pt
-	\begin{array}{r c c c r c c c r r c r}
+	\begin{array}{r c c c r c r c c c c c c c r}
+		& & & & & & & 
+			& \text{\scriptsize\underline{contravariant}}_{\hs i} 
+			& \multicolumn{3}{c}{ \text{\scriptsize(equal since orthog.)} } 
+			& \multicolumn{3}{l}{ \text{\scriptsize\underline{covariant}}^i } 
+			\\[6pt]
 		\hat{r} & = 
-			& (\hat{r}_x, \hat{r}_y, \hat{r}_z) & = 
+			& (\hat{r}_x, \hat{r}_y, \hat{r}_z) 
+			& = 
+			& { \tfrac{\hsvec{r}}{r} }
+			& = 
 			& \tfrac{\partial}{\partial r} \hsvec{r} 
 			& = 
-			& \boxed{ \tfrac{\hsvec{r}}{r} }
-			& = 
+			& \tfrac{\partial \hsvec{r}}{\partial r} \Vert \tfrac{\partial \hsvec{r}}{\partial r}  \Vert^{-1} 
+			& \ \ \stackrel{\rightarrow}{=}\ \
 			& \mss{ \Vert \nabla r \Vert } \tfrac{\partial \hsvec{r}}{\partial r} 
-			& = \tfrac{\nabla r}{\Vert \nabla r \Vert}
+			& \ \stackrel{\leftarrow}{=}\ \ 
+			& \tfrac{\nabla r}{\Vert \nabla r \Vert}
 			& = 
 			& \nabla r
 			\\[5pt]
 		\hat{\theta} & = 
-			& (\hat{\theta}_x, \hat{\theta}_y, \hat{\theta}_z) & = 
-			& \tfrac{1}{r} \tfrac{\partial}{\partial \theta} \hsvec{r}
+			& (\hat{\theta}_x, \hat{\theta}_y, \hat{\theta}_z) 
 			& = 
-			& \boxed{ \tfrac{\partial \hat{r}}{\partial \theta} }
+			& { \tfrac{\partial \hat{r}}{\partial \theta} }
+			& = 
+			& \tfrac{1}{r} \tfrac{\partial}{\partial \theta} \hsvec{r}
 			& =
+			& \tfrac{\partial \hsvec{r}}{\partial\theta} \Vert \tfrac{\partial \hsvec{r}}{\partial\theta} \Vert^{-1} 
+			& \ \ \stackrel{\rightarrow}{=}\ \
 			& \mss{ \Vert \nabla \theta \Vert } \tfrac{\partial \hsvec{r}}{\partial\theta} 
-			& = \tfrac{\nabla \theta}{\Vert \nabla \theta \Vert} 
+			& \ \stackrel{\leftarrow}{=}\ \
+			& \tfrac{\nabla \theta}{\Vert \nabla \theta \Vert} 
 			& = 
 			& r \nabla \theta
 			\\[5pt]
 		\hat{\phi} & = 
 			& (\hat{\phi}_x, \hat{\phi}_y, \hat{\phi}_z) 
 			& = 
-			& \tfrac{1}{r \sin\theta} \tfrac{\partial}{\partial \phi} \hsvec{r}
+			& { \tfrac{1}{\sin\theta} \tfrac{\partial \hat{r}}{\partial \phi} }
 			& = 
-			& \boxed{ \tfrac{1}{\sin\theta} \tfrac{\partial \hat{r}}{\partial \phi} }
+			& \tfrac{1}{r \sin\theta} \tfrac{\partial}{\partial \phi} \hsvec{r}
 			& =
+			& \tfrac{\partial \hsvec{r}}{\partial\phi} \Vert \tfrac{\partial \hsvec{r}}{\partial\phi} \Vert^{-1} 
+			& \ \ \stackrel{\rightarrow}{=} \ \
 			& \mss{ \Vert \nabla \phi \Vert } \tfrac{\partial \hsvec{r}}{\partial\phi} 
-			& = \tfrac{\nabla \phi}{\Vert \nabla \phi \Vert}
+			& \ \stackrel{\leftarrow}{=} \ \
+			& \tfrac{\nabla \phi}{\Vert \nabla \phi \Vert}
 			& = 
 			& \mss{r \sin\theta} \nabla \phi
 	\end{array}
 }\)
 
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Frenet
+\section{Frenet Equations}
+
+% Frenet in derivatives of position
+\(
+    \begin{aligned}
+        % \lVert \hsvec{q} \times \hsvec{p} \rVert^2 
+		\mss{ (a \times b) \cdot (c \times d) } & = \mss{ a \cdot b \times (c \times d) }
+			\\[5pt]
+		& = \mss{ \left| \ \begin{matrix}
+                \\[-11pt]
+                \hsvec{a} \cdot \hsvec{c} & \hsvec{a} \cdot \hsvec{d} \\[5pt]
+                \hsvec{b} \cdot \hsvec{c} & \hsvec{b} \cdot \hsvec{d}
+                \\[-12pt]
+                \hs
+            \end{matrix} \ \right| }
+            \\[5pt]
+        \Aboxed{ \tfrac{dt}{ds} & = \tfrac{1}{v} }
+    \end{aligned}
+    \hfill
+    \vline
+    \hfill
+    \begin{aligned}
+        T & = \hat{v} = \tfrac{\hsvec{v}}{v} \\
+        \tfrac{dT}{dt} & = \tfrac{ (\hsvec{v} \cdot \hsvec{v}) \hsvec{a} - (\hsvec{v} \cdot \hsvec{a}) \hsvec{v} }{v^3} 
+            = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v^3}
+            = \tfrac{ (\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{v^3}
+            \\
+        \lVert \tfrac{dT}{dt} \rVert & = \tfrac{ \sqrt{ v^2 a^2 - (\hsvec{v} \cdot \hsvec{a})^2 } }{v^2}
+            = \tfrac{\lVert \hsvec{a} \times \hsvec{v} \rVert }{v^2}
+            \hspace{5pt} , \hspace{10pt} \tfrac{dT}{ds} = k \hat{N}
+            \\
+        \hat{N} & = \tfrac{T'}{\lVert T' \rVert} 
+            = \tfrac{ (\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{\lVert \hsvec{v} \times \hsvec{a} \rVert v} 
+            = \hat{B} \times \hat{v}
+            \\
+        \hat{B} & = \tfrac{\hsvec{v} \times \hsvec{a}}{\lVert \hsvec{v} \times \hsvec{a} \rVert}
+            = \widehat{v \times a}
+            = \hat{v} \times \hat{N}
+            \hspace{15pt} \underline{ \mss{(\hat{B} \cdot \vec{v} = 0)} }
+            \\
+        \tfrac{d\hat{B}}{dt} & = \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert }
+            - \left[ \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert } \cdot \hat{B} \right] \hat{B}
+            \hspace{5pt} , \hspace{10pt} \tau = \hat{N} \cdot \tfrac{d\hat{B}}{ds}
+    \end{aligned}
+    \hfill
+    \boxed{
+        \begin{aligned}
+            \hsvec{a} & = a_T \hat{T} + a_N \hat{N} \\[5pt]
+            a_T & = \hsvec{a} \cdot \hat{v} = \tfrac{dv}{dt} \\[5pt]
+            a_N & = \tfrac{\Vert \hsvec{a} \times \hsvec{v} \Vert}{v} = \Vert \hsvec{a} \times \hat{v} \Vert \\[5pt]
+            a^2 & = a_T^2 + a_N^2 = \Vert \tfrac{d\hsvec{v}}{dt} \Vert^2
+        \end{aligned}
+    }
+\)
+
+\vspace{15pt}\noindent
+% Frenet trihedron - when curve is parametrized by arc length
+\underline{Frenet Trihedron}\\
+\(
+    \begin{aligned}
+        & \text{\scriptsize Differentiable (in this book)}:\ C^\infty\\
+        & \text{\scriptsize No singular pts. Order 0 (Regular)}:\ \hsvec{v}(t) \neq 0\\
+        & \mss{ \bullet\ \Vert \hsvec{v}(t) \Vert = c \rightarrow 1
+            \ \Rightarrow\ 
+            \int_s \Vert \hsvec{v}(t) \Vert \hs dt = t = \Delta s 
+            }
+            \\
+        & \hspace{10pt} \mss{ \rightarrow s:\ \hsvec{x}(t) = \hsvec{x}(s) } \\
+        & \mss{ \bullet\ \tfrac{1}{2}\tfrac{d}{dt}(\hsvec{v} \cdot \hsvec{v}) = \boxed{ \hsvec{v} \cdot \hsvec{a} = 0 } } \\
+        & \text{\scriptsize No singular pts. Order 1}:\ \hsvec{a}(t) \neq 0\\
+        & \mss{ \bullet\ \text{Curvature, } k \neq 0 \text{ (see right)} }
+			\hspace{10pt} \mss{ \bullet\ \text{Vertex, } k' = 0 }
+    \end{aligned}
+    \hfill\vline\hfill
+    \begin{aligned}
+        & 1 = \Vert \hsvec{t} \Vert = \Vert \hsvec{n} \Vert = \Vert \hsvec{b} \Vert
+            \ ,\ \ 
+            0 = \hsvec{t} \cdot \hsvec{n} = \hsvec{n} \cdot \hsvec{b} = \hsvec{b} \cdot \hsvec{t}
+            \\
+        & \bullet\ \hsvec{v}(s) = \hsvec{t}(s) \hspace{20pt} \boxed{ \mss{ (t = n \times b) } } \\
+        & \bullet\ \hsvec{a}(s) = \boxed{ \hsvec{t'}(s) = k\mss{(s)} \hsvec{n}\mss{(s)} }
+            ,\ k(s) \geq 0
+            \hspace{10pt} \begin{gathered}
+                \text{\scriptsize(can be L or R-handed)}\\[-8pt]
+                \text{\scriptsize(can be neg. if in \(\mathbb{R}^2\))}
+            \end{gathered}
+            \\
+        & \ast\ k(s) > 0 \text{ for well defined curve with \(\hat{n}\)}\\
+        & \bullet\ \boxed{ \hsvec{b} = \hsvec{t} \times \hsvec{n} }
+            ,\ \ \tfrac{d}{dt} (\hsvec{b} \cdot \hsvec{b}) = \hsvec{b} \cdot \hsvec{b'} = 0
+            ,\ \ \ast\ \boxed{ \hsvec{b'}(s) = \tau\mss{(s)} \hsvec{n}\mss{(s)} }
+            \\
+        & \bullet\ \boxed{ \hsvec{n} = \hsvec{b} \times \hsvec{t} } 
+            ,\ \ \ast\ \boxed{ \hsvec{n'}(s) = -k \hsvec{t} - \tau \hsvec{b} }
+            ,\ \ \ast\ \mss{ \text{t-n pl.} = \text{osculating pl.} }
+    \end{aligned}
+\)
+
+% More info on derivatives of frenet
+\vspace{10pt} \noindent
+\(\begin{aligned}
+    & \bullet\ t''(s) = k' n - k^2 t - k\tau b 
+        \hspace{20pt} \bullet\ b''(s) = \tau' n - \tau kt - \tau^2 b
+        \hspace{20pt} \bullet\ n''(s) = -k't -\tau'b - (k^2 + \tau^2) n
+        \\
+    & \bullet\ |\tau| = \Vert b' \Vert 
+        \hspace{20pt}
+        \bullet\ \tau = -\tfrac{ ( t \times t' ) \cdot t'' }{k^2} = -\tfrac{ {t} \cdot ( {t'} \times t'' )}{\Vert t' \Vert^2} 
+        \hspace{20pt} 
+        \bullet\ k = \Vert t' \Vert = \tfrac{ ( b \times b' ) \cdot b'' }{\tau^2} 
+        = \tfrac{ {b} \cdot ( {b'} \times b'' )}{\Vert b' \Vert^2}
+        \\
+    & \bullet\ n \Rightarrow k,\tau:
+        \hspace{20pt}
+        \ast\ \Vert n' \Vert^2 = k^2 + \tau^2
+        \hspace{20pt}
+        \ast\ \tfrac{ ( n \times n' ) \cdot n'' }{\Vert n' \Vert^2} = \tfrac{k' \tau - k \tau'}{k^2 + \tau^2}
+        = \tfrac{ \tfrac{d}{ds} (k / \tau) }{(k/\tau)^2 + 1} = \tfrac{d}{ds} \arctan(k/\tau)
+\end{aligned}\)
+
+% Indicatrix
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+    & \text{\underbar{Indicatrix [of Tangents]}}:\\[5pt]
+    & \bullet\ \hsvec{t}(\theta\mss{(s)}) = (\cos\theta, \sin\theta) = (x'\mss{(s)}, y'\mss{(s)})\\
+    & \bullet\ \hsvec{t'}(\theta) = \underline{ \theta'(s)} (-\sin\theta, \cos\theta) = \underline{k(s)} \hsvec{n}\\
+	& \bullet\ \theta\mss{(s)} = \arctan(y'/x')\\
+	& \bullet\ \mss{\int_0^l} \hs k\mss{(s)} \hs\hs ds = \theta(s)\Big|^l_0 = 2\pi I_\text{rot. index}
+\end{aligned}\)
+% Local Canonical Form
+\hspace{20pt}
+\(\begin{aligned}[t]
+    & \text{\underbar{Local Canonical Form at \(t=0\)}}:\\[5pt]
+    & \bullet\ (\hat{t},\hat{n},\hat{b}) = (\hat{x},\hat{y},\hat{z})\\
+    & \bullet\ \hsvec{r}(s) - \hsvec{r}(0) 
+        \approx ( s - \tfrac{k^2 s^3}{6},\ \tfrac{k}{2} s^2 + \tfrac{k' s^3}{6},\ \tfrac{-k\tau}{6} s^3 )
+        \\
+    & \bullet\ \tau < 0 \ \Rightarrow\ \tfrac{dz}{ds} > 0
+\end{aligned}\)
+
+% Isoperimetric Ineq.
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+	& \text{\underline{Isoperimetric Inequality}}:\ 0 \leq l^2 - 4\pi A
+\end{aligned}\)
+% 4-Vertex Theor.
+\hspace{20pt}\noindent
+\(\begin{aligned}[t]
+	& \text{\underline{Four-Vertex Theorem}}:\ \text{\scriptsize A simple closed curve has \(\geq\) 4 vertices}
+\end{aligned}\)
+
+% Cauchy-Crofton Formula
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+	& \text{\underline{Cauchy-Crofton Formula (measure of number of times lines intersect a curve)}}:\\[5pt]
+	& \bullet\ \text{Tangent line at } (\rho, \theta) :\ x\cos\theta + y\sin\theta = \rho
+		\hspace{15pt} \bullet\ \text{Curve } c:\ y=0,\ x \in (-l/2, l/2)
+		\hspace{5pt} , \hspace{10pt} C = \mss{\sum}\hs c_i
+		\\
+	& \bullet\ \mss{\int}\ \text{\scriptsize Lines that cross } c 
+		= \mss{ \int_0^{2\pi} \int_0^{|\cos\theta| l/2} } d\rho \hs d\theta = 2l
+		\ \Rightarrow\
+		\mss{ \int_0^{2\pi} \int_0^\infty } n_C \ d\rho \hs d\theta = 2l
+\end{aligned}\)
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Differential
+\section{Jacobian/Differential, \(dF_{\alpha(0)} : \mathbb{R}^n \rightarrow \mathbb{R}^m\)}
+
+\(\begin{aligned}
+	& \bullet\ \boxed{ \alpha(0) = \beta(0) } \ \Rightarrow\ \underline{F(t=0)} 
+		= F \circ \alpha \big|_{t=0} = F \circ \beta \big|_{t=0} 
+		\\[5pt]
+	& \bullet\ \boxed{ \alpha'(0) = \beta'(0) } \ \Rightarrow\ \tfrac{\partial x}{\partial \alpha_i} \big|_{t=0} 
+		= \tfrac{\partial x}{\partial \beta_i} \big|_{t=0} 
+		\cdot \bcancel{ \tfrac{d \beta_i / dt}{d \alpha_i / dt} \big|_{t=0} }
+		\ \Rightarrow\ \nhs\nhs \underline{ dF_{\alpha(0)}(\alpha'\mss{(0)}) = dF_{\beta(0)}(\beta'\mss{(0)}) }
+		\\[5pt]
+	& \ast\ F = (x_0, x_1, \dots, x_m) 
+		\ \Rightarrow\ \underline{ dF_{\alpha(0)} (\alpha'\mss{(0)}) } \hs \equiv\hs \tfrac{d}{dt}(F \circ \alpha) \big|_{t=0}
+		= \left[ 
+			\mss{ \arraycolsep=3pt \begin{matrix}
+				\tfrac{\partial x_1}{\partial \alpha_0} & \tfrac{\partial x_1}{\partial \alpha_1} & \dots \\[7pt]
+				\tfrac{\partial x_2}{\partial \alpha_0} & \tfrac{\partial x_2}{\partial \alpha_1} & \dots \\
+				\vdots
+			\end{matrix} }
+		\right]_{t=0}
+		\left[ 
+			\mss{ \begin{matrix}
+				\tfrac{d \alpha_0}{dt}\\[7pt]
+				\tfrac{d \alpha_1}{dt}\\
+				\vdots
+			\end{matrix} }
+		\right]_{t=0}
+		\hspace{-10pt} = \boxed{ J_F\mss{(0)} \cdot \alpha'\mss{(0)} }
+		\\
+	& \bullet d(G \circ F)_p = dG_{F(p)} \circ dF_p
+\end{aligned}\)
 
 
 %--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+\newpage
 % Del
 \section{Del}
 

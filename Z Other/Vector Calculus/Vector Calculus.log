@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  12 JUN 2024 00:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  8 JUL 2024 00:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -257,36 +257,45 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (147.78108pt too wide) in paragraph at lines 440--440
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 137.
+ (c:/texlive/2022/texmf-dist/tex/latex/bbm-macros/ubbm.fd
+File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
+) [1
+
+{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (7.8728pt too wide) in paragraph at lines 499--508
+$[][]$  $[][]$ 
+ []
+
+[2] [3]
+Overfull \hbox (147.78108pt too wide) in paragraph at lines 715--715
 []$[][]$ 
  []
 
 
-Overfull \hbox (30.4992pt too wide) in paragraph at lines 440--440
+Overfull \hbox (30.4992pt too wide) in paragraph at lines 715--715
 []$[][]$ 
  []
 
 
-Overfull \hbox (117.4447pt too wide) in paragraph at lines 440--440
+Overfull \hbox (117.4447pt too wide) in paragraph at lines 715--715
 []$[]$ 
  []
 
-[1
-
-{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] (./Vector Calculus.aux) ) 
+[4] (./Vector Calculus.aux) ) 
 Here is how much of TeX's memory you used:
- 3920 strings out of 478238
- 61079 string characters out of 5847939
- 436864 words of memory out of 5000000
- 22123 multiletter control sequences out of 15000+600000
- 475155 words of font info for 51 fonts, out of 8000000 for 9000
+ 3954 strings out of 478238
+ 61846 string characters out of 5847939
+ 432864 words of memory out of 5000000
+ 22148 multiletter control sequences out of 15000+600000
+ 477599 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,22n,71p,288b,245s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on "Vector Calculus.pdf" (2 pages, 116379 bytes).
+ 63i,23n,71p,288b,258s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/ringo/.texlive2022/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "Vector Calculus.pdf" (4 pages, 197726 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
+ 107 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

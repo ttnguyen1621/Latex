@@ -329,7 +329,7 @@
     \tfrac{d}{dt} \big( \tfrac{ \hsvec{p} \times \hsvec{L} }{mk} - \hat{r} \big) & = \tfrac{d}{dt} \hsvec{e}_{\text{ccen}} = 0
 \end{aligned}\)
 \hfill\vline\hfill
-\parbox{8.7cm}{
+\parbox{9cm}{
     \(
         % Acceleration
         \begin{aligned}
@@ -349,7 +349,7 @@
             \hsvec{\tau} & = \ \hsvec{r} \times \vec{F} \\
             & = \ (mr^2) \tfrac{ \hat{r} \times \hsvec{a} }{r} = I \hsvec{\alpha}
                 \\[10pt]
-            \Aboxed{ \tfrac{dv}{dt} & = a (\hat{v} \cdot \hat{a}) = \hat{v} \cdot \hsvec{a} }
+            \Aboxed{ \tfrac{dv}{dt} & = a (\hat{v} \cdot \hat{a}) = \hat{v} \cdot \hsvec{a} = \tfrac{d}{dt}\Vert \hsvec{v} \Vert}
         \end{aligned}
         \hfill
         \begin{aligned}[t]
@@ -375,35 +375,44 @@
 \(
     \begin{aligned}
         \lVert \hsvec{q} \times \hsvec{p} \rVert^2 & = 
-            \left| \ \begin{matrix}
+            \mss{ \left| \ \begin{matrix}
                 \\[-11pt]
-                \Vert \hsvec{q} \Vert^2 & \hsvec{q} \cdot \hsvec{p} \\[5pt]
-                \hsvec{p} \cdot \hsvec{q} & \Vert \hsvec{p} \Vert^2 
+                \hsvec{q} \cdot \hsvec{q} & \hsvec{q} \cdot \hsvec{p} \\[5pt]
+                \hsvec{p} \cdot \hsvec{q} & \hsvec{p} \cdot \hsvec{p}
                 \\[-12pt]
                 \hs
-            \end{matrix} \ \right|
+            \end{matrix} \ \right| }
             \\[5pt]
         % & = (\hsvec{q} \times \hsvec{p}) \cdot (\hsvec{q} \times \hsvec{p})
-        & = \hsvec{q} \cdot \hsvec{p} \times (\hsvec{q} \times \hsvec{p})
+        & = \mss{ \hsvec{q} \cdot \hsvec{p} \times (\hsvec{q} \times \hsvec{p}) }
+            \\[5pt]
+        \Aboxed{ \tfrac{dt}{ds} & = \tfrac{1}{v} }
     \end{aligned}
-    \hspace{20pt}
+    \hfill
     \vline
-    \hspace{20pt}
+    \hfill
     \begin{aligned}
-        T & = \hat{v} = \tfrac{\hsvec{v}}{v}\\
-        T' & = \tfrac{ (\hsvec{v} \cdot \hsvec{v}) \hsvec{a} - (\hsvec{v} \cdot \hsvec{a}) \hsvec{v} }{v^3} 
+        T & = \hat{v} = \tfrac{\hsvec{v}}{v} \\
+        \tfrac{dT}{dt} & = \tfrac{ (\hsvec{v} \cdot \hsvec{v}) \hsvec{a} - (\hsvec{v} \cdot \hsvec{a}) \hsvec{v} }{v^3} 
             = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v^3}
+            = \tfrac{ (\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{v^3}
             \\
-        \lVert T' \rVert & = \tfrac{ \sqrt{ v^2 a^2 - (\hsvec{v} \cdot \hsvec{a})^2 } }{v^2}
+        \lVert \tfrac{dT}{dt} \rVert & = \tfrac{ \sqrt{ v^2 a^2 - (\hsvec{v} \cdot \hsvec{a})^2 } }{v^2}
             = \tfrac{\lVert \hsvec{a} \times \hsvec{v} \rVert }{v^2}
-            \\
-        \hat{B} & = \tfrac{\hsvec{a} \times \hsvec{v}}{\lVert \hsvec{a} \times \hsvec{v} \rVert}
-            = \widehat{a \times v}
-            \hspace{15pt} \underline{ \mss{(\hat{B} \cdot \vec{v} = 0)} }
+            \hspace{5pt} , \hspace{10pt} \tfrac{dT}{ds} = k \hat{N}
             \\
         \hat{N} & = \tfrac{T'}{\lVert T' \rVert} 
-            = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v \lVert \hsvec{a} \times \hsvec{v} \rVert} 
-            = \hat{v} \times \hat{B} 
+            = \tfrac{ (\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{\lVert \hsvec{v} \times \hsvec{a} \rVert v} 
+            = \hat{B} \times \hat{v}
+            \\
+        \hat{B} & = \tfrac{\hsvec{v} \times \hsvec{a}}{\lVert \hsvec{v} \times \hsvec{a} \rVert}
+            = \widehat{v \times a}
+            = \hat{v} \times \hat{N}
+            \hspace{15pt} \underline{ \mss{(\hat{B} \cdot \vec{v} = 0)} }
+            \\
+        \tfrac{d\hat{B}}{dt} & = \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert }
+            - \left[ \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert } \cdot \hat{B} \right] \hat{B}
+            \hspace{5pt} , \hspace{10pt} \tau = \hat{N} \cdot \tfrac{d\hat{B}}{ds}
     \end{aligned}
     \hfill
     \boxed{
@@ -415,6 +424,71 @@
         \end{aligned}
     }
 \)
+
+\vspace{15pt}\noindent
+% Frenet trihedron - when curve is parametrized by arc length
+\underline{Frenet Trihedron}\\
+\(
+    \begin{aligned}
+        & \text{\scriptsize Differentiable (in this book)}:\ C^\infty\\
+        & \text{\scriptsize No singular pts. Order 0 (Regular)}:\ \hsvec{v}(t) \neq 0\\
+        & \mss{ \bullet\ \Vert \hsvec{v}(t) \Vert = c \rightarrow 1
+            \ \Rightarrow\ 
+            \int_s \Vert \hsvec{v}(t) \Vert \hs dt = t = \Delta s 
+            }
+            \\
+        & \hspace{10pt} \mss{ \rightarrow s:\ \hsvec{x}(t) = \hsvec{x}(s) } \\
+        & \mss{ \bullet\ \tfrac{1}{2}\tfrac{d}{dt}(\hsvec{v} \cdot \hsvec{v}) = \boxed{ \hsvec{v} \cdot \hsvec{a} = 0 } } \\
+        & \text{\scriptsize No singular pts. Order 1}:\ \hsvec{a}(t) \neq 0\\
+        & \mss{ \bullet\ \text{Curvature, } k \neq 0 \text{ (see right)}}
+            \hspace{10pt} \mss{ \bullet\ \text{Vertex, } k' = 0 }
+    \end{aligned}
+    \hfill\vline\hfill
+    \begin{aligned}
+        & 1 = \Vert \hsvec{t} \Vert = \Vert \hsvec{n} \Vert = \Vert \hsvec{b} \Vert
+            \ ,\ \ 
+            0 = \hsvec{t} \cdot \hsvec{n} = \hsvec{n} \cdot \hsvec{b} = \hsvec{b} \cdot \hsvec{t}
+            \\
+        & \bullet\ \hsvec{v}(s) = \hsvec{t}(s) \hspace{20pt} \boxed{ \mss{ (t = n \times b) } } \\
+        & \bullet\ \hsvec{a}(s) = \boxed{ \hsvec{t'}(s) = k\mss{(s)} \hsvec{n}\mss{(s)} }
+            ,\ k(s) \geq 0
+            \hspace{10pt} \begin{gathered}
+                \text{\scriptsize(can be L or R-handed)}\\[-8pt]
+                \text{\scriptsize(can be neg. if in \(\mathbb{R}^2\))}
+            \end{gathered}
+            \\
+        & \ast\ k(s) > 0 \text{ for well defined curve with \(\hat{n}\)}\\
+        & \bullet\ \boxed{ \hsvec{b} = \hsvec{t} \times \hsvec{n} }
+            ,\ \ \tfrac{d}{dt} (\hsvec{b} \cdot \hsvec{b}) = \hsvec{b} \cdot \hsvec{b'} = 0
+            ,\ \ \ast\ \boxed{ \hsvec{b'}(s) = \tau\mss{(s)} \hsvec{n}\mss{(s)} }
+            \\
+        & \bullet\ \boxed{ \hsvec{n} = \hsvec{b} \times \hsvec{t} } 
+            ,\ \ \ast\ \boxed{ \hsvec{n'}(s) = -k \hsvec{t} - \tau \hsvec{b} }
+            ,\ \ \ast\ \mss{ \text{t-n pl.} = \text{osculating pl.} }
+    \end{aligned}
+\)
+
+% More info
+\vspace{10pt} \noindent
+\(\begin{aligned}
+    & \bullet\ t''(s) = k' n - k^2 t - k\tau b 
+        \hspace{20pt} \bullet\ b''(s) = \tau' n - \tau kt - \tau^2 b
+        \hspace{20pt} \bullet\ n''(s) = -k't -\tau'b - (k^2 + \tau^2) n
+        \\
+    & \bullet\ |\tau| = \Vert b' \Vert 
+        \hspace{20pt}
+        \bullet\ \tau = -\tfrac{ ( t \times t' ) \cdot t'' }{k^2} = -\tfrac{ {t} \cdot ( {t'} \times t'' )}{\Vert t' \Vert^2} 
+        \hspace{20pt} 
+        \bullet\ k = \Vert t' \Vert = \tfrac{ ( b \times b' ) \cdot b'' }{\tau^2} 
+        = \tfrac{ {b} \cdot ( {b'} \times b'' )}{\Vert b' \Vert^2}
+        \\
+    & \bullet\ n \Rightarrow k,\tau:
+        \hspace{20pt}
+        \ast\ \Vert n' \Vert^2 = k^2 + \tau^2
+        \hspace{20pt}
+        \ast\ \tfrac{ ( n \times n' ) \cdot n'' }{\Vert n' \Vert^2} = \tfrac{k' \tau - k \tau'}{k^2 + \tau^2}
+        = \tfrac{ \tfrac{d}{ds} (k / \tau) }{(k/\tau)^2 + 1} = \tfrac{d}{ds} \arctan(k/\tau)
+\end{aligned}\)
 
 %----------------------------------------------------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------------
@@ -464,7 +538,7 @@
                 & \mss{(F \cdot \hat{r})} \hat{r} + \mss{(F \cdot \hat{\phi})} \hs \hat{\phi}
         \end{array} 
         \\[10pt]
-    & \rightarrow \ 
+    & \hspace{-3pt} \rightarrow \ 
         \begin{aligned}
             & F_r = \boxed{ - \tfrac{\partial U}{\partial r} + m r \dot{\phi}^2 = m \ddot{r}  }
                 \hspace{10pt} \text{\scriptsize(centripetal: \(\tfrac{mv^2}{r} = mr\omega^2\))}
@@ -474,27 +548,36 @@
                     = \underbrace{ m r^2 \ddot{\phi} }_{I \alpha}
                     + \underbrace{ 2mr \dot{r} \dot{\phi} }_{\dot{I} \omega}
                 }
-                \hspace{10pt} \text{\scriptsize
-                    (``coriolis'': \(2m | \vec{\hs \omega} \times \vec{\hs v} | = 2m\dot{\phi}\dot{r}\))
-                }
+                \hspace{10pt} \mss{ \left( \begin{gathered}
+                    \text{``coriolis'':} \\[-3pt]
+                    2m | \vec{\hs \omega} \times \vec{\hs v} | = 2m\dot{\phi}\dot{r}
+                \end{gathered} \right) }
         \end{aligned} 
         \hspace{10pt}
         \vline
         \hspace{10pt}
-        \text{\scriptsize\(\begin{aligned}
-            \dot{\phi}' & = \dot{\phi} - \omega 
+        \mss{ \begin{aligned} 
+            \dot{\phi}' & = \dot{\phi} - \omega \ , \ \ r' = r 
+                \hspace{10pt} 
+                \left( \hat{r} = R(\omega)\hat{r}' \ , \ \ \hat{\phi} = R(\omega)\hat{\phi}' \right)
                 \\
             & \hs \downarrow
                 \\
-            m \mathbf{\ddot{r}'} & = m \mathbf{\ddot{r}} 
-                - ( mr\omega^2
-                - 2mr\dot{\phi}\omega ) \hat{r} 
-                - 2m\dot{r}\omega \hs \hat{\phi}
+            m \mathbf{\ddot{r}} & = m \mathbf{\ddot{r}'} 
+                - ( mr\omega^2 + 2mr\dot{\phi}\omega ) \hat{r} 
+                + ( 2m\dot{r}\omega + mr\dot{\omega} ) \hs \hat{\phi}
                 \\
-            & = m \mathbf{\ddot{r}} 
-                - \underbrace{ mr\omega^2 \hs \hat{r} }_\text{centrifugal force}
+            m \mathbf{\ddot{r}'} & = m \mathbf{\ddot{r}} 
+                + \underbrace{ mr\omega^2 \hs \hat{r} }_{ \begin{gathered}
+                    \text{\tiny centrifugal}\\[-6pt]
+                    \text{\tiny force}
+                \end{gathered} }
                 + \underbrace{ 2m\omega (r\dot{\phi}\hs \hat{r} - \dot{r}\hs\hat{\phi}) }_\text{coriolis force}
-        \end{aligned}\)}
+                - \underbrace{ mr\dot{\omega} \hs \hat{\phi} }_{ \begin{gathered}
+                    \text{\tiny Euler}\\[-6pt]
+                    \text{\tiny force}
+                \end{gathered} }
+        \end{aligned} }
 \end{aligned}\)
 
 \vspace{15pt}\noindent
@@ -512,7 +595,7 @@ Note: \hspace{10pt}\(
             \\
         \dot{\hsvec{r}} & = \dot{r} \hat{r} + r \dot{\phi} \hat{\phi}\\
         \ddot{\hsvec{r}} & = \ddot{r} \hat{r} + 2 \dot{r} \dot{\hat{r}} + r \ddot{\hat{r}} 
-            \ =\ ( \ddot{r} - r \dot{\phi} ^2 )\hat{r} + ( r \ddot{\phi} + 2 \dot{r} \dot{\phi} ) \hat{\phi} 
+            \ =\ ( \ddot{r} - r \dot{\phi} ^2 )\hat{r} + ( 2 \dot{r} \dot{\phi} + r \ddot{\phi} ) \hat{\phi} 
     \end{aligned} 
 \)
 
@@ -874,21 +957,24 @@ Note: \hspace{10pt}\(
 \section{Orbits}
 
 % Lagrangian
-\(\left.\begin{aligned}
-    &\text{\underline{Lagrangian}}:\ \ \mathcal{L} = \tfrac{1}{2} m\dot{x}^2 
-        + \tfrac{1}{2} m r^2 \dot{\theta}^2 
-        + \tfrac{1}{2} m r^2\sin^2{\theta} \dot{\phi}^2 - U(r) \\[10pt]
-    &\indent\bullet\ l = I \omega = m r^2 \dot{\theta}\\[5pt]
-    &\indent\bullet\ m\ddot{r} = - \frac{\partial}{\partial r} U_\text{eff} 
-        = - \frac{\partial}{\partial r} \left( \frac{l^2}{2m r^2} + U(r) \right)
-\end{aligned}\indent \right\} \indent m\ \rightarrow\ \mu = \frac{mM}{m+M}\)
+\(
+    \left.\begin{aligned}
+        & \text{\underline{Lagrangian}}:\ \ \mathcal{L} = \tfrac{1}{2} m\dot{r}^2 
+            + \tfrac{1}{2} m r^2 \dot{\theta}^2 
+            + \tfrac{1}{2} m r^2\sin^2{\theta} \dot{\phi}^2 - U(r) \\[10pt]
+        & \indent\bullet\ l = I \omega = m r^2 \dot{\theta}\\[5pt]
+        & \indent\bullet\ m\ddot{r} = - \frac{\partial}{\partial r} U_\text{eff} 
+            = - \frac{\partial}{\partial r} \left( \frac{l^2}{2m r^2} + U(r) \right)
+    \end{aligned}\indent \right\} 
+    \indent m\ \rightarrow\ \mu = \frac{mM}{m+M}
+\)
 
 % Energy Hamiltonian
 \vspace{20pt}\noindent
-\underline{Hamiltonian}:\ \ \(E = \frac{p^2}{2m} + \frac{l^2}{2mr^2} + U(r)\)\\[10pt]
+\underline{Hamiltonian}:\ \ \(E = \frac{p_r^2}{2m} + \frac{l^2}{2mr^2} + U(r)\)\\[10pt]
 \indent\(\begin{aligned}
-    &\bullet\ \text{Inf. Energy to get to \(r=0\) unless \(l=0\)} \\[5pt]
-    &\bullet\ U \sim 1/r
+    & \bullet\ \text{Inf. Energy to get to \(r=0\) unless \(l=0\)} \\[5pt]
+    & \bullet\ U \sim 1/r
 \end{aligned}\)
 
 % Orbit Types
