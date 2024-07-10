@@ -360,10 +360,18 @@
 % Frenet in derivatives of position
 \(
     \begin{aligned}
-        % \lVert \hsvec{q} \times \hsvec{p} \rVert^2 
+		\mss{ a \cdot (b \times c) } & = \mss{ (a \times b) \cdot c) } \\[5pt]
+		\mss{ a \times (b \times c) } & = \mss{ (c \cdot a) b - (b \cdot a) c } \\
+		\mss{ (a \times b) \times c } & = \mss{ b (c \cdot a) - a (c \cdot b)  } \\[5pt]
 		\mss{ (a \times b) \cdot (c \times d) } & = \mss{ a \cdot b \times (c \times d) }
-			\\[5pt]
-		& = \mss{ \left| \ \begin{matrix}
+			\\
+		= \mss{ \left| \hs
+				\left[ \begin{matrix}
+					a \hs \cdot \\ b \hs \cdot 
+				\end{matrix} \right]
+				\left[ c \ d \right] \hs
+			\hs \right| }
+			& = \mss{ \left| \ \begin{matrix}
                 \\[-11pt]
                 \hsvec{a} \cdot \hsvec{c} & \hsvec{a} \cdot \hsvec{d} \\[5pt]
                 \hsvec{b} \cdot \hsvec{c} & \hsvec{b} \cdot \hsvec{d}
@@ -387,7 +395,7 @@
             \hspace{5pt} , \hspace{10pt} \tfrac{dT}{ds} = k \hat{N}
             \\
         \hat{N} & = \tfrac{T'}{\lVert T' \rVert} 
-            = \tfrac{ (\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{\lVert \hsvec{v} \times \hsvec{a} \rVert v} 
+            = \tfrac{ (\nhs\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{\lVert \hsvec{v} \times \hsvec{a} \rVert v} 
             = \hat{B} \times \hat{v}
             \\
         \hat{B} & = \tfrac{\hsvec{v} \times \hsvec{a}}{\lVert \hsvec{v} \times \hsvec{a} \rVert}
@@ -397,7 +405,11 @@
             \\
         \tfrac{d\hat{B}}{dt} & = \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert }
             - \left[ \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert } \cdot \hat{B} \right] \hat{B}
-            \hspace{5pt} , \hspace{10pt} \tau = \hat{N} \cdot \tfrac{d\hat{B}}{ds}
+            \hspace{5pt} , \hspace{5pt} \tfrac{dB}{ds} = \tau \hat{N}
+			\\
+		\tau & = \hat{N} \cdot \tfrac{d\hat{B}}{ds} 
+			= \tfrac{ \hat{B} \cdot \dot{\hsvec{a}} }{ \Vert \nhs\hsvec{v} \times \hsvec{a} \Vert }
+			= \tfrac{ (\nhs\hsvec{v} \times \hsvec{a}) \cdot \dot{\hsvec{a}} }{ \Vert \nhs\hsvec{v} \times \hsvec{a} \Vert^2 }
     \end{aligned}
     \hfill
     \boxed{
@@ -532,17 +544,18 @@
 	& \bullet\ \boxed{ \alpha(0) = \beta(0) } \ \Rightarrow\ \underline{F(t=0)} 
 		= F \circ \alpha \big|_{t=0} = F \circ \beta \big|_{t=0} 
 		\\[5pt]
-	& \bullet\ \boxed{ \alpha'(0) = \beta'(0) } \ \Rightarrow\ \tfrac{\partial x}{\partial \alpha_i} \big|_{t=0} 
+	& \bullet\ \boxed{ \alpha'(0) = \beta'(0) } \ \Rightarrow \tfrac{\partial x}{\partial \alpha_i} \big|_{t=0} 
 		= \tfrac{\partial x}{\partial \beta_i} \big|_{t=0} 
 		\cdot \bcancel{ \tfrac{d \beta_i / dt}{d \alpha_i / dt} \big|_{t=0} }
-		\ \Rightarrow\ \nhs\nhs \underline{ dF_{\alpha(0)}(\alpha'\mss{(0)}) = dF_{\beta(0)}(\beta'\mss{(0)}) }
+		\ \Rightarrow\ \nhs\nhs \boxed{ dF_{\alpha(0)}(\alpha'\mss{(0)}) = dF_{\beta(0)}(\beta'\mss{(0)}) }
+		\hspace{5pt} \underline{ \text{\scriptsize(doesn't depend on \(\alpha\))} }
 		\\[5pt]
-	& \ast\ F = (x_0, x_1, \dots, x_m) 
+	& \ast\ F = (f_0, f_1, \dots, f_m) 
 		\ \Rightarrow\ \underline{ dF_{\alpha(0)} (\alpha'\mss{(0)}) } \hs \equiv\hs \tfrac{d}{dt}(F \circ \alpha) \big|_{t=0}
 		= \left[ 
 			\mss{ \arraycolsep=3pt \begin{matrix}
-				\tfrac{\partial x_1}{\partial \alpha_0} & \tfrac{\partial x_1}{\partial \alpha_1} & \dots \\[7pt]
-				\tfrac{\partial x_2}{\partial \alpha_0} & \tfrac{\partial x_2}{\partial \alpha_1} & \dots \\
+				\tfrac{\partial f_0}{\partial \alpha_0} & \tfrac{\partial f_0}{\partial \alpha_1} & \dots \\[7pt]
+				\tfrac{\partial f_1}{\partial \alpha_0} & \tfrac{\partial f_1}{\partial \alpha_1} & \dots \\
 				\vdots
 			\end{matrix} }
 		\right]_{t=0}
@@ -554,10 +567,136 @@
 			\end{matrix} }
 		\right]_{t=0}
 		\hspace{-10pt} = \boxed{ J_F\mss{(0)} \cdot \alpha'\mss{(0)} }
-		\\
+		\\[5pt]
 	& \bullet d(G \circ F)_p = dG_{F(p)} \circ dF_p
+		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Regular Value, \(p\)} }:\ dF_p \neq 0
+		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Critical Value, \(p\)} }:\ dF_p = 0
 \end{aligned}\)
 
+\vspace{15pt}\noindent
+% F is a Homeomorphism
+\(
+	\mss{ \begin{gathered}
+		{F\ \text{is a}}\\[-2pt]
+		\underline{\text{Homeomorphism}}\\[-2pt]
+		\text{onto image}\ F(X)
+	\end{gathered} }:\ 
+	\begin{aligned}
+		& \bullet\ F \ \text{\scriptsize is bijective between \(X\ \&\ F(X)\) }\\
+		& \bullet\ F \ \text{\scriptsize is cont.}
+			\hspace{10pt} \bullet\ F^{-1} \ \text{\scriptsize is cont.}
+	\end{aligned}
+\)
+\hfill
+% F is a Diffeomorphism
+\(
+	\mss{ \begin{gathered}
+		{F\ \text{is a}}\\[-2pt]
+		\text{\underline{Diffeomorphism}}\\[-2pt]
+		\text{onto image}\ F(X)
+	\end{gathered} }:\ 
+	\begin{aligned}
+		& \bullet\ F \in C^{\infty} \ \ \text{\scriptsize(cont. part. deri. of all orders)}\\
+		& \bullet\ F^{-1} \in C^\infty
+	\end{aligned}
+\)
+
+% Inverse Function Theorem
+\vspace{15pt}\noindent
+\(
+	\begin{gathered}
+		\text{\underline{Inverse Function}}\\
+		\text{\underline{Theorem} (IVT)} 
+	\end{gathered}:\ 
+	\begin{aligned}
+		& \bullet\ F \in C^{\infty} \\
+		& \bullet\ \exists dF_p^{-1} \ \ \text{(\scriptsize matrix \(dF_p\) is an isomorphism)} 
+	\end{aligned}
+	\ \Rightarrow\ \exists F^{-1} \in C^\infty	
+\)
+
+% Regular Surfaces
+\vspace{15pt}\noindent
+\(\begin{aligned}
+	& \underline{\text{Regular Surface},\ S \in \mathbb{R}^3}: \\[5pt]
+	& - \forall p \in S,\ \underline{\exists F \in C^\infty} 
+		,\ F: V_q\ \text{\scriptsize(neighborhood of q)} \rightarrow V_p \cap S
+		\hspace{15pt} \text{\scriptsize(diff. parametrizations are possible, btw)}
+		\\
+	& - \begin{gathered}
+			F \ \text{\scriptsize is a homeomorphism}\\[-3pt]
+			( \text{\scriptsize or}\ F \ \text{\scriptsize is one-to-one} )
+		\end{gathered}
+		\ \rightarrow\ \exists F^{-1} \in C^\infty
+		\ \Rightarrow\ \text{\scriptsize \(\exists\) no self-intersections; cont. = doesn't depend on parametrization}
+		\\
+	& - dF_p \ \ \text{\scriptsize is one-to-one = columns are lin. ind. = any 2x2 \(\big| \text{sub-}J_F \big|\) \(\neq 0\)}
+		\ \Rightarrow\ \exists(\text{\scriptsize tangent at all points})
+\end{aligned}\)
+
+% Info about Reg Surfaces
+\vspace{5pt}\noindent
+\(\begin{aligned}	
+	& \bullet\ \underline{ f \in C^\infty } 
+		\ \Rightarrow\ \boxed{ \big( \hsvec{x}, f\mss{(\hsvec{x})} \big) \ \text{\scriptsize is a reg. surf.} }
+		\\[10pt]
+	& \bullet\ 
+		\begin{aligned}
+			& f : \mss{ \mathbb{R}^n \rightarrow \mathbb{R} }\\
+			& f \mss{ (\hsvec{x}) } = c \\[-7pt]
+			& \underline{ \text{\scriptsize is a reg. val.} }
+		\end{aligned}
+		\ , \ \ \begin{aligned}
+			& f \in C^\infty \\
+			& F\mss{(\nhs\hsvec{x})} = ( \mss{ x_1,\hs ...\ , x_{n-1} , f(\nhs\hsvec{x}) } )\\
+			& \exists dF_p^{-1}
+		\end{aligned}
+		\ \ \stackrel{\text{(IVT)}}{\Rightarrow}\ \
+		\begin{aligned}
+			& \exists F^{-1} \in C^\infty \\
+			& F^{-1}( \mss{ f_1,\hs ...\ , f_{n-1} , f(\nhs\hsvec{x}) } ) = \hsvec{x}
+		\end{aligned}
+		\ , \ \ 
+		\begin{aligned}
+			& x_n\ \mss{ = f^{-1}_n }: \mss{ \mathbb{R}^n \rightarrow \mathbb{R} }\\
+			& \underline{ x_n\ \mss{ = f^{-1}_n } \in C^\infty }
+		\end{aligned}
+		\\[5pt]
+	& \hspace{10pt} \rightarrow\ 
+		\begin{aligned}
+			x_n & = \mss{ {f}^{-1}_n }( \mss{ x_1,\hs ...\ , x_{n-1} , f(\nhs\hsvec{x}) = c } )\\
+			& = \underline{ \mss{ {f'}^{-1}_n } ( \mss{ x_1,\hs ...\ , x_{n-1} } ) }
+		\end{aligned}
+		\ \Rightarrow \ 
+		\begin{aligned}
+			& S = \underline{ ( \mss{ x_1,\hs ...\ , x_{n-1} , {f'}^{-1}_n } ) }
+				\ \text{\scriptsize where}\ \mss{ f(\nhs\hsvec{x}) = c } 
+				\\
+			& S \ ==\ \text{\scriptsize Surface}\ f^{-1}{(c)}
+		\end{aligned}
+		\Rightarrow \boxed{ \text{\scriptsize Surface}\ f^{-1}{(c)}\ \text{\scriptsize is reg.} }
+		\\[10pt]
+	& \bullet\ f: S \subset \mathbb{R}^n \rightarrow \mathbb{R},\ \forall p \in S,\ \underline{ f(p) \neq 0 }
+		\ \Rightarrow\ \forall p \in S,\ \underline{ f(p) > 0 \text{ or } f(p) < 0 }
+		\\[10pt]
+	& \hs\hs \begin{aligned}
+			\bullet\ \hs & F\mss{(u,v)} = ( x\mss{(u,v)}, y\mss{(u,v)}, \underline{ z\mss{(u,v)} } ) \\
+			& ( \text{\scriptsize\& } F \ \text{\scriptsize is one-to-one} )
+		\end{aligned}
+		,\ \underline{ \tfrac{\partial(x,y)}{\partial(u,v)} \neq 0 }
+		\ \Rightarrow\ \pi_{\text{proj.}} \circ F \mss{(u,v)} \equiv  ( x\mss{(u,v)}, y\mss{(u,v)} )
+		\\
+	& \hspace{10pt} \stackrel{(IVT)}{\Rightarrow} \ (\pi \circ F)^{-1}\mss{( x, y )}
+		= (u\mss{(x,y)}, v\mss{(x,y)})
+		\ \ \begin{aligned}
+			& \mss{\bullet \nhs \Rightarrow}\ z( u(\mss{x,y}), v(\mss{x,y})) 
+				= z \circ (\pi \circ F)^{-1}\mss{(x,y)} = \boxed{ f\mss{(x,y)} = z \ \mss{\in C^\infty} } 
+				\\
+			& \mss{\text{\&} \nhs \Rightarrow}\ \underline{ (\pi \circ F)^{-1} \circ \pi } \circ F \mss{(u,v)} 
+				= \underline{F^{-1}} \circ F \mss{(u,v)}
+				\ \Rightarrow\ \boxed{F^{-1} \in C^\infty}
+		\end{aligned}
+\end{aligned}\)
 
 %--------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------
