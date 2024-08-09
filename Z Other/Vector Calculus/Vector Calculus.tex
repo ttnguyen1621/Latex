@@ -354,355 +354,6 @@
 %--------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------
 \newpage
-% Frenet
-\section{Frenet Equations}
-
-% Frenet in derivatives of position
-\(
-    \begin{aligned}
-		\mss{ a \cdot (b \times c) } & = \mss{ (a \times b) \cdot c) } \\[5pt]
-		\mss{ a \times (b \times c) } & = \mss{ (c \cdot a) b - (b \cdot a) c } \\
-		\mss{ (a \times b) \times c } & = \mss{ b (c \cdot a) - a (c \cdot b)  } \\[5pt]
-		\mss{ (a \times b) \cdot (c \times d) } & = \mss{ a \cdot b \times (c \times d) }
-			\\
-		= \mss{ \left| \hs
-				\left[ \begin{matrix}
-					a \hs \cdot \\ b \hs \cdot 
-				\end{matrix} \right]
-				\left[ c \ d \right] \hs
-			\hs \right| }
-			& = \mss{ \left| \ \begin{matrix}
-                \\[-11pt]
-                \hsvec{a} \cdot \hsvec{c} & \hsvec{a} \cdot \hsvec{d} \\[5pt]
-                \hsvec{b} \cdot \hsvec{c} & \hsvec{b} \cdot \hsvec{d}
-                \\[-12pt]
-                \hs
-            \end{matrix} \ \right| }
-            \\[5pt]
-        \Aboxed{ \tfrac{dt}{ds} & = \tfrac{1}{v} }
-    \end{aligned}
-    \hfill
-    \vline
-    \hfill
-    \begin{aligned}
-        T & = \hat{v} = \tfrac{\hsvec{v}}{v} \\
-        \tfrac{dT}{dt} & = \tfrac{ (\hsvec{v} \cdot \hsvec{v}) \hsvec{a} - (\hsvec{v} \cdot \hsvec{a}) \hsvec{v} }{v^3} 
-            = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v^3}
-            = \tfrac{ (\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{v^3}
-            \\
-        \lVert \tfrac{dT}{dt} \rVert & = \tfrac{ \sqrt{ v^2 a^2 - (\hsvec{v} \cdot \hsvec{a})^2 } }{v^2}
-            = \tfrac{\lVert \hsvec{a} \times \hsvec{v} \rVert }{v^2}
-            \hspace{5pt} , \hspace{10pt} \tfrac{dT}{ds} = k \hat{N}
-            \\
-        \hat{N} & = \tfrac{T'}{\lVert T' \rVert} 
-            = \tfrac{ (\nhs\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{\lVert \hsvec{v} \times \hsvec{a} \rVert v} 
-            = \hat{B} \times \hat{v}
-            \\
-        \hat{B} & = \tfrac{\hsvec{v} \times \hsvec{a}}{\lVert \hsvec{v} \times \hsvec{a} \rVert}
-            = \widehat{v \times a}
-            = \hat{v} \times \hat{N}
-            \hspace{15pt} \underline{ \mss{(\hat{B} \cdot \vec{v} = 0)} }
-            \\
-        \tfrac{d\hat{B}}{dt} & = \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert }
-            - \left[ \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert } \cdot \hat{B} \right] \hat{B}
-            \hspace{5pt} , \hspace{5pt} \tfrac{dB}{ds} = \tau \hat{N}
-			\\
-		\tau & = \hat{N} \cdot \tfrac{d\hat{B}}{ds} 
-			= \tfrac{ \hat{B} \cdot \dot{\hsvec{a}} }{ \Vert \nhs\hsvec{v} \times \hsvec{a} \Vert }
-			= \tfrac{ (\nhs\hsvec{v} \times \hsvec{a}) \cdot \dot{\hsvec{a}} }{ \Vert \nhs\hsvec{v} \times \hsvec{a} \Vert^2 }
-    \end{aligned}
-    \hfill
-    \boxed{
-        \begin{aligned}
-            \hsvec{a} & = a_T \hat{T} + a_N \hat{N} \\[5pt]
-            a_T & = \hsvec{a} \cdot \hat{v} = \tfrac{dv}{dt} \\[5pt]
-            a_N & = \tfrac{\Vert \hsvec{a} \times \hsvec{v} \Vert}{v} = \Vert \hsvec{a} \times \hat{v} \Vert \\[5pt]
-            a^2 & = a_T^2 + a_N^2 = \Vert \tfrac{d\hsvec{v}}{dt} \Vert^2
-        \end{aligned}
-    }
-\)
-
-\vspace{15pt}\noindent
-% Frenet trihedron - when curve is parametrized by arc length
-\underline{Frenet Trihedron}\\
-\(
-    \begin{aligned}
-        & \text{\scriptsize Differentiable (in this book)}:\ C^\infty\\
-        & \text{\scriptsize No singular pts. Order 0 (Regular)}:\ \hsvec{v}(t) \neq 0\\
-        & \mss{ \bullet\ \Vert \hsvec{v}(t) \Vert = c \rightarrow 1
-            \ \Rightarrow\ 
-            \int_s \Vert \hsvec{v}(t) \Vert \hs dt = t = \Delta s 
-            }
-            \\
-        & \hspace{10pt} \mss{ \rightarrow s:\ \hsvec{x}(t) = \hsvec{x}(s) } \\
-        & \mss{ \bullet\ \tfrac{1}{2}\tfrac{d}{dt}(\hsvec{v} \cdot \hsvec{v}) = \boxed{ \hsvec{v} \cdot \hsvec{a} = 0 } } \\
-        & \text{\scriptsize No singular pts. Order 1}:\ \hsvec{a}(t) \neq 0\\
-        & \mss{ \bullet\ \text{Curvature, } k \neq 0 \text{ (see right)} }
-			\hspace{10pt} \mss{ \bullet\ \text{Vertex, } k' = 0 }
-    \end{aligned}
-    \hfill\vline\hfill
-    \begin{aligned}
-        & 1 = \Vert \hsvec{t} \Vert = \Vert \hsvec{n} \Vert = \Vert \hsvec{b} \Vert
-            \ ,\ \ 
-            0 = \hsvec{t} \cdot \hsvec{n} = \hsvec{n} \cdot \hsvec{b} = \hsvec{b} \cdot \hsvec{t}
-            \\
-        & \bullet\ \hsvec{v}(s) = \hsvec{t}(s) \hspace{20pt} \boxed{ \mss{ (t = n \times b) } } \\
-        & \bullet\ \hsvec{a}(s) = \boxed{ \hsvec{t'}(s) = k\mss{(s)} \hsvec{n}\mss{(s)} }
-            ,\ k(s) \geq 0
-            \hspace{10pt} \begin{gathered}
-                \text{\scriptsize(can be L or R-handed)}\\[-8pt]
-                \text{\scriptsize(can be neg. if in \(\mathbb{R}^2\))}
-            \end{gathered}
-            \\
-        & \ast\ k(s) > 0 \text{ for well defined curve with \(\hat{n}\)}\\
-        & \bullet\ \boxed{ \hsvec{b} = \hsvec{t} \times \hsvec{n} }
-            ,\ \ \tfrac{d}{dt} (\hsvec{b} \cdot \hsvec{b}) = \hsvec{b} \cdot \hsvec{b'} = 0
-            ,\ \ \ast\ \boxed{ \hsvec{b'}(s) = \tau\mss{(s)} \hsvec{n}\mss{(s)} }
-            \\
-        & \bullet\ \boxed{ \hsvec{n} = \hsvec{b} \times \hsvec{t} } 
-            ,\ \ \ast\ \boxed{ \hsvec{n'}(s) = -k \hsvec{t} - \tau \hsvec{b} }
-            ,\ \ \ast\ \mss{ \text{t-n pl.} = \text{osculating pl.} }
-    \end{aligned}
-\)
-
-% More info on derivatives of frenet
-\vspace{10pt} \noindent
-\(\begin{aligned}
-    & \bullet\ t''(s) = k' n - k^2 t - k\tau b 
-        \hspace{20pt} \bullet\ b''(s) = \tau' n - \tau kt - \tau^2 b
-        \hspace{20pt} \bullet\ n''(s) = -k't -\tau'b - (k^2 + \tau^2) n
-        \\
-    & \bullet\ |\tau| = \Vert b' \Vert 
-        \hspace{20pt}
-        \bullet\ \tau = -\tfrac{ ( t \times t' ) \cdot t'' }{k^2} = -\tfrac{ {t} \cdot ( {t'} \times t'' )}{\Vert t' \Vert^2} 
-        \hspace{20pt} 
-        \bullet\ k = \Vert t' \Vert = \tfrac{ ( b \times b' ) \cdot b'' }{\tau^2} 
-        = \tfrac{ {b} \cdot ( {b'} \times b'' )}{\Vert b' \Vert^2}
-        \\
-    & \bullet\ n \Rightarrow k,\tau:
-        \hspace{20pt}
-        \ast\ \Vert n' \Vert^2 = k^2 + \tau^2
-        \hspace{20pt}
-        \ast\ \tfrac{ ( n \times n' ) \cdot n'' }{\Vert n' \Vert^2} = \tfrac{k' \tau - k \tau'}{k^2 + \tau^2}
-        = \tfrac{ \tfrac{d}{ds} (k / \tau) }{(k/\tau)^2 + 1} = \tfrac{d}{ds} \arctan(k/\tau)
-\end{aligned}\)
-
-% Indicatrix
-\vspace{15pt}\noindent
-\(\begin{aligned}[t]
-    & \text{\underbar{Indicatrix [of Tangents]}}:\\[5pt]
-    & \bullet\ \hsvec{t}(\theta\mss{(s)}) = (\cos\theta, \sin\theta) = (x'\mss{(s)}, y'\mss{(s)})\\
-    & \bullet\ \hsvec{t'}(\theta) = \underline{ \theta'(s)} (-\sin\theta, \cos\theta) = \underline{k(s)} \hsvec{n}\\
-	& \bullet\ \theta\mss{(s)} = \arctan(y'/x')\\
-	& \bullet\ \mss{\int_0^l} \hs k\mss{(s)} \hs\hs ds = \theta(s)\Big|^l_0 = 2\pi I_\text{rot. index}
-\end{aligned}\)
-% Local Canonical Form
-\hspace{20pt}
-\(\begin{aligned}[t]
-    & \text{\underbar{Local Canonical Form at \(t=0\)}}:\\[5pt]
-    & \bullet\ (\hat{t},\hat{n},\hat{b}) = (\hat{x},\hat{y},\hat{z})\\
-    & \bullet\ \hsvec{r}(s) - \hsvec{r}(0) 
-        \approx ( s - \tfrac{k^2 s^3}{6},\ \tfrac{k}{2} s^2 + \tfrac{k' s^3}{6},\ \tfrac{-k\tau}{6} s^3 )
-        \\
-    & \bullet\ \tau < 0 \ \Rightarrow\ \tfrac{dz}{ds} > 0
-\end{aligned}\)
-
-% Isoperimetric Ineq.
-\vspace{15pt}\noindent
-\(\begin{aligned}[t]
-	& \text{\underline{Isoperimetric Inequality}}:\ 0 \leq l^2 - 4\pi A
-\end{aligned}\)
-% 4-Vertex Theor.
-\hspace{20pt}\noindent
-\(\begin{aligned}[t]
-	& \text{\underline{Four-Vertex Theorem}}:\ \text{\scriptsize A simple closed curve has \(\geq\) 4 vertices}
-\end{aligned}\)
-
-% Cauchy-Crofton Formula
-\vspace{15pt}\noindent
-\(\begin{aligned}[t]
-	& \text{\underline{Cauchy-Crofton Formula (measure of number of times lines intersect a curve)}}:\\[5pt]
-	& \bullet\ \text{Tangent line at } (\rho, \theta) :\ x\cos\theta + y\sin\theta = \rho
-		\hspace{15pt} \bullet\ \text{Curve } c:\ y=0,\ x \in (-l/2, l/2)
-		\hspace{5pt} , \hspace{10pt} C = \mss{\sum}\hs c_i
-		\\
-	& \bullet\ \mss{\int}\ \text{\scriptsize Lines that cross } c 
-		= \mss{ \int_0^{2\pi} \int_0^{|\cos\theta| l/2} } d\rho \hs d\theta = 2l
-		\ \Rightarrow\
-		\mss{ \int_0^{2\pi} \int_0^\infty } n_C \ d\rho \hs d\theta = 2l
-\end{aligned}\)
-
-%--------------------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------------------
-\newpage
-% Differential
-\section{Jacobian/Differential, \(dF_{\alpha(0)} : \mathbb{R}^n \rightarrow \mathbb{R}^m\)}
-
-\(\begin{aligned}
-	& \bullet\ \boxed{ \alpha(0) = \beta(0) } \ \Rightarrow\ \underline{F(t=0)} 
-		= F \circ \alpha \big|_{t=0} = F \circ \beta \big|_{t=0} 
-		\\[5pt]
-	& \bullet\ \boxed{ \alpha'(0) = \beta'(0) } \ \Rightarrow \tfrac{\partial x}{\partial \alpha_i} \big|_{t=0} 
-		= \tfrac{\partial x}{\partial \beta_i} \big|_{t=0} 
-		\cdot \bcancel{ \tfrac{d \beta_i / dt}{d \alpha_i / dt} \big|_{t=0} }
-		\ \Rightarrow\ \nhs\nhs \boxed{ dF_{\alpha(0)}(\alpha'\mss{(0)}) = dF_{\beta(0)}(\beta'\mss{(0)}) }
-		\hspace{5pt} \underline{ \text{\scriptsize(doesn't depend on \(\alpha\))} }
-		\\[5pt]
-	& \ast\ F = (f_0, f_1, \dots, f_m) 
-		\ \Rightarrow\ \underline{ dF_{\alpha(0)} (\alpha'\mss{(0)}) } \hs \equiv\hs \tfrac{d}{dt}(F \circ \alpha) \big|_{t=0}
-		= \left[ 
-			\mss{ \arraycolsep=3pt \begin{matrix}
-				\tfrac{\partial f_0}{\partial \alpha_0} & \tfrac{\partial f_0}{\partial \alpha_1} & \dots \\[7pt]
-				\tfrac{\partial f_1}{\partial \alpha_0} & \tfrac{\partial f_1}{\partial \alpha_1} & \dots \\
-				\vdots
-			\end{matrix} }
-		\right]_{t=0}
-		\left[ 
-			\mss{ \begin{matrix}
-				\tfrac{d \alpha_0}{dt}\\[7pt]
-				\tfrac{d \alpha_1}{dt}\\
-				\vdots
-			\end{matrix} }
-		\right]_{t=0}
-		\hspace{-10pt} = \boxed{ J_F\mss{(0)} \cdot \alpha'\mss{(0)} }
-		\\[5pt]
-	& \bullet d(G \circ F)_p = dG_{F(p)} \circ dF_p
-		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Regular Value, \(p\)} }:\ dF_p \neq 0
-		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Critical Value, \(p\)} }:\ dF_p = 0
-\end{aligned}\)
-
-\vspace{15pt}\noindent
-% F is a Homeomorphism
-\(
-	\mss{ \begin{gathered}
-		{F\ \text{is a}}\\[-2pt]
-		\underline{\text{Homeomorphism}}\\[-2pt]
-		\text{onto image}\ F(X)
-	\end{gathered} }:\ 
-	\begin{aligned}
-		& \bullet\ F \ \text{\scriptsize is bijective between \(X\ \&\ F(X)\) }\\
-		& \bullet\ F \ \text{\scriptsize is cont.}
-			\hspace{10pt} \bullet\ F^{-1} \ \text{\scriptsize is cont.}
-	\end{aligned}
-\)
-\hfill
-% F is a Diffeomorphism
-\(
-	\mss{ \begin{gathered}
-		{F\ \text{is a}}\\[-2pt]
-		\text{\underline{Diffeomorphism}}\\[-2pt]
-		\text{onto image}\ F(X)
-	\end{gathered} }:\ 
-	\begin{aligned}
-		& \bullet\ F \in C^{\infty} \ \ \text{\scriptsize(cont. part. deri. of all orders)}\\
-		& \bullet\ F^{-1} \in C^\infty
-	\end{aligned}
-\)
-
-% Inverse Function Theorem
-\vspace{15pt}\noindent
-\(
-	\begin{gathered}
-		\text{\underline{Inverse Function}}\\
-		\text{\underline{Theorem} (IVT)} 
-	\end{gathered}:\ 
-	\begin{aligned}
-		& \bullet\ F \in C^{\infty} \\
-		& \bullet\ \exists dF_p^{-1} \ \ \text{(\scriptsize matrix \(dF_p\) is an isomorphism)} 
-	\end{aligned}
-	\ \Rightarrow\ \exists F^{-1} \in C^\infty	
-\)
-
-% Regular Surfaces
-\vspace{15pt}\noindent
-\(\begin{aligned}
-	& \underline{\text{Regular Surface},\ S \in \mathbb{R}^3}: \\[5pt]
-	& - \forall p \in S,\ \underline{\exists F \in C^\infty} 
-		,\ F: V_q\ \text{\scriptsize(neighborhood of q)} \rightarrow V_p \cap S
-		\hspace{15pt} \text{\scriptsize(diff. parametrizations are possible, btw)}
-		\\
-	& - \begin{gathered}
-			F \ \text{\scriptsize is a homeomorphism}\\[-3pt]
-			( \text{\scriptsize or}\ F \ \text{\scriptsize is one-to-one} )
-		\end{gathered}
-		\ \rightarrow\ \exists F^{-1} \in C^\infty
-		\ \Rightarrow\ \text{\scriptsize \(\exists\) no self-intersections; cont. = doesn't depend on parametrization}
-		\\
-	& - dF_p \ \ \text{\scriptsize is one-to-one = columns are lin. ind. = any 2x2 \(\big| \text{sub-}J_F \big|\) \(\neq 0\)}
-		\ \Rightarrow\ \exists(\text{\scriptsize tangent at all points})
-\end{aligned}\)
-
-% Info about Reg Surfaces
-\vspace{5pt}\noindent
-\(\begin{aligned}	
-	& \bullet\ \underline{ f \in C^\infty } 
-		\ \Rightarrow\ \boxed{ \big( \hsvec{x}, f\mss{(\hsvec{x})} \big) \ \text{\scriptsize is a reg. surf.} }
-		\\[10pt]
-	& \bullet\ 
-		\begin{aligned}
-			& f : \mss{ \mathbb{R}^n \rightarrow \mathbb{R} }\\
-			& f \mss{ (\hsvec{x}) } = c \\[-7pt]
-			& \underline{ \text{\scriptsize is a reg. val.} }
-		\end{aligned}
-		\ , \ \ \begin{aligned}
-			& f \in C^\infty \\
-			& F\mss{(\nhs\hsvec{x})} = ( \mss{ x_1,\hs ...\ , x_{n-1} , f(\nhs\hsvec{x}) } )\\
-			& \exists dF_p^{-1}
-		\end{aligned}
-		\ \ \stackrel{\text{(IVT)}}{\Rightarrow}\ \
-		\begin{aligned}
-			& \exists F^{-1} \in C^\infty \\
-			& F^{-1}( \mss{ f_1,\hs ...\ , f_{n-1} , f(\nhs\hsvec{x}) } ) = \hsvec{x}
-		\end{aligned}
-		\ , \ \ 
-		\begin{aligned}
-			& x_n\ \mss{ = f^{-1}_n }: \mss{ \mathbb{R}^n \rightarrow \mathbb{R} }\\
-			& \underline{ x_n\ \mss{ = f^{-1}_n } \in C^\infty }
-		\end{aligned}
-		\\[5pt]
-	& \hspace{10pt} \rightarrow\ 
-		\begin{aligned}
-			x_n & = \mss{ {f}^{-1}_n }( \mss{ x_1,\hs ...\ , x_{n-1} , f(\nhs\hsvec{x}) = c } )\\
-			& = \underline{ \mss{ {f'}^{-1}_n } ( \mss{ x_1,\hs ...\ , x_{n-1} } ) }
-		\end{aligned}
-		\ \Rightarrow \ 
-		\begin{aligned}
-			& S = \underline{ ( \mss{ x_1,\hs ...\ , x_{n-1} , {f'}^{-1}_n } ) }
-				\ \text{\scriptsize where}\ \mss{ f(\nhs\hsvec{x}) = c } 
-				\\
-			& S \ ==\ \text{\scriptsize Surface}\ f^{-1}{(c)}
-		\end{aligned}
-		\Rightarrow \boxed{ \text{\scriptsize Surface}\ f^{-1}{(c)}\ \text{\scriptsize is reg.} }
-		\\[10pt]
-	& \bullet\ f: S \subset \mathbb{R}^n \rightarrow \mathbb{R},\ \forall p \in S,\ \underline{ f(p) \neq 0 }
-		\ \Rightarrow\ \forall p \in S,\ \underline{ f(p) > 0 \text{ or } f(p) < 0 }
-		\\[10pt]
-	& \hs\hs \begin{aligned}
-			\bullet\ \hs & F\mss{(u,v)} = ( x\mss{(u,v)}, y\mss{(u,v)}, \underline{ z\mss{(u,v)} } ) \\
-			& ( \text{\scriptsize\& } F \ \text{\scriptsize is one-to-one} )
-		\end{aligned}
-		,\ \underline{ \tfrac{\partial(x,y)}{\partial(u,v)} \neq 0 }
-		\ \Rightarrow\ \pi_{\text{proj.}} \circ F \mss{(u,v)} \equiv  ( x\mss{(u,v)}, y\mss{(u,v)} )
-		\\
-	& \hspace{10pt} \stackrel{(IVT)}{\Rightarrow} \ (\pi \circ F)^{-1}\mss{( x, y )}
-		= (u\mss{(x,y)}, v\mss{(x,y)})
-		\ \ \begin{aligned}
-			& \mss{\bullet \nhs \Rightarrow}\ z( u(\mss{x,y}), v(\mss{x,y})) 
-				= z \circ (\pi \circ F)^{-1}\mss{(x,y)} = \boxed{ f\mss{(x,y)} = z \ \mss{\in C^\infty} } 
-				\\
-			& \mss{\text{\&} \nhs \Rightarrow}\ \underline{ (\pi \circ F)^{-1} \circ \pi } \circ F \mss{(u,v)} 
-				= \underline{F^{-1}} \circ F \mss{(u,v)}
-				\ \Rightarrow\ \boxed{F^{-1} \in C^\infty}
-		\end{aligned}
-\end{aligned}\)
-
-%--------------------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------------------
-\newpage
 % Del
 \section{Del}
 
@@ -841,16 +492,1186 @@
 	\vspace{20pt}
 	% Double Cross Product
 	\(\begin{array}{r c l c l}
-		\relax[ \vec{A} \times (\vec{B} \times \vec{C}) ]_i 
-			&=& \vec{A} \cdot ( B_i \vec{C} ) - \vec{A} \cdot ( \vec{B} C_i ) 
-			\\[10pt]
-		\vec{A} \times (\vec{B} \times \vec{C}) 
-			&=& \boxed{ ( \vec{A} \cdot ( \vec{B} \otimes \vec{C} )^T )^T - ( \vec{A} \cdot \vec{B} \otimes \vec{C} )^T }
-			&=& ( \vec{A} \otimes \vec{B} ) \cdot \vec{C} - ( \vec{A} \cdot \vec{B} \otimes \vec{C} )^T 
+		% A x (B x C)
+		[ \vec{A} \times (\vec{B} \times \vec{C}) ]_i & =
+			& \vec{A} \cdot B_i \vec{C} - \vec{A} \cdot \vec{B} C_i 
 			\\[5pt]
-		&=& ( A^T ( BC^T )^T )^T - ( A^T BC^T )^T
-			&=& (AB^T)^T C - ( A^T BC^T )^T
+		[ \vec{A} \times (\vec{B} \times \vec{C}) ]^T & =
+			& \vec{A}_r * \vec{B}_r \vec{C}_c - \vec{A}_r * \vec{B}_c \vec{C}_r
+			% & =
+			% & \boxed{ \vec{A} \cdot ( \vec{B} \otimes \vec{C} )^T - \vec{A} \cdot \vec{B} \otimes \vec{C} }
+			\\[10pt]
+		\vec{A} \times (\vec{B} \times \vec{C}) & = 
+			& B (A \cdot C) - (A \cdot B) C
+			\\[5pt]
+		\vec{\nabla} \times (\vec{\nabla} \times \vec{C}) & = 
+			& \nabla (\nabla \cdot C) - (\nabla \cdot \nabla) C
+			\\[5pt]
+		[ \vec{A} \times (\vec{\nabla} \times \vec{C}) ]^T & =
+			& \vec{A}_r ( \vec{\nabla}_r \vec{C}_c ) - ( \vec{A} \cdot \vec{\nabla} ) \vec{C}^T 
+			\\[5pt]
+		[ \vec{\nabla} \times (\vec{B} \times \vec{C}) ]_i & =
+			& \vec{\nabla} \cdot B_i \vec{C} - \vec{\nabla} \cdot \vec{B} C_i 
+			& =
+			& \vec{C} \cdot \vec{\nabla} B_i + \vec{\nabla} \cdot \vec{C} B_i 
+				- \vec{\nabla} \cdot \vec{B} C_i - \vec{B} \cdot \vec{\nabla} C_i 
+			\\[5pt]
+		[ \vec{\nabla} \times (\vec{B} \times \vec{C}) ]^T & =
+			& \vec{\nabla}_r * (\vec{B}_r \vec{C}_c) - \vec{\nabla}_r * (\vec{B}_c \vec{C}_r)
+			& =
+			&  \mss{ \vec{C}_r * \vec{\nabla}_c \vec{B}_r + \vec{\nabla}_r * \vec{C}_c \vec{B}_r 
+				- \vec{\nabla}_r * \vec{B}_c \vec{C}_r - \vec{B}_r * \vec{\nabla}_c \vec{C}_r }
+			\\[20pt]
+		% (A x B) x C
+		[ (\vec{A} \times \vec{B}) \times \vec{C} \hs\hs ]_i & =
+			& \vec{A} B_i \cdot \vec{C} - A_i \vec{B} \cdot \vec{C}
+			\\[5pt]
+		(\vec{A} \times \vec{B}) \times \vec{C} \hs\hs & =
+			& \vec{A}_r \vec{B}_c * \vec{C}_c - \vec{A}_c \vec{B}_r * \vec{C}_c
+			\\[5pt]
+		(\vec{A} \times \vec{B}) \times \vec{C} & = 
+			& (A \cdot C) B - A (B \cdot C)
+			\\[5pt]
+		(\vec{A} \times \vec{\nabla}) \times \vec{C} & =
+			& ( \vec{A}_r \hsvec{\nabla}_c ) \vec{C}_c - \vec{A}_c ( \vec{\nabla}_r \cdot \vec{C}_c )
+			\\[5pt]
+		(\vec{\nabla} \times \vec{B}) \times \vec{C} & =
+			& ( \vec{\nabla}_r \hsvec{B}_c ) \vec{C} - ( \vec{\nabla}_c \vec{B}_r ) \vec{C} 
 	\end{array}\)
 }
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Frenet
+\section{Frenet Equations}
+
+% Frenet in derivatives of position
+\(
+    \begin{aligned}
+		\mss{ a \cdot (b \times c) } & = \mss{ (a \times b) \cdot c) } \\[5pt]
+		\mss{ a \times (b \times c) } & = \mss{ (c \cdot a) b - (b \cdot a) c } \\
+		\mss{ (a \times b) \times c } & = \mss{ b (c \cdot a) - a (c \cdot b)  } \\[5pt]
+		\mss{ (a \times b) \cdot (c \times d) } & = \mss{ a \cdot b \times (c \times d) }
+			\\
+		= \mss{ \left| \hs
+				\left[ \begin{matrix}
+					a \hs \cdot \\ b \hs \cdot 
+				\end{matrix} \right]
+				\left[ c \ d \right] \hs
+			\hs \right| }
+			& = \mss{ \left| \ \begin{matrix}
+                \\[-11pt]
+                \hsvec{a} \cdot \hsvec{c} & \hsvec{a} \cdot \hsvec{d} \\[5pt]
+                \hsvec{b} \cdot \hsvec{c} & \hsvec{b} \cdot \hsvec{d}
+                \\[-12pt]
+                \hs
+            \end{matrix} \ \right| }
+            \\[5pt]
+        \Aboxed{ \tfrac{dt}{ds} & = \tfrac{1}{v} }
+    \end{aligned}
+    \hfill
+    \vline
+    \hfill
+    \begin{aligned}
+        T & = \hat{v} = \tfrac{\hsvec{v}}{v} \\
+        \tfrac{dT}{dt} & = \tfrac{ (\hsvec{v} \cdot \hsvec{v}) \hsvec{a} - (\hsvec{v} \cdot \hsvec{a}) \hsvec{v} }{v^3} 
+            = \tfrac{ \hsvec{v} \times (\hsvec{a} \times \hsvec{v}) }{v^3}
+            = \tfrac{ (\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{v^3}
+            \\
+        \lVert \tfrac{dT}{dt} \rVert & = \tfrac{ \sqrt{ v^2 a^2 - (\hsvec{v} \cdot \hsvec{a})^2 } }{v^2}
+            = \tfrac{\lVert \hsvec{a} \times \hsvec{v} \rVert }{v^2}
+            \hspace{5pt} , \hspace{10pt} \tfrac{dT}{ds} = k \hat{N}
+            \\
+        \hat{N} & = \tfrac{T'}{\lVert T' \rVert} 
+            = \tfrac{ (\nhs\hsvec{v} \times \hsvec{a}) \times \hsvec{v} }{\lVert \hsvec{v} \times \hsvec{a} \rVert v} 
+            = \hat{B} \times \hat{v}
+            \\
+        \hat{B} & = \tfrac{\hsvec{v} \times \hsvec{a}}{\lVert \hsvec{v} \times \hsvec{a} \rVert}
+            = \widehat{v \times a}
+            = \hat{v} \times \hat{N}
+            \hspace{15pt} \underline{ \mss{(\hat{B} \cdot \vec{v} = 0)} }
+            \\
+        \tfrac{d\hat{B}}{dt} & = \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert }
+            - \left[ \tfrac{\hsvec{v} \times \dot{\hsvec{a}}}{\Vert \hsvec{v} \times \hsvec{a} \Vert } \cdot \hat{B} \right] \hat{B}
+            \hspace{5pt} , \hspace{5pt} \tfrac{dB}{ds} = \tau \hat{N}
+			\\
+		\tau & = \hat{N} \cdot \tfrac{d\hat{B}}{ds} 
+			= \tfrac{ \hat{B} \cdot \dot{\hsvec{a}} }{ \Vert \nhs\hsvec{v} \times \hsvec{a} \Vert }
+			= \tfrac{ (\nhs\hsvec{v} \times \hsvec{a}) \cdot \dot{\hsvec{a}} }{ \Vert \nhs\hsvec{v} \times \hsvec{a} \Vert^2 }
+    \end{aligned}
+    \hfill
+    \boxed{
+        \begin{aligned}
+            \hsvec{a} & = a_T \hat{T} + a_N \hat{N} \\[5pt]
+            a_T & = \hsvec{a} \cdot \hat{v} = \tfrac{dv}{dt} \\[5pt]
+            a_N & = \tfrac{\Vert \hsvec{a} \times \hsvec{v} \Vert}{v} = \Vert \hsvec{a} \times \hat{v} \Vert \\[5pt]
+            a^2 & = a_T^2 + a_N^2 = \Vert \tfrac{d\hsvec{v}}{dt} \Vert^2
+        \end{aligned}
+    }
+\)
+
+\vspace{15pt}\noindent
+% Frenet trihedron - when curve is parametrized by arc length
+\underline{Frenet Trihedron for Regular \textit{Parametrized} Curves}\\
+\(
+    \begin{aligned}
+        & \text{\scriptsize Differentiable (in this book)}:\ C^\infty\\
+        & \text{\scriptsize No singular pts. Order 0 (Regular)}:\ \hsvec{v}(t) \neq 0\\
+        & \mss{ \bullet\ \Vert \hsvec{v}(t) \Vert = c \rightarrow 1
+            \ \Rightarrow\ 
+            \int_s \Vert \hsvec{v}(t) \Vert \hs dt = t = \Delta s 
+            }
+            \\
+        & \hspace{10pt} \mss{ \rightarrow s:\ \hsvec{x}(t) = \hsvec{x}(s) } \\
+        & \mss{ \bullet\ \tfrac{1}{2}\tfrac{d}{dt}(\hsvec{v} \cdot \hsvec{v}) = \boxed{ \hsvec{v} \cdot \hsvec{a} = 0 } } \\
+        & \text{\scriptsize No singular pts. Order 1}:\ \hsvec{a}(t) \neq 0\\
+        & \mss{ \bullet\ \text{Curvature, } k \neq 0 \text{ (see right)} }
+			\hspace{10pt} \mss{ \bullet\ \text{Vertex, } k' = 0 }
+    \end{aligned}
+    \hfill\vline\hfill
+    \begin{aligned}
+        & 1 = \Vert \hsvec{t} \Vert = \Vert \hsvec{n} \Vert = \Vert \hsvec{b} \Vert
+            \ ,\ \ 
+            0 = \hsvec{t} \cdot \hsvec{n} = \hsvec{n} \cdot \hsvec{b} = \hsvec{b} \cdot \hsvec{t}
+            \\
+        & \bullet\ \hsvec{v}(s) = \hsvec{t}(s) \hspace{20pt} \boxed{ \mss{ (t = n \times b) } } \\
+        & \bullet\ \hsvec{a}(s) = \boxed{ \hsvec{t'}(s) = k\mss{(s)} \hsvec{n}\mss{(s)} }
+            ,\ k(s) \geq 0
+            \hspace{10pt} \begin{gathered}
+                \text{\scriptsize(can be L or R-handed)}\\[-8pt]
+                \text{\scriptsize(can be neg. if in \(\mathbb{R}^2\))}
+            \end{gathered}
+            \\
+        & \ast\ k(s) > 0 \text{ for well defined curve with \(\hat{n}\)}\\
+        & \bullet\ \boxed{ \hsvec{b} = \hsvec{t} \times \hsvec{n} }
+            ,\ \ \tfrac{d}{dt} (\hsvec{b} \cdot \hsvec{b}) = \hsvec{b} \cdot \hsvec{b'} = 0
+            ,\ \ \ast\ \boxed{ \hsvec{b'}(s) = \tau\mss{(s)} \hsvec{n}\mss{(s)} }
+            \\
+        & \bullet\ \boxed{ \hsvec{n} = \hsvec{b} \times \hsvec{t} } 
+            ,\ \ \ast\ \boxed{ \hsvec{n'}(s) = -k \hsvec{t} - \tau \hsvec{b} }
+            ,\ \ \ast\ \mss{ \text{t-n pl.} = \text{osculating pl.} }
+    \end{aligned}
+\)
+
+% More info on derivatives of frenet
+\vspace{10pt} \noindent
+\(\begin{aligned}
+    & \bullet\ t''(s) = k' n - k^2 t - k\tau b 
+        \hspace{20pt} \bullet\ b''(s) = \tau' n - \tau kt - \tau^2 b
+        \hspace{20pt} \bullet\ n''(s) = -k't -\tau'b - (k^2 + \tau^2) n
+        \\
+    & \bullet\ |\tau| = \Vert b' \Vert 
+        \hspace{20pt}
+        \bullet\ \tau = -\tfrac{ ( t \times t' ) \cdot t'' }{k^2} = -\tfrac{ {t} \cdot ( {t'} \times t'' )}{\Vert t' \Vert^2} 
+        \hspace{20pt} 
+        \bullet\ k = \Vert t' \Vert = \tfrac{ ( b \times b' ) \cdot b'' }{\tau^2} 
+        = \tfrac{ {b} \cdot ( {b'} \times b'' )}{\Vert b' \Vert^2}
+        \\
+    & \bullet\ n \Rightarrow k,\tau:
+        \hspace{20pt}
+        \ast\ \Vert n' \Vert^2 = k^2 + \tau^2
+        \hspace{20pt}
+        \ast\ \tfrac{ ( n \times n' ) \cdot n'' }{\Vert n' \Vert^2} = \tfrac{k' \tau - k \tau'}{k^2 + \tau^2}
+        = \tfrac{ \tfrac{d}{ds} (k / \tau) }{(k/\tau)^2 + 1} = \tfrac{d}{ds} \arctan(k/\tau)
+\end{aligned}\)
+
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+	% Indicatrix
+    & \underline{ \text{Indicatrix of Tangents},\ \hsvec{t}(\theta\mss{(s)}) }:\\[5pt]
+    & \bullet\ \hsvec{t}(\theta\mss{(s)}) = (\cos\theta, \sin\theta) = (x'\mss{(s)}, y'\mss{(s)})\\
+    & \bullet\ \hsvec{t'}(\theta) = \underline{ \theta'(s)} (-\sin\theta, \cos\theta) = \underline{k(s)} \hsvec{n}\\
+	& \bullet\ \theta\mss{(s)} = \arctan(y'/x')\\
+	& \bullet\ \mss{\int_0^l} \hs k\mss{(s)} \hs\hs ds = \theta(s)\Big|^l_0 = 2\pi I_\text{rot. index}\\
+	& \bullet\ k\mss{(s)} = \lim_{s \rightarrow 0} \tfrac{r\theta(s)}{s} \big|_{r=1}
+		\hspace{15pt} \text{\scriptsize(See Gaussian \(K\))}
+\end{aligned}\)
+\hspace{20pt}
+\(\begin{aligned}[t]
+	% Local Canonical Form
+    & \text{\underbar{Local Canonical Form at \(t=0\)}}:\\[5pt]
+    & \bullet\ (\hat{t},\hat{n},\hat{b}) = (\hat{x},\hat{y},\hat{z})\\
+    & \bullet\ \hsvec{r}(s) - \hsvec{r}(0) 
+        \approx ( s - \tfrac{k^2 s^3}{6},\ \tfrac{k}{2} s^2 + \tfrac{k' s^3}{6},\ \tfrac{-k\tau}{6} s^3 )
+        \\
+    & \bullet\ \tau < 0 \ \Rightarrow\ \tfrac{dz}{ds} > 0
+		\\[5pt]
+	% Isoperimetric Ineq.
+	& \text{\underline{Isoperimetric Inequality}}:\ 0 \leq l^2 - 4\pi A
+		\\[5pt]
+	% 4-Vertex Theor.
+	& \text{\underline{Four-Vertex Theorem}}:\ \text{\scriptsize A simple closed curve has \(\geq\) 4 vertices}
+\end{aligned}\)
+
+% Cauchy-Crofton Formula
+\vspace{15pt}\noindent
+\(\begin{aligned}[t]
+	& \text{\underline{Cauchy-Crofton Formula (measure of number of times lines intersect a curve)}}:\\[5pt]
+	& \bullet\ \text{Tangent line at } (\rho, \theta) :\ x\cos\theta + y\sin\theta = \rho
+		\hspace{15pt} \bullet\ \text{Curve } c:\ y=0,\ x \in (-l/2, l/2)
+		\hspace{5pt} , \hspace{10pt} C = \mss{\sum}\hs c_i
+		\\
+	& \bullet\ \mss{\int}\ \text{\scriptsize Lines that cross } c 
+		= \mss{ \int_0^{2\pi} \int_0^{|\cos\theta| l/2} } d\rho \hs d\theta = 2l
+		\ \Rightarrow\
+		\mss{ \int_0^{2\pi} \int_0^\infty } n_C \ d\rho \hs d\theta = 2l
+\end{aligned}\)
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Differential
+\section{Jacobian/Differential, \( dF_{\alpha(0)} : \underline{ \mathbb{R}^n \rightarrow \mathbb{R}^m } \) }
+
+\(\begin{aligned}
+	& \bullet\ \boxed{ \alpha(0) = \beta(0) } \ \Rightarrow\ \underline{F(t=0)} 
+		= F \circ \alpha \big|_{t=0} = F \circ \beta \big|_{t=0} 
+		\\[5pt]
+	& \bullet\ \boxed{ \alpha'(0) = \beta'(0) } \ \Rightarrow \tfrac{\partial x}{\partial \alpha_i} \big|_{t=0} 
+		= \tfrac{\partial x}{\partial \beta_i} \big|_{t=0} 
+		\cdot \bcancel{ \tfrac{d \beta_i / dt}{d \alpha_i / dt} \big|_{t=0} }
+		\ \Rightarrow\ \nhs\nhs \boxed{ dF_{\alpha(0)}(\alpha'\mss{(0)}) = dF_{\beta(0)}(\beta'\mss{(0)}) }
+		\hspace{5pt} \underline{ \text{\scriptsize(doesn't depend on \(\alpha\))} }
+		\\[5pt]
+	& \ast\ F = (f_0, f_1, \dots, f_m) 
+		\ \Rightarrow\ \underline{ dF_{\alpha(0)} (\alpha'\mss{(0)}) } \hs \equiv\hs \tfrac{d}{dt}(F \circ \alpha) \big|_{t=0}
+		= \left[ 
+			\mss{ \arraycolsep=3pt \begin{matrix}
+				\tfrac{\partial f_0}{\partial \alpha_0} & | & \dots \\[7pt]
+				\tfrac{\partial f_1}{\partial \alpha_0} & F_{\alpha_1} & \dots \\
+				\vdots & |
+			\end{matrix} }
+		\right]_{t=0}
+		\left[ 
+			\mss{ \begin{matrix}
+				\tfrac{d \alpha_0}{dt}\\[7pt]
+				\tfrac{d \alpha_1}{dt}\\
+				\vdots
+			\end{matrix} }
+		\right]_{t=0}
+		\hspace{-10pt} = \boxed{ J_F\mss{(0)} \cdot \alpha'\mss{(0)} }
+		\\
+	& \ast\ 
+		\begin{gathered}
+			\text{\scriptsize Surface Tangent}:\\[-5pt]
+			\text{\scriptsize(see below)}
+		\end{gathered}
+		\
+		\begin{aligned}
+			q & = \gamma\mss{(t=0)} = (u\mss{(0)}, v\mss{(0)}) = X^{-1} \circ \alpha\mss{(0)}\\
+			X\mss{(q)} & = X \circ \gamma \mss{(0)} = \alpha\mss{(0)} \in S
+				\ \Rightarrow \ dX_{q}(\gamma'\mss{(0)}) = \alpha'\mss{(0)}
+		\end{aligned}
+		\\[10pt]
+	& \bullet d(G \circ F)_p = dG_{F(p)} \circ dF_p
+		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Regular \textbf{Value}, \(F(p)\)} }:\ dF_p \neq 0
+		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Critical \textbf{Point}, \(p\)} }:\ dF_p = 0
+\end{aligned}\)
+
+\vspace{15pt}\noindent
+% F is a Homeomorphism
+\(
+	\mss{ \begin{gathered}
+		{F\ \text{is a}}\\[-2pt]
+		\underline{\text{Homeomorphism}}\\[-2pt]
+		\text{onto image}\ F(X)
+	\end{gathered} }:\ 
+	\begin{aligned}
+		& \bullet\ F \ \text{\scriptsize is bijective between \(X\ \&\ F(X)\) }\\
+		& \bullet\ F \ \text{\scriptsize is cont.}
+			\hspace{10pt} \bullet\ F^{-1} \ \text{\scriptsize is cont.}
+	\end{aligned}
+\)
+\hfill
+% F is a Diffeomorphism
+\(
+	\mss{ \begin{gathered}
+		{F\ \text{is a}}\\[-2pt]
+		\text{\underline{Diffeomorphism}}\\[-2pt]
+		\text{onto image}\ F(X)
+	\end{gathered} }:\ 
+	\begin{aligned}
+		& \bullet\ F \in C^{\infty} \ \ \text{\scriptsize(cont. part. deri. of all orders)}\\
+		& \bullet\ F^{-1} \in C^\infty \hspace{10pt} \bullet\ F \text{\scriptsize\ is a bijection}
+	\end{aligned}
+\)
+
+% Inverse Function Theorem
+\vspace{15pt}\noindent
+\(
+	\begin{gathered}
+		\text{\underline{Inverse Function}}\\
+		\text{\underline{Theorem} (IFT)} 
+	\end{gathered}:\ 
+	\begin{aligned}
+		& \bullet\ F: \underline{ \mss{ \mathbb{R}^n \rightarrow \mathbb{R}^n } } ,\ F \in C^{\infty} \\
+		& \bullet\ \exists dF_p^{-1} \ \ \text{(\scriptsize sq. matrix \(dF_p\) is an isomorphism/non-zero det.)} 
+	\end{aligned}
+	\ \Rightarrow\ \exists F^{-1} \in C^\infty \hspace{10pt} \text{\scriptsize(locally at F(p))}
+\)
+
+\vspace{5pt}
+%-----------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------
+\section{Surfaces, \(S:\ 
+	X\mss{(q)} = X\mss{(u,v)} = \bigl( x\mss{(u,v)}, y\mss{(u,v)}, z\mss{(u,v)} \bigr) 
+	= p \in S \subset \mathbb{R}^3
+\)}
+
+% Surfaces
+\noindent
+\(\begin{aligned}
+	% Regular Parametrized Surface
+	& \underline{ \text{Regular Parametrized Surface} } \\
+	& - \forall p \in S,\ \underline{\exists X \in C^\infty} 
+		,\ X: V_q\ \text{\scriptsize(neighborhood of q)} \rightarrow V_p \cap S
+		\hspace{15pt} \text{\scriptsize(diff. parametrizations are possible, btw)}
+		\\
+	& - dX_q \ \ \text{\scriptsize is one-to-one = (maybe non sq.) matrix col. are lin. ind. 
+		= any 2x2 \(\big| \text{sub-}J_X \big|\) \(\neq 0\)}
+		\ \Rightarrow\ \exists(\text{\scriptsize tangent at all points})
+		\\[5pt]
+	% Regular Surface
+	& \underline{ \text{Regular Surface ({\scriptsize is reg. param. surface})} } \\
+	& - \begin{gathered}
+			X \ \text{\scriptsize is a homeo. in } V_q\\[-3pt]
+			( \text{\scriptsize or}\ X \ \text{\scriptsize is one-to-one} )
+		\end{gathered}
+		\ \rightarrow\ 
+		\begin{gathered}
+			\underline{ X^{-1} \in C^0 } \hspace{5pt} \text{\scriptsize(is cont.)}\\[-5pt]
+			\mss{ \forall p \in S,\ X^{-1}(V_p) = V_q }
+		\end{gathered}
+		\ \Rightarrow\ \text{\scriptsize \(\exists\) no self-intersections; cont. = } 
+		\begin{gathered}
+			\text{\scriptsize doesn't depend on parametrization}\\[-7pt]
+			\text{\scriptsize(see coor. change below)}
+		\end{gathered} 
+\end{aligned}\)
+
+% Coordinate Change between Two Parametrizations
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	& \bullet\ \text{\small Coordinate Change, \(h\), between Two Param. %
+		\underline{is a Diffeomorphism (need for diff. func. on \(S\))}}: 
+		\\[5pt]
+	& \ast\ X^{-1} \text{\scriptsize\ is a homeomorphism} 
+		\ \rightarrow\ \underline{ h = X^{-1} \circ Y \text{\scriptsize\ is is a homeomorphism from \(Y\) to \(X\)} }
+		\ \Rightarrow\Rightarrow\ \underline{ h^{-1} \ \text{\scriptsize is a homomorphism} }
+		\\[5pt]
+	& \ast\ p \in S \ ,\ \ p = Y\mss{(\epsilon, \eta)} = X\mss{(u, v)} = \bigl( x\mss{(u,v)}, y\mss{(u,v)}, z\mss{(u,v)} \bigr) 
+		\ , \ \ \tfrac{\partial(x,y)}{\partial(u,v)} \neq 0 
+		\hspace{10pt} \text{\scriptsize(can change axes to make this true)}
+		% \hspace{10pt} \text{\scriptsize(see Impl. Func. Theo. below)}
+		\\
+	& \hspace{13pt} F\mss{(u,v,t)} = \bigl( x\mss{(u,v)}, y\mss{(u,v)}, z\mss{(u,v)} + t \bigr) 
+		: \ F \mss{(u,v,t)},\ X\mss{(u,v)} \in C^\infty
+		\ , \ \ \exists dF^{-1} \ \stackrel{(IFT)}{\Rightarrow}\ F^{-1} \in C^\infty
+		\\[3pt]
+	& \hspace{13pt} \mss{(u,v)} = \mss{X^{-1} \circ Y} \mss{(\epsilon, \eta)} = h \mss{(\epsilon, \eta)} 
+		\stackrel{\sim}{=} ( \mss{F^{-1} \circ Y} ) \mss{(\epsilon,\eta)} 
+		\ \Rightarrow\ \underline{ h \in C^\infty } 
+		\ \Rightarrow\Rightarrow\ \underline{ h^{-1} \in C^\infty } 
+		\hspace{10pt} \text{\scriptsize(same for \(Y^{-1} \circ X\))}
+		\\[2pt]
+	& \ast \text{\scriptsize\ Needed that \(X^{-1} \in\) 
+		\textbf{\(C^0\) on a [3D] neigh. for every point} \( [\forall p \in S,\ X^{-1}(V_p) = V_q \stackrel{\sim}{=} F^{-1}(V_p)] \)
+		, to avoid \( (t \neq 0,\ F^{-1} \circ Y \neq h) \)
+		}
+		\\[2pt]
+	& \ast \text{\scriptsize\ Ex:}\ \ \mss{ 
+			\begin{gathered}
+				\gamma(t) = (\cos t, \sin 2t) \\[-2pt]
+				\gamma(\mathbb{R}) = \alpha(I_1) = \beta(I_2)\\[-2pt]
+				{(\infty \text{ - graph {\scriptsize \underline{not reg.}}})}
+			\end{gathered}
+			\ ,\ \arraycolsep=1pt \begin{array}{c c c c c}
+				I_1 & = 
+					& (-\tfrac{\pi}{2} , \tfrac{3\pi}{2}) 
+					& = 
+					& (-\tfrac{\pi}{2} , \tfrac{\pi}{2}) \cup \hs\hs\tfrac{\pi}{2}\hs\hs \cup (\tfrac{\pi}{2} , \tfrac{3\pi}{2})
+					\\[2pt]
+				I_2 & = 
+					& (\tfrac{\pi}{2} , \tfrac{5\pi}{2}) 
+					& = 
+					& \underline{ (\tfrac{3\pi}{2} , \tfrac{5\pi}{2}) \cup \tfrac{3\pi}{2} \cup (\tfrac{\pi}{2} , \tfrac{3\pi}{2}) }
+			\end{array}
+			\ \Rightarrow\ 
+			\begin{aligned}
+				& \beta^{-1} \text{ is 1:1 but not cont. for any \textbf{[2D] neigh.} of } (0,0)\\[-2pt]
+				& F^{-1}(x,y) = (t', u) \ \neq\ \beta^{-1}(x,y) \stackrel{\sim}{=} (t,0) \ \text{ near } (0,0) \\[-1pt]
+				& \underline{\beta^{-1} \circ \alpha (I_1)} \text{ is 1:1 but not cont., so not diffeo.}
+			\end{aligned}
+		}
+		\\
+	&
+\end{aligned}\) 
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+% Theorems about Reg Surfaces
+\vspace{15pt}\noindent
+\(\begin{aligned}	
+	& \bullet\ \underline{ f \in C^\infty } 
+		\ \Rightarrow\ \boxed{ \big( \hsvec{x}, f\mss{(\hsvec{x})} \big) \ \text{\scriptsize is a reg. surf.} }
+		\\[10pt]
+	% Regular Value Theorem
+	& \bullet\ 
+		\begin{aligned}
+			& f : \mss{ \mathbb{R}^n \rightarrow \mathbb{R} }\\
+			& f \mss{ (X) } = c \\[-7pt]
+			& \underline{ \text{\scriptsize is a reg. val.} }
+		\end{aligned}
+		\ , \ \ \begin{aligned}
+			& f \in C^\infty \\
+			& F\mss{(X)} = ( \mss{ x_1,\hs ...\ , x_{n-1} , f(X) } )\\
+			& \exists dF_p^{-1}
+		\end{aligned}
+		\ \ \stackrel{\text{(IFT)}}{\Rightarrow}\ \
+		\begin{aligned}
+			& \exists F^{-1} \in C^\infty \\
+			& F^{-1}( \mss{ f_1,\hs ...\ , f_{n-1} , f(\nhs\hsvec{x}) } ) = X
+		\end{aligned}
+		\ , \ \ 
+		\begin{aligned}
+			& x_n\ \mss{ = f^{-1}_n }: \mss{ \mathbb{R}^n \rightarrow \mathbb{R} }\\
+			& \underline{ x_n\ \mss{ = f^{-1}_n } \in C^\infty }
+		\end{aligned}
+		\\[5pt]
+	& \hspace{10pt} \rightarrow\ 
+		\begin{aligned}
+			x_n & = \mss{ {f}^{-1}_n }( \mss{ x_1,\hs ...\ , x_{n-1} , f(\nhs\hsvec{x}) = c } )\\
+			& = \underline{ \mss{ {f'}^{-1}_n } ( \mss{ x_1,\hs ...\ , x_{n-1} } ) }
+		\end{aligned}
+		\ \Rightarrow \ 
+		\begin{aligned}
+			& S = \underline{ ( \mss{ x_1,\hs ...\ , x_{n-1} , {f'}^{-1}_n } ) }
+				\ \text{\scriptsize where}\ \mss{ f(\nhs\hsvec{x}) = c } 
+				\\
+			& S \ ==\ \text{\scriptsize Surface}\ f^{-1}{(c)}
+		\end{aligned}
+		\Rightarrow \boxed{ \begin{gathered}
+			\underline{ \text{\scriptsize Regular Value Theorem} }\\
+			\text{\scriptsize Surface}\ f^{-1}{(c)}\ \text{\scriptsize is reg.} 
+		\end{gathered} }
+		\\[5pt]
+	% Implicit Function Theorem
+	& \bullet\ \underline{ \tfrac{\partial(x,y)}{\partial(u,v)} \neq 0 }
+		\ \Rightarrow\ { \pi_{\text{proj.}} \circ X } \mss{(u,v)} 
+		\equiv  ( x\mss{(u,v)}, y\mss{(u,v)}, \bcancel{ z\mss{(x,y)} } )
+		\stackrel{(IFT)}{\Rightarrow} \ (\mss{\pi \circ X})^{-1}\mss{( x, y )}
+		= (u\mss{(x,y)}, v\mss{(x,y)})
+		\\
+		% \begin{aligned}
+		% 	\text{\scriptsize(For coord. change, \(\gamma(t)\) isn't 1:1)} \hspace{10pt} 
+		% 	& ( \text{\scriptsize\& } X \ \text{\scriptsize is \underline{one-to-one}} )
+		% \end{aligned}
+		% ,\ 
+	& \hspace{10pt} 
+		\begin{aligned}
+			% Implicit Function Theorem
+			& \ast\ X\mss{(u,v)} = ( x\mss{(u,v)}, y\mss{(u,v)}, \underline{ z\mss{(u,v)} } ) 
+				\ \Rightarrow \ z( u(\mss{x,y}), v(\mss{x,y})) 
+				= z \circ (\mss{\pi \circ X})^{-1}\mss{(x,y)} 
+				= \boxed{ \begin{gathered}
+					\underline{ \text{\scriptsize Implicit Func. Theor.} } \\[-5pt]
+					\text{\scriptsize(locally orientable)}\\[-3pt]
+					 f\mss{(x,y)} = z \ \mss{\in C^\infty} 
+				\end{gathered} }
+				\\[-3pt]
+			% 1:1 -> Continuous
+			& \ast\ \begin{gathered}
+					\underline{ \text{\scriptsize Know } S \text{\scriptsize\ is reg. sur.} }\\[-2pt]
+					X \text{\scriptsize\ is param?}
+				\end{gathered}
+				,\ \begin{gathered}
+					X \in C^\infty\\[-2pt]
+					dX_q \text{\scriptsize\ is 1:1} 
+				\end{gathered}
+				,\ \underline{ X \text{\scriptsize\ is 1:1} }
+				\ \Rightarrow \ \underline{ (\mss{\pi \circ X})^{-1} \circ \pi } \circ X \mss{(u,v)} 
+				= \underline{X^{-1}} \circ X \mss{(u,v)}
+				\ \Rightarrow\ \boxed{X^{-1} \in C^0}
+		\end{aligned}
+\end{aligned}\)
+
+% Regular Surface + Differentials
+\vspace{15pt}\noindent
+\(\begin{aligned}
+	% Surface Tangents
+	& \bullet\ \begin{gathered}
+			\underline{ \text{Surface} }\\
+			\underline{ \text{Tangent} }
+		\end{gathered} 
+		:\ \
+		\begin{aligned}
+			q & = \gamma\mss{(t=0)} = (u\mss{(0)}, v\mss{(0)}) = X^{-1} \circ \alpha\mss{(0)}\\
+			X\mss{(q)} & = X \circ \gamma \mss{(0)} = \alpha\mss{(0)} \in S
+				\ \Rightarrow \ dX_{q}(\gamma'\mss{(0)}) = \alpha'\mss{(0)}
+				= \tfrac{\partial X}{\partial u}\mss{(q)} \hs u'\mss{(0)} + \tfrac{\partial X}{\partial v}\mss{(q)} \hs v'\mss{(0)}
+		\end{aligned}
+		\\[5pt]
+	% First Form
+	& \bullet\ \text{``\underline{First Form}''}:\ \left< \alpha'\mss{(0)} , \alpha'\mss{(0)} \right> 
+		= \lVert \mss{ \alpha' } \rVert^2 
+		= \mss{
+			\left[ u' \ v' \right]
+			\left[ \begin{matrix}
+				X_u\\
+				X_v
+			\end{matrix} \right]
+			\left[ X_u \ X_v \right]
+			\left[ \begin{matrix}
+				u'\\
+				v'
+			\end{matrix} \right]
+		}
+		= \begin{gathered}
+			\mss{ \lVert X_u \rVert^2 (u')^2 + 2 \left< X_u, X_v \right> u'v'  + \lVert X_v \rVert^2 (v')^2 }\\[-5pt]
+			\boxed{ \mss{ E (u')^2 + 2 F u'v'  + G (v')^2 } }
+		\end{gathered}
+		\\[5pt]
+	% Line Element
+	& \bullet\ \begin{gathered}
+			\underline{ \text{Line} }\\[-3pt]
+			\underline{ \text{Element} }
+		\end{gathered}
+		:\ ds = \lVert \alpha'\mss{(t)} \rVert dt
+		% Area Element
+		\hspace{15pt} \bullet\ \begin{gathered}
+			\underline{ \text{Area} }\\[-3pt]
+			\underline{ \text{Element} }
+		\end{gathered}
+		:\ dA = { \lVert X_u \times X_v \rVert } du\hs dv 
+		= \sqrt{ EG - F^2 } \hs du\hs dv 
+\end{aligned}\)
+
+%------------------------------------------------------------------------------------------------------------------------------------
+
+\vspace{15pt}\noindent
+% Regular Curves
+\(\ast\ \begin{aligned}[t]
+	& \underline{ \text{Regular Curves, \(C \in R^3\) (instead of Regular Parametrized Curves)} }\\[5pt]
+	& \bullet\ \forall p \in C
+		,\ \exists \alpha \in C^\infty
+		,\ \alpha: I_t \ \text{\scriptsize(neighborhood of \(t\))} \subset R 
+		\rightarrow V_p \cap C \ \text{\scriptsize(neighborhood of \(p\))}
+		\\
+	& \bullet\ \forall t \in I\ ,\ \ d\alpha_t \ \text{\scriptsize is 1:1}
+		\hspace{20pt} \bullet\ \alpha \text{\scriptsize\ is a homeo. in } I_t
+		\\
+	& \ast\ \text{\scriptsize Change of param. are homeomorphisms} 
+		\ \Rightarrow\ \text{\scriptsize Properties like arc length, curvature, torsion, etc. aren't param. dependent}
+\end{aligned}\)
+
+% Coordinate Curves
+\vspace{10pt}\noindent
+\(
+	\ast\ \underline{\text{Coordinate Curves}}:\ 
+	\alpha\mss{(t)} = X \circ \gamma\mss{(t)} \ \big|\ 
+	\gamma \in \{ ( u\mss{(t)}, v_0 ) ,\ ( u_0, v\mss{(t)} ) \}
+	\hspace{15pt} \text{\scriptsize(maps of parallels and meridians)}
+\) 
+
+%------------------------------------------------------------------------------------------------------------------------------------
+
+% Function on S
+\vspace{15pt}\noindent
+\(\begin{aligned}
+	& \underline{ \text{Function, \(f: S \subset \mathbb{R}^n \rightarrow \mathbb{R}\)} }\\[5pt]
+	& \bullet\ \big( \forall p \in S,\ \underline{ f(p) \neq 0 } \big)
+		\ \Rightarrow\ \big( \forall p \in S,\ \underline{ f(p) > 0 } \big) 
+		\text{ or } \big( \forall p \in S,\ \underline{ f(p) < 0 } \big)
+		\\
+	& \bullet\ \underline{ \textit{Differentiable on } S }:\ f \circ X \in C^\infty
+		\hspace{10pt} \text{\scriptsize(doesn't depend on param./coord. change)}
+		\\
+	& \bullet\ \text{E.g., } X^{-1}\mss{(p)},\ \hsvec{v} \cdot p,\ |p-p_0|^2 
+		\ \Rightarrow\ \boxed{X^{-1} \in C^\infty} \ , \ \ \boxed{U \ \text{\scriptsize is diffeo. to } X(U)}
+\end{aligned}\)
+
+% Function from S_1 to S_2
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	& \underline{ \text{Function, \(\phi: S_1 \rightarrow S_2\) is a Diffeomorphism from \(S_1\) to \(S_2\)} }\\[5pt]
+	& \bullet\ \underline{ \textit{Differentiable}}:\ X_2^{-1} \circ (\phi \circ X_1) \in C^\infty
+		\hspace{10pt} \text{\scriptsize(doesn't depend on param./coord. change)}
+		\\
+	% ?????
+	& \bullet\ \beta'(0) = d\phi_p(w) = d\phi_p \hs \alpha'\mss{(0)} = d\phi_p\hs dX_q (u'\mss{(0)}, v'\mss{(0)})^T 
+		\hspace{25pt} \text{(p.85???)}
+		\\
+	% p.86 Inverse Function Theorem
+	& \bullet\ \underline{ \text{Inverse Function Theorem} }:\ \phi \in C^\infty ,\ \exists d\phi_p^{-1} 
+		\ \Rightarrow\ \phi^{-1} \in C^\infty \hspace{10pt} \text{\scriptsize(Diffeomorphism from \(S_1 \rightarrow S_2\)??????)}
+\end{aligned}\)
+
+
+%-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+% Gauss Map/Normals
+\section{Gauss Map (Normals),\ \( N(p) = \tfrac{X_u \times X_v}{| X_u \times X_v |} 
+= \tfrac{X_u \times X_v}{EG-F^2} : S \rightarrow S^2 \)}
+
+\noindent
+\(\begin{aligned}
+	% Derivative of Gauss Map
+	& N'\mss{(p)} = \underline{ dN_p \hs \alpha'\mss{(0)} }
+		= \Big[ \begin{gathered}
+			\mss{(dN_p)}\\[-6pt]
+			\mss{ N_x \hs\hs N_y \hs\hs N_z }
+		\end{gathered} \Big]
+		\Big[ \begin{gathered}
+			\mss{(dX_q)}\\[-6pt]
+			\mss{ X_u \hs\hs X_v } ]
+		\end{gathered}
+		\mss{ \left[ \begin{gathered}
+			u'\\[-2pt]
+			v'	
+		\end{gathered}\right] }
+		\equiv \Big[ \mss{ N_u \ N_v } ] 
+		\mss{ \left[ \begin{gathered}
+			u'\\[-2pt]
+			v'	
+		\end{gathered}\right] }
+		\\[3pt]
+	% Orientation
+	& \bullet\ \boxed{ S = f^{-1}(c) \ \Leftrightarrow\ { \textit{Orientated}} \hs\hs } 
+		= \underline{ 
+			\text{\scriptsize normals \(N(p)\) are in same dir. \((\pm 1)\)} 
+			}
+		= \boxed{ \exists \tfrac{\partial(\hat{u},\hat{v})}{\partial(u,v)} > 0 \text{ over all } S }
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	% Second Fundamental Form
+	& \underline{\text{Second Fundamental [Quadratic] Form}}:\ 
+		\left< -dN_p(\alpha'\mss{(0)}), \alpha'\mss{(0)} \right> 
+		= \underline{\left< \alpha'\mss{(0)}, -dN_p(\alpha'\mss{(0)}) \right>}
+		\hspace{15pt} \text{\scriptsize(is self-adjoint)}
+		\\[3pt]
+	%% Normal Curvature = Second Form
+	& \ast\ { \mss{ \left< N\mss{(s)}, \alpha'\mss{(s)}\right> = 0 } }
+		\ \Rightarrow
+		\mss{ \begin{aligned}
+			& \boxed{ \left< N\mss{(s=0)}, \alpha''\mss{(0)} \right> }\\
+			& = -\left< N'\mss{(0)}, \alpha'\mss{(0)} \right>
+		\end{aligned} }
+		= \begin{gathered}
+			\text{\scriptsize(depends on \(\alpha'(0)\))}\\[-2pt]
+			\underline{ - \left< dN_p \hs \alpha'\mss{(0)}, \alpha'\mss{(0)} \right> }
+		\end{gathered}
+		= \begin{gathered}
+			\text{\scriptsize(\underline{Normal Curvature} of \(\alpha\) at \(p\))}\\[-2pt]
+			\boxed{ \left< N, kn \right> \mss{(p)} \equiv k_n\mss{(p)} }
+		\end{gathered}
+		= \ \begin{gathered}
+			\text{\scriptsize\(k\) of \(\alpha\) from a}\\[-9pt]
+			\text{\scriptsize\underline{normal (cross)}}\\[-6pt]
+			\text{\scriptsize\underline{section} of \(S\)}
+		\end{gathered}
+		\\[3pt]
+	%% Second Form in terms of efg
+	& \ast\ \begin{aligned}[t]
+			& \hspace{16pt} \underline{ \mss{ \left< -dN_p \hs \alpha', \alpha' \right> } } = \mss{ 
+					-[ N_u \ N_v ] 
+					\left[ \begin{gathered}
+						u'\\[-5pt]
+						v'
+					\end{gathered} \right]
+					[ u' \ v' ]
+					\left[ \begin{gathered}
+						X_u\\[-5pt]
+						X_v
+					\end{gathered} \right] 
+				}
+				= \mss{ \underline{ 
+					\Big( \underbrace{ -\left< N_u, X_u \right> }_{e} , 
+					\underbrace{ -\left< N_u , X_v \right> - \left< N_v , X_u \right> }_{2f = 2 \left< N_u , X_v \right> } , 
+					\underbrace{ -\left< N_v , X_v \right> }_{g} \Big) 
+					\cdot \Big( (u')^2, u'v' ,(v')^2 \Big)
+				} }
+				\\[-10pt]
+			& \boxed{ \begin{aligned}
+					k_n\mss{(p, \alpha')} & = \mss{ e (u')^2 + 2f u'v' + g (v')^2 }\\[-5pt]
+					\text{\scriptsize(locally, \(\leq 2\) sol.)} & = \mss{ (Au' + Bv')(Cu' + Dv') }
+				\end{aligned}
+			}
+		\end{aligned}
+		\\
+	% Tangent Plane	Principal Directions/Eigenbasis
+	& \bullet\ \begin{gathered}
+			\text{\scriptsize(\underline{Prin. dir.} at \(p\))}\\[-7pt]
+			\text{\scriptsize\underline{Eigenbasis}}
+		\end{gathered} 
+		: \exists e_1, e_2 
+		\hs\hs \big| \hs\hs \mss{span(e_1, e_2)} = T_p(S) \hs \ni \hs \underline{ -dN_p(xe_1 + ye_2) = k_1 x e_1 + k_2 y e_2 }
+		\hspace{15pt} \begin{gathered}[b]
+			\text{\scriptsize(\underline{Prin. curv.} at \(p\))}\\[-5pt]
+			\text{\scriptsize(eigenvalues, \(k_1 \geq k_2\))}
+		\end{gathered}
+		\\[3pt]
+	%% Euler's Formula for 2nd Form
+	& \ast\ \underline{\text{Euler's Formula (for 2nd Form)}}:\ 
+		\underline{ \left< -dN_p \hs \hsvec{t} , \hsvec{t} = \mss{e_1 \cos\theta + e_2 \sin\theta} \right> }
+		= \boxed{ 
+			\begin{aligned}[t]
+				k_1 \cos^2\theta + k_2 \sin^2\theta & = k_n\mss{(p,\theta)} \\[-6pt]
+				% \mss{e (u')^2 + 2f u'v' + g (v')^2} & =
+			\end{aligned}
+		}
+		\\[5pt]
+	% Gaussian Curvature, K
+	& \bullet\ \begin{gathered}
+			\text{\underline{Gaussian Curvature}}:\\[-3pt]
+			( \text{\scriptsize \(2n\) dim. !\(\Delta\) det. w/ orien. flip} )
+		\end{gathered} 
+		\ \ \boxed{ \begin{aligned}
+			K\mss{(p)}\ & \mss{ = \det(dN_p) }\\[-6pt]
+			& \mss{ = (-k_1)(-k_2) }
+		\end{aligned} }
+		\hspace{15pt}
+		% Mean Curvature
+		\bullet\ \text{\underline{Mean Curvature}}:\ \boxed{ H\mss{(p)} = \tfrac{-\text{Tr}(dN_p)}{2} = \tfrac{k_1 + k_2}{2} }
+		\\[3pt]
+	%& Quadradic Type for K
+	& \ast\ \text{\scriptsize Planar: \(dN_p = 0\), Ellip.\(\rightarrow K > 0\), Para.\(\rightarrow K = 0\), ...} 
+		\hspace{15pt} 
+		\ast\ \mss{ K>0 \Rightarrow \exists V_p: p+T_p(S) \text{ !div.}\hs\hs V_p} 
+		\ , \ \mss{ K<0 \Rightarrow \forall V_p: p+T_p(S) \text{ div.}\hs\hs V_p} 
+		\\[3pt]
+	% Interpretation of Gaussian Curvature
+	& \ast\ \begin{gathered}
+			\mss{ | Av \times Aw | = |v \times w| k_1k_2 } \hspace{7pt} \text{\scriptsize(2D)} \\[-5pt]
+			\underline{ \mss{ | dN_p X_u \times dN_p X_v | = |X_u \times X_v| \cdot K } }
+		\end{gathered}
+		\ \Rightarrow\ K \mss{\neq 0} = 
+		\begin{gathered}
+			\underline{ 
+				\mss{ \lim_{\int dudv \rightarrow 0} \int | dN_p X_u \times dN_p X_v | \hs du dv } \ /\ \mss{ \int dudv } 
+				}
+				\\[-2pt]
+			\mss{ \lim_{\int dudv \rightarrow 0} \int | X_u \times X_v | \hs du dv } \ /\ \mss{ \int dudv }
+		\end{gathered}
+		\hspace{15pt} \text{\scriptsize(See Indi. of Tan. \(k\))}
+		\\
+	% dN in basis of X_u, X_v
+	& \bullet\ \begin{aligned}[t]
+			& \underline{N_u, N_v \in T_p(S)} \ \Rightarrow\ dN_p \hs \alpha'\mss{(0)}
+				= \underline{ [ \mss{ N_u \ N_v } ] }
+				\mss{ \left[ \begin{gathered}
+					u'\\[-2pt]
+					v'	
+				\end{gathered}\right] }
+				\equiv \underline{
+					[ \mss{X_u \ X_v} ] 
+					\Big[ dN \Big] 
+				}
+				\mss{ \left[ \begin{gathered}
+					u'\\[-2pt]
+					v'	
+				\end{gathered}\right] }
+				\\
+			%% continuation
+			& \begin{gathered}
+					\text{\scriptsize{\underline{General Basis} for \(N_u, N_v\)}}\\[-5pt]
+					% \text{\scriptsize{(Weingarten Eq.)}}
+				\end{gathered}:\ 
+				\mss{ \left[ \arraycolsep=3pt \begin{matrix}
+					X_u \cdot N_u = -e & X_u \cdot N_v = -f\\
+					X_v \cdot N_u = -f & X_v \cdot N_v = -g
+				\end{matrix} \right] }
+				= \mss{ \left[ \arraycolsep=2pt\begin{matrix}
+					X_u^2 = E & X_u \cdot X_v = F\\
+					X_v \cdot X_u = F & X_v^2 = G
+				\end{matrix} \right] } 
+				\Big[ dN \Big]
+				\hspace{15pt} \underline{ \mss{ \begin{aligned}
+					\left< N, X_{ij} \right> & = - \left< N_i, X_j \right> \\
+					& = - \left< N_j, X_i \right>
+				\end{aligned} } }
+		\end{aligned}
+		\\
+	%% dN entries with efg,EFG
+	& \ast\ \begin{gathered}
+			\text{\scriptsize{(Weingarten Eq.)}}\\[-3pt]
+			\boxed{ 
+				\big[ dN \big] = \tfrac{-1}{EG-F^2}
+				\mss{ 
+					\left[ \arraycolsep=2pt\begin{matrix}
+						G & -F\\
+						-F & E
+					\end{matrix} \right]
+					\left[ \arraycolsep=2pt\begin{matrix}
+						e & f\\
+						f & g
+					\end{matrix} \right]
+				}
+			}
+		\end{gathered}
+		\hspace{15pt}
+		% Gaussian + Mean Curvature
+		\ast\ \begin{gathered}
+		\mss{ (k^2 - 2Hk + K = 0) } \\[-3pt]
+		\boxed{ k_\pm = \mss{ H \pm \sqrt{H^2 - K} } } 
+		\end{gathered} : \
+		\boxed{ K = \tfrac{ eg - f^2 }{ EG - F^2 } }
+		\hspace{5pt} , \hspace{5pt} 
+		\boxed{ H = \tfrac{1}{2} \tfrac{ e G - 2fF + g E }{ EG - F^2 } }
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+% Umbilical Point
+\(
+	\underline{\text{Umbilical Point}}:\ \begin{gathered}
+		p \in S \ \big|\ k_1 = k_2 \ \Rightarrow\ H^2 = K \\[-5pt]
+		\text{\scriptsize(only spheres \& planes have all umb. pts.)}
+	\end{gathered}
+\)
+\hspace{20pt}
+%$ Asymptotic Directions
+\( \underline{\text{Asymptotic Direction}}:\ k_n \mss{(p,\theta)} = 0 \)
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	% Conjugate Directions
+	& \underline{\text{Conjugate Directions}}:\ 
+		(\theta, \phi) \ \text{\scriptsize from \(e_1\)} \hs\hs \big| \hs\hs 
+		\left< -dN_p\hs \hsvec{t}_1\mss{(\theta)} , \hsvec{t}_2 \mss{(\phi)}\right> 
+		\equiv \boxed{ 0 = -k_1 \cos\theta \cos\phi - k_2 \sin\theta \sin\phi }
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	% Dupin Indicatrix
+	& \text{\underline{Dupin Indicatrix}}:\ 
+		\left< -dN_p\hs\hsvec{t}, \hsvec{t} \hs \hs \right> = \pm \tfrac{1}{\rho^2} = k_n
+		\ \Rightarrow\ 
+		\begin{aligned}[t]
+			\left< -dN_p(\rho\hsvec{t}\hs\hs), (\rho\hsvec{t}\hs\hs) \right> & 
+				= k_1 \hs \underline{ \rho^2 \cos^2\theta } + k_2\hs \underline{ \rho^2 \sin^2\theta }
+				\\
+			\underline{\text{\scriptsize Conic Graph \( (\xi,\eta) \)}} & 
+				= \boxed{ k_1 \underline{\xi^2} + k_2 \underline{\eta^2} = \pm 1 }
+		\end{aligned}
+		\\[-15pt]
+	%% Asymptotic Direction with Dupin Indicatrix for Elliptic Curvature (There's none)
+	& \bullet\ K > 0 \ \Rightarrow\ \forall \theta,\ k_n\mss{(\theta)} > 0
+		\\[5pt]
+	%% Asymptotic Direction with Dupin Indicatrix for Hyperbolic Curvature
+	& \bullet\ K < 0 \ \Rightarrow\ \exists \theta_{\underline{1,2}} \ \big|\ 
+		k_n\mss{(\theta)} = 0 
+		= (\mss{ k_1 \cos^2\theta + k_2 \sin^2\theta })\rho^2 = k_1 \xi^2 + k_2 \eta^2 \neq \pm 1 
+		\hspace{15pt} \text{\scriptsize(\(\theta_{\underline{1,2}}\) are asymptotes of \( (\xi, \eta) \))}
+		\\[5pt]
+	%% Conjugate Direction with Dupin Indicatrix
+	& \bullet\ \text{Conj. Dir.}\ (\phi_1, \phi_2):\ \phi_{{2,1}}
+		= \arctan \tfrac{d\eta}{d\xi}\big|_{(\xi,\eta) \hs\hs \cap\hs\hs \theta = \phi_{1,2}}
+\end{aligned}\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+\noindent
+\(\begin{aligned}
+	% Line of Curvature
+	& \underline{\text{Line of Curvature}}:\ \alpha\mss{(t)} \ \big|\ 
+		N'\mss{(t)} = \underline{ dN_p \hs \alpha'\mss{(t)} } = \underline{ \lambda\mss{(t)} \hs \alpha'\mss{(t)} }
+		\hspace{15pt} \text{\scriptsize(curve s.t. tangent is always in a princ. dir.)}
+		\\[3pt]
+	% Determinant Condition for Line of Curvature
+	& \bullet\ [ \mss{ u'\ v' } ]
+		\mss{ \left[ \begin{matrix}
+			0 & 1\\
+			-1 & 0
+		\end{matrix} \right] }
+		\Big[ {dN} \Big]
+		\mss{ \left[ \begin{matrix}
+			u'\\
+			v'
+		\end{matrix} \right] }
+		= [ \mss{ -v'\ u' } ] \lambda\mss{(t)} 
+		\mss{ \left[ \begin{matrix}
+			u'\\
+			v'
+		\end{matrix} \right] }
+		= 0
+		\ \stackrel{\text{(expand)}}{\Rightarrow} \ 
+		\boxed{
+			\left\vert \mss{ \arraycolsep=2pt \begin{matrix}
+				(v')^2 & -u'v' & (u')^2\\
+				e & f & g \\
+				E & F & G
+			\end{matrix} } \right\vert = 0
+		}
+		\\[3pt]
+	%% Asymptotic Curves
+	& \ast\ \begin{gathered}
+			\underline{ \text{Asymp. Curve} }
+		\end{gathered} :\ 
+		\begin{aligned}
+			& \alpha\mss{(t)} \hs\hs \big|\hs\hs 
+				\mss{ 
+					\lambda(t) = k_n \mss{(p,\theta)} 
+					= \boxed{
+						k_1 \cos^2\theta + k_2 \sin^2\theta = e (u')^2 + 2f u'v' + g (v')^2 = (Au' + Bv')(Cu' + Dv') = 0
+					} 
+				}
+				\\
+			& \mss{ 
+				(ef-g),\ \underline{K < 0} 
+				\ \Rightarrow\ 0 = \underline{ (Au' + Bv')(Au' + Dv') } :\ A^2 = e,\ A(B+D) = f,\ BD = g 
+				\ \Rightarrow\ \boxed{ \exists \alpha_1, \alpha_2 }
+				}
+		\end{aligned}
+		\\[3pt]
+	& \ast\ \underline{e=g=0} \ \Leftrightarrow\ \boxed{ \alpha \circ (c, v\mss{(t)}) } \wedge \boxed{ \alpha \circ (u\mss{(t)}, c) }
+		\ \ \text{\scriptsize are asympt. curves}
+\end{aligned}\)
+
+\vspace{15pt}\noindent
+\(\begin{aligned}
+	% Surface of Revolution
+	& \text{\underline{Surface of Revolution}}:\ X\mss{(u,v)} 
+		= \big( \rho\mss{(v)} \cos u ,\hs \rho\mss{(v)} \sin u,\hs z\mss{(v)} \big)
+		\hspace{5pt} \big| \hspace{5pt} \alpha_u\mss{(v)} = \big( z\mss{(v)} ,\ \rho\mss{(v)} \big)
+		\hspace{5pt} , \hspace{5pt} \Vert \alpha_u' \Vert = 1
+		\\[5pt]
+	% First Fundamental Form
+	& \bullet\ \left< \alpha', \alpha' \right> 
+		= \begin{gathered}[t]
+			\underline{ \big[ \rho^2,\ 0,\ (\rho')^2 + (z')^2 = 1 \big] } \\
+			\mss{(\rho' \rho'' + z' z'' = 0)}
+		\end{gathered}
+		\left[ \hs \mss{ \begin{matrix}
+			(u')^2 \\
+			2u'v'\\
+			(v')^2
+		\end{matrix} } \hs \right]
+		\hspace{15pt}
+		% Second Fundamental Form
+		\bullet\ \left< N, \alpha'' \right> 
+		= \underline{ \big[ -\rho z',\ 0,\ \rho'' z' - \rho' z'' \hs \big] } 
+		\left[ \hs \mss{ \begin{matrix}
+			(u')^2 \\
+			2u'v'\\
+			(v')^2
+		\end{matrix} } \hs \right]
+		\\
+	% Eigenvalues and Curvature
+	& \bullet\ \boxed{ k_1 = \tfrac{e}{E} = - \tfrac{z'}{\rho} }
+		\ , \ \ \boxed{ k_2 = \tfrac{g}{G} = \rho'' z' - \rho' z'' }
+		\ , \ \ \boxed{ K = - \tfrac{z' ( \rho'' z' - \rho' z'' ) }{\rho} = - \tfrac{\rho''}{\rho} }
+\end{aligned}\)
+
+
+\vspace{15pt}\noindent
+\(\begin{aligned}
+	% Graph of a Differential Function
+	& \underline{ \text{Graph of a Differentiable Function} }:\ X\mss{(u,v)} = \big( u,v, z\mss{(u,v)} \big) 
+		\hspace{20pt}
+		% Normal
+		\bullet\ N\mss{(p)} = \tfrac{(- z_u, -z_v, 1)}{\sqrt{z_u^2 + z_v^2 + 1}}
+		\\
+	% First Fundamental Form
+	& \bullet\ \left< \alpha', \alpha' \right> 
+		= \underline{ \big[ 1 + z_u^2,\ z_u z_v,\ 1 + z_v^2 \big] } 
+		\left[ \hs \mss{ \begin{matrix}
+			(u')^2 \\
+			2u'v'\\
+			(v')^2
+		\end{matrix} } \hs \right]
+		\hspace{15pt}
+		% Second Fundamental Form
+		\bullet\ \left< N, \alpha'' \right> 
+		= \underline{ \tfrac{1}{\sqrt{z_y^2 + z_v^2 + 1}} \big[ z_{uu},\ z_{uv},\ z_{vv} \big] } 
+		\left[ \hs \mss{ \begin{matrix}
+			(u')^2 \\
+			2u'v'\\
+			(v')^2
+		\end{matrix} } \hs \right]
+		\\[5pt]
+	% Local Form Hessian
+	& \bullet\ z\mss{(0,0)} = p \ , \ \ N(p) = \mss{(0,0,1)} 
+		\ \Rightarrow\ \underline{\text{Hessian}}:\ 
+		k_n\mss{(p)} = \underline{ \big[ z_{xx},\ z_{xy},\ z_{yy} \big] } 
+		\left[ \hs \mss{ \begin{matrix}
+			x^2 \\
+			2xy\\
+			y^2
+		\end{matrix} } \hs \right] 
+		\ , \ \hsvec{v} = \mss{(x,y)} 
+		\\[3pt]
+	%% Hessian to Dupin Indicatrix
+	& \ast\ \hsvec{v} = \mss{xe_1 + ye_2} 
+		\ \Rightarrow\ \begin{gathered}[t]
+			z\mss{(x,y)} - z\mss{(0,0)}\\[-5pt]
+			\text{\scriptsize(\(p\) is non-planer!!)}
+		\end{gathered} 
+		= \tfrac{1}{2} k_n\mss{(p)} + \mathcal{O}(r^3)
+		\hs \approx\hs 
+		\mss{ \begin{aligned}[t]
+			\tfrac{1}{2}(z_{xx} x^2 + x_{yy} y^2) & = \epsilon\\
+			k_1x^2 + k_2 y^2 & = 2\epsilon
+		\end{aligned} }
+		\rightarrow
+		\mss{ \begin{gathered}[t]
+			k_1\chi^2 + k_2 \eta^2 = \pm 1\\[-2pt]
+			\boxed{ \text{\scriptsize(Dupin Indicatrix)} }
+		\end{gathered} }
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+\(
+	\begin{aligned}
+		% Vector Field : w
+		& \text{\underline{{\scriptsize(Diff.)} Vector Field over \(S\)}}:\ 
+			\boxed{ w\mss{(p)} = a\mss{(u,v)} X_u + b\mss{(u,v)} X_v }
+			\hspace{15pt} \big( \text{e.g.}\ \underline{ \gamma\mss{(t)} \rightarrow w_\gamma\mss{(p)} = u' X_u + v' X_v } \hs \big)
+			\\[5pt]
+		% Trajectory of w
+		& \textit{\underline{Trajectory of \(w\)}}:\ 
+			\alpha\mss{(t)} \subset S \ \big| \ \boxed{ \alpha\mss{(0)} = p,\ \alpha'\mss{(t)} = w( \alpha\mss{(t)} ) }
+			% \hspace{20pt}
+			\\
+		% Local Flow of w
+		& \textit{\underline{(Local) Flow of \(w\)}}:\ 
+			\alpha\mss{(p,t)} \equiv \alpha_p\mss{(t)} \ \big| \ 
+			\boxed{ \alpha_p\mss{(0)} = p }
+			,\ \boxed{ \alpha_p'\mss{(t)} = w( \alpha_p\mss{(t)} ) }
+			\ \Rightarrow\ \boxed{ \alpha_p\mss{(t)} = p + ( a_0^1\mss{(t)}, a_0^2\mss{(t)}, a_0^3\mss{(t)} )}
+			\\[5pt]
+		%% exists some local inverse that relates to the first integral of w
+		& \bullet\ \mss{ \begin{aligned}
+				& \boxed{ w\mss{(p_0)} \neq 0 }\\
+				& w\mss{(p_0)} \cdot \hat{x} = |w|\\
+				& \tilde{\alpha}_{p_0}\mss{(t)} = \alpha_{p_0}\mss{(t)} \big|_{x = x_0}
+			\end{aligned} }
+			\ \Rightarrow\
+			\begin{aligned}
+				& d\alpha_{p_0} = [ \mss{ \mathbbm{1}_3\ w(\alpha) } ]\\
+				& d\tilde{\alpha}_{p_0} = [ \mss{ \mathbbm{1}_3\ w(\alpha) } ] 
+					\left[ \mss{ \begin{matrix}
+							0\\
+						\mathbbm{1}_3
+					\end{matrix} } \right]
+					= \Big[ \mss{e_2\ e_3\ w(\alpha)} \Big]
+			\end{aligned}			
+			\ \Rightarrow\ 
+			\mss{ \begin{aligned}
+				& \det( d\tilde{\alpha}_{p_0} ) = w\mss{(p_0)} \neq 0 \\
+				& \boxed{ \exists \tilde{\alpha}^{-1} :\ V_{\alpha(p_0)} \subset S \rightarrow V_{p_0} \big|_{x = x_0} } 
+					\hspace{5pt} \text{(IFT)} 
+					\\ 
+				& \forall p \in \alpha_{p_0}(t)
+					,\ \underline{g\mss{(p)}} \equiv \pi_t \circ \tilde{\alpha}^{-1}_{p_0} \mss{(p)} = p_0 
+			\end{aligned} }
+			\\[10pt]
+		% First Integral of w
+		& \textit{\underline{(Local) First Integral of \(w\)}}:\ 
+			f\mss{(p)} \ \big|\ \forall p \in \alpha_{p_0}\mss{(t)}
+			,\ \boxed{ f\mss{(p)} = c},\ \boxed{ df_{p} \neq 0 }
+			\hspace{15pt} \big( \ \begin{gathered}
+				\text{\scriptsize \(f(p) = \) arcdist\(( p_0, \underline{g(p)} )\)}\\[-8pt]
+				\text{\scriptsize along \(S|_{x=x_0}\)}
+			\end{gathered} \ \big)
+			\\
+		%% if w != 0, there always exists a first integral function
+		& \bullet\ \boxed{ w\mss{(p_0)} } \neq 0 \hspace{5pt} \text{\scriptsize(see above)}
+			\ \Rightarrow\ \big( \exists V_{p_0} \subset S \big) 
+			\hs\big(\hs \forall p \in V_{p_0},\ \underline{ \exists f\mss{(p)} } \hs\big)
+			\\[-10pt]
+		%% there exists coordinate curves for the trajectories of two lin. ind. w_1 and w_2 
+		& \bullet\ \mss{ w_1\mss{(p_0)} }\ \underline{ \neq }\ \mss{ Aw_2\mss{(p_0)}  } 
+			,\ \phi\mss{(p_0)} 
+			= \left[ \mss{ \begin{matrix}
+				f_1\mss{(p_0)} = u_0\\
+				f_2\mss{(p_0)} = v_0
+			\end{matrix} } \right]
+			\ \Rightarrow\ \big[ d\phi_p \big] 
+			\big[ \mss{ w_1\mss{(p_0)}\ w_2\mss{(p_0)} } \big]
+			= \left[ \mss{ \arraycolsep=2pt \begin{matrix}
+				0 & a\\
+				b & 0
+			\end{matrix} } \right]
+			\hs\hs \underline{ \neq }\ 0
+			\ \stackrel{ \text{\scriptsize(IFT)} }{\Rightarrow} \ 
+			\mss{ \begin{gathered}
+				\exists \underline{X} : \underline{ \phi^{-1} }\mss{(u_0,v_0)} = p_0\\
+				\underline{\ast}\ \boxed{ \begin{aligned}
+					& X\mss{(u_0, v)} \in \alpha_1\\ 
+					& X\mss{(u, v_0)} \in \alpha_2
+				\end{aligned} }
+			\end{gathered} }
+			\\[-10pt]
+		& \bullet\ w_1 \equiv X_u,\ w_2 \equiv -\tfrac{X_u \cdot X_v}{X_u \cdot X_u} X_u + X_v 
+			\ \Rightarrow\ \underline{ 
+				\exists (w_1,w_2) 
+				\big( w_2\mss{(p_0)} \cdot w_2\mss{(p_0)} = 0 ,\ \underline{ \exists \ast } \big)
+			}
+			\\[5pt]
+		& \bullet\ \underline{K<0} \ \Rightarrow\ \underline{ \exists \alpha_1,\alpha_2 (k_n = 0) }
+			\ \rightarrow\ \underline{ \exists (w_1, w_2) (\exists \ast) }
+			\hspace{15pt}
+			\ast\ k_1 \neq k_2,\ \exists (\alpha_1,\alpha_2)_{k_n} 
+			\ \rightarrow\ \underline{ \exists (w_1, w_2) (\exists \ast) }
+	\end{aligned}
+\)
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+\(\begin{aligned}
+	% Direction/Ray Field
+	& \underline{\textit{Direction/Ray/Line Field}}:\ \boxed{ r_w = c_{\neq0} \big( b\mss{(u,v)}, -a\mss{(u,v)} \big) }
+		\ \rightarrow\ \tfrac{y'}{x'} = \tfrac{-a}{b}
+		\\
+	% Orthogonal Ray Field
+	& \underline{\textit{Orthogonal Field to \(r\)}}:\ \boxed{ 
+		\overline{r}_w \equiv r_{\overline{w}} : \ 
+		\overline{w} \cdot w = (\overline{a} X_u + \overline{b} X_v ) \cdot (aX_u + bX_v) = 0 
+		}
+		\\[5pt]
+	%% example of orthog ray field
+	& \text{\scriptsize E.g.}:\ 
+		\begin{gathered}
+			X\mss{(q)} = (u,v,u^2 - v^2)\\
+			\gamma\mss{(t)} : \mss{u^2 - v^2 = c} \rightarrow \tfrac{v'}{u'} = \tfrac{-u}{v}
+		\end{gathered} 
+		\ \Rightarrow\ 
+		\begin{aligned}
+			& w_\gamma = u'\mss{(t)}X_u + v'\mss{(t)}X_v \hs\stackrel{\rightarrow}{=}\hs v X_u - u X_v\\
+			& \overline{w}_\gamma \cdot w_\gamma = \overline{a} v - \overline{b} u 
+				= \underline{ u'\mss{(\hs \overline{t} \hs)} v - v'\mss{(\hs \overline{t} \hs)} u = 0 }
+		\end{aligned}
+		\ \Rightarrow\
+		\begin{aligned}
+			& \overline{\gamma}\mss{(\hs \overline{t} \hs)} :
+				\underline{ u\mss{(\hs \overline{t} \hs)} v\mss{(\hs \overline{t} \hs)} = c }
+				\\
+			& X_c = \mss{ (u, \tfrac{c}{u}, u^2 - \tfrac{c^2}{u^2}) }
+		\end{aligned}
+\end{aligned}\)
 
 \end{document}
