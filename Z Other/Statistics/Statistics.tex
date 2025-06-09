@@ -5,9 +5,15 @@
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{cancel}
-\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
+
 \newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
-\newcommand*{\dotP}{\boldsymbol \cdot}	% dot product
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
 
 % \title{Statistics}
 % \author{ringoffire0 }
@@ -18,11 +24,29 @@
 % Sample Variance
 \vspace{10pt}\noindent
 \underline{Misc. Variance}\\[10pt]
-\(\begin{array}{r l}
-    \text{{Sample}}: & \displaystyle \sigma_S^2 = \frac{\sum_i (x_i-\overline{x})^2}{n-1} \\[15pt]
-    \text{{Chain Rule}}:    & \displaystyle \sigma^2_z = 
-    \sum_i \left( \frac{\partial z}{\partial \overline{x}_i} \right)^2 \sigma^2_i
-\end{array}\)
+\(
+    \begin{array}{r l}
+        \begin{gathered}
+                \text{Sample}\\[-2pt]
+                \text{(Biased)}
+            \end{gathered}: 
+            & \displaystyle s_n^2 = \frac{\sum_i (x_i-\overline{x})^2}{n} 
+            \\[15pt]
+        \text{{Variance}}:    & \displaystyle \sigma^2 = s_n^2 + (\overline{x} - \mu)^2
+    \end{array}
+    \hfill
+    \begin{array}{r l}
+        \mss{ \begin{gathered}
+                \text{Sample}\\[-2pt]
+                \text{(Unbiased)} \\[-2pt]
+                \text{[not \(\sigma_S\)]}
+            \end{gathered} } : 
+            & \displaystyle \sigma_S^2 = \frac{\sum_i (x_i-\overline{x})^2}{n-1} \ \Rightarrow\ \underline{ E(\sigma_S^2) = \sigma^2 }
+            \\[15pt]
+        \text{{Chain Rule}}:    & \displaystyle \sigma^2_z = 
+        \sum_i \left( \frac{\partial z}{\partial \overline{x}_i} \right)^2 \sigma^2_i
+    \end{array}
+\)
 
 \vspace{20pt}\noindent
 \underline{Variance By Correlation}\\[10pt]

@@ -5,6 +5,15 @@
 \usepackage{setspace}
 \usepackage[normalem]{ulem}
 
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
+
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+
 \newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
 
 % \newcommand\italicmath{\mathversion{italic}}
@@ -1143,9 +1152,9 @@
 	\end{array}
 	\ \ \rightarrow \ \
 	\begin{aligned}
-		\Vert r' \Vert^2 &= \cancel{ \Vert b_1' - Rx \Vert^2 } + \Vert b_2' \Vert^2 \\
-		&\downarrow\\
-		\Aboxed{Rx &= b_1'} \ , \ r' = \text{\scriptsize\(\left(\begin{matrix}
+		\Vert r \Vert^2 & = \Vert r' \Vert^2 = \cancel{ \Vert b_1' - Rx \Vert^2 } + \Vert b_2' \Vert^2 \\
+		& \downarrow\\
+		\Aboxed{Rx & = b_1'} \ , \ r' = \text{\scriptsize\(\left(\begin{matrix}
 				0 \\ 
 				b_2'
 			\end{matrix}\right)\)} 
@@ -1329,29 +1338,35 @@
 	&\bullet\ 
 		\begin{aligned}[t]
 			\alpha_1 e_1 = a_1 - (2v_1)\frac{v_1 \cdot a_1}{v_1 \cdot v_1} 
-				&\ \ \Rightarrow\ \ v_1 = (a_1 - \alpha e_1) \cancel{ \frac{v_1 \cdot v_1}{2v_1 \cdot a_1} } 
+				&\ \ \Rightarrow\ \ v_1 = (a_1 - \alpha_1 e_1) \cancel{ \frac{v_1 \cdot v_1}{2v_1 \cdot a_1} } 
 				\hspace{15pt} \text{\scriptsize(magnitude doesn't matter)}
 				\\[5pt]
-			&\ \ \rightarrow\ \ \boxed{ v_1 = (a_1 - \alpha e_1) }
+			&\ \ \rightarrow\ \ \boxed{ v_1 = (a_1 - \alpha_1 e_1) }
 				\\[10pt]
 			\alpha_1 = \pm \Vert a_1 \Vert
-				& \ \ \rightarrow\ \ \boxed{ \alpha_i = - \text{sign}(a_i) \Vert a_i \Vert }
+				& \ \ \rightarrow\ \ \underline{ \alpha_1 = - \text{sign}(a_1 \cdot e_1) \Vert a_1 \Vert }
 				\hspace{15pt} \text{\scriptsize(avoid "cancellation" in finite-calc. of \(v\) above)}
 				\\[5pt]
-			H_j\dots H_1 a_i = a_i^j 
-				& \ \ \rightarrow\ \ \boxed{ v_{j+1} = \text{\scriptsize\(\left(\begin{matrix}
-					0\\
-					\vdots\\
-					(a_i^j)_i\\
-					\vdots\\
-					(a_i^j)_m
-				\end{matrix}\right)\)} - \alpha_i e_i }
+			\begin{gathered}
+				H_j\dots H_1 a_i = a_i^j \\
+				(a_i^j)' = \mss{ \left[ (a_i^j)_i, (a_i^j)_{i+1}, ..., (a_i^j)_m \right]^T }
+			\end{gathered}	
+				& \ \ \rightarrow\ \ \boxed{ 
+					v_{i} 
+					= 
+					\mss{ \left[ \begin{matrix}
+						0 \leftarrow {\scriptstyle i > 1 }\\[3pt]
+						(a_i^{i-1})'\\
+					\end{matrix} \right] } 
+					- \alpha_i e_i 
+				}
 				% Extra notes
 				\hspace{17pt}
 				\begin{aligned}
-					&\bullet\ \text{\scriptsize Store \(v_i\) and \(R\) into \(A\) and an extra \(n\)-vector.}\\
-					&\bullet\ \text{\scriptsize \(Q\) and \(H\) can be computed if needed.}\\
-					&\bullet\ \text{\scriptsize When column \(i\) is completed, row \(i\) is too.}
+					& \bullet\ \boxed{ \alpha_i = - \text{sign}(a_i^{i-1} \cdot e_i) \Vert (a_i^{i-1})' \Vert  }\\
+					& \bullet\ \text{\scriptsize Store \(v_i\) and \(R\) into \(A\) and an extra \(n\)-vector.}\\
+					& \bullet\ \text{\scriptsize \(Q\) and \(H\) can be computed if needed.}\\
+					& \bullet\ \text{\scriptsize When column \(i\) is completed, row \(i\) is too.}
 				\end{aligned}
 		\end{aligned}
 \end{aligned}\)

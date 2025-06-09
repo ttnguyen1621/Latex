@@ -1,9 +1,10 @@
 \documentclass[12pt]{article}
 \usepackage[left=.75in, right=.75in, top=.75in, bottom = .75in]{geometry}
-\usepackage{amssymb, amsmath, amsfonts, mathtools}
+\usepackage{amssymb, amsmath, amsfonts, mathtools, bbm}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{cancel}
+\usepackage{dashbox} % for dboxed
 
 \newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
 \newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
@@ -13,6 +14,7 @@
 \newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
 \newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
 \newcommand{\dotP}{\boldsymbol \cdot}		% Dot Product
+\newcommand{\dboxed}[1]{\dbox{\ensuremath{#1}}}
 
 % \title{Classical Mechanics}
 % \author{ringoffire0 }
@@ -70,35 +72,59 @@
 
 \vspace{15pt}\noindent
 % \hat{q} in cartesian
+% \(
+%     \hfill
+%     \mss{ \begin{aligned}
+%         \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} & = \cos{2\theta} \hs \hat{z}\\
+%         \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} & = \sin\theta \hs \hat{y} + \sin\phi \cos\theta \hs \hat{z}\\
+%         \hat{\phi} & = - \sin\phi \hs \hat{x} + \cos\phi \hs \hat{y}
+%     \end{aligned} }
+%     \hfill
+%     \Rightarrow
+%     \hfill
+%     % Solutions
+%     \begin{aligned}
+%         \hat{z} & = \boxed{ \tfrac{ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} }{ \cos{2\theta} } }\\
+%         \hat{y} & = \tfrac{ \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} }{\sin\theta}
+%             - \tfrac{ \sin\phi \cos\theta }{ \sin\theta \cos{2\theta} } 
+%             \left[ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} \right]
+%             \\
+%         & = \boxed{ - \tfrac{\sin\phi \sin\theta}{\cos{2\theta}} \hs \hat{r} 
+%             + \tfrac{\sin\phi \cos\theta}{\cos{2\theta}} \hs \hat{\theta} 
+%             + \tfrac{ \cos\phi }{\sin\theta} \hs \hat{\phi} 
+%             }
+%             \\
+%         \hat{x} & = \boxed{ \cot\phi \hs \hat{y} - \tfrac{ \hat{\phi} }{ \sin\phi } }
+%     \end{aligned}   
+%     \hfill\hs 
+% \)  
 \(
-    \hfill
     \mss{ \begin{aligned}
         \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} & = \cos{2\theta} \hs \hat{z}\\
         \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} & = \sin\theta \hs \hat{y} + \sin\phi \cos\theta \hs \hat{z}\\
         \hat{\phi} & = - \sin\phi \hs \hat{x} + \cos\phi \hs \hat{y}
     \end{aligned} }
-    \hfill
-    \Rightarrow
-    \hfill
+    \hfill \Rightarrow \hfill
     % Solutions
     \begin{aligned}
-        \hat{z} & = \boxed{ \tfrac{ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} }{ \cos{2\theta} } }\\
-        \hat{y} & = \tfrac{ \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} }{\sin\theta}
+        1.)\ \hat{z} & = \boxed{ \tfrac{ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} }{ \cos{2\theta} } } \\
+        3.)\ \hat{x} & = \boxed{ \cot\phi \hs \hat{y} - \tfrac{ \hat{\phi} }{ \sin\phi } }
+    \end{aligned}
+    \hspace{5pt} 
+    \begin{aligned}
+        2.)\ \hat{y} & = \tfrac{ \sin\phi \hs \hat{r} + \cos\phi \hs \hat{\phi} }{\sin\theta}
             - \tfrac{ \sin\phi \cos\theta }{ \sin\theta \cos{2\theta} } 
-            \left[ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} \right]
+            \mss{ \left[ \cos\theta \hs \hat{r} - \sin\theta \hs \hat{\theta} \right] }
             \\
         & = \boxed{ - \tfrac{\sin\phi \sin\theta}{\cos{2\theta}} \hs \hat{r} 
             + \tfrac{\sin\phi \cos\theta}{\cos{2\theta}} \hs \hat{\theta} 
             + \tfrac{ \cos\phi }{\sin\theta} \hs \hat{\phi} 
             }
-            \\
-        \hat{x} & = \boxed{ \cot\phi \hs \hat{y} - \tfrac{ \hat{\phi} }{ \sin\phi } }
-    \end{aligned}   
-    \hfill\hs 
+    \end{aligned}
 \)  
 
 \vspace{20pt}\noindent
-\begin{minipage}{.55\textwidth}
+\begin{minipage}{.56\textwidth}
     % d\dt \hat{q}
     \(\hspace{-4pt}\arraycolsep=2pt\begin{array}{r c l c l c c}
         %r
@@ -146,7 +172,7 @@
 \hfill
 \vline
 \hfill
-\begin{minipage}{.35\textwidth}
+\begin{minipage}{.39\textwidth}
     % d/dt \vec{r}
     \(\begin{aligned}
         % r
@@ -198,7 +224,7 @@
     \end{array}\)
 \end{minipage}
 
-\vspace{20pt}\noindent
+\vspace{10pt}\noindent
 \(
     % Angular Momentum
     \arraycolsep=3pt\begin{array}{r c c c l}
@@ -210,65 +236,76 @@
             & = 
             & mr^2 \left( \tfrac{d\theta}{dt} \hat{\phi} - \sin\theta \tfrac{d\phi}{dt} \hat{\theta} \right) 
             \\[5pt] 
-        \underline{m r^2} \hs \tfrac{1}{r} \hs \hat{r} \times \hsvec{v} & = 
-            & \boxed{ \underline{I} \hsvec{\omega} }
+        % \underline{m r^2} \hs \tfrac{1}{r} \hs \hat{r} \times \hsvec{v} & = 
+        %     & \boxed{ \underline{I} \hsvec{\omega} }
+        %     & = 
+        %     & \underline{mr^2} \left[ 
+        %         \tfrac{v}{r} (\hat{\theta} \cdot \hat{v}) \hat{\phi} 
+        %         - \tfrac{v}{r} (\hat{\phi} \cdot \hat{v}) \hat{\theta} 
+        %     \right]
+        %     \\[5pt]
+        % I \hs \underline{ \tfrac{1}{r} \hs \hat{r} \times \hsvec{v}_\perp } & =
+        %     & {I} \hs \underline{ \hsvec{\omega} }
+        %     & =
+        %     & {I} \hs \tfrac{v}{r} 
+        %         \left[ (\hat{\theta} \cdot \hat{v}) \hat{\phi} - (\hat{\phi} \cdot \hat{v}) \hat{\theta} \right]
+        %     \\[5pt]
+        % {I} \hs \underline{ \tfrac{v_\perp}{r} } \hs \hat{r} \times \widehat{v_\perp} & = 
+        %     & I \underline{ \omega } \hs \hat{\omega}
+        %     & = 
+        %     & I \hs \tfrac{v}{r} \hs ( \hat{\theta} \times \hat{\phi} = \hat{r} ) \times \hat{v} 
+        %     \\[10pt]
+        \boxed{ m \hsvec{r} \times \hsvec{v}_\perp } & = 
+            & m \hsvec{r} \times (\hsvec{\omega} \times \hsvec{r})
             & = 
-            & \underline{mr^2} \left[ 
-                \tfrac{v}{r} (\hat{\theta} \cdot \hat{v}) \hat{\phi} 
-                - \tfrac{v}{r} (\hat{\phi} \cdot \hat{v}) \hat{\theta} 
-            \right]
+            & m \big[ \hsvec{\omega} \Vert \hsvec{r} \Vert^2 - \hsvec{r} (\hsvec{\omega} \cdot \hsvec{r}) \big]
             \\[5pt]
-        I \hs \underline{ \tfrac{1}{r} \hs \hat{r} \times \hsvec{v}_\perp } & =
-            & {I} \hs \underline{ \hsvec{\omega} }
+        &
+            & \underline{ \overleftrightarrow{I} } \hsvec{\omega}
             & =
-            & {I} \hs \tfrac{v}{r} 
-                \left[ (\hat{\theta} \cdot \hat{v}) \hat{\phi} - (\hat{\phi} \cdot \hat{v}) \hat{\theta} \right]
-            \\[5pt]
-        {I} \hs \underline{ \tfrac{v_\perp}{r} } \hs \hat{r} \times \widehat{v_\perp} & = 
-            & I \underline{ \omega } \hs \hat{\omega}
-            & = 
-            & I \hs \tfrac{v}{r} \hs ( \hat{\theta} \times \hat{\phi} = \hat{r} ) \times \hat{v} 
+            & \underline{ m \Big[ \Vert \hsvec{r} \Vert^2 \mathbbm{1}_3 - \hsvec{r} \hs \hsvec{r}^T \Big] } \hsvec{\omega} 
     \end{array}
     \hfill
     \vline
     \hfill
     % Cross products of r, v, and w
     \begin{aligned}
-        \bullet\ \hsvec{\omega} \times \hsvec{r} & = \tfrac{1}{r} (\hat{r} \times \hsvec{v}_\perp) \times \hsvec{r} \\
-        & = (\hat{r} \cdot \hat{r}) \hsvec{v}_\perp - (\hsvec{v}_\perp \cdot \hat{r}) \hat{r}\\
-        & = \hsvec{v}_\perp
+        \bullet\ \hsvec{\omega} \times \hsvec{r} % & = \tfrac{1}{r} (\hat{r} \times \hsvec{v}_\perp) \times \hsvec{r} \\
+        % & = (\hat{r} \cdot \hat{r}) \hsvec{v}_\perp - \hat{r} (\hsvec{v}_\perp \cdot \hat{r}) \\
+        & \equiv \hsvec{v}_\perp
             \\[10pt]
-        \bullet\ \hsvec{v} \times \hsvec{\omega} & = 
-            \tfrac{v_\perp}{r}\hs (v_\perp \hat{v}_\perp + v_\parallel \hat{r}) \times \hat{\omega}
-            \\
-        & = \tfrac{v_\perp}{r}\hs ( v_\perp \hat{r} - v_\parallel \widehat{v_\perp} )
-            \\
-        \Vert \hsvec{v} \times \hsvec{\omega} \Vert^2 & = v^2 \tfrac{v^2_\perp}{r^2}
+        \bullet\ \hsvec{r}_\perp \times \hsvec{v} & = r_\perp^2 \hsvec{\omega} 
+        %     \\[10pt]
+        % \bullet\ \hsvec{v} \times \hsvec{\omega} & = 
+        %     \tfrac{v_\perp}{r}\hs (v_\perp \hat{v}_\perp + v_\parallel \hat{r}) \times \hat{\omega}
+        %     \\
+        % & = \tfrac{v_\perp}{r}\hs ( v_\perp \hat{r} - v_\parallel \widehat{v_\perp} )
+        %     \\
+        % \Vert \hsvec{v} \times \hsvec{\omega} \Vert^2 & = v^2 \tfrac{v^2_\perp}{r^2}
     \end{aligned}
     \hfill\hs
 \)
 
-\vspace{20pt}\noindent
+\vspace{15pt}\noindent
 \(
     % Inertia Tensor
     \begin{gathered}
-        L_i = \sum_j I_{ij} \hs \omega_j
-        \\[10pt]
-        \overleftrightarrow{I} = \left[ \hs \mss{ \arraycolsep=2pt\begin{matrix}
+        \sum \overleftrightarrow{I} = \left[ \hs \mss{ \arraycolsep=2pt\begin{matrix}
                 \sum m(y^2 + z^2) & - \sum m xy & - \sum m xz\\[4pt]
                 - \sum m yx & \sum m(x^2 + z^2) & - \sum m yz\\[4pt]
                 - \sum m zx  & - \sum m zy & \sum m(x^2 + y^2)
             \end{matrix} } \hs \right]
+            \\[10pt]
+        L_i = \sum_j I_{ij} \hs \omega^j    
     \end{gathered}
     \hfill
     % Rotational Energy
     \begin{aligned}
-        E = \frac{\Vert \hsvec{L} \Vert^2}{2I} & = \frac{1}{2} \hsvec{L} \cdot \hsvec{\omega}
+        E = \sum_m \frac{\Vert \hsvec{L} \Vert^2}{2I} & = \frac{1}{2} \hsvec{L} \cdot \hsvec{\omega}
+            = \frac{1}{2} \sum_{ij} I_{ij} \hs \omega^j \hs \omega^i
             \\[7pt]
-        \sum_m \tfrac{1}{2} m \Vert \hsvec{\omega} \times \hsvec{r} \Vert^2 & 
-            = \tfrac{1}{2} \sum_{ij} I_{ij} \hs \omega_j \hs \omega_i
-            \\
-        & = \tfrac{1}{2} \mss{
+        \sum_m \tfrac{1}{2} m \Vert \hsvec{\omega} \times \hsvec{r} \Vert^2 
+            & = \tfrac{1}{2} \mss{
             \left[ \begin{matrix}
                 \hs\\
                 \hs & I & \hs\\
@@ -361,7 +398,7 @@
             \end{matrix} } \right]
                 \\[5pt]
             & =^* 
-                \left[ \mss{ \begin{matrix}
+                \left[ \mss{ \arraycolsep=2pt\begin{matrix}
                     0 & \tau_z & -\tau_y \\
                     -\tau_z & 0 & \tau_x \\
                     \tau_y & -\tau_z & 0
@@ -671,53 +708,76 @@ Note: \hspace{10pt}\(
 \hspace{10pt}
 \(\begin{aligned}
     \frac{\partial \mathcal{L}}{\partial t} &= - \frac{d}{dt} \left( \sum_i p_i \dot{q}_i - \mathcal{L} \right)\\[5pt]
-    &= - \frac{d \mathcal{H}}{dt} \indent\indent
-        \begin{minipage}{5cm}
-            \scriptsize 
-            If \(\mathcal{L}\) is explicitly independent of time 
-            (implies coordinates are "natural"), 
-            then the Hamiltonian is conserved.   
-        \end{minipage}
+    & = - \frac{d \mathcal{H}}{dt} \hspace{20pt}
+        \parbox{5cm}{
+            \scriptsize
+            If \(\mathcal{L}\) is explicitly independent of time % 
+            (implies coordinates are "na/tural"), %
+            then the Hamiltonian is conserved. %   
+        }
 \end{aligned}\)
 
 % Hamiltonian is Energy Total
 \vspace{20pt}\noindent
-\(\begin{aligned}
-    \tfrac{1}{2} \sum_n m \dot{r}_n^2 
-        &= \tfrac{1}{2} \sum_n m \left( \sum_i \frac{\partial r_n}{\partial q_i} \dot{q}_i \right)^2 \\[5pt]
-    &= \tfrac{1}{2} \sum_{i,j} \left( m \sum_n \frac{\partial r_n}{\partial q_i} 
-        \frac{\partial r_n}{\partial q_j} \right) \dot{q}_i \dot{q}_j\\[5pt]
-    &= \tfrac{1}{2} \sum_i \sum_j A_{ij} \dot{q}_i \dot{q}_j\\[5pt]
-    \left( \text{\scriptsize for \(\tfrac{\partial T}{\partial \dot{q}_i}\)} \right)\ \ \ \ 
-        &= \tfrac{1}{2} \left( 2 \sum_{i \neq j} A_{ij} \dot{q}_i \dot{q}_j + A_{ii} \dot{q}_i^2 \right) + ...
-\end{aligned}\)
-\hspace{10pt}
-\(\rightarrow\)
-\hspace{10pt}
-\(\begin{aligned}
-    &\mathcal{L} = \tfrac{1}{2}mv^2 - U \ = \ T{\scriptstyle(\dot{q}_i)} - U{\scriptstyle(q_i)}\ \rightarrow \ \\[5pt]
-    &\begin{aligned}[t]
-        \mathcal{H} &= \sum_i \frac{\partial T}{\partial \dot{q}_i} \dot{q}_i - \mathcal{L}\\[5pt]
-        &= \sum_i \left( \sum_j A_{ij} \dot{q}_j \right) \dot{q}_i 
-            - \tfrac{1}{2} m \dot{ \mathbf{r} }^2 + U\\[10pt]
-        &= \tfrac{1}{2} m \dot{ \mathbf{r} }^2 + U \indent
-            \begin{minipage}{5cm}
-                \scriptsize 
-                If \(\mathcal{L}= \tfrac{1}{2}mv^2 - U\) and \(U\) is independent of \(v\), 
-                then the Hamiltonian is the total energy.   
-            \end{minipage}
+\(
+    \begin{aligned}
+        \tfrac{1}{2} \sum_n m & \dot{r}_n^2 = \tfrac{1}{2} \sum_n m \left( \sum_i \frac{\partial r_n}{\partial q_i} \dot{q}_i \right)^2 \\[5pt]
+        & = \tfrac{1}{2} \sum_{i,j} \left( m \sum_n \frac{\partial r_n}{\partial q_i} 
+            \frac{\partial r_n}{\partial q_j} \right) \dot{q}_i \dot{q}_j\\[5pt]
+        & = \tfrac{1}{2} \sum_i \sum_j A_{ij} \dot{q}_i \dot{q}_j\\
+        T & = \tfrac{1}{2} \left( 2 \sum_{i \neq j} A_{ij} \dot{q}_i \dot{q}_j + \sum_i A_{ii} \dot{q}_i^2 \right) + ...
     \end{aligned}
-\end{aligned}\)
+    \hspace{5pt}
+    \rightarrow
+    \hspace{5pt}
+    \begin{aligned}
+        & \mathcal{L} = \tfrac{1}{2}mv^2 - U \ = \ T{\scriptstyle(\dot{q}_i)} - U{\scriptstyle(q_i)}\ \rightarrow \ \\[5pt]
+        & \begin{aligned}[t]
+            \mathcal{H} & = \sum_i \frac{\partial T}{\partial \dot{q}_i} \dot{q}_i - \mathcal{L}\\[5pt]
+            & = \sum_i \left( \sum_j A_{ij} \dot{q}_j \right) \dot{q}_i 
+                - \tfrac{1}{2} m \dot{ \mathbf{r} }^2 + U\\[10pt]
+            & = \tfrac{1}{2} m \dot{ \mathbf{r} }^2 + U \indent
+                \begin{minipage}{5cm}
+                    \scriptsize 
+                    If \(\mathcal{L}= \tfrac{1}{2}mv^2 - U\) and \(U\) is independent of \(v\), 
+                    then the Hamiltonian is the total energy.   
+                \end{minipage}
+        \end{aligned}
+    \end{aligned}
+\)
 
-% Lagrange Multipliers
 \vspace{20pt}\noindent
-\underline{Lagrange Multipliers}:\\[15pt]
-\(\begin{aligned}
-    \frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{q}_i} \right)
-        &= \frac{\partial \mathcal{L}}{\partial q_i} + \lambda \frac{\partial f}{\partial q_i}\\[10pt]
-    \dfrac{d p}{dt} &= -\nabla U + \lambda \nabla f\\[10pt]
-    F_\text{tot} &= F_\text{ncnstr} + F_\text{cnstr}
-\end{aligned}\)
+% Lagrange -> Hamiltonian
+\parbox[t]{10cm}{
+    \underline{Lagrange \((x^i, v^i)\) \(\leftrightarrow\) Hamiltonian \((q^i, p_i)\)}:\\[15pt]
+    \(\begin{aligned}
+        & v^i\mss{(q^i, p_i)} = \frac{\partial q^i}{\partial t} = \frac{\partial H \mss{(q^i, p_i)}}{\partial p_i}
+            \hspace{10pt} \text{\scriptsize(also for Newton. \(\leftarrow\) Hamil.)}
+            \\[5pt]
+        & \bullet\ \exists p_i \mss{(q^i \rightarrow x^i, v^i)} 
+            \ \Leftarrow\ \dboxed{ \left\vert \tfrac{\partial^2 H}{\partial p_i p_j} \right\vert \neq 0 }
+            \hspace{10pt} \begin{gathered}
+                \text{\scriptsize(invert. + diff.)}\\[-9pt]
+                \text{\scriptsize(not req. for uniq. \(H\))}\\
+            \end{gathered}
+            \\
+        & \bullet\ \left\vert \tfrac{\partial^2 H}{\partial p_i p_j} \right\vert 
+            = \left\vert \tfrac{\partial^2 L}{\partial v_i v_j} \right\vert^{-1} \neq 0 
+            \hspace{10pt} \text{\scriptsize(uniq. cond. for \(L\))}
+    \end{aligned}\)
+}
+% Lagrange Multipliers
+\parbox[t]{7cm}{
+    \underline{Lagrange Multipliers}:\\[15pt]
+    \(\begin{aligned}
+        \frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{q}_i} \right)
+            & = \frac{\partial \mathcal{L}}{\partial q_i} 
+                + \sum_j \lambda_j \frac{\partial f_j}{\partial q_i}
+                \\[10pt]
+        \dfrac{d p}{dt} & = -\nabla U + \lambda \nabla f\\[10pt]
+        F_\text{tot} & = F_\text{ncnstr} + F_\text{cnstr}
+    \end{aligned}\)
+}
 
 %--------------------------------------------------------------------------------------------------------------------------
 %
@@ -769,70 +829,224 @@ Note: \hspace{10pt}\(
 \end{minipage}
 
 % Angular Hamiltonian
-\vspace{25pt} \noindent
+\vspace{20pt} \noindent
 \underline{Angular}:\\[10pt]
 \(\begin{aligned}
-    \mathcal{H} &= m \dot{r}^2 + m r^2 \dot{\theta}^2 - \left( \tfrac{1}{2} m \dot{r}^2 
+    \mathcal{H} & = m \dot{r}^2 + m r^2 \dot{\theta}^2 - \left( \tfrac{1}{2} m \dot{r}^2 
         + \tfrac{1}{2} mr^2 \dot{\theta}^2 - U(r,\theta) \right) \ ,
         \hspace{20pt} \begin{aligned}
-            p_r &= m \dot{r}\\
-            p_\theta &= mr^2 \dot{\theta} \ \equiv \ L = I \omega
-        \end{aligned}\\[5pt]
-    &= \tfrac{1}{2} m \dot{r}^2 + \tfrac{1}{2} mr^2 \dot{\theta}^2 + U(r,\theta)
+            p_r & = m \dot{r}\\
+            p_\theta & = mr^2 \dot{\theta} \ \equiv \ L = I \omega
+        \end{aligned}
+        \\[-5pt]
+    & = \tfrac{1}{2} m \dot{r}^2 + \tfrac{1}{2} mr^2 \dot{\theta}^2 + U(r,\theta)
 \end{aligned}\)
 
 % Electrodynamic Hamiltonian
-\vspace{25pt} \noindent
+\vspace{20pt} \noindent
 \underline{Electromagnetic}:\\[15pt]
 \(\begin{aligned}
-    &\begin{aligned}
-        \mathcal{H} &= \dot{ \mathbf{r} } \dotP \vec{p}_r - \left( \tfrac{1}{2} m \dot{ \mathbf{r} }^2 
-            - q \phi{\scriptstyle (t,\ \mathbf{r})} 
-            + q \dot{ \mathbf{r} } \dotP \vec{A}{\scriptstyle (t,\ \mathbf{r})} \right) \ ,
-            \hspace{2cm} \vec{p}_r = m \dot{ \mathbf{r} } + q \vec{A}\\[5pt]
-        &= m \dot{ \mathbf{r} }^2 + q \dot{ \mathbf{r} } \dotP \vec{A}
-            - \tfrac{1}{2} m \dot{ \mathbf{r} }^2 + q \phi - q \dot{ \mathbf{r} } \dotP \vec{A}\\[5pt]
-        &= \tfrac{1}{2} m \dot{ \mathbf{r} }^2 + q \phi
-    \end{aligned}
+    & \begin{aligned}
+            \mathcal{H} & = \dot{ \mathbf{r} } \dotP \vec{p}_r - \left( \tfrac{1}{2} m \dot{ \mathbf{r} }^2 
+                - q \phi{\scriptstyle (t,\ \mathbf{r})} 
+                + q \dot{ \mathbf{r} } \dotP \vec{A}{\scriptstyle (t,\ \mathbf{r})} \right) \ ,
+                \hspace{2cm} \vec{p}_r = m \dot{ \mathbf{r} } + q \vec{A}\\[5pt]
+            & = m \dot{ \mathbf{r} }^2 + q \dot{ \mathbf{r} } \dotP \vec{A}
+                - \tfrac{1}{2} m \dot{ \mathbf{r} }^2 + q \phi - q \dot{ \mathbf{r} } \dotP \vec{A}\\[5pt]
+            & = \tfrac{1}{2} m \dot{ \mathbf{r} }^2 + q \phi
+        \end{aligned}
 \end{aligned}\)
 
 % Special Relativity
-\vspace{25pt}\noindent
+\vspace{20pt}\noindent
 \underline{Special Relativity}:\\[15pt]
 \(\begin{aligned}
-    \mathcal{H} &= \vec{v} \dotP (\gamma m \vec{v}) - \left( \gamma m v^2 - \gamma mc^2 - U \right) \ ,
+    \mathcal{H} & = \vec{v} \dotP (\gamma m \vec{v}) - \left( \gamma m v^2 - \gamma mc^2 - U \right) \ ,
         \hspace{3cm} \vec{p} = \gamma m \vec{v}\\[5pt]
-    &= \gamma mc^2 + U\\[5pt]
-    &\approx \tfrac{1}{2} m v^2 + \left( U + mc^2 \right) \indent\indent \text{\scriptsize(when \(v \ll c\))}
+    & = \gamma mc^2 + U\\[5pt]
+    & \approx \tfrac{1}{2} m v^2 + \left( U + mc^2 \right) \indent\indent \text{\scriptsize(when \(v \ll c\))}
 \end{aligned}\)
 
+% Poisson Brackets
+\vspace{20pt}\noindent
+\underline{Poisson Brackets}\\[10pt]
+\(
+    \begin{aligned}    
+        & \{ f, g \} = 
+            \sum_i \frac{\partial f}{\partial q_i} \frac{\partial g}{\partial p_i} 
+            - \frac{\partial g}{\partial q_i} \frac{\partial f}{\partial p_i} 
+            \\[5pt]
+        & \bullet\ \{ q_i , g\mss{(q,p,t)} \} = \tfrac{\partial g}{\partial p_i} 
+            \ , \ \{ p_i , g\mss{(q,p,t)} \} = - \tfrac{\partial g}{\partial q_i} 
+            \\[5pt]
+    \end{aligned}
+    \ \Rightarrow\ 
+    \begin{aligned}
+        \bullet\ \{ f, g \} & = { \sum_i - \{ p_i, f \} \{ q_i, g \} + \{ p_i, g \} \{ q_i, f \} } \\
+        & = { \sum_i\ \{ q_i, f \} \{ p_i, g \} - \{ q_i, g \} \{ p_i, f \} } \\
+    \end{aligned}
+\)
+
+\vspace{5pt}\noindent
+% Hamilton's Equations
+\underline{\textit{Hamilton Eq.}} : \ 
+\( 
+    \dot{q_i} = \{q_i, H\} , \hspace{5pt} \dot{p_i} = \{p_i,H\} 
+    \ \Rightarrow\  
+    \{ f\mss{(q,p,t)}, H \} = 
+    \sum_i \frac{\partial f}{\partial q_i} \dot{q}
+    + \dot{p} \frac{\partial f}{\partial p_i} 
+    = \dot{f} - \tfrac{\partial f}{\partial t}
+\)
+
+\vspace{20pt}\noindent
+% Canonical Transform with Poisson Brackets
+\underline{Canonical Transforms}\\[10pt]
+\(
+    \begin{aligned}
+        & q \rightarrow \bar{q}\mss{(q,p)}\\
+        & p \rightarrow \bar{p}\mss{(q,p)}
+    \end{aligned} 
+    \hspace{7pt} \text{ s.t. } \hspace{7pt}
+    \mss{ \begin{gathered}
+        \{\bar{q}_i, \bar{q}_j\} = 0 = \{\bar{p}_i, \bar{p}_j\}\\[3pt]
+        \{\bar{q}_i, \bar{p}_j\} = \delta_{ij}
+    \end{gathered} }
+    \hspace{10pt} 
+    \left(
+    \begin{gathered}
+        \text{\scriptsize Point Transforms}\\[-5pt]
+        \text{\scriptsize \(\bar{q}\mss{(q)}\) are canonical.}
+    \end{gathered}
+    \right)
+    \vspace{15pt}
+    \ \Rightarrow\
+    \begin{aligned}
+        & \dot{\bar{q}} = \tfrac{\partial H}{\partial \bar{p}}\\
+        & \dot{\bar{p}} = - \tfrac{\partial H}{\partial \bar{q}}\\
+    \end{aligned}
+    \ \ , \ \
+    \{ f, g \}_{q,p} = \{ f, g \}_{\bar{q},\bar{p}}    
+\)
+
 %--------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------
-% Hamilton-Jacobi Equations
+%
+%
+%
 \newpage
+
+% Generator of Transformation
+\vspace{20pt}\noindent
+\underline{Generator of Transformation}\\[10pt]
+\(
+    \begin{aligned}
+        \{ f &, g \} = \mss{\sum_i} \ \tfrac{\partial f}{\partial q_i} { \tfrac{\partial g}{\partial p_i} } 
+            - \tfrac{\partial g}{\partial q_i} { \tfrac{\partial f}{\partial p_i} } 
+            \\
+        % & = \mss{\sum_i} - \mss{\{ p_i, g \}}  \tfrac{\partial H}{\partial p_i} 
+        %     - \dboxed{ \mss{\{ q_i, g \}} } \tfrac{\partial H}{\partial q_i} 
+        %     \\
+        \hspace{-1pt}\Aboxed{ 
+            \tfrac{d f}{d \lambda_g} - \tfrac{\partial f}{\partial t} & \tfrac{\partial t}{\partial \lambda_g} 
+            }
+            \equiv \mss{\sum_i}\ \tfrac{\partial f}{\partial q_i} { \tfrac{\partial q_i}{\partial \lambda_g} } 
+            + { \tfrac{\partial p_i}{\partial \lambda_g} } \tfrac{\partial f}{\partial p_i}
+            \\
+        \hspace{-1pt}\Aboxed{ 
+            \tfrac{\partial g}{\partial t} \tfrac{\partial t}{\partial \lambda_f} - & \tfrac{d g}{d \lambda_f} 
+            }
+            \equiv \mss{\sum_i}\ { - \tfrac{\partial p_i}{\partial \lambda_f} } \tfrac{\partial g}{\partial p_i} 
+            - \tfrac{\partial g}{\partial q_i} { \tfrac{\partial q_i}{\partial \lambda_f} } 
+            \\[5pt]
+        \{ g, H \} & = \mss{\sum_i} \ \dboxed{ \tfrac{\partial g}{\partial q_i} } \tfrac{\partial H}{\partial p_i} 
+            - \dboxed{ \tfrac{\partial g}{\partial p_i} } \tfrac{\partial H}{\partial q_i} 
+            \\
+        % & = \mss{\sum_i} - \mss{\{ p_i, g \}}  \tfrac{\partial H}{\partial p_i} 
+        %     - \dboxed{ \mss{\{ q_i, g \}} } \tfrac{\partial H}{\partial q_i} 
+        %     \\
+        & \equiv \mss{\sum_i}\ \dboxed{ - \tfrac{\partial p_i}{\partial \lambda} } \tfrac{\partial H}{\partial p_i} 
+            - \dboxed{ \tfrac{\partial q_i}{\partial \lambda} } \tfrac{\partial H}{\partial q_i} 
+            \\
+        \Aboxed{ 
+            \dot{g} - \tfrac{\partial g}{\partial t} & 
+            = - \tfrac{dH}{d\lambda} + \tfrac{\partial H}{\partial t} \tfrac{\partial t}{\partial \lambda}
+            }
+            \\
+    \end{aligned}
+\)
+\hfill \vline \hfill
+\(
+    \begin{aligned}
+        & 1.\ \delta H = 0\\[-20pt]
+        & 2.\ \begin{aligned}[t]
+                & \begin{aligned}[t]
+                        \bar{q}_i & = q_i + \delta q_i 
+                            \\
+                        & \equiv q_i + \epsilon_\lambda \tfrac{\partial g}{\partial p_i} \\
+                        & = q_i + \epsilon_\lambda \{q_i, g\}
+                    \end{aligned}
+                    , \hspace{5pt}
+                    \begin{aligned}[t]
+                        \bar{p}_i & = p_i + \delta p_i \\
+                        & \equiv p_i - \epsilon_\lambda \tfrac{\partial g}{\partial q_i} \\    
+                        & = p_i + \epsilon_\lambda \{p_i, g\}
+                    \end{aligned}       
+            \end{aligned}
+            \hspace{-10pt} \Rightarrow\ 
+            \begin{gathered}
+                \begin{aligned}
+                        \delta H & = \epsilon_\lambda \{H, g\} \\[5pt]
+                        \Aboxed{ \tfrac{\partial H}{\partial \lambda} & = 0 = - \tfrac{dg}{dt} }
+                    \end{aligned}    
+                    \\[5pt]
+                \mss{( \text{e.g. } g=p \text{ or } g=l_z )}
+            \end{gathered}    
+            \\[10pt]
+        & 3.\ \Rightarrow\ \delta f = \epsilon_\lambda \{f, g\} 
+            \ \rightarrow\ \tfrac{d f}{d \lambda_g} - \tfrac{\partial f}{\partial t} \tfrac{\partial t}{\partial \lambda_g} = \{f, g\}
+            \\[5pt]
+        \hline 
+            \\
+        & \bullet\ g = l_z 
+            \ \Rightarrow\ \begin{aligned}
+                    \delta x & = - \epsilon y = - (\delta \theta) y\\
+                    \delta y & = \epsilon x = (\delta \theta) x
+                \end{aligned}
+            \ \Rightarrow\ \boxed{ 
+                \begin{aligned}
+                    \tfrac{\partial x}{\partial \theta} & = - y\\
+                    \tfrac{\partial y}{\partial \theta} & =  x
+                \end{aligned} 
+            }
+    \end{aligned}
+\)
+
+%------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------
+% Hamilton-Jacobi Equations
+\vspace{20pt}
 \section{Hamilton-Jacobi Equations}
 
 \noindent
 \(
     \begin{aligned}
         & \boxed{ K(Q, P, t) \hs \equiv \hs H(q, p, t) + \frac{\partial S \mss{(q, Q, t)}}{\partial t} = 0 }\\[10pt]
-        & \arraycolsep=2pt \begin{array}{r l l}
-                \dot{Q} & = \frac{\partial K}{\partial P} = 0
-                    & \ \hs \Rightarrow\ \hs \boxed{ Q = \alpha_Q = \tfrac{\partial S}{\partial P} }
-                    \hspace{10pt} \text{\scriptsize(constant)}
-                    \\[10pt]
-                \dot{P} & = - \frac{\partial K}{\partial Q} = 0
-                    & \ \hs \Rightarrow\ \hs \boxed{ P = \alpha_P = -\tfrac{\partial S}{\partial Q} }
-                    \hspace{10pt} \text{\scriptsize(constant)}
-            \end{array}        
-            \\[10pt]
         & \dot{q} = \tfrac{\partial H}{\partial p}
             \ \Rightarrow\ \boxed{ q = -\tfrac{\partial S}{\partial p} }
             \hspace{5pt}, \hspace{5pt} 
             \dot{p} = - \tfrac{\partial H}{\partial q}
             \ \Rightarrow\ \boxed{ p = \tfrac{\partial S}{\partial q} }
+            \\[10pt]
+        & \arraycolsep=2pt \begin{array}{r l l}
+                \dot{Q} & = \frac{\partial K}{\partial P} = 0
+                    & \ \hs \Rightarrow\ \hs 
+                    \boxed{ Q = \tfrac{\partial S}{\partial P} \equiv \alpha_Q \hspace{5pt} \text{\scriptsize(constant)} }
+                    \\[10pt]
+                \dot{P} & = - \frac{\partial K}{\partial Q} = 0
+                    & \ \hs \Rightarrow\ \hs 
+                    \boxed{ P = -\tfrac{\partial S}{\partial Q} \equiv \alpha_P \hspace{5pt} \text{\scriptsize(constant)} }
+            \end{array}        
+            \\
     \end{aligned}
     \hfill\vline\hfill
     \begin{aligned}
@@ -850,14 +1064,14 @@ Note: \hspace{10pt}\(
 % If H is independant of time
 \(
     \begin{aligned}
-        & 
-            \underline{ \tfrac{\partial H}{\partial t} = 0 }
-            \ \Rightarrow\ \boxed{ S(q, Q, t) = W(q,Q) - Et }
-            \\[10pt]
-        & \tfrac{dS}{dt} = \tfrac{\partial S}{\partial t} + \mss{\sum}\hs\hs p_i \dot{q}_i
+        & \tfrac{dS}{dt} = \tfrac{\partial S}{\partial t} + \mss{\sum}\hs\hs p_i \dot{q}_i + 0
             = \cancel{ \tfrac{\partial S}{\partial t} + H } + \mathcal{L}
             \\[5pt]
-        & \Rightarrow\ \boxed{ S = \mss{\int} \mathcal{L} \ dt + \text{const.} }
+        & \Rightarrow\ \boxed{ S = \mss{\int} \mathcal{L} \ dt + \text{const.} } 
+            \\[10pt]
+        & \underline{ \tfrac{\partial H}{\partial t} = 0 }
+            \ \Rightarrow\ \boxed{ S(q, Q, t) = W(q,Q) - Et }
+            \\
     \end{aligned}
     \hfill\vline\hfill
     \begin{aligned}
@@ -913,15 +1127,14 @@ Note: \hspace{10pt}\(
     % Elastic Collisions
     \underline{Elastic Collisions}: \ \ \(
         \begin{aligned}
-            m_0 v_0 &= m_1 v_1 + m_2 v_2\\[5pt]
-            \tfrac{1}{2} m_0 v_0^2 &= \tfrac{1}{2} m_1 v_1^2 + \tfrac{1}{2} m_2 v_2^2
-        \end{aligned}  
+            p_0 & = p_1 + p_2\\
+            \tfrac{p_0^2}{2m_0} & = \tfrac{p_1^2}{2m_1} + \tfrac{p_2^2}{2m_2}\\
+        \end{aligned}
     \)
 
     \vspace{7pt}
     \(\Rightarrow\ \boxed{ 
-        \tfrac{1}{2} m_2 v_2^2 (m_1 + m_2) - \tfrac{1}{2} m_0 v_0^2 (m_1 - m_0) 
-        = (m_0 v_0)(m_2 v_2) 
+        \tfrac{p_0^2}{2m_0} (m_0 - m_{12}) + \tfrac{p_{21}^2}{2m_{21}} (m_1 + m_2) = p_0 \cdot p_{21}
     }\)
 
     \vspace{10pt}\noindent
@@ -957,20 +1170,70 @@ Note: \hspace{10pt}\(
 \section{Orbits}
 
 % Lagrangian
+\(\displaystyle
+    \begin{aligned}
+        \text{\underline{Lagrangian}}:\ \mathcal{L} & 
+            = \mss{\sum_{1,2}}\hs \tfrac{1}{2} m_i \Vert \dot{r_i} \Vert^2
+            - U\mss{({\scriptstyle \Vert r_1 - r_2 \Vert})}
+            \\
+        \mss{(MR = \sum m_i r_i)}\ & = \tfrac{1}{2}M \Vert R \Vert^2 + \tfrac{1}{2} \mu \Vert \dot{r} \Vert^2
+            - U\mss{(\Vert r\Vert)}
+            \\
+    \end{aligned}
+    = \tfrac{1}{2}MR^2 - U\mss{({\scriptstyle \Vert r \Vert})} +
+    \mss{ \begin{aligned}
+        & \tfrac{1}{2} m_1 \Vert \dot{\overline{r_1}} \Vert^2 
+            + \tfrac{1}{2} m_2 \Vert \dot{\overline{r_2}} \Vert^2 
+            \\
+        & 
+                \sum \tfrac{1}{2} m_i \dot{\overline{r_i}}^2 
+                + \tfrac{1}{2} m_i \overline{r_i}^2 
+                \left[ {\scriptstyle \dot{\theta_i}^2 + \sin^2{\theta_i} \dot{\phi_i}^2 } \right]
+            \\[-5pt]
+        & 
+                \sum \tfrac{1}{2} m_i \dot{\overline{r_i}}^2 
+                + \tfrac{1}{2} m_i \overline{r_i}^2 \Vert w_i \Vert^2 
+                \hspace{5pt} ( \text{coplanar \(w_i\)} )
+            \\
+    \end{aligned} }
+\)\\[10pt]
 \(
-    \left.\begin{aligned}
-        & \text{\underline{Lagrangian}}:\ \ \mathcal{L} = \tfrac{1}{2} m\dot{r}^2 
-            + \tfrac{1}{2} m r^2 \dot{\theta}^2 
-            + \tfrac{1}{2} m r^2\sin^2{\theta} \dot{\phi}^2 - U(r) \\[10pt]
-        & \indent\bullet\ l = I \omega = m r^2 \dot{\theta}\\[5pt]
-        & \indent\bullet\ m\ddot{r} = - \frac{\partial}{\partial r} U_\text{eff} 
-            = - \frac{\partial}{\partial r} \left( \frac{l^2}{2m r^2} + U(r) \right)
-    \end{aligned}\indent \right\} 
-    \indent m\ \rightarrow\ \mu = \frac{mM}{m+M}
+    % Angular Frequency and Constrained rotation
+    \bullet\ \begin{aligned}
+        \overline{r_1} & = R + \tfrac{m_2}{M} r\\
+        \overline{r_2} & = R - \tfrac{m_1}{M} r\\ 
+    \end{aligned}
+    \begin{aligned}
+        % Reduced Mass Ang Momentum
+        & \indent\bullet\ l = I \omega_r = \underline{ \mu r^2 } \dot{\theta}_{r}
+            = \underline {
+                \tfrac{m_1 m_2}{M = {\scriptstyle m_1 + m_2}} 
+                \Vert {\scriptstyle r_1 - r_2} \Vert^2 
+            }
+            \dot{\theta}_{r}
+            \\
+        % Radial
+        & \indent\bullet\ m\ddot{r} = - \tfrac{\partial}{\partial r} U_\text{eff} 
+            = - \tfrac{\partial}{\partial r} \left[ \tfrac{l^2}{2\mu r^2} + U\mss{(\Vert r\Vert)} \right]
+            \\
+        % L_z and other ang momentum
+        & \indent \bullet\ { 
+                L_{z} = \sum m_i \overline{r_i}^2 \sin^2\theta_i \dot{ \phi_i }
+                \ \Rightarrow\ \underline{L_x, L_y}^*
+            }
+    \end{aligned}
+    \hfill
+    \parbox{6cm}{\scriptsize
+        * angles about the 3 axes can't be treated simultaneously as gen. coord., %
+        since not independent; 2 angles per point suffice to determine position. %
+        Fully describing a rigid body needs 3 trans. DOF %
+        and also 3 rot. DOF. But these can't %
+        be defined as rotations about Cartesian axes (see Euler angles).%
+    }
 \)
 
 % Energy Hamiltonian
-\vspace{20pt}\noindent
+\vspace{15pt}\noindent
 \underline{Hamiltonian}:\ \ \(E = \frac{p_r^2}{2m} + \frac{l^2}{2mr^2} + U(r)\)\\[10pt]
 \indent\(\begin{aligned}
     & \bullet\ \text{Inf. Energy to get to \(r=0\) unless \(l=0\)} \\[5pt]
@@ -979,7 +1242,7 @@ Note: \hspace{10pt}\(
 
 % Orbit Types
 \vspace{20pt}\noindent
-\begin{minipage}[t]{.44\textwidth}
+\begin{minipage}[t]{.30\textwidth}
     \underline{Orbit Types}:\\[10pt]
     \(\begin{aligned}
         E > 0: & \ \ \text{Hyperbola} \\[5pt]
@@ -988,8 +1251,9 @@ Note: \hspace{10pt}\(
         E = \text{Min}(U_\text{eff}): & \ \ \text{Circle}
     \end{aligned}\)    
 \end{minipage}
+\hfill
 % Kepler's Laws
-\begin{minipage}[t]{.49\textwidth}
+\begin{minipage}[t]{.60\textwidth}
     \underline{Kepler's Laws}:\\[10pt]
     \(\begin{aligned}
         \text{1st Law}:&\ \ \text{Elliptical Orbits} 
@@ -997,7 +1261,7 @@ Note: \hspace{10pt}\(
         \text{2nd Law}:&\ \ \text{Equal Area Sweep} 
             \hspace{.5cm} {\scriptstyle(r^2 d\theta \ =\ \frac{l}{m} dt)}\\[5pt]
         \text{3rd Law}:&\ \ T^2 = k^2a^3 
-            \hspace{.5cm} {\scriptsize \begin{aligned}[t]
+            \hspace{.5cm} {\scriptstyle \begin{aligned}[t]
                 &T,\ \text{Period}\\[-5pt]
                 &a,\ \text{Semi-major axis}\\[-3pt]
                 &k,\ \text{``constant''} \ \left( \tfrac{2\pi}{\sqrt{G[m_\text{planet} + M_\text{sun}]}} \right)
@@ -1011,19 +1275,22 @@ Note: \hspace{10pt}\(
 \vspace{10pt}\noindent
 \section{Fluid Mechanics}
 
-\(\begin{array}{r c l}
-    \text{Bernoulli's Principle}: & \frac{\rho v^2}{2} + \rho gz + P_\text{res}
-        &=\ \text{constant \ {\scriptsize[Energy Density]}}\\[5pt]
-    \text{Fluid Conservation}: & \rho A v
-        &=\ \text{constant \ {\scriptsize[Mass Flow Rate]}} \\[5pt]
-    \text{Bouyant Force}: & F = \rho V g & \ \ \ \ \text{\scriptsize(\(\rho, V\),\ of displaced liquid)}
-\end{array}\)
-
-\vspace{20pt}\noindent
-\underline{Water Facts}:\\[10pt]
-\indent \(\begin{aligned}
-    &\bullet\ \text{1 L} = \text{1 kg}
-\end{aligned}\)
+\(
+    \begin{array}{r c l}
+        \text{Bernoulli's Principle}: & \frac{\rho v^2}{2} + \rho gz + P_\text{res}
+            &=\ \text{constant \ {\scriptsize[Energy Density]}}\\[5pt]
+        \text{Fluid Conservation}: & \rho A v
+            &=\ \text{constant \ {\scriptsize[Mass Flow Rate]}} \\[5pt]
+        \text{Bouyant Force}: & F = \rho V g & \ \ \ \ \text{\scriptsize(\(\rho, V\),\ of displaced liquid)}
+    \end{array}
+\)
+\hspace{30pt}
+\(
+    \begin{aligned}
+        & \underline{\text{Water Facts}}:\\[10pt]
+        & \bullet\ \text{1 L} = \text{1 kg}
+    \end{aligned}
+\)
 
 %-----------------------------------------------------------------------------------------------------------------------------------
 %
@@ -1134,15 +1401,15 @@ Note: \hspace{10pt}\(
 \subsection{Parallel and Series}
 
 \vspace{10pt}\noindent
-\underline{Series, \(k_1 {\scriptsize+} k_2 {\scriptsize+} m\)}:\ \
+\underline{Series, \(k_1 {\scriptstyle+} k_2 {\scriptstyle+} m\)}:\ \
     \(\displaystyle\frac{1}{K_\text{eq}} = \frac{1}{k_1} + \frac{1}{k_2}\)\\[10pt]
-\underline{Parallel, \(k_1 k_2 {\scriptsize+} m\)}:\ \ \(K_\text{eq} = k_1 + k_2\)
+\underline{Parallel, \(k_1 k_2 {\scriptstyle+} m\)}:\ \ \(K_\text{eq} = k_1 + k_2\)
 
 %-----------------------------------------------------------------
 % Normal Modes
 \vspace{15pt}
 \subsection{Normal Modes: 3 Springs + 2 Masses, 
-    \(k_1 {\scriptsize+} m_1 {\scriptsize+} k_2 {\scriptsize+} m_2 {\scriptsize+} k_3\)}
+    \(k_1 {\scriptstyle+} m_1 {\scriptstyle+} k_2 {\scriptstyle+} m_2 {\scriptstyle+} k_3\)}
 
 % Start with x
 \vspace{15pt}\noindent
@@ -1309,6 +1576,47 @@ Note: \hspace{10pt}\(
             \theta_2
         \end{matrix}\right)
 \end{aligned}\)
+
+\vspace{20pt}
+\(
+    \begin{aligned}
+        & \bullet\    
+            \left( \begin{matrix}
+                1 & 0 \\
+                -v & 1
+            \end{matrix} \right)
+            \left( \begin{matrix}
+                t-t\\
+                x_1-x_2
+            \end{matrix} \right)
+            = 
+            \left( \begin{matrix}
+                0\\
+                x_1-x_2
+            \end{matrix} \right)
+            \\
+        & \bullet\ 
+            m_1 \left( \begin{matrix}
+                1\\
+                v_1
+            \end{matrix} \right)
+            + 
+            m_2 \left( \begin{matrix}
+                1\\
+                v_2
+            \end{matrix} \right)
+            =
+            m_1' \left( \begin{matrix}
+                1\\
+                v_1'
+            \end{matrix} \right)
+            + 
+            m_2' \left( \begin{matrix}
+                1\\
+                v_2'
+            \end{matrix} \right)
+        \end{aligned}
+\)
 
 
 \end{document}

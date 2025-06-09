@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
 \usepackage{enumitem}
-\usepackage{amssymb, amsmath}
+\usepackage{amssymb, amsmath, mathtools}
 \usepackage{esint}
 \usepackage{cancel}
 
@@ -40,7 +40,7 @@
 % Galilean Transform
 \(
 	\begin{aligned}[t]
-		& \text{\underline{Galilean Transform}}\\[10pt]
+		& \text{\underline{Galilean Transform}}\\[2pt]
 		& \indent \mss{
 				\begin{aligned}
 					t' & = t\\
@@ -57,15 +57,43 @@
 					x'
 				\end{matrix} \right]
 				= 
-				\left[ \begin{matrix}
+				\left[ \arraycolsep=2pt\begin{matrix}
 					1 & 0\\
-					v & 0
+					-v & 1
 				\end{matrix} \right]
 				\left[ \begin{matrix}
 					t\\
 					x
 				\end{matrix} \right]
 			}
+			\\[5pt]
+		& \indent \mss{
+				\begin{aligned}
+					m' & = m\\
+					p' & = m(v_0 - v)
+				\end{aligned} 
+				\ \ \ , \ \ \
+				% \begin{aligned}
+				% 	t & = t'\\
+				% 	x & = x' + vt'
+				% \end{aligned}
+				% \hspace{7pt} , \hspace{7pt} 
+				\left[ \begin{aligned}
+					m'c\\
+					p'
+				\end{aligned} \right]
+				= 
+				\left[ \arraycolsep=2pt\begin{matrix}
+					1 & 0\\
+					-\beta & 1
+				\end{matrix} \right]
+				\sum_i
+				\left[ \begin{matrix}
+					m_i c\\
+					\beta_i m_i c
+				\end{matrix} \right]
+			}
+			\\
 	\end{aligned}
 	\hspace{.5cm}
 	\rightarrow
@@ -74,7 +102,7 @@
 	\begin{aligned}[t]
 		& \text{\underline{Lorentz Transform}} \hspace{20pt} 
 			\gamma \equiv \tfrac{1}{\sqrt{1 - v^2/c^2}} = \tfrac{1}{\sqrt{1 - \beta^2}}\\[5pt]
-		& \indent\boxed{
+		& \indent\boxed{ \mss{
 			\begin{aligned}
 				x' & = \gamma (x - \beta ct)\\[5pt]
 				ct' & = \gamma (ct - \beta x)
@@ -83,11 +111,13 @@
 				x & = \gamma (x' + \beta ct')\\[5pt]
 				ct & = \gamma (ct' + \beta x')
 			\end{aligned}
-			}
+			} }
+			\ , \ 
+			{ \beta^2 = \tfrac{\gamma^2 - 1}{\gamma^2} }
 	\end{aligned}
 \)
 
-\vspace{15pt}\noindent
+\vspace{10pt}\noindent
 % Define variables
 \begin{minipage}[t]{.46\textwidth}
 	\scriptsize
@@ -106,20 +136,20 @@
 	\underline{Transform Matrix (Hermitian for boosts)}
 
 	\vspace{10pt}
-	\hspace{.5cm}\(\gamma = \cosh\phi , \ \gamma\beta = \sinh\phi\)
+	\hspace{.5cm}\(\gamma = \cosh\phi , \ \gamma\beta = \sinh\phi, \ \beta = \tanh\phi\)
 	
 	\vspace{10pt}
-	\hspace{.5cm}\(
+	\(
 		{x^\mu}' = 
 		\mss{
 			\left( \begin{matrix}
-				{x^0}' = ct'\\
+				{x^0}'\\
 				{x^1}'\\
 				{x^2}'\\
 				{x^3}'
 			\end{matrix} \right)
 		} = \mss{
-			\left(\begin{matrix} 
+			\left( \arraycolsep=2pt \begin{matrix} 
 				\gamma & -\gamma\beta 	& 0 & 0\\
 				-\gamma\beta & \gamma 	& 0 & 0\\
 				0 & 0 & 1 & 0\\
@@ -127,29 +157,56 @@
 			\end{matrix}\right)
 		}
 		x^\mu
+		= \Lambda^{\mu'}_{\ \mu} x^\mu
+		= \frac{\partial {x^\mu}'}{\partial x^\mu} x^\mu
 	\)
 
 	\vspace{5pt}
 	\hspace{.4cm}
 	\text{\scriptsize Weyl Matrices}:\ \(\mss{\cosh\tfrac{\phi}{2} I - \sinh\tfrac{\phi}{2} \cancel{\sigma_t} \sigma_x }\)
 		\hspace{10pt} \text{\scriptsize(Hermitian)}
+
+	\vspace{5pt}
+	\(
+		\mss{
+			\left( \begin{matrix}
+				{x_0}'\\
+				-{x_1}'\\
+				-{x_2}'\\
+				-{x_3}'
+			\end{matrix} \right)
+		} 
+		=
+		\Lambda \mss{
+			\left( \begin{matrix}
+				{x_0}\\
+				-{x_1}\\
+				-{x_2}\\
+				-{x_3}
+			\end{matrix} \right)
+		} 
+		\ \Rightarrow\ 
+		x'_\mu = \Lambda^{-1} x_\mu
+		= \frac{\partial {x^\mu}}{\partial {x^\mu}'} x_\mu
+	\)
+
 \end{minipage}
 
 % Time slows down
-\vspace{20pt}\noindent
+\vspace{-20pt}\noindent
 \underline{Time Slows:} \ \ \(\boxed{ \Delta t' = \Delta t / \gamma }\)\\[10pt]
 \indent\(\begin{aligned}
-	&1.)\ t'(x,t_0) \text{ for a Clock at } x = X_0+vt\\[5pt]
-	&\Rightarrow \ \ \begin{aligned}[t]
-			ct' &= \gamma \left( ct - \beta[X_0 + vt] \right) \\[5pt]
-			&= \left( \gamma ct (1 - \beta^2) - \gamma \beta X_0 \right) \\[5pt]
-			&= \left( \frac{ct}{\gamma} - \gamma\beta X_0 \right)
+	& 1.)\ t'(x,t_0) \text{ for a Clock at } x = X_0+vt\\[5pt]
+	& \Rightarrow \ \ \begin{aligned}[t]
+			ct' & = \gamma \left( ct - \beta[X_0 + vt] \right) \\[5pt]
+			& = \left( \gamma ct (1 - \beta^2) - \gamma \beta X_0 \right) \\[5pt]
+			& = \left( \frac{ct}{\gamma} - \gamma\beta X_0 \right)
 				= \left( \frac{ct}{\gamma} + cT_0 \right)
 		\end{aligned}
 		\ \ \Rightarrow \ \ \begin{aligned}[t]
-			&\boxed{\begin{aligned}[t]
-					t'(X_0,t) &= \tfrac{t}{\gamma} + T_0 \\[5pt]
-					&= \tfrac{t}{\gamma} - \gamma\beta X_0
+			& \boxed{\begin{aligned}[t]
+					t'(X_0,t) & = \tfrac{t}{\gamma} + T_0 \\[5pt]
+					& = \tfrac{t}{\gamma} - \gamma\beta X_0
 				\end{aligned}} \indent \begin{gathered}[t]
 					{\setlength{\arraycolsep}{3pt}\begin{array}[t]{r l}
 							\scriptstyle T_0 > 0 : & \scriptstyle X_0 < 0\\[-5pt]
@@ -166,14 +223,15 @@
 					\text{\scriptsize(Clocks at \(x'\) look like they}\\[-10pt]
 					\text{\scriptsize tick slower by factor \(\gamma\))}
 				\end{gathered} }
-		\end{aligned}\\
-	&2.)\ \Delta t'_0 \text{ given } \Delta t_0\\[5pt]
-	&\Rightarrow \ \ c \Delta t_0 = \gamma (c \Delta t'_0 - \cancel{ \beta x'_{=0} }) \ \ \Rightarrow \ \
+		\end{aligned}
+		\\[-15pt]
+	& 2.)\ \Delta t'_0 \text{ given } \Delta t_0\\[5pt]
+	& \Rightarrow \ \ c \Delta t_0 = \gamma (c \Delta t'_0 - \cancel{ \beta x'_{=0} }) \ \ \Rightarrow \ \
 		\boxed{ \Delta t'_0 = \Delta t_0 / \gamma } \indent \text{\scriptsize(Same conclusion of slowed clocks)}
 \end{aligned}\)
 
 \vspace{20pt}\noindent
-\begin{minipage}[t]{.54\textwidth}
+\begin{minipage}[t]{.6\textwidth}
 	% Length Contraction
 	\underline{Length Contraction}: \ \ \(\boxed{ \Delta x' = \gamma \Delta x }\)\\[10pt]
 	\indent \(1.)\ \begin{aligned}[t]
@@ -183,9 +241,26 @@
 
 	% Velocity addition
 	\vspace{20pt}\noindent
-	\underline{Velocity Addition (1-D)}: \ \ \(\boxed{ w = \frac{v + u}{1 + vu/c^2} }\)	
+	\underline{Velocity Addition (1-D)}: \\ 
+	\(\boxed{ \begin{aligned}
+		& w_1 = \frac{\gamma_u(v_1 + u)}{\gamma_u(1 + v_1u/c^2) = t/t' = \gamma_v/\gamma_w} 
+			\hspace{7pt} \leftarrow \hspace{7pt} \mss{ 
+				\big[ L_{-u} \big] 
+				\left[ \begin{matrix}
+					ct\\
+					vt\\
+				\end{matrix} \right]
+				= 
+				\left[ \begin{matrix}
+					ct'\\
+					wt'\\
+				\end{matrix} \right]
+			}
+			\\
+		& \tanh(\phi_1+\phi_2) = \frac{\tanh\phi_1 + \tanh\phi_2}{1 + \tanh\phi_1 \tanh\phi_2}
+	\end{aligned} }\)	
 \end{minipage}
-\begin{minipage}[t]{.45\textwidth}
+\begin{minipage}[t]{.39\textwidth}
 	\setlength{\parindent}{.5cm}
 	% Pythagorean Triples
 	\noindent
@@ -289,16 +364,21 @@
 % Momentum
 \subsection{Momentum}
 \vspace{-5pt}
-\begin{minipage}{0.45\textwidth}
-	\begin{eqnarray*}
-	\contra{p} &=& (p^0, \vec{p}) \\[5pt]
-		&=& m\frac{d\contra{x}}{d\tau} \ =\  m \contra{\eta} \\[5pt]
-		&=& \boxed{ (\gamma mc, \gamma m\vec{v}) \ =\  \left( \tfrac{E}{c}, \vec{p} \right) }
-	\end{eqnarray*}
-\end{minipage}
+\hfill
+\(
+	\begin{aligned}[t]
+		\contra{p} & = (p^0, \vec{p}) \\[5pt]
+			& = m\frac{d\contra{x}}{d\tau} \ =\  m \contra{\eta} \\[5pt]
+			& = \boxed{ (\gamma mc, \gamma m\vec{v}) \ =\  \left( \tfrac{E}{c}, \vec{p} \right) }
+	\end{aligned}
+	\hspace{2pt}
+	\begin{aligned}[t]
+		\Aboxed{ \tfrac{\hsvec{p}c}{E} & = \hsvec{\beta} }
+	\end{aligned}
+\)
 \hfill
 % Momentum Dot Product
-\begin{minipage}{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 	\(\pm \contra{p}\covar{p} \ =\ \boxed{ {\boldsymbol{p}}^2 \ =\ m^2c^2 \ =\  \left( \tfrac{E}{c} \right)^2 - \vec{p}^{\ 2}}\)
 
 	\vspace{20pt}
@@ -311,19 +391,150 @@
 
 % Example
 \vspace{20pt}
-\indent \underline{Particle Decay Example: Rest \(M_1 \rightarrow m_2 + m_3\)}\\[10pt]
+\indent \underline{Decay from Rest \(M_1\): \(M_1 \rightarrow m_2 + m_3\)}\\[10pt]
 \indent \(\begin{aligned}
-	p_3^2 &= (p_1 - p_2)^2 \\[5pt]
-	&= p_1^2 + p_2^2 - 2 p_1 \dotP p_2\\[5pt]
-	m_3^2c^2 &= M_1^2c^2 + m_2^2c^2 - 2 (M_1 c,0) \dotP (E_2/c,\vec{p}_2)\\[5pt]
-	&= M_1^2c^2 + m_2^2c^2 - 2 M_1 E_2
+	P_3^2 &= (P_1 - P_2)^2 \\[5pt]
+	& = P_1^2 + P_2^2 - 2 P_1 \dotP P_2\\[5pt]
+	m_3^2c^2 & = M_1^2c^2 + m_2^2c^2 - 2 (M_1 c,0) \dotP (E_2/c,p_2)\\[5pt]
+	& = M_1^2c^2 + m_2^2c^2 - 2 M_1 E_2
 \end{aligned} \ \ \Rightarrow \ \
 \boxed{ \begin{aligned}
-	E_2 &= \dfrac{M_1^2c^2 + m_2^2c^2 - m_3^2c^2 }{2M_1}\\[5pt]
-	E_3 &= \dfrac{M_1^2c^2 + m_3^2c^2 - m_2^2c^2 }{2M_1}
+	E_2 & = \dfrac{M_1^2c^2 + m_2^2c^2 - m_3^2c^2 }{2M_1}\\[5pt]
+	E_3 & = \dfrac{M_1^2c^2 + m_3^2c^2 - m_2^2c^2 }{2M_1}
 \end{aligned} }\)
 
 %--------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+% Decay from Rest to Maximum Energy
+\indent \underline{Decay from Rest \(m_a\) to Maximum \(E_b\) (same as first):\ \(m_a \rightarrow m_b + M\)}\\[10pt]
+\indent \(
+	\begin{aligned}
+		(m_a, 0) & = (E_b, p_b) + (E_M, -p_b)\\
+		*\ \Aboxed{ (P_M)^2 & = (P_a - P_b)^2 = P_a^2 + P_b^2 - 2P_a \cdot P_b}\\
+		M^2 & = m_a^2 + m_b^2 - 2E_b m_a 
+	\end{aligned}
+	\ \Rightarrow\ E_b = \tfrac{m_a^2 + m_b^2 - M^2}{2m_a}c^2
+\)
+
+\vspace{20pt}
+% Min Energy to create particle
+\indent \underline{Min. Threshold \(E_a\) to Create \(M_{rest}\): \(m_a + m_{b=rest} \rightarrow M_{rest} = \sum m\)}\\[10pt]
+\indent \(
+	\begin{aligned}
+		\left[ (E_a, p_a) + (m_b, 0) \right]^2 & = (M,0)^2 \\
+		\underline{ (\tfrac{E_a}{c})^2 } + m^2c^2 + 2E_a m_b - \underline{ p_a^2 } & = M^2 c^2\\
+	\end{aligned}
+	\ \Rightarrow\
+	\begin{aligned}
+		E_a & = \boxed{ 
+			\frac{M^2 - \underline{m_a^2} - m^2_{b}}{2 m_{b}} c^2
+		}
+	\end{aligned}
+\)
+
+\vspace{20pt}
+% Threshold energy to create particle of energy E
+\indent \underline{Min. Threshold \(E_a\) to Create %
+\(E_m\): \(m_{a\rightarrow} + m_{b=rest} \rightarrow M_{\leftarrow} + m_{\rightarrow}\)}\\[10pt]
+\indent \(
+	\begin{gathered}
+		(E_a, p_a) + (m_b, 0) \rightarrow (E_M, - p_m + p_a) + (E_m, p_m)\\
+		*\ \boxed{ (P_a - P_m)^2 = (P_M - P_b)^2 = P_M^2 + P_b^2 - 2P_m \cdot P_b}\\
+		m_a^2 + m^2 - 2(E_a E_m - p_a \cdot p_m) = M^2 + m_b^2 - 2 E_M m_b\\
+		4 p_a^2 p_m^2 \cos^2\phi_{am} = ([\mss{M^2 + m_b^2 - m_a^2 - m^2}] + 2E_a E_m - 2(E_a + m_b - E_m) m_b)^2 \\
+		4 (E_a^2 - m_a^2) p_m^2 \cos^2\phi = (E_a [Y = \mss{2E_m - 2 m_b}] + X)^2 = E_a^2 Y^2 + X^2 + 2XYE_a\\
+		0 = \underline{ (Y^2 - 4p_m^2 \cos^2\phi) E_a^2 + 2XYE_a + (X^2 + 4m_a^2 \cos^2\phi) }
+			\ \Rightarrow\ E_a = \tfrac{-b + \sqrt{b^2-4ac}}{2a}
+		\\
+	\end{gathered}
+\)
+
+\vspace{20pt}
+% Compton Scattering Example
+\parbox[t]{9.3cm}{ \scriptsize
+	\indent \underline{(Compton Scattering) \(\lambda'\) from \(\lambda\) and \(\theta\): %
+	\(\gamma + e_{rest} \rightarrow \gamma + e\)}\\[10pt]
+	\indent \(
+		\begin{aligned}
+			& (E_\gamma, p_\gamma, 0) + (m_e, 0, 0) 
+				= (\underline{E_\gamma'}, p_\gamma'\cos\theta, p_\gamma'\sin\theta) 
+				+ (\underline{E_e'}, p_e'\underline{\cos\phi}, p_e'\sin\phi)
+				\\[10pt]
+			& *\ (P_1 - P_3)^2 = (P_4-P_2)^2 
+				\ \Rightarrow\ E_\gamma E_\gamma' - E_\gamma E_\gamma' \cos\theta = m(E_\gamma' - E_\gamma)
+				\\[5pt]
+			& \Rightarrow\ E_\gamma' = \tfrac{E_\gamma m_e}{m + (1-\cos\theta)E_\gamma}
+				\ \Rightarrow\ \boxed{ \lambda' = \lambda + \tfrac{h}{mc}(1-\cos\theta) }
+		\end{aligned}
+	\)
+}
+\vline
+\hspace{5pt}
+% Lab Frame
+\mss{ \begin{aligned}[t]
+	& \underline{ \text{Scattering Angle}:\ m_1 + m_{2} \rightarrow m_3 + m_4 }\\[5pt]
+	& \ast (P_1 - P_3)^2 = (P_4-P_2)^2\\ 
+	& \boxed{ 
+			\mss{ \left| \arraycolsep=2pt \begin{matrix}
+				p_1 & p_2 \\
+				p_4 & p_3
+			\end{matrix} \right| }
+			= 
+			\mss{ \left| \arraycolsep=2pt \begin{matrix}
+				E_1 & E_2\\
+				E_4 & E_3
+			\end{matrix} \right| }
+			- \frac{(m_1^2 - m_2^2) + (m_3^2 - m_4^2)}{2} 
+		}
+\end{aligned} }
+
+\vspace{20pt}
+% Example Breit Frame
+\indent \underline{Scattering of \(E_a, \theta\) in CM Frame to \(E_a'\) in \textit{Breit Frame} \(\mss{(p_a' \rightarrow -p_a')}\):\ %
+\(A + B \rightarrow A + B\)}\\[10pt]
+\indent \(
+	\begin{aligned}
+		& (CM)\ \mss{ 
+			(E_a, p_a, 0) + (E_b, -p_a, 0) = \underline{(E_a, p_a \cos\theta, p_a \sin\theta)} 
+			+ (E_b, -p_a \cos\theta, -p_a \sin\theta) 
+			\ \equiv\ (P_1 + P_2 = P_3 + P_4)
+			}
+			\\
+		& (Breit)\ \mss{
+			\underline{(E_a', p_a', 0)} + (E_b', -p_b' \cos\phi, -p_b' \sin\phi) 
+			= \underline{(E_a', -p_a')} + (E_b', p_a' - p_b' \cos\phi, -p_b' \sin\phi)
+			\ \equiv\ (Q_1 + Q_2 = Q_3 + Q_4)
+			}
+			\\[5pt]
+		& \begin{aligned}
+			*\ P_1 \cdot P_3 & = Q_1 \cdot Q_3\\
+			\mss{ E_a^2 - p_a^2\cos\theta } & = \mss{ E_a'^2 + p_a'^2 = 2E_a'^2 - m_a^2 }
+			\end{aligned}
+			\ \Rightarrow\ E_a' = \sqrt{ \tfrac{ m_a^2(1+cos\theta) + E_a^2(1-\cos\theta) }{2} }
+			= \boxed{ \sqrt{ m_a^2 \cos^2\tfrac{\theta}{2} + E_a^2 \sin^2\tfrac{\theta}{2} } }
+			\\[10pt]
+	\end{aligned}
+\)
+
+\indent \(\begin{aligned}
+	& \boxed{
+			\text{CM Frame} = \text{Individual Particle Energy/Momentum is Conserved}
+		}
+		\\
+	& \boxed{ 
+			\text{CM} \rightarrow \text{Breit Frame} = Rot(\tfrac{\theta}{2}) 
+			+ \left[ \beta_{shift} = \tfrac{p_a c \cos(\theta/2)}{E_a} = \tfrac{\sqrt{E_a^2 + m_a^2} \cos(\theta/2)}{E_a} \right]
+		}
+\end{aligned}\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-----------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
 % Acceleration and Force
 \subsection{Acceleration and Force}
 \vspace{-5pt}

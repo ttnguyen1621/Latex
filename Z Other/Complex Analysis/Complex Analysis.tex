@@ -32,7 +32,7 @@
 			& f = u + iv\\[-1pt]
 			& h = \sigma + i \tau
 		\end{aligned} }
-		\hspace{5pt} \ \Rightarrow\ \mss{ 
+		\hspace{5pt} \ \Leftrightarrow\ \mss{ 
 			\begin{gathered}
 				\underline{\text{Cauchy-Riemann Eq.}}\\
 				\boxed{ \partial f / \partial \bar{z} = 0 }
@@ -45,8 +45,12 @@
 					,\ \ r \frac{\partial v}{\partial r} = - \frac{\partial u}{\partial \theta}
 			\end{aligned} }
 		}
-		\\[5pt]
-	& \bullet\ \Big( \text{C-R Eq.}\big|_z \Big) , \Big( f\mss{(z)} \in C^1 \Big) \ \Rightarrow\ \exists f'\mss{(z)}
+		\\[-5pt]
+	& \bullet\ \mss{ \begin{aligned}
+			\exists \partial_{x,y} f\big|_z \in C^1 , \text{CR Eq.}\big|_z  \\
+			f\big|_z \in C^1 , \exists \partial_{x,y} f\big|_z, \text{CR Eq.}\big|_z \\
+		\end{aligned} }
+		\ \Rightarrow\ \text{Holo}\big|_z
 		\hspace{20pt} \bullet\ \tfrac{\partial}{\partial z} 
 		= \tfrac{\partial x}{\partial z} \tfrac{\partial}{\partial x} + \tfrac{\partial y}{\partial z} \tfrac{\partial}{\partial y}
 		\hspace{5pt} , \ \mss{ \begin{aligned}
@@ -62,14 +66,21 @@
 \vspace{10pt}
 % Definitions
 \(\begin{aligned}
-	& \underline{\text{Holomorphic}}:\ \forall z \in D ,\ \exists f'\mss{(z)}
+	& \underline{\text{Holomorphic at \(z_0\)}}:\ \mss{ \begin{gathered}
+			\exists V_{z_0},\hs \forall z \in V_{z_0},\hs \exists f'\mss{(z)}\\
+			\text{Holo}\big|_{z_0} \Rightarrow  \exists \partial_{x,y} f\big|_{z_0},\hs \text{CR}\big|_{z_0}
+		\end{gathered} }
 		\hspace{20pt} \underline{\text{Smooth}}:\ f\mss{(z)} \in C^\infty
-		\hspace{20pt} \underline{\text{Entire}}:\ \text{Analytic everywhere}
+		\hspace{20pt} \underline{\text{Entire}}:\ \text{\scriptsize Holomorphic over all \(\mathbb{C}\)}
 		\\[10pt]
 	& \underline{\text{Analytic}}:\ f\mss{(z_0)} \in C^\omega \subset C^\infty:\ 
-		\exists \delta>0,\ \forall |z| < \delta,\ f\mss{(z_0+z)} = \mss{\sum} a_n z^n
+		\mss{ \begin{aligned}
+			\exists V_{z_0}, & \ \forall z \in V_{z_0}\\		
+			\exists \delta>0, & \ \forall |z| < \delta\\	
+		\end{aligned} }
+		,\ f\mss{(z_0+z)} = \mss{\sum} a_n z^n
 		\ \rightarrow\ \boxed{ f\mss{(z)} = \mss{\sum}\hs a_n \mss{(z-z_0)}^n }
-		\\[5pt]
+		\\[0pt]
 	& \bullet\ \mss{\sum}\hs a_n \mss{(z_1-z_0)}^n 
 		\ \Rightarrow\ \mss{\sum}\hs \big| a_n \mss{(z-z_0)}^n \big| :\ \boxed{ |z-z_0| < |z_1-z_0| }
 		\hspace{20pt} \bullet\ \boxed{ a_n = \tfrac{f^{n} (z_0)}{n!} }
@@ -160,7 +171,8 @@
 % Cauchy's Formula
 \(\begin{aligned}
 	& \underline{\text{Cauchy's Formula}}:\ \boxed{ f\mss{(z_0)} = \frac{1}{2\pi i} \oint \frac{f\mss{(z)}}{z-z_0} \hs dz }
-		\ \Rightarrow\ f\mss{(z)} = \mss{\sum}\hs a_n (z-z_0)^n \hspace{15pt} \text{\scriptsize(Power series/analytic)}
+		\ \Rightarrow\ f\mss{(z)} = \mss{\sum}\hs a_n (z-z_0)^n 
+		\hspace{15pt} \boxed{ \text{\scriptsize(Holo \(\rightarrow\) Analytic)} }
 		\\[5pt]
 	& 1.\ f\mss{(z_0)} = \lim_{r \rightarrow 0}\ \tfrac{1}{2\pi i} 
 		\mss{ \int_0^{2\pi} } \tfrac{f (z_0 + r e^{i\theta})}{r e^{i\theta}} \hs i r e^{i\theta} \hs d\theta
@@ -173,7 +185,7 @@
 		\\[5pt]
 	% Louisville's Theorem
 	& \bullet\ \text{Louisville's Theorem}:\ 
-		f \text{ is entire},\ \exists M>0,\ f\mss{(z)} \leq M \ \Rightarrow\ f\mss{(z)} = c
+		f \text{ is entire},\ \exists M>0,\ \forall |f\mss{(z)}| \leq M \ \Rightarrow\ f\mss{(z)} = c
 		\\[5pt]
 	& \bullet\ \text{Analytic}:\ \exists F (\text{\scriptsize holo.},\ \text{\scriptsize cont.}\ F') 
 		\ \Rightarrow\ F = \mss{\sum} b_n\mss{(z-z_0)}^n 
@@ -208,7 +220,8 @@
 					\\
 				\text{Pole}:\ \ & f\mss{(z)} = \mss{\sum_{-m}}\hs a_n \mss{(z-z_0)}^n 
 					\hspace{10pt} \mss{(m \geq 1)}
-					\ =\ \tfrac{1}{g(z)} = \tfrac{H(z) = \frac{1}{h(z)}}{(z-z_0)^m}
+					\ =\ \tfrac{H(z) = \frac{1}{h(z)}}{(z-z_0)^m} 
+					= \tfrac{1}{g(z)}
 					\\
 				\mss{ \begin{gathered}
 					\text{Essential}\\[-5pt]
@@ -226,13 +239,13 @@
 		& \bullet\ \boxed{ \mss{\oint_\gamma} \hs f\mss{(\zeta)} \hs\hs d\zeta 
 			= 2\pi i\ \mss{\sum_{\text{sing.}}}\ \text{Res}\hs \mss{(f;z_0)} }
 			\\
-		& \bullet\ g\mss{(z)} = \mss{(z-z_0)}^j 
-			\ \Rightarrow\ \mss{
+		& \bullet\ \underline{ g\mss{(z)} = \mss{(z-z_0)}^n }
+			\hs \Rightarrow\hs \boxed{ \mss{
 				\text{Res}\hs (g;z_0) = \left\{ \begin{aligned}
-					0 & \hspace{10pt} j \neq -1\\
-					1 & \hspace{10pt} j = -1\\
+					0 & \hspace{7pt} {\scriptstyle n \neq -1}\\
+					1 & \hspace{7pt} {\scriptstyle n = -1}\\
 				\end{aligned} \right.
-			}
+			} }
 			\\[3pt]
 		& \bullet\ \text{Pole} \rightarrow \boxed{ \text{Res}\hs \mss{(f;z_0)} = a_{-1} = \tfrac{H^{(m-1)}(z_0)}{(m-1)!} }\\[3pt]
 		& \ast\ f\mss{(z)} = \tfrac{H(z)}{z-z_0} \rightarrow \text{Res}\hs \mss{(f;z_0)} = H\mss{(z_0)}\\[3pt]
@@ -247,27 +260,129 @@
 		f\mss{(z)} = \mss{\sum_{-\infty}^\infty} \hs a_n \mss{(z-z_0)}^n
 		= \mss{\sum_{0}^\infty} \hs a_n \mss{(z-z_0)}^n 
 		+ \underline{ \mss{\sum_1^\infty} \hs b_n \mss{(z-z_0)}^{-n} } \ \leftarrow\ \text{\scriptsize principal part}
-		\\[10pt]
-	& \bullet\ f\mss{(z)} = P\mss{(z)} + \tfrac{Q(z)}{R(z)} 
-		= P\mss{(z)} + \tfrac{a}{z-3} + \tfrac{b}{z-5} 
-		= P\mss{(z)} + \sum \left\{\ \begin{aligned}
-			& \tfrac{-a}{3} \left( \tfrac{z}{3} \right)^n 
-				-\tfrac{b}{5} \left( \tfrac{z}{5} \right)^n & &
-				\hspace{10pt} \mss{|z| < 1}
-				\\[5pt]
-			& \tfrac{a}{z} \left( \tfrac{3}{z} \right)^n 
-				-\tfrac{b}{5} \left( \tfrac{z}{5} \right)^n & &
-				\hspace{10pt} \mss{1 < |z| < 5}
-				\\[5pt]
-			& \tfrac{a}{z} \left( \tfrac{3}{z} \right)^n 
-				+ \tfrac{b}{z} \left( \tfrac{5}{z} \right)^n & &
-				\hspace{10pt} \mss{5 < |z|}
-		\end{aligned} \right.
+		\\
+	& \bullet\ \boxed{a_n = \tfrac{1}{2\pi i} 
+			\begin{aligned}[t]
+				& \oint \tfrac{f(\zeta)}{(\zeta-z_0)^{n+1}} \hs d\zeta\\[-5pt]
+				& \hspace{7pt} {\scriptstyle |\zeta-z_0|\ \text{analytic}}
+			\end{aligned}
+		}
+		\hspace{10pt}
+		\bullet\ \boxed{ b_n = \tfrac{1}{2\pi i} 
+			\begin{aligned}[t]
+				& \oint f\mss{(\zeta)} \mss{(\zeta-z_0)^{n-1}} \hs d\zeta\\[-6pt]
+				& \hspace{8pt} {\scriptstyle |\zeta-z_0|\ \text{analytic}}
+			\end{aligned}
+		}
 \end{aligned}\)
 
-\vspace{10pt}
-\hrule
-\vspace{10pt}
+\vspace{-13pt}
+\(
+	\begin{aligned}	
+		& \ast\ \text{Exam.}:\ f\mss{(z)} = P\mss{(z)} + \tfrac{Q(z)}{R(z)} 
+			= P\mss{(z)} + \tfrac{a}{z-3} + \tfrac{b}{z-5} 
+			= P\mss{(z)} + \sum \left\{\ \begin{aligned}
+				& \tfrac{-a}{3} \left( \tfrac{z}{3} \right)^n 
+					-\tfrac{b}{5} \left( \tfrac{z}{5} \right)^n & &
+					\hspace{10pt} \mss{|z| < 1}
+					\\[5pt]
+				& \tfrac{a}{z} \left( \tfrac{3}{z} \right)^n 
+					-\tfrac{b}{5} \left( \tfrac{z}{5} \right)^n & &
+					\hspace{10pt} \mss{1 < |z| < 5}
+					\\[5pt]
+				& \tfrac{a}{z} \left( \tfrac{3}{z} \right)^n 
+					+ \tfrac{b}{z} \left( \tfrac{5}{z} \right)^n & &
+					\hspace{10pt} \mss{5 < |z|}
+			\end{aligned} \right.
+			\\[-12pt]
+		& \bullet\ f(z) = \sum_i P(\tfrac{1}{z-z_i}) + 
+			\begin{gathered}[t]
+				P(z) \\[-7pt]
+				\text{\scriptsize(analytic)}\\
+			\end{gathered} 
+			\\[3pt]
+		& \ast\ \tfrac{1}{(1-z)^2} \ =\ (1 + z + z^2 ...)^2 \ =\ 1 + 2z + 3z^2 ...
+			\hspace{20pt}
+			\ast\ \boxed{ \tfrac{1}{(1-z)^k} = \mss{\sum} \tfrac{(n + k-1)!}{n!(k-1)!} z^n }
+			\hspace{10pt} 
+			\begin{gathered}
+				\text{\scriptsize(\(n\) stars, \(k-1\) bars)}\\[-5pt]
+				\text{\scriptsize[last bar can't move]}
+			\end{gathered}
+			\\
+	\end{aligned}
+\)\\[5pt]
+\(
+	\begin{aligned}
+		\hs\hs\hs \ast & \ f \mss{(z)} = \tfrac{H(z)}{R(z)}
+			= \tfrac{H\mss{(z)}}{(z-z_1) (z-z_2)^3 }
+			= \boxed{ \tfrac{H_1\mss{(z)}}{z-z_1} = \tfrac{H_2\mss{(z)}}{(z-z_2)^3} }
+			= \boxed{ \tfrac{ H_1\mss{(z_1)} }{z-z_1} 
+				+ \tfrac{ H''_2(z_2) / 2! }{z-z_2} 
+				+ \tfrac{ H'_2(z_2) / 1! }{(z-z_2)^2}
+				+ \tfrac{ H_2(z_2) }{(z-z_2)^3}
+				+ P(z)
+			}
+			\\[3pt]
+		& = \boxed{ \tfrac{ \text{Res}(f;\hs z_1) }{z-z_1} 
+				+ \tfrac{ \text{Res}(f;\hs z_2) }{z-z_2} 
+				+ \tfrac{ \text{Res}((z-z_2) f;\hs z_2) }{(z-z_2)^2}
+				+ \tfrac{ \text{Res}((z-z_2)^2 f;\hs z_2) }{(z-z_2)^3}
+				+ P\mss{(z)}
+			}
+			\\[3pt]
+		& = \tfrac{Q(z) + P(z) \hs R(z)}{R(z)} 
+			= \boxed{ \tfrac{ Q_1\mss{(z_1)} }{z-z_1} 
+				+ \tfrac{ Q''_2(z_2) / 2! }{z-z_2} 
+				+ \tfrac{ Q'_2(z_2) / 1! }{(z-z_2)^2}
+				+ \tfrac{ Q_2(z_2) }{(z-z_2)^3}
+				+ P(z)
+			}
+			\hspace{20pt} 
+			\begin{gathered}
+				\\[-40pt]
+				\mss{ H_i(z) = Q_i(z) + {(z-z_i)^{n_i} } P(z) }\\[-2pt]
+				\mss{n {<} n_i} \hs ,\ \underline{H_i^{(n)}(z_i) = Q_i^{(n)}(z_i)}\\[-1pt]
+				\text{\scriptsize(or \(\tfrac{Q}{R}(\infty) = 0 \ \Rightarrow\ P'(z) = 0\))}
+			\end{gathered}
+			\\[3pt]
+		& = \tfrac{1}{z} \tfrac{ Q_1\mss{(z_1)} }{1-\tfrac{z_1}{z}} 
+			+ \tfrac{1}{z} \tfrac{ Q''_2(z_2) / 2! }{1-\tfrac{z_2}{z}} 
+			+ \tfrac{1}{z^2} \tfrac{ Q'_2(z_2) / 1! }{(1-\tfrac{z_2}{z})^2}
+			+ \tfrac{1}{z^3} \tfrac{ Q_2(z_2) }{(1-\tfrac{z_2}{z})^3}
+			+ P(z)
+			\\[3pt]
+		& = \boxed{ \mss{ 
+			\tfrac{ Q_1\mss{(z_1)} }{0!} Z_1 \left\{ \binom{n}{n} z_1^n \right\}
+			+ \tfrac{ Q''_2(z_2) }{2!} Z_1 \left\{ \binom{n}{n} z_2^n \right\}
+			+ \tfrac{ Q'_2(z_2) }{1!} Z_2 \left\{ \binom{n+1}{n} z_2^n \right\}
+			+ \tfrac{ Q_2(z_2) }{0!} Z_3 \left\{ \binom{n+2}{n} z_2^n \right\}
+			}
+			+ P(z) }
+			\\[3pt]
+		\hs\hs\hs \ast & \ Z\{\mss{a_n = - ba_{n-1} - ca_{n-2} + g_{n-2}}\} 
+			= \tfrac{ \hsvec{R}(z) \hs\cdot\hs (a_0 + \tfrac{a_1}{z},\hs\hs a_0,\hs\hs 0) }{
+				R(z) = z^2 + bz + c
+			}
+			+ \tfrac{Z\{g_n\}}{R(z)}
+			= 
+			\begin{gathered}[t]
+				a_0 + \tfrac{Q(z)}{R(z)}\\[-3pt]
+				\text{\scriptsize\(Z\{\)homogeneous\(\}\)}
+			\end{gathered}  
+			+ 
+			\begin{gathered}[t]
+				\tfrac{Z\{g_n\}}{R(z)}\\[-3pt]
+				\text{\scriptsize\(Z\{\)particular\(\}\)}
+			\end{gathered}
+	\end{aligned}
+\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
 \(\begin{aligned}
 	% Green's\Stokes' Theorem
 	\begin{gathered}
@@ -395,56 +510,318 @@
 % Conformal Mapping
 \section{Conformal Mapping}
 
-\(\begin{aligned}
+\(
 	% e^z
-	& \bullet\ e^z = e^x e^{iy} = e^x (\cos y + i \sin y) :\ 
-		\left\{ \mss{ \begin{aligned}
-			& x \in (-\infty, 0], [0, \infty)\\[-1pt]
-			& y \in [0, \pi], [\pi, 2\pi] + \theta_0
-		\end{aligned} } \right. 
-		\ \rightarrow\
-		\mss{ \begin{aligned}
-			R & \in (0, 1], [1, \infty)\\
-			\theta & \in [0, \pi], [\pi, 2\pi]
-		\end{aligned} }
-		\\[5pt]
+	\bullet\ e^z = e^x e^{iy} = e^x (\cos y + i \sin y) :\ 
+	\left\{ \mss{ \begin{aligned}
+		& x \in (-\infty, 0], [0, \infty)\\[-1pt]
+		& y \in [0, \pi], [\pi, 2\pi] + \theta_0
+	\end{aligned} } \right. 
+	\ \rightarrow\
+	\mss{ \begin{aligned}
+		R & \in (0, 1], [1, \infty)\\
+		\theta & \in [0, \pi], [\pi, 2\pi]
+	\end{aligned} }
+\)
+
+\vspace{10pt}
+\(
 	% log
-	& \bullet\ \text{log}\ z = \ln R_0 + i \hs \text{arg}(z):\ 
-		\left\{ \mss{ \begin{aligned}
-			R_0 & \in (0, 1], [1,\infty)\\[-1pt]
-			\theta_0 & \in [-\pi, 0], [0, \pi]
-		\end{aligned} } \right.
-		\ \rightarrow\ 
-		\mss{ \begin{aligned}
-			u & \in (-\infty, 0], [0, \infty)\\[-1pt]
-			v & \in [-\pi, 0], [0, \pi] + 2\pi k
-		\end{aligned} }
-		\\[5pt]
+	\bullet\ \text{log}\ z = \ln R_0 + i \hs \text{arg}(z):\ 
+	\left\{ \mss{ \begin{aligned}
+		R_0 & \in (0, 1], [1,\infty)\\[-1pt]
+		\theta_0 & \in [-\pi, 0], [0, \pi]
+	\end{aligned} } \right.
+	\ \rightarrow\ 
+	\mss{ \begin{aligned}
+		u & \in (-\infty, 0], [0, \infty)\\[-1pt]
+		v & \in [-\pi, 0], [0, \pi] + 2\pi k
+	\end{aligned} }
+\)
+
+\vspace{10pt}
+\(
 	% cosine
-	& \bullet\ \cos z = \cos x \cosh y - i \sin x \sinh y:\
-		\left\{ \mss{ \begin{aligned}
-			x & \in [0, \pm\hs \pi/2) \\[-1pt]
-			y & \in [0, \pm\hs \infty)
-		\end{aligned} } \right.
-		\ \rightarrow\ 
-		\mss{ \begin{aligned}
-			u & \in [0, \infty)\\[-1pt]
-			v & \in [0, \pm_x\pm_y\infty)
-		\end{aligned} }
-		\\[5pt]
+	\bullet\ \cos z = \cos x \cosh y - i \sin x \sinh y:\
+	\left\{ \mss{ \begin{aligned}
+		x & \in [0, \pm\hs \pi/2) \\[-1pt]
+		y & \in [0, \pm\hs \infty)
+	\end{aligned} } \right.
+	\ \rightarrow\ 
+	\mss{ \begin{aligned}
+		u & \in [0, \infty)\\[-1pt]
+		v & \in [0, \pm_x\pm_y\infty)
+	\end{aligned} }
+\)
+
+\vspace{10pt}
+\(
 	% sine
-	& \bullet\ \sin z = \sin x \cosh y + i \cos x \sinh y:\
-		\left\{ \mss{ \begin{aligned}
-			x & \in [0, \pm\hs\pi/2)\\[-1pt]
-			y & \in [0, \pm\hs\infty)
-		\end{aligned} } \right.
-		\ \rightarrow\ 
-		\mss{ \begin{aligned}
-			u & \in [0, \pm_x\infty)\\[-1pt]
-			v & \in [0, \pm_y\infty)
-		\end{aligned} }
-		\\[5pt]
-\end{aligned}\)
+	\bullet\ \sin z = \sin x \cosh y + i \cos x \sinh y:\
+	\left\{ \mss{ \begin{aligned}
+		x & \in [0, \pm\hs\pi/2)\\[-1pt]
+		y & \in [0, \pm\hs\infty)
+	\end{aligned} } \right.
+	\ \rightarrow\ 
+	\mss{ \begin{aligned}
+		u & \in [0, \pm_x\infty)\\[-1pt]
+		v & \in [0, \pm_y\infty)
+	\end{aligned} }
+\)
+
+\vspace{10pt}
+% Linear Transformation
+\(
+	\bullet\ Az + B 
+	\ \ \begin{aligned}
+		& \ast\ Cz = Re^{i\theta}z \ \ \text{\scriptsize(rotation+scale)}\\
+		& \ast\ z + C = z + a + bi \ \ \text{\scriptsize(translation)}
+	\end{aligned}
+	\ :\ 
+	\left\{ \hs \begin{gathered}
+		\text{\scriptsize rotation+scale+translation}\\[-5pt]
+		\text{\scriptsize for lines and circles}
+	\end{gathered} \right.
+\)
+
+\vspace{10pt}
+% 1/z
+\(
+	\bullet\ \begin{aligned}[t]
+		& \frac{1}{z} = \frac{x - iy}{x^2 + y^2} = u + iv \ \Rightarrow\ z = x + iy = \frac{u - iv}{u^2 + v^2}
+			\\[5pt]
+		& : \left\{ \ \begin{aligned}
+				\underline{ \alpha (x^2 + y^2) + \beta x + \gamma y = \delta } 
+					= \tfrac{\alpha + \beta u - \gamma v}{u^2 + v^2}
+					& \ \Rightarrow\ \delta (u^2 + v^2) - \beta u + \gamma v = \alpha
+					\\
+				\beta^2 + \gamma^2 + 4\alpha\gamma > 0 
+					\ , \ 
+					\boxed{ 
+						\alpha \neq 0 
+						\ , \ 
+						\mss{ \begin{aligned}
+							& \delta \neq 0 \ \ \text{\scriptsize(circle w/o 0)}\\[-3pt]
+							& \delta = 0 \ \  \text{\scriptsize(circle w/ 0)}
+						\end{aligned} } 
+					}
+					& \ \rightarrow\ \beta^2 + \gamma^2 + 4\alpha\gamma > 0 
+					\ , \ 
+					\boxed{ \mss{ \begin{aligned}
+						& \text{\scriptsize(circle w/o 0)}\\[-3pt]
+						& \text{\scriptsize(line w/o 0)}
+					\end{aligned} } }
+					\\
+				\boxed{ 
+						\alpha = 0 
+						\ , \ 
+						\mss{ \begin{aligned}
+							& \delta \neq 0 \ \ \text{\scriptsize(line w/o 0)}\\[-3pt]
+							& \delta = 0 \ \ \text{\scriptsize(line}\ y = \tfrac{-\beta}{\gamma}x)
+						\end{aligned} } 
+					}
+					& \ \rightarrow\ \beta^2 + \gamma^2 > 0
+					\ , \ 
+					\boxed{ \mss{ \begin{aligned}
+						& \text{\scriptsize(circle w/ 0)}\\[-3pt]
+						& \text{\scriptsize(line}\ v = \tfrac{\beta}{\gamma}u)
+					\end{aligned} } }
+			\end{aligned} \right.
+	\end{aligned}
+\)
+
+\vspace{10pt}
+% Linear Fractional/Mobius Transformation
+\(\displaystyle
+	\bullet\ T\mss{(z)} = \frac{az + b}{cz + d} 
+	= \tfrac{\alpha z + \beta}{\gamma z + 1} 
+	= \begin{gathered}[t]
+		\underline{ \tfrac{1}{c} \left[ (bc-ad) \tfrac{1}{cz+d} + a\right] }\\
+		: \left\{ \hs \text{\scriptsize lines+circles \(\rightarrow\) lines+circles} \right.
+	\end{gathered}
+	\ \ 
+	\mss{ \begin{aligned}[t]
+		\\[-20pt]
+		& \ast\ ad-bc = 0 \ \Rightarrow\ T' = 0 \\
+		& \ast\ T\mss{(\zeta)} = \zeta \ \Rightarrow\ 0 = c\zeta^2 + (a-d)\zeta - b\\
+		& \ast\ T^{-1}\mss{(z)} = \tfrac{-dz + b}{cz - a}
+	\end{aligned} }
+\)
+
+\vspace{10pt}
+% Linear Fractional/Mobius (Dipole)
+\(
+	\bullet\ \begin{aligned}[t]
+		& \underline{ T\mss{(\pm x_0)} = \pm x_0 = \epsilon }
+			\ \Rightarrow\ \underline{ \epsilon = \pm \sqrt{\tfrac{b}{ c \neq 0} \geq 0} } \ , \ \underline{ \mss{(a = d)} }
+			\ \Rightarrow\ \boxed{
+				T\mss{(z)} = \frac{az + c\epsilon^2}{cz + a} 
+				\ \rightarrow\ T_\epsilon\mss{(z)} = \frac{az + \epsilon^2}{z + a} 
+			}
+			\\
+		& : \left\{ 
+			\begin{gathered}
+				\text{\scriptsize Circle of Appolonius through \(x = \pm \epsilon\)} \\[-5pt]
+				% ( \text{\scriptsize Field source = \(-\epsilon \ \rightarrow\ \) Field sink = \(\epsilon\) } )
+			\end{gathered}
+			\ \rightarrow\ \text{\scriptsize Itself} \right.
+			\ \Rightarrow\ \underline{ \lim_{\epsilon\rightarrow0}\ T_\epsilon : \text{\scriptsize Dipole Circles} 
+				\ \rightarrow\ \text{\scriptsize Itself} 
+			}
+	\end{aligned}
+\)
+
+% lim n -> \infty T^n as a matrix
+\vspace{-5pt}
+\(
+	\begin{gathered}
+		T_\epsilon^n\mss{(z)} = \tfrac{\alpha_n z + \epsilon^2\gamma_n}{\gamma_n z + \alpha_n} \\[-3pt]
+		\text{\scriptsize(induction)}
+	\end{gathered}
+	\ \Rightarrow\ 
+	T^{n-1}
+	\mss{ \left[ \begin{matrix}
+		\alpha_1 \\
+		\gamma_1 
+	\end{matrix} \right] } 
+	=
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		\alpha_1 & \epsilon^2\gamma_1\\
+		\gamma_1 & \alpha_1
+	\end{matrix} \right] }^{n-1} 
+	\mss{ \left[ \begin{matrix}
+		\alpha_1 \\
+		\gamma_1 
+	\end{matrix} \hs \vline\hs 
+	\cancel{ \begin{matrix}
+		\epsilon^2\gamma_1 \\
+		\alpha_1 
+	\end{matrix} } 
+	\right] }
+	= 
+	\mss{ \left[ \begin{matrix}
+		\alpha_n \\
+		\gamma_n 
+	\end{matrix} \hs\vline\hs 
+	\cancel{ \begin{matrix}
+		\epsilon^2\gamma_n \\
+		\alpha_n 
+	\end{matrix} } 
+	\right] }
+	= 
+	\begin{gathered}[b]
+		{\scriptstyle(\alpha_1 \neq \beta_1)}
+			\\[-1pt]
+		\underline{ \tfrac{1}{2\epsilon} }
+			\mss{ \left[ \begin{matrix}
+				\epsilon(\alpha_1 + \epsilon\gamma_1)^n + \epsilon(\alpha_1 - \epsilon\gamma_1)^n \\
+				(\alpha_1 + \epsilon\gamma_1)^n - (\alpha_1 - \epsilon\gamma_1)^n \\
+			\end{matrix} \hs\vline\hs 
+			\cancel{ \begin{matrix}
+				\epsilon^2\gamma_n \\
+				\alpha_n 
+			\end{matrix} } 
+			\right] }
+	\end{gathered}
+\)
+
+\vspace{10pt}
+% epsilon = 1, limit of a_n/b_n as n -> \infty to see what limit of epsilon = 1, T^n is
+\(\displaystyle
+	\hs \mss{ \begin{aligned}
+		2\epsilon \alpha_n & = \epsilon(a + \epsilon)^n + \epsilon(a - \epsilon)^n \\
+		2\epsilon \gamma_n & = (a + \epsilon)^n - (a - \epsilon)^n 
+	\end{aligned} }
+	\ ,\ \ \underline{{ \epsilon = 1 } } \ \ \vline \ \
+	\begin{aligned}
+		\lim_{n\rightarrow\infty} \tfrac{\alpha_n}{\gamma_n} & = \epsilon \hs \tfrac{1+x^n}{1-x^n} \\
+		\mss{\scriptstyle(x = \tfrac{a-\epsilon}{a+\epsilon})} \ & = \tfrac{2\epsilon}{1-x^n} - \epsilon
+			\\[2pt]
+		% & \rightarrow\ 
+	\end{aligned}
+	\begin{gathered}
+		\rightarrow \
+			\begin{aligned}
+				& {\scriptstyle 0 < |x| < 1 } \ ( \mss{\Leftrightarrow \hs \underline{a > 0} } )\\[-5pt]
+				& {\scriptstyle 1 < |x| } \ ( \mss{\Leftrightarrow \hs \underline{a < 0} } )
+			\end{aligned}
+			\ \Rightarrow\ {
+				\lim_{n\rightarrow\infty} T_{1}^n\mss{(z)} = 
+				\mss{ \begin{aligned}
+					\epsilon & = 1\\[-5pt]
+					-\epsilon & = -1
+				\end{aligned} }
+			}
+			\\
+		\boxed{ \text{\scriptsize Source = \(\mp 1 \ \rightarrow\ \) Sink = \(\pm 1\) } } 
+	\end{gathered}
+\)
+
+\vspace{10pt}
+\(
+	x = \tfrac{Re^{i\theta} - \epsilon}{Re^{i\theta} + \epsilon} 
+	= \tfrac{R^2 - \epsilon^2 + i2R\epsilon\sin\theta}{R^2 + \epsilon^2 + 2R\epsilon\cos\theta}
+	= Ce^{i\phi}
+	\ \Rightarrow\ \tfrac{\alpha_n}{\gamma_n} 
+	= \tfrac{2\epsilon}{1-C^ne^{in\phi}} - \epsilon
+	= \tfrac{(2\epsilon - 2\epsilon C^n\cos n\phi) + i 2\epsilon C^n \sin n\phi}{C^{2n} + 1 - 2C^n\cos n\phi} - \epsilon
+\)
+
+\vspace{10pt}
+\(\displaystyle
+	\mss{ \begin{aligned}
+		-1 \leq X & = \tfrac{R^2 -\epsilon^2}{R^2 + \epsilon^2} \leq 1\\[-3pt]
+		0 \leq Y & = \tfrac{2R\epsilon}{R^2 + \epsilon^2} \leq 1
+	\end{aligned} }
+	\ , \ 
+	\mss{ \begin{gathered}
+		\tan\phi = \tfrac{Y}{X}\sin\theta\\[-1pt]
+		X^2 + Y^2 = 1
+	\end{gathered} }
+	\ , \ \mss{ \begin{gathered}
+		0 \leq C = \tfrac{ \sqrt{ X^2 + Y^2 \sin^2\theta } }{1 + Y \cos\theta } \stackrel{?}{=} 1 \\[-3pt]
+		C \stackrel{?}{=} 1 \hs \rightarrow\hs 0 \stackrel{?}{=} Y (Y\cos\theta + 1) \underline{ \cos\theta }
+	\end{gathered} }
+	:\ \lim_{n\rightarrow\infty} \tfrac{\alpha_n}{\gamma_n} \hs
+	\mss{ \begin{aligned}
+		& = \tfrac{2\epsilon}{1-e^{in\phi}} - \epsilon \ \ (C = 1: \text{Re}(a) = 0) \\
+		& = - \epsilon \ \ (C > 1: \underline{ \text{Re}(a) < 0 } ,\ \text{also } a = -\epsilon) \\
+		& = \epsilon \ \ (C < 1: \underline{ \text{Re}(a) > 0 } )
+	\end{aligned} }
+\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+\vspace{10pt}
+% General Linear Fractional Circles of Appolonius
+\(\displaystyle
+	\text{\underline{General Circles of Appolonius}}:\ 
+	\begin{aligned}
+		\zeta_\pm & = \pm A\epsilon + B\\
+		B & = \tfrac{\zeta_+ + \zeta_-}{2}\\
+		A & = \tfrac{\zeta_+ - \zeta_-}{2}
+	\end{aligned}
+	\ ,\ \ 
+	\begin{aligned}
+		T_\zeta\mss{(z)} & = \tfrac{(d + 2cB)z + c(A^2\epsilon^2 - B^2)}{cz+d}\\
+		& = \boxed{ \frac{ (D + \zeta_+ + \zeta_-)z - \zeta_+ \zeta_-}{z+D} }
+	\end{aligned}
+\)
+
+\vspace{10pt}
+\(\displaystyle
+	\mss{ \begin{aligned}
+		T\mss{(\zeta)} & = \tfrac{1}{A}\zeta - \tfrac{B}{A} = z\\
+		F\mss{(z)} & = \tfrac{az + \epsilon^2}{z + a}\\
+		T^{-1}\mss{(z)} & = Az + B = \zeta\\
+	\end{aligned} }
+	: \ T^{-1} \circ F \circ T\mss{(\zeta)} = A \left[ \tfrac{ a\zeta - aB + A\epsilon^2 }{ \zeta - B + Aa} \right] + B
+	= \boxed{ \frac{ (Aa+B)\zeta - \zeta_+ \zeta_- }{ \zeta + (Aa - B) } }
+\)
 
 %----------------------------------------------------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------------

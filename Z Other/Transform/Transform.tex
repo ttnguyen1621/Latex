@@ -2,7 +2,21 @@
 \usepackage{enumitem}
 \usepackage{amssymb}
 \usepackage{amsmath}
-\usepackage[left=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+
+\usepackage{amssymb, amsmath, amsfonts, mathtools}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{cancel}
+
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
+
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
 
 \newcommand\italicmath{\mathversion{italic}}
 \DeclareMathVersion{italic}
@@ -23,6 +37,8 @@
 \DeclareMathOperator{\Lapl}{\mathcal{L}}
 
 \begin{document}
+\parindent=0pt
+
 % Fourier Series
 \section{Fourier Series}
 	% Sine
@@ -83,35 +99,185 @@ Proof:
 
 % Laplace Transform
 \section{Laplace Transform}
-$\{ s = \sigma + i\tau \ : \ \sigma > a \}$
-\begin{itemize}
-	\item $\displaystyle\left( \left| x(t) \right| \ \leq_{t\rightarrow\infty} \ Me^{-at} \right) \ \Rightarrow \ \left( \left| x(t)e^{-st} \right| \ \leq \ Me^{at} e^{-\sigma t} \ = \ Me^{-t(\sigma-a)} \right)$ \\
-\end{itemize}
-\boldmath \begin{eqnarray*}
-	(\Lapl{\{x\}}) (s) &=& \int_{0}^{\infty} \ x(t) e^{-st} \ dt \\ \\
-	x(t) &=& \frac{1}{2\pi i} \int_{\sigma-i\infty}^{\sigma+i\infty} \ (\Lapl{\{x\}}) (s) e^{st} \ ds \\ \\
-\end{eqnarray*} \unboldmath
-$(\Lapl{ \{ x^{(n)} \} }) (s) \ = \ s^n (\Lapl{ \{ x \}})(s) - s^{n-1}x(0) - s^{n-2}x'(0) - ... - x^{(n-1)}(0)$
+\(\{ s = \sigma + i\tau \ : \ \underline{ \sigma > a } \}\)
+
+\vspace{5pt}
+\(\displaystyle
+	\bullet\ \left( \left| x(t) \right| \ \leq_{t\rightarrow\infty} \ Me^{at} \right) 
+	\ \Rightarrow \ \left( \left| x(t)e^{-st} \right| \ \leq \ Me^{at} e^{-\sigma t} \ = \ Me^{-t(\sigma-a)} \right)
+\)
+
+\boldmath \begin{align*}
+	(\Lapl{\{x\}}) (s) & = \int_{0}^{\infty} x(t) e^{-st} \ dt 
+		\ \ \stackrel{<}{\scriptstyle\sim} \ \mss{ \int_{0}^{\infty} Me^{-t(\sigma-a)} dt \ \leftarrow\ \underline{ \sigma > a } }
+		\\[5pt]
+	x(t) & = \frac{1}{2\pi i} \int_{\sigma-i\infty}^{\sigma+i\infty} \ (\Lapl{\{x\}}) (s) e^{st} \ ds
+\end{align*} \unboldmath
+
+\( (\Lapl{ \{ x^{(n)} \} }) (s) \ = \ s^n (\Lapl{ \{ x \}})(s) - s^{n-1}x(0) - s^{n-2}x'(0) - ... - x^{(n-1)}(0) \)
 
 
-\section{Z Transform (Discrete Laplace)}
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+\newpage
 % Z Transform (Discrete Laplace)
-\boldmath \begin{eqnarray*}
-	\{\ a_n &:& \left| a_n \right| \ \leq \ MR^n \ \}\\ \\
-	(Z\{ a_n \})(z) &=& \sum\limits_{n \ = \ 0}^{\infty} \ \frac{a_n}{z^n}\\ \\
-\end{eqnarray*} \unboldmath
-$c_n \ = \ \sum\limits_{k = 0}^{n} a_k b_{n-k} \ = \ a_n \boldsymbol{*} b_n$ \\
+\section{Z Transform (Discrete Laplace)}
+
+\(\displaystyle
+	\hspace{20pt}
+	\begin{aligned}
+		& \int_0^\infty \frac{ u\mss{(x)} }{ e^{sx} } \hs dx\\[5pt]
+		& \bullet\ \mss{ |u(x)| \leq Me^{ax} }
+	\end{aligned}
+	\ \ \ \begin{gathered}
+		\Rightarrow\\[-5pt]
+		{\scriptstyle(x_n = n \Delta_x)}
+	\end{gathered}
+	\ \ \ \ \begin{aligned}
+		& \sum_{n=0}^\infty \frac{ u\mss{(x_n)} \Delta_x }{ [e^{s\Delta_x}]^{n} } 
+			= \sum_{n=0}^\infty \frac{a_n}{z^n}
+			\\[5pt]
+		& \bullet\ \mss{ |a_n| \leq MR^n }
+	\end{aligned}
+\)
+
+\boldmath \begin{gather*}
+	(Z\{ a_n \})(z) = \sum_{n \ = \ 0}^{\infty} \ \frac{a_n}{z^n} 
+		\ \ \mss{ 
+			\leq \sum_{n = 0}^\infty \frac{MR^n}{z^n}
+			\ \leftarrow\ \underline{|z| > R} 
+		}
+\end{gather*} \unboldmath
+
+% Convolution Property
+\(
+	{\textbf{Convolution}}:\ \boxed{ f_n = a_n \boldsymbol{*} y_n = \sum\limits_{k = 0}^{n} a_k y_{n-k} }
+	\ \Rightarrow\ \mss{ \begin{aligned}
+		& Z\{ f_n \} = Z\{ a_n \} Z\{ y_n \} \\
+		& Z\{ y_n \} = \tfrac{1}{ Z\{ a_n \} } Z \{ f_n \} = Z\{g_n\} Z\{f_n\}
+	\end{aligned} }
+	\ \Rightarrow\ \underline{y_n = g_n \boldsymbol{*} f_n}
+\)
+
+% Shifting Property
+\(
+	{\textbf{Shifting}}:\ \underline{ Z\{ a_{n+m} \} = a_m + \frac{a_{m+1}}{z} + \frac{a_{m+2}}{z^2} + ... } 
+	= \boxed{ \left[ Z\{ a_n \} - \mss{ \sum\limits_{j=0}^{m-1} } \hs \frac{a_j}{z^j} \right] z^m }
+\)
+
+\vspace{15pt}
+% Example
+\(
+	\begin{gathered}
+		\bullet\ f_{n+2} = y_{n+2} - 3 y_{n+1} + 2y_n \\[-2pt]
+		\mss{( a = \{1, -3, 2, 0, 0, \dots\} )} 
+	\end{gathered}
+	\ \rightarrow \
+	\begin{gathered}
+		{ Z\{f_n\} = Z\{y_n\} \left[ 1 + \tfrac{-3}{z} + \tfrac{2}{z^2} \right] }\\[-4pt]
+		\mss{( Z\{a_n\} = \text{\underline{System Transfer Func.}} )}
+	\end{gathered}
+	\ \rightarrow \
+	\mss{ \begin{aligned}
+		Z\{y_n\} & = \left[ \tfrac{2}{1-(2/z)} + \tfrac{-1}{1-(1/z)} \right] Z\{f_n\} \\
+		& =  Z\{ \mss{ \underline{ g_n = 2^{n+1} - 1} } \} Z\{f_n\}
+	\end{aligned} }
+\)
+
+\vspace{10pt}
+% Solve Example using Convolution
+\(
+	\ast\ \begin{aligned}[t]
+		& \underline{f_{n+2} = 0 \ ;\ \ f_{n\geq2} = 0}
+			\\[5pt]
+		& \tfrac{y_0}{z^0} + \tfrac{y_1}{z^1} + \tfrac{y_2}{z^2} + ... 
+			= Z\{g_n\} \left[ \tfrac{f_0}{z^0} + \tfrac{f_1}{z^1} + \tfrac{0}{z^2} + ... \right] 
+			\\
+		& \hspace{1.5cm} y_0 = g_0 f_0 \ , \ \ y_1 = g_1 f_0 + g_0 f_1 
+			\\[5pt]
+		& y_n = \underline{ g_n f_0 + g_{n-1} f_1 } \\
+		& \hspace{11pt} = { {(2^{n+1}-1)}y_0 + {(2^{n}-1)}(y_1 - 3y_0) }\\
+		& \hspace{11pt} = (2-2^n) y_0 + (2^n - 1) y_1
+	\end{aligned} 
+	\hfill \vline \hfill
+	\begin{aligned}[t]
+		& \underline{f_{n+2} = \mss{2^{n} - 1} \ ;\ \ f_{n\geq2} = \mss{2^{n-2} - 1} }
+			\\[5pt]
+		& \tfrac{y_0}{z^0} + \tfrac{y_1}{z^1} + \tfrac{y_2}{z^2} + ... 
+			= Z\{g_n\} \left[ \tfrac{f_0}{z^0} + \tfrac{f_1}{z^1} + \tfrac{f_2}{z^2} + ... \right] 
+			\\
+		& y_n = \underline{ g_n f_0 + g_{n-1} f_1 } + \mss{ \sum_{k=2}^n } g_{n-k} f_k \\[-2pt]
+		& = \mss{(2-2^n)} y_0 + \mss{(2^n - 1)} y_1 + \mss{ \sum_{k=2}^n (2^{n-k+1}-1) (2^{k-2}-1) } \\[-3pt]
+		& = \boxed{ 
+				\begin{gathered}[t]
+					\underline{ \mss{ (2-2^n)} y_0 + \mss{(2^n - 1)} y_1 + \mss{ (2 - 2^{n+1}) } } \\[-5pt]
+					\text{\scriptsize(homog. sol. \(= A + B2^n\))} 
+				\end{gathered}
+				+ \begin{gathered}[t]
+					\mss{ \underline{ (n + n2^{n-1}) } } \\[-6pt]
+					\text{\scriptsize(partic. sol.)} 
+				\end{gathered}
+			}
+	\end{aligned} 
+	\hfill\hs
+\)
+
+\vspace{10pt}
+% Solve Example using Shifting
+\(
+	\ast\ \begin{aligned}[t]
+		& \underline{ y_{n+2} - 3 y_{n+1} + 2y_n = 0 }
+			\\[5pt]
+		& 0 = \mss{ z^2 \left[ Z\{y_n\} - \tfrac{y_0}{z^0} - \tfrac{y_1}{z^1} \right]
+				- 3 z \left[ Z\{y_n\} - \tfrac{y_0}{z^0} \right]
+				+ 2 Z\{y_n\}
+			}
+			\\[5pt]
+		& Z\{y_n\} = \tfrac{ z^2 \left[ \tfrac{y_0}{z^0} + \tfrac{y_1}{z^1} \right] - 3z \tfrac{y_0}{z^0} + 2*0 }{ z^2 - 3z + 2  }
+			= \tfrac{H(z)}{z^2 - 3z + 2}
+			\\[5pt]
+		& y_n = (2-2^n) y_0 + (2^n - 1) y_1
+	\end{aligned} 
+	\hfill \vline \hfill
+	\begin{aligned}[t]
+		& \underline{ y_{n+2} - 3 y_{n+1} + 2y_n = f_n = 2^n - 1}
+			\\[5pt]
+		& \mss{ Z\{f_n\} } = \mss{ z^2 \left[ Z\{y_n\} - \tfrac{y_0}{z^0} - \tfrac{y_1}{z^1} \right]
+				- 3 z \left[ Z\{y_n\} - \tfrac{y_0}{z^0} \right]
+				+ 2 Z\{y_n\}
+			}
+			\\[5pt]
+		& Z\{y_n\} = \tfrac{ H(z) }{ z^2 - 3z + 2  } + \tfrac{ Z\{f_n\} }{ z^2 - 3z + 2  } \\[5pt]
+		& y_n = \boxed{ 
+				\begin{gathered}[t]
+					\underline{ \mss{ (2-2^n)} y_0 + \mss{(2^n - 1)} y_1 + \mss{ (2 - 2^{n+1}) } } \\[-5pt]
+					\text{\scriptsize(homog. sol. \(= A + B2^n\))} 
+				\end{gathered}
+				+ \begin{gathered}[t]
+					\mss{ \underline{ (n + n2^{n-1}) } } \\[-6pt]
+					\text{\scriptsize(partic. sol.)} 
+				\end{gathered}
+			}
+	\end{aligned} 
+	\hfill\hs
+\)
+
+\vspace{25pt}
+If all initial conditions/free parameters \((y_0, y_1, ...\ x_0, ...)\) are 0, then \boldmath{$Z\{ y_n \} = F(z) Z\{ x_n \}$}\unboldmath
 \begin{itemize}
-	\item $Z \{ c_n \} \ = \ Z\{ a_n \} Z\{ b_n \} $ \\ \\
+	\item ${y_n}$ is stable (bounded input \(x_n \rightarrow\) bounded output \(y_n\)) %
+	iff all of $F(z) = Z\{a_n\}$'s pole's are in the unit open disc.
 \end{itemize}
-\begin{flalign*}
-	Z\{ a_{n+m} \} \ &= \ a_m + \frac{a_{m+1}}{z} + \frac{a_{m+2}}{z^2} + ... && \\ \\
-	&= \ z^m \left[ \left( a_0 + \frac{a_1}{z} + ... + \frac{ a_{m-1} }{ z^{m-1} } \right) + \left( \frac{a_m}{z^m} + \frac{ a_{m+1} }{ z^{m+1} } + ... \right) - \left( a_0 + \frac{a_1}{z} + ... + \frac{ a_{m-1} }{ z^{m-1} } \right) \right] && \\ \\
-	&= \ z^m \left[ Z\{ a_n \} - \left( a_0 + \frac{a_1}{z} + ... + \frac{ a_{m-1} }{ z^{m-1} } \right) \right] && \\ \\
-	&= \ z^m \left[ Z\{ a_n \} - \sum\limits_{j=0}^{m-1} \frac{a_j}{z^j} \right] && \\ 
-\end{flalign*}
-If all initial conditions are 0, then \boldmath{$Z\{ y_n \} = F(z) Z\{ x_n \}$}
-\begin{itemize}
-	\item ${y_n}$ is stable/bounded iff all of $F(z)$'s pole's are in the unit open disc.
-\end{itemize}
+
+\(\mss{ \begin{aligned}
+	& \bullet\ y_{n+1} = x_{n+1} - x_n \ \rightarrow\ Z\{y_n\} = Z\{x_n\} \tfrac{z-1}{z} 
+		\ \rightarrow\ \underline{ \forall x_n,\hs |x_n| < M \ \Rightarrow\ |y_n| < 2M } \ \ \text{\scriptsize(bounded)}
+		\\
+	& \bullet\ y_{n+1} - y_n = x_{n+1} \ \rightarrow\ Z\{y_n\} = Z\{x_n\} \tfrac{z}{z-1} 
+		\ \rightarrow\ y_n = x_0 + x_1 + ... + x_n
+		\ \rightarrow\ \underline{ \forall x_n,\hs |x_n| < M \ \Rightarrow\ |y_n| < (n+1)M } \ \ \text{\scriptsize(unbounded)}
+\end{aligned} }\)
+
 \end{document}

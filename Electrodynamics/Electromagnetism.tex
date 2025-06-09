@@ -1246,6 +1246,68 @@ In general,
 	\Aboxed{ \vec{A'} &=  \vec{A} + \nabla \lambda } 
 \end{align*} 
 
+%-------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+% Relativistic Notation
+\(\begin{aligned}[t]
+	& \underline{ \text{Relativistic Notation},\ A^\mu = (\tfrac{V}{c}, A),\ J^\mu = (c\rho, J) } \\[10pt]
+	& F^{\mu \nu} = 
+		\left[ \arraycolsep=2pt \begin{matrix}
+			0 & -E_x & -E_y & -E_z \\
+			E_x & 0 & -B_z & B_y \\
+			E_y & B_z & 0 & -B_x \\
+			E_z & -B_y & B_z & 0 \\
+		\end{matrix} \right]
+		= \partial^\mu A^\nu - \partial^\nu A^\mu
+		\\[5pt]
+	& \partial_\mu F^{\mu\nu} = 
+		\boxed{ \frac{4\pi}{c} J^\nu = \Box A^\nu - \partial^\nu \left( \partial_\mu A^\mu \right) }
+		\hspace{15pt} \left( \Box = \tfrac{1}{dt^2} - \nabla^2 \right)
+		\\
+	& \bullet\ \text{Gauge Transformation}:\ (A')^{\mu} = A^\mu + \partial^\mu \lambda\mss{(t,x)}\\
+	& \bullet\ \text{Continuity}:\ \partial_\mu J^\mu = 0\\
+	& \text{Lorentz Condition}:\ \partial_\mu A^\mu = 0 
+		\ \Rightarrow\ \frac{4\pi}{c} J^\mu = \Box A^\mu
+		\\[5pt]
+	& \ast\ \partial_\mu A^\mu = 0,\ \underline{ \Box \lambda = 0 } \ \Rightarrow\ \partial_\mu (A')^\mu = 0
+\end{aligned}\)
+\hfill
+% Free Space = Klein Gordon Results
+\(\begin{aligned}[t]
+	& \underline{ \text{Klein-Gordon} } = \text{Free Space} :\ J^\mu = 0
+		\ \stackrel{lorentz}{\Rightarrow}\ \underline{ \Box A^\mu = 0 }
+		\\[5pt]
+	& A^\mu = a e^{- \frac{i}{\hbar} p^\mu x_\mu} \hs \epsilon^\mu\mss{(p)}
+		\ \Rightarrow\ p^\mu p_\mu = 0
+		\\
+	& \bullet\ \partial_\mu A^\mu = 0 \ \Rightarrow\ p^\mu \epsilon_\mu = 0 \\
+	& \bullet\ \epsilon^{\mu*} \epsilon_\mu = -1		
+		\\
+	& (A')^\mu = A^\mu + \partial^\mu (i\hbar ka)e^{-\frac{i}{\hbar}p^\mu x_\mu}
+		= a e^{- \frac{i}{\hbar} p^\mu x_\mu} \left[ \underline{ \epsilon^\mu\mss{(p)} + kp^\mu } \right]
+		\\[5pt]
+	& \text{Coulomb Gauge}:\ A^0 = 0\ \text{\scriptsize(can choose in free space)} 
+		\ \rightarrow\ \nabla \cdot A = 0
+		\\
+	& \bullet\ \epsilon^0 = 0 \ \rightarrow\ \epsilon \cdot p = 0 
+		\ \stackrel{p=p_z}{\Rightarrow}\ \epsilon \in 
+		\mss{ \begin{aligned}
+			&(0,1,0,0)\\
+			&(0,0,1,0) \\
+		\end{aligned} }
+		\ \Rightarrow\ \underline{ m_s = \pm 1 \neq 0 }
+		\\
+	& \bullet\ m_s = \pm(^{right}_{left}) 1 
+		\ \rightarrow\ \boxed{ \epsilon_\pm = \mp \frac{1}{\sqrt{2}} (\epsilon^{(1)} \pm i \epsilon^{(2)}) }
+		\\
+	& \bullet\ \mss{ \sum_{s=1,2} } \epsilon^{(s)}_i \epsilon^{(s)*}_j = \delta_{ij} - \hat{p}_i \hat{p}_j 
+		\hspace{10pt} \mss{(\text{or 0 if } i \text{ or } j \neq 0)}
+		\\
+\end{aligned}\)
+
 %------------------------------------------------------------------
 %
 %

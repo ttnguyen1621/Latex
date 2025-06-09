@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
-\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
-\usepackage{amssymb, amsmath, amsfonts, mathtools, bbm}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry} % Resizes the borders
+\usepackage{amssymb, amsmath, amsfonts, mathtools, bbm, esint}
 \usepackage{array,multirow}
 \usepackage{cancel}
 
@@ -350,6 +350,157 @@
 }\)
 
 %--------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+% Fund Theorem
+\underline{Fundamental Theorem}: \ \
+
+\vspace{5pt}
+\(\arraycolsep=4pt \begin{array}{c c c c l}
+	f \circ r\mss{(t_f)} - f \circ r\mss{(t_i)} & = 
+		& \mss{\displaystyle \sum \int_{t_i}^{t_f}} \tfrac{dr^i}{dt} \tfrac{\partial f}{\partial r^i} \hs dt 
+		& = 
+		& \underline{ \mss{\displaystyle \int_{t_i}^{t_f}} \tfrac{dx}{dt} \tfrac{\partial f}{\partial x} \hs dt 
+			+ \mss{\displaystyle \int_{t_i}^{t_f} } \tfrac{dy}{dt} \tfrac{\partial f}{\partial y} \hs dt }
+		\\[10pt]
+	\boxed{ \mss{\int_\gamma} \hsvec{\nabla} f \cdot d\hsvec{r} } & =
+		& \mss{\displaystyle \sum \int_{r^i_i}^{r^i_f}} dr^i \hs \tfrac{\partial f}{\partial r^i}
+		& = 
+		& \underline{ \mss{\displaystyle \int_{x_i}^{x_f} } dx \hs \tfrac{\partial f}{\partial x}
+			+ \mss{\displaystyle \int_{y_i}^{y_f} } dy \hs  \tfrac{\partial f}{\partial y} }
+		\\[10pt]
+	f\mss{(x_f, y_f)} - f\mss{(x_i, y_i)} & = 
+		& \underline{ \sum \Delta_{r^i} \tfrac{\partial f}{\partial r^i}|_{c_i} }
+		& = 
+		& {\scriptstyle(x_f-x_i)} \mss{\displaystyle \int_{x_i}^{x_f} } \tfrac{dx}{x_f-x_i} \tfrac{\partial f}{\partial x}
+			+ {\scriptstyle(y_f - y_i)} \mss{\displaystyle \int_{y_i}^{y_f} } \tfrac{dy}{y_f-y_i} \tfrac{\partial f}{\partial y}
+		\\[10pt]
+	\multicolumn{3}{r}{
+			\left( \ \begin{gathered}
+				\mss{ x(t, x_f, x_i) = x_i + t(x_f - x_i) }\\
+				\mss{ y(t, x_f, x_i) = y_i + t(y_f - y_i) }\\
+			\end{gathered} \ \right)
+		}
+		& = 
+		& \underline{ 
+			{\scriptstyle(x_f-x_i)} \mss{\displaystyle \int_{0}^{1}} dt \hs \tfrac{\partial f}{\partial x}|_{r(t, x_f, x_i)}
+			+ {\scriptstyle(y_f - y_i)} \mss{\displaystyle \int_{0}^{1}} dt \hs 
+			\tfrac{\partial f}{\partial y}|_{r(t, x_f, x_i)}
+			}
+		\\[20pt]
+	\text{Partial}:\ \underline{ \tfrac{\partial f}{\partial x} (x_i, y_i) } & = 
+			& \multicolumn{3}{l}{
+				0 + \underline{ \mss{\displaystyle \int_{0}^{1}} dt \hs \tfrac{\partial f}{\partial x}|_{r_i} }
+				+ 0 \mss{\displaystyle \int_{0}^{1}} dt \hs \tfrac{\partial^2 f}{\partial^2 x}|_{r_i}
+				+ 0 \mss{\displaystyle \int_{0}^{1}} dt \hs \tfrac{\partial^2 f}{\partial y \partial x}|_{r_i}
+			}
+\end{array}\)
+
+\vspace{15pt}
+% Vectorization and derivative of Matrices
+\(\begin{aligned}
+	Y^i_{\ j} & = X^i_{\ k}\hs X^k_{\ l}\hs X^l_{\ j}\\
+	\tfrac{\partial Y^i_{\ j}}{\partial X^a_{\ b}} & = 
+		\delta^i_{\ a} \hs e^b X X e_j + e^i X e_a \hs e^b X e_j + e^i X X e_a \hs \delta^b_{\ j}
+		\\[5pt]
+	\tfrac{\partial Y}{\partial X^a_{\ b}} & 
+		= \mathbbm{1} e_a \hs e^b X X + X e_a \hs e^b X  + X X e_a \hs e^b \mathbbm{1}
+		\\
+	& = \left[ 
+		(XX)^T (\mathbbm{1} e_a \hs e^b)^T + X^T (X e_a \hs e^b)^T + \mathbbm{1}^T (X X e_a \hs e^b)^T
+		\right]^T
+		\\
+	dY & = \left[ \mathbbm{1} e_a \hs e^b X X + X e_a \hs e^b X  + X X e_a \hs e^b \mathbbm{1} \right] dX^a_{\ b}
+		\\
+	dY & = \mathbbm{1} (dX) XX + X(dX) X + XX(dX)\mathbbm{1} 
+		\\[10pt]
+	\text{vec} \left( \tfrac{\partial Y}{\partial X^a_{\ b}} \right) &
+		= \left[ 
+			(XX)^T \otimes \mathbbm{1}  + X^T \otimes X  + \mathbbm{1}^T \otimes (XX) 
+		\right] 
+		\text{vec}(e_a \hs e^b)
+		\\
+	\text{vec}(dY) & = \left[ 
+			(XX)^T \otimes \mathbbm{1} + X^T \otimes X + \mathbbm{1}^T \otimes (XX)
+		\right] 
+		\text{vec}(dX)
+		= d\text{vec}(Y)
+		\\[10pt]
+	\tfrac{\partial Y}{\partial X} & \equiv \tfrac{\partial \text{vec(Y)}}{\partial \text{vec(X)}}
+		= (XX)^T \otimes \mathbbm{1} + X^T \otimes X + \mathbbm{1}^T \otimes (XX) 
+		\\[10pt]
+	\text{vec}(D) & = \text{vec}(ABC) = (C^T \otimes A) \text{vec}(B)  \\
+	A B C_j & = (C^k_{\ j} A) B_k = (C_j^T \otimes A) \text{vec}(B) = D_j\\
+	e^i ABC_j& = (C^k_{\ j} A^i) B_k = (C_j^T \otimes A^i) \text{vec}(B) = D^i_{\ j} \\
+\end{aligned}\)
+
+\vspace{15pt}
+% Dual Spaces
+\(\begin{aligned}
+	& \underline{ \text{Dual Space} }:\ \
+		V :\ B = 
+		\mss{ \arraycolsep=2pt \left[ \begin{matrix}
+			| & |\\
+			v_1 & v_2 \\
+			| & |
+		\end{matrix} \right] }
+		\ , \ \ 
+		\underline{ \text{Hom}(V, \mathbb{R}) = V^* } :\ B^* = 
+		{ \arraycolsep=2pt \left[ \begin{matrix}
+			- v^1 -\\
+			- v^2 -
+		\end{matrix} \right] }
+		\ \rightarrow\ B^* B = \mathbbm{1}_2
+		\\[10pt]
+	& \bullet\ \underline{ \begin{gathered}
+			\text{Adjoint of}\\
+			\text{Linear Maps}
+		\end{gathered} }
+		\ ,\ F^* 
+		\hspace{10pt} \vline \hspace{10pt}
+		\begin{gathered}
+			F: V \rightarrow W\\
+			Fv = w
+		\end{gathered}
+		\ , \ \
+		\begin{gathered}
+			F^*: W^* \rightarrow V^*\\
+			F^*(a) \in V^*
+		\end{gathered}
+		\ , \ \ 
+		\mss{ \begin{aligned}
+			\underline{ F^*(a) \cdot v } & \equiv a \cdot w \\
+			& = a^T Fv \\
+			\underline{ (F^T a) \cdot v } & = (F^T a)^T v 
+		\end{aligned} }
+		\ \Rightarrow \ \boxed{F^* = F^T}
+		\\[10pt]
+	& \bullet\ \begin{gathered}
+			\underline{ f: V \otimes W^* \rightarrow\ \text{Hom}(V,W) }\\
+			\text{\scriptsize(related to \((V^*)^* = \text{Hom}(V^*, \mathbb{R})\))}
+		\end{gathered}
+		\ \ \ \vline \ \ 
+	 	{ \begin{gathered}
+			B: W \rightarrow V \\
+			a \in W^* \\
+			B = f(v \otimes a)
+		\end{gathered} }
+		\ , \ \ 
+		\mss{ \begin{aligned}
+			f(v \otimes a) w & = (v a^T) w \\
+			& = v (a \cdot w) \\
+			Bw & = (a \cdot w) v 
+		\end{aligned} }
+		\hspace{20pt}
+		\begin{aligned}
+			& \ast\ \mss{W = V} \hs \Rightarrow\hs \mss{ Bv = (a\cdot v) v }\\[5pt]
+			& \Rightarrow\ \boxed{ f: V \otimes V^* \rightarrow \mathbb{R} }
+		\end{aligned}
+\end{aligned}\)
+
+%--------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------
@@ -357,152 +508,162 @@
 % Del
 \section{Del}
 
-\parbox[t]{.67\textwidth}{
-	% Nabla
-	\(\begin{aligned}[t]
-		\nabla F & = \hs \left( 
-				\hat{r} \dfrac{\partial}{\partial r} 
-				+ \hat{\theta} \frac{1}{r} \dfrac{\partial}{\partial \theta} 
-				+ \hat{\phi} \frac{1}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
-			\right)
-			F 
-			\\[5pt]
-		& = 
-			\left[ \begin{matrix}
-				\hat{r}\\ 
-				\hat{\theta}\\
-				\hat{\phi} 
-			\end{matrix} \right]
-			\cdot
-			\left[ \mss{ \begin{matrix}
-				\\[-12pt]
-				\tfrac{\partial}{\partial r}\\[5pt]
-				\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[5pt]
-				\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
-			\end{matrix} } \right] 
-			F
-			=
-			\left[ \ \begin{matrix}
-				\cos{\phi}\sin{\theta} \hs \hat{x} + \sin{\phi}\sin{\theta} \hs \hat{y} + \cos{\theta} \hs \hat{z} \\[5pt]
-				\cos{\phi}\cos{\theta} \hs \hat{x} + \sin{\phi}\cos{\theta} \hs \hat{y} - \sin{\theta} \hs \hat{z} \\[5pt]
-				- \sin{\phi} \hs \hat{x} + \cos{\phi} \hs \hat{y}
-			\end{matrix} \ \right]
-			\cdot
-			\left[ \mss{ \begin{matrix}
-				\\[-12pt]
-				\tfrac{\partial}{\partial r}\\[5pt]
-				\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[5pt]
-				\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
-			\end{matrix} } \right] 
-			F 
-			\\[5pt]
+% Nabla
+\(\begin{aligned}[t]
+	\nabla F & = 
+		\left[ \begin{matrix}
+			\hat{r}\\ 
+			\hat{\theta}\\
+			\hat{\phi} 
+		\end{matrix} \right]
+		\cdot
+		\left[ \mss{ \begin{matrix}
+			\\[-12pt]
+			\tfrac{\partial}{\partial r}\\[5pt]
+			\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[5pt]
+			\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
+		\end{matrix} } \right] 
+		F
+		=
+		\left[ \ \begin{matrix}
+			\cos{\phi}\sin{\theta} \hs \hat{x} + \sin{\phi}\sin{\theta} \hs \hat{y} + \cos{\theta} \hs \hat{z} \\[5pt]
+			\cos{\phi}\cos{\theta} \hs \hat{x} + \sin{\phi}\cos{\theta} \hs \hat{y} - \sin{\theta} \hs \hat{z} \\[5pt]
+			- \sin{\phi} \hs \hat{x} + \cos{\phi} \hs \hat{y}
+		\end{matrix} \ \right]
+		\cdot
+		\left[ \mss{ \begin{matrix}
+			\\[-12pt]
+			\tfrac{\partial}{\partial r}\\[5pt]
+			\tfrac{1}{r} \tfrac{\partial}{\partial \theta}\\[5pt]
+			\tfrac{1}{r\sin\theta} \tfrac{\partial}{\partial \phi}
+		\end{matrix} } \right] 
+		F 
+		\\[5pt]
+	\left[\begin{matrix}
+			\\[-12pt]
+			\tfrac{\partial}{\partial x}\\[5pt]
+			\tfrac{\partial}{\partial y}\\[5pt]
+			\tfrac{\partial}{\partial z}
+		\end{matrix}\right] 
+		F
+		& = \left[
+			\mss{ \begin{array}{c}
+				\displaystyle
+				\cos{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
+				+ \frac{\cos{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
+				- \frac{\sin{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
+				\\[10pt]
+				\displaystyle
+				\sin{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
+				+ \frac{\sin{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
+				+ \frac{\cos{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi}
+				\\[10pt]
+				\displaystyle
+				\cos{\theta} \dfrac{\partial}{\partial r} 
+				- \frac{\sin{\theta}}{ r } \dfrac{\partial}{\partial \theta} 
+				\\[10pt]
+			\end{array} }
+		\right]
+		F 		
+		\ = 
+		\left[\mss{ \begin{array}{c}
+			\displaystyle
+			\dfrac{\partial r}{\partial x} \dfrac{\partial}{\partial r} 
+			+ \dfrac{\partial \theta}{\partial x} \dfrac{\partial}{\partial \theta} 
+			+ \dfrac{\partial \phi}{\partial x} \dfrac{\partial}{\partial \phi} 
+			\\[10pt]
+			\displaystyle
+			\dfrac{\partial r}{\partial y} \dfrac{\partial}{\partial r} 
+			+ \dfrac{\partial \theta}{\partial y} \dfrac{\partial}{\partial \theta} 
+			+ \dfrac{\partial \phi}{\partial y} \dfrac{\partial}{\partial \phi} 
+			\\[10pt]
+			\displaystyle
+			\dfrac{\partial r}{\partial z} \dfrac{\partial}{\partial r} 
+			+ \dfrac{\partial \theta}{\partial z} \dfrac{\partial}{\partial \theta} 
+			+ \dfrac{\partial \phi}{\partial z} \dfrac{\partial}{\partial \phi} 
+			\\[10pt]
+		\end{array} }\right] 
+		F
+		\ =
 		\left[\begin{matrix}
-				\\[-12pt]
-				\tfrac{\partial}{\partial x}\\[5pt]
-				\tfrac{\partial}{\partial y}\\[5pt]
-				\tfrac{\partial}{\partial z}
-			\end{matrix}\right] 
-			F
-			& = \left[
-				\mss{ \begin{array}{c}
-					\displaystyle
-					\cos{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
-					+ \frac{\cos{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
-					- \frac{\sin{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi} 
-					\\[10pt]
-					\displaystyle
-					\sin{\phi}\sin{\theta} \dfrac{\partial}{\partial r} 
-					+ \frac{\sin{\phi}\cos{\theta}}{r} \dfrac{\partial}{\partial \theta} 
-					+ \frac{\cos{\phi}}{ r \sin{\theta} } \dfrac{\partial}{\partial \phi}
-					\\[10pt]
-					\displaystyle
-					\cos{\theta} \dfrac{\partial}{\partial r} 
-					- \frac{\sin{\theta}}{ r } \dfrac{\partial}{\partial \theta} 
-					\\[10pt]
-				\end{array} }
-			\right]
-			F 		
-			\ = 
-			\left[\mss{ \begin{array}{c}
-				\displaystyle
-				\dfrac{\partial r}{\partial x} \dfrac{\partial}{\partial r} 
-				+ \dfrac{\partial \theta}{\partial x} \dfrac{\partial}{\partial \theta} 
-				+ \dfrac{\partial \phi}{\partial x} \dfrac{\partial}{\partial \phi} 
-				\\[10pt]
-				\displaystyle
-				\dfrac{\partial r}{\partial y} \dfrac{\partial}{\partial r} 
-				+ \dfrac{\partial \theta}{\partial y} \dfrac{\partial}{\partial \theta} 
-				+ \dfrac{\partial \phi}{\partial y} \dfrac{\partial}{\partial \phi} 
-				\\[10pt]
-				\displaystyle
-				\dfrac{\partial r}{\partial z} \dfrac{\partial}{\partial r} 
-				+ \dfrac{\partial \theta}{\partial z} \dfrac{\partial}{\partial \theta} 
-				+ \dfrac{\partial \phi}{\partial z} \dfrac{\partial}{\partial \phi} 
-				\\[10pt]
-			\end{array} }\right] 
-			F
-			\ =
-			\left[\begin{matrix}
-				\hat{x}\\
-				\hat{y}\\
-				\hat{z}
-			\end{matrix}\right]
-			\cdot
-			\left[\begin{matrix}
-				\\[-12pt]
-				\tfrac{\partial}{\partial x}\\[5pt]
-				\tfrac{\partial}{\partial y}\\[5pt]
-				\tfrac{\partial}{\partial z}
-			\end{matrix}\right] 
-			F
-	\end{aligned}\)
+			\hat{x}\\
+			\hat{y}\\
+			\hat{z}
+		\end{matrix}\right]
+		\cdot
+		\left[\begin{matrix}
+			\\[-12pt]
+			\tfrac{\partial}{\partial x}\\[5pt]
+			\tfrac{\partial}{\partial y}\\[5pt]
+			\tfrac{\partial}{\partial z}
+		\end{matrix}\right] 
+		F
+\end{aligned}\)
 
-	\vspace{15pt}
-	\(\begin{aligned}[t]
+\vspace{15pt}
+\(
+	\begin{aligned}
 		% Divergence
 		\nabla \cdot \vec{A} \ & 
-			= \ \frac{1}{r} \frac{1}{r \sin{\theta}} 
-			\left\langle 
+			= \ \tfrac{1}{r} \tfrac{1}{r \sin{\theta}} 
+			\mss{ \left\langle 
 				\dfrac{\partial}{\partial r} , \ 
 				\dfrac{\partial}{\partial \theta} , \ 
 				\dfrac{\partial}{\partial \phi} 
-			\right\rangle 
+			\right\rangle }
 			\ \cdot \ [ r \cdot r \sin{\theta} ]
-			\left\langle A_r , \ \frac{1}{r} A_\theta , \ \frac{1}{ r \sin{\theta} } A_\phi \right\rangle
+			\mss{ \left\langle A_r , \ \frac{1}{r} A_\theta , \ \frac{1}{ r \sin{\theta} } A_\phi \right\rangle }
 			\\[15pt]
 		% Curl
 		\nabla \times \vec{A} \ & 
 			= \ \dfrac{1}{r} \dfrac{1}{ r \sin{\theta} } 
-			\begin{Vmatrix}
+			\mss{ \begin{Vmatrix}
 				\hat{r} 					 & r \hat{\theta} 			    & r \sin{\theta} \hat{\phi}\\[10pt]
 				\dfrac{\partial}{\partial r} & \dfrac{\partial}{\partial \theta} & \dfrac{\partial}{\partial \phi}\\[10pt]
 				A_r							 & r A_\theta				    & r \sin{\theta} A_\phi
-			\end{Vmatrix}
+			\end{Vmatrix} }
 			= 
-			\begin{Vmatrix}
+			\mss{ \begin{Vmatrix}
 				\tfrac{\partial \hsvec{r}}{\partial r}  
 					& \tfrac{\partial \hsvec{r}}{\partial \theta} 
 					& \tfrac{\partial \hsvec{r}}{\partial \phi} 
 					\\[10pt]
 				\dfrac{\partial}{\partial r} & \dfrac{\partial}{\partial \theta} & \dfrac{\partial}{\partial \phi}\\[10pt]
 				A_r							 & r A_\theta				    & r \sin{\theta} A_\phi
-			\end{Vmatrix}
-	\end{aligned}\)
+			\end{Vmatrix} }
+	\end{aligned}
+\)
+\hfill \vline \hfill
+\(
+	% Hodge Star and Exterior Derivative
+	\begin{aligned}
+		\nabla f & = df\\
+		A \cdot B & = {}^* \left[ (A_i \hs dx^i) \wedge {}^* (B_j \hs dx^j) \right]\\
+		\nabla \cdot A & = {}^* d {}^* (A_i\hs dx^i)\\
+		\nabla \times A & = 2{}^* d (A_i\hs dx^i)\\
+	\end{aligned}
+\)
 
-	\vspace{20pt}
-	% Double Cross Product
-	\(\begin{array}{r c l c l}
-		% A x (B x C)
+\vspace{15pt}\noindent
+% Double Cross Product
+% A x (B x C)
+\(
+	\begin{array}[t]{r c l c l}
+		% [A x (B x C)]^T
 		[ \vec{A} \times (\vec{B} \times \vec{C}) ]_i & =
 			& \vec{A} \cdot B_i \vec{C} - \vec{A} \cdot \vec{B} C_i 
 			\\[5pt]
 		[ \vec{A} \times (\vec{B} \times \vec{C}) ]^T & =
 			& \vec{A}_r * \vec{B}_r \vec{C}_c - \vec{A}_r * \vec{B}_c \vec{C}_r
-			% & =
-			% & \boxed{ \vec{A} \cdot ( \vec{B} \otimes \vec{C} )^T - \vec{A} \cdot \vec{B} \otimes \vec{C} }
 			\\[10pt]
 		\vec{A} \times (\vec{B} \times \vec{C}) & = 
-			& B (A \cdot C) - (A \cdot B) C
+			& \boxed{ (A_r B_c) C_c - (A_r \ast B_c) C_c }
+			\\[5pt]
+		& = 
+			& \underline{ (A \odot B) C - (A \cdot B) C}
+			\\[5pt]
+		\text{\scriptsize(\(A, B\) commute)} & = 
+			& B (A \cdot C) - (A \cdot B) C 
 			\\[5pt]
 		\vec{\nabla} \times (\vec{\nabla} \times \vec{C}) & = 
 			& \nabla (\nabla \cdot C) - (\nabla \cdot \nabla) C
@@ -521,24 +682,146 @@
 			& =
 			&  \mss{ \vec{C}_r * \vec{\nabla}_c \vec{B}_r + \vec{\nabla}_r * \vec{C}_c \vec{B}_r 
 				- \vec{\nabla}_r * \vec{B}_c \vec{C}_r - \vec{B}_r * \vec{\nabla}_c \vec{C}_r }
-			\\[20pt]
+	\end{array}
+	\hspace{-220pt}
+	% A x (B x C)
+	\begin{aligned}[t]
+		& \mss{ \vec{A} \times ( \vec{B} \times \vec{C} ) }
+			= \mss{ \left[ \arraycolsep=0pt \begin{matrix}
+				0 & -A_3 & A_2\\
+				A_3 & 0 & -A_1\\
+				-A_2 & A_1 & 0
+			\end{matrix} \right] }
+			\mss{ \left[ \arraycolsep=0pt \begin{matrix}
+				0 & -B_3 & B_2\\
+				B_3 & 0 & -B_1\\
+				-B_2 & B_1 & 0
+			\end{matrix} \right] }		
+			\mss{ \left[ \begin{matrix}
+				C_1\\ 
+				C_2\\ 
+				C_3
+			\end{matrix} \right] }
+			\\[5pt]
+		& \hspace{5pt} = \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			A_1 B_1 & A_2 B_1 & A_3 B_1\\
+			A_1 B_2 & A_2 B_2 & A_3 B_2\\
+			A_1 B_3 & A_2 B_3 & A_3 B_3 
+		\end{matrix} \right] }
+		\vec{C}
+		- (A \cdot B) \mathbbm{1}_3 \hs \vec{C}
+			\\[5pt]
+		& \hspace{5pt} = (A_r B_c) C_c - (A_r \ast B_c) C_c \\[5pt]
+		& \hspace{5pt} = \mss{ \underline{ (A^T {_r\otimes_c} B) C - (A^T B) C } }
+			= \mss{ \underline{ (A \odot B) C - (A \cdot B) C } } 
+	\end{aligned}
+\)
+
+\vspace{15pt}\noindent
+% (A x B) x C
+\(
+	\begin{aligned}
 		% (A x B) x C
-		[ (\vec{A} \times \vec{B}) \times \vec{C} \hs\hs ]_i & =
-			& \vec{A} B_i \cdot \vec{C} - A_i \vec{B} \cdot \vec{C}
+		[ (\vec{A} \times \vec{B}) \times \vec{C} \hs\hs ]_i & = \vec{A} B_i \cdot \vec{C} - A_i \vec{B} \cdot \vec{C} 
 			\\[5pt]
-		(\vec{A} \times \vec{B}) \times \vec{C} \hs\hs & =
-			& \vec{A}_r \vec{B}_c * \vec{C}_c - \vec{A}_c \vec{B}_r * \vec{C}_c
+		(\vec{A} \times \vec{B}) \times \vec{C} & = \boxed{ (\vec{A}_r \vec{B}_c) \vec{C}_c - \vec{A}_c \vec{B}_r * \vec{C}_c } \\
+		& = \underline{ (A^T {_r\otimes_c} B) C - (A B^T) C } \\[5pt]
+		& = \underline{ (A \odot B) C - A (B \cdot C) } \\[5pt]
+		\text{\scriptsize(\(B, C\) commute)} & = (A \cdot C) B - A (B \cdot C) 
 			\\[5pt]
-		(\vec{A} \times \vec{B}) \times \vec{C} & = 
-			& (A \cdot C) B - A (B \cdot C)
+		(\vec{A} \times \vec{\nabla}) \times \vec{C} & 
+			= ( \vec{A}_r \hsvec{\nabla}_c ) \vec{C}_c - \vec{A}_c ( \vec{\nabla}_r \cdot \vec{C}_c )
 			\\[5pt]
-		(\vec{A} \times \vec{\nabla}) \times \vec{C} & =
-			& ( \vec{A}_r \hsvec{\nabla}_c ) \vec{C}_c - \vec{A}_c ( \vec{\nabla}_r \cdot \vec{C}_c )
+		(\vec{\nabla} \times \vec{B}) \times \vec{C} & = ( \vec{\nabla}_r \hsvec{B}_c ) \vec{C} - ( \vec{\nabla}_c \vec{B}_r ) \vec{C} 
+	\end{aligned}
+	\hfill \vline \hfill
+	\begin{aligned}
+		% [(A x B) x C]^T
+		& \mss{ [ (\vec{A} \times \vec{B}) \times \vec{C} \hs\hs ]^T } = \mss{ \left[ A_1\ A_2\ A_3 \right] }
+			\mss{ \left[ \arraycolsep=0pt \begin{matrix}
+				0 & -B_3 & B_2\\
+				B_3 & 0 & -B_1\\
+				-B_2 & B_1 & 0
+			\end{matrix} \right] }
+			\mss{ \left[ \arraycolsep=0pt \begin{matrix}
+				0 & -C_3 & C_2\\
+				C_3 & 0 & -C_1\\
+				-C_2 & C_1 & 0
+			\end{matrix} \right] }
 			\\[5pt]
-		(\vec{\nabla} \times \vec{B}) \times \vec{C} & =
-			& ( \vec{\nabla}_r \hsvec{B}_c ) \vec{C} - ( \vec{\nabla}_c \vec{B}_r ) \vec{C} 
-	\end{array}\)
-}
+		& \hspace{5pt} = A^T 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				B_1 C_1 & B_2 C_1 & B_3 C_1\\
+				B_1 C_2 & B_2 C_2 & B_3 C_2\\
+				B_1 C_3 & B_2 C_3 & B_3 C_3 
+			\end{matrix} \right] }
+			- A^T \mathbbm{1}_3 \hs (B \cdot C)
+			\\[5pt]
+		& \hspace{5pt} = A_r (B_r C_c) - A_r (B_r \ast C_c)\\[5pt]
+		& \hspace{5pt} = A^T (B \odot C) - A^T (B \cdot C)
+	\end{aligned}
+\)
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+Orthogonal Coord. Change:\\[5pt]
+\(
+	\begin{aligned}[t]
+		\hsvec{v} = v^i \frac{\partial}{\partial x^i} & = v'^{\hs i} \frac{\partial}{\partial x'^{\hs i}} \\[5pt]
+		v^i e_i & = v'^{\hs i} e'_{\hs i} \\
+	\end{aligned}
+	\hspace{25pt}
+	\begin{aligned}[t]
+		e^n & = e^n_{\ i} \hs dx^i\\
+		e_n & = e_n^{\ i} \hs \tfrac{\partial}{\partial x^i}\\
+	\end{aligned}
+	\hspace{20pt}
+	\begin{gathered}[t]
+		\hsvec{v} = v^i \frac{\partial}{\partial x^i}
+			= v^i \delta_i^{k}\frac{\partial}{\partial x^k}
+			= \left(v^i \frac{\partial x'^{\hs j}}{\partial x^i}\right) 
+			\left(\frac{\partial x^k}{\partial x'^{\hs j}} \frac{\partial}{\partial x^k}\right)
+			\equiv v'^{\hs j} e'_j
+			\\
+		\bullet\ e'_j = \frac{\partial x^i}{\partial x'^{\hs j}} e_i
+			\hspace{20pt} \bullet\ v'^{\hs j} = \frac{\partial x'^{\hs j}}{\partial x^i} v^i
+			\hspace{5pt} , \hspace{5pt} dx'^{\hs j} = \frac{\partial x'^{\hs j}}{\partial x^i} dx^i
+			\\
+	\end{gathered}
+\)
+
+% \vspace{15pt}
+% \(
+% 	% Delta
+% 	\begin{aligned}
+% 		\delta^i_{\ j} e_i^{\ a} e^j_{\ a}
+% 	\end{aligned}
+% \)
+
+\vspace{15pt}
+\(
+	% Metric
+	\begin{aligned}
+		g'_{ij} & = \frac{\partial x^m}{\partial y_i} \frac{\partial x^n}{\partial y_j} g_{mn}\\
+		g'^{\hs ij} & = \frac{\partial y_i}{\partial x^m} \frac{\partial y_j}{\partial x^n} g^{mn}
+	\end{aligned}
+	\hspace{20pt}
+	\begin{aligned}
+		\delta_i^k & = g_{ij} g^{jk} =  \delta^i_k = g^{ij} g_{jk} \\[5pt]
+		\tfrac{\partial x^k}{\partial y^i} \tfrac{\partial y^i}{\partial x^i} & 
+			= \tfrac{\partial x^m}{\partial y_i} \tfrac{\partial x^n}{\partial y_j} \eta_{mn}
+			\cdot \tfrac{\partial y^j}{\partial x^p} \tfrac{\partial y^k}{\partial x^q} \eta^{pq}
+			\\
+		& = \tfrac{\partial x^m}{\partial y_i} \eta_{mn}
+			\cdot \tfrac{\partial y^k}{\partial x^q} \eta^{qn}
+			\\
+		& = \tfrac{\partial x^m}{\partial y_i} \eta_{mn}
+			\cdot \tfrac{\partial y^k}{\partial x^m} \eta^{mn}
+	\end{aligned}
+\)
 
 %--------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------
@@ -755,7 +1038,7 @@
 			\end{matrix} }
 		\right]_{t=0}
 		\hspace{-10pt} = \boxed{ J_F\mss{(0)} \cdot \alpha'\mss{(0)} }
-		\\
+		\\[-5pt]
 	& \ast\ 
 		\begin{gathered}
 			\text{\scriptsize Surface Tangent}:\\[-5pt]
@@ -769,11 +1052,16 @@
 		\end{aligned}
 		\\[10pt]
 	& \bullet d(G \circ F)_p = dG_{F(p)} \circ dF_p
-		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Regular \textbf{Value}, \(F(p)\)} }:\ dF_p \neq 0
-		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Critical \textbf{Point}, \(p\)} }:\ dF_p = 0
+		\hspace{15pt} \bullet\ \begin{aligned}[t]
+			& \underline{ \text{\scriptsize Regular \textbf{Value}, \(F(p)\)} }:\ 
+				\text{\scriptsize onto}\ dF_{\forall p} / \text{\scriptsize Full Rank} 
+				\\[-3pt]
+			& \mss{\ast\ F: R^n \rightarrow R \ \Rightarrow\ dF_p \neq 0}
+		\end{aligned}
+		\hspace{15pt} \bullet\ \underline{ \text{\scriptsize Critical \textbf{Point}, \(p\)} }:\ !\text{\scriptsize onto}\ dF_p
 \end{aligned}\)
 
-\vspace{15pt}\noindent
+\vspace{0pt}\noindent
 % F is a Homeomorphism
 \(
 	\mss{ \begin{gathered}
@@ -798,11 +1086,18 @@
 	\begin{aligned}
 		& \bullet\ F \in C^{\infty} \ \ \text{\scriptsize(cont. part. deri. of all orders)}\\
 		& \bullet\ F^{-1} \in C^\infty \hspace{10pt} \bullet\ F \text{\scriptsize\ is a bijection}
+			\\[-5pt]
+		& \mss{ \Rightarrow\ F^{-1} \circ F = 1 \Rightarrow dF^{-1} \hs dF = 1 } 
+			\hspace{5pt} \text{\scriptsize(\(\exists\) left-inv)}
+			\\[-5pt]
+		& \mss{ \Rightarrow\ F \circ F^{-1} = 1 \Rightarrow dF \hs dF^{-1} = 1 }
+			\hspace{5pt} \text{\scriptsize(\(\exists\) right-inv)}
+			\\
 	\end{aligned}
 \)
 
 % Inverse Function Theorem
-\vspace{15pt}\noindent
+\vspace{0pt}\noindent
 \(
 	\begin{gathered}
 		\text{\underline{Inverse Function}}\\
@@ -815,7 +1110,6 @@
 	\ \Rightarrow\ \exists F^{-1} \in C^\infty \hspace{10pt} \text{\scriptsize(locally at F(p))}
 \)
 
-\vspace{5pt}
 %-----------------------------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------------------------
 \section{Surfaces, \(S:\ 
@@ -1004,25 +1298,26 @@
 		\end{aligned}
 \end{aligned}\)
 
-% Regular Surface + Differentials
-\vspace{15pt}\noindent
-\(\begin{aligned}
+\vspace{10pt}\noindent
+\(
 	% Surface Tangents
-	& \bullet\ \begin{gathered}
-			\underline{ \text{Surface} }\\
-			\underline{ \text{Tangent} }
-		\end{gathered} 
-		:\ \
-		\begin{aligned}
-			q & = \gamma\mss{(t=0)} = (u\mss{(0)}, v\mss{(0)}) = X^{-1} \circ \alpha\mss{(0)}\\
-			X\mss{(q)} & = X \circ \gamma \mss{(0)} = \alpha\mss{(0)} \in S
-				\ \Rightarrow \ dX_{q}(\gamma'\mss{(0)}) = \alpha'\mss{(0)}
-				= \tfrac{\partial X}{\partial u}\mss{(q)} \hs u'\mss{(0)} + \tfrac{\partial X}{\partial v}\mss{(q)} \hs v'\mss{(0)}
-		\end{aligned}
-		\\[5pt]
+	\bullet\ \begin{gathered}
+		\underline{ \text{Surface} }\\
+		\underline{ \text{Tangent} }
+	\end{gathered} 
+	:\ \
+	\begin{aligned}
+		q & = \gamma\mss{(t=0)} = (u\mss{(0)}, v\mss{(0)}) = X^{-1} \circ \alpha\mss{(0)}\\
+		X\mss{(q)} & = X \circ \gamma \mss{(0)} = \alpha\mss{(0)} \in S
+			\ \Rightarrow \ dX_{q}(\gamma'\mss{(0)}) = \alpha'\mss{(0)}
+			= \tfrac{\partial X}{\partial u}\mss{(q)} \hs u'\mss{(0)} + \tfrac{\partial X}{\partial v}\mss{(q)} \hs v'\mss{(0)}
+	\end{aligned}
+\)
+
+\vspace{5pt}
+\(\begin{aligned}
 	% First Form
-	& \bullet\ \text{``\underline{First Form}''}:\ \left< \alpha'\mss{(0)} , \alpha'\mss{(0)} \right> 
-		= \lVert \mss{ \alpha' } \rVert^2 
+	& \textbf{{1st Fund. Form}}:\ \left< \alpha'\mss{(0)} , \alpha'\mss{(0)} \right> 
 		= \mss{
 			\left[ u' \ v' \right]
 			\left[ \begin{matrix}
@@ -1036,28 +1331,61 @@
 			\end{matrix} \right]
 		}
 		= \begin{gathered}
-			\mss{ \lVert X_u \rVert^2 (u')^2 + 2 \left< X_u, X_v \right> u'v'  + \lVert X_v \rVert^2 (v')^2 }\\[-5pt]
+			\mss{ \lVert X_u \rVert^2 (u')^2 + 2 \left< X_u, X_v \right> u'v'  + \lVert X_v \rVert^2 (v')^2 }\\[-2pt]
 			\boxed{ \mss{ E (u')^2 + 2 F u'v'  + G (v')^2 } }
 		\end{gathered}
-		\\[5pt]
-	% Line Element
-	& \bullet\ \begin{gathered}
+		\\[-5pt]
+	& \boxed{ 
+			\begin{aligned}
+				% X_u 
+				\bullet\ X_u = 
+					\alpha'( \begin{aligned}
+						\scriptstyle u & \scriptstyle = t\\[-10pt]
+						\scriptstyle v & \scriptstyle = v_0
+					\end{aligned} )
+					\\[-3pt]
+				% X_v
+				\bullet\ X_v = \alpha'( \begin{aligned}
+						\scriptstyle u & \scriptstyle = u_0\\[-10pt]
+						\scriptstyle v & \scriptstyle = t
+					\end{aligned} )
+			\end{aligned}
+		}
+		\hspace{5pt}
+		% Line Element
+		\bullet\ \begin{gathered}
 			\underline{ \text{Line} }\\[-3pt]
 			\underline{ \text{Element} }
 		\end{gathered}
-		:\ ds = \lVert \alpha'\mss{(t)} \rVert dt
+		: 
+		\begin{aligned}
+			ds & = \lVert \alpha'\mss{(t)} \rVert dt\\
+			ds^2 & = \mss{c_i c_j g_{ij} dx^i dx^j}
+		\end{aligned}
+		\hspace{5pt}
 		% Area Element
-		\hspace{15pt} \bullet\ \begin{gathered}
+		\bullet\ \begin{gathered}
 			\underline{ \text{Area} }\\[-3pt]
 			\underline{ \text{Element} }
 		\end{gathered}
-		:\ dA = { \lVert X_u \times X_v \rVert } du\hs dv 
-		= \sqrt{ EG - F^2 } \hs du\hs dv 
+		: \begin{aligned}
+			\\[-2pt]
+			& dA = { \lVert X_u \times X_v \rVert } du\hs dv \\[-1pt]
+			& \hspace{2pt} = \begin{gathered}[t]
+					\sqrt{ EG - F^2 }\\[-3pt]
+					\mss{ ( \sqrt{1 - \cos^2} ) }
+				\end{gathered} 
+				\mss{ \hs du\hs dv }
+				= \begin{gathered}[t]
+					\mss{ \sqrt{\det(g_{ij})} \hs dx^1 ...\hs dx^n } \\[-5pt]
+					\underline{ \text{\scriptsize(Volume too!!!)} }\\ 
+				\end{gathered}
+		\end{aligned}
 \end{aligned}\)
 
 %------------------------------------------------------------------------------------------------------------------------------------
 
-\vspace{15pt}\noindent
+\vspace{-2pt}\noindent
 % Regular Curves
 \(\ast\ \begin{aligned}[t]
 	& \underline{ \text{Regular Curves, \(C \in R^3\) (instead of Regular Parametrized Curves)} }\\[5pt]
@@ -1102,12 +1430,15 @@
 % Function from S_1 to S_2
 \vspace{10pt}\noindent
 \(\begin{aligned}
-	& \underline{ \text{Function, \(\phi: S_1 \rightarrow S_2\) is a Diffeomorphism from \(S_1\) to \(S_2\)} }\\[5pt]
+	& \underline{ \text{Function, \(\phi: S_1 \rightarrow S_2\) is a Diffeomorphism from \(S_1\) to \(S_2\)} }
+		\hspace{15pt} \bullet\ \boxed{ d\phi_p: T_{p}(S_1) \rightarrow T_{\phi p}(S_2) }
+		\\[5pt]
 	& \bullet\ \underline{ \textit{Differentiable}}:\ X_2^{-1} \circ (\phi \circ X_1) \in C^\infty
 		\hspace{10pt} \text{\scriptsize(doesn't depend on param./coord. change)}
 		\\
 	% ?????
-	& \bullet\ \beta'(0) = d\phi_p(w) = d\phi_p \hs \alpha'\mss{(0)} = d\phi_p\hs dX_q (u'\mss{(0)}, v'\mss{(0)})^T 
+	& \bullet\ \underline{ \text{Differential Map} }: \ \ 
+		\beta'(0) = d\phi_p(w) = d\phi_p \hs \alpha'\mss{(0)} = d\phi_p\hs dX_q (u'\mss{(0)}, v'\mss{(0)})^T 
 		\hspace{25pt} \text{(p.85???)}
 		\\
 	% p.86 Inverse Function Theorem
@@ -1145,10 +1476,18 @@
 			u'\\[-2pt]
 			v'	
 		\end{gathered}\right] }
-		\equiv \Big[ \mss{ N_u \ N_v } ] 
+		\equiv 
+		\Big[ \mss{ N_u \ N_v } ] 
 		\mss{ \left[ \begin{gathered}
 			u'\\[-2pt]
 			v'	
+		\end{gathered}\right] }
+		\stackrel{\text{\scriptsize(see below)}}{=}
+		\mss{ \Big[ b_1\ \ b_2 = aX_u + bX_v \Big] }
+		\mss{ \Big[ (dN_p) \Big] }
+		\mss{ \left[ \begin{gathered}
+			c_1 = a u' + bu'\\[-2pt]
+			c_2	
 		\end{gathered}\right] }
 		\\[3pt]
 	% Orientation
@@ -1162,10 +1501,10 @@
 \vspace{10pt}\noindent
 \(\begin{aligned}
 	% Second Fundamental Form
-	& \underline{\text{Second Fundamental [Quadratic] Form}}:\ 
+	& {\textbf{2nd Fund. [Quadratic] Form}}:\ 
 		\left< -dN_p(\alpha'\mss{(0)}), \alpha'\mss{(0)} \right> 
 		= \underline{\left< \alpha'\mss{(0)}, -dN_p(\alpha'\mss{(0)}) \right>}
-		\hspace{15pt} \text{\scriptsize(is self-adjoint)}
+		\hspace{15pt} \text{\scriptsize(self-adjoint=orthog. eig)}
 		\\[3pt]
 	%% Normal Curvature = Second Form
 	& \ast\ { \mss{ \left< N\mss{(s)}, \alpha'\mss{(s)}\right> = 0 } }
@@ -1179,7 +1518,7 @@
 			\underline{ - \left< dN_p \hs \alpha'\mss{(0)}, \alpha'\mss{(0)} \right> }
 		\end{gathered}
 		= \begin{gathered}
-			\text{\scriptsize(\underline{Normal Curvature} of \(\alpha\) at \(p\))}\\[-2pt]
+			\text{\scriptsize(\textbf{Normal Curvature} of \(\alpha\) at \(p\))}\\[-2pt]
 			\boxed{ \left< N, kn \right> \mss{(p)} \equiv k_n\mss{(p)} }
 		\end{gathered}
 		= \ \begin{gathered}
@@ -1215,14 +1554,19 @@
 				\end{aligned}
 			}
 		\end{aligned}
-		\\
+		\\[-2pt]
 	% Tangent Plane	Principal Directions/Eigenbasis
 	& \bullet\ \begin{gathered}
 			\text{\scriptsize(\underline{Prin. dir.} at \(p\))}\\[-7pt]
 			\text{\scriptsize\underline{Eigenbasis}}
 		\end{gathered} 
 		: \exists e_1, e_2 
-		\hs\hs \big| \hs\hs \mss{span(e_1, e_2)} = T_p(S) \hs \ni \hs \underline{ -dN_p(xe_1 + ye_2) = k_1 x e_1 + k_2 y e_2 }
+		\hs\hs \big| \hs\hs \text{\scriptsize span\((e_1, e_2)\)} 
+		= T_p(S) \hs \ni \hs 
+		\begin{gathered}[b]
+			\text{\scriptsize(see below)}\\[-5pt]
+			\underline{ -dN_p(c_1e_1 + c_2e_2) = k_1 c_1 e_1 + k_2 c_1 e_2 }
+		\end{gathered}
 		\hspace{15pt} \begin{gathered}[b]
 			\text{\scriptsize(\underline{Prin. curv.} at \(p\))}\\[-5pt]
 			\text{\scriptsize(eigenvalues, \(k_1 \geq k_2\))}
@@ -1240,7 +1584,7 @@
 		\\[5pt]
 	% Gaussian Curvature, K
 	& \bullet\ \begin{gathered}
-			\text{\underline{Gaussian Curvature}}:\\[-3pt]
+			\textbf{{Gaussian Curvature}}:\\[-3pt]
 			( \text{\scriptsize \(2n\) dim. !\(\Delta\) det. w/ orien. flip} )
 		\end{gathered} 
 		\ \ \boxed{ \begin{aligned}
@@ -1258,11 +1602,13 @@
 		\ , \ \mss{ K<0 \Rightarrow \forall V_p: p+T_p(S) \text{ div.}\hs\hs V_p} 
 		\\[3pt]
 	% Interpretation of Gaussian Curvature
-	& \ast\ \begin{gathered}
-			\mss{ | Av \times Aw | = |v \times w| k_1k_2 } \hspace{7pt} \text{\scriptsize(2D)} \\[-5pt]
-			\underline{ \mss{ | dN_p X_u \times dN_p X_v | = |X_u \times X_v| \cdot K } }
-		\end{gathered}
-		\ \Rightarrow\ K \mss{\neq 0} = 
+	& \ast\ \mss{ \begin{aligned}
+			\text{(2D)} \hspace{7pt} | Tv \times Tw | & = |v \times w| k_1k_2 \\[-3pt]
+			| dN_p X_u \times dN_p X_v | & = |X_u \times X_v| \cdot K \\[-3pt]
+			\Aboxed{ A(N(R)) & = \iint_R K d\sigma }
+		\end{aligned} }
+		\ \Rightarrow\ K_{\neq 0} 
+		= 
 		\begin{gathered}
 			\underline{ 
 				\mss{ \lim_{\int dudv \rightarrow 0} \int | dN_p X_u \times dN_p X_v | \hs du dv } \ /\ \mss{ \int dudv } 
@@ -1270,23 +1616,47 @@
 				\\[-2pt]
 			\mss{ \lim_{\int dudv \rightarrow 0} \int | X_u \times X_v | \hs du dv } \ /\ \mss{ \int dudv }
 		\end{gathered}
-		\hspace{15pt} \text{\scriptsize(See Indi. of Tan. \(k\))}
+		= \begin{gathered}
+			\boxed{ \mss{ \lim_{A(R) \rightarrow 0} } \tfrac{ A(N(R)) }{ A(R) } = K } \\
+			( \text{\scriptsize See Indi. of Tan. for \(k\)} )
+		\end{gathered}
 		\\
 	% dN in basis of X_u, X_v
 	& \bullet\ \begin{aligned}[t]
 			& \underline{N_u, N_v \in T_p(S)} \ \Rightarrow\ dN_p \hs \alpha'\mss{(0)}
-				= \underline{ [ \mss{ N_u \ N_v } ] }
+				= 
+				\underline{ [ \mss{ N_u \ N_v } ] }
 				\mss{ \left[ \begin{gathered}
 					u'\\[-2pt]
 					v'	
 				\end{gathered}\right] }
-				\equiv \underline{
+				\equiv 
+				\underline{
 					[ \mss{X_u \ X_v} ] 
 					\Big[ dN \Big] 
 				}
 				\mss{ \left[ \begin{gathered}
 					u'\\[-2pt]
 					v'	
+				\end{gathered}\right] }
+				=
+				% [ \mss{X_u \ X_v} ] 
+				% \nhs \Big[ \mss{e_1 \ e_2} \Big] \nhs
+				\mss{ \left[ \begin{gathered}
+					(X_u,X_v) \cdot e_1\\[-2pt]
+					(X_u,X_v) \cdot e_2
+				\end{gathered}\right] }^T
+				\mss{ \left[ \arraycolsep=0pt \begin{matrix}
+					-k_1 & 0\\
+					0 & -k_2	
+				\end{matrix} \right] } 	
+				% \mss{ \left[ \begin{gathered}
+				% 	-e_1-\\[-2pt]
+				% 	-e_2-	
+				% \end{gathered}\right] }
+				\mss{ \left[ \begin{gathered}
+					c_1 = e_1 \cdot (u',v') \\[-2pt]
+					c_2
 				\end{gathered}\right] }
 				\\
 			%% continuation
@@ -1354,36 +1724,36 @@
 	% Conjugate Directions
 	& \underline{\text{Conjugate Directions}}:\ 
 		(\theta, \phi) \ \text{\scriptsize from \(e_1\)} \hs\hs \big| \hs\hs 
-		\left< -dN_p\hs \hsvec{t}_1\mss{(\theta)} , \hsvec{t}_2 \mss{(\phi)}\right> 
-		\equiv \boxed{ 0 = -k_1 \cos\theta \cos\phi - k_2 \sin\theta \sin\phi }
+		\left< -dN_p\hs \hat{t}_1\mss{(\theta)} , \hat{t}_2 \mss{(\phi)}\right> 
+		\equiv \boxed{ 0 = k_1 \cos\theta \cos\phi + k_2 \sin\theta \sin\phi }
 \end{aligned}\)
 
 \vspace{10pt}\noindent
 \(\begin{aligned}
 	% Dupin Indicatrix
 	& \text{\underline{Dupin Indicatrix}}:\ 
-		\left< -dN_p\hs\hsvec{t}, \hsvec{t} \hs \hs \right> = \pm \tfrac{1}{\rho^2} = k_n
+		\left< -dN_p\hs\hat{t}, \hat{t} \hs \hs \right> = \pm \tfrac{1}{\rho^2} = k_n
 		\ \Rightarrow\ 
 		\begin{aligned}[t]
-			\left< -dN_p(\rho\hsvec{t}\hs\hs), (\rho\hsvec{t}\hs\hs) \right> & 
-				= k_1 \hs \underline{ \rho^2 \cos^2\theta } + k_2\hs \underline{ \rho^2 \sin^2\theta }
+			\left< -dN_p(\rho\hat{t}\hs\hs), (\rho\hat{t}\hs\hs) \right> & 
+				= k_1 \hs \underline{ \rho^2 \cos^2\theta } + k_2\hs \underline{ |k_n|^{-1} \sin^2\theta}
 				\\
 			\underline{\text{\scriptsize Conic Graph \( (\xi,\eta) \)}} & 
-				= \boxed{ k_1 \underline{\xi^2} + k_2 \underline{\eta^2} = \pm 1 }
+				= \boxed{ \underline{\xi^2}/k_1^{-1} + \underline{\eta^2}/k_2^{-1} = \pm 1 }
 		\end{aligned}
 		\\[-15pt]
 	%% Asymptotic Direction with Dupin Indicatrix for Elliptic Curvature (There's none)
-	& \bullet\ K > 0 \ \Rightarrow\ \forall \theta,\ k_n\mss{(\theta)} > 0
+	& \bullet\ K > 0 \ \Rightarrow\ \forall \theta,\ k_n\mss{(\theta)} \neq 0,\ \mss{(\xi, \eta) = \text{ellipse}}
 		\\[5pt]
 	%% Asymptotic Direction with Dupin Indicatrix for Hyperbolic Curvature
 	& \bullet\ K < 0 \ \Rightarrow\ \exists \theta_{\underline{1,2}} \ \big|\ 
-		k_n\mss{(\theta)} = 0 
-		= (\mss{ k_1 \cos^2\theta + k_2 \sin^2\theta })\rho^2 = k_1 \xi^2 + k_2 \eta^2 \neq \pm 1 
-		\hspace{15pt} \text{\scriptsize(\(\theta_{\underline{1,2}}\) are asymptotes of \( (\xi, \eta) \))}
+		k_n\mss{(\theta)} = 0 = k_1 \cos^2\theta + k_2 \sin^2\theta,\
+		\text{\scriptsize \( (\xi, \eta) = \) hyperbola, \(\theta_{\underline{1,2}}\) are asymptotes}
 		\\[5pt]
 	%% Conjugate Direction with Dupin Indicatrix
 	& \bullet\ \text{Conj. Dir.}\ (\phi_1, \phi_2):\ \phi_{{2,1}}
-		= \arctan \tfrac{d\eta}{d\xi}\big|_{(\xi,\eta) \hs\hs \cap\hs\hs \theta = \phi_{1,2}}
+		= \arctan \tfrac{-k_1 \cos\phi_{1,2}}{k_2 \sin\phi_{1,2}}
+		= \arctan \tfrac{d\eta}{d\xi}\big|_{\theta = \phi_{1,2}}
 \end{aligned}\)
 
 %---------------------------------------------------------------------------------------------------------------------------------
@@ -1419,10 +1789,12 @@
 		\boxed{
 			\left\vert \mss{ \arraycolsep=2pt \begin{matrix}
 				(v')^2 & -u'v' & (u')^2\\
-				e & f & g \\
-				E & F & G
+				e & f=0 & g \\
+				E & F=0 & G
 			\end{matrix} } \right\vert = 0
 		}
+		\hspace{15pt}
+		\mss{ ( X_u \cdot X_v = 0 \Rightarrow \boxed{ F=f=0 } ) }
 		\\[3pt]
 	%% Asymptotic Curves
 	& \ast\ \begin{gathered}
@@ -1439,12 +1811,13 @@
 				\\
 			& \mss{ 
 				(ef-g),\ \underline{K < 0} 
-				\ \Rightarrow\ 0 = \underline{ (Au' + Bv')(Au' + Dv') } :\ A^2 = e,\ A(B+D) = f,\ BD = g 
+				\ \Rightarrow\ \underline{ 0 = (Au' + Bv')(Au' + Dv') } :\ A^2 = e,\ A(B+D) = f,\ BD = g 
 				\ \Rightarrow\ \boxed{ \exists \alpha_1, \alpha_2 }
 				}
 		\end{aligned}
 		\\[3pt]
-	& \ast\ \underline{e=g=0} \ \Leftrightarrow\ \boxed{ \alpha \circ (c, v\mss{(t)}) } \wedge \boxed{ \alpha \circ (u\mss{(t)}, c) }
+	& \ast\ \underline{K < 0,\ e=g=0} 
+		\ \Leftrightarrow\ \boxed{ \alpha \circ (c, v\mss{(t)}) } \wedge \boxed{ \alpha \circ (u\mss{(t)}, c) }
 		\ \ \text{\scriptsize are asympt. curves}
 \end{aligned}\)
 
@@ -1453,14 +1826,14 @@
 	% Surface of Revolution
 	& \text{\underline{Surface of Revolution}}:\ X\mss{(u,v)} 
 		= \big( \rho\mss{(v)} \cos u ,\hs \rho\mss{(v)} \sin u,\hs z\mss{(v)} \big)
-		\hspace{5pt} \big| \hspace{5pt} \alpha_u\mss{(v)} = \big( z\mss{(v)} ,\ \rho\mss{(v)} \big)
-		\hspace{5pt} , \hspace{5pt} \Vert \alpha_u' \Vert = 1
+		\hspace{5pt} \big| \hspace{5pt} \alpha_u\mss{(v)} = f\big( z\mss{(v)} ,\ \rho\mss{(v)} \big)
+		\hspace{5pt} , \hspace{5pt} \Vert \tfrac{d \alpha_u}{dv} \Vert =^* 1
 		\\[5pt]
 	% First Fundamental Form
 	& \bullet\ \left< \alpha', \alpha' \right> 
 		= \begin{gathered}[t]
-			\underline{ \big[ \rho^2,\ 0,\ (\rho')^2 + (z')^2 = 1 \big] } \\
-			\mss{(\rho' \rho'' + z' z'' = 0)}
+			\underline{ \big[ \rho^2,\ 0,\ (\rho')^2 + (z')^2 =^* 1 \big] } \\
+			\mss{(\rho' \rho'' + z' z'' = 0)}^*
 		\end{gathered}
 		\left[ \hs \mss{ \begin{matrix}
 			(u')^2 \\
@@ -1480,7 +1853,7 @@
 	% Eigenvalues and Curvature
 	& \bullet\ \boxed{ k_1 = \tfrac{e}{E} = - \tfrac{z'}{\rho} }
 		\ , \ \ \boxed{ k_2 = \tfrac{g}{G} = \rho'' z' - \rho' z'' }
-		\ , \ \ \boxed{ K = - \tfrac{z' ( \rho'' z' - \rho' z'' ) }{\rho} = - \tfrac{\rho''}{\rho} }
+		\ , \ \ \boxed{ K = - \tfrac{z' ( \rho'' z' - \rho' z'' ) }{\rho} =^* - \tfrac{\rho''}{\rho} }
 \end{aligned}\)
 
 
@@ -1527,15 +1900,15 @@
 			z\mss{(x,y)} - z\mss{(0,0)}\\[-5pt]
 			\text{\scriptsize(\(p\) is non-planer!!)}
 		\end{gathered} 
-		= \tfrac{1}{2} k_n\mss{(p)} + \mathcal{O}(r^3)
+		= \tfrac{1}{2!} k_n\mss{(p)} + \mathcal{O}(r^3)
 		\hs \approx\hs 
 		\mss{ \begin{aligned}[t]
-			\tfrac{1}{2}(z_{xx} x^2 + x_{yy} y^2) & = \epsilon\\
+			\tfrac{1}{2}(z_{xx} x^2 + z_{yy} y^2) & = \epsilon\\
 			k_1x^2 + k_2 y^2 & = 2\epsilon
 		\end{aligned} }
 		\rightarrow
 		\mss{ \begin{gathered}[t]
-			k_1\chi^2 + k_2 \eta^2 = \pm 1\\[-2pt]
+			k_1\xi^2 + k_2 \eta^2 = \pm 1\\[-2pt]
 			\boxed{ \text{\scriptsize(Dupin Indicatrix)} }
 		\end{gathered} }
 \end{aligned}\)
@@ -1544,7 +1917,7 @@
 \(
 	\begin{aligned}
 		% Vector Field : w
-		& \text{\underline{{\scriptsize(Diff.)} Vector Field over \(S\)}}:\ 
+		& \text{\underline{{\scriptsize(Diff., Tangent)} Vector Field over \(S\)}}:\ 
 			\boxed{ w\mss{(p)} = a\mss{(u,v)} X_u + b\mss{(u,v)} X_v }
 			\hspace{15pt} \big( \text{e.g.}\ \underline{ \gamma\mss{(t)} \rightarrow w_\gamma\mss{(p)} = u' X_u + v' X_v } \hs \big)
 			\\[5pt]
@@ -1624,7 +1997,7 @@
 			\end{gathered} }
 			\\[-10pt]
 		& \bullet\ w_1 \equiv X_u,\ w_2 \equiv -\tfrac{X_u \cdot X_v}{X_u \cdot X_u} X_u + X_v 
-			\ \Rightarrow\ \underline{ 
+			\ \Rightarrow\ \boxed{ 
 				\exists (w_1,w_2) 
 				\big( w_2\mss{(p_0)} \cdot w_2\mss{(p_0)} = 0 ,\ \underline{ \exists \ast } \big)
 			}
@@ -1673,5 +2046,1937 @@
 			& X_c = \mss{ (u, \tfrac{c}{u}, u^2 - \tfrac{c^2}{u^2}) }
 		\end{aligned}
 \end{aligned}\)
+
+% Skipped Ruled/Minimal surfaces Sec 3.5
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+\noindent
+% Intrinsic Geometry of Surfaces
+\section{Intrinsic Surface Geometry}
+
+% Surface Trihedron
+\noindent
+\(
+	% Crhistoffel Symbols 
+	\begin{gathered}
+		\underline{ \text{Christoffel Symbols, \(\Gamma\)} }\\[-5pt]
+		\text{\scriptsize(For Surf. Trihe., \(X_u, X_v, N\))}
+			\\[5pt]
+		\mss{ 
+			\begin{gathered}
+				(R)\\
+				\left[ \begin{matrix}
+						\Gamma_{11}^1 & \Gamma_{11}^2 & e \\[2pt]
+						\Gamma_{12}^1 & \Gamma_{21}^2 & f \\[2pt]
+						\Gamma_{22}^1 & \Gamma_{22}^2 & g 
+					\end{matrix} \right]
+					\\
+				\left[ \begin{matrix}
+						a_{11} & a_{21} & 0\\
+						a_{12} & a_{22} & 0\\
+					\end{matrix} \right]
+			\end{gathered}
+			\begin{gathered}
+				(c)\\
+				\left[ \begin{matrix}
+						X_u\\
+						X_v\\
+						N
+					\end{matrix} \right] 
+			\end{gathered}
+			}
+			=
+			\mss{ \begin{gathered}
+				(Rc)\\
+				\left[ \begin{matrix}
+						X_{uu}\\
+						X_{uv}\\
+						X_{vv}
+					\end{matrix} \right]
+					\\
+				\left[ \begin{matrix}
+						N_{u}\\
+						N_{v}
+					\end{matrix} \right]
+			\end{gathered} }
+	\end{gathered}
+	\hfill
+	\begin{aligned}
+		% Weingarten Eq.		
+		\underline{ \big[ dN^T \ 0 \big] } & = 
+			\underline{ \mss{ 
+				\tfrac{-1}{EG-F^2} 
+				\left[ \arraycolsep=2pt \begin{matrix}
+					e & f\\
+					f & g
+				\end{matrix} \right]
+				\left[ \arraycolsep=2pt \begin{matrix}
+					G & -F & 0\\
+					-F & E & 0
+				\end{matrix} \right] 
+			} }
+			\hspace{15pt}
+			\underline{ \text{\scriptsize(Weingarten Eq.)} }
+			\\[5pt]
+		% Christoffel Symbols
+		(Rcc^T) \hspace{5pt} \mss{
+			\left[ \arraycolsep=2pt \begin{matrix}
+				\Gamma_{11}^1 & \Gamma_{11}^2 & e\\[2pt]
+				\Gamma_{21}^1 & \Gamma_{12}^2 & f\\[2pt]
+				\Gamma_{22}^1 & \Gamma_{22}^2 & g
+			\end{matrix} \right]
+			\left[ \arraycolsep=2pt \begin{matrix}
+				E & F & 0\\
+				F & G & 0\\
+				0 & 0 & 1
+			\end{matrix} \right]
+			}
+			& =
+			\mss{ \left[ \arraycolsep=4pt \begin{matrix}
+				X_{uu} \cdot X_u & X_{uu} \cdot X_v & e\\
+				X_{uv} \cdot X_u & X_{vu} \cdot X_v & f\\
+				X_{vv} \cdot X_u & X_{vv} \cdot X_v & g
+			\end{matrix} \right] }
+			= 
+			\mss{ \left[ \arraycolsep=0pt\begin{matrix}
+				\tfrac{1}{2} E_u & F_u - \tfrac{1}{2} E_v  \\[2pt]
+				\tfrac{1}{2} E_v & \tfrac{1}{2} G_u \\[2pt]
+				F_v - \tfrac{1}{2} G_u  & \tfrac{1}{2} G_v 
+			\end{matrix} 
+			\hspace{2pt} \right| \hspace{-2pt}
+			\left. \begin{matrix}
+				e\\[2pt]
+				f\\[2pt]
+				g	
+			\end{matrix}\right] }
+			\\
+		\begin{gathered}
+				(\Gamma)\\[-2pt]
+				\mss{ \boxed{\Gamma = f(E,F,G)} }
+			\end{gathered}
+			\hspace{10pt} 
+			\underline{ \mss{ \left[ \begin{matrix}
+				\Gamma_{11}^1 & \Gamma_{11}^2 \\[2pt]
+				\Gamma_{12}^1 & \Gamma_{21}^2 \\[2pt]
+				\Gamma_{22}^1 & \Gamma_{22}^2 
+			\end{matrix} \right] } }
+			& = 
+			\underline{ \mss{ 
+				\left[ \arraycolsep=0pt\begin{matrix}
+					\tfrac{1}{2} E_u & F_u - \tfrac{1}{2} E_v \\[2pt]
+					\tfrac{1}{2} E_v & \tfrac{1}{2} G_u \\[2pt]
+					F_v - \tfrac{1}{2} G_u  & \tfrac{1}{2} G_v
+				\end{matrix} \right] 
+				\left[ \arraycolsep=1pt \begin{matrix}
+					G & -F\\
+					-F & E
+				\end{matrix} \right] 
+				\tfrac{1}{EG-F^2} 
+			} }
+	\end{aligned}
+\)
+
+\vspace{15pt}\noindent
+% Gauss Compatibility Equations
+\underline{Gauss and Mainardi-Codazzi Compatibility Equations}:\\[10pt]
+\(
+	\begin{gathered}
+		\partial_u \mss{ \left[ \begin{matrix}
+				X_{uv}\\
+				X_{vv}\\
+				N_v
+			\end{matrix} \right] }
+			=
+			\mss{ \partial_v \mss{ \left[ \begin{matrix}
+				X_{uu}\\
+				X_{vu}\\
+				N_u
+			\end{matrix} \right] }
+			\ \rightarrow\
+			\partial_u \mss{ \left[ \begin{matrix}
+				-r_2-\\
+				-r_3-\\
+				-r_5-
+			\end{matrix} \right] } Rc
+			=
+			\partial_v \mss{ \left[ \begin{matrix}
+				-r_1-\\
+				-r_2-\\
+				-r_4-
+			\end{matrix} \right] } Rc 
+			\ \rightarrow\
+			\mss{ \left[ \begin{matrix}
+				-r_2-\\
+				-r_3-\\
+				-r_5-
+			\end{matrix} \right] } 
+			\left[
+				\partial_u R
+				+ 
+				R 
+				\mss{ \left[ \begin{matrix}
+					-r_1-\\
+					-r_2-\\
+					-r_4-
+				\end{matrix} \right] } 
+				R
+			\right]
+			c
+			=
+			\mss{ \left[ \begin{matrix}
+				-r_1-\\
+				-r_2-\\
+				-r_4-
+			\end{matrix} \right] }
+			\left[ 
+				\partial_v R
+				+ 
+				R 
+				\mss{ \left[ \begin{matrix}
+					-r_2-\\
+					-r_3-\\
+					-r_5-
+				\end{matrix} \right] }
+				R 
+			\right] 
+			c
+			}
+			\\
+		\boxed{ 
+			\partial_u 
+			\mss{ \left[ \begin{matrix}
+				-r_2-\\
+				-r_3-\\
+				-r_5-
+			\end{matrix} \right] } 
+			R
+			-
+			\partial_v
+			\mss{ \left[ \begin{matrix}
+				-r_1-\\
+				-r_2-\\
+				-r_4-
+			\end{matrix} \right] }
+			R
+			= 
+			\mss{ \left[ \begin{matrix}
+				-r_1-\\
+				-r_2-\\
+				-r_4-
+			\end{matrix} \right] }
+			R 
+			\mss{ \left[ \begin{matrix}
+				-r_2-\\
+				-r_3-\\
+				-r_5-
+			\end{matrix} \right] }
+			R 
+			-
+			\mss{ \left[ \begin{matrix}
+				-r_2-\\
+				-r_3-\\
+				-r_5-
+			\end{matrix} \right] }
+			R 
+			\mss{ \left[ \begin{matrix}
+				-r_1-\\
+				-r_2-\\
+				-r_4-
+			\end{matrix} \right] }
+			R 
+			}
+			\hspace{15pt} \left(\hs \mss{ \begin{gathered}
+				\underline{\text{lin. ind.}}\\[-3pt]
+				Ac - Bc = 0 \\[-3pt]
+				\rightarrow A = B
+			\end{gathered} } \hs\right)
+			\\
+		A = \mss{ \left[ \begin{matrix}
+				\partial_u R_2 - \partial_v R_1 \\[2pt]
+				\partial_u R_3 - \partial_v R_2\\[2pt]
+				\partial_u R_5 - \partial_v R_4 
+			\end{matrix} \right] }
+			= 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\Gamma_{11}^1 & \Gamma_{11}^2 & e \\[2pt]
+				\Gamma_{21}^1 & \Gamma_{21}^2 & f \\[2pt]
+				a_{11} & a_{12} & 0
+			\end{matrix}\right] } 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\Gamma_{12}^1 & \Gamma_{12}^2 & f \\[2pt]
+				\Gamma_{22}^1 & \Gamma_{22}^2 & g \\[2pt]
+				a_{12} & a_{22} & 0
+			\end{matrix} \right] } 
+			-
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\Gamma_{21}^1 & \Gamma_{12}^2 & f \\[2pt]
+				\Gamma_{22}^1 & \Gamma_{22}^2 & g \\[2pt]
+				a_{12} & a_{22} & 0
+			\end{matrix} \right] }
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\Gamma_{11}^1 & \Gamma_{11}^2 & e \\[2pt]
+				\Gamma_{12}^1 & \Gamma_{21}^2 & f \\[2pt]
+				a_{11} & a_{21} & 0
+			\end{matrix} \right] } 
+			\hspace{15pt}
+			\mss{ \begin{aligned}
+				& \ast A_{11}: ea_{12} - fa_{11} = \boxed{ FK = f_{11}(\Gamma) }\\
+				& \ast \left[ \arraycolsep=2pt \begin{matrix}
+						A_{11} & A_{12}\\
+						A_{21} & A_{22}
+					\end{matrix} \right]:
+					f(\Gamma) = 
+					\left[ \arraycolsep=2pt \begin{matrix}
+						FK & -EK\\
+						GK & -FK
+					\end{matrix} \right]
+			\end{aligned} }
+	\end{gathered}
+\)
+
+\vspace{10pt}\noindent
+% cont.
+\(\begin{aligned}
+	\ast\ F = 0 \ \Rightarrow\ GK = \mss{ fa_{12} - ga_{11} } & = -\tfrac{1}{2} \tfrac{ G_{uu} E - E_u G_u + E_{vv} E - E_v^2 }{E^2} 
+		+ \tfrac{G_u^2 + G_v E_v}{4GE} - \tfrac{E_v^2 + E_u G_u}{4E^2}
+		\\
+	\Aboxed{ 
+		K|_{F=0} & = -\tfrac{1}{2\sqrt{EG}} \left[ \left( \tfrac{E_v}{\sqrt{EG}} \right)_v 
+			+ \left( \tfrac{G_u}{\sqrt{EG}} \right)_u  \right]
+		}
+\end{aligned}\)
+	% 	\\ 
+	% & \left[ \begin{matrix}
+	% 	\Gamma_{11}^1 & \Gamma_{11}^2 & e \\[2pt]
+	% 	\Gamma_{12}^1 & \Gamma_{21}^2 & f \\[2pt]
+	% 	\Gamma_{22}^1 & \Gamma_{22}^2 & g 
+	% \end{matrix} \right]
+	% \\
+	% & \left[ 
+	% 	\hs dN^T \ \ \begin{gathered}
+	% 		0\\[-3pt]
+	% 		0
+	% 	\end{gathered} 
+	% \right]
+
+\vspace{15pt}\noindent
+\(\begin{aligned}
+	% Isometry
+	& \text{\underline{Isometric} Map}\ \ \text{\scriptsize\underline{Diffeo.}}\ \phi: S \rightarrow \overline{S}:\ 
+		\ \mss{ \begin{aligned}
+			\forall p & \in S \\[-4pt]
+			\forall v & \in T_p(S)
+		\end{aligned} }
+		\ ,\ \boxed{ \Vert \beta'\Vert^2_{\phi(p)} = \Vert d\phi_p \hs v \Vert^2 
+		= \left< v, v \right>_p = \Vert v \Vert_p^2 = \Vert \alpha' \Vert^2_p }
+		\\
+	%% Local and Global Isometry
+	& \bullet\ \underline{\text{\scriptsize Local Isom.}}:\ \forall p, V_p \in S,\ \exists \phi_p: S \rightarrow \overline{S} 
+		\hspace{15pt} \text{\scriptsize(Local + Diffeo. \(\phi\ =\)\ \underline{Global Isom.})}
+		\\
+	%% X \circ \overline{X}^{-1} is a local isom if the coeff. of 1st fund form is the same
+	& \bullet\ \mss{ \big( X : U \rightarrow S \big) } :
+		\big( \mss{ \overline{X} : U \rightarrow \overline{S} }
+		,\ \underline{ E = \overline{E} ,\ F = \overline{F} ,\ G = \overline{G} }
+		,\ \boxed{ \phi = \overline{X} \circ X^{-1} } \big)
+		\hs\hs \stackrel{\Leftarrow}{\hs\hs \Rightarrow} \ \Vert d\phi_p \hs v \Vert^2 = \left< v, v \right>_p
+		\\
+	%% Converse of above
+	& \bullet\ \mss{ \big( X : U \rightarrow S \big) } :
+		\Vert d\phi_p \hs v \Vert^2 = \left< v, v \right>_p
+		\hs\hs \stackrel{\Leftarrow}{\hs\hs \Rightarrow} \
+		\big( \mss{ \overline{X} : U \rightarrow \overline{S} }
+		,\ \boxed{ \overline{X} = \phi \circ X }
+		,\ \underline{ E = \overline{E} ,\ F = \overline{F} ,\ G = \overline{G} } \big)
+		\\[5pt]
+\end{aligned}\)
+
+\vspace{5pt}\noindent
+\(\begin{aligned}		
+	% Conformal Map
+	& \text{\underline{Conformal Map}}\ \ \text{\scriptsize Diffeo.}\ \phi: S \rightarrow \overline{S}:\ 
+		\ \forall v \in T_p(S)
+		,\ \boxed{ \Vert d\phi_p \hs v \Vert^2 = \lambda^2\mss{(p)} \left< v, v \right>_p }
+		\hspace{15pt} \begin{gathered}
+			\text{\scriptsize(preserve \(\cos\theta\))}\\[-6pt]
+			( \mss{\forall p,\ \lambda \neq 0,\ \exists\lambda'} )
+		\end{gathered}
+		\\
+	%% Local and Global Isometry
+	& \bullet\ \underline{\text{\scriptsize Locally Conf.}}:\ \forall p, V_p \in S,\ \exists \phi_p: S \rightarrow \overline{S} 
+		\hspace{15pt} \text{\scriptsize(Locally + Diffeo. \(\phi\ =\)\ \underline{Globally Conf.})}
+		\hspace{10pt} \big( \hs \begin{gathered}
+			\text{\scriptsize hard: all reg. surf. are loc.}\\[-9pt]
+			\text{\scriptsize conf. as \(\exists\)``isothermal'' map}
+		\end{gathered} \hs \big)
+		\\
+	%% X \circ \overline{X}^{-1} is locally conf. if the coeff. of 1st fund form is the same
+	& \bullet\ \mss{ \big( X : U \rightarrow S,\ \overline{X} : U \rightarrow \overline{S} \big) }
+		,\ \big( \underline{ E = \lambda^2 \overline{E} ,\ F = \lambda^2 \overline{F} ,\ G = \lambda^2 \overline{G} }
+		,\ \boxed{ \phi = X \circ \overline{X}^{-1} } \big)
+		\ \Rightarrow\ \Vert d\phi_p \hs v \Vert^2 = \lambda^2 \left< v, v \right>_p
+		\\[5pt]
+\end{aligned}\)
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%----------------------------------------------------------------------------------------------------------------------------------
+% Covariant Derivative of tangent vector field
+
+\newpage
+\subsection{Covariant Derivative of \(w\): 
+	\( 
+		\boxed{ \tfrac{Dw}{dt}_{\nhs \nhs\alpha'} \equiv \tfrac{dw}{dt}_{\parallel T_p(S)} }
+		=
+		\mss{
+			\begin{gathered}[b]
+				( \alpha' = X_u u' + X_v v' )\\[-3pt]
+				\underline{ 
+						\left[ 
+							\mss{[a', b']}
+							+ \mss{[u', v']}
+							\mss{ \left[ \begin{matrix}
+								a\Gamma_1 + b\Gamma_2\\
+								a\Gamma_2 + b\Gamma_3
+							\end{matrix} \right] }
+						\right]
+						\mss{ \left[ \begin{matrix}
+							X_u\\
+							X_v
+						\end{matrix} \right] }
+					}
+			\end{gathered}
+		}
+	\)
+}
+
+\(\begin{aligned}
+	% Full dw/dt
+	& \ast\ \tfrac{dw}{dt}_{\alpha'} = \mss{ a'X_u + b'X_v + a(X_{uu}u' + X_{uv}v') + b(X_{vu}u' + X_{vv}v') }
+		= [a', b', 0] \hsvec{c} 
+		+ [u', v']
+		\mss{ \left[ \begin{matrix}
+			aR_1 + bR_2\\
+			aR_2 + bR_3
+		\end{matrix} \right] }
+		\hsvec{c}
+		\\
+	% Parallel Vector Field
+	& \bullet\ \text{\underline{``Parallel''}}\ w:\ \forall p \in \alpha\mss{(t)},\ \boxed{ \tfrac{Dw}{dt} = 0 }
+		\hspace{10pt} \big( \hs\hs \begin{gathered}
+			\text{\scriptsize !truly parallel in \(R^3\),}\\[-9pt]
+			\text{\scriptsize e.g., sphere: \(a_\parallel = 0\)}
+		\end{gathered} \hs\hs \big)
+		\hspace{15pt}
+		% Always exists one
+		\bullet\ \forall \alpha\mss{(t)} \in S, \ \underline{ \exists! } \big\{ w\mss{(t)} \hs\big|\hs\hs \tfrac{Dw}{dt} = 0 \big\}
+		\\[5pt]
+	% Component of acceleration parallel to plane of velocity
+	& \bullet\ \tfrac{D\alpha'}{dt} = (\alpha'' = kn)_{\parallel T_{\alpha}\mss{(S)}}
+		\hspace{10pt}
+		% Geodesics
+		\ast\ \boxed{ 
+			\text{{Geodesic}}:\ \alpha_g\mss{(t)} 
+			\hs \big|\hs \tfrac{D\alpha_g'}{dt} = 0 = \tfrac{D\alpha_g'}{ds}
+			\ \Rightarrow\ n_{\parallel T_p(S)} = 0
+		}
+		\hspace{10pt} \boxed{ \begin{aligned}
+			& \text{\scriptsize\(\ast(n\) is perp. to \(T_p(S)\))}\\[-8pt]
+			& \mss{ \ast ( \tfrac{d}{dt} \alpha \cdot \alpha = 0 ) }
+		\end{aligned} }
+		\\
+	% Geodesic Equation
+	& \ast\ \boxed{ 
+			{\text{Geosedic Eq. (GEq)}}:\ 
+			\left[ 
+				\mss{[u'', v'']}
+				+ \mss{[u', v']}
+				\mss{ \left[ \begin{matrix}
+					u'\Gamma_1 + v'\Gamma_2\\
+					u'\Gamma_2 + v'\Gamma_3
+				\end{matrix} \right] }
+			\right]
+			= \mss{ \left[ 0\ 0 \right] }
+		}
+		\hspace{10pt}
+		%
+		\ast\ \boxed{ 
+			\mss{ \begin{aligned}
+				& E=1, F=0\\[-2pt]
+				& F=0, G=1
+			\end{aligned} }
+			\ \stackrel{ \text{\scriptsize(not only)} }{\rightarrow} \
+			\mss{ \begin{aligned}
+				\alpha_g( u'' = 0, v' = 0 )\\
+				\alpha_g( u' = 0, v'' = 0 )\\
+			\end{aligned} }
+		}
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	% Algebraic Value of Dw/dt
+	& \textbf{{Algebraic Value} of \( 
+			\tfrac{Dw}{ds} \hspace{5pt} 
+			\big( \hs\hs \underline{ \mss{ \begin{aligned}
+				w \cdot w & = 1\\[-5pt]
+				w \cdot w' & = 0 
+			\end{aligned} } } \hs\hs \big)
+		\)}:\ 
+		\boxed{ 
+			\big[ \tfrac{Dw}{ds} \big] \equiv \lambda\mss{(s)} 
+			= \left< \tfrac{dw}{ds} , N \times w \right> 
+			\hs\equiv\hs w' \cdot \overline{w} 
+		}
+		\ \Rightarrow\ 
+		\underline{ \tfrac{Dw}{ds} = \lambda \overline{w} }
+		\\
+	% Geodesic Curvature
+	& \boxed{ \textbf{{Geodesic Curvature}}:\ k_g = \left[ \tfrac{D\alpha'}{ds} \right] }
+		\hspace{10pt} \big( \hs \begin{gathered}
+			\text{\scriptsize geodesics}\\[-9pt]
+			\text{\scriptsize have \(k_g = 0\)}
+		\end{gathered} \hs \big)
+		\hspace{5pt} \Rightarrow\ \boxed{ k^2 = k_n^2 + k_g^2 
+		\ ==\ {\Vert t' \Vert^2} = \mss{ \left< N, kn \right>^2 } + k_g^2 }
+\end{aligned}\)
+
+\vspace{5pt}
+\(\begin{aligned}		
+	% Two Tangent Vector Fields
+	& \underline{\text{Two Fields}}:\ \boxed{ w = v \cos\theta + \overline{v} \sin\theta }
+		\hspace{10pt} \big( \hs\hs \begin{gathered}
+			\text{\scriptsize unit circle}\\[-9pt]
+			\text{\scriptsize from \(\hat{x}\)}
+		\end{gathered} \hs\hs \big)
+		\ \Rightarrow\ w' \cdot \overline{w} = \theta' + v' \cdot \overline{v} 
+		= \boxed{ \tfrac{d\theta_{wv}}{ds} + \big[ \tfrac{Dv}{ds} \big] = \big[ \tfrac{Dw}{ds} \big] }
+		\\
+	& \ast\ 0 = \big[ \tfrac{Dv}{ds} \big] = \big[ \tfrac{Dw}{ds} \big] 
+		\Rightarrow \boxed{\theta = \theta_0}
+		\hspace{15pt} \ast\ 0 = \big[ \tfrac{Dv}{ds} \big]
+		\Rightarrow \big[ \tfrac{Dw}{ds} \big] 
+		= \boxed{ \big[ \tfrac{D\alpha'}{ds} \big] = k_g = \tfrac{d\theta_{\alpha'\parallel}}{ds} }
+		\hspace{10pt} \big( \hs\hs \begin{gathered}
+			\text{\scriptsize clockwise unit}\\[-9pt]
+			\text{\scriptsize circle from \(\hat{y}\)}
+		\end{gathered} \hs\hs \big)			
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	% Orthogonal Coordinates
+	& \begin{gathered}
+			\underline{\text{Orthog. Coord.}}:\ \mss{ F = 0 = e_1 \cdot e_2 }\\
+			\mss{ 
+				\underline{v} = \underline{\alpha'}\mss{(s)} 
+				= e_1\mss{(s)} = \tfrac{X_u}{\sqrt{E}},\ N \times e_1 = e_2 = \tfrac{X_v}{\sqrt{G}} 
+			}
+		\end{gathered}
+		\ \Rightarrow
+		\begin{aligned}
+			& \mss{ \left< \tfrac{\partial e_1}{\partial s}, e_2 \right> }
+				= \tfrac{du}{ds} \mss{ \left< \tfrac{\partial e_1}{\partial u}, e_2 \right> } 
+				+ v' \mss{ \left< \tfrac{X_{uv}}{\sqrt{E}} , \tfrac{X_v}{\sqrt{G}} \right> }
+				= \boxed{ \tfrac{ - u' E_v + v' G_u }{ 2\sqrt{EG} } = \big[ \tfrac{De_1}{ds} \big] }
+				\\
+			& \boxed{ \big[ \tfrac{Dw}{ds} \big] = \tfrac{ v' G_u - u' E_v }{ 2\sqrt{EG} } + \tfrac{d\theta_{we_1}}{ds} }
+				\ \Rightarrow\ \boxed{ \theta_{\parallel e_1} 
+				= \theta_0 + \mss{\int} \tfrac{ u' E_v- v' G_u }{ 2\sqrt{EG} } \hs ds }
+		\end{aligned}
+		\\
+	& \ast\ \begin{aligned}
+			\cos\theta_{\alpha'e_1} & = \left< \underline{w}, e_1 \right> 
+				= \mss{ \left< \underline{\alpha'}, e_1 \right> } 
+				= \sqrt{E} u'
+				\\
+			\sin\theta_{\alpha'e_1} & = \mss{ \left< X_u u' + X_v v', \tfrac{X_v}{\sqrt{G}} \right> } = \sqrt{G} v'
+		\end{aligned}
+		\ \Rightarrow\ \begin{aligned}
+				\big[ \tfrac{Da'}{ds} \big] & =
+					\underline{ - \tfrac{E_v}{2E\sqrt{G}} } \cos\theta  
+					+ \underline{ \tfrac{G_u}{2G\sqrt{E}} } \sin\theta 
+					+ \theta'
+				\\
+			\Aboxed{ 
+				k_g & = \underline{ (k_g)_1 } \cos\theta_{\alpha'e_1} 
+					+ \underline{ (k_g)_2 } \sin\theta_{\alpha'e_1} 
+					+ \tfrac{d\theta_{\alpha'e_1} }{ds} 
+					= \tfrac{d\theta_{\alpha'\parallel}}{ds}
+				}
+		\end{aligned}
+\end{aligned}\)
+
+\vspace{15pt}\noindent
+% Surface of Revolutions
+\(\begin{aligned}
+	& \underline{ \text{{Surface of Revolutions Geodesics}} }:\ X\mss{(u,v)} 
+		= \big( \rho\mss{(v)} \cos u ,\hs \rho\mss{(v)} \sin u,\hs z\mss{(v)} \big)
+		\\
+	& \Gamma = \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			0 & - \tfrac{\rho\rho'}{(\rho')^2 + (z')^2}\\[3pt]
+			\tfrac{\rho\rho'}{\rho^2} & 0 \\[3pt]
+			0 & \tfrac{\rho'\rho" + z'z"}{(\rho')^2 + (z')^2}
+		\end{matrix} \right] }
+		\rightarrow
+		\left[ 
+			\mss{[u'', v'']}
+			+ \mss{[u', v']}
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\tfrac{v'\rho\rho'}{\rho^2} & - \tfrac{u'\rho\rho'}{(\rho')^2 + (z')^2}\\[3pt]
+				\tfrac{u'\rho\rho'}{\rho^2} & v'\tfrac{\rho'\rho" + z'z"}{(\rho')^2 + (z')^2}
+			\end{matrix} \right] }
+		\right]
+		\Rightarrow\ 
+		\boxed{ \begin{aligned}
+			0 & = \tfrac{1}{2} \tfrac{d}{ds} 
+				\begin{gathered}[b]
+					\text{\scriptsize\underline{(see Clairaut's Relation)}} \\
+					\left[ \underline{ \rho^2 u' = \rho \sqrt{E} u' = \rho \cos\theta_{\alpha'X_u} } \right] 
+				\end{gathered}
+				\\[5pt]
+			0 & = \tfrac{1}{2}\tfrac{d}{ds} \left[ ( \tfrac{d\rho}{dv}^2 + \tfrac{dz}{dv}^2 )(v')^2 \right] 
+				+ \rho\rho' (u')^2 
+		\end{aligned} \hspace{-9pt} }
+		\\[5pt]
+	% Coordinate Curves Geodesics
+	& \bullet\ \begin{aligned}
+			\alpha_u & : \underline{ \gamma\mss{(t)} = (u, v\mss{(t)}) }
+				\ \rightarrow\ \Vert \tfrac{d\alpha_u}{ds} \Vert = 1
+				\ \rightarrow\ \tfrac{d}{ds} \mss{ \left[ \left( \tfrac{dz}{dv}^2 + \tfrac{d\rho}{dv}^2 \right) (v')^2 \right] } = 0
+				\ \Rightarrow\ \boxed{ \left[ \tfrac{D\alpha_u}{ds} \right] = 0 } 
+				\\
+			\alpha_v & : \underline{ \gamma\mss{(t)} = (u\mss{(t)}, v) } 
+				\ \rightarrow\ \boxed{ \tfrac{du}{ds} = c_{\neq0},\ \tfrac{d\rho}{dv} = 0
+				\ \Rightarrow \left[ \tfrac{D\alpha_v}{ds} \right] = 0 }
+				\hspace{10pt} \text{\scriptsize e.g., \(\underline{ \tfrac{d\rho/dv}{dz/dv} = 0 }\)}
+		\end{aligned}
+		\\[5pt]
+	% Clairaut's Relation Geodesics
+	& \bullet \textit{\underline{Clairaut's Relation}}:\ \boxed{ \rho \cos\theta_{\alpha'X_u} = \rho^2 \tfrac{du}{ds} = c}
+		\hspace{15pt} \left( \mss{ X_u \cdot \hat{z} = 0 } \right)
+		\\
+	& \ast \Vert \alpha' \Vert^2 = 1 
+		= \rho^2 \tfrac{du}{ds}^2 + \left[ \tfrac{d\rho}{dv}^2 + \tfrac{dz}{dv}^2 \right] \tfrac{dv}{ds}^2 
+		\ \rightarrow\ \underline{ \mss{ c \neq 0 \ \Leftrightarrow\ \theta_{\alpha'X_u} \neq \tfrac{\pi}{2} } }
+		\ , \ \boxed{ \tfrac{du}{dv} = \tfrac{c}{f} \sqrt{ \tfrac{ (df/dv)^2 + (dg/dv)^2 }{f^2 - c^2} } }
+\end{aligned}\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%---------------------------------------------------------------------------------------------------------------------------------
+% Gauss Bonnet
+\newpage
+
+\subsection{Gauss-Bonnet Theorem}
+
+\(
+	\begin{aligned}[t]
+		% Exterior Angle
+		& \underline{ \text{External Angle at \(t_i\)} } :\\ 
+		& \boxed{ 
+				\theta_E\mss{(t_i)} = \mss{ \lim_{\epsilon \rightarrow 0} } 
+				\ \Delta \theta \big|^{ \alpha'\mss{(t_i + \epsilon)} }_{ \alpha'\mss{(t_i - \epsilon)} } 
+				% \ \theta( \alpha'\mss{(t_i + \epsilon)} ) - \theta( \alpha'\mss{(t_i - \epsilon)} ) 
+			}
+			\\[2pt]
+		% Interior Angle
+		& \bullet\ \mss{ \underline{ \text{Interior Angle at \(t_i\)} } :\ \boxed{ \theta_I(t_i) = \pi - \theta_E(t_i) } }
+	\end{aligned}
+	\hspace{35pt}
+	% Turning Theorem
+	\begin{aligned}[t]	
+		& \text{\underline{Turning Theorem along \(\alpha_\text{closed}\) {\scriptsize(going all around makes \(\pm 2\pi\))}}}:\\
+		& \boxed{
+				\mss{\bigcirc \hspace{-10pt} \sum_i^{Ver}} \
+				\theta_{\alpha'e_1}\mss{(t_{i+1})} - \theta_{\alpha'e_1}\mss{(t_{i})} + \theta_E\mss{(t_i)}
+				= \pm 2\pi
+			}
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% Gauss-Bonnet Theorem
+\(
+	\begin{aligned}[t]
+		\mss{\oint} & \big[ \tfrac{Dw}{ds} \big] \hs ds 
+			= \mss{\oint} \tfrac{ - u' E_v + v' G_u }{ 2\sqrt{EG} } + \tfrac{d\theta_{we_1}}{ds} \hs ds
+			\\
+		& = \mss{\iint} \left( \tfrac{ G_u }{ 2\sqrt{EG} } \right)_u 
+			+ \left( \tfrac{ E_v }{ 2\sqrt{EG} } \right)_v du dv 
+			+ \Delta \theta_{we_1}
+			\\
+		& = - \mss{\iint} (K \sqrt{EG}) \hs dudv + \Delta \theta_{we_1}
+			\\
+		\Aboxed{ 
+			\mss{\oint} & \big[ \tfrac{Dw}{ds} \big] \hs ds 
+			= - \mss{\iint} K d\sigma + \Delta \theta_{we_1} 
+			% = - \mss{\iint} K d\sigma \pm 2\pi - \mss{\sum_i} \theta_E\mss{(t_i)}
+			}
+	\end{aligned}
+	\hfill \vline \hfill
+	\begin{aligned}[t]
+		% parallel transport change of angle over closed loop is area integral of gaussian curvature
+		& \ast\ \boxed{ \Delta \theta_{\parallel \hs \bcancel{e_1}} = \mss{\iint} K \hs d\sigma } 
+			\rightarrow \underline{ 
+				\mss{ \lim_{R \rightarrow p} } \hs\hs \tfrac{\Delta \theta}{A(R)} 
+				= K(p)
+				= \mss{ \lim_{R \rightarrow p} } \hs\hs \tfrac{ A(N(R)) }{ A(R) }  
+			}
+			\\[10pt]
+		% Local Gauss Bonnet
+		& {\textbf{(Local) Gauss-Bonnet Theorem}}: 
+			\\
+		& \ \boxed{ 
+				\begin{gathered}[b]
+					( \mss{ \Delta \theta_{\alpha'\parallel} } )\\
+					\mss{\oint} \hs k_g \hs ds 
+				\end{gathered}
+				+ 
+				\begin{gathered}[b]
+					( \mss{ \Delta \theta_{\parallel0} } )\\
+					\mss{\iint} K\hs d\sigma
+				\end{gathered}
+				+ \mss{\sum_i^{Ver}} \hs \theta_E\mss{(t_i)} 
+				= \pm 2\pi 
+			}
+			\hspace{7pt} 
+			\mss{
+				\begin{gathered}
+					\\[-28pt]
+					\underline{\text{e.g., no vertices}} \\
+					{ \Delta \theta_{'} + (2\pi - \Delta \theta_{'}) + 0 }\\
+					\underline{\text{e.g., w/ vertices}} \\
+					{ \Delta \theta_{'} + (\tfrac{3\pi}{2} - \Delta \theta_{'}) + \tfrac{\pi}{2} }
+				\end{gathered}
+			}
+	\end{aligned}
+\)
+
+\vspace{10pt}\noindent
+% Global Gauss Bonnet
+\(\begin{aligned}
+	& \textbf{Global Gauss-Bonnet Theorem}:\ \boxed{
+			\mss{\oint_{\partial R}} \hspace{-3pt} k_g \hs ds 
+			+ \mss{\iint_R} K\hs d\sigma
+			+ \mss{\sum_i^{Ver}} \hs \theta_E\mss{(t_i)} 
+			= 2\pi \chi(R) = 2\pi(V - E + F)
+		}
+		\\[5pt]
+	& \begin{aligned}
+			% Sphere has X = 2
+			& \bullet\ \mss{ R \sim S^2 :\ \underline{ \chi(R) = 2 } }\\[-3pt]
+			% Cylinder has X = 0
+			& \bullet\ \mss{ R \sim \text{Cylinder} :\ \underline{ \chi(R) = 0 } }
+		\end{aligned}
+		\hspace{15pt} 
+		% Simple closed curve has X = 1
+		\bullet\ \mss{ \begin{gathered}
+			\text{Simple Region}\\[-2pt]
+			R \sim S_{\neq S^2}	
+		\end{gathered} } :\ 
+		\underline{ \chi(R) = 1 }
+		\hspace{5pt} \text{\scriptsize(needs \(>0\) vertex; circle edge begins/ends at one point/vertex)}
+		\\[5pt]
+	% Compact Connected Surface: If there is no boundary, K_g integral is 0
+	& \bullet\ { \mss{ \begin{gathered}
+			\text{Compact, connected } S\\[-2pt]
+			R \sim \mss{\oiint_{\partial \tau}},\ \nexists \partial R 
+		\end{gathered} } } :\ 
+		\boxed{ 
+			\begin{gathered}
+				\text{\scriptsize(\underline{one} \(n>0\))} \hspace{5pt} \mss{ n \in \{1,0,-1,-2,\dots\} }\\
+				\mss{\iint_R} K\hs d\sigma =  2\pi \chi(S) = 2\pi(2n)
+			\end{gathered}
+		}
+		\hspace{15pt}
+		% Genus
+		\begin{gathered}
+			\ast\ \boxed{ \text{\underline{Genus}}:\ g \equiv \tfrac{2 - \chi}{2} } \\[-3pt]
+			\text{\scriptsize(\(S^2\) w/ \(g\) torus holes \(\sim S\))}
+		\end{gathered}
+		\hspace{10pt}
+		% Compact positive curvature ~ Sphere
+		\ast\ \underline{K > 0} \ \mss{ \begin{aligned}
+			& \Rightarrow \chi(S) = 2 \\
+			& \Rightarrow \boxed{ S \sim S^2 }
+		\end{aligned} }
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	% Two Closed Geodesic Boundary
+	& R = \text{\underline{Bounded by [any] Two Geodesics}}:\ 
+		\mss{\iint_R} K\hs d\sigma
+		+ \theta_E\mss{(t_1)} + \theta_E\mss{(t_2)} 
+		= 2\pi \chi(R)
+		\\[5pt]
+	% On K <= 0, can't intersect more than once
+	& \bullet\ K \leq 0 :\ 
+		\cancel{ \mss{ \begin{gathered}
+			\text{intersect \(2\times\)}\\[-3pt]
+			(R \sim S_{\neq S^2})
+		\end{gathered} } }
+		\ \rightarrow\ \mss{ \begin{aligned}
+			2\pi \chi(R) & = \theta_E\mss{(t_1)} + \theta_E\mss{(t_2)} + {\iint_R} K\hs d\sigma \\
+			2\pi & = (< \pi) + (< \pi) + (< 0)
+		\end{aligned} }
+		\ \Rightarrow\ \underline{ \begin{gathered}
+			\text{\scriptsize any two geo.}\\[-9pt]
+			\text{\scriptsize intersect \(\leq 1\times\)}
+		\end{gathered} }
+		\\	
+	% On Cylinder, must intersect
+	& \bullet\ K < 0 ,\ S \sim \text{\scriptsize Cylinder}:\ 
+		\cancel{ \mss{ \begin{gathered}
+			\text{two [closed] geo.}\\[-3pt]
+			\text{intersect}\ 0\times\\[-3pt]
+			(R \sim \text{cylinder})
+		\end{gathered} } }
+		\ \rightarrow\ 0 = 2\pi \chi(R) = \mss{\iint_R} K\hs d\sigma < 0 
+		\ \Rightarrow\ \underline{ \text{\scriptsize \(\nexists\) Two CLOSED geo.} }
+		\\	
+	% On Sphere, must intersect
+	& \bullet\ K > 0 \ \Leftrightarrow\ S \sim S^2:\ 
+		\cancel{ \mss{ \begin{gathered}
+			\text{two [closed] geo.}\\[-3pt]
+			\text{intersect}\ 0\times\\[-3pt]
+			(R \sim \text{cylinder})
+		\end{gathered} } }
+		\ \rightarrow\ 0 = 2\pi \chi(R) = \mss{\iint_R} K\hs d\sigma > 0 
+		\ \Rightarrow\ \underline{ \begin{gathered}
+			\text{\scriptsize two closed geo.}\\[-9pt]
+			\text{\scriptsize intersect \(\geq 1\times\)}
+		\end{gathered} }
+		\\
+	% 
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+% Geodesic Triangle
+\(\begin{aligned}
+	& \begin{gathered}
+		\mss{ R = \text{Three Geodesics} } \\
+		\underline{ \text{Geodesic Triangle},\ T } :
+		\end{gathered} 
+		\ 
+		\begin{aligned}
+			\mss{ \mss{\iint_R} K\hs d\sigma + \mss{\sum_{i=1}^3} \hs \theta_E\mss{(t_i)} } & = \mss{ 2\pi = 2\pi \chi(R) }
+				\\
+			\Aboxed{ \mss{\iint_R} K\hs d\sigma + \pi & = \mss{\sum_{i=1}^3} \hs \theta_I\mss{(t_i)} }	
+		\end{aligned}
+		\hspace{15pt}
+		\bullet\ \boxed{ \mss{\iint_R} K\hs d\sigma = \mss{\sum_{i=1}^3} \hs \theta_I\mss{(t_i)} - \pi = A(N(T)) }
+\end{aligned}\)
+
+\vspace{10pt}\noindent
+\(\begin{aligned}
+	& \begin{aligned}
+			% Index of Differential Vector Space v on S, at p
+			& \underline{ \text{[Diff.] Vector Space, \(v\), on } S } :\ 
+				\begin{gathered}
+					p_i \in R \hs |\ v\mss{(p_i)} = 0\\[-4pt]
+					\mss{ \partial R = \alpha,\  v\mss{(t)} = v\circ \alpha\mss{(t)} }
+				\end{gathered}
+				\rightarrow 
+				\\
+			& \mss{ \oint_0^l } \tfrac{ d\theta_{v(0) e_1} }{ds} \hs ds  
+				= \mss{ \theta_{v(l) e_1} - \theta_{v(0) e_1} }
+				= \boxed{ \Delta \theta \big|^{v(l)}_{v(0)} \equiv 2\pi I_{p_i} }
+				\hspace{10pt} 
+				\underline{ \mss{ \begin{gathered}
+					v\mss{(p_i)} \neq 0 \\[-3pt]
+					\rightarrow I_{p_i} = 0\\
+				\end{gathered} } }
+		\end{aligned}
+		\ \
+		\bullet\ \text{\scriptsize Compact}\ S,\ 
+		\begin{gathered}
+			\text{\scriptsize\underline{Poincare's Theorem}}\\
+			\boxed{ \tfrac{1}{2\pi} \mss{\oiint} K \hs d\sigma = \mss{\sum_i} I_{p_i} = \chi(S)}
+		\end{gathered}
+\end{aligned}\)
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+% Exponential Map
+\subsection{Exponential Map, \( 
+\mss{ \begin{aligned}
+	\exp_p:\ & v \in T_p(S) \ \rightarrow\ \exp_p(v) \in S \\
+	\equiv X:\ & q \in S_1 \ \rightarrow\ p' \in S_2 
+\end{aligned} } 
+\) }
+\(
+	\mss{ \begin{gathered}
+		\left[ \tfrac{D\alpha'}{dt} \right] = 0 \\
+		\tfrac{d}{dt} \Vert \alpha'\mss{(t)} \Vert = 0\\
+		\alpha'\mss{(0)} = v\\
+		\exists \alpha\mss{(s = |v|t)}
+	\end{gathered} }
+	\ , \ \
+	\mss{ \begin{aligned}
+		& |t| < \epsilon : \ \alpha\mss{(t)} = \alpha\circ\mss{(\lambda \overline{t})} 
+			= \overline{\alpha}\mss{(\overline{t} = \tfrac{t}{\lambda})} \ : |\overline{t}| < \tfrac{\epsilon}{\lambda}
+			\\
+		& \alpha'\mss{(t)} = \tfrac{1}{\lambda} \overline{\alpha}'\mss{(\tfrac{t}{\lambda})}
+			\ \Rightarrow\ 
+			\lambda v = \lambda \alpha'\mss{(0)} = \overline{\alpha}'\mss{(0)} = \overline{v}
+			\\
+		& |t| < \epsilon : \ \gamma\mss{(t, v)} = \gamma\mss{(\overline{t}, \overline{v})} 
+			= \gamma\mss{( \tfrac{t}{\lambda} , v\lambda )} \ : |\overline{t}| < \tfrac{\epsilon}{\lambda}
+			\\
+		& \nhs\nhs\nhs \tfrac{s}{|v|} < \epsilon : \ \gamma\mss{(\tfrac{s}{|v|}, v)}
+			= \gamma\mss{( \tfrac{s}{\lambda|v|} , v\lambda )} 
+			\\
+		& \rightarrow\ \underline{
+			( |\overline{v}| = \lambda |v| = s < \epsilon|v| )
+			\ \Leftrightarrow\ ( \overline{t} = 1 < \tfrac{\epsilon}{\lambda} )  
+			}
+	\end{aligned} }
+	\ ,\ \
+	\boxed{
+		\begin{aligned}
+			\exp_p(0) & = \alpha_g{\scriptstyle(s=0)} = \gamma_v\mss{(0)} = p = \gamma_0\mss{(t)} \\
+			\exp_p(v) & = \alpha_g\mss{(|v|)} = \underline{ \gamma_v\mss{(1)} } = e^{ (1) \tfrac{d}{dt} } \gamma_v\mss{(0)}
+		\end{aligned}
+	}
+\)
+
+\vspace{15pt}\noindent
+% if \gamma is diff then exp_p is
+\(
+	\bullet\ \underline{ \text{IF}^* } \ \ 
+	\begin{gathered}
+		\gamma \mss{(t,v)} \in C^\infty \\[-6pt]
+		\underline{ \mss{ \forall\ \text{directions}\ v } }
+	\end{gathered}
+	\hs \Big|\
+	\mss{ \begin{aligned}
+		|t| & < \epsilon_t\\[-3pt]
+		|v| & < \epsilon_v
+	\end{aligned} }
+	\ \Rightarrow\ 
+	\gamma\mss{(t',v')} \in C^\infty \hs \Big|\ 
+	\mss{ \begin{aligned}
+		\vert t' = \tfrac{2t}{\epsilon_t} \vert & < 2 \\[-3pt]
+		\vert v' = \tfrac{\epsilon_t v}{2} \vert & < \tfrac{\epsilon_t \epsilon_v}{2} = \epsilon
+	\end{aligned} }
+	\ \Rightarrow\ 
+	{ \begin{gathered}
+		\mss{ ( \text{GEq unique.+exist. theor. used} )^* }\\[-5pt]
+		\boxed{ \gamma\mss{(1,v')} = \exp_p \circ \hs v' \in C^\infty }
+	\end{gathered} }
+\)
+
+\vspace{15pt}\noindent
+% diffeomorphism for exp_p
+\(\ast\ \begin{aligned}
+	& \mss{ \begin{aligned}
+			q\mss{(t)} & = v_0 t = (u_0 e_1 + v_0 e_2)t\\[-3pt]
+			\alpha\mss{(t)} & = \exp_p \circ \hs\hs q\mss{(t)} \in \alpha_g
+		\end{aligned} }
+		\ ,\ \ \underline{ \tfrac{d\alpha}{dt} \big|_{t=0} }
+		= \tfrac{d}{dt} \exp_p \mss{(1, v_0 t)} \big|_{t=0}
+		= \tfrac{d}{dt} \gamma \mss{(t, v_0)} \big|_{t=0}
+		= \underline{ v_0 }
+		\\
+	& \mss{ \begin{aligned}
+			\bar{q} \mss{(t)} & = \bar{v}_0 t,\ {\scriptstyle(\bar{v}_0 \cdot v_0 = 0)}  \\[-3pt]
+			\bar{\alpha} \mss{(t)} & = \exp_p \circ \hs\hs \bar{q}\mss{(t)}
+		\end{aligned} }
+		\ , \ \ \underline{ \tfrac{d\bar{\alpha}}{dt} \big|_{t=0} = \bar{v}_0 }
+		\ \Rightarrow\ 
+		\boxed{ 
+			\begin{gathered}
+				\mss{ (X_u\ X_v)_{q=0} = [e_1\ e_2] \neq \mathbbm{1}_3 } \\[-1pt]
+				\left[ d( \exp_p )_{v=0} \right] q'\mss{(0)} = v_0 \\[-1pt]
+				dX q'\mss{(0, v_0)} = q'\mss{(0, v_0)} = v_0
+			\end{gathered}
+		} 
+		\ \stackrel{(\text{IFT})}{\Rightarrow} \ 
+		\boxed{ 
+			\begin{gathered}
+				\exists\ \text{\scriptsize Diffeo}\ [ \exp_p \mss{(v)} ]^{-1} \\[-3pt]
+				\underline{ \text{\scriptsize near \(q=v=0\)} }
+			\end{gathered}
+			\in C^\infty 
+		}
+\end{aligned}\)
+
+\vspace{15pt}
+\(\begin{aligned}
+	% Normal Neighborhood
+	& \underline{ \text{Normal Neighborhood, \(V_p\)} } :\ \text{Diffeo.}\ \exp_p(V_q) = V_p\\
+	% Normal Coordinates
+	& \underline{ \text{Normal Coordinates} } :\ w = u e_1 + v e_2 \in T_p(S)
+		\hspace{10pt}
+		\mss{ \begin{aligned}
+			& \bullet\ w(t) = w_0 t,\ \alpha(t) = \exp_p \circ\hs w\mss{(t)} \in \alpha_g
+				\hspace{5pt} \underline{ \text{\scriptsize(radial geo.)} }
+				\\
+			& \bullet\ \boxed{dX_{q=p}}: X_u = e_1,\ X_v = e_2 \ \rightarrow\ \underline{E|_p = G|_p =1,\ F|_p = 0}
+		\end{aligned} }
+		\\[5pt]
+	% Polar coordinates
+	& \underline{ \text{Geod. Polar Coordinates} } :\ 
+		w = \hsvec{\rho} \mss{(0 < \rho,\ \underline{0 < \theta < 2\pi} )} \in T_p(S)
+		\hspace{10pt}
+		\mss{ \bullet\ \text{Diffeo.} \rightarrow \theta \in (0,2\pi);\ L \equiv \exp_p(w:\hs \theta = 0) }
+		\\[10pt]
+	& \bullet\ w:\hs (\rho\mss{(s)}, \theta) = (s, \theta_0) 
+		\ \Rightarrow\ 
+		\begin{aligned}
+			% E = 1 for polar
+			& \ast\ \Vert \alpha'|_{\theta=\theta_0}^{\rho=s} \Vert^2 = \Vert \alpha'\mss{(s)} \Vert^2 
+				\ \stackrel{\rightarrow}{=}\ \boxed{ E = 1 }
+				\\[5pt]
+			% F_\rho = 0 for polar
+			& \ast \begin{aligned}
+					\text{(GEq)} &:\ (u')^2 \Gamma_{11} = (\rho')^2 \Gamma_{11} = [0\ 0]\\
+					(\Gamma) &:\ \Gamma_{11}^2 = \tfrac{1}{2[EG-F^2]} \mss{ [E_u \ 2F_u - E_v] \cdot [-F\ E] }
+				\end{aligned} 
+				\ \rightarrow\ \underline{ F_\rho = 0 } 
+		\end{aligned}
+		\\[5pt]
+	%% F = 0 for polar
+	& \bullet\ \lim_{\rho \rightarrow 0} \left[ F\mss{(\rho,\theta)} = \mss{X_u \cdot X_v} \right]
+		= \lim_{\rho \rightarrow 0} \tfrac{d \alpha}{ds}|_{\theta=\theta_0}^{\rho=s} 
+		\cdot \lim_{\rho \rightarrow 0} \bcancel{ \tfrac{d \alpha}{d\phi}|_{\theta=\phi}^{\rho=\rho_0} }
+		= 0,\ \big( F_\rho = 0 \big)
+		\ \Rightarrow\ \forall \rho,\ \boxed{ F = 0 }
+		\\[5pt]
+	%%% Gauss's Lemma
+	& \ast\ \underline{ \text{Gauss' Lemma}:\ F = 0 \ \leftrightarrow\ \text{\scriptsize radial geod. orthog. to geod. circles} }
+		\\[5pt]
+	%% \sqrt{G} = \rho for polar
+	& \bullet\ \Vert X_u \times X_v \Vert = \Vert \overline{X_u} \times \overline{X_v} \Vert 
+		\ \Rightarrow\ \underline{ \mss{ \sqrt{EF-G^2} }|_{\rho\theta} }
+		= \underline{ 
+			\mss{ \sqrt{\overline{E} \overline{F} - \overline{G}^2} }|_{uv,\hs\hs \rho=0} 
+			\big\Vert \mss{ \arraycolsep=2pt \begin{matrix}
+				\cos\theta & -\rho \sin\theta \\
+				\sin\theta & \rho \cos\theta
+			\end{matrix} } \big\Vert
+		}
+		\ \Rightarrow\ \boxed{ \lim_{\rho\rightarrow0} \sqrt{G} = \rho }
+		\\[5pt]
+	% Not exact way
+	& \ast\ w = \mss{ \left[ X_u\ X_v \right] }
+		\mss{ \left[ \begin{matrix}
+			u'\\
+			v'
+		\end{matrix} \right] }
+		= \underline{
+			\mss{ \left[ X_u\ X_v \right] }
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				u_\rho & u_\theta \\
+				v_\rho & v_\theta
+			\end{matrix} \right] }
+		}
+		\mss{ \left[ \begin{matrix}
+			\rho'\\
+			\theta'
+		\end{matrix} \right] }
+		= \underline{ \mss{ \left[ X_\rho\ X_\theta \right] } }
+		\mss{ \left[ \begin{matrix}
+			\rho'\\
+			\theta'
+		\end{matrix} \right] }
+		\hspace{10pt} \text{\scriptsize(only useful so far for \(dX_{q=p}\), so above is better)}
+\end{aligned}\)
+
+\vspace{10pt}
+\(\begin{aligned}
+	% Equation for G and K
+	& \bullet\ F=0,\ E=1 \ \rightarrow\ \boxed{ \sqrt{G}_{\rho\rho} + K\sqrt{G} = 0 }
+		\hspace{15pt}
+		%% another relation for d^3(G) and K
+		\ast\ \mss{ \lim_{\rho\rightarrow0} \sqrt{G}_{\rho\rho\rho} + K_\rho \sqrt{G} + K\sqrt{G}_\rho } =
+		\boxed{ 0 = \lim_{\rho\rightarrow0}\sqrt{G}_{\rho\rho\rho} + K\mss{(p)} }
+		\\[5pt]
+	%% Taylor Expansion of G at rho=0
+	& \sqrt{G}\mss{(\rho,\theta)} = \cancel{ \sqrt{G}\mss{(0,\theta)} }
+		+ \sqrt{G}_\rho \mss{(0,\theta)} \rho 
+		+ \cancel{ \sqrt{G}_{\rho\rho} \mss{(0,\theta)} } \tfrac{\rho^2}{2!}
+		+ \sqrt{G}_{\rho\rho\rho} \mss{(0,\theta)} \tfrac{\rho^3}{3!}
+		+ R \rho^4
+		= \rho - K\mss{(p)} \tfrac{\rho^3}{3!} + R \rho^4
+		\\
+	%% Arclength of Exponential map of circle
+	& \boxed{ L\mss{(\rho)} } = \nhs\nhs \lim_{\rho,\hs \epsilon\rightarrow0} \oint_{0+\epsilon}^{2\pi-\epsilon} 
+		\hspace{-16pt} \mss{ \sqrt{\cancel{Ed\rho^2} + G \hs d\theta^2 } }
+		= \lim_{\rho\rightarrow0} 2\pi\rho - K\mss{(p)} \tfrac{2\pi \rho^3}{3!} 
+		\ \Rightarrow\ \boxed{
+			K\mss{(p)} = \lim_{\rho,\hs \epsilon\rightarrow0} \tfrac{3!}{2\pi}
+			\tfrac{2\pi\rho - L}{\rho^3}
+		}
+		\hspace{5pt} \big( \hs \begin{gathered}
+			\text{\scriptsize arclength of \(\bigcirc \in T_p(S)\)}\\[-7pt]
+			\text{\scriptsize - arclength of \(\bigcirc \in S\)}
+		\end{gathered} \hs \big)
+		\\
+	%% Area of Exponential map of circle
+	& \boxed{ A\mss{(\rho)} } 
+		= \nhs\nhs \lim_{\rho,\hs \epsilon\rightarrow0} 
+		\int_{0+\epsilon}^{2\pi-\epsilon} \hspace{-7pt} \int_0^\rho \hspace{-5pt} \mss{ \sqrt{EG-F^2} } \hs dA
+		= \lim_{\rho\rightarrow0} \tfrac{2\pi\rho^2}{2} - K\mss{(p)} \tfrac{2\pi \rho^4}{4!} 
+		\ \Rightarrow\ \boxed{
+			K\mss{(p)} = \lim_{\rho,\hs \epsilon\rightarrow0} \tfrac{4!}{2\pi}
+			\tfrac{\pi\rho^2 - A}{\rho^4}
+		}
+		\hspace{5pt} \big( \hs \begin{gathered}
+			\text{\scriptsize area of \(\bigcirc \in T_p(S)\)}\\[-7pt]
+			\text{\scriptsize - area of \(\bigcirc \in S\)}
+		\end{gathered} \hs \big)
+\end{aligned}\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+\(\begin{aligned}[t]
+	& \ast\ K = 0:\ \underline{ \sqrt{G} = \rho }
+		\hspace{20pt} 
+		\ast\ K > 0:\ \sqrt{G} = \underline{ \tfrac{1}{\sqrt{K}} \sin( \sqrt{K}\rho ) }
+		\ \rightarrow\ \sqrt{G}_{\rho\rho} < 0
+		\ \Rightarrow\ \underline{ \tfrac{d^2}{d\rho^2} L\mss{(\rho)} \big|^{\theta_1}_{\theta_0} < 0 }
+		\\[5pt]
+	& \ast\ K < 0:\ \underline{ \sqrt{G} = \tfrac{1}{\sqrt{-K}} \sinh( \sqrt{-K}\rho ) }
+		\ \rightarrow\ \sqrt{G}_{\rho\rho} > 0
+		\ \Rightarrow\ \underline{ \tfrac{d^2}{d\rho^2} L\mss{(\rho)} \big|^{\theta_1}_{\theta_0} > 0 }
+		\\[5pt]
+	& \ast\ \psi:\ 
+		\mss{ \begin{aligned}
+			\psi(e_i \in T_p(S)) & = \overline{e}_i \in T_{\hs\overline{p}}(\overline{S})\\
+			d\psi(e_i \in T_p(S)) & = \overline{e}_i \in T_{\hs\overline{p}}(\overline{S})
+		\end{aligned} }
+		\ \rightarrow\ \Psi:\ 
+		\mss{ \begin{aligned}
+			& \Psi = \exp_{\hs \overline{p}} \circ\ \psi \circ \exp_{p}^{-1}\\
+			& [d\Psi] e_i = \overline{e}_i
+		\end{aligned} }
+		\ \ \vline \ \
+		\boxed{
+			\begin{gathered}
+				\mss{ K_0 = K(V_p) = K(V_{\hs\overline{p}}) }\\[-5pt]
+				\text{\scriptsize Minding's Theorem}\\[-9pt]
+				\text{\scriptsize const. \(K \rightarrow\) isometry}
+			\end{gathered}
+			\ \Rightarrow\ 
+			\mss{ \begin{aligned}
+				& (E,F,G) = (\overline{E}, \overline{F}, \overline{G})\\
+				& \Vert \overline{w} \Vert = \Vert d\Psi(w) \Vert = \Vert w \Vert
+			\end{aligned} }
+		}
+\end{aligned}\)
+
+\vspace{10pt}
+\(\begin{aligned}
+	& \ast dl_\alpha = \sqrt{E d\rho^2 + G d\theta^2} 
+		\ \rightarrow\ l_\alpha\mss{(\epsilon)} 
+		= \int_\epsilon^{t - \epsilon} \hspace{-8pt} \mss{ \sqrt{ (\rho')^2 + G \cdot (\theta')^2} } \hs dt 
+		\ \geq\ l_\gamma - 2\epsilon = \int_\epsilon^{t - \epsilon} \hspace{-8pt} \mss{ \sqrt{ (\rho')^2 } } \hs dt 
+\end{aligned}\)
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Abstract Surfaces
+\section{Abstract Surface/Riemannian Maniford, \(M\)}
+
+% Definition of Abstract Surface/Riemannian Manifold
+\(\begin{aligned}
+	1.\ & \bigcup_\alpha X_\alpha (U_\alpha) = M
+		\hspace{15pt}
+		\text{open}\ U \subset R^n
+		\hspace{30pt}
+		3.\ \left\{ U_\alpha, X_\alpha \right\} \ \text{is maximal rel. to 1. and 2.}
+		\\
+	2.\ & \forall (\alpha,\beta),\ W = X_\alpha(U_\alpha) \cap X_\beta(U_\beta) \neq \varnothing
+		\ \Rightarrow\ 
+		\begin{aligned}
+			& \bullet\ \text{open}\ X^{-1}_{\alpha}(W), X^{-1}_{\alpha}(W) \subset R^n\\
+			& \bullet\ X^{-1}_\beta \circ X_\alpha,\ X^{-1}_\alpha \circ X_\beta \in C^{\infty}
+		\end{aligned}
+		\\[5pt]
+	& \bullet\ \text{Manifold},\ M = \text{Hausdorff Space w/ Complete Atlas} \\
+	& \bullet\ \text{Sub[space]manifold},\ M \ \stackrel{\text{[top] subspace}}{\hookrightarrow}\ N
+		;\ C^\infty \ni \text{\scriptsize Immer}\ \iota: \text{\scriptsize Mani}\ M \rightarrow \text{\scriptsize Mani}\ N
+		\hspace{15pt} \text{\scriptsize(Inclusion map)}
+		\\
+\end{aligned}\)
+
+\vspace{10pt}
+% Coordinate System
+\( 
+	\underline{ \textbf{Coordinate System} }:\ \forall p \in \exists V_{p_0} \subset M,\ 
+	\xi(p) = (x^1, x^2, \dots x^m)\mss{(p)} \in R^m 
+\)
+
+\vspace{10pt}
+% Tangent Vectors
+\(
+	\underline{ \begin{gathered}
+		{ \text{Tangent Vector} }\\[-4pt]
+		{ \text{at } \alpha\mss{(0)} \in M }
+	\end{gathered} } 
+	:
+	\arraycolsep=2pt \begin{array}{c c c c l}
+		\mss{f \circ \alpha(t)} & \rightarrow 
+			& \tfrac{d(f \circ \alpha)}{dt} \big|_{t=0} 
+			& = 
+			& \big[ 
+				\tfrac{\partial f}{ \partial {r^1} },\hs \tfrac{\partial f}{ \partial {r^2} },\hs \tfrac{\partial f}{ \partial {r^3} } 
+				\big] 
+				\alpha'\mss{(0)}
+				\hspace{5pt} , \hspace{5pt} f \in \mathcal{F}(M) 
+				\hspace{10pt} ( \text{\scriptsize all diff. func. on } M )
+			\\[5pt]
+		\mss{f \circ X \circ q(t)} & \rightarrow
+			& \tfrac{d(f \circ X \circ q)}{dt} \big|_{t=0} 
+			& = 
+			& \big[ 
+				\tfrac{\partial f}{ \partial {r^1} },\hs \tfrac{\partial f}{ \partial {r^2} },\hs \tfrac{\partial f}{ \partial {r^3} } 
+				\big]
+				\big[  \vec{ \tfrac{\partial X}{ \partial {u^1} } } ,\hs \vec{ \tfrac{\partial X}{ \partial {u^2} } } \big] q'\mss{(0)}
+				= Df DX Dq
+			\\[5pt]
+		\mss{F(u^1, u^2) \circ q(t)} & \rightarrow
+			& \tfrac{d(F\circ q)}{dt}\big|_{t=0} 
+			& = 
+			& \boxed{ \big( q_1' \tfrac{\partial}{\partial u^1} \big|_0 + q_2' \tfrac{\partial}{\partial u^2} \big|_0 \big) 
+			(f \circ \xi^{-1}) }
+			\\
+	\end{array}
+\)\\[5pt]
+\(
+	% Tangent Space
+	\begin{gathered}
+		T_{p_0}(M) = \{ v_{p_0}: \mathcal{F}(M) \rightarrow \mathbb{R} \} \\[-3pt]
+		\mss{(\text{Is a Derivation})}\\
+	\end{gathered}
+	\hspace{15pt}
+	% Req. Properties
+	\begin{aligned}
+		% Linear
+		& \bullet\ v_{p_0}(af + bg) = a \underline{v_{p_0}(f)} + b \underline{v_{p_0}(g)} \in \mathbb{R}\\
+		% Leibnizian
+		& \bullet\ v_{p_0}(fg) = v_{p_0}(f) \underline{g(p_0)} + v_{p_0}(g) \underline{f(p_0)}
+			\hspace{15pt} f,g : M \rightarrow \underline{ \mathbb{R} }
+			\\
+		& \ast\ c v_{p_0}(1) = c v_{p_0}(1*1) = 2c v_{p_0}(1) = \boxed{0 = v_{p_0}(c)}\\
+	\end{aligned}
+\)\\[10pt]
+\(	
+	% Basis Vectors
+	\begin{gathered}
+		\text{Basis Vectors}:\\
+		\text{\scriptsize \(\scriptstyle q(t, q_1, q_0) \ =\ q_0 + t [q_1 - q_0] \)}\\[-8pt]
+		\mss{\scriptstyle p(t, q_1, q_0) \ =\ \xi^{-1} \circ \hs q(t, q_1, q_0) }\\
+	\end{gathered}
+	\ \
+	\bullet\ \boxed{ \tfrac{\partial f}{\partial x^i}\mss{(p)} \equiv \tfrac{\partial (f \circ \xi^{-1})}{\partial u^i} \mss{(\xi p)} }
+	= \tfrac{\partial F}{\partial u^i} \mss{(q)}
+	\ \Rightarrow\ T_{p_0}(M) \ni \boxed{ \partial_i \big|_p \equiv 
+		\tfrac{\partial}{\partial x^i}\big|_p : \mathcal{F}(M) \rightarrow \mathbb{R}
+	}
+\)\\[5pt]
+\(
+	\begin{aligned}[t]
+		\bullet\ \mss{F\big|_{q_0}^{q_1} = F\circ q\big|_0^1} & = \mss{\sum} {\scriptstyle[q^i_1 - q^i_0]} 
+			\mss{\int_0^1} \tfrac{\partial F}{\partial u^i} \circ q{\scriptstyle(t,q_1,q_0)} \hs dt
+			\stackrel{\text{\scriptsize(no need)}}{=} 
+			\mss{\sum \int_0^1} \tfrac{\partial F}{\partial u^i} \circ q{\scriptstyle(t,q_1,q_0)} \tfrac{dq^i}{dt} \hs dt
+			= \mss{\int_0^1} DF\hs Dq\hs dt 
+			= \underline{ \mss{\int_0^1} \tfrac{d(F \circ q)}{dt} \hs dt }
+			\\
+		\mss{ F \circ q_1 - F(q_0) } & = \mss{\sum} {\scriptstyle[x^i p_1 - x^i p_0]} \mss{\int_0^1} 
+			\tfrac{\partial (f \circ \xi^{-1})}{\partial u^i} \circ \xi p{\scriptstyle(t,p_1,p_0)} \hs dt
+			\\
+		\mss{ f \circ p_1 - f(p_0) } & = \mss{\sum} {\scriptstyle[x^i p_1 - x^i p_0]} \mss{\int_0^1} 
+			\tfrac{\partial f}{\partial x^i} \circ p{\scriptstyle(t,p_1,p_0)} \hs dt
+			\\
+	\end{aligned}
+\)\\[2pt]
+\(
+	% Partial Derivative at zero/initial
+	\begin{aligned}
+		\ast\ \text{\scriptsize(no need?)} \hspace{10pt}
+			\tfrac{\partial F}{\partial u^j} \big|_{q_0} - \cancel{ \tfrac{\partial F(q_0)}{\partial u^j} } 
+			& = \cancel{ \tfrac{\partial u^j}{\partial u^j} }
+			\mss{\int_0^1} \tfrac{\partial F}{\partial u^j} \circ q{\scriptstyle(t,q_0,q_0)} \hs dt
+			+ \cancel{\mss{\sum_i} {\scriptstyle[q^i_0 - q^i_0]}
+			\mss{\int_0^1 \bcancel{\sum_k}} \bcancel{\tfrac{\partial u^{k}}{\partial u^j}} t
+			\tfrac{\partial^2 F}{\partial u^{\bcancel{k}j} \partial u^i} \circ q{\scriptstyle(t,u,q_0)} \hs dt \big|_{q_0}}
+			\\
+		\tfrac{\partial f}{\partial x^j} \big|_{p_0} - \cancel{ \tfrac{\partial f(p_0)}{\partial x^j} } 
+			& = \mss{\int_0^1} \tfrac{\partial f}{\partial x^i} \circ p{\scriptstyle(t,p_0,p_0)} \hs dt 
+			\\
+	\end{aligned}
+\)\\
+\(
+	% v decomposed by basis vectors
+	\begin{aligned}
+		\ast\ v_{p_0} f\mss{(p)} - \cancel{ v_{p_0} f\mss{(p_0)} } & = 
+			\mss{\sum} 
+			v_{p_0} {\scriptstyle[x^i(p) - \cancel{ x^i(p_0) }]} 
+			\cdot \mss{\int_0^1} \tfrac{\partial f}{\partial x^i} \big|_{p(t,p_0,p_0)} \hs dt
+			+ \bcancel{ {\scriptstyle[x^i(p_0) - x^i(p_0)]} 
+			\cdot v_{p_0} \mss{\int_0^1} \tfrac{\partial f}{\partial x^i} \big|_{p(t,p,p_0)} \hs dt }
+			\\ 
+		& = v_{p_0} {\scriptstyle[x^i(p)]} \cdot \mss{\sum} \tfrac{\partial f}{\partial x^i} \big|_{p_0}
+			\ \Rightarrow\ \boxed{ v_{p_0} = v_{p_0} \left( \sum x^i \tfrac{\partial}{\partial x^i}\big|_{p_0} \right) 
+			= \sum v_{p_0}(x^i) \hs \partial_i \big|_{p_0} }
+			\\
+	\end{aligned}
+\)\\[4pt]
+\( 	
+	% Linear Independant
+	\ast\ \sum c^i \partial_i \big|_{p_0} = 0 = 0 \cdot x^j = \sum c^i \partial_i \big|_{p_0} x^j = c^i \delta_{ij} = c^j
+	\hspace{15pt} \boxed{ \text{(Lin. Ind.)} }
+\)\\[5pt]
+\(
+	% Change of basis
+	\bullet\ \text{Change of Basis}:\ 
+	v_p = \sum v_p(x^i) \hs \tfrac{\partial}{\partial x^i}\big|_p = \sum v_p(y^j) \hs \tfrac{\partial}{\partial y^j}\big|_p 
+	\ \leftrightarrow\ v_p(y^j) = \sum v_p(x^i) \hs \tfrac{\partial y^j}{\partial x^i} \big|_p
+\)
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+\newpage
+\(
+	\begin{aligned}
+		% Manifold Mapping
+		& \underline{ \text{Manifold Mapping} },\ \phi : M \rightarrow N\\
+		% Vector at Mapping
+		& \underline{ \text{Vector at Mapping},\ v_\phi \in T_{\phi p}(N) }: \ \ 
+			\boxed{ v_\phi(g) \equiv v(g \circ \phi) }
+			\\
+	\end{aligned}
+	\hspace{15pt}
+	% Leibnizian
+	\begin{aligned}
+		\bullet\ v_\phi(g_1 g_2) & = v( \mss{(g_1 \circ \phi)(g_2 \circ \phi)} ) \\
+		& = v_\phi \mss{(g_1)} g_2\mss{(\phi p)} + v_\phi\mss{(g_2)} g_1\mss{(\phi p)}\\
+	\end{aligned}
+\)
+
+\vspace{5pt}
+% Differential Map
+\(
+	\underline{ \text{Differential Map},\ d\phi_p: T_p(M) \rightarrow T_{\phi p}(N) }: \ \ 
+	\boxed{ v(g \circ \phi) \equiv v_\phi(g) = [ d\phi_p \hs v ](g) }
+	\hspace{15pt} 
+	\mss{ \begin{aligned}
+		& v \in T_p(M)\\
+		& g \in \mathcal{F}(N)\\
+	\end{aligned} }
+	,\ \tfrac{\partial g}{\partial y^i} = \tfrac{\partial G}{\partial v^i}
+\)\\[5pt]
+\(\displaystyle
+	\underline{ q' \nhs\nhs \cdot \nhs\nhs\nhs \hsvec{\nabla}_{\nhs\nhs u} \big|_p (\mss{g \circ \phi \circ \xi^{-1}}) }
+	% = \tfrac{ d(g \circ \phi \circ \xi^{-1} \circ q )}{dt}\big|_{0} 
+	= \tfrac{ d(g \circ \eta^{-1} \circ \eta \circ \phi \circ \xi^{-1} \circ q )}{dt}\big|_{0} 
+	= \tfrac{ d(G \circ \Phi \circ q )}{dt}\big|_{0} 
+	= \mss{ [\hsvec{\nabla}^T_{\nhs\nhs v} \hspace{-3pt} G] [\hsvec{\nabla}^T_{\nhs\nhs u} \hspace{-3pt} \Phi] \hs q'|_0 } 
+	= \underline{ \mss{
+		\left[ [q'|_0^T \hsvec{\nabla}_{\nhs\nhs u} \Phi^T] \hsvec{\nabla}_{\nhs\nhs v} \right] 
+		\nhs\nhs G 
+	} }
+	= \underline{ \mss{
+		\left[ [\hsvec{\nabla}_{\nhs\nhs u}^T \hspace{-3pt} \Phi \hs v(\hsvec{x})] \nhs\cdot\nhs\nhs \hsvec{\nabla}_{\nhs\nhs v} \right] 
+		\nhs\nhs G 
+	} }
+\)\\[7pt]
+\(
+	% Change of Basis
+	\begin{aligned}
+		% basis vector
+		& \bullet\ T_{\phi p}(N) \ni d\phi_p \tfrac{\partial}{\partial x^i} \big|_p 
+			= \sum_j \left( d\phi_p \tfrac{\partial y^j}{\partial x^i} \big|_p \right) \tfrac{\partial}{\partial y^j} \big|_{\phi p}
+			= \sum_j \tfrac{\partial (y^j \circ \phi)}{\partial x^i}\big|_p \tfrac{\partial}{\partial y^j} \big|_{\phi p}
+			\ \Leftarrow\ \eta(\phi p \in N^n ) = y \in \mathbb{R}^n
+			\\
+		% general vector
+		& \bullet\ T_{\phi p}(N) \ni d\phi_p v = d\phi_p \sum_i v(x^i) \tfrac{\partial}{\partial x^i} \big|_p
+			= \underline{ \mss{\sum_{i,j}} v(x^i) \tfrac{\partial (y^j \circ \phi)}{\partial x^i}\big|_p 
+			\tfrac{\partial}{\partial y^j} \big|_{\phi p} }
+			\\
+	\end{aligned}
+\)\\[5pt]
+\(
+	% Compounded Mapping Functions 
+	\bullet\ \mss{ \begin{aligned}
+		& \psi : N \rightarrow P\\
+		& \phi : M \rightarrow N\\ 
+	\end{aligned}
+	\ , \ 
+	\begin{aligned}
+		& h \in \mathcal{F}(P)\\
+		& v \in T_p(M)\\
+	\end{aligned} }
+	\ ,
+	\begin{aligned}
+		[ d(\psi \circ \phi)_p \hs v ] (h) & = v_{\psi \circ \phi} (h) = v(\mss{h \circ \psi \circ \phi}) = v_\phi \mss{(h \circ \psi)}
+			= d\phi_p \hs v \mss{(h \circ \psi)} = d\psi_{\phi p}\hs d\phi_p \hs v \mss{(h)}
+			\\
+		\Aboxed{ d(\psi \circ \phi)_p \hs v & = d\psi_{\phi p}\hs d\phi_p \hs v }
+	\end{aligned}
+\)\\[10pt]
+\(
+	% Inverse Function Theorem
+	\bullet\ \underline{ \text{Inverse Function Theorem} }: \ \ 
+	\boxed{ \text{Linear Iso.}\ d\phi_p\ \text{at}\ p 
+	\ \Leftrightarrow\ \text{[Local] Diffeo.}\ \phi: \exists \mathcal{V}_{p} \rightarrow \phi(\mathcal{V}_p) }
+\)
+
+\vspace{15pt}
+\(
+	% Curves
+	\begin{aligned}
+		& \underline{ \text{Curve}\ \alpha(t) = \xi^{-1} \circ q(t) : \mathbb{R} \rightarrow M}
+			\\[5pt]
+		& \bullet\ T_{\alpha(t)}(M) \ni \alpha'(t) = d\alpha \hs \tfrac{\partial}{\partial u} \big|_t
+			= \sum \alpha' \big|_t (x^i) \tfrac{\partial}{\partial u^i} \big|_{\alpha(t)}
+			= \sum \tfrac{\partial(x^i \circ \alpha)}{\partial u} \big|_t \tfrac{\partial}{\partial u^i} \big|_{\alpha(t)}
+			\\
+		& \bullet\ \alpha'\mss{(t)} f = d\alpha \hs \tfrac{\partial f}{\partial u} \big|_t 
+			= \tfrac{\partial(f \circ \alpha)}{\partial u} \big|_t 
+			\\
+	\end{aligned}
+\)
+
+\vspace{15pt}
+\(
+	% Vector Field
+	\begin{gathered}
+		\underline{ \text{Vector Field},\ V \in \mathcal{X}(M): p \in M \rightarrow V_p \in T(M) }: \ \ \\[-3pt]
+		( \text{\scriptsize \(\mathcal{X}(M) =\) Module over [commutative, unital] Ring \(\mathcal{F}(M)\)} ) \\
+	\end{gathered}
+	\boxed{ \arraycolsep=2pt \begin{array}{c c c c c}
+		V_p f & = & V_p(f) & = & (Vf)_p = (\overline{V}f)_p\\
+		\mss{ \mathbb{R} } && \mss{ V_p \in T_p(M) } && \mss{ Vf \in \mathcal{F}(M) },\ 
+			\mss{\overline{V} : \mathcal{F}(M) \rightarrow \mathcal{F}(M) }
+			\\
+	\end{array} }
+\)\\[7pt]
+\(
+	\begin{aligned}[t]
+		% Module over Ring of Functions
+		& \ast\ (fV)_p = f\mss{(p)} V_p\\
+		& \ast\ (V + W)|_p = V_p + W_p \\
+	\end{aligned}
+	\hspace{15pt}
+	\begin{aligned}[t]
+		% Basis
+		& \bullet\ \underline{ \text{[Free] Module Basis},\ \partial_i }:\ \partial_i(p) = \partial_i \big|_p \in T_p(M)\\
+		% General
+		& \bullet\ V_p = \mss{\sum }\hs V_p x^i \hs \partial_i \big|_p
+			= \left( \underline{ \mss{\sum }\hs [V x^i] \hs \partial_i } \right)_p
+			= (\underline{V})_p
+	\end{aligned}
+\)\\
+\(
+	\begin{aligned}
+		% vector field leads to derivation
+		& \bullet\ \underline{ \text{\scriptsize Vector Field}\ V 
+			 \Leftrightarrow\hs \overline{V} \ \text{\scriptsize is a derivation on \(\mathcal{F}(M)\)}
+			}
+			\\[3pt]
+		% commutator
+		& \bullet\ \underline{\text{Commutator}}:\ 
+			\arraycolsep=2pt \begin{array}{c c c}
+				\text{\scriptsize Derivation}\ [\overline{V}, \overline{W}] & \Leftrightarrow 
+					& \text{\scriptsize Vector Field}\ [{V}, {W}]_p 
+					\\
+				\mss{ \big( [\overline{V}, \overline{W}]f \big)_p = \big( \overline{V}(Wf) - \overline{W}(Vf) \big)_p  } & 
+					& \mss{ [{V}, {W}]_p f = V_p(\overline{W}f) - W_p(Vf) }
+			\end{array}
+			\hspace{15pt}
+			%
+			\ast\ \left[ \partial_i, \partial_j \right] = 0
+			\\[3pt]
+		% identity
+		& \ast\ \begin{aligned}[t]
+				[f\overline{V}, g\overline{W}]h & = \underline{ fV(g(Wh)) } - gW(f(Vh)) \\ 
+				& = \mss{ \underline{ fgV(Wh) } - gfW(Vh) + \underline{ f(Vg)(Wh) } - g(Wf)(Vh) }
+					= fg[{V}, {W}]h + f(Vg)(Wh) - g(Wf)(Vh)
+					\\
+			\end{aligned}
+			\\[5pt]
+		% \phi-Related Maps
+		& \bullet\ \underline{ \text{\(\phi\)-Related Maps, \(X \sim_\phi Y\)}} :\ \ 
+			\mss{\forall p \in M},\ d\phi_p(X_p) = Y_{\phi p}
+			\ \Leftrightarrow\ \mss{\forall g \in \mathcal{F}(N)},\ \overline{X}(g \circ \phi) = (\overline{Y}g) \circ \phi
+			\\[3pt]
+		& \ast\ \text{Transferred Vec. Field of \(X\)}:\ \ (Y) = (d\phi X)\ \Rightarrow\ 
+			\boxed{ (d\phi X)g = \overline{X}(g \circ \phi) \circ \phi^{-1} \in \mathcal{F}(N) }
+			\\[3pt]
+		& \ast\ X_1 \sim_\phi Y_1,\ X_2 \sim_\phi Y_2 \ \Rightarrow\ \underline{ [X_1, X_2] \sim_\phi [Y_1, Y_2] }\\ 
+	\end{aligned}
+\)
+
+%-----------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+\(
+	\begin{aligned}
+		% Covector/Cotangent/Dual Space
+		& \underline{ \text{Cotangent Space} \ T^*_p(M) } \ \ni \ 
+			\underline{ \text{Covector} \ v^*_p: T_p(M) \rightarrow \mathbb{R} }
+			\\[5pt]
+		% One-Form
+		& \begin{gathered}
+				\underline{ \text{One-Form} \ \theta \in \mathcal{X}^*(M)}\\[-3pt]
+				\text{\scriptsize(Covec. Field \(=\) Module Over \(\mathcal{F}(M)\))}
+			\end{gathered}
+			: 
+			p \in M \rightarrow \theta_p \in \bigcup_{p \in M} T^*_p(M) : \ 
+			\boxed{ \arraycolsep=2pt \begin{array}{c c c c c}
+				\theta_p \hs V_p & = & \theta_p(V_p) & = & (\theta V)_p = (\overline{\theta} {V})_p\\
+				\mss{ \mathbb{R} } & & \mss{ \theta_p: T_p(M) \rightarrow \mathbb{R} } 
+					& & \mss{ \overline{\theta}: \mathcal{X}(M) \rightarrow \mathcal{F}(M) }
+					\\
+			\end{array} }
+			\\[5pt]
+		% Differential of a function
+		& \bullet\ \underline{ \text{Differential}, d : \mathcal{F}(M) \rightarrow \mathcal{X}^*(M)}\\
+		& \hspace{15pt} df \in \mathcal{X}^*(M):\ 
+			\arraycolsep=2pt \begin{array}[t]{c l l}
+				\tfrac{\partial (f \circ \xi^{-1} \circ q) }{\partial t}\big|_0 
+					& = \tfrac{\partial F}{\partial u}^T q'(0) 
+					= \mss{\sum} q_i'\mss{(0)} \hs \partial_i \big|_0 F 
+					& \displaystyle = \big( \left[ \mss{\sum} v(x^i) \hs \partial_i \right] \nhs\nhs F \big)|_0
+					\\[5pt]
+				& = df_p V_p = \underline{ (\overline{df} \hs V)_p } & = \underline{ (\overline{V}f)_p }
+			\end{array}
+			\\[5pt]
+		% Basis
+		& \bullet\ \underline{ \text{[Free] Module Basis},\ dx^i }:\ dx^i (\partial_j) = \partial_j(x_i) = \delta_{ij} 
+			\\[5pt]
+		% General
+		& \bullet\ \theta_p = \mss{\sum} \theta_p(\partial_i|_p) \hs dx^i_p
+			= \mss{\sum} \partial_i|_p \theta_p \hs dx^i_p
+			\ \Rightarrow\ df = \mss{\sum} \tfrac{\partial f}{\partial x^i} \hs dx^i
+			\\
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% Tangent Bundle
+\(
+	\underline{ \text{Tangent Bundle} }:\
+	\hspace{-35pt}
+	\begin{aligned}[t]
+		T(M) & = \left\{ (p,w) \right\}
+			\hspace{5pt} , \hspace{5pt}
+			p \in M,\ w \in T_p(M) 
+			\\
+		y_\alpha\mss{(u_{1,\alpha}, ..., x_1, ...)} & = \left\{ \big( 
+				X_\alpha \mss{ ( u_{1,\alpha}, u_{2,\alpha} , ...) },\ 
+				x_1 \tfrac{\partial X_\alpha}{\partial u_{1,\alpha}} + x_2 \tfrac{\partial X_\alpha}{\partial u_{2,\alpha}} + ... 
+			\big) \right\}
+			\hspace{5pt} , \hspace{5pt}
+			x_i \in R
+			\\
+		T(M) & = \bigcup_\alpha y_\alpha( U_\alpha \times R^n )
+	\end{aligned}
+\)
+
+\vspace{10pt}
+\(
+	\begin{aligned}[t]
+		% Hypersurface
+		& \underline{ \text{Hypersurface} ,\ P \stackrel{\text{subman}}{\hookrightarrow} M }:\ \dim{M} = \dim{P} + 1
+			\\[5pt]
+		% Level Hypersurface
+		& \bullet\ \underline{ \text{Level Hypersurface}:\ f^{-1}(q) }\\
+		& \hspace{10pt} \ast\ f: M \rightarrow N = \mathbb{R}^1\\
+		& \hspace{10pt} \ast\ \forall p,\ q = f(p),\ df_{p} \neq 0\\
+	\end{aligned}
+	\hfill
+	\begin{aligned}[t]
+		% Regular Value
+		& \underline{ \text{Regular Value},\ q \in N }:\ \forall p \big( \phi\mss{(p)} = q \big)
+			\big( \text{\scriptsize onto}\ d\phi_{p} \big)
+			\\
+		& \bullet\ \phi^{-1}(q) \stackrel{\text{subman}}{\hookrightarrow} M\\
+		& \bullet\ \dim{M} = \dim{N} + \dim{\phi^{-1}(q)}
+			\\[5pt]
+		% Submersion
+		& \underline{ \text{Submersion},\ \phi }:\ \forall p \big( p \in M \big) \big( \text{\scriptsize onto}\ d\phi_p \big)
+	\end{aligned}
+\)
+
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+
+\vspace{10pt}
+\(
+	% Immersion
+	\begin{aligned}[t]
+		& \underline{ \text{Immersion [Map] , \(\phi\)} } :\\
+		& \begin{aligned}
+				\phi: &\ M \rightarrow N\\[-2pt]
+				d\phi_p: &\ T_p(M) \rightarrow T_{\phi p}(N) \ \text{is 1-1}
+			\end{aligned}
+	\end{aligned}
+	\hfill
+	% Isometric Immersion
+	\begin{aligned}[t]
+		& \underline{ \text{Isometric Immersion} }: \\
+		& \begin{gathered}
+				\left< d\phi_p(v), d\phi_p(w) \right>_{\phi(p)} =	\left< v, w \right>_{p} \\
+				\mss{ \text{Euclid. Metric on } R^n } = \mss{ \text{Riem. Metric on } S }
+			\end{gathered}
+	\end{aligned}
+	\hfill
+	% Embedding
+	\begin{aligned}[t]
+		& \underline{ \text{Smooth Embedding} }: \\
+		& \text{Homeo.} + \text{Immers.}\\[-3pt]
+		& \mss{\bullet\ \text{Immer}\ \phi: M \rightarrow N }\\[-5pt]
+		& \mss{\bullet\ \text{Homeo}\ \overline{\phi}: M \rightarrow \phi(\mathcal{M}) \subseteq N}\\
+	\end{aligned}
+\)
+
+\vspace{5pt}
+\(
+	\left. \bullet\ \mss{ \begin{aligned}
+		& \text{Immer}\ \phi: M \rightarrow N \\
+		& \text{Diffeo}\ \overline{\phi}: M \rightarrow \phi({M}) \\
+	\end{aligned} }
+	\right\} \mss{\Rightarrow\ \text{Induc}\ \iota = \phi \circ \overline{\phi}^{-1}: \phi(M) \rightarrow N
+	\Rightarrow\ \text{Subman}\ {\phi}(M)}
+	\hspace{20pt}
+	\begin{aligned}
+		& \bullet\ P \stackrel{\text{subman}}{\hookrightarrow} N \ \Rightarrow\ \text{\scriptsize Immer}\ \iota: P \rightarrow N
+	\end{aligned}
+\)
+
+\vspace{10pt}
+% Immersed Manifold Subset = Immersed Submanifold
+\(
+	\underline{ \begin{gathered}
+		\text{Immersed Submanifold}\\[-5pt]
+		\text{\scriptsize(Immersed Manifold Subset)}\\
+	\end{gathered} }
+	: \ \ 
+	\text{\scriptsize Mani}\ P \subset \text{\scriptsize Mani}\ N 
+	,\ \text{\scriptsize Immer}\ \iota: P \rightarrow N
+\)
+
+\vspace{10pt}
+% Examples (Skipped)
+* \underline{Examples (skipped, p.430)}:\ \ Hyperbolic Geom., Flat Torus, \(P^2\), Klein Bottle
+
+
+%-----------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+% Riemannian Metric
+\(
+	\begin{gathered}
+		\underline{ \text{Riemannian Metric} }\ \text{for}\\[-4pt]
+		\underline{ \text{Geometric Surface} }\\[-5pt]
+		\text{\scriptsize(Riem. mani. of dim. n)}
+	\end{gathered}
+	\ , \
+	\begin{gathered}
+		\left< \ \ , \ \ \right>_p\\
+		\forall T_p(M)	
+	\end{gathered}
+	\ :\ 
+	\begin{aligned}
+		& \bullet\ g_{ij} = \left< \tfrac{\partial }{\partial u_i}, \tfrac{\partial }{\partial u_j} \right>_p
+			\ \rightarrow\ \mss{ E = g_{11} ,\ F = g_{12} = g_{21} ,\ G = g_{22} }
+			\\
+		& \bullet\ \Vert w = \mss{ \sum_i u_i' \tfrac{\partial }{\partial u_i} } \Vert_p^2 
+			= \mss{ \sum_i } \hs g_{ii} (u_i')^2 + \mss{ \sum_{i \neq j} } \hs 2 g_{ij} u_i' u_j'
+			\hspace{15pt} \text{\scriptsize(+ check cond. 2)}
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% Covariant Derivative
+\(
+	\underline{ 
+		\begin{gathered}
+			{ \text{Covariant Derivative of} }\\[-4pt]
+			{ \text{\scriptsize vec. field \(v\) rela. to vec. field \(w\)} }
+		\end{gathered}
+		\ ,\ D_w(v) 
+	} 
+	:\ \begin{aligned}
+		& \bullet\ D_{f\mss{(M)} u + g\mss{(M)} w}(v) = f D_u(v) + g D_w(v)\\
+		& \bullet\ D_{v} \big( f\mss{(M)} u + g\mss{(M)} w \big) 
+			= f D_v(u) + \tfrac{\partial f}{\partial v} u
+			+ g D_v(w) + \tfrac{\partial g}{\partial v} w
+ 			\\
+		& \bullet\ \tfrac{\partial f}{\partial v} = \tfrac{d(f \circ \alpha)}{dt} \big|_0 \ , \ \alpha'(0) = v
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% Christoffel Symbols
+\(
+	\underline{ 
+		\begin{gathered}
+			\text{Christoffel Symbols} \\[-5pt]
+			\text{\scriptsize(for covar. der., not \(X_{u_i u_j}\))} 
+		\end{gathered}
+		\ , \ \Gamma^k_{ij} 
+	}
+	:\ 
+	\bullet\ D_{X_i} X_j = \begin{gathered} \mss{ \displaystyle \sum_{k=1}^n } \end{gathered} \ \Gamma^k_{ij} X_k
+	\ \Rightarrow\hs\hs 
+	\begin{aligned}[t]
+		\mss{ \left[ \begin{matrix}
+				D_{X_1} X_1\\
+				D_{X_1} X_2\\
+				\vdots
+			\end{matrix} \right] }
+			\mss{ \left[ X_1 \ X_2 \ \dots \right] }
+			& = 
+			\mss{ \left[ \hs \arraycolsep=2pt \begin{matrix}
+				\Gamma^1_{11} & \Gamma^2_{11} & \dots\\[2pt]
+				\Gamma^1_{12} & \Gamma^2_{12} & \dots\\[-2pt]
+				\vdots & \vdots
+			\end{matrix} \right] }
+			\mss{ \left[ \begin{matrix}
+				X_1 \\[2pt]
+				X_2 \\[-2pt]
+				\vdots
+			\end{matrix} \right] }
+			\mss{ \left[ X_1 \ X_2 \ \dots \right] }
+			\\
+		& = 
+			\mss{ \left[ \hs \arraycolsep=2pt \begin{matrix}
+				\Gamma^1_{11} & \Gamma^2_{11} & \dots\\[2pt]
+				\Gamma^1_{12} & \Gamma^2_{12} & \dots\\[-2pt]
+				\vdots & \vdots
+			\end{matrix} \right] }
+			\mss{ \left[ \hs \arraycolsep=2pt \begin{matrix}
+				g_{11} & g_{12} & \dots\\[2pt]
+				g_{12} & g_{22} & \dots\\[-2pt]
+				\vdots & \vdots
+			\end{matrix} \right] }
+			\\
+	\end{aligned}
+\)
+
+% continue. christoffel
+\vspace{-35pt}
+\(	
+	\begin{aligned}
+		& \mss{ 
+				\bullet\ D_{X_i} X_j = D_{X_j} X_i \ \leftrightarrow\ \Gamma^k_{ij} = \Gamma^k_{ji}
+				\hspace{10pt}
+				\bullet\ \tfrac{\partial}{\partial u_i} \left< X_j, X_k \right> 
+				= \left< D_{X_i} X_j, X_k \right> + \left< X_j, D_{X_i} X_k \right>
+			}
+			\\
+		& \Rightarrow\ \ast\ \boxed{
+				\tfrac{1}{2}
+				\left( \tfrac{\partial}{\partial u_i} g_{jk} 
+				+ \tfrac{\partial}{\partial u_j} g_{ik} 
+				- \tfrac{\partial}{\partial u_k} g_{ij} \right)
+				= \mss{ \left< D_{X_i} X_j, X_k \right> }
+				= \hs\hs \begin{gathered} \mss{\sum_n} \end{gathered} \hs\hs \Gamma^n_{ij} \hs g_{nk}
+			}
+			\\
+		& \Rightarrow\ \ast\ 
+			\underline{
+				\mss{ \left[ \hs \arraycolsep=2pt \begin{matrix}
+					\Gamma^1_{11} & \Gamma^2_{11} & \dots\\[2pt]
+					\Gamma^1_{12} & \Gamma^2_{12} & \dots\\[-2pt]
+					\vdots & \vdots
+				\end{matrix} \right] }
+				=
+				\mss{ \left[ \begin{matrix}
+					D_{X_1} X_1\\
+					D_{X_1} X_2\\
+					\vdots
+				\end{matrix} \right] }
+				\mss{ \left[ X_1 \ X_2 \ \dots \right] }
+				\begin{gathered}[b]
+					\mss{(g_{ij}^{-1} = g^{ij})} \\[-5pt]
+					\mss{ \left[ \hs \arraycolsep=2pt \begin{matrix}
+							g_{11} & g_{12} & \dots\\[2pt]
+							g_{12} & g_{22} & \dots\\[-2pt]
+							\vdots & \vdots
+						\end{matrix} \right]^{-1} }
+				\end{gathered}
+			}
+			\ \leftrightarrow\ 
+			\boxed{ \begin{aligned}
+				\Gamma_{ij}^k & = \mss{\sum_n} \hs \mss{ \left< D_{X_i} X_j, X_n \right> } \hs g^{nk}\\[-3pt]
+				& = \tfrac{1}{2} \mss{\sum_n} \hs g^{nk} 
+					\left[ \tfrac{\partial g_{jn}}{\partial u_i}  
+					+ \tfrac{\partial g_{in}}{\partial u_j} 
+					- \tfrac{\partial g_{ij}}{\partial u_n} \right]
+			\end{aligned} }
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% Sectional Curvature
+\(
+	\underline{ 
+		\begin{gathered}
+			\text{Sectional Curvature}\\[-3pt]
+			\text{of \(M\) at \(p\) along \(\sigma\)}
+		\end{gathered}
+		,\ 
+		K \Big( \mss{ \begin{aligned}
+			p & \in M, \\[-4pt]
+			\sigma & \in T_p(M) 
+		\end{aligned} } \Big)
+	}
+	:\ 
+	K(p, \sigma) = K_p(S) \ \big| \
+	S \in \bigcup \hs \mss{ ( \text{geode. at} \ p \ \text{tangent to} \ \sigma ) }
+	\hspace{10pt} \big( \mss{ \begin{gathered}
+		\text{no else}\\[-5pt]
+		\text{given}
+	\end{gathered} } \big)
+\)
+
+%----------------------------------------------------------------------------------------------------------------------------------
+
+\vspace{15pt}
+% Metric Variable Change
+\underline{Variable Change Inner Product is Isometric to Original Inner Product}
+
+\vspace{10pt}
+\(
+	\begin{aligned}[t]
+		w & = \sum_{i=1} \tfrac{du^i}{dt} \tfrac{\partial}{\partial u^i} 
+			\equiv \left[\tfrac{du}{dt}\right]^i \left[\tfrac{\partial}{\partial u}\right]_i 
+			\\[5pt]	
+		\Vert w \Vert^2 & = \sum_{i,j} \tfrac{du^i}{dt} \tfrac{du^j}{dt} 
+			\left< \tfrac{\partial}{\partial u^i} , \tfrac{\partial}{\partial u^i} \right>
+			\\
+		& \equiv \boxed{ \left[\tfrac{du}{dt}\right]^i \left[\tfrac{du}{dt}\right]^j g_{ij} }
+	\end{aligned}
+	\hspace{10pt} \vline \hspace{10pt}
+	\begin{aligned}[t]
+		\overline{w} & = \sum_{n=1} \tfrac{dx^n}{dt} \tfrac{\partial}{\partial x^n} 
+			\equiv \left[\tfrac{dx}{dt}\right]^n \left[\tfrac{\partial}{\partial x}\right]_n 
+			\\
+		\left[\tfrac{dx}{dt}\right]^n & = \sum_{i=1} \tfrac{\partial x^n}{\partial u^i} \tfrac{du^i}{dt}
+			\equiv \left[ \tfrac{\partial x}{\partial u} \right]^n_{\ i} \left[\tfrac{du}{dt}\right]^i 
+			\\
+		\left[\tfrac{\partial}{\partial x}\right]_n & = \sum_{i=1} \tfrac{\partial u^i}{\partial x^n} \tfrac{\partial}{\partial u^i} 
+			\equiv \left[ \tfrac{\partial u}{\partial x} \right]^i_{\ n} \left[\tfrac{\partial}{\partial u}\right]_i 
+	\end{aligned}
+	\hspace{10pt} \vline \hspace{10pt}
+	\begin{aligned}[t]
+		\delta_{ij} & = \left[ \tfrac{\partial x}{\partial u}^{-1} \right]^i_{\ n} \left[ \tfrac{\partial x}{\partial u} \right]^n_{\ j}
+			\\
+		\delta^i_{\ j} & = \left[ \tfrac{\partial u}{\partial x} \right]^i_{\ n} \left[ \tfrac{\partial x}{\partial u} \right]^n_{\ j} 
+	\end{aligned}
+\)
+
+\vspace{15pt}
+\(
+	\begin{aligned}
+		\Vert \overline{w} \Vert^2 = \sum_{n,m} \tfrac{dx^n}{dt} \tfrac{dx^m}{dt} 
+			\left< \tfrac{\partial}{\partial x^n} , \tfrac{\partial}{\partial x^m} \right>
+			& \equiv \left[\tfrac{dx}{dt}\right]^n \cdot \left[\tfrac{dx}{dt}\right]^m \cdot h_{nm}
+			\\[-5pt]
+		& = 
+			\left[ \tfrac{\partial x}{\partial u} \right]^n_{\ k} \left[\tfrac{du}{dt}\right]^k 
+			\cdot \left[ \tfrac{\partial x}{\partial u} \right]^m_{\ \ l} \left[\tfrac{du}{dt}\right]^l
+			\cdot \left[ \tfrac{\partial u}{\partial x} \right]^i_{\ n} \left[ \tfrac{\partial u}{\partial x} \right]^j_{\ m} \ g_{ij}
+			\\[5pt]
+		& = 
+			\left[\tfrac{du}{dt}\right]^k 
+			\left[ \tfrac{\partial u}{\partial x} \right]^i_{\ n} 
+			\left[ \tfrac{\partial x}{\partial u} \right]^n_{\ k} 
+			\cdot \left[\tfrac{du}{dt}\right]^l
+			\left[ \tfrac{\partial u}{\partial x} \right]^j_{\ m} 
+			\left[ \tfrac{\partial x}{\partial u} \right]^m_{\ \ l}
+			g_{ij} 
+			\\[5pt]
+		\boxed{ \left[\tfrac{du}{dt}\right]^i \left[\tfrac{du}{dt}\right]^j g_{ij} } 
+			& = \left[\tfrac{du}{dt}\right]^k \delta^i_{\ k} \cdot \left[\tfrac{du}{dt}\right]^l \delta^j_{\ l} \ g_{ij}
+	\end{aligned}
+\)
+
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\newpage
+\underline{Simplify the Following into one Fraction or Better (do the work on some paper):}
+
+\vspace{15pt}
+\(
+	\begin{aligned} 
+		1.)\ & (abc)^2\\[5pt]
+		2.)\ & (ac^{3}b^{-1})^2\\[5pt]
+		3.)\ & \left( \tfrac{ac^3}{b} \right)^{-2} \\[5pt]
+		3.)\ & \frac{ \frac{a}{b} }{ c } \\[5pt]
+	\end{aligned}
+	\hfill
+	\begin{aligned} 
+		1.)\ & a / b\\[5pt]
+		2.)\ & 1 / a \cdot b \\[5pt]
+		3.)\ & a^{-1}b^2 \\[5pt]
+		2.)\ & 1 / (a / b) \\[5pt]
+		2.)\ & 1 / a / b \\[5pt]
+	\end{aligned}
+	\hfill
+	\begin{aligned} 
+		2.)\ & \frac{a}{ \frac{c}{d} } \\[5pt]
+		3.)\ & \frac{ \frac{a}{b} }{ c } \\[5pt]
+		1.)\ & \tfrac{ a/b }{ c/d } \\[5pt]
+		1.)\ & 1 / b^{-m}
+	\end{aligned}
+	\hfill \hs
+\)
+
+\vspace{15pt}
+\(
+	\begin{aligned} 
+		1.)\ & \frac{b^n b^m}{b^{m+n}}\\[5pt]
+		1.)\ & b^n \frac{ b^{-n+m} }{b^{-3}}\\[5pt]
+		3.)\ & \left( \tfrac{ac^3}{b} \right)^{-2} \\[5pt]
+		3.)\ & \frac{ \frac{a}{b} }{ c } \\[5pt]
+	\end{aligned}
+	\hfill
+	\begin{aligned} 
+		1.)\ & a / b\\[5pt]
+		2.)\ & 1 / a \cdot b \\[5pt]
+		3.)\ & a^{-1}b^2 \\[5pt]
+		2.)\ & 1 / (a / b) \\[5pt]
+		2.)\ & 1 / a / b \\[5pt]
+	\end{aligned}
+	\hfill
+	\begin{aligned} 
+		2.)\ & \frac{a}{ \frac{c}{d} } \\[5pt]
+		3.)\ & \frac{ \frac{a}{b} }{ c } \\[5pt]
+		1.)\ & \tfrac{ a/b }{ c/d } \\[5pt]
+	\end{aligned}
+	\hfill \hs
+\)
 
 \end{document}
