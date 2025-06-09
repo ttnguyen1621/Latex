@@ -1,0 +1,1069 @@
+\documentclass[12pt]{article}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry} % Resizes the borders
+\usepackage{amssymb, amsmath, amsfonts, mathtools, bbm, esint}
+\usepackage{array,multirow}
+\usepackage{cancel}
+
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\vec{\hs #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
+
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+
+\newcommand{\rdiag}{\raisebox{0.5ex}{\scalebox{0.7}{$\diagdown$}}}
+
+\begin{document}
+
+% Remove Indentation
+\setlength{\parindent}{0pt}
+
+%
+\(
+	% Vector Spaces and Linear Map
+	\begin{aligned}
+		& \text{Vector Space}, \ V^{n = \dim V} \ni v
+			\hspace{20pt} \bullet\ \underline{ \dim V \ \tss{is Indep. of Basis} }
+			\\
+		& \underline{ \text{Linear Map}, }\ M \in L(V,W): V \rightarrow W
+			\hspace{20pt} \bullet\ \underline{ \tss{Indep. of Basis} } 
+			\ \Leftarrow\ \tss{Basis gives \(v\) unique coord.}
+			\\
+		& \bullet\ \underline{ \text{Fund. [Rank/Nullity] Theor. Lin. Maps} }:\ 
+			\boxed{ \dim V^{n < \infty} = \dim \text{null}(M) + \dim \text{range}(M) }
+			\\ 
+		& \bullet\ \dim V = \dim W < \infty \ \Leftrightarrow\ \underline{ \text{Isomorphic} } 
+			= \exists M^{-1}_{LR},\ M: V \rightarrow W
+			\\
+		& \bullet\ \dim L(V,W) = \dim F^{m,n} = nm = (\dim V^{n<\infty})(\dim W^{m<\infty})\\
+		& \bullet\ \underline{ \text{Matrices},\ \overline{M} \in F^{n,m} }:\ 
+			\boxed{ M(v_i) = w_r e^r M e_k \hs \phi^k v_i = w_r e^r M e_i = w_r M^r_{\ i} \in W }
+			\\
+	\end{aligned}
+\)\\[4pt]
+\(
+	\begin{aligned}
+		% Subspaces
+		& \underline{ \text{Subspace},\ U }:\ \boxed{ \ast\ 0 \in U \hspace{10pt} \ast\ u+v \in U \hspace{10pt} \ast\ \lambda u \in U }
+			\\ 
+		% Direct Sum
+		& \underline{ \text{Subspace Direct Sum} },\ \oplus:\ 
+			U + V = U \oplus V \ \Leftrightarrow\ \forall w \in U + V,\ \exists! w = u + v
+			\hspace{20pt} \mss{ \text{Ex}: \mathbb{R}^2 = (x,0) \oplus (0, y) }
+			\\
+		& \begin{aligned}
+				& \bullet\ \Leftrightarrow \ U \cap V = \{0\} \ \Leftrightarrow\ w \in U \cap V,\ w = 0
+					\hspace{20pt} \bullet\ \Leftrightarrow\ \text{onto}\ \Gamma: U \times V \rightarrow U + V
+					\\
+				& \bullet\ \Leftrightarrow\ \dim U + \dim V = \dim(U \times V) = \dim(U + V)\\	
+			\end{aligned}
+			\\
+		& \bullet\ \exists W,\ V = U \oplus W 
+			\hspace{15pt} \tss{(easy for finite, harder for larger)}
+			\\
+		& \bullet\ \dim(U_1 + U_2) = \dim U_1 + \dim U_2 - \dim(U_1 \cap U_2)\\
+	\end{aligned}
+\)
+
+\vspace{10pt}
+\(
+	\begin{aligned}
+		% Orthogonal Complement
+		& \underline{ \text{Orthogonal Complement},\ U^\perp } \ \underline{ \tss{of subset}\ U }:\ 
+			\{ v \in V: \forall u \in \underline{ \tss{(subset)}\ U }, \langle v, u \rangle = 0  \}
+			\\
+		& \bullet\ U^\perp\ \tss{is Subspace}
+			\hspace{20pt} \bullet\ U \cap U^\perp \subseteq \{0\}
+			\hspace{20pt} \bullet\ U \subseteq W \subseteq V \ \Rightarrow\ W^\perp \subseteq W^\perp 
+			\\
+		& \underline{ U^\perp\ \tss{of subspace}\ U }: \ \bullet\ \boxed{ V = U \oplus U^\perp}
+			\ \Rightarrow\ \boxed{ \dim V = \dim U + \dim U^\perp }
+			\hspace{20pt} \bullet\ U = (U^\perp)^\perp
+			\\
+		% Projection
+		& \underline{ \text{Projection Operator},\ P_U }:\ \boxed{P_U^2 = P_U} \ \ \tss{(Idempotent)} 
+			\ \Rightarrow\ PU = U
+			\\
+		& \bullet\ \mathbbm{1} = P + (1 - P) = P + P_\perp
+			\hspace{15pt} \bullet\ \boxed{ V = \left[ U = \text{range}(P_U) \right] \oplus \left[ U^\perp = \text{null}(P_U) \right] }
+			\\
+	\end{aligned}
+\)
+
+\vspace{10pt}
+\(
+	% Operator Linear Map
+	\begin{aligned}	
+		& \underline{ \text{Operator}\ T \in L(V) = L(V,V) }:\ \boxed{ T(v) = v_r T^{rk} \phi_k(v) }
+			\ \sim\ |T v_r \rangle \delta^{rk} \langle v_k |v \rangle = |v_r\rangle T^{rk} \langle v_k | v \rangle
+			\\
+		& \bullet\ \boxed{ 
+				% Schur Theorem
+				\text{Schur's Theor.}:\ \forall T,\ \exists T^{nn} = U_{pper};\ 
+				% Orthog Schur
+				\mss{ \text{Gram} + \langle \cdot | \cdot \rangle } \rightarrow \exists T^{nn} = U_{pper,\ \perp}
+			} 
+			\hspace{30pt} \bullet\ \exists T^{-1} \ \Rightarrow\ \exists! T^{-1}
+			\\
+		& \bullet\ T \in L(\tss{Complex}\ V),\ \boxed{\exists \lambda}
+			\ \Leftarrow\ \mss{ !\text{Lin. Ind.}\ \{ T^k v : 0 \leq k \leq n \} \ \Rightarrow\ \exists \hsvec{a} \neq 0,\ 
+			a_i (T^i v) = 0 = (a_i T^i)v = c \left[ \prod (T-\lambda_j \mathbbm{1}) \right] v }
+			\\
+		& \bullet\ T \in L(\underline{V^{n < \infty}}),\ \left( \underline{ \text{1-1} }:\ Tv = Tu \leftrightarrow v = u 
+			\ \Leftrightarrow\ \underline{ \text{onto} }:\ \forall v,\ \exists u,\ Tu = v 
+			\ \Leftrightarrow\ \underline{ \exists T^{-1} }
+			\right)
+			\\
+		& \bullet\ \dim L(V,W) = \dim V \times \dim W
+			\hspace{15pt}
+			\bullet {\exists I^{-1},\ \underline{I = ST} 
+			\Rightarrow \mss{ \exists (ST)^{-1} = T^{-1} S^{-1} }
+			\Rightarrow \mss{ TS(TT^{-1}) } = \underline{TS = I}
+			}
+			\\
+		& \bullet\ \underline{ \text{Coord. Change.} }:\ I^e_{\ e} 
+			= C^e_{\hs\hs f} C^f_{\ e} 
+			= \underline{ [C^f_{\ e}]^{-1} C^f_{\ e} 
+				= C^e_{\hs\hs f} [C^e_{\hs\hs f}]^{-1} = \delta^r_{\ k} 
+				= I^f_{\ f} = C^f_{\ e} C^e_{\hs\hs f} 
+			}
+	\end{aligned}
+\)
+
+\vspace{7pt}
+\(
+	% Quotient Spaces
+	\begin{aligned}
+		& \underline{ \text{Quotient Space},\ V / U }:\\
+		& \bullet\ v - w \in U \ \Leftrightarrow\ v + U = w + U \ \Leftrightarrow\ (v + U) \cap (w + U) \neq \varnothing\\[-5pt]
+		& \bullet\ \underline{ \tss{is Vector Space} }: \mss{ \begin{aligned}
+				& \bullet\ (v + U) + (w + U) \equiv (v + w) + U 
+					\ \Leftarrow\ \hsvec{v} \in V/U \ !\text{unique}: \text{prove}\ 
+					\begin{aligned}
+						(v + U = \hat{v} + U)\\[-3pt]
+						(w + U = \hat{w} + U)
+					\end{aligned}
+					\ \Rightarrow\ 
+					\begin{aligned}
+						&(v + U) \\[-8pt]
+						+& \\[-8pt]
+						&(w + U) \\
+					\end{aligned}
+					= 
+					\begin{aligned}
+						&(\hat{v} + U) \\[-8pt]
+						+& \\[-8pt]
+						&(\hat{w} + U) \\
+					\end{aligned}
+					\\
+				& \bullet\ \lambda(v + U) \equiv (\lambda v) + U
+					\ \Leftarrow\ \hsvec{v} \in V/U \ !\text{unique}: \text{prove}\ 
+					(v + U = \hat{v} + U )\ \Rightarrow\ (\lambda v) + U = (\lambda \hat{v}) + U
+					\\
+			\end{aligned} }
+			\\
+		& \bullet\ \underline{ \text{Quotient Map} },\ \pi(v) = v + U:\ 
+			\begin{aligned}
+				& \pi: V \rightarrow V/U\\[-5pt]
+				& \mss{ \pi \in L(V,V/U) } \hspace{10pt} \tss{(check linear map)}\\
+			\end{aligned}
+			\\ 
+		& \bullet\ \boxed{ \dim V = \dim (V/U = \text{range}(\pi)) + \dim (U = \text{null}(\pi)) }\\
+		& \bullet\ \tilde{M}(v + \text{null}(M)) = Mv \in W \ \Leftarrow \ \mss{v + \text{null}(M) = u + \text{null}(M)
+			\ \Rightarrow \ v - u \in \text{null}(M) \ \Rightarrow\ M(v-u) = 0 \ \Rightarrow\ Mv = Mu}
+			\\
+		& \ast\ \tilde{M} \in L(V/\text{null}(M), V)
+			\hspace{15pt} \ast\ \text{1-1}
+			\hspace{15pt} \ast\ \text{range}(M) = \text{range}(\tilde{M}) \stackrel{\text{iso}}{=} V/\text{null}(M)
+			\\
+		& \bullet\ \underline{ \text{Quotient [Subspace] Operator},\ T/U \in L(V/U) }:\ (T/U)(v + U) \equiv Tv + U\\
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% Linear Functional/Dual Vector
+\( 
+	\underline{ \text{Dual Vector/Linear Functional}, }\ \phi \in L(V,F) = \underline{ \text{Dual Space} }\ V' 
+	\hspace{20pt} \bullet\ \dim V = \dim V' < \infty
+\)\\[5pt]
+\(
+	% Dual Basis
+	\begin{aligned}
+		& \bullet\ \text{Dual Basis},\ \phi^i:\ \phi^i(v_j) = \delta^{i}_j 
+			\ \Rightarrow\ \phi(v) = (a_i \phi^i) (c^j v_j) = a_n c^n
+			\hspace{15pt} \bullet\ \mss{ a_n \phi^n = 0,\ (a_n \phi^n)v_j = a_j \ \Rightarrow\ a_j = 0 }
+			\\
+		% Riesz Representation
+		& \boxed{
+			\begin{gathered}
+				{\textit{Riesz-Repr. Theo.}}\\[-5pt]
+				\tss{(after \(\langle \cdot | \cdot \rangle\) space)}\\
+			\end{gathered}
+			:\ \forall \phi,\ \underline{\exists!} v_\phi \in V^{n<\infty},\ 
+			\begin{gathered}
+				\phi(v) = \underline{ \phi( \mss{ | e_k \rangle } ) \delta^{ki} \langle e_i | } v \rangle 
+					= \underline{ \langle v_\phi | } v \rangle
+					\\[-3pt]
+				\mss{ \ast\ \langle v_\phi | v \rangle - \langle u_\phi | v \rangle = 0 \ \Leftrightarrow\ v_\phi = u_\phi }\\
+			\end{gathered}
+			\hs\hs \Rightarrow\hs\hs |v_\phi\rangle = \overline{ \phi( e_k ) } \delta^{ki} \hs |e_i\rangle
+			}
+			\\
+	\end{aligned}
+\)\\[3pt]
+\(
+	% Dual Map
+	\begin{aligned}
+		& \underline{ \text{Dual Map} }\ \mss{ \text{of}\ M \in L(V,W) },\ M' \in L(W', V'): \boxed{ M'(\psi) = \psi \circ M }\\
+		& \ast\ \mss{ 
+			\begin{aligned}
+				\underline{(M'\psi)}v & = \psi(M(v)) \ \sim \ \langle w_\psi | M(v) \rangle 
+					= \langle \underline{ M^\dagger w_\psi } | v \rangle 
+					\\
+				& = (c_n \psi^n) w_r e^r M e_k \phi^k (a^m v_m)  = c_r M^r_{\ k} a^k \\
+				& = [(M^T) \hsvec{c}\hs ]^T \hsvec{a} \ \Rightarrow\ (\psi^r M ) v_k = M^r_{\ k}\\
+			\end{aligned} 
+			\hspace{5pt} \vline \hspace{5pt} 
+			\begin{aligned}
+				(M' \psi^r) v_k & = ( \phi^j M'_{jr} ) v_k \\
+				= (M')^k_{\ r} \ & \Rightarrow\ \boxed{M' = M^T}\\
+			\end{aligned} 
+			}
+	\end{aligned}
+	\hfill
+	\begin{aligned}
+		& \bullet\ (M_1 + M_2)' = M_1' + M_2'\\
+		& \bullet\ \mss{ (\lambda M)' = \lambda M' }
+			\hspace{10pt} \bullet\ \mss{ (MN)' = N'M' }
+			\\
+		& \ast\ \mss{ \begin{aligned}
+				(MN)'(\psi) & = (\psi \circ M) \circ N \\[-3pt]
+				N'M'(\psi) & = N' (\psi \circ M) \\
+			\end{aligned} }
+			\\
+	\end{aligned}
+	\hfill
+\)\\[5pt]
+\(
+	\begin{aligned}
+		& \underline{\textit{Annihilator [Subs.] of } U \subseteq V},\ U^0 \subseteq U':\ \phi^0 \in U^0,\ \phi^0(U) = \{0\}
+			\\
+		& \begin{aligned}
+				& \bullet\ \dim V^{< \infty} = \dim U + \dim U^0\\
+				& \bullet\ \dim V' = \dim U' + \dim U^0\\
+			\end{aligned}
+			\hspace{7pt}
+			\vline
+			\hspace{7pt}
+			\begin{aligned}
+				& \bullet\ \text{null}\hs M' = (\text{range}\hs M)^0
+					\hspace{15pt} \bullet\ \mss{ \dim\text{null}\hs {M'} - \dim{W'} = \dim\text{null}\hs {M} - \dim{V} }
+					\\
+				& \bullet\ \text{range}\hs {M'} = (\text{null}\hs {M})^0
+					\hspace{15pt} \bullet\ \dim\text{range}\hs {M'} = \dim\text{range}\hs {M} \mss{ = \text{rank}\hs M}
+					\\
+			\end{aligned}
+	\end{aligned}
+\)
+
+\vspace{7pt}
+%---------------------------------------------------------------------
+% Line Because inner product
+\noindent\hrulefill Inner Product Space: {\scriptsize span\(\{f_i\} = W\), span\(\{e_i\} = V\)}\hrulefill
+
+\vspace{10pt}
+% Vector Inner Product
+\(
+	\underline{ \text{Matrix Vec.}\ \langle \cdot | \cdot \rangle }:\ 
+	a = a^i e_i,\ b = b^i e_i 
+	\ \Rightarrow\ \boxed{ 
+		\tss{const}\ \langle a | b \rangle = a_i^* b^i = \hsvec{a}^* \cdot \hsvec{b} = \hsvec{a}^{*T} \hsvec{b}
+		\hspace{15pt} \underline{ \tss{\(\langle \cdot | \cdot \rangle\) defines \(\perp\) basis} }
+	}
+\)\\[5pt]
+\(
+	% Orthog Basis
+	\begin{aligned}
+		& \bullet\ \underline{ \widehat{\perp}\ \text{Basis},\ \{e_i\} }:\ \delta_{ij} = \langle e_i | e_j \rangle 
+			\ \mss{ \Rightarrow \ 
+				e_i = i^n f_n,\ e_j = j^n f_n,\ \langle i^n f_n | j^n f_n \rangle = i_n^* j^n = \delta_{ij} 
+				\ \Rightarrow 
+			}
+			\ \boxed{ \hsvec{e}_i^{*T} \hsvec{e}_j = \delta_{ij} \hspace{10pt} \tss{both \(\widehat\perp\) basis}}
+			\\
+		& \bullet\ \underline{ \begin{gathered}
+				 \text{Coord. Swap} \\[-7pt]
+				\mss{ \widehat\perp\ \{e_i\} \rightarrow \widehat\perp\ \{f_i\} }
+			\end{gathered} }
+			:\ \delta^r_{\hs\hs k} 
+			= C^f_{\ e} C^e_{\hs\hs f} 
+			= C^e_{\hs\hs f} C^f_{\ e} 
+			= [C^f_{\ e}]^{-1} C^f_{\ e}
+			\ \Rightarrow\ C^e_{\hs\hs f} = \boxed{ [C^f_{\ e}]^{-1} = [ \hsvec{e}_1, ..., \hsvec{e}_n ]^{*T} = [C^f_{\ e}]^{*T}} 
+			\\
+	\end{aligned}
+\)
+
+\vspace{3pt}
+\(
+	% Adjoint
+	\begin{aligned}
+		& \begin{gathered}
+				\underline{ \text{Adjoint},\ M^\dagger }\\
+				\mss{ M^\dagger \in L(W,V) }\\
+			\end{gathered}
+			:\ 
+			\begin{aligned}
+				\phi(v) & = \langle w | M \mss{(v)} \rangle_W \equiv \langle \underline{ M^\dagger\mss{(w)} } | v \rangle_V\\[-2pt]
+				& = \mss{ \langle w | M v \rangle 
+					= \langle w | f_r \rangle_W M^r_{\ k} \langle e^k | v \rangle_V }
+					\\[-3pt]
+				& = \mss{ \langle \underline{ e^k {M^{*r}_{\ k}} \langle f_r | w \rangle_W } | v \rangle_V
+					\equiv \underline{ \langle M^\dagger w | } v \rangle }
+					\\
+			\end{aligned}
+			: \ 
+			\begin{aligned}
+				& \ast\ \text{Riesz-Rep}: \ \text{Given}\ M, w,\ \underline{ \exists! \hs M^\dagger(w) } \in V \\
+				& \ast\ \boxed{ (M^\dagger)_{rk} = M_{kr}^* = (M^{*T})_{rk} \hspace{10pt} \tss{when both \(\widehat\perp\) basis}}\\
+				& \ast\ \boxed{ C^f_{\ e} \hs \stackrel{\sim}{=}\hs C \in L(V,V) \ \Rightarrow\ C^{*T} = C^\dagger } 
+					\ \tss{(see unit.)}
+					\\ 
+			\end{aligned}
+			\\[-2pt]
+		& \bullet\ \langle Mv | w \rangle 
+			\mss{ \begin{aligned}
+				& = \overline{ \langle w | Mv \rangle_W } \\
+				& = \overline{ \langle M^\dagger w | v \rangle_V }\\
+			\end{aligned} }
+			= \langle v | M^\dagger w \rangle_V
+			= \langle M^{\dagger\dagger} v | w \rangle
+			\hspace{15pt} \bullet\ \mss{ \text{null}(M) = \left[ \text{range}(M^\dagger) \right]^\perp }
+			\hspace{15pt} \bullet\ \mss{ \text{range}(M) = \left[ \text{null}(M^\dagger) \right]^\perp }
+			\\
+	\end{aligned}
+\)
+
+\vspace{5pt}
+\(
+	% Normal
+	\begin{aligned}
+		\underline{ \text{Normal Op.} }:\ & AA^\dagger = A^\dagger A
+			\ \Leftrightarrow\ \forall v,\ 0 = \langle v, (AA^\dagger - A^\dagger A)v \rangle 
+			\ \Leftrightarrow\ \forall v,\ \Vert Av \Vert^2 = \Vert A^\dagger v \Vert^2
+			\\
+		& \bullet\ Av = \lambda v \ \Leftrightarrow\ A^\dagger v = \lambda^* v
+			\ \ \ \Leftarrow\ \mss{ \forall v,\ \lVert {({A-\lambda I})} v \rVert 
+			= \lVert {({A-\lambda I})^\dagger} v \rVert 
+			= \lVert ({A^\dagger-\lambda^* I})v \rVert }
+			\\
+	\end{aligned}
+\)
+
+\vspace{5pt}
+\(
+	% Complex Spectral Theorem
+	\begin{aligned}
+		& \underline{ \text{[Complex] Spectral Theorem} }:\ \tss{Normal}\ A 
+			\ \Leftrightarrow\ \tss{Diagonalizable}_{\widehat\perp e_i}\ A
+			\ \Leftrightarrow\ \{ \tss{Eigenvector of}\ A \} = \{ \tss{Basis}\ V \}_{\widehat\perp}
+			\\
+		& \ast\ A = U_{pp, \widehat\perp},\ \Vert Ae_i \Vert^2 = \Vert A^\dagger e_i \Vert^2 
+			\ \Leftrightarrow\ A = D_{iag, \widehat\perp}
+			\ \Leftrightarrow\ Ae_i = D_{ii} e_i
+			\hspace{20pt} \bullet\ \boxed{ \overline{\nhs\nhs A}_{v_i \rightarrow v_i} = C^v_{\ e} DC^e_{\ v} }
+			\\
+	\end{aligned}
+\)
+
+\vspace{5pt}
+\(
+	% Unitary
+	\underline{\text{Unitary Op.}}:\ \forall v,\ \Vert U v \Vert^2 = \Vert v \Vert^2 
+	\ \Leftrightarrow\ { \arraycolsep=2pt \begin{array}{c c c l}
+		U^\dagger U & = & UU^\dagger & = I\\[-5pt]
+		\mss{(isom.)} & & \mss{(coisom.)}\\
+	\end{array} }
+	% \hspace{15pt} \mss{ \bullet\ \langle w | v \rangle = \langle w | U^\dagger Uv \rangle = \langle Uw | Uv \rangle }
+	\hspace{15pt} \bullet\ \boxed{ \hsvec{u}_i^{*T} \hsvec{u}_j = \delta_{ij} = [\hsvec{u}^i]^{*T} \hsvec{u}^j
+		\hspace{10pt} \tss{\(\perp\) basis} 
+	}
+\)
+
+\vspace{5pt}
+\(
+	% Hermitian/Self Adjoint
+	\underline{ \text{Herm. Op.} }:\ H = H^\dagger
+	\hspace{15pt}
+	\begin{aligned}
+		\bullet & \Leftrightarrow\ \forall v,\ \langle v,Hv \rangle \in R
+			\ \ \ \Leftarrow \ \mss{ \left< v, Hv \right> - \overline{ \left< v, Hv \right> } = \langle v, (H-H^\dagger)v \rangle = 0 }
+			\\
+		\bullet & \ \lambda_i \in \mathbb{R} \ \ \
+			\bullet\  \mss{ \forall v \in V(\mathbb{C}),\ \left< v,Tv \right> = 0 \ \Rightarrow\ T = 0 }
+			\ \ \ \Leftarrow \ \mss{ \forall v \in V(\mathbb{R}),\ \left< v,Hv \right> = 0 \ \Rightarrow\ H = 0 }
+			\\ 
+	\end{aligned}
+\)
+
+\vspace{5pt}
+\(
+	% Positive Semi Definite
+	\begin{aligned}
+		& \underline{ \text{Positive Semi-Definite Op.} }\\
+		& \mss{ \boxed{ \wedge (H = H^\dagger) \ \text{if}\ \mathbb{R} } \ ;\ \Rightarrow (H = H^\dagger) \ \text{if}\ \mathbb{C}}\\
+	\end{aligned}
+	:\ 
+	\boxed{ \forall v,\ \langle v | Hv \rangle \geq 0 }
+	\hspace{15pt}
+	\begin{aligned}
+		& \bullet\ \lambda_i \geq 0 \ \Leftarrow\ \langle v | \lambda v \rangle \\
+		& \bullet\ \exists! \tss{pos}\ R = \sqrt{H},\ H = R^\dagger R = R^2\\
+	\end{aligned}	
+\)
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+\(
+	% SVD and Gram Matrix
+	\begin{gathered}
+		\underline{\text{Gram Matr.}} /\\[-2pt]
+		\tss{Sq. Rt. Gram} \\[-5pt]
+		\mss{\underline{ \sqrt{M^\dagger M} \neq M }}:\ \\
+	\end{gathered}
+	\hfill
+	\begin{aligned}
+		& \bullet\ \Vert Mv \Vert_W^2 = \mss{ \langle M^\dagger M v | v \rangle_V 
+			= \langle v | M^\dagger M v \rangle_V }
+			= \Vert {\sqrt{M^\dagger M}} v \Vert_V^2
+			\geq 0
+			% \hspace{15pt}
+			% \mss{\Leftarrow \ \underline{ \langle \cdot | \cdot \rangle_V \ \text{depends on}\ \langle \cdot | \cdot \rangle_W } }
+			\\[2pt]
+		& \bullet\ \tss{pos. def.}\ \langle v | \mss{\sqrt{M^\dagger M}} v \rangle \geq 0 
+			\ \Leftrightarrow\ \lambda_i(\mss{\sqrt{M^\dagger M}}) = \sigma_i(M) \geq 0
+			\hspace{15pt} \bullet\ \text{\(M\) is unif. cont. func.}
+			\\
+		& \bullet\ \boxed{ (M^\dagger M) e_i = \sigma_i^2 e_i\ \Leftrightarrow\ \sqrt{M^\dagger M} e_i  = \sigma_i e_i }
+			\hspace{12pt} \bullet\ \mss{ \min \sigma_i = \min \Vert T \hat{v} \Vert \leq |\lambda_i| \leq \max \sigma_i = \max \Vert T \hat{v} \Vert }
+			\\ 
+	\end{aligned}
+	\hfill	
+\)\\[5pt]
+\(
+	% Rank of Gram Matrix
+	\begin{aligned}
+		& \bullet\ \mss{ 
+			\text{null}(\sqrt{M^\dagger M}) = \text{null}(M) = \text{null}(M^\dagger M)
+			\ \Rightarrow\ 
+			\arraycolsep=2pt \begin{array}{c c c c c}
+				\dim \text{range}(\sqrt{M^\dagger M}) & = & \dim \text{range}(M) & = & \dim \text{range}(M^\dagger M)\\[1pt]
+				\text{rank}(\sqrt{M^\dagger M}) & = & \text{rank}(M) & = & \text{rank}(M^\dagger M)\\
+			\end{array}
+			\leq \min(n_{row},m_{col})
+			}
+	\end{aligned}
+\)\\[7pt]
+\(
+	% Example for sqrt
+	\mss{ 
+	\begin{aligned}
+		\ast\ & \text{Ex},\ T = | x \rangle \langle u | \hspace{10pt} (\text{Rank} = 1) :\\
+		& \begin{gathered}
+				T^\dagger T | e_i \rangle = | u \rangle \Vert x \Vert^2 \langle u | e_i \rangle = \sigma_i^2 \underline{ | e_i \rangle }
+					= \underline{ | \hat{u} \rangle } \Vert u \Vert \Vert x \Vert^2 \langle u | e_i \rangle
+					\\[3pt]
+				\begin{aligned}
+						\Vert u \Vert^2 \Vert x \Vert^2 \langle u | e_i \rangle & = \sigma_i^2 \langle u | e_i \rangle	\\
+						\Vert x \Vert^2 \Vert \langle u | e_i \rangle \Vert^2 & = \sigma_i^2 \\
+					\end{aligned}
+					\ \Rightarrow\ 
+					\begin{aligned}
+						\sigma_i & = \Vert \langle u | e_i \rangle \Vert \Vert x \Vert 
+							\\
+						\langle u | e_i \rangle & = \Vert \langle u | e_i \rangle \Vert = \Vert u \Vert \delta(\hat{u}, e_i)\\
+					\end{aligned}
+					\\
+			\end{gathered}
+	\end{aligned}
+	\hspace{15pt}
+	\begin{aligned}
+		\sqrt{T^\dagger T} | e_i \rangle & = \sigma_i |e_i \rangle
+			= | e_i \rangle \Vert u \Vert \Vert x \Vert \delta(\hat{u}, e_i) 
+			= | u \rangle \Vert x \Vert \delta(\hat{u}, e_i)
+			\\
+		\sqrt{T^\dagger T} | v \rangle & 
+			= | e_i \rangle \Vert u \Vert \Vert x \Vert \delta(\hat{u}, e_i) \delta^{ij} \langle e_j | v \rangle
+			\\
+		& = \boxed{ | u \rangle \tfrac{\Vert x \Vert}{\Vert u \Vert} \langle u | v \rangle } \\
+	\end{aligned}
+	}
+\)
+
+\vspace{10pt}
+\(
+	\begin{aligned}
+		% Polar Decomposition
+		& \underline{ \text{SVD \textbf{on Operators}} / \text{Polar Decomposition} }:
+		 	\forall T,\ \exists U,\ T = U \underline{\sqrt{T^\dagger T}}
+			\hspace{15pt} \tss{\underline{unitary} \(\times\) \underline{pos def} \hspace{10pt} (proof?)}
+			\\
+		& \ast\ \Vert \sqrt{T^\dagger T} e_i \Vert = \Vert T e_i \Vert = \sigma_i
+			\ \Rightarrow\ \exists U\hs |\ Te_k = U\sigma_k e_k = U_k \sigma_k 
+			\ \Rightarrow\ \boxed{ \begin{gathered}
+				\overline{T}V = U \Sigma \ \Rightarrow\ \overline{T} = U \Sigma V^\dagger\\[-3pt]
+				T = \mss{\sum_i} | f_i \rangle \sigma_i \langle e_i |
+			\end{gathered} }
+			\\
+		& \bullet\ T^\dagger = U \sqrt{TT^\dagger} \ \Rightarrow\ \boxed{ T = \sqrt{TT^\dagger} U^\dagger }
+			\hspace{15pt} \bullet\ T(T^\dagger T e_i) = \underline{\sigma_i^2} (T e_i) = \underline{T T^\dagger} (Te_i)
+			\\
+	\end{aligned}
+\)
+
+\vspace{10pt}
+% SVD on all M
+\( \underline{\text{Singular Value Decomp. (SVD on \(M\))}}: \)\\[5pt]
+\(
+	\begin{aligned}
+		& M^\dagger M_{wv} = 
+			[ V_1, V_2 ]
+			\mss{ \left[ \arraycolsep=3pt \begin{matrix}
+				\sigma^2_{\neq 0} & 0\\
+				0 & 0\\
+			\end{matrix} \right] }
+			\mss{ \left[ \begin{matrix}
+				V_1^\dagger\\
+				V_2^\dagger
+			\end{matrix} \right] }
+			\\
+		& \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\underline{D_{rr}} & 0\\
+				0 & 0\\
+			\end{matrix} \right] }
+			= 
+			\mss{ \left[ \arraycolsep=3pt\begin{matrix}
+				\underline{(MV_1)^\dagger M V_1} & (MV_1)^\dagger M V_2\\[3pt]
+				(MV_2)^\dagger M V_1 & (MV_2)^\dagger M V_2\\
+			\end{matrix} \right] }
+			\\
+	\end{aligned}
+	\hspace{20pt} \vline \hspace{20pt}
+	\begin{gathered}
+		I_{wv} = 
+			( [ V_1, 0 ] + [ 0, V_2 ] )
+			(
+			\mss{ \left[ \begin{matrix}
+				V_1^\dagger \\
+				0
+			\end{matrix} \right] }
+			+ 
+			\mss{ \left[ \begin{matrix}
+				0 \\
+				V_2^\dagger
+			\end{matrix} \right] }
+			)
+			= 
+			V_1 V_1^\dagger + V_2 V_2^\dagger
+			\\[3pt]
+		I_{rr} = V_1^\dagger V_1
+			\hspace{15pt} I_{nn} = V_2^\dagger V_2 
+			\hspace{15pt} \mss{(r_{ank} + n_{ull} = v)} 
+			\\
+	\end{gathered}
+\)\\[7pt]
+\(
+	\begin{aligned}
+		& \Vert \sqrt{M^\dagger M} e_i^{1} \Vert = \sigma_i = \Vert Me_i^{1} \Vert 
+			\ \Rightarrow\ Me_k^{1} = U^1 \sigma_k e_k^1 = U^1_{k} \sigma_k
+			\\[2pt]
+		& \bullet\ U_1 = MV_1\sqrt{D}^{-1} \hs \Rightarrow\hs U_1 \sqrt{D} V_1^\dagger = M\mss{(I - \underline{V_2}V_2^\dagger)} = M\\
+		& \bullet\ \underline{ \langle Me_i^{1} | Me_j^{1} \rangle } = \sigma_i \delta_{ij} 
+			\ \Rightarrow\ \underline{ \langle U^{1}_i | U^{1}_j \rangle = \delta_{ij} }
+			\\
+	\end{aligned}
+	\hspace{-2pt} \Rightarrow \hspace{-2pt}
+	\begin{aligned}
+		\\[-25pt]
+		M = [ \mss{U_1}, \mss{U_2/0} ]
+			\mss{ \begin{gathered}
+				\left[ \arraycolsep=3pt \begin{matrix}
+						\sigma_{\neq 0} & 0\\[4pt]
+						0 & 0\\
+					\end{matrix} \right] 
+					\left[ \begin{matrix}
+						V_1^\dagger\\
+						V_2^\dagger
+					\end{matrix} \right]
+					\\[-3pt]
+				\left[ \hfill 0 \hfill \right]^{\underline{*}} \hspace{15pt}
+			\end{gathered} }
+			= \boxed{ \begin{aligned}
+				& U \Sigma V^\dagger\\[-3pt]
+				& \mss{\sum_i | f_i \rangle \sigma_i \langle e_i | }
+			\end{aligned} }
+			\\[2pt]
+		\underline{\ast}\ \tss{(if needed)} \hspace{10pt}
+		\bullet\ \underline{\mss{ U^1_k = Me_k,\ \langle U^{1}_i | U^{2}_j \rangle = 0 }}
+	\end{aligned}
+\)
+
+\vspace{15pt}
+\(
+	% General Matrix Pre SVD
+	\begin{aligned}		
+		& \bullet\ d\hsvec{X} = 
+			\mss{ \left[ \begin{matrix}
+				| \\
+				X_t \\
+				|		
+			\end{matrix} \right] } [dt]
+			\ \Rightarrow\ \Vert d\hsvec{X} \Vert_2^2 = \langle dt | (X_t^\dagger X_t) dt \rangle_2
+			\ \Rightarrow\ \Vert d\hsvec{X} \Vert_2 = \sqrt{X_t^\dagger X_t} |dt| = \sigma_i |dt|
+			\\
+		& \bullet\ d\hsvec{X} = 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				| & | \\
+				X_u & X_v\\
+				| & |
+			\end{matrix} \right] } 
+			\mss{ \left[ \begin{matrix}
+				du\\
+				dv
+			\end{matrix} \right] }
+			\ \Rightarrow\ \Vert d\hsvec{X} \Vert^2 = \langle d\hsvec{U} | (J^\dagger J) d\hsvec{U} \rangle
+			\\
+		& \bullet\ A\Big( 
+			[ \mss{ \hsvec{X}_u \hs du, \hs \hsvec{X}_v \hs dv } ] 
+			= 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				| & | \\
+				X_u & X_v\\
+				| & |
+			\end{matrix} \right] } 
+			\mss{ \left[ \arraycolsep=2pt  \begin{matrix}
+				du & 0\\
+				0 & dv
+			\end{matrix} \right] }
+			\Big)
+			= 
+			A(
+			\sigma_1 \sigma_2 V^\dagger 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				du & 0\\
+				0 & dv
+			\end{matrix} \right] }
+			)
+			= \sigma_1 \sigma_2 \hs du dv 
+			= \left| \det\mss{\sqrt{J^\dagger J}} \right| du dv 
+	\end{aligned}
+\)
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+\(
+	\begin{aligned}
+		% Range
+		& \underline{ \text{Range, range}(M) }:\ \{Mv: v \in V\} = M(V)\\ 
+		& \bullet\ \mss{ \text{Right}\ M^{-1}: M (M^{-1} v) = \mathbbm{1}v }
+			\ \Rightarrow\ \underline{ \text{onto} } \ \Leftrightarrow\  \text{range}(M) = W
+			\\
+		& \bullet\ \mss{ V = \text{range}(T^0);\ \forall k,\ \text{range}(T^k) \supseteq \text{range}(T^{k+1}) }
+			\hspace{15pt} \bullet\ \mss{ \text{range}(T^k) = \text{range}(T^{k+1}) 
+			\ \Rightarrow\ \forall m \geq k,\ \text{range}(T^k) = \text{range}(T^m) }
+			\\
+		& \ast\ \mss{ \text{range}(T^{\dim V}) = \text{range}(T^{\dim V + 1}) }
+	\end{aligned}
+\)
+
+\vspace{10pt}
+\(
+	\begin{aligned}
+		% Nullspace
+		& \underline{ \text{Nullspace, null}(M)}:\ \{ v : Mv = 0 \}\\
+		& \bullet\ \mss{ \text{Left}\ M^{-1}: M^{-1} M v = M^{-1} M u }
+			\ \Rightarrow\ \underline{ \text{1-1} } \ \Leftrightarrow\ \text{null}(M) = \{0\}
+			\ \Leftarrow\ \begin{aligned}
+				& \mss{ 1.)\ M(v) = 0 = M(u) }\\[-5pt]
+				& \mss{ 2.)\ 0 = M(0 = u - v) = M(u) - M(v) } \ \ \tss{(linear)}\\
+			\end{aligned}
+			\\
+		& \bullet\ \forall k \geq 0,\ \text{null}(T^k) \subseteq \text{null}(T^{k+1})
+			\hspace{20pt}
+			\bullet\ \text{null}(T^k) = \text{null}(T^{k+1}) 
+			\ \Rightarrow\ \forall j > k,\ \text{null}(T^k) = \text{null}(T^j) 
+			\\
+		& \ast\ \text{null}(T^{n=\dim V}) = \text{null}(T^{n+1}) 
+			\ \Leftarrow\ \dim \text{null}(T^n) \leq \dim V
+			\\
+		& \bullet\ \underline{ V \neq \text{null}(T) \oplus \text{range}(T) 
+			\ \Leftrightarrow\ \{0\} \neq \text{null}(T) \cap \text{range}(T) }
+			\\
+		& \bullet\ \underline{ V = \text{null}(T^{n}) \oplus \text{range}(T^{n}) } \ \Leftarrow\ 
+			\mss{ \begin{aligned}
+				\{0\} = \text{null}(T^{n}) \cap \text{range}(T^{n}) &
+					\ \Rightarrow\ \text{null}(T^{n}) \oplus \text{range}(T^{n}) 
+					\\
+				\dim V = \dim \text{null}(T^{n}) + \dim \text{range}(T^{n}) &
+					\ = \ \dim \left( \text{null}(T^{n}) \oplus \text{range}(T^{n}) \right)
+					\\
+			\end{aligned} }
+			\\
+		& \bullet\ v \in \text{null/range}(T^{n}) \ \Rightarrow\ Tv \in \text{null/range}(T^{n})
+			\hspace{15pt} \tss{(are \underline{Invariant} spaces/closed)}
+			\\
+		& \bullet\ \forall n \left[ \text{null}(T^{n}) = \text{null}(T^{n+1}) 
+			\ \Leftrightarrow\ \text{range}(T^{n}) = \text{range}(T^{n+1}) \right]
+			\\
+	\end{aligned}
+\)
+
+\vspace{10pt}
+\(	
+	\begin{aligned}
+		% Eigenspace and Eigenvalues
+		& \underline{ \text{Eigenspace, E}(\lambda, T) }:\ \text{null}(T-\lambda \mathbbm{1}) = \{ v : (T-\lambda \mathbbm{1})v = 0 \}\\
+		& \bullet\ V^{n<\infty},\
+			\boxed{ (T - \lambda I):\ \ !(\text{1-1}) \ \Leftrightarrow\ !\text{onto} \ \Leftrightarrow\ \nexists T^{-1} }
+			\hspace{15pt} \ast\ (T - \lambda I)v = 0 \ \Rightarrow\ !(\text{1-1})
+			\\
+		& \bullet\ V^{n<\infty},\ \underline{T = T_{upp.}},\ 
+			\underline{ (\exists T^{-1} \ \Leftrightarrow\ \forall T_{ii}, T_{ii} \neq 0 ) }
+			\ \Leftarrow\ \mss{ \begin{aligned}
+				& T_{ii} = 0 \Rightarrow \dim \text{span}(v_1 \dots v_j) = \dim \text{span}(v_1 \dots v_{j-1}) + 1 \\[-3pt]
+				& \Rightarrow\ \exists v \in \text{span}(v_1 \dots v_j),\ v\neq 0,\ Tv = 0 \ \Rightarrow\ T\ !(\text{1-1})
+			\end{aligned} }
+			\\
+		& \ast\ \underline{T = T_{upp.}},\ (\forall T_{ii}, T_{ii} \neq 0) \ \Rightarrow\ T_{ii} = \lambda_i \\
+		& \bullet\ \boxed{ V \supseteq \bigoplus E(\lambda_i, T) }
+			\hspace{20pt} \bullet\ \begin{aligned}[t]
+				\boxed{ 
+					\tss{Diagonalizable}\ T
+					\ \Leftrightarrow\ V = \bigoplus E(\lambda_i, T) 
+					} 
+					= \forall \lambda_i,\ \mss{ E(\lambda_i, T) } & 
+					\oplus \mss{ \text{range}(T-\lambda_i I) }
+					\\
+				= \underline{\forall \lambda \in \mathbb{C}},\ \Aboxed{ 
+					\mss{ \text{null}(T-\lambda I) } 
+					& \oplus \mss{ \text{range}(T-\lambda I) } 
+					}
+					\\
+			\end{aligned}
+			\\
+	\end{aligned}
+\)\\[5pt]
+\(
+	\begin{aligned}
+		% Generalized Eigenspace
+		& \underline{ \tss{Generalized Eigenspace},\ G(\lambda, T) }:\ 
+			\boxed{ \text{null}(T - \lambda \mathbbm{1})^{\dim V} } =
+			\mss{\bigcup_{\forall k \geq 0}} \text{null}(T - \lambda \mathbbm{1})^k = \{ v : T^k v = 0,\ \forall k_{\geq0} \} 
+			\\
+		& \bullet\ \begin{aligned}
+				\text{Algebraic Multiplicity} & :\ d_i = \dim G(\lambda_i, T)\\
+				\text{Geometric Multiplicity} &:\ g_i = \dim E(\lambda_i, T)\\
+			\end{aligned}
+			\hspace{20pt} \bullet\ \text{Characteristic Polynomial}:\ \prod_i (z-\lambda_i)^{d_i} 
+			\\
+		& \begin{aligned}
+				& \bullet\ (T-\lambda_i \mathbbm{1})^{d_i} \big|_{G(\lambda_i, T)} = 0\\
+				& \bullet\ \boxed{ V = \mss{ \bigoplus_i }\ G(\lambda_i, T) }\\
+			\end{aligned}
+			\ \Rightarrow\ \left[\prod_i (T-\lambda_i \mathbbm{1})^{d_i} \right] v = 0
+			\hspace{15pt} \tss{(Cayley-Hamilton)}
+			\\
+		% Nilpotent Operators
+		& \bullet\ \underline{ \text{Nilpotent},\ N }:\ \text{null}(N^{\dim V}) = V 
+			\ \Rightarrow\ N^{\dim V} = 0
+			\hspace{10pt} \ast\ \exists \overline{N},\ \forall i,\ \overline{N}_{ii} = 0 \hspace{10pt} (\exists U_{pp})
+			\\[3pt]
+		& \ast\ \forall N,\ N^m = 0,\ \exists \sqrt[a]{1+N} = 1 + \tfrac{1}{a} N + a_2 N^2 ... + a_{m-1} N^{m-1} = A
+			\hspace{10pt} \mss{(a_i|\hs A^a = 1 + N)}
+			\\
+		% Results on general operators and invertible ones
+		& \bullet\ T|_{G(\lambda_i, T)} = 
+			\begin{gathered}[t]
+				(T-\lambda_i \mathbbm{1})|_{G(\lambda_i, T)}\\[-5pt]
+				\tss{(Nilpotent)}
+			\end{gathered} 
+			+ 
+			\begin{gathered}[t]
+				\lambda_i \mathbbm{1}|_{G(\lambda_i, T)}\\[-5pt]
+				\tss{(Diagonal)}\\
+			\end{gathered}
+			\ \Rightarrow\ \exists U_{pper} \ \Rightarrow\ \boxed{ \forall T,\ \exists \text{Block-Upper-Triang} }
+			\\
+		& \ast\ \exists T^{-1} \ \rightarrow\ \lambda_i \neq 0 
+			\ \Rightarrow\ T|_{G(\lambda_i, T)} = \lambda_i (1 + N/\lambda_i) \ \Rightarrow\ \exists \sqrt[n]{T}
+			\\
+	\end{aligned}
+\)
+
+%-----------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\(
+	% Schur's theorem but any basis
+	\begin{aligned}
+		& \underline{ 
+			\forall T,\ \exists \overline{T} = U_{pp} 
+			\ \Leftrightarrow\ \exists \{e_1, e_2, ..., e_{n=\dim V}\},\ T(e_i) \in \text{span}(e_1, e_2, ..., e_i)
+			}: 
+			\\
+		& \bullet\ \exists(\lambda, v , Tv = \lambda v);\ \dim \text{null}(T-\lambda \mathbbm{1}) > 0 \ \Rightarrow\
+			\dim \underline{ \text{range}(T - \lambda \mathbbm{1}) } \equiv \dim \underline{U} < \dim V
+			\\
+		& \bullet\ \forall u,\ Tu = (T-\lambda\mathbbm{1})u + \lambda u \in U \ \Rightarrow\ \exists T|_U\\
+		% Induction Hypothesis
+		& \bullet\ \underline{\text{Induc}\ H}:\ \forall U\mss{( \dim U < \dim V)},\ 
+			\exists \bigoplus \{u\}^{\dim U},\ T(u_i) \in \text{span}(u_1, u_2, ..., u_i)
+			\\
+		& \bullet\ V = U \oplus \text{span}\{w_1, w_2, ..., w_m\} = \text{span}\{u_1, u_2, ..., w_1, w_2, ..., w_m\}
+			\\
+		& \bullet\ \forall w_i,\ \underline{T w_i} = (T-\lambda\mathbbm{1})w_i + \lambda w_i 
+			\ \underline{ \in }\ U \oplus \text{span}\{w_i\} 
+			\subset \underline{ U \oplus \text{span}\{w_1, w_2, ... w_i\} }
+			\ \Rightarrow\ V = U \oplus W
+			\\
+		& ( n = 2, \dim U = 1 \ \checkedbox;\ n = 3, \dim U \in \{1,2\}\ \checkedbox;\ n = 4, \dim U \in \{1,2,3\}\ \checkedbox ... )\\
+		& \underline{ \text{Schur's Theorem} }:\ \forall T,\ 
+			\text{Use Gram-Schmidt to make \underline{orthog basis for \(\overline{T}_{upper}\)}} 
+			\\
+	\end{aligned}
+\)
+
+\vspace{15pt}
+\(
+	% Exists Jordan Form for Nilpotent
+	\begin{aligned}
+		& \underline{ 
+			\forall N,\ \exists \overline{N} = \text{Jordan Block}\ U_{pp} 
+			\ \Leftrightarrow\ \exists \{e_1, e_2, ..., e_{n=\dim V}\},\ N(e_i) = e_{i-1} \ \text{or}\ 0
+			}: 
+			\\
+		& \bullet\ \exists(v\neq 0 , Nv = 0 v);\ \dim \text{null}(N) > 0 \ \Rightarrow\
+			\dim \underline{ \text{range}(N) } \equiv \dim \underline{U} < \dim V
+			\\
+		& \bullet\ \forall u,\ Nu \in U \ \Rightarrow\ \exists N|_U\\
+		% Induction Hypothesis
+		& \bullet\ \underline{\text{Induc}\ H}:\ \forall U\mss{( \dim U < \dim V)},\ 
+			\exists \bigoplus \{u\}^{\dim U} = \bigoplus \{b_i, N b_i, N^2 b_i, ..., N^{m_i} b_i\},\ N(N^{m_i} b_i) = 0
+			\\
+		& \bullet\ \exists v_i, \ N(v_i) = b_i \ \Rightarrow\ U = \bigoplus \{Nv_i, N^2v_i, ... N^{m_i+1} v_i\} \\
+		& \ast\ 0 = a^i v_i + c^k u_k = N(a^i v_i + c^k u_k) 
+			= a^i b_i + (c')^k (u_k \neq b_i, N^{m_i} b_i ) + \left[ d^i N(N^{m_i} b_i) = 0 \right]
+			\\
+		& \Rightarrow\ \{a\}_i, \{c'\}_i = 0;\ \{d\}_i = 0 
+			\ \rightarrow \ \underline{ U' \equiv \{v\}_i^{\dim U} \oplus \{u\}_i^{\dim U} }
+			\hspace{15pt} \underline{ \tss{(builds layers for \(N(e_i) = e_{i-1}\))} }
+			\\
+		& \bullet\ V = U' \oplus \text{span}\{w_1, w_2, ..., w_m\}
+			\\
+		& \bullet\ \forall w_i,\ w_i \notin U',\ N w_i \in U \ \Rightarrow\ \exists x_i \in U',\ N w_i = N x_i\\
+		& \ast\ \exists w_i' = w_i - x_i \in W',\ \underline{ N(w_i') = 0 } 
+			\hspace{15pt} \underline{ \tss{(other opt. \(N(e_i) = 0\))} }
+			\ \Rightarrow\ V = U' \oplus W' 
+			\\
+		& ( n = 2, \dim U = 1 \ \checkedbox;\ n = 3, \dim U \in \{1,2\}\ \checkedbox;\ n = 4, \dim U \in \{1,2,3\}\ \checkedbox ... )\\
+		& \underline{ \text{Jordan Form} }:\ \forall T,\ V = \oplus G(\lambda_i, T),\ T|_{G_i} 
+			= \mss{(T - \lambda_i \mathbbm{1}) + \lambda_i \mathbbm{1}} = N_i + D_i
+			\ \Rightarrow\ \underline{\exists \overline{T} = \text{Jordan Block}\ U_{pp}}
+			\\
+		& \ast\ \tss{Gram-Schmidt Orthog}\ G'(\lambda_i, T) \ \Rightarrow\ 
+			\underline{\exists \overline{T} = \text{Jordan Normal Block}\ U_{pp}}
+	\end{aligned}
+\)
+
+\vspace{15pt}
+\(
+	% M^n - Jordan Decomposition 
+	\begin{aligned}
+		& \text{Jordan Decomposition},\ M^n: \\
+		& M^n = P J^n P^{-1} 
+			= 
+			\mss{ \arraycolsep=2pt \left[ \begin{matrix}
+				|   & |   	   & | 	 	 & |\\
+				v_1 & v_2 & v_2' & v_2'' \\
+				|   & |   	   & | 	 	 & |\\
+			\end{matrix} \right] }
+			\mss{ \arraycolsep=2pt \left[ \begin{matrix}
+				\lambda_1 	& 0				& 0 		& 0 \\
+				0 			& \lambda_2 	& 1 		& 0 \\
+				0 			& 0 			& \lambda_2 & 1 \\
+				0 			& 0 			& 0			& \lambda_2 \\
+			\end{matrix} \right]^n }
+			P^{-1}
+	\end{aligned}
+	\hspace{20pt}
+	\ \Leftarrow\
+	\mss{ \begin{aligned}
+		(M-\lambda_2) v_2 & = 0 \\
+		(M-\lambda_2) v_2' & = v_2 \\
+		(M-\lambda_2) v_2'' & = v_2' \\
+	\end{aligned} }
+\)
+
+%----------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+\(
+	\begin{aligned}
+		% Trace
+		& \underline{\text{Trace}}:\ \underline{ 2.\ \text{Tr}(\overline{T}) }:\ \sum \overline{T}_{ii}
+			\hspace{20pt}
+			\underline{ 1.\ \text{Tr}(T) }:\ \sum d_n \lambda_n = \sum \lambda_i = \sum \overline{T}_{ii}^{upper}
+			\\[5pt]
+		& \bullet\ \text{Tr}(\overline{A}\overline{B}) = \mss{ \text{Tr}(A^i_{\hs\hs j} B^j_{\ i}) } = \text{Tr}(\overline{B}\overline{A}) 
+			\ \Rightarrow\ \text{Tr}(\overline{A'} = \overline{Q}\overline{A}\overline{Q^{-1}}) = \text{Tr}(\overline{A})
+			\hspace{15pt} \tss{(basis indep.)}
+			\ \Rightarrow\ \boxed{ \text{Tr}(\overline{T}) = \text{Tr}(T) }
+			\\
+		& \bullet\ \nexists S,T,\ ST - TS = I 
+			\ \Leftarrow\ \text{Tr}(ST) - \text{Tr}(TS) = 0 \neq \text{Tr}(\mathbbm{1})
+	\end{aligned}
+\)\\[15pt]
+\(
+	\begin{aligned}	
+		% Determinant
+		& \underline{\text{Determinant}}:\ 
+			\underline{ 1.\ \det(T) = \prod \lambda_n^{d_n} = \prod \lambda_i = \prod \overline{T}_{ii}^{upper}}
+			\hspace{20pt} \underline{ 2.\ \det(\overline{T}) = \mss{ 
+				\hspace{-25pt} \sum_{(i_1, ..., i_n) \in \text{perm}(n)} 
+				\hspace{-25pt} \text{sign}(i_1, ..., i_n) B^{i_1}_{\ \hs 1} B^{i_2}_{\ \hs 2} \hs ...\hs B^{i_n}_{\ \hs n} 
+				} }
+			\\[5pt]
+		& \bullet\ \exists T^{-1} \ \Leftrightarrow\ \det(T) \neq 0
+			\hspace{20pt}
+			\begin{aligned}
+				& \bullet\ 0 = -(T - \lambda_i \mathbbm{1})v_i = [(z \mathbbm{1} - T) - (z - \lambda_i)]v_i = [U - \sigma_i]v_i\\
+				& \Rightarrow\ \det(U) = \det(z \mathbbm{1} - T) = \prod (z - \lambda_i) = \text{Char. Poly}(T)
+					\\
+			\end{aligned}
+			\\
+		% Linearity
+		& \bullet\ \underline{ \text{Linearity for \(A_k\)} }:\ 1.)\ c \cdot \det A = \det (A_1,\ A_2,\ ...\ c\cdot A_k,\ ...\ A_n) \\
+		& \hspace{20pt} \mss{ 2.)\ \det (A_1,\ A_2,\ ...\ A_k,\ ...\ A_n) + \det (A_1,\ A_2,\ ...\ B_k,\ ...\ A_n) 
+			= \det (A_1,\ A_2,\ ...\ A_k + B_k,\ ...\ A_n) }
+			\\
+		% Permuting
+		& \bullet\ \underline{ \text{Column Permutation} } :\ \det( Ae_{i_1},\ Ae_{i_2},\ ...\ Ae_{i_n} ) 
+			= \text{sign}(i_1, i_2, ..., i_n) \det( Ae_{1},\ Ae_{2},\ ...\ Ae_{n} )
+			\\[5pt]
+		% Multiplicative
+		& \bullet\ \begin{aligned}[t]
+				\det(\overline{A}\overline{B})
+					& = \det( B^{i_1}_{\ \hs 1} Ae_{i_1},\ B^{i_2}_{\ \hs 2} 
+					Ae_{i_2},\ ...,\ B^{i_n}_{\ \hs n} Ae_{i_n} )
+					\hspace{10pt} \Leftarrow \hspace{10pt} Be_k = B^i_{\hs\hs k \hs} e_i 
+					\\
+				& = \sum_{(i_1, i_2, ..., i_n)} B^{i_1}_{\ \hs 1} B^{i_2}_{\ \hs 2} \hs ...\hs B^{i_n}_{\ \hs n} 
+					\det( Ae_{i_1},\ Ae_{i_2},\ ...\ Ae_{i_n} )
+					\\
+				& = \sum_{(i_1, i_2, ..., i_n) \in \text{perm}(n)} \hspace{-10pt} 
+					B^{i_1}_{\ \hs 1} B^{i_2}_{\ \hs 2} \hs ...\hs B^{i_n}_{\ \hs n} 
+					\det( Ae_{i_1},\ Ae_{i_2},\ ...\ Ae_{i_n} )
+					\\
+				\det(B) \det(A) & = \sum_{(i_1, i_2, ..., i_n) \in \text{perm}(n)} 
+					\hspace{-10pt} B^{i_1}_{\ \hs 1} B^{i_2}_{\ \hs 2} \hs ...\hs B^{i_n}_{\ \hs n} 
+					\ \text{sign}(i_1, i_2, ..., i_n) \cdot \det( Ae_{1},\ Ae_{2},\ ...\ Ae_{n} )
+					\\
+			\end{aligned}
+			\\
+		% Basis Independent
+		& \ \Rightarrow\ \det(\overline{A'} = \overline{Q}\overline{A}\overline{Q^{-1}}) = \det(\overline{A})
+			\hspace{15pt} \tss{(basis indep.)}
+			% Equivalent to Operator Definition
+			\ \Rightarrow\ \boxed{ \det(\overline{T}) = \det(T) }
+			\\
+	\end{aligned}
+\)\\[10pt]
+\(
+	% cont above
+	\begin{aligned}
+		& \bullet\ \det(T) = \det(U)_{\pm 1} \det(\sqrt{T^\dagger T})_{\geq 0} = \pm \prod \sigma_i 
+			= \pm \sqrt{\det(T^\dagger T)} = \pm \sqrt{\det(\text{Gram Matrix})}
+			\\
+		& \bullet\ \underline{ \langle x | H x \rangle \geq 0 } \ \Rightarrow\ 
+			\begin{aligned}
+				& \ast\ \lambda_i \geq 0\\
+				& \ast\ \exists \{e_i\}	\\
+			\end{aligned}
+			\ \Rightarrow\
+			\begin{aligned}
+				\underline{ \text{vol}\ H(\Omega) } & = \text{vol} \bigcup_i B_i [H(\Omega)]
+					= \text{vol} \bigcup_i H(B_i [\Omega])
+					\\
+				& = \det(H)\hs \text{vol} \bigcup_i B_i [\Omega]
+					= \underline{ \det(H)\hs \text{vol}(\Omega)	}
+			\end{aligned}
+			\\
+		& \ast\ \underline{ \text{vol}\ T(\Omega) } = \text{vol}\ S \sqrt{T^\dagger T}(\Omega) = \text{vol}\ \sqrt{T^\dagger T}(\Omega)
+			= \boxed{ |\det(T)|\hs \text{vol}(\Omega)	}
+			\\
+		& \ast\ \parbox{.9\textwidth}{\scriptsize \(\exists\{e_i\}_\perp\) of \(\sqrt{T^\dagger T}\) spanning \(V\) where \(Tx\) is %
+			equal to expanding \(x\)'s components by \(\lambda_i\) each (then rotating/reflecting by \(U\), which %
+			doesn't change lengths or shape volumes). \(T\mathbbm{1}\) means moving axes to this basis (tilting head), decomposing %
+			the (tilted) \(\mathbbm{1}\) box to smaller boxes aligned with the bases, then expanding them to rectangular %
+			prisms that composes (tilted) oblique rectangular prism, \(T\mathbbm{1}\). The proportional change for each each small %
+			box is \(\det T\), and any initial volume can be composed of these smaller boxes, so the total change is prop. to \(\det T\) %
+			}
+			\\
+		& \bullet\ y(x) \approx y(x_0) + J_y(x_0)(x-x_0) \ \Rightarrow\ \int_{y(\Omega)} f(y) \hs dy 
+			= \int_\Omega f \circ y(x) \hs \vert \det(J_f) \vert \hs dx
+	\end{aligned}
+\)
+
+%--------------------------------------------------------------------------------------------------------------
+%
+%
+%--------------------------------------------------------------------------------------------------------------
+\newpage
+
+\(\begin{aligned}
+	& \bullet\ \delta_i \left( |a^i|^p \right)^{\frac{1}{p}} = \Vert a \Vert_p \leq \Vert a \Vert_1 = \delta_i |a^i|\\
+	& \bullet\ |a^i| |b_i| \leq \delta_r \left( |a^r|^p \right)^{\frac{1}{p}} \cdot \delta_k \left( |b^k|^q \right)^{\frac{1}{q}} 
+		= \Vert a \Vert_p \Vert b \Vert_q
+		\hspace{20pt} 
+		\tfrac{1}{p} + \tfrac{1}{q} = 1 \leq p,q
+		\\
+	& \hspace{40pt} \leq \delta_r |a^r| \cdot \delta_k |b^k| = \Vert a \Vert_1 \Vert b \Vert_1
+		\\[15pt]
+	& \bullet\ \frac{\Vert Ax \Vert_\infty}{\Vert x \Vert_\infty} 
+		= \frac{\max_{r} \left| \mss{ \sum_k } A^r_{\ k} x^k \right| }{\Vert x \Vert_\infty}
+		\leq \frac{\max_{r} \Big| \mss{ \sum_k } A^r_{\ k} \Vert x \Vert_\infty \Big| }{\Vert x \Vert_\infty}
+		\leq \boxed{ \max_{r} \mss{ \sum_k } | A^r_{\ k} | }
+		\\[5pt]
+	& \bullet\ \frac{\Vert Ax \Vert_1}{\Vert x \Vert_1} 
+		= \frac{\mss{ \sum_r } \left| \mss{ \sum_k } A^r_{\ k} x^k \right|}{\Vert x \Vert_1} 
+		\leq \frac{\mss{ \sum_k } \left( \mss{ \sum_r } | A^r_{\ k} | \right) | x^k |}{\Vert x \Vert_1} 
+		\leq \boxed{ \max_k \mss{ \sum_r } | A^r_{\ k} | }
+		\\[5pt]
+	& \bullet\ \begin{aligned}
+			\Vert Tx & \Vert_p^p = \mss{ \sum_r } \left| \mss{ \sum_k } T^r_{\ k} x^k \right|^p
+				\leq \mss{ \sum_r } \left| \mss{ \sum_k } |T^r_{\ k}|^{\frac{1}{q}} \cdot |T^r_{\ k}|^{\frac{1}{p}} |x^k| \right|^p
+				\leq \mss{ \sum_r } \left| 
+					\left( \mss{ \sum_k } |T^r_{\ k}| \right)^{\frac{1}{q}} \left( \mss{ \sum_k } |T^r_{\ k}| |x_k|^p \right)^{\frac{1}{p}}
+				\right|^p
+				\\
+			& \leq \left[ \max_r \mss{ \sum_k } |T^r_{\ k}| \right]^{\tfrac{p}{q}} \mss{ \sum_k } \left( \mss{ \sum_r } |T^r_{\ k}| \right) |x_k|^p 
+				\leq \Vert T \Vert_\infty^{p/q} \cdot \Vert T \Vert_1 \cdot \Vert x \Vert_p^p
+				\ \Rightarrow\ \boxed{ \Vert T \Vert_p^p \leq \Vert T \Vert_\infty^{1/q} \cdot \Vert T \Vert_1^{1/p} }
+		\end{aligned}
+		\\[3pt]
+	& \ast \tfrac{1}{p} + \tfrac{1}{q} = 1 \leq p,q
+\end{aligned}\)
+
+\end{document}

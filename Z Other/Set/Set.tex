@@ -1,0 +1,1264 @@
+\documentclass{article}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry} % Resizes the borders
+\usepackage{pdflscape}
+% \usepackage{graphicx} % Required for inserting images
+\usepackage{amssymb, amsmath, amsfonts, mathtools, bbm, esint}
+\usepackage{array,multirow}
+\usepackage{cancel}
+\usepackage{dashbox} % for dboxed
+
+
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\hspace{-1pt}\vec{\hspace{1pt} #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
+
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+\newcommand{\dboxed}[1]{\dbox{\ensuremath{#1}}} % dashed box
+
+% \title{Sets}
+% \author{TN}
+% \date{September 2024}
+
+\begin{document}
+
+\parindent=0pt
+
+% \maketitle
+
+% \section{Introduction}
+
+\hrulefill
+
+\vspace{-10pt}
+\hrulefill
+
+\vspace{5pt}
+\begin{minipage}[t]{.49\textwidth}
+    % Topological Spaces
+    \underline{Topological Space,\ \((X, F \subseteq 2^X)\); \ Subset, \((S \subseteq X, F)\)}:\\[5pt]
+    \(
+        % Open Sets
+        \begin{aligned}[t]
+            & F = \{ \text{Open Sets}\ V\} \\[5pt]
+            & 1.\ \varnothing, X \in F\\
+            & 2.\ \forall i \in [1,n],\ \bigcap V_i \in F\\
+            & 3.\ \forall I,\ \bigcup_{\alpha \in I} V_\alpha \in F\\
+            & \nhs\nhs \bullet\ V = \{j_V\} = U^c\\
+        \end{aligned}
+        \hspace{10pt} \vline \hspace{10pt}
+        % Closed Sets
+        \begin{aligned}[t]
+            & F = \{ \text{Closed Sets}\ U \} \\[5pt]
+            & 1.\ \varnothing, X \in F\\
+            & 2.\ \forall i \in [1,n],\ \bigcup U_i \in F\\
+            & 3.\ \forall I,\ \bigcap_{\alpha \in I} U_\alpha \in F\\
+            & \nhs\nhs \bullet\ U = \{a_U\} = V^c \\
+            & \hspace{19pt} = S \cup \{c_S\}\\
+        \end{aligned}
+    \)
+\end{minipage}
+% \vline
+\hfill
+\begin{minipage}[t]{.48\textwidth}
+    % Topological SubSpaces
+    \underline{Topological Subspace,\ \((Z \subseteq X, F_Z \subseteq 2^Z)\)}:\\[5pt]
+    \(
+        % Open Sets
+        \begin{aligned}[t]
+            & F_Z = \{Z \cap V : V \in F\} \\[5pt]
+            & 1.\ \varnothing, Y \in F_Z\\
+            & 2.\ \forall i \in [1,n],\ \bigcap V_i \in F_Z\\
+            & 3.\ \forall I,\ \bigcup_{\alpha \in I} V_\alpha \in F_Z\\
+            & \nhs\nhs \bullet\ V = \{j_V\} = U^c\\
+        \end{aligned}
+        \hspace{10pt} \vline \hspace{10pt}
+        % Closed Sets
+        \begin{aligned}[t]
+            & F_Z = \{Y \cap V : V \in F\} \\[5pt]
+            & 1.\ \varnothing, Y \in F_Z\\
+            & 2.\ \forall i \in [1,n],\ \bigcup U_i \in F_Z\\
+            & 3.\ \forall I,\ \bigcap_{\alpha \in I} U_\alpha \in F_Z\\
+            & \nhs\nhs \bullet\ U = \{a_U\} = V^c \\
+            & \hspace{19pt} = S \cup \{c_S\}\\
+        \end{aligned}
+    \)
+\end{minipage}
+
+\vspace{5pt}
+% Neighborhood
+\( \dboxed{ \text{Neighborhood},\ V_p :\ p \in V_p \in F } \)
+\hfill
+% Topology = Nature of Convergence
+\( \dboxed{ \text{\scriptsize Topology = Nature of Convergence} } \)
+\hfill
+% No existance of
+\(  
+    \dboxed{
+        \nexists\ 
+        \mss{ \begin{aligned}
+            & \bullet\ \text{Cauchy Seq.}\\
+            & \bullet\ \text{Complete Space}\\
+        \end{aligned} }
+        \ \ 
+        \mss{ \begin{aligned}
+            & \bullet\ \text{Bounded Space}\\
+            & \bullet\ \text{Unif. Cont/Conv}\\
+        \end{aligned} }
+        \ ,\ \forall (X,F)
+    }
+\)
+\hfill
+
+\vspace{10pt}
+% Definitions For Sequences and Sets
+\(
+    \begin{aligned}
+        % Limit/Convergence of Sequence
+        \mss {\begin{gathered}
+                \text{Seq. Limit/}\\[-3pt]
+                \text{Convergence}
+            \end{gathered} }
+            \hs ,\ p^{(n)} \rightarrow L 
+            : \ \ & \forall V_L,\ \exists N_{\geq m},\ \forall n \geq N,\ p^{(n)} \in V_L
+            \\
+        % Limit/Convergence Pt of Sequence
+        \mss{ \text{[Seq] Limit Pt} } \hs , \ c_p \in X 
+            : \ \ & \forall V_{c_p},\ \forall N_{\geq m},\ \exists n \geq N,\ p^{(n)} \in V_{c_p}
+            \\[3pt]
+        % Adherent Point
+        \text{Adherent Pt},\ a_S \in X : \ \ & \forall V_{a_S},\ V_{a_S} \cap S \neq \varnothing\\
+        % Limit/Convergence Pt of Set
+        \mss{ \text{[Set] Limit Pt} } \hs, \ c_S \in X 
+            : \ \ & \forall V_{c_S},\ (V_{c_S} \cap S)_{ \backslash\{c_S\} } \neq \varnothing
+            \\
+    \end{aligned}
+    \hfill \vline \hfill
+    \begin{aligned}
+        % INterior Point
+        \text{Interior Pt},\ j_S \in X : \ \ & \exists V_{j_S} \subseteq S\\
+        % Exterior Point
+        \text{Exterior Pt},\ e_S \in X : \ \ & \exists V_{e_S},\ V_{e_S} \cap S = \varnothing\\
+        % Boundary Point
+        \text{Boundary Pt},\ b_S \in X : \ \ & b_S \notin \{j_S\} \cup \{e_S\}
+            \\[3pt]
+        % Closure
+        \text{Closure},\ \overline{S} \subseteq X : \ \ & \overline{S} = \{a_S\}\\
+    \end{aligned}
+    \hfill
+\)
+
+\vspace{10pt}
+% [Continuous] Functions over Topological Spaces
+\(
+    % Continuous at point x_0
+    \begin{gathered}
+        \text{cont \(f\) at}\ x_0 \\[-5pt]
+        \mss{ \text{cont}\ f|_{x_0} }
+    \end{gathered}
+    : \ \ 
+    \forall V_{f(x_0)},\ \exists V_{x_0},\ f(V_{x_0}) \subseteq V_{f(x_0)}    
+\)
+\hfill
+\(
+    % Continuous Function at all points
+    \begin{aligned}
+        \text{cont}\ f : \ \ \forall x \in S,\ \text{cont}\ f|_x 
+            & \ \Leftrightarrow\ f^{-1}(\forall V_1 \subseteq Y) = V_2 \subseteq X
+            \\
+        & \ \Leftrightarrow\ f^{-1}(\forall U_1 \subseteq Y) = U_2 \subseteq X 
+    \end{aligned}
+\)
+
+\vspace{10pt}
+% Compact Topological Space
+\(\displaystyle
+    \underline{ \text{Compact [Top.] Space, compa}\ X } :\ \forall \{V_\alpha\}_{\alpha \in I_1},\ 
+    \bigcup_{\alpha \in I_1} V_\alpha = X,\ 
+    \exists I_2 \subseteq I_1,\ \Vert I_2 \Vert < \infty,\ \bigcup_{\alpha \in I_2} V_\alpha = X
+\)
+
+\vspace{10pt}
+% Hausdorff Topological Space
+\(
+    \underline{\text{Hausdorff Space, \(X_H\)}} : \ \ \forall x,y \in X_H,\ \exists (V_x, V_y) ( V_x \cap V_y = \varnothing )
+    \hspace{15pt} 
+    \begin{aligned}
+        & \bullet\ \forall (p^{(n)})^\infty,\ p^{(n)} \rightarrow L \ \Rightarrow\ \text{Unique}\ L \\
+        & \bullet\ \forall (X,d_X),\ X = X_H\\
+    \end{aligned}
+\)
+
+\vspace{5pt}
+\hrulefill
+
+\vspace{-10pt}
+\hrulefill
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------
+\begin{landscape}
+
+\subsection{Metric Spaces}
+
+\vspace{10pt}
+% Metric Spaces
+\begin{minipage}[t]{6.5cm}%{.35\textwidth}
+    \underline{Metric Space, \((X,\ d)\); \ Subset \((S \subseteq X, d)\)}\\[10pt]
+    \(
+        d 
+        \hspace{10pt} \vline \hspace{10pt}
+        \begin{aligned}
+            & \bullet\ \forall p \in X,\ |p-p| = 0\\
+            & \bullet\ \forall p,q_{\neq p} \in X,\ |p-q| > 0\\
+            & \bullet\ \forall p,q \in X, |p-q| = |q-p|\\
+            & \bullet\ |p-r| \leq |p-q| + |q-r|\\
+        \end{aligned}
+    \)
+\end{minipage}
+% \vline
+\hfill
+\begin{minipage}[t]{.9\textwidth}%{.60\textwidth}
+    % Sequences
+    \underline{Sequences, \((a_n)^\infty_{n=m}\), or multidim, \((a^{(n)})^\infty_{n=m}\)}
+    % Subsequence
+    \hspace{5pt} \underline{ \( \text{Subsequence},\ (a^{(n_j)})^\infty_{j=1} :\ n_j \in \mathbb{N},\ n_j < n_{j+1} \) }
+    \\[5pt]
+    \(\arraycolsep=2pt\begin{array}{r l c l}
+        % Limit/Convergence
+        \begin{gathered}
+            \text{Limit/Conv.},\ a_n \rightarrow L \\[-5pt]
+            \mss{ \lim_{n\rightarrow\infty} a_n = L \in X}\\
+        \end{gathered}
+            : \ \ & \forall \epsilon > 0,\ \exists N_{\geq m},\ \forall n \geq N,\ |a_n - L| < \epsilon
+            & \ \Rightarrow\ \ 
+            & (a_n)^\infty_{n=m} = (c_n)^\infty_{n=m}
+            \\[2pt]
+        % Limit/Adherent Pt
+        \text{\scriptsize [Seq] Limit/Adherent Pt},\ c_a \in X
+            : \ \ & \forall \epsilon > 0,\ \forall N_{\geq m},\ \exists n \geq N,\ |a^{(n)} - c_a| < \epsilon
+            & \ \Leftrightarrow\ \ 
+            & \exists (a^{(n_j)})^\infty_{j=1}, \ a^{(n_j)} \rightarrow c_a
+            \\[3pt]
+        % Cauchy Sequence
+        \underline{ \text{\scriptsize Cauchy Sequence},\ (c^{(n)})^\infty_{m=1} } : \ \ & 
+            \forall \epsilon > 0,\ \exists N_{\geq m},\ \forall i,j \geq N,\ | {\scriptstyle c^{(i)} - c^{(j)} } | < \epsilon
+            \\[2pt]
+        % Cauchy Subsequence Convergence implies Sequence Convergence
+        & \ \ \bullet\ \exists (c^{(n_j)})^\infty_{j=1},\ c^{(n_j)} \rightarrow L \ \Rightarrow\ c^{(n)} \rightarrow L
+            \\
+    \end{array}\)
+\end{minipage}
+% \vline
+
+\vspace{15pt}
+\begin{minipage}{.77\textwidth}
+% Definitions
+\(
+    \hspace{-2pt}
+    \arraycolsep=2pt\begin{array}{r l c l c l}
+        % Adherent Pt
+        \text{\scriptsize Adherent Pt},\ a_S \in X 
+            : \ \ & \forall \epsilon > 0,\ \exists p \in S,\ |p-a_S| < \epsilon
+            & \hs \Leftrightarrow\ \
+            & \forall \epsilon > 0,\ B_{j_S}(\epsilon) \cap S \neq \varnothing
+            \\[2pt]
+        & & \hs \Leftrightarrow\ \
+            & \exists (p^{(n)})^\infty_{n=m},\ p^{(n)} {\scriptstyle \rightarrow} \hs a_S
+            \\[5pt]
+        % Limit Pt
+        \text{\scriptsize [Set] Limit Pt},\ c_S \in X 
+            : \ \ & \forall \epsilon > 0,\ \exists p \in S_{\backslash \{c_S\}},\ { |{\scriptstyle p-a_S}|} < \epsilon
+            & \hs \Leftrightarrow\ \
+            & \forall \epsilon > 0,\ B_{j_S}(\epsilon) \cap S_{\backslash \{c_S\}} \neq \varnothing
+            \\[2pt]
+        & & \hs \Leftrightarrow\ \
+            & \exists (p^{(n)})^\infty_{n=m},\ c_p = c_S
+            \\[5pt]
+        % Isolated Pt
+        \text{Isolated Pt},\ i_S \in S 
+            : \ \ & \exists \epsilon > 0,\ \forall p \in S_{\backslash \{i_S\}},\ { |{\scriptstyle p-i_S}|} > \epsilon
+            & \hs \Leftrightarrow\ \
+            & \exists \epsilon > 0,\ B_{j_S}(\epsilon) \cap S = j_S
+            \\[2pt]
+        & & \hs \Leftrightarrow\ \
+            & i_S \in \{a_S\} \backslash \{c_S\}
+            \\
+    \end{array}
+\)\\[10pt]
+\(
+    \arraycolsep=2pt\begin{array}{r l c l c l}
+        % Interior Point
+        \text{Interior Pt},\ j_S \in S : \ \ & \exists \epsilon > 0,\ \forall |p - j_S| < \epsilon,\ p \in S
+            & \ \Leftrightarrow\ \
+            & \exists \epsilon > 0,\ B_{j_S}(\epsilon) \subseteq S
+            \\[2pt]
+        % Exterior Point
+        \text{Exterior Pt},\ e_S \in X : \ \ & \exists \epsilon > 0,\ \forall |p - j_S| < \epsilon,\ p \notin S
+            & \ \Leftrightarrow\ \
+            & \exists \epsilon > 0,\ B_{j_S}(\epsilon) \cap S = \varnothing
+            \\[4pt]
+        % Boundary Point
+        \text{Boundary Pt},\ b_S \in X : \ \ & \multicolumn{5}{l}{
+                b_S \notin \{j_s\} \cup \{e_S\} 
+                \ \Leftrightarrow\ \
+                \forall V_{b_S} \subseteq X,\ \mss{ (S \cap V_{b_S} \neq \varnothing) \wedge (S^c \cap V_{b_S} \neq \varnothing) }
+            }
+            \\
+    \end{array}
+\)
+\end{minipage}
+\hfill \vline \hfill
+\begin{minipage}{8.69cm}
+\(
+    \arraycolsep=2pt \begin{array}{r l}
+        % Closure
+        { \text{Closure},\ \overline{S} \subseteq X } : \ \ & \overline{S} = \{a_S\} 
+            \hs\hs \mss{ \begin{gathered}
+                = S \cup \{c_S\} = \\
+                = \{i_S\} \cup \{c_S\} = \\
+                = \{j_S\} \cup \{b_S\} = \\
+            \end{gathered} } \hs\hs
+            X_{\backslash \{e_S\}}
+            \\[2pt]
+        % Interior
+        \text{Interior},\ \text{int}(S) \subseteq S : \ \ & \{j_S\}\\[2pt]
+        % Exterior
+        \text{Exterior},\ \text{ext}(S) \subseteq X : \ \ & \{e_S\} = X \backslash \{a_S\} \\[2pt]
+        % Boundary
+        \text{Boundary},\ \partial S \subseteq X : \ \ & \partial S = \{b_S\} 
+            \\
+    \end{array}
+\)\\[15pt]
+\(
+    \nhs\nhs 
+    % Sets
+    \arraycolsep=2pt\begin{array}{r l c l c l}
+        % Ball
+        { \text{Ball},\ B_{p}(\epsilon) \subseteq X } : \ \ &
+            \multicolumn{3}{l}{ \forall q \in B_{p}(\epsilon),\ | p - q | < \epsilon }
+            \\[2pt]
+        % Open Set
+        { \text{Open Set},\ V \subseteq X } : \ \ & \partial V \cap V = \varnothing
+            & \ \Leftrightarrow \ \ 
+            & V = \{j_V\} = U^c
+            \\[2pt]
+        % Closed Set
+        { \text{Closed Set},\ U \subseteq X } : \ \ & \partial U \subseteq U
+            & \ \Leftrightarrow\ \
+            & U = \{a_U\} = V^c
+            \\[2pt]
+        % Open Set of a point p
+        { \text{Open Set of}\ p,\ V_p } : \ \ & p \in V_p \in \{V\}\\
+    \end{array}
+    \hspace{-5pt}
+\)
+\end{minipage}
+
+\vspace{15pt}
+% Metric Subspaces
+\(
+    \begin{aligned}
+        & \underline{ \text{Metric Subspace},\ (S, d|_{S \times S}) }:\ d_X\ \text{restricted to subset}\ S
+    \end{aligned}
+\)\\[10pt]
+% Relative Topology
+\(
+    \begin{aligned}
+        % Relative Open Set
+        & { \text{[Relatively] Open Set [of a Subset]},\ V \subseteq S \subseteq X } 
+            & :\ \ & \exists V' \subseteq X,\ V = V' \cap S 
+            \\
+        % Relative Closed Set
+        & { \text{[Relatively] Closed Set [of a Subset]},\ U \subseteq S \subseteq X } 
+            & :\ \ & \exists U'\subseteq X,\ U = U' \cap S
+    \end{aligned}
+    \hspace{20pt} \begin{aligned}
+        & \bullet\ S \in \{U\},\{V\} \ \Leftrightarrow\ S^c \in \{V\},\{U\}\\
+        & \bullet\ S \in \{\varnothing, \pm \infty\} \ \Rightarrow\ (S \in \{U\}) \wedge (S \in \{V\})\\
+    \end{aligned}
+\)
+
+\vspace{15pt}
+\(
+    % Complete Metric Space
+    \begin{aligned}
+        \underline{ \text{\scriptsize Complete Metric Space, compl}\ (X, d) } : \ \ & 
+            \forall (a^{(n)})^\infty_{m=1} \ \big( a^{(n)} = c^{(n)}
+            \ \stackrel{\leftarrow}{\Rightarrow}\ \exists L,\ a^{(n)} \rightarrow L \big)
+            \\
+    \end{aligned}
+    \hfill
+    \begin{aligned}
+        & \bullet\ \text{compl}\ (Y \subseteq X, d|_{Y\times Y}) \ \Rightarrow\ \text{closed}_X\ Y\\
+        & \bullet\ \text{compl}\ (X, d),\ \text{closed}_X\ Y \ \Rightarrow\ \text{compl}\ (Y \subseteq X, d|_{Y\times Y}) \\
+    \end{aligned}
+    \hfill
+\)
+
+\vspace{10pt}
+% Axiom of Completeness for Reals
+\(
+    { \text{[Axiom of] Completeness for } \mathbb{R} }:\ 
+    \forall S_{\neq \varnothing} \subseteq \mathbb{R} \hs\hs ;\ 
+    \begin{aligned}
+        & \bullet\ \exists M,\ \forall p \in S,\ p < M \ \Rightarrow\ \exists \sup(S)\\
+        & \bullet\ \exists M,\ \forall p \in S,\ M < p  \ \Rightarrow\ \exists \inf(S)
+    \end{aligned}
+    \ \Leftrightarrow \
+    \begin{gathered}
+        \exists \big( \sup(S),\ \inf(S) \big) \\[-3pt]
+        \mss{ (-\infty \leq \sup(S) \leq p \leq \inf(S) \leq \infty) }
+    \end{gathered}
+    \ \stackrel{(not shown)}{\Leftrightarrow} \ \mathbb{R} = \text{compl}
+\)
+
+\vspace{15pt}
+\(
+    \begin{aligned}
+        % Nonextendable Surfaces
+        & \underline{ \text{Nonextendable [reg Surface, \(S\)]} }:\ \nexists \overline{S},\ 
+            \text{ reg } S \subset \text{ reg } \overline{S}
+            \\
+        & \bullet\ \text{generally too weak for interesting results}\\
+    \end{aligned}
+    \hfill
+    \begin{aligned}
+        % Complete Surfaces
+        & \underline{ \text{Complete [Surface, \(S\)]} }:\ \forall p \in S,\ \forall v \in T_p(S),\ 
+            \exists \exp_p(v): T_p(S) \rightarrow S
+            \\
+        & \bullet\ \text{compa}\ S \subset \mathbb{R}^3 \ \Rightarrow\ \text{closed}\ S \subset \mathbb{R}^3 
+            \ \Rightarrow\ \text{compl}\ S \ \Rightarrow\ \text{nonext}\ S
+            \\
+    \end{aligned}
+    \hfill
+\)
+
+% End of Landscape Page
+\end{landscape} 
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-----------------------------------------------------------------------------------------------------------------------------------
+\vfill
+% Compact Sets
+\subsection{Compactness}
+
+\vspace{10pt}
+\(
+    \begin{aligned}
+        % Bounded Set and Metric Space
+        & \underline{ \text{Bounded Set, bd}\ S } :\ \exists B(\epsilon) \supset S
+            \hspace{40pt} \underline{ \text{Bounded [Metric] Space, bd}\ (X,d) } :\ \exists B(\epsilon) \supset X
+            \\[5pt]
+        % Totally Bounded Metric Space
+        & \underline{ \text{Totally Bd [Metric] Space, t.bd}\ (X,d) } : \ 
+            \forall \epsilon > 0,\ \exists \{x^{(i)}\}_{i=1}^{n < \infty},\ X = \mss{\bigcup_i}\hs\hs B(x^{(i)}, \epsilon)
+            \hspace{15pt} \bullet\ \text{t.bd} \ \Rightarrow\ \text{bd}
+            \\
+        % Compact Metric Space
+        & \underline{ \text{Compact [Metric] Space},\ (K, d_K) }:\ \forall (p^{(n)})^\infty_{n=m},\ 
+            \exists (p^{(n_j)})^\infty_{j=1},\ p^{(n_j)} \rightarrow p_0 \in K
+            \hspace{15pt} \bullet\ \text{compa} \ \Leftrightarrow\ \text{compl, t.bd}
+            \\
+    \end{aligned}
+\)\\[7pt]
+\(
+    % Compact Set
+    \dboxed{ 
+    \underline{ \text{Compact Set} ,\ K \subseteq X} :\ 
+    \begin{aligned}
+        & \text{compa}\ (K, d|_{K \times K}) \ \Leftrightarrow\ \forall (p^{(n)})^\infty_{n=m},\ 
+            \exists (p^{(n_j)})^\infty_{j=1},\ p^{(n_j)} \rightarrow p_0 \in S
+            \\[2pt]
+        & \hspace{-3pt} \Leftrightarrow\ 
+            \forall \big( \{V_\alpha\}_{\alpha \in I_1} \big)
+            \big( \mss{ \bigcup_{\alpha \in I_1} \nhs\nhs V_\alpha = K} \big)
+            \exists \big( I_2 \subseteq I_1 \big) \big( \mss{ \Vert I_2 \Vert < \infty } \big) 
+            \big( \mss{ \bigcup_{\alpha \in I_2} \nhs\nhs V_\alpha = K } \big)
+            \\
+    \end{aligned}
+    \ \Rightarrow\ \text{closed, bd}
+    }
+\)\\[5pt]
+\(
+    \begin{aligned}
+        % Bolzano Weierstrass
+        & \ast\ \underline{ \text{\scriptsize Bolzano-Weierstrass},\ (\mathbb{R}, d_{l^2}) }:\ 
+            \mss{ \begin{gathered}
+                \big( \exists M \geq 0,\ \forall n \geq m,\ |a^{(n)}| < M \big) \\
+                \Rightarrow \big( \exists (a^{(n_j)})^\infty_{j=1},\ a^{(n_j)} {\rightarrow} c_a \in \mathbb{R} \big)
+            \end{gathered} }
+            \\
+        % Heine Borel
+        & \ast\ \underline{ \text{Heine-Borel},\ (X \subseteq \mathbb{R}^n, d_{ l^{1,2,\infty} }) } :\ 
+            \text{compa} \ \Leftrightarrow\ \text{closed, bd}
+            \\
+        % Heine Borel General
+        & \ast\ \underline{ \text{Heine-Borel},\ (X , d)} :\ \text{compa} \ \Leftrightarrow\ \text{compl, t.bd} 
+            \\
+    \end{aligned}
+    \hfill
+    \begin{aligned}
+        % Covers
+        & \ast\ { \text{[open] Cover of}\ K,\ \{V_i\}^n_K :\ \{V_i\}^{n}_{i=1},\ \bigcup V_i = K  }\\
+        % Results
+        & \bullet\ \big(S \subseteq K \big) \big( \text{compa}\ S \ \Leftrightarrow\ \text{closed}\ S \big)\\
+        & \bullet\ | S | < \infty \ \Rightarrow\ \text{compa}\ S\\
+    \end{aligned}
+    \hfill
+\)
+
+\vspace{5pt}
+\[
+    % Closed + bounded
+    \begin{gathered}
+        \text{\scriptsize(closed, bd)}\\[-4pt]
+        (K \subseteq X, d)
+    \end{gathered}
+    \hspace{5pt}
+    % Heine Borel
+    \begin{gathered}
+        \text{\scriptsize(Heine-Borel)}\\[-7pt]
+        \Leftarrow\ \\[-11pt]
+        \ \rightarrow\\[-7pt]
+        \scriptstyle(L^{1,2,\infty})
+    \end{gathered} 
+    \hspace{7pt}
+    % Bolzano Weierstrass
+    \begin{gathered}
+        \text{\scriptsize(compa = Bolzano-Weierstrass/Subsequence)}\\[-4pt]
+        \forall V \subset K ,\ |V| = \infty,\ \exists c_V \in K \hs 
+    \end{gathered}
+     % Open Cover/Finite Subcover
+    \ \Leftrightarrow\ 
+    \begin{gathered}
+        \text{\scriptsize(compa = Heine-Borel/Subcover/Lindelöf)}\\[-4pt]
+        \forall \{ V_i\}^n_K ,\ \exists \{ V_{\alpha(i)} \}^{m < \infty}_K
+    \end{gathered}
+\]
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------
+\vspace{10pt}
+% Connected Sets
+\subsection{Connected Sets}
+
+\vspace{10pt}
+\(
+    \begin{aligned}
+        % Disconnected Space
+        & \underline{ \text{Disconnected Space},\ !\text{conn}\ (X,d_X)} :\ 
+            \exists V^{1,2}_{\neq \varnothing} \subseteq X,\ V^1 \cap V^2 = \varnothing,\ V^1 \cup V^2 = X
+            \ \Leftrightarrow\ \exists S_{\neq \varnothing, X} \subset X,\ S = \text{closed, open} 
+            \\
+        % Connected Space
+        & \underline{ \text{Connected Space, conn}\ (X,d_X)} : \ X \neq \varnothing,\ !\text{conn}
+            \hspace{30pt}
+            % "Unconnected" empty set
+            \bullet\ \underline{ \text{``Unconnected'' Set},\ \varnothing } :\ \varnothing \neq\ \text{conn},\ \text{!conn}
+            \\
+    \end{aligned}
+\)
+
+\vspace{10pt}
+\(
+    \begin{aligned}
+        % Connected Sets R^n
+        & \underline{ \begin{gathered}
+                \text{Connected Set}\\
+                A_{conn} \subseteq X \\
+            \end{gathered} }
+            :\ 
+            \text{conn}\ (A, d|_{A\times A})
+            \ \Leftrightarrow\ 
+            \begin{aligned}
+                \forall \big( \nu^{1,2}_{\neq\varnothing} \subseteq A \big)
+                    \big( \nu^1 \cap \nu^2 = \varnothing \big)
+                    & \big( \nu^{1,2}_{open} \big) \ \Rightarrow\ \nu^1 \cup \nu^2 \neq A 
+                    \\
+                & \big( \nu^1 \cup \nu^2 = A \big) \ \Rightarrow\ \nu^{1,2}_{!open} \ \Rightarrow\ \nu^{1,2}_{\neq A}
+                    \\
+                \forall \big( \upsilon^{1,2}_{\neq A} \subseteq A \big)
+                    \big( \upsilon^1 \cup \upsilon^2 = A \big) 
+                    & \big( \upsilon^1 \cap \upsilon^2 = \varnothing \big) 
+                    \ \Rightarrow\ \upsilon^{1,2}_{!closed} \ \Rightarrow\ \upsilon^{1,2}_{\neq \varnothing}
+                    \\
+            \end{aligned}
+            \\
+    \end{aligned}
+\)\\[5pt]    
+\(
+    \begin{aligned}
+        % Other info
+        & \bullet\ B_{open \wedge closed} \subset A_{conn} \ \Rightarrow\ (B = \varnothing) \lor (B = A)\\
+        & \bullet\ \{ \text{conn}\ S_i \},\ \bigcap S_i \neq \varnothing \ \Rightarrow\ \bigcup S_i = \text{conn}\\
+        & \bullet\ C_{conn} \subset A \subset R^n \ \Rightarrow\ \overline{C} = \text{conn}
+            \\
+        % Unconnected Set
+        & \bullet\ \underline{ \text{Unconnected Set, !conn}\ S \subseteq X } :\ \text{!conn}\ (S, d|_{S\times S})
+            \\
+    \end{aligned}
+\)
+
+\vspace{10pt}
+\(
+    % Path/Arcwise Connected Sets
+    \begin{aligned}
+        & \underline{ \text{Arcwise/Path Conn. Set},\ \text{p.conn}\ A } :\ \forall p_0, p_1 \in A,\
+            \exists \alpha \in C^0,\ 
+            \mss{ \begin{gathered}
+                p_0, p_1 \in \alpha\mss{(t)} \\[-3pt]
+                \alpha\mss{(0/1)} = p_{0/1}\\
+            \end{gathered} }
+            \\[5pt]
+        & \bullet\ \text{p.conn} \ \Rightarrow\ \text{conn}
+            \hspace{15pt} \text{\scriptsize(converse not always true, like topological sine = \( \{x = 0\} \wedge \{y = \sin(1/x)\} \))}
+            \\
+    \end{aligned}
+\)
+
+\vspace{10pt}
+% Locally Arcwise Connected Sets
+\(\begin{aligned}
+    & \underline{ \text{Loc. Path Conn. Set},\ A_{loc} } : \ ( \forall p \in A ),\ ( \forall V_p \subseteq A ) 
+        ,\ \exists V_{p. conn} \subseteq V_p 
+        \\
+    & \bullet\ \text{p.conn} \ \Rightarrow\ \text{l.p.conn}
+        \hspace{15pt} \text{\scriptsize(converse not always true, like topological %
+        \( \{x=0\} \wedge \{\forall n, x=1/n\} \wedge \{y = 0\} \))}
+        \\
+    & \bullet\ A_{loc},\ \big( A_{conn} \ \Leftrightarrow\ A_{p.conn} \big)
+\end{aligned}\)
+
+\vspace{10pt}
+% Connected Component
+\(\begin{aligned}
+    & \underline{ \text{Connected Component of \(A\) Containing \(p\)},\ \{S_{conn}\}^A_p }:\ 
+        \forall ( \text{conn}\ S_i)\ [( S_i \subset A) \wedge (p \in S_i)] \ \rightarrow\ \{S_{conn}\}^A_p = \bigcup S_i
+        \\
+    & \bullet\ C_{c.compo}^A \subseteq A \subseteq R^n \ \Rightarrow\ C = \text{closed}_A\\
+    & \bullet\ C_{c.compo}^A \subseteq A_{loc} \subseteq R^n \ \Rightarrow\ C = \text{open}_A
+\end{aligned}\)
+
+
+%-------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%-------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+% Functions
+\subsection{Functions, \(f: X \rightarrow Y ;\ (X, d_X) \rightarrow (Y, d_Y);\ S \subseteq X\)}
+
+\vspace{5pt}
+\(
+    % Bounded Functions
+    \underline{ \text{Bounded, bd}\ f } : \ \ \exists M > 0,\ \forall x \in X,\ \Vert f(x) \Vert_{d_Y} < M 
+    \ \Leftrightarrow\ \exists \epsilon > 0,\ \exists y_0 \in Y,\ \forall x \in X,\ f(x) \in B(y_0, \epsilon)
+\)\\[5pt]
+\(\displaystyle
+    % Limit[ing value] of f at x_0
+    \underline{ \begin{gathered}
+        \text{Limit at}\ x_0 \in \overline{S}\\[-5pt]
+        \mss{ \lim_{x \rightarrow x_0} f\mss{(x)} = L \in Y }
+    \end{gathered} } 
+    :\ \ 
+    \begin{aligned}
+        & \forall \epsilon > 0,\ \exists \delta > 0,\ \forall \underline{x \in S},\
+            \Big[ |x_0 {-} x|_{d_X} {< \delta} \hs\hs \Rightarrow \hs | L {-} f(x) |_{d_Y} {< \epsilon}
+            \ \Leftrightarrow\ f( B_{x_0}\mss{(\delta)} ) \subset B_{f(x_0)} \mss{( \epsilon )} \Big]
+            \\
+        & \nhs\nhs \Leftrightarrow\ \forall( \underline{x^{(n)}\in S} )^\infty,\ x^{(n)} {\rightarrow x_0}
+            \ \Rightarrow\ f\mss{(x^{(n)})} \nhs \rightarrow \nhs L
+            \ \ \Leftrightarrow\ \forall V_{L} \subseteq Y,\ 
+            \exists \underline{ V_{S, x_0} \subseteq S},\ f( V_{x_0} ) \subseteq V_L
+    \end{aligned}
+\)\\[5pt]
+\(\displaystyle
+    % Continuous at x_0
+    \underline{ \begin{gathered}
+        \text{Continuous at}\ x_0 \in X  %\\[-5pt]
+        % \mss{ \lim_{x \rightarrow x_0} \hspace{-3pt} {\scriptstyle f(x) = f(x_0) = \text{cont.}\ f|_{x_0} } } \\
+    \end{gathered} }
+    : \ \text{cont.}\ f|_{x_0} 
+    = \lim_{x \in X}^{x_0} f(x) \rightarrow f(x_0) 
+    = \lim_{x\rightarrow x_0} f(x) \rightarrow f(x_0) 
+\)\\[5pt]
+\(
+    % Continuous Function
+    \begin{aligned}
+        \underline{ \text{Continuous, cont}\ f } : \ \ & \forall \epsilon > 0,\ 
+            \forall x_0 \in S,\ \exists \delta > 0,\ \forall x \in S,\ 
+            |x_0 - x|_{d_X} < \delta \ \Rightarrow\ | f(x_0) - f(x) |_{d_Y} < \epsilon
+            \\
+        \Leftrightarrow\ \forall x \in S,\ \text{cont}\ f|_x & 
+            \ \begin{aligned}
+                & \Leftrightarrow\ \forall(x^{(n)})^\infty,\ x^{(n)} \rightarrow x_0 
+                    \ \Rightarrow\ f\mss{(x^{(n)})} \rightarrow f\mss{(x_0)}
+                    & \Leftrightarrow 
+                    & \ \ \forall V^1 \subseteq Y,\ f^{-1}(V^1) = V^2 \subseteq X
+                    \\
+                &  \Leftrightarrow\ \forall(x^{(n)})^\infty,\ x^{(n)} \rightarrow 0 
+                    \ \Rightarrow\ f{\scriptstyle(x-x^{(n)})} \rightarrow_p f\mss{(x)}
+                    & \Leftrightarrow 
+                    & \ \ \forall U^1 \subseteq Y,\ f^{-1}(U^1) = U^2 \subseteq X
+                    \\
+            \end{aligned}
+    \end{aligned}
+\)\\[5pt]
+\(
+    % Results of Continuous Functions
+    \begin{aligned}
+        \hspace{3pt} & \bullet\ \forall K_1 \subseteq X,\ f(K_1) = K_2 \subseteq Y \\
+        & \bullet\ \forall S^1_{conn} \subseteq X,\ f(S^1) = S^2_{conn} \subseteq Y\\
+        & \bullet\ \text{\scriptsize Space cont,bd \(f\) is complete subspace of bd \(f\)}
+    \end{aligned}
+    \hfill
+    \begin{aligned}
+        & \bullet\ (K, d_K),\ (Y, d_Y),\ \big( \text{cont.}\ f \Leftrightarrow \text{u.c.}\ f \big)\\
+        & \bullet\ (K,d_K),\ f: K \rightarrow \mathbb{R} \ \Rightarrow\ \text{bd}\ f\\
+        & \bullet\ (K_{\neq \varnothing},d_K),\ f: K \rightarrow \mathbb{R},\ \Rightarrow\ \exists (p_1,p_2) 
+            \mss{ \big( \hs \forall p,\ F(p_1) \leq F(p) \leq F(p_2) \hs \big) }
+            \\
+    \end{aligned}
+    \hfill
+\)\\[10pt]
+\(
+    % Uniformly Continuous Function
+    \begin{aligned}
+        \underline{ \text{Uniformly Cont., u.c}\ f } : \ \ & 
+            \forall \epsilon > 0,\ \exists \delta > 0,\ \forall x_0 \in X,\ \forall x \in X,\
+            |x_0 - x|_{d_X} < \delta \ \Rightarrow\ | f(x_0) - f(x) |_{d_Y} < \epsilon
+            \\
+        & \Leftrightarrow\ \forall(x^{(n)})^\infty,\ x^{(n)} \rightarrow 0 
+            \ \Rightarrow\ f{\scriptstyle(x-x^{(n)})} \rightarrow_u f\mss{(x)}
+            \\
+        & \bullet\ \text{u.c}\ f \ \Rightarrow\ \text{cont.}\ f 
+            \hspace{15pt} \bullet\ (K, d_K),\ (Y, d_Y),\ \big( \text{cont.}\ f \Leftrightarrow \text{u.c.}\ f \big)
+            \\
+    \end{aligned}
+\)
+
+\vspace{10pt}
+% Sequence of Functions
+\( 
+    { \textbf{Sequence of Functions},\ (f^{(n)})^\infty_{n=1} } 
+\)\\[7pt]
+\(
+    % Uniformly Bounded
+    \underline{ \text{Unif. Bounded, u.bd}\ (f^{(n)})^\infty_{m=1} } : \ \ 
+    \exists M > 0,\ \forall n \geq 0,\ \forall x \in X,\ \Vert f^{(n)}(x) \Vert_{d_Y} < M 
+\)\\[5pt]
+\(
+    \begin{aligned}
+        % Pointwise Convergence
+        \underline{ \begin{gathered}
+                \text{[Pointwise] Convergence},\ f^{(n)} \rightarrow_p f \\[-5pt]
+                \mss{ \lim_{n\rightarrow\infty} f^{(n)}(x) = f(x) } \\
+            \end{gathered} }
+            : \ \ & 
+            \begin{aligned}
+                & \forall \epsilon > 0,\ \forall x \in X,\ \exists N_{\geq 1},\ 
+                    \forall n > N,\ \Vert f^{(n)}\mss{(x)} - f\mss{(x)} \Vert_{d_Y} < \epsilon
+                    \\[-2pt]
+                & \nhs\nhs \Leftrightarrow \ \forall x \in X,\ f^{(n)}\mss{(x)} \rightarrow f\mss{(x)}
+            \end{aligned}
+            \\[2pt]
+        % Uniform Convergence
+        \underline{ \text{[Uniform] Convergence},\ f^{(n)} \rightarrow_u f } : \ \ & 
+            \begin{aligned}
+                & \forall \epsilon > 0,\ \exists N_{\geq 1},\ \forall x \in X,\
+                    \forall n > N,\ \Vert f^{(n)}\mss{(x)} - f\mss{(x)} \Vert_{d_Y} < \epsilon
+                    \\
+            \end{aligned}
+            \\
+    \end{aligned}
+\)
+
+\vspace{10pt}
+\(
+    % Uniform convergence results
+    \begin{aligned}[t]
+        % Preserves properties
+        & \bullet\ f^{(n)} \rightarrow_u f \ \Rightarrow\ f^{(n)} \rightarrow_p f\\
+        & \bullet\ \forall n,\ \mss{ \begin{gathered}
+                \text{cont}\ f^{(n)}|_{x_0} \ \Rightarrow\ \text{cont.}\ f|_{x_0}\\[-3pt]
+                \text{cont}\ f^{(n)} \ \Rightarrow\ \text{cont.}\ f\\
+            \end{gathered} }
+            \\[3pt]
+        % Sequnces
+        & \bullet\ \forall (x^{(n)})^\infty,\ x^{(n)} \rightarrow x,\ f^{(n)}\mss{(x^{(n)})} \rightarrow f\mss{(x)}\\
+        & \bullet\ \mss{ 
+                \text{compl}\ Y,\ 
+                \begin{gathered}
+                    x\in S\\[-4pt]
+                    x_0 \in \overline{S}
+                \end{gathered}
+            }
+            \hs ,\ 
+            \mss{ \lim_{n\rightarrow\infty} \lim_{x\rightarrow x_0} f^{(n)}(x) 
+            = \lim_{x\rightarrow x_0} \lim_{n\rightarrow\infty} f^{(n)}(x) }
+            \\[3pt]
+        % Bounded Functions
+        & \bullet\ \text{bd}\ f^{(n)},\ \text{bd}\ f \ \Rightarrow\ \text{u.bd}\ (f^{(n)})^\infty\\
+        & \bullet\ \text{bd}\ f^{(n)},\ \text{bd}\ f,\ \mss{ \big( 
+                f^{(n)} \rightarrow_u f 
+                \ \Leftrightarrow\ 
+                \lim_{n\rightarrow\infty} \Vert f^{(n)} {-} f \Vert_\infty = 0 
+            \big) }
+            \\
+    \end{aligned}
+\)
+\hfill
+\(
+    \begin{aligned}[t]
+        % INteggral limit summation swap
+        & \bullet\ \forall n,\ \text{riem}\ f^{(n)} \rightarrow_u \text{riem}\ f \\
+        & \hs \arraycolsep=1pt \begin{array}[t]{l r c l}
+                \bullet & \displaystyle \mss{ \int f = \int \lim_{n\rightarrow\infty} \underline{ f^{(n)} } }
+                    & \mss{ = }
+                    & \displaystyle \mss{ \lim_{n\rightarrow\infty} \int \underline{ f^{(n)} } 
+                        \hspace{15pt} \underline{ \text{\scriptsize(riem-int. funcs. from \([a,b]\))} } }
+                    \\[5pt]
+                \ast & \displaystyle \mss{ \int \sum_i^\infty f^{(i)} 
+                    = \int \lim_{n\rightarrow\infty} \underline{ {\sum^n_i} f^{(i)} } }
+                    & \mss{ = }
+                    & \displaystyle \mss{ \lim_{n\rightarrow\infty} \int \underline{ \sum_i^n f^{(i)} }
+                        = \lim_{n\rightarrow\infty} \sum_i^n \int f^{(i)} 
+                        = \sum_i^\infty \int f^{(i)} }
+                    \\
+            \end{array}
+            \\[2pt]
+        % Weierstrass M test
+        & \bullet\ \mss{ \text{cont}\ f_i,\ } \Sigma_i^n \mss{ \Vert f_i \Vert_\infty } \mss{ \rightarrow_u L }
+            \ \Rightarrow\ \Sigma_i^n { f_i \rightarrow_u f}
+            \hspace{10pt} \underline{ \text{\scriptsize(Weierstrass M test)} }
+            \\[2pt]
+        % Derivative limit summation swap
+        & \arraycolsep=2pt \begin{array}{l r c l}
+                \bullet & \mss{ \begin{aligned}
+                        \cancel{ \text{cont}\ f_n },\ \tfrac{d}{dx} f_n & \rightarrow_u h,\ \\[2pt]
+                        f_n(x_0) & \rightarrow_p L\\
+                    \end{aligned} } 
+                    & \hspace{-1pt} \underline{\Rightarrow} \hspace{2pt} 
+                    & \displaystyle \tfrac{d}{dx} (\underline{ \exists {g =} \lim_{n\rightarrow\infty}^{\text{\scriptsize unif}} f_n }) 
+                    = \lim_{n\rightarrow\infty} \tfrac{d}{dx} f_n = h
+                    \\[10pt]
+                \ast & \begin{aligned}
+                        \mss{ \text{cont}\ f_i',\ } \Sigma_i^n \mss{ \Vert f_i' \Vert_\infty } & \mss{ \rightarrow_u L,\ } \\[4pt]
+                        \Sigma_i^n \mss{ f_i(x_0) } & \mss{ \rightarrow_p g }
+                    \end{aligned} 
+                    & \hspace{-1pt} \underline{\Rightarrow} \hspace{2pt} 
+                    & \displaystyle \tfrac{d}{dx} { \lim_{n\rightarrow\infty} \sum^n_i f_i 
+                        = \lim_{n\rightarrow\infty} \sum_i^n } \tfrac{d}{dx} { f_i }
+                    \\
+            \end{array}
+            \\
+    \end{aligned}
+\)
+
+% Continuity and Differentiability
+\vfill
+\( 
+    \text{Note the improper usage of \(C^k\), which really is the set of all continuous \(k-\)differentiable functions} 
+\)\\[10pt]
+\(
+    \begin{aligned}[t]
+        & \bullet\ C^0 \text{ at } c \nrightarrow C^0 \text{ over } B_\delta(c)
+            \hspace{10pt} \big( \mss{f(x) = [x \in \mathbb{Q}] x^2 + [x \notin \mathbb{Q}] 0 } \big)
+            \\
+        & \bullet\ C^0 \text{ at } c \nrightarrow C^1 \text{ at } c
+            \hspace{10pt} \big( \text{Weierstrass} \big)
+            \\
+    \end{aligned}
+    \hfill
+    \begin{aligned}[t]
+        & \bullet\ C^1 \text{ at } c \rightarrow C^0 \text{ at } c\\
+        & \bullet\ C^1 \text{ at } c \nrightarrow C^0 \text{ over } B_\delta(c)
+            \hspace{10pt} \big( \mss{f(x) = [x \in \mathbb{Q}] x^2 + [x \notin \mathbb{Q}] 0 } \big)
+            \\
+    \end{aligned}
+\)\\[5pt]
+\(
+    \begin{aligned}
+        & \bullet\ C^1 \text{ at } c \nrightarrow C^1 \text{ over } B_\delta(c)
+            \hspace{10pt} \left( \mss{ \begin{aligned}
+                & f(x) = [x \in \mathbb{Q}] x^2 + [x \notin \mathbb{Q}] 0 \ \Leftarrow\ \text{only derivative at } 0\\
+                & g(x) = x^2 \sin\tfrac{1}{x} \ \Leftarrow\ \text{derivative everywhere (use squeeze) but not cont. derivative}
+            \end{aligned} } \right)
+            \\
+        & \bullet\ C^\infty \text{ at } c \rightarrow C^\infty \text{ over } B_\delta(c)
+            \hspace{10pt} \big( \text{\scriptsize analytic \(= C^\omega \subset\) smooth \(= C^\infty\)} \big)
+    \end{aligned}
+\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+
+\vspace{5pt}
+\(
+    \underline{\text{A Monotone and not Piecewise-Cont. \(f\)}}:\ f(x) = \sum_{r\in\mathbb{Q}: r < x} g(r)
+    \hspace{5pt} \Leftarrow \hspace{5pt}
+    \begin{aligned}
+        & \bullet\ q(r) \in \mathbb{N},\ g(r) = g \circ q(r) = 2^{-n} \\
+        & \ast\ f(x\in \mathbb{Q}) \neq \text{cont.} \hspace{15pt} \ast\ f(x\notin \mathbb{Q}) = \text{cont.} 
+    \end{aligned}
+\)    
+
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+% \vspace{15pt}
+\underline{Function Spaces}\\[10pt]
+\(\begin{aligned}
+    & Y^X = \{f \ |\ f : X \rightarrow Y\} \\
+    & (Y^X, F) = \ \text{Top Space} \\
+\end{aligned}
+\hspace{5pt} \vline \hspace{10pt}
+\begin{aligned}
+    & (V_p \subseteq Y)^{(p \in X)} \subseteq Y^X\\
+    & \text{open}\ S \subseteq Y^X :\ \forall f \in S,\ \exists n < \infty,\ f \in \bigcap^n (V_{x_n})^{(x_n)} \subseteq S\\
+\end{aligned}\)
+
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+\vspace{25pt}
+% Symmetric/Anti Symmatrix
+\(
+    \bullet\ \underline{\text{Symmetric}}:\ x \sim y ,\ y \sim x
+    \hspace{15pt} 
+    \bullet\ \underline{\text{Anti-Symmetric}}: \ x \stackrel{<}{\sim} y,\ y \stackrel{<}{\sim} x \ \Rightarrow\ x = y
+\)
+
+\vspace{15pt}
+% Tuple/Function
+\( 
+    \underline{ \text{Tuple/Function} }: f(x) \Leftrightarrow (f_x)_{x \in D} = (f_a, f_b, f_c, ...)
+    \ ,\ \ (x_\alpha)_{\alpha \in I} = (x_a, x_b, x_c,...) 
+\)
+
+% Axiom 4 (Pairwise Union) = Union A and B
+\vspace{15pt}
+% Axiom 6 (Replacement)
+\(
+    \underline{ \text{Axiom 6 (Replacement)} }:\ A, \exists \{y: x \in A, P(x,y)\}
+    , \ 
+    \begin{aligned}
+        A = \{3, 5, 8\} & \Rightarrow \exists \{4,6, 10 \}\\
+        & \Rightarrow \exists \{1\}\\
+    \end{aligned}
+\)
+
+\vspace{15pt}
+% Axiom 8 (Regularity)
+\(
+    \underline{ \text{Axiom 8 (Regularity)} }:\ A \neq \varnothing 
+    \ \Rightarrow\ \exists (x \in A) \big( x \neq \{...\} \text{ or } x \cup A = \varnothing \big)
+\)
+
+\vspace{15pt}
+% Axiom 9 (Power Set)
+\(
+    \underline{ \text{Axiom 9 (Power Set)} }:\ \exists Y^X = \text{\scriptsize Poss. Range}^\text{Domain} 
+    , \ 
+    \begin{aligned}
+        \{0,1\}^{ (a,b,c) } & = \{\ (0,0,0), \underline{ (0,0,1) \times 3 }, \underline{ (0,1,1) \times 3 }, (1,1,1) \ \} 
+            \\[5pt]
+        (\text{\scriptsize repl.}) \Rightarrow \{\ & f^{-1}\mss{ (0,0,0) }, \underline{ f^{-1}\mss{ (0,0,1) } \times 3 }, 
+            \underline{ f^{-1}\mss{ (0,1,1) } \times 3 }, f^{-1}\mss{ (1,1,1) } \ \} 
+            \\[5pt]
+        & = \{\ \varnothing, \underline{ a,b,c }, \underline{ \{a,b\}, \{b,c\}, \{c,a\} }, \{a,b,c\}\  \}
+    \end{aligned}
+\)
+
+\vspace{15pt}
+% Axiom 10 (Union)
+\(
+    \underline{ \text{Axiom 10 (Union)} }:\ 
+    \begin{aligned}
+        & \bullet\ x \in \bigcup A \ \Leftrightarrow\ x \in S \in A\\[5pt]
+        & \ast\ \bigcup_{\alpha \in I} A_\alpha \equiv \bigcup \{ A_\alpha : \alpha \in I \} \\
+    \end{aligned}
+    \ , \ \ \
+    A = \{ \{1,2\}, \{2,3,4\} \} \ \rightarrow\ \bigcup A = \{1,2,3,4\}
+\)
+
+\vspace{15pt}
+% Axiom 11 (Choice)
+\(\displaystyle
+    \underline{ \text{Axiom 11 (Choice)} }:\ 
+    \forall \alpha \in I,\ 
+    \begin{gathered}[t]
+        X_\alpha \neq \varnothing \\[-3pt]
+        \mss{(\exists x_\alpha \in X_\alpha)}
+    \end{gathered}
+    \ \Rightarrow\ \exists (x_\alpha)_{\alpha \in I} \in \prod_{\alpha \in I} X_\alpha \neq \varnothing
+\)
+
+\vspace{15pt}
+% Ordered Sets
+\(\begin{aligned}
+    & \bullet\ \underline{\text{Partially Ordered Set}}:\ X,\ \leq_X (\text{Reflexive, Anti-Symmatric, Transitive})\\
+    & \bullet\ \underline{\text{Totally Ordered Set}}:\ (\forall x,y \in X)(x \leq y \text{ or } y \leq x)\\
+    & \bullet\ \underline{\text{Minimal/Max Element}}:\ y_{min}/y_{max} \in Y \subseteq X_{par} 
+        \ \Rightarrow\ \nexists y \in Y,\ (y < y_{min}) / (y_{max} < y)
+        \\
+    & \bullet\ \underline{\text{Well-Ordered Set}}:\ (Y_{well} = Y_{tot}) \subseteq X_{par}
+        \ \Rightarrow\ (\forall Z \neq \varnothing) \subseteq Y_{well},\ \exists z_{min}
+        \\
+    & \bullet\ \underline{\text{Upp. Bnd/Strict Upp. Bnd}}:\ 
+        ( x_{upp}/x_{s.upp} \in X_{par} ),\ ( x_{s.upp} \notin Y \subseteq X_{par} )
+        \ \Rightarrow\ \forall y \in Y, \ (y \leq x_{upp}) / (y < x_{s.upp})
+\end{aligned}\)
+
+\vspace{15pt}
+% 
+\(\begin{aligned}
+    & \bullet\ \text{\underline{Complete} Metric Space}:\ \forall \{x_n\}_\text{Cauchy}, \ \exists L = \{x_n\}^\infty
+        \hspace{15pt} \ast\ (\mathbb{Q}, d {\scriptstyle =|x-y| } ) \text{ is not complete}
+        \\
+    & \bullet\ \underline{ \text{Open Set of Functions},\ E \subseteq Y^X }:\ 
+        \exists n < \infty, \{ x_{n} \in X \}, \{ \text{open } V_{n} \subseteq Y \} ,\
+        \forall f \in E,\ f(x_i) \in V_i
+        \\
+    & \bullet\ \text{All open/closed sets are measurable}\\
+    & \bullet\ \underline{ \text{Measureable Func.},\ f: \Omega \subseteq R^n \rightarrow R^m }:\ 
+        \forall V_{open} \subseteq R^m,\ \text{Set (not func.)}\ f^{-1}(V)\ \text{is measurable}
+        \\
+    & \bullet\ \underline{ \text{Measureable Func.},\ f: \Omega \subseteq R^n \rightarrow R^* }:\ 
+        \forall a \in R,\ \text{Set (not func.)}\ f^{-1}( (a, \infty] ) = \{\omega : f(\omega) > a \} 
+        \ \text{is measurable}
+        \\
+    & \ast\ g = \sup f_n \ \Rightarrow\ \bigcup f_n^{-1}(\mss{(a, \infty]}) 
+        = (\mss{\max} f_n)^{-1} (\mss{(a, \infty]}) = g^{-1} (\mss{(a, \infty]})
+        \hspace{20pt} \ast\ h = \inf f_n \ \Rightarrow\ \bigcap f_n^{-1}(\mss{(a, \infty]}) = h^{-1} (\mss{(a, \infty]})
+        \\
+    & \ast\ f = \lim \sup f_n = \inf_{N\geq 1} \sup_{n \geq N} f_n 
+        \ \Rightarrow\ \bigcap_{N \geq 1} \bigcup_{n \geq N} f_n^{-1}(\mss{(a, \infty]}) 
+        \hspace{20pt} \ast\ f = \lim \inf f_n \dots
+        \hspace{20pt} \bullet\ f = \lim f_n \text{ is meas.}
+\end{aligned}\)
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+% Unital Magma 
+\(\begin{aligned}[t]
+    & \underline{\text{Unital Magma},\ M}\\
+    & \bullet\ \text{Closure}:\ A \star B \in M\\
+    & \bullet\ \text{Identity}: A \star e = A\\
+\end{aligned}\)
+\hspace{15pt}
+% Semigroup 
+\(\begin{aligned}[t]
+    & \underline{\text{Semigroup},\ S}\\
+    & \bullet\ \text{Closure}:\ A \star B \in M\\
+    & \bullet\ \text{Associative}\\
+\end{aligned}\)
+\hspace{15pt}
+% Monoid
+\(\begin{aligned}[t]
+    & \underline{\text{Monoid},\ M}\\
+    & \bullet\ \text{Semigroup}\\
+    & \bullet\ \text{Identity}: A \star e = A\\
+\end{aligned}\)
+\hspace{15pt}
+% Group
+\(\begin{aligned}[t]
+    & \underline{\text{Group},\ G}\\
+    & \bullet\ \text{Monoid} \\
+    & \bullet\ \text{Inverse}: A \star A^{-1} = e\\
+\end{aligned}\)
+
+\vspace{15pt}
+% Ring and Rng
+\(\begin{aligned}[t]
+    & \underline{\text{Rng},\ R}\\
+    & \hspace{-3pt} \left. \begin{aligned}
+            & \bullet\ +\ \text{Abelian Group}\\
+            & \bullet\ \cdot\ \text{Semigroup}\\    
+        \end{aligned}
+        \ \right\}
+        \ \ \bullet\ \text{Distributive}:\ A \cdot (B + C) \cdot D
+        \\[5pt]
+    & \underline{\text{Ring},\ R}\\
+    & \hspace{-3pt} \left. \begin{aligned}
+            & \bullet\ +\ \text{Abelian Group}\\
+            & \bullet\ \cdot\ \text{Monoid}\\    
+        \end{aligned}
+        \ \right\}
+        \ \ \bullet\ \text{Distributive}:\ A \cdot (B + C) \cdot D
+        \\
+\end{aligned}\)
+\hspace{15pt}
+% Field
+\(\begin{aligned}[t]
+    & \underline{\text{Field},\ F}\\
+    & \hspace{-3pt} \left. \begin{aligned}
+            & \bullet\ +\ \text{Abelian Group}\\
+            & \bullet\ \cdot\ \text{Abelian Group}/\{0^{-1}\}\\
+        \end{aligned}
+        \ \right\}
+        \ \ \bullet\ \text{Distributive}
+        \\
+    & \bullet\ 1 \neq 0
+\end{aligned}\)
+
+\vspace{15pt}
+% Vector space
+\(\begin{aligned}[t]
+    & \underline{\text{Vector Space, \(V\), over Field},\ F}\\
+    & \bullet\ +\ \text{Abelian Group},\ V\\
+    & \bullet\ \cdot\ \text{Associative}:\ f \cdot (g \cdot \hsvec{v}) = (f \cdot g) \cdot \hsvec{v} \\
+    & \bullet\ \text{Identity}:\ 1 \cdot \hsvec{v} = \hsvec{v}\\
+    & \bullet\ \cdot\ \text{Distributive over}\ + V:\ f\cdot(\hsvec{v} + \hsvec{w})\\
+    & \bullet\ \cdot\ \text{Distributive over}\ + F:\ (f+g)\cdot \hsvec{v} \\
+\end{aligned}\)
+\hfill
+\(\begin{aligned}[t]
+    % Product Spaces
+    & \underline{\text{Spaces, \(V\) with Product (\ ,\ )}}\\
+    & \bullet\ (\ ,\ ):\ V \times V \rightarrow K\\
+    & \bullet\ \text{Linear}:\ {\scriptstyle(u+v,w+x) = (u,w)+(u,x)+\dots}\\
+    & \bullet\ \text{\scriptsize Bi/Sesqulinear}:\ (a\hsvec{u},b\hsvec{v}) = a \bar{b} (u,v)\\
+    & \ast\ \text{Scalar/Hermitian/Inner Product}
+        \\[5pt]
+    % Normed Vector Spaces
+    & \underline{\text{Normed Vector Space, \(V\) with \(\Vert \cdot \Vert\)}}\\
+\end{aligned}\)
+\hfill
+% Algebra
+\(\begin{aligned}[t]
+    & \underline{\text{Algebra, \(A\), over Field},\ F}\\
+    & \bullet\ \text{Vector Space}\\
+    & \bullet\ \times\ \text{Closed}:\ A \times A \rightarrow A \\
+    & \ast\ \times\ \text{Assoc: Assoc. Alg.}\\
+    & \ast\ \times\ \text{w\ Identity: Unital Alg.}\\ 
+    & \ast\ \times\ \text{Commut: Commut. Alg.}\\
+    & \ast\ [\ ,\ ]\ \text{Jacobi Iden.: Lie Alg.}\\
+\end{aligned}\)
+
+\vspace{15pt}
+% Module
+\(\begin{aligned}[t]
+    & \underline{\text{Module, \(M\), over Ring},\ R}\\
+    % & \bullet\ +\ \text{Abelian Group},\ V\\
+    % & \bullet\ \cdot\ \text{Associative}:\ f \cdot (g \cdot \hsvec{v}) = (f \cdot g) \cdot \hsvec{v} \\
+    % & \bullet\ \text{Identity}:\ 1 \cdot \hsvec{v} = \hsvec{v}\\
+    % & \bullet\ \cdot\ \text{Distributive over}\ + V:\ f\cdot(\hsvec{v} + \hsvec{w})\\
+    % & \bullet\ \cdot\ \text{Distributive over}\ + F:\ (f+g)\cdot \hsvec{v} \\
+\end{aligned}\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+\vspace{15pt}
+% Weierstrass Theorem
+\underline{Weierstrass Theorem}\\[10pt]
+\(
+    \begin{aligned}[t]
+        & \underline{ 1.)\ \exists P'_n|_{[-1,1]}^{\text{comp. supp}} \rightarrow f|_{[0,1]}^{\text{cont. comp. supp}} } 
+            \\[5pt]
+        & \bullet\ \delta \ast f = f \ast \delta = f\\ 
+        & \bullet\ P_n|_{[-1,1]}^{\text{c.s}} \ast f|_{[0,1]}^{\text{c.c.s}} = P'_n|_{[0,1]}^{\text{c.s}} \\
+        & \bullet\ P_n|_{[-1,1]}^{\text{c.s}} = A_n(1{-}x^2)^n|_{[-1,1]}^{\text{c.s}} \rightarrow \delta\mss{(x)} \\
+        & \bullet\ P_n|_{[-1,1]}^{\text{c.s}} \ast f|_{[0,1]}^{\text{c.c.s}} 
+            = P'_n|_{[0,1]}^{\text{c.s}} \rightarrow f|_{[0,1]}^{\text{c.c.s}} 
+            \\
+    \end{aligned}
+    \hspace{10pt} \vline \hspace{10pt}
+    \begin{aligned}[t]
+        & \hspace{-1.15cm} \underline{ 2.)\ \exists P_n|_{[0,1]} \rightarrow f|_{[0,1]}^{\text{cont}} }
+            \\[5pt]
+        f|_{[0,1]}^{\text{c.c.s}} :\ &
+            \underline{\hspace{20pt}}_\bullet 
+            \hspace{-5pt} \bigcap \hspace{-4pt}
+            \underline{}_\bullet \hspace{-1pt}\underline{\hspace{10pt}}
+            \\
+        \mss{ f|_{0,1}^{\text{cont}} = 0} :\ & 
+            \hspace{20pt} \underline{}_\bullet 
+            \hspace{-5pt} \bigcap \hspace{-4pt}
+            \underline{}_\bullet \hspace{-1pt}{\hspace{10pt}}
+            \\
+        f|_{[0,1]}^{\text{cont}} :\ & 
+            \hspace{20pt} {}^{\bullet \hspace{-5pt} \widehat{\hspace{15pt}} \hspace{-4pt} \bullet}
+            \\
+    \end{aligned}
+    \hspace{10pt}
+    \begin{aligned}[t]
+        & \text{\scriptsize(Polynomial Shift, \(Q_m\), in \(y\))} \\
+        & \bullet\ f|_{[0,1]}^{\text{cont}} + Q_m = F : \mss{ F|_{0,1}^{\text{cont}} = 0 } \\
+        & \bullet\ | P_n - F | = | (P_n - Q_m) - f | < \epsilon\\
+        & \bullet\ Q_m\mss{(x)} = - \big[ f\mss{(0)} + x(f\mss{(1)} - f\mss{(0)}) \big]
+            \\
+    \end{aligned}
+\)\\[15pt]
+\(
+    \begin{aligned}
+        & \underline{ 3.)\ \exists P_n|_{[a,b]} \rightarrow f|_{[a,b]}^{\text{cont}} }\\
+        & \text{\scriptsize(Polynomial Shift, \(Q_m\), in \(x\))} \\
+        & \bullet\ Q_m\mss{(x|_{[a,b]})} = X|_{[0,1]} \ \Leftrightarrow\ Q_m^{-1}\mss{(X)} = x\\
+        & \ast f \circ Q^{-1} \mss{(X)} = F \mss{(X)} \\
+        & \bullet\ \mss{ | P_n\mss{(X)} {-} F\mss{(X)} | = | P_n \circ Q_m\mss{(x)} {-} f\mss{(x)} | < \epsilon } \\
+        & \bullet\ Q_m\mss{(x)} = \tfrac{x-a}{b-a} \\
+    \end{aligned}
+\)
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+
+\vspace{30pt}
+\(\begin{aligned}
+    & \big( S \subset \mathbb{R}^+ \big),\ \big( \alpha'\mss{(0)} = \hsvec{v}\mss{(0)} \in T_{\hsvec{p}}(S) = \mathbb{R} \big)\\
+    & \alpha_{\hsvec{p}}\mss{(t,\hsvec{v}(0))} 
+        = \hsvec{p}\mss{(0)} + \mss{\int} \alpha_p' \hs dt = p + |v|\hat{v}t \hs \in\hs \mathbb{R}^+
+        \ \ ,\ \ t \in (-2,2),\ v \in (- \epsilon, \epsilon)
+        \\
+    & \sqrt{ \langle \hsvec{v}, \hsvec{v} \rangle_{\hsvec{p}} } 
+        \begin{aligned}
+            & \hs\equiv\hs \sqrt{v \cdot v} = |v| \\[5pt]
+            & \hs\equiv\hs \tfrac{\sqrt{v \cdot v}}{\hsvec{p}} = \tfrac{|v|}{\alpha_p(t, v)}
+        \end{aligned}
+        \ \Rightarrow\
+        s_p\mss{(t)} = \int_0^t \Vert \alpha_p' \Vert \hs\hs dt'
+        \begin{aligned}
+            & = \int_0^t |v| \hs\hs dt' = |v|t \ \Rightarrow\ s_p\mss{(1)} = |v|\\
+            & = \int_0^t \tfrac{|v|}{p + |v|\hat{v}t'} \hs\hs dt' = \tfrac{|v|}{v} \ln( \tfrac{p + |v|\hat{v}t}{p+0} )
+                \ \Rightarrow\ s_p\mss{(\tau = \tfrac{pe^v - p}{v})} = |v|
+        \end{aligned}
+        \\[10pt]
+    & \alpha_p\mss{(t,v)} = \alpha_p \circ \Big( s_p^{-1} (s_p), v \Big) \hs \equiv \hs \alpha_p \mss{(s_p,v)} 
+        \begin{aligned}
+            & = p + s \hat{v} \\
+            & = p e^{s_pv / |v|}
+        \end{aligned}
+        \ \rightarrow\ 
+        \boxed{ 
+            \begin{aligned}
+                \mss{ |v| < \epsilon }:\ a_{1}\mss{(s_1(1), v)} & = 1 + v \\
+                \mss{ |v| < \frac{\epsilon^2}{e^\epsilon - 1} }:\ a_{1}\mss{(s_1(\tau), v)} & = e^v
+            \end{aligned}
+            = \exp_1(v) 
+        }
+\end{aligned}\)
+
+\vspace{20pt}
+\(\begin{aligned}
+    & t \in (-\epsilon, \epsilon):\ \alpha\mss{(t)} 
+        \ \rightarrow\ 
+        \mss{ \begin{aligned}
+            \alpha\mss{(0)}\\
+            \alpha'\mss{(0)}
+        \end{aligned} }
+\end{aligned}\)
+
+\end{document}

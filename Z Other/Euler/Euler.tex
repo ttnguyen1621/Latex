@@ -1,0 +1,1132 @@
+\documentclass[12pt]{article}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry}
+\usepackage{amssymb, amsmath, amsfonts, mathtools, bbm, esint}
+\usepackage{array,multirow}
+\usepackage{cancel}
+
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\hspace{-1pt}\vec{\hspace{1pt} #1}} % 1pt space with a \vec
+\newcommand{\hshat}[1]{\hat{#1 \hspace{2pt}}\hspace{-2pt}} % 2pt space with a \hat
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
+
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+
+\begin{document}
+\setlength{\parindent}{0pt}
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
+\( \displaystyle
+	\lim_{n\rightarrow\infty} (1 + \tfrac{x}{n})^n 
+	= \lim_{n\rightarrow\infty} \mss{ \sum_{i=0}^n } \mss{ \binom{n}{i} } \left( \tfrac{x}{n} \right)^i
+	= \lim_{n\rightarrow\infty} \mss{ \sum_{i=0}^n } \tfrac{n!/(n-i)!}{n^i} \tfrac{x^i}{i!}
+	= \mss{ \sum_{i=0}^\infty } \tfrac{x^i}{i!}
+	= f(x):
+	\mss{ \begin{aligned}
+		f(0) & = 1\\
+		f(1) & \equiv e
+	\end{aligned} }
+\)
+
+\vspace{10pt}
+\(
+	% x < y -> f(x) < f(y) 
+	\bullet\ x < y \ \Rightarrow\ \underline{ 0 < f(x) < f(y) < \infty }
+	\hspace{20pt}
+	% f(x) = f(y) -> x = y
+	\bullet\ f(x) = f(y) \ \Rightarrow\ x = y
+\)
+
+\vspace{10pt}
+% f(x+y) = f(x) f(y)
+\(
+	\displaystyle
+	\bullet\ f\mss{(x+y)}
+	= \mss{ \sum_{n=0}^\infty } \tfrac{(x+y)^n}{n!} 
+	= \mss{ \sum_{n=0}^\infty } \tfrac{1}{n!} \left[ \mss{ \sum_{i=0}^n } \tfrac{n!}{i!(n-i)!} x^i y^{n-i} \right]
+	= \mss{ \sum_{n=0}^\infty } \mss{ \sum_{i=0}^n } \tfrac{x^i}{i!} \tfrac{y^{n-i}}{(n-i)!} 
+	= \mss{ \sum_{i=0}^\infty } \tfrac{x^i}{i!} \left[ \mss{ \sum_{j=0}^\infty } \tfrac{y^j}{j!} \right]
+	= 
+	f\mss{(x)} f\mss{(y)}
+\)
+
+\vspace{10pt}
+\( \displaystyle
+	% (e^x)^k works for positive integers, k
+	\begin{aligned}[t]
+		\mss{ \lim_{n\rightarrow\infty} } (1 + \tfrac{x}{n})^{kn} &
+			= \mss{ \lim_{n\rightarrow\infty} } \mss{ \sum_{i=0}^n }
+			\left\{ \tfrac{(kn)!}{(kn-i)!} \right\} \tfrac{1}{i!} \left( \tfrac{x}{n} \right)^i
+			\\ 
+		& = \mss{ \lim_{n\rightarrow\infty} } \mss{ \sum_{i=0}^n } 
+			\left\{ \tfrac{(kn)!}{(kn-i)!} \tfrac{1}{(kn)^i} \right\} \tfrac{(kx)^i}{i!}
+	\end{aligned}
+	\hspace{-5pt}
+	= f(kx) = ( f\mss{(x)} )^k
+	: \hspace{-5pt}
+	\mss{ \begin{aligned}[t]
+		\\[-18pt]
+		f(0) & = f(0)^k = 1^k\\
+		f(k) & = f(1)^k = e^k\\
+		f(k)^n & = e^{kn} = (e^k)^n
+	\end{aligned} }
+	\hspace{-5pt} \vline\hfill
+	% let f(x) = e^x
+	\begin{gathered}[t]
+		\boxed{ e^x \equiv f(x) = \mss{ \sum_{n=0}^\infty } \tfrac{x^n}{n!} }\\[2pt]
+		\mss{ \bullet\  e^{x+y} = e^x e^y }\\[-3pt]
+		\mss{ \bullet\ \underline{ e^{xk} = (e^x)^k } } 
+	\end{gathered}
+\)
+
+\vspace{10pt}
+% (e^x)^(-k) works with negative integers, -k
+\(\displaystyle
+	\begin{aligned}
+		\left[ \mss{ \sum_{i=0}^\infty } \hs \tfrac{(-kx)^i}{i!} \right] e^{kx} % \mss{ \sum_{j=0}^\infty } \hs \tfrac{(kx)^j}{j!}
+			& = 1 + \mss{ \sum_{i=1}^\infty } \hs \tfrac{(-kx)^i}{i!} \mss{ \sum_{j=1}^\infty } \hs \tfrac{(kx)^j}{j!}
+			\\
+		\left[ \mss{ \lim_{n\rightarrow\infty} } (1 + \tfrac{x}{n})^{-kn} \right] (e^{x})^k % \hs \underline{ (1 + \tfrac{x}{n})^{kn} } 
+			& \stackrel{\Leftarrow}{=} 1 
+			+ \mss{ \sum_{j=1}^\infty \sum_{i=0}^j } \hs \tfrac{(-kx)^i}{i!} \hs \tfrac{(kx)^{j-i}}{(j-i)!}
+			= \underline{1}
+	\end{aligned}
+	\ \Rightarrow\ 
+	\bullet\ \underline{ 
+		e^{-kx} = \left[ (e^{x})^{-k} = \mss{ \lim_{n\rightarrow\infty} } (1 + \tfrac{x}{n})^{-kn} = \tfrac{1}{e^{kx}} \right]
+	} 
+\)
+
+\vspace{10pt}
+% fractional exponents e^{1/k}
+\(
+	[ (e^{x})^{ \tfrac{1}{k} } ]^k = [ e^{ \tfrac{x}{k} } ]^k
+	\ \rightarrow\ 
+	\boxed{ (e^{x})^{ \tfrac{1}{k} } \equiv e^{ \tfrac{x}{k} } }
+	\hspace{15pt}
+	\bullet\ e^{ -\tfrac{x}{k} } = \tfrac{ 1 }{ e^{x/k} } = \tfrac{ 1 }{ (e^{x})^{1/k} } = (e^{x})^{ - \tfrac{1}{k} }
+	\hspace{15pt}
+	\bullet\ e^{ \tfrac{xp}{q} } = (e^{x})^{ \tfrac{p}{q} }
+\)
+
+% \(\begin{aligned}
+% 	\lim_{N\rightarrow\infty} \left[ \mss{ \sum_{n=0}^N } \hs \tfrac{x^n}{n! k^n} \right]^k & 
+% 		= 
+% 		\begin{gathered}
+% 			\mss{\sum}\\[-3pt]
+% 			\begin{gathered}
+% 					\scriptstyle ^{k_0 + k_1}\\[-10pt]
+% 					\scriptstyle ^{+ \dots k_N}
+% 				\end{gathered} 
+% 				{\scriptstyle = k}
+% 		\end{gathered} 
+% 		\ \tfrac{k!}{k_0! k_1! \dots k_N!} 
+% 		\mss{ \prod_{n=0}^N } \left[ \tfrac{ x^{n} }{ n! k^{n} } \right]^{k_n}
+% 		=
+% 		\begin{gathered}
+% 			\mss{\sum}\\[-3pt]
+% 			\begin{gathered}
+% 					\scriptstyle ^{k_0 + k_1}\\[-10pt]
+% 					\scriptstyle ^{+ \dots k_N}
+% 				\end{gathered} 
+% 				{\scriptstyle = k}
+% 		\end{gathered} 
+% 		\ \tfrac{k!}{1} \tfrac{ x^{nk} }{ k^{nk} }
+% 		\mss{ \prod_{n=0}^N } \tfrac{1}{ k_n! (n!)^{k_n} }
+% 		\\
+% 		& = \mss{ \sum_{n=0}^N } \hs \tfrac{x^n}{n!}
+% \end{aligned}\)
+
+\vspace{10pt}
+% Define ln(x)
+\( \displaystyle
+	\boxed{ 
+		\ln a \hs: \hs e^{\ln a} = a \ \mss{ \in (0,\infty) } 
+		\ \
+		\begin{aligned}
+			& \mss{ \bullet\hs \ln a = \ln b \ \Rightarrow\ a = b } \\[-8pt]
+			& \mss{ \bullet\ a < b \ \Rightarrow\ -\infty < \ln a < \ln b < \infty }
+		\end{aligned}
+		\hspace{5pt} \Big| \hspace{5pt}
+		\begin{aligned}
+			\ln x = \lim_{n \rightarrow \infty} (\sqrt[n]{x} - 1)/n
+		\end{aligned}
+		% % \begin{aligned}
+		% \mss{ \int_0^x \sum_{n=0}^\infty (-t)^n\hs dt } = \ln\mss{(1+x)} = \mss{ \sum_{n=1}^\infty } \tfrac{(-1)^n x^{n}}{-n}
+		% \hspace{10pt}
+		% \mss{ -1 < x \leq 1 }
+			% \ln \tfrac{1}{1-x} = \mss{ \sum_{n=1}^\infty } \tfrac{x^{n}}{n}
+		% \end{aligned}
+	}
+	% \hspace{10pt} \Leftarrow \hspace{10pt}
+	% \begin{aligned}
+	% 	e^{\ln (1+a)} & = \mss{ \sum_{i=0}^\infty } \tfrac{1}{i!} 
+	% 		\left[ \mss{ \sum_{j=1}^\infty } \tfrac{(-a)^{j}}{j}  \right]^i
+	% 		= 1+a
+	% \end{aligned}
+\)
+
+\vspace{10pt}
+\(
+	% a^n => a^x
+	\begin{aligned}
+		a^n & = (e^{\ln a})^n = e^{n \ln a}\\
+		\ \Rightarrow\ \Aboxed{ a^x & = (e^{\ln a})^x \equiv e^{x \ln a} }
+	\end{aligned}
+	\hspace{15pt}
+	% Properties for a^x work the same as e^x
+	\begin{aligned}
+		& \bullet\ a^x = a^y \ \Rightarrow\ x = y\\
+		& \bullet\ x < y \ \Rightarrow\ a^x < a^y\\
+		& \bullet\ (e^y)^x = e^{xy} = (e^x)^y
+	\end{aligned}
+	\hspace{20pt}
+	{ \arraycolsep=2pt \begin{array} {l l}
+		\bullet\ (a^y)^x & = e^{x \ln a^y} = e^{x \ln e^{y \ln a}} = e^{x y \ln a} \\
+		& = a^{xy} = (a^x)^y \\[5pt]
+		\multicolumn{2}{l}{ 
+			\bullet\ a^{x+y} = e^{(x+y) \ln a} = a^x a^y
+		}
+	\end{array} }
+\)
+
+% \vspace{10pt}
+% \(\begin{aligned}
+% 	e^{x \ln(1+n)} & = \lim_{I,J\rightarrow\infty} \mss{ \sum_{i=0}^I} \tfrac{x^i}{i!} 
+% 		\left[ \mss{ \sum_{j=1}^J } \tfrac{(-n)^{j}}{-j} \right]^i
+% 		= \lim_{I,J\rightarrow\infty} \mss{ \sum_{i=0}^I} \tfrac{x^i}{i!} 
+% 		\left[ 
+% 			\begin{gathered}
+% 				\mss{\sum}\\[-3pt]
+% 				\begin{gathered}
+% 						\scriptstyle ^{k_1 + k_2}\\[-10pt]
+% 						\scriptstyle ^{+ \dots k_J}
+% 					\end{gathered} 
+% 					{\scriptstyle = i}
+% 			\end{gathered} 
+% 			\ \tfrac{i!}{k_1! k_2! \dots k_J!} 
+% 			\mss{ \prod_{j=1}^J } \left[ \tfrac{(-n)^{j}}{-j} \right]^{k_j}
+% 		 \right]
+% \end{aligned}\)
+
+% \vspace{10pt}
+% \(\begin{aligned}
+% 	e^{x \ln(1+n)} & = \mss{\sum_{i=0}^\infty} \tfrac{x^i}{i!} \left[ \mss{ \sum_{j=1}^\infty } \tfrac{(-n)^{j}}{j!} \right]^i
+% 		\\[5pt]
+% 	& = \underline{ \mss{ \sum_{i=0}^\infty } \left\{ \tfrac{x!}{(x-i)!} \right\} \tfrac{n^i}{i!} \hs \equiv\hs (1+n)^x }
+% 		\ \Rightarrow\ \boxed{ e^{x \ln a} \equiv (e^{\ln a})^x = a^x }
+% 		\ \Rightarrow\ \bullet\ (e^y)^x = e^{xy} = (e^x)^y 
+% 		\\[5pt]
+% 	e^{\ln(1+n) \ln(1+m)} & 
+% 		= \mss{\sum_{i=0}^\infty} \tfrac{1}{i!} 
+% 		\left[ \mss{ \sum_{j=1}^\infty } \tfrac{(-n)^{j}}{j!} 
+% 		\mss{ \sum_{k=1}^\infty } \tfrac{(-m)^{k}}{k!} \right]^i
+% 		= (1+n)^{1+m} = (1+m)^{1+n}
+% \end{aligned}\)
+
+% \vspace{10pt}
+% \( \displaystyle
+% 	e^{kn} = \mss{ \arraycolsep=2pt \begin{aligned}
+% 		\underline{ (e^k)^n } & = (e^k)^{\ln e^n} \\
+% 		(e^n)^k & = \underline{ e^{n \ln e^k} }
+% 	\end{aligned} }
+% 	\ \rightarrow \
+% 	e^{xy} \equiv 
+% 	\begin{aligned}
+% 		(e^x)^y & \ \leftrightarrow \ b^y \equiv e^{y \ln b} \\[2pt]
+% 		(e^y)^x & \ \leftrightarrow \ \underline{ a^x \equiv e^{x \ln a} } = \mss{\sum_n} \tfrac{x^n (\ln a)^n}{n!}
+% 	\end{aligned}
+% \)
+
+\vspace{5pt}\noindent
+% Generator of Translations
+\(
+	\begin{aligned}
+		e^{x' \tfrac{d}{dx}} f(x) & =
+			\begin{gathered}[b]
+				\mss{ \big( dx' = \tfrac{x'}{n} \big) }\\
+				\lim_{n\rightarrow\infty} \big( 1 + dx' \tfrac{d}{dx} \big)^n f(x)
+			\end{gathered}
+			\ \rightarrow\
+			e^{dx' \tfrac{d}{dx}} = e^{dx' g(x)}
+			\ \rightarrow\ 
+			\boxed{ 
+				\tfrac{d}{dx} \mss{ \hs \equiv \hs h(x) }
+				\ \Rightarrow\
+				e^{x' \tfrac{d}{dx}} = e^{ {\displaystyle \mss{ \int_x^{x + x'} } } \hspace{-13pt} g(t) \hs dt} 
+			}
+			\\
+		f(x + x') & = f(x) 
+			+ \mss{ \int_x^{x+x'} } \nhs f'\mss{(x_1)} \hs\hs dx_1
+			= f(x) 
+			+ \mss{ \int_x^{x+x'} } 
+			\left[ f'\mss{(x)} + \mss{ \int_x^{x+x_1} } f''\mss{(x_2)} \hs\hs dx_2 \right] dx_1 
+			\\
+		& = f(x) 
+			+ \mss{ \int_x^{x+x'} } 
+			\nhs f'\mss{(x)} \hs\hs dx_1 
+			+ \mss{ \int_x^{x+x'} \hspace{-5pt} \int_x^{x+x_1} } 
+			\left[ f''\mss{(x)} + \mss{ \int_x^{x+x_2} } f^{(3)}\mss{(x_3)} \hs\hs dx_3 \right] \hs\hs dx_2 \hs dx_1
+			\\
+		& = f(x) 
+			+ \mss{ \int_x^{x+x'} } \nhs f'\mss{(x)} \hs\hs dx_1 
+			+ \mss{ \int_x^{x+x'} \hspace{-5pt} \int_x^{x+x_1} } 
+			f''\mss{(x)} \hs\hs dX_{21}
+			+ \mss{ \int_x^{x+x'} \hspace{-5pt} \int_x^{x+x_1} \hspace{-5pt} \int_x^{x+x_2} } 
+			f^{(3)}\mss{(x)} \hs\hs dX_{31}
+			+ \dots
+			\\
+		& = \mss{ \sum_n^\infty } \hs \tfrac{ (x')^n }{n!} f^{(n)}(x)
+	\end{aligned}
+\)
+
+\vspace{7pt}
+% Scalars -> Complex e^ix
+\(
+	\begin{aligned}
+		\tfrac{d}{d\theta} (\cos\theta + g \sin\theta) & = g (\cos\theta + \tfrac{-1}{g} \sin\theta)
+			\hs \equiv\hs i (\cos\theta + i \sin\theta)
+			\\
+		e^{\theta' \tfrac{d}{d\theta}} (\cos\theta + i \sin\theta) & = e^{\theta' i} (\cos\theta + i \sin\theta)
+			= \cos\mss{(\theta+\theta')} + i \sin\mss{(\theta+\theta')}
+	\end{aligned}
+	\ \Rightarrow\ 
+	\boxed{ \begin{aligned}
+		z & = e^{s+it}\\
+		& = e^{s} ( \cos t + i \sin t )
+	\end{aligned} }
+\)
+
+\vspace{13pt}
+% Complex Log
+\(	
+	\begin{aligned}
+		& \text{ln}(z) = \ln \vert z \vert + i \text{arg}(z) 
+			\ \rightarrow\
+			\boxed{ \mss{ \begin{aligned}
+				\text{Arg}(z) & \in (-\pi, \pi] \\
+				\text{Ln}(z) & = \ln \vert z \vert + i \text{Arg}(z)
+			\end{aligned} } }
+			\ \rightarrow\
+			\boxed{ z = x + it = e^{ \ln \vert z \vert + i \text{Arg}(z)} }
+			\\[5pt]
+		& \bullet\ 
+			\tfrac{\partial}{\partial t} (x + iy) = g(t) z
+			\ \Rightarrow\ 
+			e^{\Delta t \tfrac{\partial}{\partial t}} z\mss{(t_0)}
+			= e^{ {\displaystyle \mss{ \int_{t_0}^{t_f} } } \tfrac{(x + iy)'}{x + iy} \hs dt} z\mss{(t_0)}
+			= \underline{
+				e^{ \ln \sqrt{x^2 + y^2} |^{t_f}_{\cancel{t_0}} 
+				\hs\hs + \hs\hs i \text{Arctan} \tfrac{y}{x} |^{t_f}_{\cancel{t_0}} } \cancel{ z\mss{(t_0)} } 
+				= z\mss{(t_f)}
+			}
+	\end{aligned}
+\)
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+\vspace{15pt}
+% counter clockwise cos and sin 
+\(
+	\begin{gathered}
+		e^{t \tfrac{d}{dt}} z = e^{t' \mathbbm{g} } z = z\mss{(t + t')}\\
+		\begin{aligned}
+			z & = \mss{ \arraycolsep=2pt
+					{}^{\pm}
+					\left( 
+					\nhs
+						\begin{array}{c}
+							\cos\theta \hs \hat{x}\\
+							+ \sin\theta \hs \hat{y}
+						\end{array} 
+					\right)
+					,
+					{}^{\pm}
+					\left(
+						\begin{array}{c}
+							- \sin\theta \hs \hat{x}\\
+							+ \cos\theta \hs \hat{y}
+						\end{array} 
+					\right)
+				}
+			\end{aligned}
+	\end{gathered}
+	\ \ \vline\ \
+	\begin{aligned}
+			{}^{\pm} i z
+			& \ \leftarrow\
+			[\hat{x} \hs|\hs \hat{y}]
+			= 
+			\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c | c}
+				1 & {}^{\pm} i
+			\end{array} \nhs \right] } 
+			\\[-10pt]
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				0 & -1\\
+				1 & 0
+			\end{matrix} \right] } 
+			z
+			= - i \sigma_y z 
+			= \widehat{j\hs\hs} z
+			& \ \leftarrow\
+			[\hat{x} \hs|\hs \hat{y}]
+			= 
+			{}^{\pm}
+			\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c | c}
+				1 & 0\\
+				0 & 1
+			\end{array} \nhs \right] } 
+			\ \Rightarrow\ 
+			\begin{aligned}
+				& {}^{\pm}
+					\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c c | c c}
+						1 & 0 & 0 & -1 \\
+						0 & 1 & 1 & 0
+					\end{array} \nhs \right] } 
+					\\
+				& {}^{\pm}
+					\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c c | c c}
+						0 & 1 & -1 & 0 \\
+						1 & 0 & 0 & 1
+					\end{array} \nhs \right] } 
+			\end{aligned}
+	\end{aligned}
+\)
+
+\vspace{5pt}
+% clockwise cos and sin 
+\(
+	\begin{gathered}
+		\begin{aligned}
+			z & = \mss{ \arraycolsep=2pt
+					{}^{\pm}
+					\left( 
+					\nhs
+						\begin{array}{c}
+							\cos\theta \hs \hat{x}\\
+							- \sin\theta \hs \hat{y}
+						\end{array} 
+					\right)
+					,
+					{}^{\pm}
+					\left(
+						\begin{array}{c}
+							\sin\theta \hs \hat{x}\\
+							+ \cos\theta \hs \hat{y}
+						\end{array} 
+					\right)
+				}
+			\end{aligned}
+	\end{gathered}
+	\ \ \vline\ \
+	\begin{aligned}
+			{}^{\pm} - i z
+			& \ \leftarrow\
+			[\hat{x} \hs|\hs \hat{y}]
+			= 
+			\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c | c}
+				1 & {}^{\pm} i
+			\end{array} \nhs \right] } 
+			\\[-10pt]
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				0 & 1\\
+				-1 & 0
+			\end{matrix} \right] } 
+			z
+			= i \sigma_y z 
+			= - \widehat{j\hs\hs} z
+			& \ \leftarrow\
+			[\hat{x} \hs|\hs \hat{y}]
+			= 
+			{}^{\pm}
+			\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c | c}
+				1 & 0\\
+				0 & 1
+			\end{array} \nhs \right] } 
+			\ \Rightarrow\ 
+			\begin{aligned}
+				& {}^{\pm}
+					\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c c | c c}
+						1 & 0 & 0 & 1 \\
+						0 & 1 & -1 & 0
+					\end{array} \nhs \right] } 
+					\\
+				& {}^{\pm}
+					\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c c | c c}
+						0 & 1 & 1 & 0 \\
+						1 & 0 & 0 & -1
+					\end{array} \nhs \right] } 
+			\end{aligned}
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% cosh and sinh
+\(
+	\begin{gathered}
+		\begin{aligned}
+			z & = \mss{ \arraycolsep=2pt
+					{}^{\pm}
+					\left( 
+					\nhs
+						\begin{array}{c}
+							\cosh\phi \hs \hat{x}\\
+							\sinh\phi \hs \hat{y}
+						\end{array} 
+					\right)
+					,
+					{}^{\pm}
+					\left( 
+					\nhs
+						\begin{array}{c}
+							\sinh\phi \hs \hat{x}\\
+							\cosh\phi \hs \hat{y}
+						\end{array} 
+					\right)
+				}
+			\end{aligned}
+	\end{gathered}
+	\ \ \vline\ \
+	\begin{aligned}
+			{}^{\pm} j z, {}^{\pm}1z
+			& \ \leftarrow\
+			[\hat{x} \hs|\hs \hat{y}]
+			= 
+			\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c | c}
+				1 & {}^{\pm} j, {}^{\pm}1
+			\end{array} \nhs \right] } 
+			\\[-10pt]
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				0 & 1\\
+				1 & 0
+			\end{matrix} \right] } 
+			z
+			= \sigma_x z 
+			& \ \leftarrow\
+			[\hat{x} \hs|\hs \hat{y}]
+			= 
+			{}^{\pm}
+			\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c | c}
+				1 & 0\\
+				0 & 1
+			\end{array} \nhs \right] } 
+			\ \Rightarrow\ 
+			\begin{aligned}
+				& {}^{\pm}
+					\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c c | c c}
+						1 & 0 & 0 & 1 \\
+						0 & 1 & 1 & 0
+					\end{array} \nhs \right] } 
+					\\
+				& {}^{\pm}
+					\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c c | c c}
+						0 & 1 & 1 & 0 \\
+						1 & 0 & 0 & 1
+					\end{array} \nhs \right] } 
+			\end{aligned}
+	\end{aligned}
+\)
+
+\vspace{10pt}
+% - angle for cosh and sinh
+\(
+	\begin{gathered}
+		\begin{aligned}
+			z & = \mss{ \arraycolsep=2pt
+					{}^{\pm}
+					\left( 
+					\nhs
+						\begin{array}{c}
+							\cosh\phi \hs \hat{x}\\
+							-\sinh\phi \hs \hat{y}
+						\end{array} 
+					\right)
+					,
+					{}^{\pm}
+					\left( 
+					\nhs
+						\begin{array}{c}
+							\sinh\phi \hs \hat{x}\\
+							-\cosh\phi \hs \hat{y}
+						\end{array} 
+					\right)
+				}
+			\end{aligned}
+	\end{gathered}
+	\ \ \vline\ \
+	\begin{aligned}
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				0 & -1\\
+				-1 & 0
+			\end{matrix} \right] } 
+			z
+			= - \sigma_x z 
+			& \ \leftarrow\
+			[\hat{x} \hs|\hs \hat{y}]
+			= 
+			{}^{\pm}
+			\mss{ \left[ \nhs \arraycolsep=3pt \begin{array}{c | c}
+				1 & 0\\
+				0 & 1
+			\end{array} \nhs \right] } 
+	\end{aligned}
+\)
+
+\vspace{15pt}
+% Galilean Translation
+\(
+	\tfrac{d}{dt} ( v_0 t \hs \hat{x} + mv_0 \hs \hat{p}) 
+	= 
+	\tfrac{1}{m}
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		0 & 1 \\
+		0 & 0
+	\end{matrix} \right] }
+	\mss{ \left[ \begin{matrix}
+		v_0 t\\
+		m v_0
+	\end{matrix} \right] }
+	\ \Rightarrow\
+	e^{ \tfrac{\Delta t}{m} \epsilon }
+	\mss{ \left[ \begin{matrix}
+		v_0 t\\
+		m v_0
+	\end{matrix} \right] }
+	= 
+	\mss{ \left[ \begin{matrix}
+		v_0 (t +\Delta t)\\
+		m v_0
+	\end{matrix} \right] }
+\)
+
+%-------------------------------------------------------------------------------------------------------------------------------
+
+\vspace{10pt}
+\hrulefill
+\vspace{10pt}
+
+\(
+	\begin{aligned}
+		a(-b+b) & = a(-b) + ab = 0 \ \Rightarrow\ a(-b) = -(ab)\\
+		(-a+a)b & = (-a)b + ab = 0 \ \Rightarrow\ (-a)b = -(ab)\\
+		-a(-b+b) & = (-a)(-b) + (-a)b = 0 \ \Rightarrow\ (-a)(-b) = ab
+	\end{aligned}
+	\hspace{15pt} \vline \hspace{15pt}
+	\begin{aligned}
+		-1 + 1 & = 0\\
+		\Aboxed{ (-1)^2(1) & = 1 }
+	\end{aligned}
+\)
+
+\vspace{15pt}
+\(\begin{aligned}
+	y' & = y :\ y = e^x\\
+	y'' & = y :\ y = e^x,\ e^{-x}/e^{jx}\\
+	y^{(3)} & = y :\ y = e^x,\ e^{kx},\ e^{k^2x}\\
+	y^{(4)} & = y :\ y = e^x,\ e^{ix},\ e^{-x},\ e^{i^3x}\\
+	y^{(6)} & = y :\ y = e^x,\ e^{hx},\ e^{kx},\ e^{h^3x},\ e^{k^2x},\ e^{h^5x}\\
+	y^{(N)} & = y :\ y = e^{ g\mss{(N,n)} x } ,\ \mss{0 \leq n \leq N-1}
+\end{aligned}\)
+\hfill \vline \hfill
+\(\begin{aligned}
+	& \mss{ 0 = z^N - 1 
+		\ , \ 0 = 1 + z + z^2 + \dots + z^{N-1} }
+		\hspace{5pt} \text{\scriptsize(no need)}
+		\\[5pt]
+	& \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos\theta & - \sin\theta\\
+			\sin\theta & \cos\theta
+		\end{matrix} \right] }
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos\phi \\
+			\sin\phi
+		\end{matrix} \right] }
+		= 
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos(\phi + \theta) \\
+			\sin(\phi + \theta)
+		\end{matrix} \right] }
+		\ , \
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			- \sin\phi \\
+			\cos\phi
+		\end{matrix} \right] }
+		=
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos(\phi + 90) \\
+			\sin(\phi + 90)
+		\end{matrix} \right] }
+		\\
+	& \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos\theta & - \sin\theta\\
+			\sin\theta & \cos\theta
+		\end{matrix} \right] }
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos\phi & - \sin\phi \\
+			\sin\phi & \cos\phi
+		\end{matrix} \right] }
+		= 
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos(\phi + \theta) & - \sin(\phi + \theta) \\
+			\sin(\phi + \theta) & \cos(\phi + \theta)
+		\end{matrix} \right] }
+		\\
+	& \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos \tfrac{2\pi n}{N} & - \sin \tfrac{2\pi n}{N}\\
+			\sin \tfrac{2\pi n}{N} & \cos \tfrac{2\pi n}{N}
+		\end{matrix} \right]^N }
+		= 
+		\mathbbm{1}_2
+		= g^N\mss{(N,n)}
+		\ \Rightarrow\ y = e^{g\mss{(N,n)} x}
+\end{aligned}\)
+
+\vspace{10pt}
+\(
+	\begin{aligned}
+		e^{\theta \tfrac{d}{d\theta}} 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\cos\phi & - \sin\phi \\
+				\sin\phi & \cos\phi
+			\end{matrix} \right] }
+			& = 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\cos\theta & - \sin\theta\\
+				\sin\theta & \cos\theta
+			\end{matrix} \right] }
+			R\mss{(\phi)}
+			\\
+		& =
+			\lim_{n\rightarrow\infty}
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				1 & - \tfrac{\theta}{n}\\
+				\tfrac{\theta}{n} & 1
+			\end{matrix} \right]^n }
+			R\mss{(\phi)}
+			\\
+		\mss{ \lim_{n\rightarrow\infty} }
+			( \mss{ 1 + \tfrac{\theta}{n}\tfrac{d}{d\theta} } )^n
+			R\mss{(\phi)}
+			& = 
+			\mss{ \lim_{n\rightarrow\infty} }
+			\mss{ \left[ \mathbbm{1}_2 + \tfrac{\theta}{n} \mathbbm{i}_2 \right]^n }
+			R\mss{(\phi)}
+			\\[15pt]
+		\tfrac{d}{d\theta} 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\cos\theta\\
+				\sin\theta
+			\end{matrix} \right] }
+			& =
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				0 & -1\\
+				1 & 0
+			\end{matrix} \right] }	
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\cos\theta\\
+				\sin\theta
+			\end{matrix} \right] }
+			\\[5pt]
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				-1 & -1\\
+				i & -i
+			\end{matrix} \right] }
+			\mss{ \left[ \arraycolsep=0pt \begin{matrix}
+				1 + i\delta\theta & 0\\
+				0 & 1 - i\delta\theta
+			\end{matrix} \right] }
+			& P^{-1}
+			=
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				1 & -\delta\theta\\
+				\delta\theta & 1
+			\end{matrix} \right] }
+	\end{aligned}
+\)
+\hfill \vline \hfill
+\parbox{10.1cm}{ 
+	\( 
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			1 & - \delta \theta\\
+			\delta \theta & 1
+		\end{matrix} \right] }
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos\phi \\
+			\sin\phi
+		\end{matrix} \right] }
+		= 
+		\mss{ \left[ \begin{aligned}
+			(1) \cos\phi & - (\delta \theta) \sin\phi \\[-2pt]
+			(\delta \theta) \cos\phi & + (1) \sin\phi
+		\end{aligned} \right] }
+		=
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			\cos(\delta\theta + \phi) & - \sin(\delta\theta + \phi) \\
+			\sin(\delta\theta + \phi) & \cos(\delta\theta + \phi)
+		\end{matrix} \right] }
+	\)
+
+	\vspace{15pt}
+	\( \begin{aligned}
+		\lim_{n\rightarrow\infty}
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				1 & - \delta \theta\\
+				\delta \theta & 1
+			\end{matrix} \right]^n }
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\cos\phi \\
+				\sin\phi
+			\end{matrix} \right] }
+			& = 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\cos(\theta + \phi) & - \sin(\theta + \phi) \\
+				\sin(\theta + \phi) & \cos(\theta + \phi)
+			\end{matrix} \right] }
+			\\
+		\mss{ \lim_{n\rightarrow\infty} }
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				1 & - \delta \theta\\
+				\delta \theta & 1
+			\end{matrix} \right]^n } 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				1 \\
+				0 \sim \delta \theta
+			\end{matrix} \right] }
+			& =
+			\mss{ \lim_{n\rightarrow\infty} }
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\binom{n}{0} - \binom{n}{2} \delta \theta^2 + \binom{n}{4} \delta \theta^4 + \dots \\[8pt]
+				\binom{n}{1} \delta \theta - \binom{n}{3} \delta \theta^3 + \binom{n}{5} \delta \theta^5 + \dots
+			\end{matrix} \right] }
+			\\
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				\cos\phi \\
+				\sin\phi
+			\end{matrix} \right] }
+			& = 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			1 - \tfrac{\theta^2}{2!} + \tfrac{\theta^4}{4!} + \dots \\[3pt]
+			\theta - \tfrac{\theta^3}{3!} + \tfrac{\theta^5}{5!} + \dots
+		\end{matrix} \right] }
+			\\
+		e^{\theta \mathbbm{i}} & = \cos\theta \mathbbm{1} + \sin\theta \mathbbm{i}
+	\end{aligned}\) 
+}
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+
+\newpage
+
+\vspace{20pt}
+\(
+	\alpha = x + y g
+	\Leftrightarrow 
+	\mss{ \left[ \begin{matrix}
+		x \\ 
+		y
+	\end{matrix} \right] }
+	\ , \
+	g^2 
+	\Leftrightarrow 
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		a \\
+		b
+	\end{matrix} \right] }
+	\neq 
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		0 \\
+		b
+	\end{matrix} \right] }
+	\neq 
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		a \\
+		0
+	\end{matrix} \right] }
+	\ , \
+	\boxed{
+		\mathbbm{g} \alpha 
+		= 
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			0 & a \\
+			1 & b
+		\end{matrix} \right] }
+		\mss{ \left[ \begin{matrix}
+			x \\ 
+			y
+		\end{matrix} \right] }
+	}
+	\ , \
+	\mss{ \begin{gathered}
+		\beta = u + v g \\
+		\alpha + \beta = \beta + \alpha\\
+	\end{gathered} }
+	\ , \ 
+	\mss{ \begin{aligned}
+		& \beta \alpha = ux + uyg + vgx + vgyg \\
+		& \alpha \beta = xu + xvg + ygu + ygvg
+	\end{aligned} }
+\)
+
+\vspace{5pt}
+\(
+	\underline{ \hat{\beta} } \alpha 
+	=
+	\underline{ \left( 
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			u & 0 \\
+			0 & u
+		\end{matrix} \right] }
+		+
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			v & 0 \\
+			0 & v
+		\end{matrix} \right] }
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+			0 & a \\
+			1 & b
+		\end{matrix} \right] }
+	\right) }
+	\mss{ \left[ \begin{matrix}
+		x \\ 
+		y
+	\end{matrix} \right] }
+	= \hat{\alpha} \beta
+	\ \leftarrow\ 
+	\underline{\beta} \alpha 
+	= 
+	\underline{ \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		u & va \\
+		v & u+vb
+	\end{matrix} \right] } }
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		x & ya \\
+		y & x+yb
+	\end{matrix} \right] }
+	= 
+	\alpha \beta
+	\hspace{5pt} \text{\scriptsize(see above)}
+	\ , \
+	\mathbbm{g}\hs^2 
+	\stackrel{!!!}{=}
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		a & ba \\
+		b & a+b^2
+	\end{matrix} \right] }
+	= \alpha_{\mathbbm{g}^2} 
+\)
+
+\vspace{10pt}
+\(	
+	\begin{aligned}
+		& \ast \alpha = x + yh
+			\ ; \ 
+			h 
+			= 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				a & b \\
+				c & d
+			\end{matrix} \right] }
+			\ , \ 
+			h^2 
+			= 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				bc + a^2 & b(a+d) \\
+				c(a+d) & bc + d^2
+			\end{matrix} \right] }
+			=
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				x + ya & by \\
+				cy & x + yd
+			\end{matrix} \right] }
+			= \alpha_{h^2}
+			\ \rightarrow\ 
+			\mss{ \begin{aligned}
+				(a,d) & = (a,0), \boxed{\nhs(0,d)\nhs}\\
+				& = (a,a), (a,-a)
+			\end{aligned} }
+	\end{aligned}
+\)
+
+\vspace{10pt}
+\(	
+	\begin{aligned}
+		& \det( \mathbbm{g}^N ) = 
+			\det
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				0 & a \\
+				1 & b
+			\end{matrix} \right] }
+			^N
+			= 
+			(-a)^N = 1
+			\ \Rightarrow\ 
+			a = \pm 1
+			\\
+		& \mathbbm{g}^N = 
+			\mss{ \left[ \arraycolsep=5pt \begin{matrix}
+				a & a \\
+				\tfrac{b}{2} + \sqrt{\tfrac{b^2}{4} + a} & \tfrac{b}{2} - \sqrt{\tfrac{b^2}{4} + a}
+			\end{matrix} \right] }
+			\mss{ \left[ \arraycolsep=-4pt \begin{matrix}
+				\tfrac{b}{2} + \sqrt{\tfrac{b^2}{4} + a} & 0 \\
+				0 & \tfrac{b}{2} - \sqrt{\tfrac{b^2}{4} + a}
+			\end{matrix} \right]^N }
+			P^{-1}
+			= \mathbbm{1}
+			=
+			\mss{ \left[ \arraycolsep=-2pt \begin{matrix}
+				\tfrac{b}{2} + \sqrt{\tfrac{b^2}{4} + a} & 0 \\
+				0 & \tfrac{b}{2} - \sqrt{\tfrac{b^2}{4} + a}
+			\end{matrix} \right]^N }
+			\ \Rightarrow \hspace{-7pt}
+			\mss{ \begin{gathered}
+				a \leq - \tfrac{b^2}{4}\\
+				b^2 \leq 4 \cancel{(-a)}\\
+				b^2 = 4 \rightarrow \nexists P^{-1}
+			\end{gathered} }
+	\end{aligned}
+\)
+
+\vspace{10pt}
+\(
+	\ast\ g\mss{(b/\theta)} = \tfrac{b}{2} + \sqrt{-1} \sqrt{ 1- \tfrac{b^2}{4} } = \cos\theta + i \sin\theta
+	\ \Leftrightarrow\
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		\cos\theta & -\sin\theta \\
+		\sin\theta & \cos\theta 
+	\end{matrix} \right]_i }
+	\ \ , \ \ \big( \theta \neq 0 \ \Leftrightarrow\ b^2 \neq 4 \big)
+\)
+
+\vspace{10pt}
+\hrulefill\text{\scriptsize(No need)}\hrulefill
+\vspace{5pt}
+
+\(
+	1 = \alpha \cdot \alpha^{-1} 
+	=
+	\begin{gathered}
+		\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				x & -y \\
+				y & x + yb
+			\end{matrix} \right] }
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				x + yb & y \\
+				-y & x
+			\end{matrix} \right] } 
+			\\[2pt]
+		\hline\\[-15pt]
+		\mss{ x^2 + y^2 + xyb \hs > \hs 0 \ \checkedbox}
+	\end{gathered}
+	\ , \ 
+	\alpha + \tfrac{ \alpha^{-1} }{ (\det \alpha)^{-1} }
+	= 
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		2x + yb & 0 \\
+		0 & 2x + yb
+	\end{matrix} \right] }
+	\ , \
+	\alpha - \tfrac{ \alpha^{-1} }{ (\det \alpha)^{-1} }
+	= 
+	y
+	\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+		-b & -2 \\
+		2 & b
+	\end{matrix} \right] }
+\)
+
+\vspace{10pt}
+\(
+	\begin{aligned}
+		& \alpha^2 
+			= 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				1 \\
+				0
+			\end{matrix} \right] }
+			= 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				x^2 + y^2a \\
+				y(2x+yb)
+			\end{matrix} \right] }
+			\ \rightarrow\
+			\mss{ \begin{aligned}
+				& x = \bcancel{ -\tfrac{yb}{2} }, 1, -1\\
+				& y = \bcancel{ \tfrac{1}{\pm \sqrt{b^2/4 + a}} },\ 0
+			\end{aligned} }
+			\ \Rightarrow\
+			\alpha_\pm = \pm 1
+			\\[5pt]
+		& i^2 
+			= 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				-1 \\
+				0
+			\end{matrix} \right] }
+			= 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				x^2 + y^2a \\
+				y(2x+yb)
+			\end{matrix} \right] }
+			\ \rightarrow\
+			\mss{ \begin{aligned}
+				& y = \bcancel{0},\ \pm \tfrac{2}{\sqrt{4-b^2}}\\
+				& x = \bcancel{\sqrt{-1}},\ -\tfrac{yb}{2} 
+			\end{aligned} }
+			\ \Rightarrow\
+			i_\pm = \pm \tfrac{1}{\sqrt{4-b^2}} 
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				-b \\
+				2
+			\end{matrix} \right] }
+	\end{aligned}
+	\hfill \vline \hfill
+	\begin{aligned}
+		& 1 = \mathbbm{g} \cdot \mathbbm{g}^{N-1} 
+			=
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				0 & a \\
+				1 & b
+			\end{matrix} \right] }
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				-b/a & 1 \\
+				1/a & 0
+			\end{matrix} \right] } 
+			\\[5pt]
+		& \mss{ \mathbbm{g} + \mathbbm{g}^{N-1} }
+			=
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				b & 0 \\
+				0 & b
+			\end{matrix} \right] }
+			\ , \
+			\mss{ \mathbbm{g} - \mathbbm{g}^{N-1} }
+			=
+			\mss{ \left[ \arraycolsep=2pt \begin{matrix}
+				-b & -2 \\
+				2 & b
+			\end{matrix} \right] }
+			\\[5pt]
+		& \left[ \mss{ \mathbbm{g} - \mathbbm{g}^{N-1} } \right]^2 = -(4-b^2) \mathbbm{1}_2 
+	\end{aligned}
+\)
+
+\vspace{5pt}
+\hrulefill
+\vspace{5pt}
+
+\end{document}

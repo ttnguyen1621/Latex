@@ -1,0 +1,1742 @@
+\documentclass{article}
+\usepackage[left=.75in, right=.75in, top=1in, bottom = 1in]{geometry} % Resizes the borders
+% \usepackage{graphicx} % Required for inserting images
+\usepackage{amssymb, amsmath, amsfonts, mathtools, bbm, esint}
+\usepackage{dashbox} % for dboxed
+\usepackage{array,multirow}
+\usepackage{cancel,slashed}
+\usepackage{pdflscape}
+
+\newcommand{\hs}{\hspace{1pt}} % 1pt horizontal space
+\newcommand{\hsvec}[1]{\hspace{-1pt}\vec{\hspace{1pt} #1}} % 1pt space with a \vec
+\newcommand{\nhs}{\hspace{-1pt}} % -1pt horizontal space
+\newcommand{\mss}[1]{\text{\scriptsize\(#1\)}} % math scriptsize
+\newcommand{\tss}[1]{\text{\scriptsize #1}} % text scriptsize
+
+\newcommand{\checkedbox}{\mbox{\ooalign{$\checkmark$\cr\hidewidth$\square$\hidewidth\cr}}} % checked box
+\newcommand{\crossbox}{\mbox{\ooalign{\ding{55}\cr\hidewidth$\square$\hidewidth\cr}}} % cross box
+\newcommand{\dboxed}[1]{\dbox{\ensuremath{#1}}}
+
+% \title{Sets}
+% \author{TN}
+% \date{September 2024}
+
+\begin{document}
+
+\parindent=0pt
+% History
+
+\begin{landscape}
+
+\subsection{History}
+
+\begin{tabular}[t]{l}
+    % Electron
+    \(\bullet\)\ Electron (1897, J. J. Thomson, plum pudding)\\
+    % Nucleus/Proton
+    \(\bullet\)\ Nucleus/Hydrogen=Proton (Rutherford scattering \(\alpha\) into gold)\\
+    % Bohr Moden
+    \(\bullet\)\ Bohr Model (1914, Bohr)\\
+    % Neutron
+    \(\bullet\)\ Neutron (also in Nucleus) (1932, Chadwick)
+\end{tabular}
+\hspace{20pt}
+\begin{tabular}[t]{l}
+    % Photons
+    Photon:\\
+    % hbar+ultraviolet
+    \(\bullet\)\ \(\hbar\) (1900, Planck, ultraviolet catastrophe)\\
+    % Einstein Photoeelctric
+    \(\bullet\)\ Quantitization (1905, Einstein, Photoelectric effect)\\
+    % Compton Wavelength
+    \(\bullet\)\ \( \Delta\lambda = \underline{\tfrac{h}{mc}}(1-\cos\theta) \) (1923, A. H. Compton, Compton Scattering)\\
+\end{tabular}
+
+\vspace{15pt}
+\begin{tabular}[t]{l}
+    % Yukawa Strong force Meson
+    \(\bullet\)\ Short range strong force/potential (\(\tfrac{-e^{-r/a}}{r}\)) = Heavy boson \(\sim\) 300\(m_e\) %
+        = \underline{Meson}(2 quark, Middle-weight) (1934, Yukawa)
+        \\
+    % Leptons, Baryons
+    \(\ast\)\ Lepton (light-weight), Baryon (3 quark, Heavy-weight) \hspace{15pt} \(\ast\)\ Found in cosmic rays (1937, twice)\\
+    % Pions and Muons are Mesons
+    \(\bullet\)\ Wrong lifetime and lighter \(\rightarrow \exists\) Pion(upp. atmos., strong force meson) + %
+        \underline{Muon}(sea level, lepton) (1947, Powell+co.)
+        \\
+    % Pion decays to muon
+    \(\ast\)\ \(\pi \rightarrow \mu + \{\nu\}\) (energy never varied)
+\end{tabular}
+
+\vspace{15pt}
+\begin{tabular}[t]{l}
+    % Position from Dirac Equation
+    \(\bullet\)\ Antimatter from Dirac Equation (1927, Dirac) \hspace{15pt} \(\ast\)\ Positron (1931, Anderson) \\
+    % Better Positron Theory
+    \(\bullet\)\ Feynman-Stuckelberg formulation of antiparticles (1940s, Feynman+Stuckelberg)\\
+    % Positron Discovered
+    \(\ast\)\ \(p^- + \bar{n}\) (1955+1956, Berkely Bevatron)
+\end{tabular}
+
+\vspace{15pt}
+\begin{tabular}[t]{l}
+    % Theory of Neutrino in Beta Decay
+    \(\bullet\)\ Theory Neutrino: Electrons in beta decay varied in energy meant \underline{extra particle}, %
+        \(n \rightarrow p^+ + \underline{ e^- + \bar{\nu}_{\{e\}} } \) (1930, Pauli idea; 1933, Fermi theory) 
+        \\
+    % Pion decay includes neutrinos
+    \(\ast\)\ \(\pi \rightarrow \mu + \nu_{\{\mu\}}\) %
+        \hspace{15pt} \(\ast\)\ \(\mu^- \rightarrow e^- + \underline{ \bar{\nu}_{\{e\}} + \nu_{\{\nu\}} } \) (1948?, Powell)
+        \\
+    % Conservation of Lepton Number
+    \(\bullet\)\ Lepton Number Conservation Idea (1953, Konopinski-Mahmoud)\\
+    % Neutrinos Discovered
+    \(\bullet\)\ Neutrinos (mid-1950s, Cowan-Rheines, Savannah River Nuclear Reactor, tank of water, %
+        \(\bar{\nu}_{\{e\}} + p^+ \rightarrow n + e^+ \))
+        \\
+    % Do Neutrinos = Antineutrinos?
+    \(\bullet^*\)\ \(\nu \neq^* \bar{\nu}\) (late-1950s, Davis-Harmer, never saw %
+        \(\bar{\nu}_{\{e\}} + n \rightarrow p^+ + e^-\) \(^*\)\underline{but could be because of spin-state diff.})\\
+    % Muon and Electron Number Conservation
+    \(\bullet\)\ \(\mu,e\) (Leption Gen) Num. Cons. Idea (late-1950s, many)\\
+    % Experiment for Muon and Electron Number Conservations
+    \(\ast\) \(\mu,e\) (Lepton Gen) Num. Cons. Experiment (1962, Lederman-Schwartz-Steinberger-et. al, %
+        Brookhaven, 44 ft steel wall, \(\nu_\mu + p^+ \neq n + e^+\))
+\end{tabular}
+
+\vspace{15pt}
+\begin{tabular}[t]{l}
+    % Kaons
+    \(\bullet\)\ Kaons, \(?? \rightarrow \mu^+ + \mu^-\) (Dec 1947, Rochester-Butler, Cosmic rays on lead plate in cloud chamber)\\
+    \(\bullet\)\ \(\theta^+\) and \(\tau^+\) are the same \(K^+\)
+\end{tabular}
+
+\vspace{15pt}
+% Gell-Mann/Okubo Formulas
+\(\begin{aligned}[t]
+    \text{Gell-Mann/Okubo (Baryon octet)} & :\ 2[m_N + m_\Xi] = m_\Sigma+ 3m_\Lambda \\
+    % \text{Gell-Mann/Okubo (Baryon decuplet)} & :\ m_\Omega - m_{\Xi^*} = m_{\Xi^*} - m_{\Sigma^*} = m_{\Sigma^*} - m_\Delta \\
+    % \text{Gell-Mann/Okubo (Meson nonet)} & :\ 2[m_K^2 + m_{\overline{K}}^2] = m_\pi^2 + 3m_\eta^2 \\
+    \text{Coleman-Glashow} & :\ \Sigma^+ - \Sigma^- = p - n + \Xi^0 - \Xi^-
+\end{aligned}\)
+\hspace{10pt}
+\(\begin{aligned}[t]
+    % \text{Gell-Mann/Okubo (Baryon octet)} & :\ 2[m_N + m_\Xi] = m_\Sigma+ 3m_\Lambda \\
+    % \text{Gell-Mann/Okubo (Baryon decuplet)} & :\ m_\Omega - m_{\Xi^*} = m_{\Xi^*} - m_{\Sigma^*} = m_{\Sigma^*} - m_\Delta \\
+    \text{Gell-Mann/Okubo (Meson nonet)} & :\ 2[m_K^2 + m_{\overline{K}}^2] = m_\pi^2 + 3m_\eta^2 \\
+    \text{Coleman-Glashow} & :\ \Sigma^+ - \Sigma^- = p - n + \Xi^0 - \Xi^-
+\end{aligned}\)
+
+\vspace{10pt}
+\hrulefill
+
+\vspace{10pt}
+% Particle Strangeness
+\(\begin{aligned}
+    & \text{Particle Strangeness}:\ \bullet\ S_\Delta = S_\pi = 0 
+        \hspace{15pt} \bullet\ S_{\Sigma} = -1
+        \hspace{15pt} \bullet\ S_{\Xi} = -2
+        \hspace{15pt} \bullet\ S_\Omega = -3
+        \hspace{15pt} \bullet\ S_K = \pm 1
+\end{aligned}\)
+
+\vspace{10pt}
+% Eightfold Way
+\(  
+    % Baryon Octet / Pseudoscalar Meson
+    \begin{gathered}
+        \text{Baryon Octet / Pseudoscalar Meson},\ s=\tfrac{1}{2} \hs / \hs 0: \\[5pt]
+        \arraycolsep=2pt 
+            % Baryons
+            \begin{array}{c c c c c}
+                & n_{ddu} & & p_{uud} & \\
+                \Sigma_{dds} & & \Sigma, \boxed{\Lambda} & & \Sigma_{uu\bar{s}}\\
+                & \Xi_{dss} & & \Xi_{uss} &
+            \end{array}
+            \hspace{15pt}
+            % Mesons
+            \begin{array}{c c c c c}
+                & K^0_{d\bar{s}} & & K^+_{u\bar{s}} & \\
+                \pi^-_{d\bar{u}} & & \pi^0,\boxed{\eta'},\eta & & \pi^+_{-u\bar{d}}\\
+                & K^-_{\bar{u}s} & & \overline{K}^0_{-\bar{d}s} &
+            \end{array}
+    \end{gathered}
+\)
+\hspace{15pt}
+% Baryon Octuplet / Vector Meson
+\(
+    \begin{gathered}
+        \text{Baryon Decuplet / Vector Meson},\ s=\tfrac{3}{2} \hs /\hs 1: \\[5pt]
+        \arraycolsep=3pt 
+            % Baryons
+            \begin{array}{c c c c c c c}
+                \Delta & & \Delta^0 & & \Delta^+ & & \Delta^{++} \\
+                & \Sigma^* & & \Sigma^{*0} & & \Sigma^* & \\
+                & & \Xi^* & & \Xi^{*0} & & \\
+                & & & \Omega^- & & & \\
+            \end{array}
+            \hspace{15pt}
+            % Mesons
+            \begin{array}{c c c c c}
+                & K^{*0} & & K^{*+} & \\
+                \rho^- & & \rho^0,\omega,\phi & & \rho^+\\
+                & K^{*-} & & \overline{K}^{*0} &
+            \end{array}  
+    \end{gathered}
+\)
+
+\end{landscape}
+
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+% Scalar/Pseudovector/Vector/Pseudoscalar
+\(
+    \begin{aligned}
+        & \underline{\text{Scalar}}\ s = \hsvec{a} \cdot \hsvec{b} = (-\hsvec{a}) \cdot (-\hsvec{b}) = Ps\\
+        & \underline{\text{Pseudovector}}\ w = \hsvec{a} \times \hsvec{b} = (-\hsvec{a}) \times (-\hsvec{b}) = Pw
+    \end{aligned}
+\)
+\hspace{15pt}
+\(
+    \begin{aligned}
+        & \underline{\text{Vector}}\ v = -(-\hsvec{a}) = -Pv\\
+        & \underline{\text{Pseudoscalar}}\ t = \hsvec{a} \times \hsvec{b} \cdot \hsvec{c} 
+            = - (-\hsvec{a}) \times (-\hsvec{b}) \cdot (-\hsvec{c}) = -Pt
+    \end{aligned}
+\)
+
+\vspace{15pt}
+% Hadron Masses
+\(  
+    % Quark Masses
+    \begin{gathered}[t]
+        \underline{\text{Quark Masses}}:\\
+        \begin{aligned}
+            m_u & = m_d = \cancel{308}\\
+            m_s & = \cancel{483}\\
+            m_c & = 1250\\
+            m_b & = 4500\\
+        \end{aligned}
+    \end{gathered}
+\)
+\hspace{20pt}
+\(
+    % Pseudoscalar Meson and Baryon Octuplet Masses
+    \begin{gathered}[t]
+        \begin{gathered}[t]
+            \text{Baryon Octuplet / Pseudoscalar}\\[-3pt]
+            \underline{ \text{Meson Masses (MeV/\(c^2\))} } :
+        \end{gathered} \\[5pt]
+            % Baryons
+            \begin{gathered}
+                \begin{aligned}[t]
+                        m_n & = 939.57\\
+                        \overline{m_\Lambda} & = 1115.7\\
+                        % m_\Sigma & = 1190.5\\
+                        % m_\Xi & = 1318.1 \\
+                    \end{aligned}
+                    \hspace{15pt}
+                    \begin{aligned}[t]
+                        m_p & = 938.27\\
+                        % m_\Lambda & = 1115.7\\
+                        \overline{m_\Sigma} & = 1190.5\\
+                    \end{aligned}
+                    \\
+                \overline{m_\Xi} = 1318.1 \\
+            \end{gathered}
+            \hspace{15pt}
+            % Mesons
+            \begin{aligned}
+                \overline{m_\pi} & = 138.04 \\
+                \overline{m_K} & = 495.67 \\
+                m_\eta & = 547.3\\
+            \end{aligned}
+    \end{gathered}
+\)
+\hspace{20pt}
+\(
+    % Baryon Decuplet and Vector Meson Masses
+    \begin{gathered}[t]
+        \begin{gathered}[t]
+            \text{Baryon Decuplet / Vector}\\[-3pt]
+            \underline{ \text{Meson Masses (MeV/\(c^2\))} } :
+        \end{gathered} \\[5pt]
+            % Baryons
+            \begin{aligned}[t]
+                \overline{m_\Delta} & = 1232 \\
+                \overline{ m_{\Sigma^{*}} } & = 1385 \\
+                \overline{ m_{\Xi^*} } & = 1533 \\
+            \end{aligned}
+            \hspace{15pt}
+            \begin{aligned}[t]
+                m_\Omega & = 1672 \\[7pt]
+                m_\phi & = 1020\\
+            \end{aligned}
+            \hspace{15pt}
+            \begin{aligned}[t]
+                m_\rho & = 776\\
+                m_\omega & = 783\\
+                m_{K^*} & = 894\\
+            \end{aligned}
+    \end{gathered}
+\)
+
+\vspace{15pt}
+% Isospin
+\(
+    \begin{aligned}
+        & \underline{\text{Isospin},\ I, \text{ and } I_3}:\ | I\ I_3\rangle \hspace{5pt} (\mss{SU(2)\ \text{rules like spin}})
+            ,\ \boxed{\text{Conserved under Strong} = \text{Strong Invariant, rotat.}\ I_{1,2,3}\text{-space}}
+            \\[5pt]
+        & \begin{aligned}
+                    & \ast\ I_{n/p} = \tfrac{1}{2}
+                    \hspace{10pt} \ast\ I_\pi = 1 
+                    \hspace{10pt} \ast\ I_\Sigma = 1,\ I_\Lambda = 0
+                    \hspace{10pt} \ast\ I_\Delta = \tfrac{3}{2}
+                    \\[3pt]
+                & \begin{aligned}
+                        & \bullet\ \text{row mult.} = 2I + 1 \\
+                        & \bullet\ \text{highest}\ Q \rightarrow I_3 = I
+                    \end{aligned}
+                    \hspace{15pt} \begin{aligned}
+                        & \bullet\ (U,C,T) \rightarrow 1,\ (D,S,B) \rightarrow -1\\
+                        & \bullet\ I_3 = \tfrac{U+D}{2} 
+                    \end{aligned}
+            \end{aligned}
+            \hspace{15pt} \boxed{ \begin{aligned}
+                    \bullet\ Q & \sim I_3 + \tfrac{1}{2}(B_{aryon} + S_{trange})\\
+                    & = \tfrac{1}{2}\big[B_{aryon} + (U+C+T) + (D+S+B)\big]\\
+                    & = \tfrac{2}{3}(U+C+T) + \tfrac{1}{3}(D+S+B)\\
+            \end{aligned} }
+    \end{aligned}
+\)
+\\[5pt]
+\( 
+    \boxed{
+        \bullet\ u = | \tfrac{1}{2} \tfrac{1}{2} \rangle
+        \ \ \ \bullet\ d = | \tfrac{1}{2} - \tfrac{1}{2} \rangle
+        \ \ \ \bullet\ \bar{d} = \boldsymbol{-} | \tfrac{1}{2} \tfrac{1}{2} \rangle
+        \ \ \ \bullet\ \bar{u} = | \tfrac{1}{2} - \tfrac{1}{2} \rangle
+    } 
+    \ \Rightarrow\ \ast\ \boxed{ p/n = | {\scriptstyle \tfrac{1}{2} \pm \tfrac{1}{2}} \rangle } \ \ \text{\scriptsize(see baryons)}
+\)
+\\[10pt]
+% Deuterons
+\(
+    \begin{aligned}[t]
+        & \ast\ \underline{\text{Deuteron},\ d = pn}\ \ 
+            \mss{\boxed{ |00\rangle = \tfrac{1}{\sqrt{2}}(|pn\rangle - |np\rangle) = {\sum} pn }}
+            \\[5pt]
+        & \cancel{ \mss{ \begin{aligned}
+                & |1\ 1\rangle = |pp\rangle \hspace{5pt} \underline{\text{(exper. dne)}}\\
+                & |1\ 0\rangle = {\sum} pn \sim |pn\rangle + |np\rangle\\
+                & |1\ -1\rangle = |nn\rangle \hspace{5pt} \underline{\text{(exper. dne)}}\\
+            \end{aligned} } }
+    \end{aligned}
+\)
+\hfill
+% alpha particles = ^4 He
+\(
+    \begin{aligned}[t]
+        & \ast\ \underline{^4\text{He},\ \alpha = ppnn} \ \ 
+            \mss{\boxed{ |00\rangle = {\sum} ppnn }}
+            \\[5pt]
+        & \cancel{ \mss{ \begin{aligned}
+                & |1\ 1\rangle = {\sum} pppn \hspace{5pt} \underline{\text{(exper.? dne)}}\\
+                & |1\ 0\rangle = {\sum} ppnn \\
+                & |1\ -1\rangle = {\sum} pnnn \hspace{5pt} \underline{\text{(exper.? dne)}}\\
+            \end{aligned} } }
+    \end{aligned}
+    \hspace{5pt}
+    \cancel{ \mss{ \begin{aligned}[t]
+        \\[-17pt]
+        & |2\ 2\rangle = |pppp\rangle \\
+        & |2\ 1\rangle = {\sum} pppn \hspace{5pt} \underline{\text{(exper.? dne)}}\\
+        & |2\ 0\rangle = {\sum} ppnn \\
+        & |2\ -1\rangle = {\sum} pppn \hspace{5pt} \underline{\text{(exper.? dne)}}\\
+        & |2\ -2\rangle = |nnnn\rangle \\
+    \end{aligned} } } 
+\)
+
+\vspace{10pt}
+% Heavy Mesons
+\( 
+    \begin{aligned}[t]
+        & \underline{\text{Heavy Mesons}}:\ \boxed{ M \approx m_1 + m_2 + E_n/c^2 } \\[5pt]
+        & \ast\ V \approx - \tfrac{k}{r} + r\ \dboxed{F_0}\ _{const} \hspace{15pt} \text{\scriptsize(estimate)}
+    \end{aligned}
+\)
+\hfill
+% Light Mesons
+\(
+    \begin{aligned}[t]
+        & \underline{\text{Light Mesons (\(u,d,s\))}}\\
+        & \begin{aligned}[t]
+                & \bullet\ l=0,\ s=0\ \ (\text{pseudoscalar})
+                    \hspace{15pt} \bullet\ l=0,\ s=1\ \ (\text{vector})
+                    \\
+                & \ast\ \text{\scriptsize(pseudoscalar meson is ``good SU(3) symmetry'')}\\
+            \end{aligned}
+            \\
+    \end{aligned}
+\)
+\hfill\hs
+
+\vspace{15pt}
+% Meson Wavefunction
+\(
+    \begin{aligned}[t]
+        % Meson Spin states
+        & \underline{ \text{Meson Spin}\ \psi\ (2 \otimes 2 = 3 \oplus 1) }: \\[5pt]
+        % Symmetric Spin
+        & \begin{gathered}[t]
+                \boxed{ \text{Symmetric (vec)} }\\[5pt]
+                \begin{aligned}
+                        |1\ 1 \rangle & = (\uparrow \uparrow) \\
+                        |1\ 0 \rangle & = \tfrac{1}{\sqrt{2}} ( \uparrow\downarrow + \downarrow \uparrow ) \\
+                        |1 -\nhs\nhs1 \rangle & = (\downarrow \downarrow) \\
+                    \end{aligned}
+            \end{gathered}
+            \hspace{15pt}
+            % Antisymmetric Spin
+            \begin{gathered}[t]
+                \boxed{ \text{Antisymmetric (pseu)} }\\[5pt]  
+                |0\ 0 \rangle = \tfrac{1}{\sqrt{2}} ( \uparrow\downarrow - \downarrow \uparrow ) \\
+            \end{gathered}
+            \\[10pt]
+        % Meson Color Wavefunction
+        & \underline{ \text{Meson Color}\ \psi^{sing.}_{\cancel{antisym.}} }:\ 
+            \boxed{ \tfrac{1}{\sqrt{3}} (r\bar{r} + g\bar{g} + b\bar{b}) }
+    \end{aligned}
+\)
+\hfill \vline \hfill
+\(
+    % Meson Isospin (Up-Down) SU(2) Flavour States
+    \begin{aligned}[t]
+        & \underline{ \text{Meson Flavour}\ \psi\ (3 \otimes 3 = 8 \oplus 1)}:
+            \\[5pt]
+        & \begin{gathered}[t]
+                \cancel{ \boxed{ \text{Symmetric} } } \\[5pt]
+                \begin{aligned}     
+                    |1\ 1 \rangle_{\pi, \rho} & = -u\bar{d} \\
+                    |1\ 0 \rangle_{\pi^0, \rho^0} & = \tfrac{1}{\sqrt{2}} (u\bar{u} - d\bar{d}) \\
+                    |1 -\nhs\nhs1 \rangle_{\pi, \rho} & = d\bar{u} 
+                \end{aligned}
+                    \\[15pt]
+                \underline{\mss{SU(2)\ \text{isospin singlet}}} \ \rightarrow
+            \end{gathered}
+            \hspace{1.2cm}
+            \begin{gathered}[t]
+                \cancel{ \boxed{ \text{Antisymmetric} } } \\[5pt]
+                \begin{aligned}
+                    |0\ 0 \rangle_{\omega} & = \tfrac{1}{\sqrt{2}} ( \underline{u\bar{u} + d\bar{d}} ) 
+                        \\[5pt]
+                    |0\ 0 \rangle_{\eta} & = \tfrac{1}{\sqrt{6}}( \underline{u\bar{u} + d\bar{d}} - 2s\bar{s})\\
+                    |0\ 0 \rangle_{\eta'} & = \tfrac{1}{\sqrt{3}}( \underline{u\bar{u} + d\bar{d}} + s\bar{s})
+                        \\[4pt]
+                    |0\ 0 \rangle_{\phi} & = \tfrac{1}{\sqrt{2}}(s\bar{s})\\
+                \end{aligned}
+            \end{gathered} 
+    \end{aligned} 
+\)
+\hfill
+
+\vspace{10pt}
+% Meson Ground State
+\(
+    \begin{aligned}[t]
+        & \underline{ \text{Meson Ground State (symm.)} } \ \Rightarrow\ \boxed{ \psi_{spin}\psi_{flavor} = \psi_{antisym.} }\\
+        % Meson Mass
+        & \bullet\ \boxed{ M \approx m_1 + m_2 + A_{exper} \tfrac{S_1 \cdot S_2}{m_1 m_2} }\\
+        & \ast\ M_\eta \approx \tfrac{M_{u\bar{u}} + M_{d\bar{d}}}{6} + \tfrac{2M_{s\bar{s}}}{3}
+            \hspace{15pt} \ast\ M_{\eta'} = \text{bad}
+            \\[5pt]
+        % Orthogonal
+        & \bullet\ \langle u \uparrow | u \uparrow \rangle = 1,\ \langle u \uparrow | u \downarrow \rangle = 0\\[2pt]
+        % Baryon Magnetic Moment
+        & \bullet\ \begin{gathered}[t]
+                \text{Magnetic Moment}:\\[-2pt]
+                \boxed{ \mu_x = g \tfrac{qL}{2m} = \tfrac{q\hbar}{2m} = -\mu_{\bar{x}}}
+            \end{gathered} 
+            \ \boxed{ \begin{aligned}[t]
+                \mu_{x\bar{y}} & = \langle \psi | \hs (\mu_1 + \mu_2)_z \hs | x\bar{y} \otimes jm \rangle\\
+                & = \langle \psi | \hs \mu_1 S_1 + \mu_2 S_2  \hs | x\bar{y} \otimes jm \rangle / \tfrac{\hbar}{2}
+            \end{aligned} }
+            \\
+    \end{aligned}
+\)
+\hfill\vline\hfill
+\(
+    \begin{aligned}[t]
+        & \text{Example}:\ \psi_{\rho^+} = (-u\bar{d})(\uparrow \uparrow) = (u \uparrow \hs {\scriptstyle-} \bar{d} \uparrow)\\[5pt]
+        & \bullet\ \begin{aligned}[t]
+                & \left[ \mu_{1}S_1 + \mu_{2}S_2 \right] 
+                    |u \uparrow \rangle_1 |{\scriptstyle-} \bar{d}\uparrow \rangle_2 / \tfrac{\hbar}{2} 
+                    \\[5pt]
+                & = \left[ \mu_{u} + \mu_{\bar{d}} \right] | \rho^+ \uparrow \rangle
+                    = \underline{ \left[ \mu_{u} - \mu_{d} \right] } | \rho^+ \uparrow \rangle 
+                    \\
+            \end{aligned}
+            \\[5pt]
+        & \bullet\ \mu | \rho^- \uparrow \rangle 
+            = { \mu_{\rho^-} } | \rho^- \uparrow \rangle 
+            = -\underline{\mu_{\rho^+} } | \rho^- \uparrow \rangle
+    \end{aligned}
+\)
+\hfill\hs
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+\vspace{15pt}
+% Baryons Spin Wave Function
+\( 
+    \underline{ \text{Baryon Spin}\ \psi\ (2 \otimes 2 \otimes 2 = 4 \oplus 2 \oplus 2 ) }:
+    % 1-3 Antisymmetric Spin 
+    \hspace{2cm} \boxed{\text{1-3 Anti.}} \ \ \mss{ | \ \ \rangle_{13} = | \ \ \rangle_{12} + | \ \ \rangle_{23} }
+    \ , \ \boxed{ s_1 + s_3 = 0 }
+\)
+\\[10pt]
+\(      
+    \begin{aligned}[t]
+        % Fully Symmetric
+        & \boxed{ \text{Fully Symmetric} } \ , \ \boxed{ \forall ij,\ s_i + s_j = 1}
+            \\[3pt]
+        & | \tfrac{3}{2} \tfrac{3}{2} \rangle = ( \uparrow\uparrow\uparrow )\\
+        & | \tfrac{3}{2} \tfrac{1}{2} \rangle 
+            = \tfrac{1}{\sqrt{3}} ( \uparrow\uparrow\downarrow + \uparrow\downarrow\uparrow + \uparrow\downarrow\downarrow )
+            \\
+        & | \tfrac{3}{2} \tfrac{-1}{2} \rangle 
+            = \tfrac{1}{\sqrt{3}} ( \downarrow\downarrow\uparrow + \downarrow\uparrow\downarrow + \uparrow\downarrow\downarrow )
+            \\
+        & | \tfrac{3}{2} \tfrac{-3}{2} \rangle = ( \downarrow\downarrow\downarrow )\\
+    \end{aligned}
+    \hfill
+    \begin{gathered}[t]
+        % 12 Antisymmetric
+        \begin{aligned}[t]
+                & \begin{gathered}[t]
+                        \boxed{ \text{1-2 Antisymmetric} }\\[-3pt]
+                        \boxed{ \mss{ s_1 + s_2 = 0 } }
+                    \end{gathered}
+                    \\[3pt]
+                & \dboxed{ | \tfrac{1}{2} \tfrac{1}{2} \rangle 
+                    = \tfrac{1}{\sqrt{2}} ( \uparrow\downarrow - \downarrow\uparrow ) \uparrow }
+                    \\
+                & | \tfrac{1}{2} \tfrac{-1}{2} \rangle = \tfrac{1}{\sqrt{2}} ( \uparrow\downarrow - \downarrow\uparrow ) \downarrow\\
+            \end{aligned}
+            \hspace{1cm}
+            \vline
+            \hspace{1cm}
+            % 23 Antisymmetric
+            \begin{aligned}[t]
+                & \begin{gathered}[t]
+                        \boxed{ \text{2-3 Antisymmetric} }\\[-3pt]
+                        \boxed{ \mss{ s_2 + s_3 = 0 } }
+                    \end{gathered}
+                    \\[3pt]
+                & | \tfrac{1}{2} \tfrac{1}{2} \rangle = \tfrac{1}{\sqrt{2}} \uparrow ( \uparrow\downarrow - \downarrow\uparrow ) \\
+                & | \tfrac{1}{2} \tfrac{-1}{2} \rangle = \tfrac{1}{\sqrt{2}} \downarrow ( \uparrow\downarrow - \downarrow\uparrow ) \\
+            \end{aligned}
+            \\[5pt]
+        % Inner Product of Spin States
+        \bullet\ \langle \psi_{12} | \psi_{23} \rangle = - \tfrac{1}{2}
+            \hspace{20pt} \bullet\ \langle \psi_{23} | \psi_{31} \rangle = \tfrac{1}{2}
+            \hspace{20pt} \bullet\ \langle \psi_{31} | \psi_{12} \rangle = \tfrac{1}{2}
+    \end{gathered}
+    \hfill
+\)
+
+\vspace{15pt}
+\( 
+    % Baryon Flavour Wave Function
+    \underline{ \text{Baryon Flavor}\ \psi\ (3 \otimes 3 \otimes 3 = 10 \oplus 8 \oplus 8 \oplus 1 ) }:\ \
+    % Fully Antisymmetric
+    \boxed{ \text{Fully Antisymmetric} }\ \ \ \psi_A = \tfrac{1}{\sqrt{6}} (uds - usd + dsu - dus + sud - sdu) 
+\)
+\\[5pt]
+\(
+    \begin{aligned}
+        % Fully Symmetric
+        & \boxed{ \text{1-2-3 Fully Symmetric} }\\[5pt]
+        & \begin{gathered}
+                ddd \hspace{3cm} \tfrac{1}{\sqrt{3}} (ddu + dud + udd) 
+                    \hspace{2cm} \tfrac{1}{\sqrt{3}} (uud + udu + duu) 
+                    \hspace{3cm} uuu 
+                    \\[0pt]
+                \tfrac{1}{\sqrt{3}} (dds + dsd + sdd) 
+                    \hspace{1cm} \tfrac{1}{\sqrt{6}} (uds + usd + dus + dsu + sud + sdu)
+                    \hspace{1cm} \tfrac{1}{\sqrt{3}} (uus + usu + suu) 
+                    \\[0pt]
+                \tfrac{1}{\sqrt{3}} (dss + sds + ssd) \hspace{2cm} \tfrac{1}{\sqrt{3}} (uss + sus + ssu) \\[-5pt]
+                uuu \\
+            \end{gathered}
+    \end{aligned}
+\)
+\\[10pt]
+\(
+    % 1-2 Antisymmetric
+    \begin{aligned}
+        & \boxed{ \text{1-2 Antisymmetric} }
+            \hspace{15pt}
+            \boxed{ \mss{
+                \ast\ T_{23} \psi_{12} = \psi_{23} \ \ \ 
+                \ast\ T_{31} \psi_{12} = - \psi_{23}
+            } }
+            \\[5pt]
+        & \mss{ \begin{gathered}
+                % Row 1
+                {\scriptstyle |\tfrac{1}{2} -\tfrac{1}{2} \rangle} = \tfrac{1}{\sqrt{2}} (ud-du)d 
+                    \hspace{2cm} \dboxed{ p = |\tfrac{1}{2} \tfrac{1}{2} \rangle = \tfrac{1}{\sqrt{2}} (ud-du)u }
+                    \\[5pt]
+                % Row 2
+                {\scriptstyle |1 0 \rangle} = \Sigma^0 = \tfrac{1}{2} [(us-su)d + (ds-sd)u]
+                    \\[-12pt]
+                \begin{gathered}
+                    {\scriptstyle |1 -1 \rangle} = \\[-3pt]
+                    \tfrac{(ds-sd)d}{\sqrt{2}}
+                \end{gathered} 
+                \hspace{6.5cm} 
+                \begin{gathered}
+                    {\scriptstyle |1 1 \rangle} =  \\[-3pt]
+                    \tfrac{(us-su)u}{\sqrt{2}}     
+                \end{gathered}
+                    \\[-12pt]
+                \tfrac{1}{\sqrt{12}} [ \mss{ 2(ud-du)s + (us-su)d - (ds-sd)u } ]
+                    \\[7pt]
+                % Row 3
+                {\scriptstyle |\tfrac{1}{2} -\tfrac{1}{2} \rangle} = \tfrac{1}{\sqrt{2}} (ds-sd)s 
+                    \hspace{2cm} |\tfrac{1}{2} \tfrac{1}{2} \rangle = \tfrac{1}{\sqrt{2}} (us-su)s
+                    \\
+            \end{gathered} }
+    \end{aligned}
+    \hfill
+    \vline
+    \hfill
+    % 2-3 Antisymmetric
+    \begin{aligned}
+        & \boxed{ \text{2-3 Antisymmetric} }
+            \hspace{15pt}
+            \boxed{ \mss{
+                \ast\ T_{12} \psi_{23} = \psi_{31} \ \ \
+                \ast\ T_{31} \psi_{23} = - \psi_{12}
+            } }
+            \\[5pt]
+        & \mss{ \begin{gathered}
+                % Row 1
+                {\scriptstyle |\tfrac{1}{2} -\tfrac{1}{2} \rangle} = \tfrac{1}{\sqrt{2}} d(ud-du) 
+                \hspace{2cm} |\tfrac{1}{2} \tfrac{1}{2} \rangle = \tfrac{1}{\sqrt{2}} u(ud-du) 
+                    \\[5pt]
+                % Row 2
+                {\scriptstyle |1 0 \rangle} = \Sigma^0 = \tfrac{1}{2} [d(us-su) + u(ds-sd)]
+                    \\[-12pt]
+                \begin{gathered}
+                    {\scriptstyle |1 -1 \rangle} =  \\[-3pt]
+                    \tfrac{d(ds-sd)}{\sqrt{2}} 
+                \end{gathered}
+                \hspace{6.5cm} 
+                \begin{gathered}
+                    {\scriptstyle |1 1 \rangle} =  \\[-3pt]
+                    \tfrac{u(us-su)}{\sqrt{2}} 
+                \end{gathered}
+                    \\[-12pt]
+                \tfrac{1}{\sqrt{12}} [ \mss{ 2s(ud-du) + d(us-su) - u(ds-sd) } ]
+                    \\[7pt]
+                % Row 3
+                {\scriptstyle |\tfrac{1}{2} -\tfrac{1}{2} \rangle} = \tfrac{1}{\sqrt{2}} s(ds-sd) 
+                \hspace{2cm} |\tfrac{1}{2} \tfrac{1}{2} \rangle = \tfrac{1}{\sqrt{2}} s(us-su)\\
+            \end{gathered} }
+    \end{aligned}
+\)\\[5pt]
+\(
+    % Isospin Lowering Operator
+    \begin{aligned}
+        \bullet\ 1 \cdot n_{23}^0 & = I_{-} p^+_{23} 
+            = \tfrac{1}{\sqrt{2}} \mss{ \left[ {I_-}uud - {I_-}udu + u{I_-}ud - u{I_-}du + uu{I_-}d - ud{I_-}u \right] }
+            = \tfrac{1}{\sqrt{2}} \left[ dud - ddu + \cancel{udd - u0u + uu0 - udd} \right] 
+            \\
+        \bullet\ \sqrt{2} \Sigma^0_{23} & = I_{-} \Sigma^+_{23} 
+            = \tfrac{1}{\sqrt{2}} \mss{ \left[ {I_-}uus - {I_-}usu + u{I_-}us - u{I_-}su + uu{I_-}s - us{I_-}u \right] }
+            = \tfrac{1}{\sqrt{2}} \left[ dus - dsu + uds - \cancel{u0u + uu0} - usd \right]
+            % \hspace{15pt}
+            % \boxed{ s_{iso.\hs sing.} \Rightarrow {I_-}s = 0 }
+            \\
+        \bullet\ | 0 0 \rangle & = \Lambda^0_{23} 
+            = Au[ds - sd] + Bd[us -su] + Cs[ud-du] \ ,\
+            \left( \Lambda \cdot \Sigma^0 = 0 \right) \ ,\ \left( \Lambda \cdot \psi_A = 0 \right)
+            \ \Rightarrow\ (A,B,C) = \tfrac{(-1,1,2)}{\sqrt{12}}
+    \end{aligned}
+\)
+\\[10pt]
+% 1-3 Antisymmetric
+\( \boxed{\text{1-3 Anti.}} \ \ \mss{\psi_{13} = \psi_{12} + \psi_{23}} \)
+\hfill
+% Baryon Color Wave Function
+\(
+    \underline{ \text{Baryon Color}\ \psi }:\
+    \boxed{ \psi(\text{Color})_{antisymm.\ singlet} = \tfrac{1}{\sqrt{6}} (rgb - rbg + gbr - grb + brg - bgr) }
+\)
+
+\vspace{15pt}
+\(
+    \begin{aligned}
+        % Baryon Ground State 
+        & \underline{ \text{Baryon Ground state (symm.)} } \ \Rightarrow \ \boxed{ \psi_{spin} \psi_{flavour} = \psi_{symm.} } 
+            \hspace{12pt}
+            % Decuplet spin-flavor state
+            \ast\ \text{Decuplet}:\ \boxed{ \psi_{symm.} = | \tfrac{3}{2}\hs x \rangle\hs \psi_{123} } 
+            \ , \ \mss{ \bcancel{ \psi_{anti.} = | \tfrac{3}{2}\hs x \rangle\hs \psi_A } }
+            \\
+        % Octet symmetric spin-flavor state
+        & \ast\ \text{Octet}:\ \boxed{ \arraycolsep=2pt \begin{array}[t]{r c r c r c l}
+                \psi_{symm.} & = & \tfrac{\sqrt{2}}{3} \big(\ | \ \ \rangle_{12} \psi_{12} & + & | \ \ \rangle_{23} \psi_{23} 
+                    & + &  | \ \ \rangle_{13} \psi_{13} \ \big)
+                    \\[5pt]
+                & = & \tfrac{\sqrt{2}}{3} \big( \ 2 | \ \ \rangle_{12} \psi_{12} & + & 2 | \ \ \rangle_{23} \psi_{23}
+                    & + &  | \ \ \rangle_{12} \psi_{23} + | \ \ \rangle_{23} \psi_{12}  \ \big)
+                    \\
+            \end{array}}
+            % Octet Antisymmetric spin-flavor state
+            \ , \ 
+            \bcancel{ \begin{gathered}[t]
+                \psi_{anti.} = \ | \ \ \rangle_{12} \big( \psi_{23} + \psi_{31} \big) + ...\\[3pt]
+                \ast\ ( \mu \mss{ ( \psi_p^{anti.} ) } < 1;\ \mu \mss{ ( \psi_p^{symm.} ) } > 1 )
+            \end{gathered} }
+            \\
+    \end{aligned}
+\)\\[7pt]
+\(
+    \begin{aligned}
+        % Orthogonal
+        & \bullet\ \langle u \uparrow | u \uparrow \rangle = 1,\ \langle u \uparrow | u \downarrow \rangle = 0\\[2pt]
+        % Baryon Magnetic Moment
+        & \bullet\ \begin{gathered}[t]
+                \text{Magnetic Moment}:\\[-2pt]
+                \boxed{ \mu = g \tfrac{qL}{2m} = \tfrac{q\hbar}{2m} }
+            \end{gathered} 
+            \ \boxed{ \begin{aligned}[t]
+                \mu_{xyz} & = \langle \psi | \hs (\mu_1 + \mu_2 + \mu_3)_z \hs | xyz \otimes jm \rangle\\
+                & = \langle \psi | \hs \mu_1 S_1 + \mu_2 S_2 + \mu_3 S_3  \hs | xyz \otimes jm \rangle / \tfrac{\hbar}{2}
+            \end{aligned} }
+            \\
+    \end{aligned}
+    \hfill
+    \vline
+    \hfill
+    % mag moment example
+    \begin{aligned}
+        & \text{Example}: (udu) (\uparrow\uparrow\downarrow) = (u\uparrow d\uparrow u\downarrow) \\[5pt]
+        & \bullet\ \begin{aligned}[t]
+                & \left[ \hs \mu_1 S_1 + \mu_2 S_2 + \mu_3 S_3 \hs \right] 
+                    | u\uparrow \rangle_1 | d\uparrow \rangle_2 | u\downarrow \rangle_3
+                    \\[5pt]
+                & = \left[ \mu_u + \mu_d - \mu_u  \right] 
+                    | u\uparrow \rangle_1 | d\uparrow \rangle_2 | u\downarrow \rangle_3 / \tfrac{\hbar}{2} 
+            \end{aligned}
+            \\
+    \end{aligned}
+\)
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+
+\(
+    \begin{aligned}
+        % Baryon Mass Formula
+        & \bullet\ \text{Mass}:\ \boxed{
+                M \approx m_1 + m_2 + m_3 + A'_{exper.} 
+                \left[ \tfrac{S_1 \cdot S_2}{m_1 m_2} + \tfrac{S_2 \cdot S_3}{m_2 m_3} + \tfrac{S_1 \cdot S_3}{m_1 m_3} \right]
+            }
+            \hspace{15pt}
+            \ast\ \boxed{ m_u \approx m_d } \ (!!!!!)\\
+            \\[-10pt]
+        & \ast\ (xxx), [ \mss{m_u \approx m_d \Rightarrow}\hs \Delta ] :\ 
+            J^2 = \tfrac{15}{4} \hbar^2 = S_1^2 + S_2^2 + S_3^2 + 2(\underline{S_1 \cdot S_2 + S_2 \cdot S_3 + S_3 \cdot S_1})
+            \\
+        & \ast\ (\psi_{123}) \Rightarrow \forall ij,\ s_i + s_j = 1:\ 
+            (S_i + S_j)^2 = 2\hbar^2 = S_i^2 + S_j^2 + 2 \underline{S_i \cdot S_j}
+            \\
+        & \ast\ \Sigma \in |1 x\rangle_{iso.}^{symm.} \Rightarrow |\tfrac{3}{2} x \rangle_{spin}^{symm.}:\ 
+            (S_u + S_d)^2 = 2\hbar^2 = S_u^2 + S_d^2 + 2 \underline{S_u \cdot S_d};\ 
+            \underline{S_u \cdot S_3 + S_d + S_3} = \mss{\sum}\hs S_i \cdot S_j - S_u \cdot S_d
+            \\
+        & \ast\ \Lambda \in |0 0\rangle_{iso.}^{antisymm.} \Rightarrow |\tfrac{1}{2} x \rangle_{spin}^{antisymm.}:\ 
+            (S_u + S_d)^2 = 0 = S_u^2 + S_d^2 + 2 \underline{S_u \cdot S_d}: \
+            \underline{S_u \cdot S_3 + S_d + S_3} = \dots
+            \\
+        & \ast\ \Xi_{s-s \ \text{symm.}} \in (ssx) \Rightarrow |1 x\rangle_{ss\hs spin}^{symm.} :\ 
+            (S_{s1} + S_{s2})^2 = 2\hbar^2 = ... \ ;\ 
+            J^2 = \cancel{\tfrac{3}{4}\hbar^2} = (S_{s1} + S_{s2})^2 + \underline{2 (S_{s1} + S_{s2}) \cdot S_x} + \cancel{S_x^2}
+    \end{aligned}
+\)
+
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+
+\vspace{15pt}
+% Parity
+\(\begin{aligned}
+    & \underline{\text{Parity}},\ P^2 = 1,\ \boxed{\text{Conserved under Strong+EM} = \text{Invariant under Reflections}}\\[5pt]
+    & \bullet\ P_\text{Fermion} \neq P_{\hs \overline{\text{Fermion}}}
+        \hspace{20pt} \bullet\ P_\text{Quark} = 1 \neq -1 = P_{\hs \overline{\text{Quark}}}
+        \\
+    & \ast\ (xyz):\ \boxed{p = (+1)^3 = 1}
+        \hspace{15pt }\ast\ (x\bar{y}):\ p = (+1)(-1)*\underline{(-1)^l} = \boxed{ (-1)^{l+1} }
+        \hspace{10pt} {\scriptstyle(l\ \text{orb. ang. mom.};\ l=0\ \text{for 1,2 nonet})}
+        \\
+    & \begin{aligned}
+            & \bullet\ P_\text{Boson} = P_{\hs \overline{\text{Boson}}}\\
+            & \ast\ \boxed{ \gamma:\ s = 1,\ p = -1,\ \text{vec.} }
+                \\[5pt]    
+        \end{aligned}
+        \hspace{25pt}
+        \begin{aligned}
+            \bullet\ A & \rightarrow B + C\\
+            \Aboxed{ p_a & = p_b \cdot p_c \cdot (-1)^l }
+        \end{aligned}
+        \hspace{25pt}
+        \begin{aligned}
+            & \bullet\ \nu \text{\scriptsize - ``Always" Left-Handed} 
+                \hspace{15pt} \mss{ \ast\ m_\nu \neq 0 \ \rightarrow\ \exists \text{ right handed } \nu }
+                \\
+            & \bullet\ \bar{\nu} \text{\scriptsize - ``Always" Right-Handed}
+        \end{aligned}
+\end{aligned}\)
+
+\vspace{15pt}
+% "Charge" Conjugation
+\(\begin{aligned}
+    & \underline{\text{``Charge'' Conjugation (charge, quantum num., not spin/mass/etc.)}}: C|p\rangle = |\bar{p}\rangle
+        ,\ \boxed{\text{Conserved under Strong+EM}}
+        \\
+    & \bullet\ Eigenstate:\ C^2 = 1 \ \Rightarrow\ C|q\rangle = \pm |q\rangle = |\bar{q}\rangle   
+        \ \Rightarrow\ \langle q | q \rangle = \langle \bar{q} | \bar{q} \rangle 
+        \\
+    & \ast\ \gamma:\ \boxed{c = -1}
+        \hspace{20pt} \ast\ |\tfrac{1}{2}\rangle \otimes | \overline{ \tfrac{1}{2} } \rangle:\ \boxed{ c = (-1)^{l+s} }
+        \ \Rightarrow\ \text{Central Meson}\ (x\bar{x}):\ 
+        l = 0,\ 
+        \mss{ \begin{aligned}
+            s & = 0\ (\text{sca.}),\ \boxed{c = +1}\\
+            & = 1\ (\text{vec.}),\ \boxed{c = -1}
+        \end{aligned} }
+\end{aligned}\)
+
+\vspace{10pt}
+% G-Parity: G = CR_2
+\(\begin{aligned}
+    & \underline{G\text{-Parity}:\ G = CR_2,\ R_2 = e^{i\pi I_2}}:\
+        \text{``\(R_2|I_3\rangle = |-I_3\rangle\)''}\ 
+        \text{e.g. ``\(G|\pi^+\rangle = C|\pi^-\rangle = |\pi^+\rangle\)''}\ \
+        (\text{not exactly})
+        \\[5pt]
+    & \bullet\ \text{Isospin+Charge} \rightarrow \boxed{\text{Conserved under Strong}}
+        \hspace{15pt} \ast\ \mss{
+            G| I\ I_3\rangle_\text{no S meson} \ \stackrel{??}{=}\ C \underline{R_2|I\ 0\rangle} 
+            \stackrel{??}{=} C \underline{(-1)^I |I\ 0\rangle} = (-1)^I c_0 
+        } \hspace{15pt} (??)
+        \\
+    & \bullet\ \textit{Eigenstate}:\ \underline{ x, y \in \{u,d,\bar{u},\bar{d}\}\ (\pi \text{ or } \eta = d \bar{d} \hs) }
+        \ \Rightarrow\ G(x\bar{y}) = (x\bar{y}),\ \boxed{ g = (-1)^I c_0 }
+        \ \rightarrow\ \underline{g_\pi = (-1)^1*1 = -1}
+\end{aligned}\)
+
+\vspace{15pt}
+% Neutral Kaons
+\(\begin{aligned}
+    & \underline{ K^0 \ \leftrightarrows\ \overline{K}^0 }
+        \hspace{15pt} 
+        \underline{A \leftrightarrows B\ \ \text{Req:}}\
+        \boxed{ \mss{
+            \bullet\ m_a = m_a\ (B = \overline{A}) 
+            \hspace{5pt} \bullet\ B\mss{(ary)}_a = B_b\ (A = x\bar{y}) 
+            \hspace{5pt} \bullet\ Q_a = Q_b\ (Q_x + Q_{\bar{y}} = 0)
+            \hspace{5pt} \ast\ \begin{aligned}
+                & \text{note, heavy vec.}\\[-5pt]
+                & \text{mes. decay too fast}
+            \end{aligned}
+        } }
+        \\[5pt]
+    & \bullet\ 
+        \mss{ \begin{aligned}
+            CP|K^0\rangle & = - |\overline{K}^0\rangle \\
+            CP|\overline{K}^0\rangle & = - |K^0\rangle\\
+        \end{aligned} }
+        \ \Rightarrow\ 
+        \mss{ \begin{aligned}
+            |K_1 \rangle & = \tfrac{1}{\sqrt{2}}\left( |K^0\rangle - |\overline{K}^0\rangle \right)\\
+            |K_2 \rangle & = \tfrac{1}{\sqrt{2}}\left( |K^0\rangle + |\overline{K}^0\rangle \right)\\
+        \end{aligned} }
+        \ \Rightarrow\ 
+        \mss{ \begin{aligned}
+            CP|K_1\rangle & = |K_1\rangle \\
+            CP|K_2\rangle & = - |K_2\rangle \\
+        \end{aligned} }
+        \ \Rightarrow\ 
+        \boxed{\arraycolsep=1pt \begin{array}{l c r l}
+            \scriptstyle{(cp = 1)} & \hs \hspace{3pt} \hs & |K_1\rangle & \rightarrow 2\pi 
+                \ \ \mss{(3\pi\ \text{poss. if}\ l \neq 0, \pi^+\pi^-\pi^0)} 
+                \\
+            \scriptstyle{(cp = -1)} & & |K_2\rangle & \rightarrow 3\pi 
+                \ \ \text{\scriptsize(decays \(> 2\pi\); \(\underline{\cancel{CP} \rightarrow \exists 2\pi}\))}
+                \\
+        \end{array} }
+        \\[5pt]
+    & \ast\ |K^0\rangle = \tfrac{1}{\sqrt{2}}\left( |K_1\rangle + |K_2\rangle \right)
+        \hspace{15pt} \ast\ C|K_{1,2}\rangle = -|K_{1,2}\rangle
+        \\[5pt]
+    & \bullet\ \cancel{CP}\ \text{for}\ K_2 \ \underline{\text{\scriptsize(1964, Fitch-Cronin)}}
+        \ \rightarrow \
+        \boxed{ |K_L\rangle \equiv \tfrac{1}{\sqrt{1+|\epsilon|^2}} \left( |K_2\rangle + \epsilon|K_1\rangle \right) }
+        \hspace{15pt}
+        \ast\ \text{\scriptsize CKM matrix accounts for CP viol.; predicts 3 gen.}
+        \\
+    & \ast\ \underline{ 
+            |K_L\rangle \rightarrow \pi^+ + e^- + \bar{\nu}_e \ \ 
+            \text{\scriptsize very slightly more likely than} \ \ \pi^- + e^+ + \nu_e
+        }
+        \ \ \text{(also true for \(B^0\)-system)}
+\end{aligned}\)
+
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+
+\vspace{15pt}
+% Strong Decays
+\(
+    \begin{aligned}[t]
+        & \text{\underline{Strong Decay} of}\ (xyz)_{10} \rightarrow (abc)_9 + (uv)_9 \\
+        & \begin{aligned}[t]
+                & \ast\ \boxed{ \text{decays in}\hs \sim 10^{-23}\ \text{s} } \\
+                & \ast\ \boxed{ \text{Conserves \(C\) and \(S\)} }       
+            \end{aligned}
+            \hspace{15pt}
+            \begin{aligned}[t]
+                \bullet\ \Delta^{++}_{uuu} & \rightarrow p^+_{uud} + \pi^+_{\bar{d}u}\\
+                \bullet\ \Delta^{-}_{ddd} & \rightarrow n^0_{ddu} + \pi^-_{\bar{u}d}\\
+                & \rightarrow \cancel{ \Sigma^-_{dds} + K^0_{\bar{s}d} }
+            \end{aligned}
+            \\
+    \end{aligned}
+    \hspace{25pt}
+    \begin{aligned}[t]
+        \bullet\ \Sigma^{*+}_{uus} & \rightarrow \pi^0_{u\bar{u}} + \Sigma^+_{uus} 
+            \ /\ \pi^+_{u\bar{d}} + \underline{ \Sigma^0_{dus} }
+            \ /\ \pi^+_{u\bar{d}} + \underline{ \Lambda^0_{dus} }
+            \\
+        & \rightarrow \cancel{ K^+_{u\bar{s}} + \Xi^0_{sus} 
+            \ /\ p^+_{uud} + \overline{K}^0_{\bar{d}s} 
+            \ /\ \Sigma^+_{uus} + \eta'_{\bar{s}s}
+            }
+            \\[10pt]
+        \bullet\ \Xi^{*-}_{dss} & \rightarrow \pi^-_{d\bar{u}} + \Xi^0_{uss} 
+            \ /\ \cancel{ \eta^0_{d\bar{d}} (?) + \Xi^-_{dss} }
+            \ /\ \cancel{ \underline{\Lambda^0_{dsu}} + K^-_{\bar{u}s} }
+            \\
+        & \rightarrow \cancel{ \underline{\Sigma^0_{dsu}} + K^-_{\bar{u}s} 
+            \ /\ \Sigma^-_{dsd} + \overline{K}^0_{\bar{d}s}
+            \ /\ \Xi^-_{dss} + \eta'_{\bar{s}s}
+            }
+            \\
+    \end{aligned}
+\)
+
+
+%----------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+
+% Elastic Collisions
+\(\arraycolsep=2pt\begin{array}[t]{r l c l}
+    \underline{\text{Elastic}}
+        \\[5pt]
+    {\text{Ruther. Scatter.},\ v \ll c} :\ & q_1 + q_2 & \rightarrow & q_1 + q_2 \\
+    \text{Mott Scattering},\ q_2 \gg q_1 :\ & q_1 + q_2 & \rightarrow & q_1 + q_2 \\
+    {\text{M\text{\o}ller Scattering}} :\ &  e + e & \rightarrow & e + e\\
+    {\text{Bhabha Scattering}} :\ & e + e^+ & \rightarrow & e + e^+\\
+    {\text{Compton Scattering}} :\ & \gamma + e & \rightarrow & \gamma + e\\
+\end{array}\)
+\hspace{20pt}
+% Inelastic Collisions
+\(\arraycolsep=2pt\begin{array}[t]{r l c l}
+    \underline{\text{Inelastic}}
+        \\[5pt]
+    {\text{Pair Annhilation}} :\ & e + e^+ & \rightarrow & \gamma + \gamma\\
+    {\text{Pair Production}} :\ & \gamma + \gamma & \rightarrow & e + e^+ 
+        \\[5pt]
+    {\text{Delbruck Scattering??}} :\ & \gamma + \gamma & \rightarrow & \gamma + \gamma\\
+\end{array}\)
+
+\vspace{15pt}
+% OZI suppression 
+\(\bullet\ \underline{ \text{OZI suppressed} + \text{no other opt.} = \text{(strong?) Decay} \sim 10^{-20}\text{s} }\)\\[10pt]
+\(
+    \begin{aligned}
+        \phi_{s\bar{s}} & \rightarrow 2K_{\_s} \hspace{5pt} \underline{(\text{more mass than }3\pi)}\\
+        & \rightarrow 3\pi \hspace{5pt} (\text{OZI suppressed})\\
+        & \rightarrow 2\pi \hspace{5pt} (\text{parity viol.})\\
+    \end{aligned}
+    \hspace{15pt}
+    \begin{aligned}
+        \psi_{c\bar{c}} & \rightarrow 2D_{\_c} \hspace{5pt} {(\text{more mass than } \psi)}\\
+        & \rightarrow 3\pi \hspace{5pt} \underline{(\text{OZI suppressed})}\\
+        & \rightarrow 2\pi \hspace{5pt} (\text{parity viol.})\\
+    \end{aligned}
+    \hspace{15pt}
+    \begin{aligned}
+        \Upsilon_{b\bar{b}} & \rightarrow 2B_{\_b} \hspace{5pt} {(\text{more mass than } \Upsilon)}\\
+        & \rightarrow 3\pi \hspace{5pt} \underline{(\text{OZI suppressed})}\\
+        & \rightarrow 2\pi \hspace{5pt} (\text{parity viol.})\\
+    \end{aligned}
+\)
+
+\vspace{15pt}
+% Heavy Quarkonium
+\(
+    \bullet\ n^{2s+1} l_j 
+    \hspace{15pt}
+    \begin{aligned}[t]
+        & \text{Charmonium}\\
+        & \bullet\ S\ \text{states},\ l=0:\ (s=0 \rightarrow \eta_c),\ (s=1 \rightarrow \phi_c)\\
+        & \bullet\ P\ \text{states},\ l=1:\ (s=0,1,2 \rightarrow \chi_c )\\
+        & \bullet\ n=1,2\ \text{long-lived (OZI)}\\
+        & \bullet\ n\geq 3\ \text{(``quasi-bound'') short-lived (\(>\) OZI threshold)}\\
+    \end{aligned}
+    \hspace{15pt}
+    \begin{aligned}[t]
+        & \text{Bottomium}\\
+        & \bullet\ \text{similar to others}
+    \end{aligned}
+\)
+
+\vspace{15pt}
+% Lifetimes for Particles
+\(
+    \begin{aligned}[t]
+        & \underline{ \text{Particle [Mean] Lifetimes},\ \tau }:\ 
+            \begin{aligned}[t]
+                & \boxed{ \tfrac{N(t)}{N(0)} = e^{-\tfrac{t}{\tau}} }\\
+                & \bullet\ \text{Decay Rate},\ \Gamma = \tfrac{1}{\tau} \\
+            \end{aligned}
+            \\[-15pt]
+        & \begin{aligned}
+                \tau_\mu & = \text{2.2E-6 s}\\
+                \tau_{\pi^-} & = \text{2.6E-8 s}\\
+            \end{aligned}
+            \\
+    \end{aligned}
+\)
+
+\vspace{0pt}
+% Fermi Golden Rule, 2 Particle Decay
+\(\begin{aligned}
+    & \begin{gathered}
+            \text{Fermi's Golden Rule}, \\[-5pt]
+            \underline{ \text{Decay}\ (m_1 \rightarrow m_2 + ... + m_n) }
+        \end{gathered}
+        :\
+        \dboxed{ \begin{aligned}
+            \Gamma & = \frac{S}{2\hbar m_1} \int |M|^2 \cdot (2\pi)^4 \delta^4\mss{(P_1 - [P_2 + ... P_n])} 
+                \times \prod_{j=2}^n 2\pi \delta\mss{(P_j^2 - m_j^2c^2)} \cdot \theta\mss{(P_j^0)} \cdot \frac{d^4 P_j}{(2\pi)^4} 
+                \\
+            & = \frac{S}{2\hbar m_1} \int |M|^2 \cdot (2\pi)^4 \delta^4\mss{(P_1 - [P_2 + ... P_n])} 
+                \times \prod_{j=2}^n \frac{1}{ 2\sqrt{p_j^2 + m^2c^2} } \cdot \frac{d^3 p_j}{(2\pi)^3} 
+        \end{aligned} }
+        \\[5pt]
+    & \ast\ \begin{aligned}
+            & (m_1 \rightarrow m_2 + m_3)\\
+        \end{aligned}
+        :\ 
+        \boxed{
+            \Gamma = \frac{1}{16\pi^2} \frac{S}{2\hbar m_1} \int |M|^2 
+            \cdot \frac{ \delta^4 \mss{ (P_1 - [P_2 + P_3]) } }{ \sqrt{p_2^2 + m_2^2c^2} \sqrt{p_3^2 + m_3^2c^2} }
+            \cdot d^3p_2\hs d^3p_3
+        }
+        \\
+    & \ast\ \begin{aligned}
+            & (m_1 \rightarrow m_2 + m_3)\\
+            & (p_1 = 0)\\
+        \end{aligned}
+        :\ 
+        \boxed{
+            \Gamma = \frac{S|p|}{8\pi\hbar m_1^2 c} |M|^2 
+            \hspace{7pt} , \hspace{7pt} |p| = |p_2| = |p_3|
+        }
+        \hspace{15pt} \text{\scriptsize(see scattering examples)}
+\end{aligned}\)
+
+\vspace{10pt}
+% Differential (Scattering) Cross Section
+\(
+    \begin{aligned}[t]
+        & \underline{ \text{Differential (Scattering) Cross Section} }: \\
+        & \boxed{ \frac{d\sigma}{d\Omega} = \left| \frac{b}{\sin\theta} \frac{db}{d\theta} \right| }
+            \hspace{7pt}, \hspace{7pt} (\phi + \Delta\phi) (b + \Delta b)^2 - \phi b^2 = \Delta \sigma
+            \hspace{7pt}, \hspace{7pt} b \Big|^{ \underline{\ \ \ \ \ \ / \theta \ \ }}
+            \\
+        & \bullet\ \text{Barn}:\ 1\ \text{b} = \text{E-24 cm}^2 = \text{E-28 M}^2\\
+    \end{aligned}
+\)
+\hspace{15pt}
+% Luminosity
+\(
+    \underline{ \textbf{Luminosity}, L }:\ \boxed{ L \frac{d\sigma}{d\Omega} = \frac{dN}{d\Omega} }
+\)
+
+\vspace{15pt}
+% Scattering example
+\(
+    \begin{aligned}
+        & \text{Scattering Example}:\ V = {k}/{r^2}\\[5pt]
+        & \boxed{ \theta = \pi - \phi }
+            \hspace{5pt} , \hspace{5pt} L = bmv_0 = mr^2\dot{\phi} \ , 
+            \\
+        & E = \tfrac{1}{2}mv_0^2 = \tfrac{1}{2}m\dot{r}^2 + \tfrac{L^2}{2mr^2} + \tfrac{k}{r^2}\\
+        & \dot{r} = \tfrac{dr}{d\phi} \dot{\phi}
+            \hspace{5pt} , \hspace{5pt} u \equiv \tfrac{1}{r} \ \Rightarrow\ \tfrac{dr}{d\phi} = \tfrac{dr}{du} \dot{u}
+            \\
+    \end{aligned}
+    \hfill
+    \begin{aligned}
+        \tfrac{1}{2}m \dot{r}^2 & = E - \tfrac{L^2}{2mr^2} - \tfrac{k}{r^2}
+            \ \Rightarrow\ r_{m[in]} = \sqrt{ \tfrac{L^2/2m + k}{E} }
+            \\
+        \sqrt{ \tfrac{1}{2}m } \tfrac{dr}{d\phi} L & = mr^2 \sqrt{ E - \tfrac{Er_m^2}{r^2} }
+            \ \Rightarrow\ \sqrt{ \tfrac{1}{2}m } \cancel{ \left| \tfrac{-1}{u^2} \right| } \tfrac{du}{d\phi} L 
+            = m \cancel{ \tfrac{1}{u^2} } \sqrt{ E - Er_m^2u^2 }
+            \\
+        \sqrt{2mE} \cdot \phi & = 2 L \int_0^{u_m} \tfrac{u_m du}{\sqrt{u_m^2-u^2}}
+            = 2L u_m \tfrac{\pi}{2}
+            \ \Rightarrow \ \phi = \tfrac{\pi L u_m}{\sqrt{2mE}} = \dboxed{ \tfrac{\pi L}{\sqrt{L^2 + 2mk}} }
+    \end{aligned}
+\)
+
+\vspace{15pt}
+% Fermi Golden Rule, 2 particle Scattering
+\(\begin{aligned}
+    & \underline{ \text{Fermi's Golden Rule},\ \text{2 Scattering}\ (m_1 + m_2 \rightarrow m_3 + ... + m_n) } :\ \\
+    & \dboxed{ \begin{aligned}
+            \sigma & = \frac{S\hbar^2}{ 4 \sqrt{(P_1 \cdot P_2)^2 - (m_1c)^2(m_2c)^2} } 
+                \int |M|^2 \cdot (2\pi)^4 \delta^4\mss{(P_1 + P_2 - [P_3 + ... P_n])} 
+                \times \prod_{j=3}^n 2\pi \delta\mss{(P_j^2 - m_j^2c^2)} \cdot \theta\mss{(P_j^0)} \cdot \frac{d^4 P_j}{(2\pi)^4}
+                \\
+            & = \frac{S\hbar^2}{ 4 \sqrt{(P_1 \cdot P_2)^2 - (m_1c)^2(m_2c)^2} } 
+                \int |M|^2 \cdot (2\pi)^4 \delta^4\mss{(P_1 + P_2 - [P_3 + ... P_n])} 
+                \times \prod_{j=3}^n \frac{1}{ 2\sqrt{p_j^2 + m_j^2c^2} } \cdot \frac{d^3 p_j}{(2\pi)^3} 
+        \end{aligned} }        
+    \end{aligned}
+\)\\[5pt]
+\(
+    % CM Frame
+    \ast\ \begin{aligned}
+            & (m_1 + m_2 \rightarrow m_3 + m_4)\\
+            & \mss{(p_1 + p_2 = 0)}\\
+        \end{aligned}
+        :\ 
+        \boxed{ \begin{aligned}
+            \sigma & = \frac{1}{16\pi^2} \frac{S \hbar^2 c}{4(E_1 + E_2)|p_1|} \int |M|^2 
+                \cdot \frac{ \delta^4 \mss{ (P_1 + P_2 - [P_3 + P_4]) } }{ \sqrt{p_3^2 + m_3^2c^2} \sqrt{p_4^2 + m_4^2c^2} }
+                \cdot d^3p_3\hs d^3p_4
+                \\
+            & = A \iint_0^\infty |M|^2 
+                \cdot \frac{ 
+                    \delta ( \mss{ [E_1 + E_2]/c - \dboxed{u(p_3)} } \ ) 
+                    \hs \cancel{ \delta^3 \mss{ (p_3 + p_4) } }
+                }{ 
+                    \sqrt{p_3^2 + m_3^2c^2} \sqrt{p_{\cancel{4}3}^2 + m_4^2c^2} 
+                }
+                \cdot \cancel{d^3p_4} \hs \cancel{d^3p_3\hs} \hs p_3^2 \hs d|p_3| \hs d\Omega 
+                \\
+            & = A \iint_{m_3c + m_4c}^\infty |M|^2 
+                \cdot \delta { (  [E_1 + E_2]/c - u )  }
+                \frac{p_3}{u} \hs du \hs d\Omega 
+                \\
+            \frac{d\sigma}{d\Omega} & = \left( \frac{ \hbar c}{8\pi} \right)^2 \frac{S |M|^2}{(E_1+E_2)^2} \frac{|p_f|}{|p_i|}
+                \hspace{7pt} , \hspace{7pt}
+                \mss{ \begin{aligned}
+                    & |p_f| = |p_3| = |p_4|,\ |p_i| = |p_1| = |p_2|\\
+                    & E_f = E_i\\
+                \end{aligned} }
+                \\
+        \end{aligned} }
+\)\\[5pt]
+\(
+    % p2 = 0, m_3 = 0, m_4 = 0; lab frame
+    \ast\ \begin{aligned}
+        & (m_1 + m_2 \rightarrow m_3 + m_4)\\
+        & \mss{ (p_2 = 0) }\\
+        & \mss{ (m_3 = 0,\ m_4 = 0) }\\
+        % & \mss{ \left| \arraycolsep=2pt \begin{matrix}
+        %         p_1 & 0\\
+        %         p_4 & p_3\\
+        %     \end{matrix}\right| }
+        %     = 
+        %     \mss{ \left| \arraycolsep=2pt \begin{matrix}
+        %         E_1 & m_2\\
+        %         |p_4| & |p_3|\\
+        %     \end{matrix}\right| }
+        %     - \tfrac{m_1^2 - m_2^2}{2}
+        %     \\
+    \end{aligned}
+    :\ 
+    \boxed{ \begin{aligned}
+        \sigma & = \frac{1}{16\pi^2} \frac{S\hbar^2}{4 m_2|p_1|c} \int |M|^2 
+            \cdot \frac{ \delta^4 \mss{ (P_1 + P_2 - [P_3 + P_4]) } }{ \sqrt{p_3^2} \sqrt{p_4^2} }
+            \cdot d^3p_3\hs d^3p_4
+            \\
+        & = A \int |M|^2 
+            \frac{ 
+                \delta ( \mss{ E_1/c + m_2c - |p_3| - |p_1-p_3| } ) 
+                \hs \cancel{ \delta^3 \mss{ (p_1 - p_3 - p_4) } }
+            }{ 
+                |p_3| \sqrt{p_1^2 + p_3^2 - 2|p_1||p_3|\cos\phi_{p_3p_3}}
+            }
+            \cdot \bcancel{d^3p_3}\hs \cancel{d^3p_4} \hs p_3^2 \hs d|p_3| \hs d\Omega 
+            \\
+        \frac{d\sigma}{d\Omega} & = \left( \frac{\hbar}{8\pi} \right)^2 
+            \frac{S|M|^2}{m_2|p_1|c} \cdot \frac{|p_3|}{|p_1 - p_3|}
+            \frac{1}{ \left| 1 + \frac{ 2|p_3| - 2|p_1| \cos\phi }{ 2|p_1 - p_3| } \right|}
+            \\
+        & = \left( \frac{\hbar}{8\pi} \right)^2 \frac{S|M|^2}{m_2|p_1|}
+            \frac{|p_3|}{ \mss{ E_1 + m_2 c^2 - |p_1| c \cos\phi } }
+            \ , \ 
+            \mss{ |p_3| : (E_1 + m_2 - |p_3|)^2 = p_1^2 + p_3^2 - |p_1||p_3|\cos\phi }
+    \end{aligned} }
+\)\\[5pt]
+\(
+    % p2 = 0, m_3 = m_1, m_4 = m_2; lab frame
+    \ast\ \begin{aligned}
+        & (m_1 + m_2 \rightarrow m_3 + m_4)\\
+        & \mss{ (p_2 = 0) }\\
+        & \mss{ (m_3 = m_1,\ m_4 = m_2) }\\
+        & \mss{ \left| \arraycolsep=2pt \begin{matrix}
+                p_1 & 0\\
+                p_4 & p_3\\
+            \end{matrix}\right| }
+            = 
+            \mss{ \left| \arraycolsep=2pt \begin{matrix}
+                E_1 & m_2\\
+                E_4 & E_3\\
+            \end{matrix}\right| }
+            + {\scriptstyle m_2^2 - m_1^2}
+            \\[5pt]
+        & \text{\scriptsize For}\ \mss{ (m_1 = 0)}\\
+        & \mss{ \left| \arraycolsep=2pt \begin{matrix}
+                \vec{p_1} & 0\\
+                \vec{p_4} & \vec{p_3}\\
+            \end{matrix}\right| }
+            = 
+            \mss{ \left| \arraycolsep=2pt \begin{matrix}
+                |p_1| & m_2\\
+                E_4 & |p_3|\\
+            \end{matrix}\right| }
+            + \mss{m_2^2}
+            \\
+    \end{aligned}
+    :\ 
+    \boxed{ \begin{aligned}
+        \sigma & = \frac{1}{16\pi^2} \frac{S\hbar^2}{4 m_2|p_1|c} \int |M|^2 
+            \frac{ \delta^4 \mss{ (P_1 + P_2 - [P_3 + P_4]) } }{ \sqrt{p_3^2 + m_1^2c^2} \sqrt{p_4^2 + m_2^2c^2} }
+            \cdot d^3p_3\hs d^3p_4
+            \\
+        & = A \int |M|^2 
+            \frac{ 
+                \delta ( \mss{ E_1/c + m_2c - E_3/c - \sqrt{(p_1-p_3)^2 + m_2^2} } ) 
+                \hs \cancel{ \delta^3 \mss{ (p_1 - p_3 - p_4) } }
+                \hs \bcancel{d^3p_3}
+            }{ 
+                \sqrt{p_3^2 + m_1^2c^2} \sqrt{(p_1-p_3)^2 + m_2^2c^2}
+            }
+            \hs p_3^2 \hs d|p_3| \hs d\Omega 
+            \\
+        \frac{d\sigma}{d\Omega} & = \left( \frac{\hbar}{8\pi} \right)^2 
+            \frac{S|M|^2}{m_2|p_1|c} \cdot \frac{p_3^2c^2}{E_3E_4}
+            \cdot \left| \frac{2|p_3|c}{2E_3} + \frac{ 2|p_3| - 2|p_1|\cos\phi_{13} }{ 2E_4/c } \right|^{-1}
+            \\
+        & = \left( \frac{\hbar}{8\pi} \right)^2 
+            \frac{S|M|^2}{m_2|p_1|} \cdot 
+            \frac{p_3^2}{ \mss{ \left[ \cancel{|p_3|E_4 + |p_3|E_3} = |p_3|(E_1 + m_2c^2) \right] - |p_1|E_3\cos\phi } }
+            \\
+        \frac{d\sigma}{d\Omega} & \nhs\nhs \frac{}{}_{m_1=0} = \left( \frac{\hbar}{8\pi} \right)^2 
+            \frac{S|M|^2}{m_2E_1} \cdot \cancel{ \frac{E_3}{ E_1 + m_2c^2 - E_1\cos\phi } }
+            \frac{E_3^2}{ E_1 m_2c^2 }
+    \end{aligned} }
+\)\\[5pt]
+\(
+    % p2 = 0, p4 = 0; lab ftame
+    \begin{aligned}
+        \ast\\
+        \ast\\
+    \end{aligned}
+    \ 
+    \begin{aligned}
+        & (m_1 + m_2 \rightarrow m_1 + m_2)\\
+        & \mss{ (p_2 = 0) }\\
+        & \mss{ (p_4 \approx 0) }\\
+    \end{aligned}
+    :\ \hfill
+    \dboxed{ \begin{aligned}
+        \sigma & = \frac{1}{16\pi^2} \frac{S\hbar^2}{4 m_2|p_1|c} \int |M|^2
+            \cdot \frac{ \delta^4 \mss{ (P_1 + P_2 - [P_3 + P_4]) } }{ \sqrt{p_3^2 + m_1^2c^2} \sqrt{p_4^2 + m_2^2c^2} }
+            \cdot d^3p_3\hs d^3p_4
+            \\
+        & = A \int |M|^2 
+            \cdot \frac{ 
+                \delta ( \mss{ E_1/c + m_2 c - E_3/c - \sqrt{(p_1 - p_3)^2 + m_2^2} } ) 
+                \hs \cancel{ \delta^3 \mss{ (p_1 - p_3 - p_4) } } \cancel{d^3p_4}
+            }{ 
+                \sqrt{p_3^2 + m_1^2 c^2} \sqrt{(p_1-p_3)^2_{\ll m_2c} + m_2^2 c^2} 
+            }
+            \cdot p_3^2 d|p_3| d\Omega
+            \\
+        \frac{d\sigma}{d\Omega} & \approx \left( \frac{\hbar}{8\pi} \right)^2 
+            \frac{S |M|^2}{m_2^2 c^2} \cancel{ \frac{|p_3|}{|p_1|} } \cancel{ 
+                \frac{|p_3| c}{E_3}
+                \mss{ \left| \frac{2|p_3|c}{2|E_3|} + \frac{2|p_3| + 2|p_1|\cos\theta}{2E_4/c_{\gg |p_1}} \right|^{-1} }
+            }
+            = \left( \frac{\hbar c}{8\pi} \right)^2 \frac{S|M|^2}{( \cancel{E_1+} E_2)^2} \cancel{ \frac{|p_f|}{|p_i|} }
+    \end{aligned} }
+\)
+
+%------------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%
+
+\vspace{15pt}
+% Amplitude, M coefficient
+\(\begin{aligned}
+    & \underline{ \text{Feynman Diagrams, Amplitude}:\ |M|^2 }\\
+    & \text{Dim}\ M:\ (mc)^{4-n}\\
+\end{aligned}\)\\[5pt]
+% A + A = B + B
+\(
+    \begin{gathered}
+        \mss{(A = B + C)}\\
+        \ast\ A + A = B_3 + B_4\\
+        \ast\ A + A = B_4 + B_3\\
+        \mss{(m_b = m_c = 0)^*}\\
+        \mss{ \left| \arraycolsep=2pt \begin{matrix}
+                p_1 & p_2\\
+                p_4 & p_3\\
+            \end{matrix}\right| }
+            = 
+            \mss{ \left| \arraycolsep=2pt \begin{matrix}
+                E_1 & E_2\\
+                |p_4| & |p_3|\\
+            \end{matrix}\right| }
+            \\
+    \end{gathered}
+    :\
+    \boxed{ \begin{aligned}
+        M_{34} & = \frac{i(-ig)^2}{(2\pi)^4 \delta^4\mss{(P \dots)}} 
+            \int \frac{i}{q_c^2 - m_c^2} \cdot
+            \begin{aligned}
+                & (2\pi)^4 \delta^4(P_1 + q_c - P_3) \cdot \tfrac{d^4q_c}{(2\pi)^4}\\
+                & (2\pi)^4 \delta^4(P_2 - q_c - P_4)
+            \end{aligned}
+            \\
+        M & = M_{34} + M_{43} = \frac{g^2}{(P_4 - P_2)^2} + \frac{g^2}{(P_3 - P_2)^2} 
+            = \frac{g^2}{(P_1 - P_3)^2} + \frac{g^2}{(P_3 - P_2)^2} 
+            \\
+        \frac{d\sigma}{d\Omega}_{cm^*} & = \left( \frac{ \hbar c}{8\pi} \right)^2 \frac{S |M|^2}{(2E_1)^2} \frac{|p_f|}{|p_i|}
+            \ , \ M = \frac{2g^2(m_a^2 - 2 E_i^2)}{(m_a^2 - 2 E_i^2)^2 - (2|p_i| E_i \cos\phi)^2} 
+            \\
+        \frac{d\sigma}{d\Omega}_{lab^*} & = \left( \tfrac{\hbar}{8\pi} \right)^2 
+            \frac{S|M|^2|p_3|}{ \mss{ m_a|p_1| \left( E_1 + m_a c^2 - |p_1| c \cos\phi  \right) } }
+            \ , \ M = \tfrac{g^2}{ m_a^2 - 2 [E_4m_a = E_3 (E_1 - |p_1|\cos\phi_{13})] } 
+            \mss{+} \tfrac{g^2}{m_a^2 - 2 E_3 m_a}
+            \\
+        \text{\scriptsize(nonrel.)}  & \approx  
+            \left( \tfrac{\hbar}{8\pi} \right)^2 
+            \frac{S|M|^2 m_a c}{ \mss{ m_a|m_a v_1| \left( m_a c^2 + m_a c^2 \right) } }
+            \ , \ M = \tfrac{2g^2}{ m_a^2 - 2 m_ac^2 \cdot m_a } 
+    \end{aligned} }
+    % \hspace{25pt}
+\)\\[5pt]
+% A + B = A + B
+\(
+    \begin{gathered}
+        \mss{(A = B + C)}\\
+        \ast\ A + B = B + A\\
+        \ast\ A + B = B + A\\
+        \mss{(cm,\ m_a = m_b,\ m_c = 0)^*}\\[-5pt]
+        \mss{(lab,\ m_b \gg m_a)^*}\\
+    \end{gathered}
+    :\
+    \boxed{ \begin{aligned}
+        M_{c|} & = \frac{i(-ig)^2}{(2\pi)^4 \cancel{\delta^4(\dots)}} 
+            \frac{i}{q_c^2 - m_c^2} \cdot \tfrac{ (2\pi)^{4*2} }{(2\pi)^4}
+            \hspace{15pt} \mss{(P_{A1} + q_c = P_{B2};\ P_{B1} - q_c = P_{A2})}
+            \\
+        M_{c-} & = \frac{i(-ig)^2}{(2\pi)^4} 
+            \frac{i}{q_c^2 - m_c^2} \cdot \tfrac{ (2\pi)^{4*2} }{(2\pi)^4}
+            \hspace{15pt} \mss{(P_{A1} + P_{B1} = q_c = P_{B2} + P_{A2})}
+            \\
+        M & = M_{c|} + M_{c-} = \frac{g^2}{(P_3 - P_1)^2} + \frac{g^2}{(P_2 + P_1)^2}
+            \\
+        \frac{d\sigma}{d\Omega}_{cm^*} & = \left( \frac{ \hbar c}{8\pi} \right)^2 
+            \frac{S |M|^2}{(E_1+E_2)^2} \frac{|p_f|}{|p_i|}
+            \ , \ M = \tfrac{g^2}{-2p_1^2 - 2p_1^2\cos\phi}
+            + \tfrac{g^2}{4E_1^2}
+            \\
+        \frac{d\sigma}{d\Omega}_{lab^*} & \approx \left( \frac{\hbar}{8\pi} \right)^2 
+            \frac{S|M|^2}{m_2^2c^2 }
+            \ , \ M \approx \tfrac{g^2/m_b^2}{m_a^2/m_b^2 + 1 - 2E_1/m_b }
+            + \tfrac{g^2/m_b^2}{m_a^2/m_b^2 + 1 + 2E_1/m_b }
+            \approx \tfrac{2g^2}{m_b^2}
+            \\
+    \end{aligned} }
+    % \hspace{25pt}
+\)
+
+\vspace{15pt}
+%---------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%------------------------------------------------------------------------------------------------------------------
+% Feynman QED
+\subsection{Feynman QED}
+\vspace{10pt}
+\(
+    \begin{aligned}[t]
+        & \bullet\ \text{Incoming Particle}:\ u, \overline{v};\ e_\mu\ \text{(number)}
+            \\
+        & \bullet\ e^\mp\ \text{Internal Progagator}: \frac{i(\slashed{q} + m)}{q^2-m^2}
+            \\
+        & \bullet\ (2\pi)^4 \delta^4\ \text{Vertex Factor}:\ ig_e \gamma^\mu\ \ \mss{(g_e = \sqrt{4\pi \alpha} )}
+            \\[5pt]
+        & \bullet\ \text{Closed Fermion Loop}: -1 \cdot \text{Tr(Loop)}\\
+    \end{aligned}
+    \hspace{15pt}
+    \begin{aligned}[t]
+        & \bullet\ \text{Outgoing Particle}:\ \overline{u}, v;\ e_\mu^*
+            \\
+        & \bullet\ \gamma\ \text{Internal Progagator}: \frac{ -ig_{\mu\nu} }{q^2}
+            \\
+        & \bullet\
+            \underline{ \text{Antisymmetry {\scriptsize of 2-interchangable fermion Diagrams}} }
+            \\
+        & \bullet\ \underline{ \text{Work Backwards in \textbf{Time} for \textbf{Fermions}} }
+    \end{aligned}
+\)
+
+\vspace{10pt}
+\noindent
+% Casimir's Trick
+\( 
+    \boxed{ \text{Casimir's Trick} }:\ 
+    \mss{ \displaystyle \sum_{s_1,s_2} }
+    \mss{ \left[ \overline{(u/v)}_1 \Gamma_1 (u/v)_2 \right] }
+    \mss{ \left[ \overline{(u/v)}_1 \Gamma_2 (u/v)_2 \right]^{* = \dagger} }
+    = \hspace{-10pt}
+    \begin{gathered}[t]
+        \text{Tr}\left( [\slashed{P}_1 \pm^u_v m_1] \Gamma_1 [\slashed{P}_2 \pm^u_v m_2] \overline{\Gamma}_2 \right)\\
+        \underline{ \mss{ \bullet\ y^T M x = y^\mu M_{\mu\nu} x^\nu = M_{\mu\nu} x^\nu y^\mu = \text{Tr}( Mxy^T )} }
+    \end{gathered}
+    \hspace{-2pt} \equiv \boxed{ \text{Tr}\left( \slashed{\rho}_1^\pm \Gamma_1 \slashed{\rho}_2^\pm \overline{\Gamma}_2 \right) }
+\)\\[5pt]
+% One Trace Evaluation
+\(
+    \bullet\ \text{Tr}(\slashed{\rho}_1^\pm \gamma^\mu \slashed{\rho}_2^\pm \gamma^\nu)
+    = P_1 P_2 \text{Tr}(\gamma^1 \gamma^\mu \gamma^2 \gamma^\nu) + 0 (\pm\pm) m_1 m_2 \text{Tr}(\gamma^\mu \gamma^\nu)
+    = \boxed{ 4(P_1^\mu P_2^\nu - g^{\mu\nu} P_1 \cdot P_2 + P_1^\nu P_2^\mu ) + (\pm\pm) 4 m_1 m_2 g^{\mu\nu} }
+\)
+
+\vspace{15pt}
+\noindent
+% Compton (e + gamma -> e + gamma)
+\(\begin{aligned}
+    & \underline{ \text{Compton},\ e + \gamma \rightarrow e + \gamma }:\ 
+        M = \bcancel{i} \bcancel{\int}
+        [ \overline{u}^{(s_3)} \bcancel{i} g_e \slashed{\epsilon}^*_4 ] 
+        \tfrac{ \bcancel{i} (\slashed{P}_1 + \slashed{P}_2 + m) }{(q=P_1 + P_2)^2 - m^2}
+        [ \slashed{\epsilon}_2 \bcancel{i} g_e u^{(s_1)} ]
+        \hs \bcancel{dq^4}
+        +
+        [ \overline{u}^{(s_4)} g_e \slashed{\epsilon}_2 ] 
+        \tfrac{\slashed{P}_1 - \slashed{P}_3 + m}{(P_1 - P_3)^2 - m^2}
+        [ \slashed{\epsilon}^*_3 g_e u^{(s_1)} ]
+        \\
+\end{aligned}\)
+
+%--------------------------------------------------------------------------------------------------------
+%
+%
+%
+\newpage
+% \vspace{15pt}
+\noindent
+% Electron- Muon scattering
+\(
+    \boxed{ \text{Electron-Muon},\ e + \mu \rightarrow e + \mu }:\ 
+    M = \cancel{i} \cancel{\int} [ \overline{u}^{(s_3)} \cancel{i} g_e \gamma^\mu u^{(s_1)} ] 
+    \tfrac{-\cancel{i}g_{\mu\nu}}{(q = P_3 - P_1)^2}
+    [ \overline{u}^{(s_4)} \cancel{i} g_e \gamma^\nu u^{(s_2)} ] \hs \cancel{dq^4}
+\)\\[5pt]
+% CM frame, (e: 1/2 spin) -> XX <- (mu: -1/2 spin)
+\(
+    \begin{aligned}
+        & CM,\ p = p_z,\ \underline{ (\hat{p} \cdot \Sigma) u_+^{(s)} = u_+^{(s)} }\\
+        & \text{\scriptsize(move back w/ -1/2 spin = helicity 1)}
+    \end{aligned}
+\)
+\quad \vline \quad 
+\(
+    \begin{aligned}
+        M & = \tfrac{-g_e^2N_1N_2N_3N_4}{(P_3-P_1)^2}
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                e^2\\
+                \frac{-\sigma \cdot p_1}{E_e+m} e^2
+            \end{matrix}\right]^\dagger}
+            \gamma^0 \gamma^\mu 
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                e^1\\
+                \frac{\sigma \cdot p_1}{E_e+m} e^1
+            \end{matrix}\right]}
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                e^1\\
+                \frac{\sigma \cdot p_1}{E_\mu+M} e^1
+            \end{matrix}\right]^\dagger}
+            \gamma^0 \gamma_\mu
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                e^2\\
+                \frac{-\sigma \cdot p_1}{E_\mu+M} e^2
+            \end{matrix}\right]}
+            \\
+        & = \tfrac{g_e^2}{(P_3-P_1)^2}
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                \sqrt{E_e+m} e^2\\
+                \sqrt{E_e-m} e^2
+            \end{matrix}\right]^\dagger}
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                0 & \sigma\\
+                \sigma & 0\\
+            \end{matrix}\right]^\mu} 
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                \sqrt{E_e+m} e^1\\
+                \sqrt{E_e-m} e^1
+            \end{matrix}\right]}
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                \sqrt{E_\mu+M} e^1\\
+                \sqrt{E_\mu-M} e^1
+            \end{matrix}\right]^\dagger}
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                0 & \sigma\\
+                \sigma & 0\\
+            \end{matrix}\right]_\mu} 
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                \sqrt{E_\mu+M} e^2\\
+                \sqrt{E_\mu-M} e^2
+            \end{matrix}\right]}
+            \\
+        & = \tfrac{g_e^2}{(P_3-P_1)^2}
+            p^2 
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                e^2\\
+                e^2
+            \end{matrix}\right]}
+            \cdot 
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                \sigma e^1\\
+                \sigma e^1
+            \end{matrix}\right]^\mu}
+            \times
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                e^1\\
+                e^1
+            \end{matrix}\right]}
+            \cdot 
+            \mss{ \left[ \arraycolsep=2pt \begin{matrix}
+                \sigma e^2\\
+                \sigma e^2
+            \end{matrix}\right]_\mu}
+            = \tfrac{8 g_e^2 p^2}{(0,0,0,2p)^2} = \boxed{ -2g_e^2 }
+            \\
+    \end{aligned}
+\)\\[10pt]
+% m,M in the High energy domain (m,M-> 0)
+\( 
+    \begin{gathered}
+        \text{High}\ E\ \ \mss{(p \gg m,M \ \rightarrow\ m,M = 0)} \\[5pt]
+        \mss{P_1 \cdot P_2 = P_3 \cdot P_4}\\[-3pt]
+        \mss{P_1 \cdot P_3 = P_2 \cdot P_4}\\[-3pt]
+        \mss{P_1 \cdot P_4 = P_2 \cdot P_3}\\[-3pt]
+        % \mss{(P_1 \cdot P_4 + P_1 \cdot P_3)^2 = P_1^2 + (P_1 \cdot P_2)^2}\\
+    \end{gathered}
+\)
+\quad \vline \quad
+\(
+    \begin{aligned}
+        \langle M \rangle^2_{spins} & = \tfrac{8g_e^4}{4(P_1 \cdot P_3)^2}
+            \left[ \mss{ (P_1 \cdot P_2)^2 + (P_1 \cdot P_4)^2 } \right]
+            = 2g_e^4 \tfrac{\mss{ (2E_1E_2)^2 + (E_1E_4 \cancel{- p_1 \cdot p_4} + p_1 \cdot p_3)^2 } }{(E_1E_3 - p_1 \cdot p_3)^2}
+            \\
+        & = 2g_e^4 \tfrac{\mss{ 4p_1^4 + p_1^2p_3^2(1 + \cos\theta_{13})^2 } }{p_1^2p_3^2(1 - \cos\theta_{13})^2}
+            = \boxed{ \tfrac{\mss{ 4 + (1 + \cos\theta_{13})^2 } }{(1 - \cos\theta_{13})^2} 2g_e^4 }
+    \end{aligned}
+\)
+
+\vspace{25pt}
+% Moller Scattering (2e -> 2e)
+\(
+    \underline{ \text{M{\o}ller},\ 2e \rightarrow 2e\ \ ( \text{see}\ e+\mu \rightarrow e + \mu ) } :\
+\)\\[5pt]
+\(
+    % Amplitude and spin average
+    \begin{aligned}
+        M & = - \tfrac{g_e^2}{(P_3 - P_1)^2}
+            [ \overline{u}_3 \gamma^\mu u_1 ] [ \overline{u}_4 \gamma_\mu u_2 ]
+            + \tfrac{g_e^2}{(P_4 - P_1)^2}
+            [ \overline{u}_4 \gamma^\mu u_1 ] [ \overline{u}_3 \gamma_\mu u_2 ]
+            \\
+        \langle M \rangle^2_{spins} & = \langle M_{34} \rangle^2 + \langle M_{43} \rangle^2 
+            + \langle M_{34} M_{43}^* \rangle + \langle M_{43} M_{34}^* \rangle
+            \\
+        & = \tfrac{A^2}{4} \text{Tr}(\slashed{\rho}_3 \gamma^\mu \slashed{\rho}_1 \gamma^\nu)
+            \hs \text{Tr}(\slashed{\rho}_4 \gamma_\mu \slashed{\rho}_2 \gamma_\nu)
+            + \tfrac{B^2}{4} \left[ 34 \rightarrow 43 \right]
+            - \tfrac{AB}{4} \text{Tr}(\slashed{\rho}_3 \gamma^\mu \slashed{\rho}_1 
+                \gamma^\nu \slashed{\rho}_4 \gamma_\mu \slashed{\rho}_2 \gamma_\nu
+            )
+            - \tfrac{BA}{4} \left[ 34 \rightarrow 43 \right]
+            \\
+    \end{aligned}
+\)\\[10pt]
+% M in the High energy domain (m -> 0)
+\( 
+    \begin{gathered}
+        \text{High}\ E\ \ (p \gg m \rightarrow m = 0)\\[5pt]
+        \mss{P_1 \cdot P_2 = P_3 \cdot P_4}\\[-3pt]
+        \mss{P_1 \cdot P_3 = P_2 \cdot P_4}\\[-3pt]
+        \mss{P_1 \cdot P_4 = P_2 \cdot P_3}\\[-3pt]
+        \mss{(P_1 \cdot P_4 + P_1 \cdot P_3)^2 = P_1^2 + (P_1 \cdot P_2)^2}\\
+    \end{gathered}
+\)
+\quad \vline \quad
+\(
+    \begin{aligned}
+        & \langle M \rangle^2_{spins} = \tfrac{4*2g_e^4}{(P_1-P_3)^4}
+            \left[ \mss{ (P_1 \cdot P_2)(P_3 \cdot P_4) + (P_1 \cdot P_4)(P_2 \cdot P_3) } \right]
+            + \tfrac{B^2}{4} \left[ 34 \rightarrow 43 \right]
+            \\
+        & \quad \quad - \tfrac{AB}{4} \mss{ \sum_{spins} }
+            \mss{ [\overline{u}_3 \gamma^\mu u_1] [\overline{u}_4 \gamma_\mu u_2]
+            [\overline{u}_1 \gamma^\nu u_4] [\overline{u}_2 \gamma_\nu u_3] } 
+            - \tfrac{BA}{4} \left[ 34 \rightarrow 43 \right]
+            \\
+        & = \tfrac{ 8(1,2)(3,4) }{ 4(1,3)^2 } + \tfrac{ 8(1,4)(2,3) }{ 4(1,3)^2 }
+            + \tfrac{B^2}{4} \left[ 34 \rightarrow 43 \right] 
+            - \tfrac{- 32 g_e^4}{4 (P_1-P_3)^2 (P_1-P_4)^2} 
+            \left[ 2 \mss{ (P_1 \cdot P_2)(P_3 \cdot P_4) } \right]
+            \\
+        & = g_e^4 \left[ \underline{ \tfrac{ 2(1,2)^2(1,4)^2 }{ (1,3)^2(1,4)^2 } }
+            + \tfrac{ 2(1,4)^2(1,4)^2 }{ (1,3)^2(1,4)^2 }
+            + \underline{ \tfrac{ 2(1,2)^2(1,3)^2 }{ (1,4)^2(1,3)^2 } }
+            + \tfrac{ 2(1,3)^2(1,3)^2 }{ (1,4)^2(1,3)^2 } 
+            + \underline{ \tfrac{ 16(1,2)^2(1,3)(1,4) }{ 4(1,3)^2(1,4)^2 } } \right]
+            \\
+        & = \boxed{ 
+                \tfrac{2 g_e^4}{(P_1 \cdot P_3)^2 (P_1 \cdot P_4)^2} 
+                \left[ (P_1 \cdot P_4)^4 + (P_1 \cdot P_3)^4 + \underline{ (P_1 \cdot P_2)^4 } \right]
+            }
+            \\[5pt]
+        % CM Frame
+        & CM\ \langle M \rangle^2_{spins} = 2 g_e^4 
+            \tfrac{ (1 + \cos\theta)^4 + (1 - \cos\theta)^4 + 2^4 }{(1 - \cos\theta)^2 (1 + \cos\theta)^2} 
+            = \boxed{ \tfrac{ 4 g_e^4 (3+\cos^2\theta)^2 }{\sin^4\theta} }
+    \end{aligned}
+\)
+
+\vspace{15pt}
+\noindent
+% Pair Annihilation
+\(
+    \begin{aligned}[t]
+        & \underline{ \text{Pair Annihilation},\ e^- e^+ \rightarrow 2\gamma }:\ M = 
+            \boxed{
+                [ \overline{v}_2 g_e \slashed{\epsilon}^*_4 ] 
+                \tfrac{ (\slashed{q} + m) }{ (P_1 - P_3)^2 - m^2 }
+                [ \slashed{\epsilon}^*_3 g_e u_1 ]
+                + 
+                [ \overline{v} g_e \slashed{\epsilon}^*_3 ] 
+                \tfrac{\slashed{P_1} - \slashed{P_4} + m}{(P_1 - P_4)^2 - m^2}
+                [ \slashed{\epsilon}^*_4 g_e u_1 ]
+            }
+            \\
+        & \mss{\dots}\ M_{(p_1 = p_2 = 0)} = \begin{gathered}
+                \cancel{ \tfrac{g_e^2}{m} \overline{v}_2 (\hsvec{\epsilon}_3^* \cdot \hsvec{\epsilon}_4^*) \gamma^0 u_1 }\\
+                {\scriptstyle \uparrow\uparrow, \uparrow\downarrow, \downarrow\uparrow, \downarrow\downarrow 
+                    \ :\ \overline{v}_2 \gamma^0 u_1 = 0 }
+            \end{gathered}
+            + \tfrac{g_e^2}{m} i \overline{v}_2 (\hsvec{\epsilon}_3^* \times \hsvec{\epsilon}_4^*)_i \hs \Sigma^i \gamma^3 u_1
+            = \boxed{ 
+                \tfrac{g_e^2}{m} i (\hsvec{\epsilon}_3^* \times \hsvec{\epsilon}_4^*)_i\hs 2m [e^{s_2}]^T \sigma^i [-\sigma^3] e^{s_1} 
+            }
+    \end{aligned}
+\)\\[10pt]
+\(
+    \begin{aligned}
+        M_{\uparrow\uparrow} & = -2 g_e^2 i^2 \left[ i (\hsvec{\epsilon}_3^* \times \hsvec{\epsilon}_4^*)_x 
+            - (\hsvec{\epsilon}_3^* \times \hsvec{\epsilon}_4^*)_y \right]
+            \ : \ \epsilon^\uparrow \times \epsilon^\uparrow = 0 \ \Rightarrow\ M_{\uparrow\uparrow} = 0
+            \\
+        M_{\downarrow\downarrow} & = -2 g_e^2 i^2 \left[ i (\hsvec{\epsilon}_3^* \times \hsvec{\epsilon}_4^*)_x 
+            + (\hsvec{\epsilon}_3^* \times \hsvec{\epsilon}_4^*)_y \right]
+            \ : \ \epsilon^\downarrow \times \epsilon^\downarrow = 0 \ \Rightarrow\ M_{\downarrow\downarrow} = 0
+            \\[5pt]
+        % |M_{\uparrow\uparrow}|^2 & = 2 g_e^2 \left[ i \epsilon^{x a b} \epsilon_{3a}^* \epsilon_{4b}^* 
+        %     - \epsilon^{c y d} \epsilon_{3c}^* \epsilon_{4d}^* \right]
+        %     \left[ - i \epsilon^{x e f} \epsilon_{3e} \epsilon_{4f}
+        %     - \epsilon^{g y h} \epsilon_{3g} \epsilon_{4h} \right]
+        %     \\
+        % & = 4 g_e^4 \left[
+        %         \epsilon^{x a b} \epsilon^{x e f} \epsilon_{3a}^* \epsilon_{3e} \epsilon_{4b}^* \epsilon_{4f}
+        %         - i \epsilon^{x a b} \epsilon^{g y h} \epsilon_{3a}^* \epsilon_{3g} \epsilon_{4b}^* \epsilon_{4h}
+        %         + i \epsilon^{x e f} \epsilon^{c y d} \epsilon_{3c}^* \epsilon_{3e} \epsilon_{4d}^* \epsilon_{4f}
+        %         + \epsilon^{g y h} \epsilon^{c y d} \epsilon_{3c}^* \epsilon_{3g} \epsilon_{4d}^* \epsilon_{4h}
+        %     \right]
+        %     \\
+        % \langle M_{\uparrow\uparrow}^2 \rangle & = 4 g_e^4 \big[
+        %         \epsilon^{x a b} \epsilon^{x e f} (\delta_{ae} - \hat{p}_a \hat{p}_e)_3 (\delta_{bf} - \hat{p}_b \hat{p}_f)_4
+        %         - i \epsilon^{x a b} \epsilon^{g y h} (\delta_{ag} - \hat{p}_a \hat{p}_g)_3 (\delta_{bh} - \hat{p}_b \hat{p}_h)_4
+        %     \\
+        % & \hspace{10pt} + i \epsilon^{x e f} \epsilon^{c y d} (\delta_{ce} - \hat{p}_c \hat{p}_e)_3 (\delta_{df} - \hat{p}_d \hat{p}_f)_4
+        %         + \epsilon^{g y h} \epsilon^{c y d} (\delta_{cg} - \hat{p}_c \hat{p}_g)_3 (\delta_{dh} - \hat{p}_d \hat{p}_h)_4
+        %     \big]
+        %     \\
+        M_{\uparrow\downarrow} & = -2 g_e^2 i (\hsvec{\epsilon}_3^* \times \hsvec{\epsilon}_4^*)_z
+            = -2 g_e^2 i (\epsilon_+^* \times \epsilon_-^*)_z 
+            = -2 g_e^2 
+            \\
+        M_{\downarrow\uparrow} & = 2 g_e^2 i (\hsvec{\epsilon}_3^* \times \hsvec{\epsilon}_4^*)_z
+            = 2 g_e^2 i (\epsilon_-^* \times \epsilon_+^*)_z
+            = 2 g_e^2 
+            \\
+        % \langle \tfrac{M_{\uparrow\downarrow} - M_{\downarrow\uparrow}}{\sqrt{2}} \rangle^2 & = 
+        %     8 g_e^4 \epsilon^{abz} \epsilon^{cdz} (\delta_{ac} - \hat{p}_a \hat{p}_c)_3 (\delta_{bd} - \hat{p}_b \hat{p}_d)_4
+    \end{aligned}
+\)
+\quad \vline \quad
+\(
+    \begin{aligned}
+        & \bullet\ \epsilon^\uparrow = \epsilon^+ = (-1, -i, 0) / \sqrt{2} \\
+        & \bullet\ \epsilon^- = (1, -i, 0) / \sqrt{2} \\
+        & \bullet\ e^- e^+ \rightarrow 2\gamma \ \text{is singlet only}\\
+        & \ast\ e^- e^+ \rightarrow 3\gamma \ \text{is triplet only}
+            \\[5pt]
+        & \boxed{ \langle M \rangle^2 = 16g_e^4 \ \ \text{\scriptsize(for all, since only singlet)} }
+    \end{aligned}
+\)
+\end{document}
